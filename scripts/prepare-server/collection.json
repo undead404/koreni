@@ -1,0 +1,95 @@
+{
+  "created_at": 1727183440,
+  "default_sorting_field": "",
+  "enable_nested_fields": true,
+  "fields": [
+    {
+      "facet": true,
+      "index": true,
+      "infix": false,
+      "locale": "uk",
+      "name": "act_type",
+      "optional": false,
+      "sort": false,
+      "stem": false,
+      "store": true,
+      "type": "string"
+    },
+    {
+      "facet": false,
+      "index": true,
+      "infix": false,
+      "locale": "",
+      "name": "date",
+      "optional": false,
+      "sort": true,
+      "stem": false,
+      "store": true,
+      "type": "int64"
+    },
+    {
+      "facet": false,
+      "index": true,
+      "infix": false,
+      "locale": "ru",
+      "name": "primaryParticipants",
+      "optional": false,
+      "sort": false,
+      "stem": false,
+      "store": true,
+      "type": "object[]"
+    },
+    {
+      "facet": false,
+      "index": true,
+      "infix": false,
+      "locale": "ru",
+      "name": "secondaryParticipants",
+      "optional": false,
+      "sort": false,
+      "stem": false,
+      "store": true,
+      "type": "object[]"
+    },
+    {
+      "facet": true,
+      "index": true,
+      "infix": false,
+      "locale": "uk",
+      "name": "settlement",
+      "optional": false,
+      "sort": false,
+      "stem": false,
+      "store": true,
+      "type": "string"
+    },
+    {
+      "facet": false,
+      "index": true,
+      "infix": false,
+      "locale": "ru",
+      "name": "tertiaryParticipants",
+      "optional": false,
+      "sort": false,
+      "stem": false,
+      "store": true,
+      "type": "object[]"
+    },
+    {
+      "facet": false,
+      "index": true,
+      "infix": false,
+      "locale": "",
+      "name": "year",
+      "optional": false,
+      "sort": true,
+      "stem": false,
+      "store": true,
+      "type": "int32"
+    }
+  ],
+  "name": "acts",
+  "num_documents": 0,
+  "symbols_to_index": [],
+  "token_separators": []
+}

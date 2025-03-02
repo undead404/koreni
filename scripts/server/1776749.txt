@@ -1,0 +1,11 @@
+;;
+;;	Domain:    koreni.org.ua
+;; 	Exported:  2024-09-25 13:49:44
+;;
+$ORIGIN koreni.org.ua
+$TTL 900
+@	IN	A	49.13.48.221
+www	IN	A	49.13.48.221
+*	IN	A	49.13.48.221
+@	IN	MX	0 mx.services.
+@	IN	TXT	v=spf1 include:_spf.ukraine.com.ua ~all

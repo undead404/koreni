@@ -1,0 +1,54 @@
+#cloud-config
+
+
+# Ensure the typesense service is running
+bootcmd:
+  - systemctl start typesense-server
+
+package_update: true
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+
+runcmd:
+  - |
+    # Install Typesense
+    curl -fsSL https://typesense.org/typesense-key.gpg | gpg --dearmor -o /usr/share/keyrings/typesense-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/typesense-keyring.gpg] https://repo.typesense.org/debian/ stable main" | tee /etc/apt/sources.list.d/typesense.list
+    apt-get update
+    apt-get install -y typesense-server
+    systemctl enable typesense-server
+    systemctl start typesense-server
+    
+    # Install Node.js 22
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    apt-get install -y nodejs
+
+    # Install Yarn
+    npm install -g yarn
+
+# Create a nonroot user
+users:
+  - name: nonroot
+    ssh-authorized-keys:
+      - ssh-rsa YOUR_SSH_PUBLIC_KEY_HERE
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+    lock_passwd: true
+
+# Create a typesense configuration file
+write_files:
+  - path: /etc/typesense/typesense-server.ini
+    content: |
+      [server]
+      api-address = 0.0.0.0
+      api-port = 8108
+      data-dir = /var/lib/typesense/data
+      log-dir = /var/log/typesense
+      api-key = YOUR_API_KEY_HERE
+
