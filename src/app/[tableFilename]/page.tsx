@@ -7,6 +7,8 @@ import IndexTable from "../components/index-table";
 import MapWrapper from "../components/map-wrapper";
 import getTableMetadata from "../helpers/get-table-metadata";
 
+import styles from "./page.module.css";
+
 export default async function Table({
   params,
 }: {
@@ -17,15 +19,15 @@ export default async function Table({
   const tableMetadata = await getTableMetadata(tableFilenameDecoded);
   const tableData = await getTableData(tableMetadata);
   return (
-    <article>
+    <article className={styles.article}>
       <h1>{tableMetadata.title}</h1>
-      <div style={{ maxWidth: "calc(100vw - 160px)", overflow: "auto" }}>
+      <div className={styles.tableContainer}>
         <h3>Дані</h3>
         <MapWrapper
           coordinates={tableMetadata.location}
           title={tableMetadata.title}
         />
-        <Suspense fallback={<div>Завантаження...</div>}>
+        <Suspense fallback={<div className={styles.suspenseFallback}>Завантаження...</div>}>
           <IndexTable data={tableData} />
         </Suspense>
       </div>

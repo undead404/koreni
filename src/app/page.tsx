@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import getTablesMetadata from "@/shared/get-tables-metadata";
 import Search from "./components/search";
 
@@ -12,8 +14,10 @@ export default async function Home() {
         Корені – аморфні генеалогічні індекси, зібрані з різних джерел в
         пошуковому рушії.
       </p>
-      <Search />
-      <section>
+      <Suspense fallback={<p>Завантаження...</p>}>
+        <Search />
+      </Suspense>
+      <section className={styles.section}>
         <h2>Наявні таблиці</h2>
         <ul>
           {tablesMetadata.map((tableMetadata) => (

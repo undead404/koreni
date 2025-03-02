@@ -2,6 +2,8 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
 
+import styles from "./index-table-value.module.css";
+
 export default function IndexTableValue({
   onMatch,
   value,
@@ -13,12 +15,15 @@ export default function IndexTableValue({
   const highlightedValue = useMemo(() => {
     const matchedTokensParam = searchParams.get("matched_tokens");
     if (!matchedTokensParam) {
-        return value;
+      return value;
     }
     const matchedTokens = matchedTokensParam.split(",") || [];
     // Highlight matched tokens with <mark> tag
     return matchedTokens.reduce((acc, token) => {
-      return acc.replace(new RegExp(token, "gi"), `<mark>${token}</mark>`);
+      return acc.replace(
+        new RegExp(token, "gi"),
+        `<mark class="${styles.mark}">${token}</mark>`
+      );
     }, value);
   }, [value, searchParams]);
   const ref = useRef<HTMLTableDataCellElement>(null);

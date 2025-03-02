@@ -1,5 +1,8 @@
 import type { ChangeEvent, FC } from "react";
+
 import getTypesenseClient from "../services/typesense";
+
+import styles from "./search-controls.module.css";
 
 interface ControlsProps {
   query: string;
@@ -26,9 +29,14 @@ const SearchControls: FC<ControlsProps> = ({
   };
 
   return (
-    <div>
-      <input type="text" value={query} onChange={handleInputChange} />
-      {/* Add additional controls for facets and ranges if necessary */}
+    <div className={styles.container}>
+      <input 
+        type="text" 
+        value={query} 
+        onChange={handleInputChange} 
+        className={styles.input}
+        placeholder="Мельник"
+      />
     </div>
   );
 };

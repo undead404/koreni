@@ -5,6 +5,8 @@ import { nonEmptyString } from "@/shared/schemas/non-empty-string";
 
 import type { SearchResult } from "../services/search";
 
+import styles from "./search-results.module.css";
+
 interface ResultsProps {
   loading: boolean;
   results: SearchResult[];
@@ -35,11 +37,11 @@ const SearchResults: FC<ResultsProps> = ({
   resultsNumber,
 }) => {
   return (
-    <table style={{ opacity: loading ? 0.5 : 1, width: "100%" }}>
-      <caption>Знайдено результатів: {resultsNumber}</caption>
+    <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
+      <caption className={styles.caption}>Знайдено результатів: {resultsNumber}</caption>
       {results.map((result, index) => {
         const typedResult = resultSchema.parse(result);
-        return <tbody key={index}>
+        return <tbody key={index} className={styles.tbody}>
           {typedResult.highlight.data &&
             Object.entries(typedResult.highlight.data).map(
               ([key, value]) => (
@@ -52,6 +54,7 @@ const SearchResults: FC<ResultsProps> = ({
                   ></td>
                   <td>
                     <a
+                      className={styles.link}
                       href={`/${
                         typedResult.document.tableFilename
                       }?matched_tokens=${value.matched_tokens.join(",")}`}
@@ -62,7 +65,7 @@ const SearchResults: FC<ResultsProps> = ({
                 </tr>
               )
             )}
-        </tbody> // Adjust based on actual SearchResult structure
+        </tbody>
       })}
     </table>
   );

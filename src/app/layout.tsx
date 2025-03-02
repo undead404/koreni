@@ -44,11 +44,12 @@ export default function RootLayout({
               rel="noopener noreferrer"
             >
               <Image
-                src={githubIcon}
                 alt="undead404/koreni на GitHub"
-                width={24}
+                className={styles.githubIcon}
                 height={24}
+                src={githubIcon}
                 title="undead404/koreni на GitHub"
+                width={24}
               />
             </a>
           </footer>

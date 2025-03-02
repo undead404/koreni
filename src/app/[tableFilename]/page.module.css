@@ -1,0 +1,32 @@
+.article {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.article h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.article h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.tableContainer {
+  border: 1px solid black;
+  max-width: calc(100vw - 80px);
+  overflow: auto;
+  padding: 0.5rem;
+}
+
+.suspenseFallback {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-top: 20px;
+}

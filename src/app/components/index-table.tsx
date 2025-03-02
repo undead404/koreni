@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useRef } from 'react';
 import IndexTableValue from './index-table-value';
+import styles from './index-table.module.css';
 
 export interface TableProps {
   data: Record<string, unknown>[];
@@ -21,15 +22,15 @@ export default function IndexTable({ data }: TableProps) {
   );
   
   return (
-    <table ref={tableRef}>
-      <thead>
+    <table ref={tableRef} className={styles.table}>
+      <thead className={styles.thead}>
         <tr>
           {Object.keys(data[0]).map((key) => (
             <th key={key}>{key}</th>
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className={styles.tbody}>
         {data.map((row, i) => (
           <tr key={i}>
             {Object.values(row).map((value, j) => (

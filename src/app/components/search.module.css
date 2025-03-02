@@ -1,0 +1,18 @@
+.section {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+  margin-top: 1rem;
+}

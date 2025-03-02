@@ -6,6 +6,8 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
 
+import styles from "./map.module.css";
+
 export interface MapProps {
   coordinates: [number, number];
   title: string;
@@ -22,8 +24,12 @@ export default function Map({ coordinates, title }: MapProps) {
           crossOrigin=""
         ></script>
       </Head>
-      <MapContainer center={coordinates} zoom={8} scrollWheelZoom={false}
-            style={{ height: "50vh", width: 'calc(100vw - 160px)' }}>
+      <MapContainer
+        center={coordinates}
+        className={styles.mapContainer}
+        zoom={8}
+        scrollWheelZoom={false}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
