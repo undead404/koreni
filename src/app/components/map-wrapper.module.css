@@ -1,0 +1,7 @@
+.location {
+    width: calc(100vw - 160px);
+}
+.location h3 {
+    display: inline;
+    cursor: pointer;
+}

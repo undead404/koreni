@@ -8,7 +8,7 @@ const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
   TYPESENSE_ADMIN_KEY: nonEmptyString,
-  TYPESENSE_HOST: nonEmptyString,
+  NEXT_PUBLIC_TYPESENSE_HOST: nonEmptyString,
 });
 
 const environment = environmentSchema.parse(process.env);

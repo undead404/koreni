@@ -2,7 +2,7 @@
 
 source .env
 
-curl "$TYPESENSE_HOST/keys" \
+curl "$NEXT_PUBLIC_TYPESENSE_HOST/keys" \
     -X POST \
     -H "X-TYPESENSE-API-KEY: $TYPESENSE_ADMIN_KEY" \
     -H 'Content-Type: application/json' \

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import type { IndexationTable } from './get-tables-metadata.js';
+import type { IndexationTable } from '../shared/schemas/indexation-table.js';
 import typesense from './typesense.js';
 
 const CHUNK_SIZE = 100;

@@ -4,8 +4,8 @@ source .env
 
 curl -H "X-TYPESENSE-API-KEY: ${TYPESENSE_ADMIN_KEY}" \
      -X DELETE \
-    "$TYPESENSE_HOST/collections/unstructured_ru"
+    "$NEXT_PUBLIC_TYPESENSE_HOST/collections/unstructured_ru"
 
 curl -H "X-TYPESENSE-API-KEY: ${TYPESENSE_ADMIN_KEY}" \
      -X DELETE \
-    "$TYPESENSE_HOST/collections/unstructured_uk"
+    "$NEXT_PUBLIC_TYPESENSE_HOST/collections/unstructured_uk"

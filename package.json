@@ -6,22 +6,27 @@
     "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "next lint",
-    "populate-typesense": "tsx scripts/populate-typesense/index.ts",
+    "populate-typesense": "tsx src/populate-typesense/index.ts",
     "start": "next start"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
+    "leaflet": "^1.9.4",
+    "leaflet-defaulticon-compatibility": "^0.1.2",
     "lodash": "^4.17.21",
     "next": "15.2.0",
     "papaparse": "^5.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0",
+    "spoiled": "^0.4.0",
     "typesense": "^2.0.3",
     "yaml": "^2.7.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/leaflet": "^1.9.16",
     "@types/lodash": "^4.17.16",
     "@types/node": "^20",
     "@types/papaparse": "^5.3.15",

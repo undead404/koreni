@@ -1,6 +1,6 @@
 
-import getTableData from './get-table-data.js';
-import getTablesMetadata from './get-tables-metadata.js';
+import getTableData from '../shared/get-table-data.js';
+import getTablesMetadata from '../shared/get-tables-metadata.js';
 import populateTypesense from './populate-unstructured.js';
 
 

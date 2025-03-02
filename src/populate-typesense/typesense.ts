@@ -2,7 +2,7 @@ import Typesense from 'typesense';
 
 import environment from './environment.js';
 
-const hostUrl = new URL(environment.TYPESENSE_HOST);
+const hostUrl = new URL(environment.NEXT_PUBLIC_TYPESENSE_HOST);
 
 const typesense = new Typesense.Client({
   nodes: [
