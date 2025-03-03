@@ -2,15 +2,18 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
 
+import { PER_PAGE } from "../constants";
+
 import IndexTableValue from "./index-table-value";
 import styles from "./index-table.module.css";
 
 export interface TableProps {
   data: Record<string, unknown>[];
+  page: number;
   tableId: string;
 }
 
-export default function IndexTable({ data, tableId }: TableProps) {
+export default function IndexTable({ data, page, tableId }: TableProps) {
   const tableRef = useRef<HTMLTableElement>(null);
   const searchParams = useSearchParams();
   const matchedTokens = useMemo(
@@ -30,7 +33,8 @@ export default function IndexTable({ data, tableId }: TableProps) {
       console.error(`Row with id row-${targetRowId} not found`);
       return;
     }
-    targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+    const markInRow = targetRow.querySelector("mark");
+    (markInRow || targetRow).scrollIntoView({ behavior: "smooth", block: "center" });
   }, [searchParams]);
 
   return (
@@ -44,7 +48,7 @@ export default function IndexTable({ data, tableId }: TableProps) {
       </thead>
       <tbody className={styles.tbody}>
         {data.map((row, i) => (
-          <tr key={i} id={`row-${tableId}-${i + 1}`}>
+          <tr key={i} id={`row-${tableId}-${(page - 1) * PER_PAGE + i + 1}`}>
             {Object.values(row).map((value, j) => (
               <IndexTableValue
                 key={j}

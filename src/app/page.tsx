@@ -22,7 +22,7 @@ export default async function Home() {
         <ul>
           {tablesMetadata.map((tableMetadata) => (
             <li key={tableMetadata.id}>
-              <a href={`/${tableMetadata.id}`}>
+              <a href={`/${tableMetadata.id}/1`}>
                 {tableMetadata.title}
               </a>
             </li>

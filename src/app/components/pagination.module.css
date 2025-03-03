@@ -1,0 +1,37 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.li {
+  margin: 0 5px;
+}
+
+.link,
+.currentPage {
+  display: block;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #2c3e50;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.link:hover {
+  background-color: #2980b9;
+  color: white;
+}
+
+.currentPage {
+  background-color: #2980b9;
+  color: white;
+  cursor: default;
+}

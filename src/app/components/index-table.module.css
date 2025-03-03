@@ -4,6 +4,7 @@
   margin: 20px 0;
   font-size: 1rem;
   text-align: left;
+  text-wrap: nowrap;
 }
 
 .thead th {

@@ -6,6 +6,7 @@ import githubIcon from "./github.svg";
 import "./globals.css";
 import styles from "./layout.module.css";
 import Link from "next/link";
+import Header from "./components/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,10 +32,8 @@ export default function RootLayout({
     <html lang="uk">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className={styles.page}>
+          <Header />
           <main className={styles.main}>
-            <Link href="/" className={styles.title}>
-              Корені
-            </Link>
             {children}
           </main>
           <footer className={styles.footer}>
