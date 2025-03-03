@@ -24,7 +24,8 @@ const highlightSchema = z.object({
 
 const resultSchema = z.object({
     document: z.object({
-        tableFilename: nonEmptyString,
+        id: nonEmptyString,
+        tableId: z.number(),
         title: nonEmptyString,
     }),
     highlight: highlightSchema,
@@ -56,8 +57,10 @@ const SearchResults: FC<ResultsProps> = ({
                     <a
                       className={styles.link}
                       href={`/${
-                        typedResult.document.tableFilename
-                      }?matched_tokens=${value.matched_tokens.join(",")}`}
+                        typedResult.document.tableId
+                      }?matched_tokens=${value.matched_tokens.join(
+                        ","
+                      )}&show_row=${typedResult.document.id}`}
                     >
                       {typedResult.document.title}
                     </a>

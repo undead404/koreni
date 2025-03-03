@@ -9,9 +9,9 @@ import {
 import path from "node:path";
 
 export default async function getTableMetadata(
-  tableFilename: string
+  tableId: string
 ): Promise<IndexationTable> {
-  const yamlFilepath = path.resolve(`./data/tables/${tableFilename}.yml`)
+  const yamlFilepath = path.resolve(`./data/tables/${tableId}.yml`)
   const fileContent = await readFile(yamlFilepath, "utf-8");
   const tableMetadata = parse(fileContent);
   return indexationTableSchema.parse(tableMetadata);

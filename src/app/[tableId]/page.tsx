@@ -12,11 +12,10 @@ import styles from "./page.module.css";
 export default async function Table({
   params,
 }: {
-  params: Promise<{ tableFilename: string }>;
+  params: Promise<{ tableId: string }>;
 }) {
-  const { tableFilename } = await params;
-  const tableFilenameDecoded = decodeURIComponent(decodeURIComponent(tableFilename));
-  const tableMetadata = await getTableMetadata(tableFilenameDecoded);
+  const { tableId } = await params;
+  const tableMetadata = await getTableMetadata(tableId);
   const tableData = await getTableData(tableMetadata);
   return (
     <article className={styles.article}>
@@ -27,8 +26,12 @@ export default async function Table({
           coordinates={tableMetadata.location}
           title={tableMetadata.title}
         />
-        <Suspense fallback={<div className={styles.suspenseFallback}>Завантаження...</div>}>
-          <IndexTable data={tableData} />
+        <Suspense
+          fallback={
+            <div className={styles.suspenseFallback}>Завантаження...</div>
+          }
+        >
+          <IndexTable tableId={tableId} data={tableData} />
         </Suspense>
       </div>
     </article>
@@ -37,7 +40,8 @@ export default async function Table({
 
 export async function generateStaticParams() {
   const tablesMetadata = await getTablesMetadata();
-  return tablesMetadata.map((tableMetadata) => ({
-    tableFilename: encodeURIComponent(tableMetadata.tableFilename),
+  const result = tablesMetadata.map((tableMetadata) => ({
+    tableId: `${tableMetadata.id}`,
   }));
+  return result;
 }

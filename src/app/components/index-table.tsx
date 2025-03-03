@@ -1,26 +1,38 @@
-'use client';
-import { useCallback, useRef } from 'react';
-import IndexTableValue from './index-table-value';
-import styles from './index-table.module.css';
+"use client";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef } from "react";
+
+import IndexTableValue from "./index-table-value";
+import styles from "./index-table.module.css";
 
 export interface TableProps {
   data: Record<string, unknown>[];
+  tableId: string;
 }
 
-export default function IndexTable({ data }: TableProps) {
+export default function IndexTable({ data, tableId }: TableProps) {
   const tableRef = useRef<HTMLTableElement>(null);
-  const hasScrolledRef = useRef(false);
-  const maybeScrollToResult = useCallback(
-    (element: HTMLElement) => {
-      if (hasScrolledRef.current) {
-        return;
-      }
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      hasScrolledRef.current = true;
-    },
-    [],
+  const searchParams = useSearchParams();
+  const matchedTokens = useMemo(
+    () => searchParams.get("matched_tokens")?.split(",") || [],
+    [searchParams]
   );
-  
+  useEffect(() => {
+    if (!tableRef.current) {
+      return;
+    }
+    const targetRowId = searchParams.get("show_row");
+    if (!targetRowId) {
+      return;
+    }
+    const targetRow = tableRef.current.querySelector(`#row-${targetRowId}`);
+    if (!targetRow) {
+      console.error(`Row with id row-${targetRowId} not found`);
+      return;
+    }
+    targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [searchParams]);
+
   return (
     <table ref={tableRef} className={styles.table}>
       <thead className={styles.thead}>
@@ -32,9 +44,13 @@ export default function IndexTable({ data }: TableProps) {
       </thead>
       <tbody className={styles.tbody}>
         {data.map((row, i) => (
-          <tr key={i}>
+          <tr key={i} id={`row-${tableId}-${i + 1}`}>
             {Object.values(row).map((value, j) => (
-              <IndexTableValue key={j} onMatch={maybeScrollToResult} value={`${value}`} />
+              <IndexTableValue
+                key={j}
+                matchedTokens={matchedTokens}
+                value={`${value}`}
+              />
             ))}
           </tr>
         ))}

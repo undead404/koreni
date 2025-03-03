@@ -3,6 +3,7 @@ import { z } from "zod";
 import { nonEmptyString } from "./non-empty-string";
 
 export const indexationTableSchema = z.object({
+  id: z.number().min(1),
   tableFilename: nonEmptyString,
   location: z.tuple([z.number(), z.number()]),
   sources: z.array(nonEmptyString),

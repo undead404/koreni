@@ -14,25 +14,25 @@ export type SearchResults = [SearchResult[], number];
 
 export default async function search({
   client,
-  facets,
+  // facets,
   query,
-  ranges,
+  // ranges,
 }: SearchParameters): Promise<SearchResults> {
-  const facetFilters = Object.entries(facets)
-    .filter(([, values]) => values.length > 0)
-    .map(([attribute, values]) =>
-      values.map((value) => `${attribute}:${value}`).join(" || ")
-    )
-    .join(" && ");
+  // const facetFilters = Object.entries(facets)
+  //   .filter(([, values]) => values.length > 0)
+  //   .map(([attribute, values]) =>
+  //     values.map((value) => `${attribute}:${value}`).join(" || ")
+  //   )
+  //   .join(" && ");
 
-  const rangeFilters = Object.entries(ranges)
-    .map(
-      ([attribute, [min, max]]) =>
-        `${attribute}:>=${min} && ${attribute}:<=${max}`
-    )
-    .join(" && ");
+  // const rangeFilters = Object.entries(ranges)
+  //   .map(
+  //     ([attribute, [min, max]]) =>
+  //       `${attribute}:>=${min} && ${attribute}:<=${max}`
+  //   )
+  //   .join(" && ");
 
-  const filter_by = [facetFilters, rangeFilters].filter(Boolean).join(" && ");
+  // const filter_by = [facetFilters, rangeFilters].filter(Boolean).join(" && ");
 
   const [resultRu, resultUk] = await Promise.allSettled([
     client
@@ -41,8 +41,8 @@ export default async function search({
       .search({
         q: query,
         query_by: "data.*",
-        facet_by: Object.keys(facets).join(","),
-        filter_by: filter_by,
+        // facet_by: Object.keys(facets).join(","),
+        // filter_by: filter_by,
       }),
     client
       .collections("unstructured_uk")
@@ -50,8 +50,8 @@ export default async function search({
       .search({
         q: query,
         query_by: "data.*",
-        facet_by: Object.keys(facets).join(","),
-        filter_by: filter_by,
+        // facet_by: Object.keys(facets).join(","),
+        // filter_by: filter_by,
       }),
   ]);
 

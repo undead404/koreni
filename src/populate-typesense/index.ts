@@ -9,7 +9,6 @@ async function main() {
     const tablesMetadata = await getTablesMetadata();
     const tables = await Promise.all(tablesMetadata.map(async (tableMetadata) => {
       const tableData = await getTableData(tableMetadata);
-      console.log(`Got data for ${tableMetadata.tableFilename}`);
       return {
         ...tableMetadata,
         data: tableData,

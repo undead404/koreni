@@ -13,11 +13,11 @@ export default async function populateTypesense(
   table: IndexationTableWithData,
 ) {
   const { data, location, tableLocale: locale } = table;
-  console.log(`Populating ${table.tableFilename}...`);
-  const dataWithExtraFields = data.map((row) => ({
+  const dataWithExtraFields = data.map((row, index) => ({
     data: row,
+    id: `${table.id}-${index + 1}`,
     location,
-    tableFilename: table.tableFilename,
+    tableId: table.id,
     sources: table.sources,
     title: table.title,
   }));

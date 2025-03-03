@@ -1,11 +1,8 @@
 "use client";
 
 import _ from "lodash";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { z } from "zod";
-
-import { nonEmptyString } from "@/shared/schemas/non-empty-string";
 
 import environment from "../../environment";
 import search, { type SearchResult } from "../services/search";
@@ -16,136 +13,64 @@ import SearchResults from "./search-results";
 
 import styles from "./search.module.css";
 
-const facetEventDetailSchema = z.object({
-  attribute: nonEmptyString,
-  values: z.array(nonEmptyString),
-});
-const rangeEventDetailSchema = z.object({
-  attribute: nonEmptyString,
-  values: z.tuple([z.number(), z.number()]),
-});
 
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
 
 export default function SearchPage() {
-  const [query, setQuery] = useState("");
   const [searchHits, setSearchHits] = useState<SearchResult[]>([]);
   const [searchHitsNumber, setSearchHitsNumber] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [facets, setFacets] = useState<Record<string, string[]>>({});
-  const [ranges, setRanges] = useState<Record<string, [number, number]>>({});
-  const [areRefinementsExpanded, setAreRefinementsExpanded] = useState(false);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (query) params.set("query", query);
-    Object.entries(facets).forEach(([key, values]) => {
-      if (values.length) params.set(`facet_${key}`, values.join(","));
-    });
-    Object.entries(ranges).forEach(([key, [min, max]]) => {
-      params.set(`range_${key}`, `${min},${max}`);
-    });
-    window.history.replaceState(null, "", `?${params.toString()}`);
-  }, [facets, query, ranges]);
+  const searchQuery = useMemo(() => _.debounce(async (query: string) => {
+    console.log("searchQuery");
+    setLoading(true);
+    setError(null);
+    try {
+      const [hits, hitsNumber] = await search({
+        client,
+        // facets,
+        query: query,
+        // ranges,
+      });
+      setSearchHits(hits);
+      setSearchHitsNumber(hitsNumber);
+    } catch (err) {
+      setError("Під час пошуку сталася помилка. Будь ласка, спробуйте ще.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, 1000), []);
 
-  const handleSearch = useMemo(
-    () =>
-      _.debounce(async () => {
-        setLoading(true);
-        setError(null);
-        try {
-          const [hits, hitsNumber] = await search({
-            client,
-            facets,
-            query,
-            ranges,
-          });
-          setSearchHits(hits);
-          setSearchHitsNumber(hitsNumber);
-        } catch (err) {
-          setError("Під час пошуку сталася помилка. Будь ласка, спробуйте ще.");
-          console.error(err);
-        } finally {
-          setLoading(false);
-        }
-      }, 300),
-    [facets, query, ranges]
-  );
-
-  const handleFacetChange = useCallback(
-    (detail: (typeof facetEventDetailSchema)["_type"]) => {
-      setFacets((prevFacets) => ({
-        ...prevFacets,
-        [detail.attribute]: detail.values,
-      }));
-      handleSearch();
-    },
-    [handleSearch]
-  );
-
-  const handleRangeChange = useCallback(
-    (detail: (typeof rangeEventDetailSchema)["_type"]) => {
-      setRanges((prevRanges) => ({
-        ...prevRanges,
-        [detail.attribute]: detail.values,
-      }));
-      handleSearch();
-    },
-    [handleSearch]
-  );
-
-  const toggleRefinementsExpanded = useCallback(() => {
-    setAreRefinementsExpanded((prev) => !prev);
-  }, []);
 
   const handleInput = useCallback(
     (value: string) => {
-      setQuery(value);
+      router.replace(
+        `/?query=${encodeURIComponent(value)}`,
+      );
     },
-    []
+    [router]
   );
 
   useEffect(() => {
-    setQuery(searchParams.get("query") || "");
-
-    searchParams.forEach((value, key) => {
-      if (key.startsWith("facet_")) {
-        const attribute = key.replace("facet_", "");
-        setFacets((prevFacets) => ({
-          ...prevFacets,
-          [attribute]: value.split(","),
-        }));
-      } else if (key.startsWith("range_")) {
-        const attribute = key.replace("range_", "");
-        const [min, max] = value.split(",").map(Number);
-        if (isNaN(min) || isNaN(max)) {
-          console.error("Invalid range values: ", min, max);
-          return;
-        }
-        setRanges((prevRanges) => ({
-          ...prevRanges,
-          [attribute]: [min, max],
-        }));
-      }
-    });
-
-    handleSearch();
-  }, [searchParams, handleSearch]);
+    searchQuery(searchParams.get("query") || "");
+  }, [searchParams, searchQuery]);
 
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>Пошук</h2>
       <SearchControls
-        query={query}
-        areRefinementsExpanded={areRefinementsExpanded}
+        query={searchParams.get("query") || ""}
+        // areRefinementsExpanded={areRefinementsExpanded}
         client={client}
-        onFacetChange={(event) => handleFacetChange(event.detail)}
-        onRangeChange={(event) => handleRangeChange(event.detail)}
-        onToggleRefinementsExpanded={toggleRefinementsExpanded}
+        // onFacetChange={(event) => handleFacetChange(event.detail)}
+        // onRangeChange={(event) => handleRangeChange(event.detail)}
+        // onToggleRefinementsExpanded={toggleRefinementsExpanded}
         onInput={(event) => handleInput(event.detail)}
       />
 

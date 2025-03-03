@@ -21,8 +21,8 @@ export default async function Home() {
         <h2>Наявні таблиці</h2>
         <ul>
           {tablesMetadata.map((tableMetadata) => (
-            <li key={tableMetadata.tableFilename}>
-              <a href={`/${tableMetadata.tableFilename}`}>
+            <li key={tableMetadata.id}>
+              <a href={`/${tableMetadata.id}`}>
                 {tableMetadata.title}
               </a>
             </li>

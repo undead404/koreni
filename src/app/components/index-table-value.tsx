@@ -1,23 +1,20 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 
 import styles from "./index-table-value.module.css";
 
 export default function IndexTableValue({
-  onMatch,
+  matchedTokens,
   value,
 }: {
-  onMatch: (element: HTMLElement) => void;
+  matchedTokens: string[];
   value: string;
 }) {
-  const searchParams = useSearchParams();
   const highlightedValue = useMemo(() => {
-    const matchedTokensParam = searchParams.get("matched_tokens");
-    if (!matchedTokensParam) {
+    if (!matchedTokens?.length) {
       return value;
     }
-    const matchedTokens = matchedTokensParam.split(",") || [];
     // Highlight matched tokens with <mark> tag
     return matchedTokens.reduce((acc, token) => {
       return acc.replace(
@@ -25,13 +22,8 @@ export default function IndexTableValue({
         `<mark class="${styles.mark}">${token}</mark>`
       );
     }, value);
-  }, [value, searchParams]);
+  }, [matchedTokens, value]);
   const ref = useRef<HTMLTableDataCellElement>(null);
-  useEffect(() => {
-    if (ref.current && highlightedValue.includes("<mark>")) {
-      onMatch(ref.current);
-    }
-  }, [highlightedValue, onMatch]);
 
   return (
     <td dangerouslySetInnerHTML={{ __html: highlightedValue }} ref={ref} />
