@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 import { parse } from "yaml";
 
@@ -6,7 +7,6 @@ import {
   indexationTableSchema,
   type IndexationTable,
 } from "@/shared/schemas/indexation-table";
-import path from "node:path";
 
 export default async function getTableMetadata(
   tableId: string

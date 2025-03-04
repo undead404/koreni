@@ -27,7 +27,6 @@ export default function SearchPage() {
   const router = useRouter();
 
   const searchQuery = useMemo(() => _.debounce(async (query: string) => {
-    console.log("searchQuery");
     setLoading(true);
     setError(null);
     try {

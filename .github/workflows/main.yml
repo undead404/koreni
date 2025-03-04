@@ -1,0 +1,128 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+        
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run tests
+        run: yarn test
+  
+  populate-typesense:
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Pull data
+        run: yarn pull-data
+
+      - name: Populate Typesense
+        run: yarn populate-typesense
+        env:
+          TYPESENSE_ADMIN_KEY: ${{ secrets.TYPESENSE_ADMIN_KEY }}
+          TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build project
+        run: yarn build
+        env:
+          NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars. BUGSNAG_API_KEY }}
+          NEXT_PUBLIC_SITE: ${{ vars.SITE }}
+          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
+          NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: out
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Copy files via rsync
+        run: |
+          rsync -avz -e "ssh" --no-perms --no-times ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/home/${{ secrets.SSH_USERNAME }}/dist
+
+      - name: Restart NGINX
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo systemctl restart nginx'

@@ -1,5 +1,4 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { useMemo, useRef } from "react";
 
 import styles from "./index-table-value.module.css";
@@ -19,11 +18,11 @@ export default function IndexTableValue({
     return matchedTokens.reduce((acc, token) => {
       return acc.replace(
         new RegExp(token, "gi"),
-        `<mark class="${styles.mark}">${token}</mark>`
+        match => `<mark class="${styles.mark}">${match}</mark>`
       );
     }, value);
   }, [matchedTokens, value]);
-  const ref = useRef<HTMLTableDataCellElement>(null);
+  const ref = useRef<HTMLTableCellElement>(null);
 
   return (
     <td dangerouslySetInnerHTML={{ __html: highlightedValue }} ref={ref} />

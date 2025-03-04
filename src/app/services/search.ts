@@ -4,9 +4,9 @@ import type { SearchResponseHit } from "typesense/lib/Typesense/Documents.js";
 
 export interface SearchParameters {
   client: Client;
-  facets: Record<string, string[]>;
+  facets?: Record<string, string[]>;
   query: string;
-  ranges: Record<string, [number, number]>;
+  ranges?: Record<string, [number, number]>;
 }
 
 export type SearchResult = SearchResponseHit<Record<string, unknown>>;

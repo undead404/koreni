@@ -1,38 +1,16 @@
 import type { FC } from "react";
-import { z } from "zod";
-
-import { nonEmptyString } from "@/shared/schemas/non-empty-string";
 
 import type { SearchResult } from "../services/search";
 
 import styles from "./search-results.module.css";
 import guessPageFromRowId from "../helpers/guess-page-from-row-id";
+import resultSchema from "../schemas/search-result";
 
-interface ResultsProps {
+export interface ResultsProps {
   loading: boolean;
   results: SearchResult[];
   resultsNumber: number;
 }
-
-const highlightSchema = z.object({
-  data: z
-    .record(
-      z.object({
-        snippet: z.string(),
-        matched_tokens: z.array(z.string()),
-      })
-    )
-    .optional(),
-});
-
-const resultSchema = z.object({
-  document: z.object({
-    id: nonEmptyString,
-    tableId: z.number(),
-    title: nonEmptyString,
-  }),
-  highlight: highlightSchema,
-});
 
 const SearchResults: FC<ResultsProps> = ({
   loading,
@@ -53,6 +31,7 @@ const SearchResults: FC<ResultsProps> = ({
                 <tr key={key}>
                   <th scope="row">{key}</th>
                   <td
+                  className="snippet"
                     dangerouslySetInnerHTML={{
                       __html: value.snippet,
                     }}

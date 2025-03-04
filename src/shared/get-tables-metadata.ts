@@ -1,7 +1,9 @@
+import { readFile } from "fs/promises";
+
 import { parse } from "yaml";
 
 import getYamlFilepaths from "../populate-typesense/get-yaml-filepaths";
-import { readFile } from "fs/promises";
+
 import {
   type IndexationTable,
   indexationTableSchema,

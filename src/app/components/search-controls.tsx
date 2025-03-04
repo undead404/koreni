@@ -6,11 +6,11 @@ import styles from "./search-controls.module.css";
 
 interface ControlsProps {
   query: string;
-  areRefinementsExpanded: boolean;
+  // areRefinementsExpanded: boolean;
   client: ReturnType<typeof getTypesenseClient>;
-  onFacetChange: (event: CustomEvent) => void;
-  onRangeChange: (event: CustomEvent) => void;
-  onToggleRefinementsExpanded: () => void;
+  // onFacetChange: (event: CustomEvent) => void;
+  // onRangeChange: (event: CustomEvent) => void;
+  // onToggleRefinementsExpanded: () => void;
   onInput: (event: CustomEvent) => void;
 }
 
