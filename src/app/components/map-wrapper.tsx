@@ -1,5 +1,5 @@
 'use client';
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 
 import { type MapProps } from './map';
 
@@ -8,10 +8,16 @@ const Map = lazy(() => import('./map'));
 import styles from './map-wrapper.module.css';
 
 export default function MapWrapper(props: MapProps & { open?: boolean }) {
-  const [show, setShow] = useState(props.open);
+  const [show, setShow] = useState(false);
   const handleClick = useCallback(() => {
     setShow(true);
   }, []);
+
+  useEffect(() => {
+    if (props.open) {
+      setShow(true);
+    }
+  }, [props.open]);
 
   return (
     <details
