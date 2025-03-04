@@ -1,5 +1,5 @@
 import { Client } from 'typesense';
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { SearchResultRow } from '../schemas/search-result';
 
@@ -40,12 +40,12 @@ describe('search', () => {
       .mockResolvedValueOnce(mockSearchResult(mockHitsRu, 1))
       .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
 
-    const params: SearchParameters = {
+    const parameters: SearchParameters = {
       client: mockClient as unknown as Client,
       query: 'test',
     };
 
-    const [results, total] = await search(params);
+    const [results, total] = await search(parameters);
 
     expect(results).toHaveLength(2);
     expect(results[0].document.id).toBe('2'); // Sorted by best_field_score
@@ -70,12 +70,12 @@ describe('search', () => {
       .mockRejectedValueOnce(new Error('Search failed'))
       .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
 
-    const params: SearchParameters = {
+    const parameters: SearchParameters = {
       client: mockClient as unknown as Client,
       query: 'test',
     };
 
-    const [results, total] = await search(params);
+    const [results, total] = await search(parameters);
 
     expect(results).toHaveLength(1);
     expect(results[0].document.id).toBe('2');
@@ -91,12 +91,12 @@ describe('search', () => {
       .mockRejectedValueOnce(new Error('Search failed'))
       .mockRejectedValueOnce(new Error('Search failed'));
 
-    const params: SearchParameters = {
+    const parameters: SearchParameters = {
       client: mockClient as unknown as Client,
       query: 'test',
     };
 
-    await expect(search(params)).rejects.toThrow(
+    await expect(search(parameters)).rejects.toThrow(
       'Search failed in both languages',
     );
 

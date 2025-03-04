@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
 
-import githubIcon from './github.svg';
+import Header from './components/header';
+
 import './globals.css';
 import styles from './layout.module.css';
-import Header from './components/header';
+
+import githubIcon from './github.svg';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

@@ -1,10 +1,14 @@
-import { render, cleanup } from '@testing-library/react';
-import { describe, it, expect, afterEach, vi } from 'vitest';
-import SearchResults, { ResultsProps } from './search-results';
+import { cleanup, render } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import SearchResults, {
+  ResultsProps as ResultsProperties,
+} from './search-results';
 
 vi.mock('../schemas/search-result', () => ({
   __esModule: true,
   default: {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     parse: vi.fn((result) => result),
   },
 }));
@@ -46,7 +50,7 @@ const defaultProps = {
     },
   ],
   resultsNumber: 2,
-} as ResultsProps;
+} as ResultsProperties;
 
 describe('SearchResults component', () => {
   // Cleanup after each test

@@ -1,9 +1,10 @@
 import { cleanup, render } from '@testing-library/react';
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import type { ImageProps } from 'next/image';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import RootLayout, { metadata } from './layout';
+
 import githubIcon from './github.svg';
-import type { ImageProps } from 'next/image';
 
 vi.mock('./components/header', () => ({
   default: () => <div>Mocked Header</div>,

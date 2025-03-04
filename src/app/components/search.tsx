@@ -22,7 +22,7 @@ export default function SearchPage() {
   const [searchHitsNumber, setSearchHitsNumber] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const searchParams = useSearchParams();
+  const searchParameters = useSearchParams();
   const router = useRouter();
 
   const searchQuery = useMemo(
@@ -39,9 +39,9 @@ export default function SearchPage() {
           });
           setSearchHits(hits);
           setSearchHitsNumber(hitsNumber);
-        } catch (err) {
+        } catch (error_) {
           setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
-          console.error(err);
+          console.error(error_);
         } finally {
           setLoading(false);
         }
@@ -57,14 +57,14 @@ export default function SearchPage() {
   );
 
   useEffect(() => {
-    searchQuery(searchParams.get('query') || '');
-  }, [searchParams, searchQuery]);
+    void searchQuery(searchParameters.get('query') || '');
+  }, [searchParameters, searchQuery]);
 
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>Пошук</h2>
       <SearchControls
-        query={searchParams.get('query') || ''}
+        query={searchParameters.get('query') || ''}
         // areRefinementsExpanded={areRefinementsExpanded}
         client={client}
         // onFacetChange={(event) => handleFacetChange(event.detail)}

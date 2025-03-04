@@ -4,7 +4,8 @@ import path from 'node:path';
 export default async function getYamlFilepaths(
   folder: string,
 ): Promise<string[]> {
-  const yamlFilepaths = (await readdir(folder))
+  const directory = await readdir(folder);
+  const yamlFilepaths = directory
     .filter((filename) => filename.endsWith('.yml'))
     .map((filename) => path.join(folder, filename));
   return yamlFilepaths;

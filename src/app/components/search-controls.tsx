@@ -4,17 +4,17 @@ import getTypesenseClient from '../services/typesense';
 
 import styles from './search-controls.module.css';
 
-interface ControlsProps {
+interface ControlsProperties {
   query: string;
   // areRefinementsExpanded: boolean;
   client: ReturnType<typeof getTypesenseClient>;
   // onFacetChange: (event: CustomEvent) => void;
   // onRangeChange: (event: CustomEvent) => void;
   // onToggleRefinementsExpanded: () => void;
-  onInput: (event: CustomEvent) => void;
+  onInput: (event: CustomEvent<string>) => void;
 }
 
-const SearchControls: FC<ControlsProps> = ({
+const SearchControls: FC<ControlsProperties> = ({
   query,
   //   areRefinementsExpanded,
   //   client,
@@ -23,8 +23,10 @@ const SearchControls: FC<ControlsProps> = ({
   //   onToggleRefinementsExpanded,
   onInput,
 }) => {
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const event = new CustomEvent('input', { detail: e.target.value });
+  const handleInputChange = (changeEvent: ChangeEvent<HTMLInputElement>) => {
+    const event = new CustomEvent('input', {
+      detail: changeEvent.target.value,
+    });
     onInput(event);
   };
 

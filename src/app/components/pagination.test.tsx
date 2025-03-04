@@ -1,5 +1,6 @@
-import { render, cleanup } from '@testing-library/react';
-import { describe, it, expect, afterEach } from 'vitest';
+import { cleanup, render } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import Pagination from './pagination';
 
 const defaultProps = {
@@ -36,10 +37,10 @@ describe('Pagination component', () => {
   it('should render other pages as anchor elements with correct href', () => {
     const { container } = render(<Pagination {...defaultProps} />);
     const links = container.querySelectorAll('a');
-    links.forEach((link, index) => {
+    for (const [index, link] of links.entries()) {
       // +2 because the first page is current, rendered as a span
       expect(link).toHaveAttribute('href', `/page/${index + 2}`);
-    });
+    }
   });
 
   it('should apply the correct classes to the elements', () => {

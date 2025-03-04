@@ -1,6 +1,6 @@
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { describe, it, expect, afterEach, vi, beforeEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import search from '../services/search';
 
@@ -53,7 +53,7 @@ const mockSearchResults = [
   },
 ];
 
-const mockSearchParams = new URLSearchParams({ query: 'test' });
+const mockSearchParameters = new URLSearchParams({ query: 'test' });
 
 describe('SearchPage component', () => {
   const mockRouter = { replace: vi.fn() };
@@ -65,7 +65,7 @@ describe('SearchPage component', () => {
 
   beforeEach(() => {
     (useRouter as vi.Mock).mockReturnValue(mockRouter);
-    (useSearchParams as vi.Mock).mockReturnValue(mockSearchParams);
+    (useSearchParams as vi.Mock).mockReturnValue(mockSearchParameters);
     (search as vi.Mock).mockResolvedValue([
       mockSearchResults,
       mockSearchResults.length,
@@ -78,12 +78,4 @@ describe('SearchPage component', () => {
     expect(getByText('Пошук')).toBeInTheDocument();
     expect(getByPlaceholderText('Мельник')).toBeInTheDocument();
   });
-
-  //   it("should call the search service when the component mounts", async () => {
-  //     render(<SearchPage />);
-
-  //     await waitFor(() => {
-  //       expect(search).toHaveBeenCalledWith({ client: expect.any(Object), query: "test" });
-  //     });
-  //   });
 });

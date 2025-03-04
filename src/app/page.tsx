@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
+
 import Search from './components/search';
 
 import styles from './page.module.css';

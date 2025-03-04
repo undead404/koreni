@@ -1,5 +1,6 @@
 import getTableData from '../shared/get-table-data.js';
 import getTablesMetadata from '../shared/get-tables-metadata.js';
+
 import populateTypesense from './populate-unstructured.js';
 
 async function main() {
@@ -29,4 +30,4 @@ async function main() {
   }
 }
 
-main();
+await main();

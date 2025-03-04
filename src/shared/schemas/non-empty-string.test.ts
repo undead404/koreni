@@ -12,7 +12,7 @@ describe('nonEmptyString', () => {
     const result = nonEmptyString.safeParse('');
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.errors[0]!.message).toBe(
+      expect(result.error.errors[0].message).toBe(
         'String must contain at least 1 character(s)',
       );
     }
@@ -22,7 +22,7 @@ describe('nonEmptyString', () => {
     const result = nonEmptyString.safeParse(123);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.errors[0]!.message).toBe(
+      expect(result.error.errors[0].message).toBe(
         'Expected string, received number',
       );
     }

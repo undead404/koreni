@@ -1,0 +1,39 @@
+{
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": ["NEXTJS"],
+  // Enable ESLint as the formatter for JS/TS files
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  // Default formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // Enable format on save
+  "editor.formatOnSave": true,
+
+  // ESLint settings
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "javascript.mjs",
+    "javascript.cjs"
+  ],
+  "npm.packageManager": "yarn",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/yarn.lock": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

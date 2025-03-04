@@ -1,7 +1,8 @@
-import { render, cleanup } from '@testing-library/react';
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { cleanup, render } from '@testing-library/react';
 import { useSearchParams } from 'next/navigation';
-import IndexTable, { TableProps } from './index-table';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import IndexTable, { type TableProperties } from './index-table';
 
 vi.mock('next/navigation', () => ({
   useSearchParams: vi.fn(),
@@ -12,7 +13,7 @@ const mockData = [
   { name: 'Jane', age: 25 },
 ];
 
-const defaultProps: TableProps = {
+const defaultProps: TableProperties = {
   data: mockData,
   page: 1,
   tableId: 'test-table',
@@ -55,9 +56,9 @@ describe('IndexTable component', () => {
   });
 
   it('should highlight matched tokens in the data values', () => {
-    const params = new URLSearchParams();
-    params.set('matched_tokens', 'John,25');
-    (useSearchParams as vi.Mock).mockReturnValue(params);
+    const parameters = new URLSearchParams();
+    parameters.set('matched_tokens', 'John,25');
+    (useSearchParams as vi.Mock).mockReturnValue(parameters);
     const { container } = render(<IndexTable {...defaultProps} />);
     const highlightedJohn = container.querySelector('mark');
     expect(highlightedJohn).toHaveTextContent('John');

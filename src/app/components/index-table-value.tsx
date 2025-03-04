@@ -15,16 +15,21 @@ export default function IndexTableValue({
       return value;
     }
     // Highlight matched tokens with <mark> tag
-    return matchedTokens.reduce((acc, token) => {
-      return acc.replace(
+    let highlighted = value;
+    for (const token of matchedTokens) {
+      highlighted = highlighted.replaceAll(
         new RegExp(token, 'gi'),
         (match) => `<mark class="${styles.mark}">${match}</mark>`,
       );
-    }, value);
+    }
+    return highlighted;
   }, [matchedTokens, value]);
-  const ref = useRef<HTMLTableCellElement>(null);
+  const reference = useRef<HTMLTableCellElement>(null);
 
   return (
-    <td dangerouslySetInnerHTML={{ __html: highlightedValue }} ref={ref} />
+    <td
+      dangerouslySetInnerHTML={{ __html: highlightedValue }}
+      ref={reference}
+    />
   );
 }

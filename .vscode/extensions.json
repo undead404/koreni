@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // Essential
+    "dbaeumer.vscode-eslint", // ESLint
+    "esbenp.prettier-vscode", // Prettier
+
+    // TypeScript/React
+    "dsznajder.es7-react-js-snippets", // React snippets
+
+    // Testing
+    "vitest.explorer", // Vitest
+
+    // Git
+    "eamodio.gitlens", // GitLens
+
+    // Quality of life
+    "christian-kohler.path-intellisense", // Path autocompletion
+    "streetsidesoftware.code-spell-checker", // Spell checker
+    "formulahendry.auto-rename-tag", // Auto rename paired HTML/XML tags
+    "naumovs.color-highlight", // Highlight web colors
+    "wayou.vscode-todo-highlight", // Highlight TODO comments
+    "aaron-bond.better-comments", // Colored comments
+    "foxundermoon.shell-format" // Shell script formatter
+  ],
+  "unwantedRecommendations": [
+    "hookyqr.beautify", // Conflicts with Prettier
+    "dbaeumer.jshint", // Conflicts with ESLint
+    "ms-vscode.vscode-typescript-tslint-plugin" // Deprecated in favor of ESLint
+  ]
+}

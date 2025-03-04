@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 
 import { parse } from 'yaml';
 
@@ -15,9 +15,9 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
   const yamlFilepaths = await getYamlFilepaths(TABLES_FOLDER);
   const tablesMetadata: IndexationTable[] = [];
   for (const yamlFilepath of yamlFilepaths) {
-    const fileContent = await readFile(yamlFilepath, 'utf-8');
-    const tableMetadata = parse(fileContent);
-    tablesMetadata.push(indexationTableSchema.parse(tableMetadata));
+    const fileContent = await readFile(yamlFilepath, 'utf8');
+    const tableMetadata = indexationTableSchema.parse(parse(fileContent));
+    tablesMetadata.push(tableMetadata);
   }
   return tablesMetadata;
 }

@@ -1,5 +1,4 @@
 import { IndexationTable } from './schemas/indexation-table';
-
 import readCsv from './read-csv-data';
 
 export default async function getTableData(

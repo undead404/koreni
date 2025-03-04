@@ -1,21 +1,21 @@
 'use client';
-import Head from 'next/head';
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import 'leaflet-defaulticon-compatibility';
+import Head from 'next/head';
 import { type ReactNode, useMemo } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import calculateCoordinatesAverage from '../helpers/calculate-coordinates-average';
 
+import 'leaflet/dist/leaflet.css';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import styles from './map.module.css';
 
-export interface MapProps {
+export interface MapProperties {
   points: { coordinates: [number, number]; title: ReactNode }[];
   zoom: number;
 }
 
-export default function Map({ points, zoom }: MapProps) {
+export default function Map({ points, zoom }: MapProperties) {
   const averagePoint = useMemo(
     () => calculateCoordinatesAverage(points.map((point) => point.coordinates)),
     [points],

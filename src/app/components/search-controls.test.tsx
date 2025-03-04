@@ -1,6 +1,7 @@
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import type { Client } from 'typesense';
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import SearchControls from './search-controls';
 
 const defaultProps = {

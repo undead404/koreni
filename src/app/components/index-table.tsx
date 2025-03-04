@@ -5,30 +5,33 @@ import { useEffect, useMemo, useRef } from 'react';
 import { PER_PAGE } from '../constants';
 
 import IndexTableValue from './index-table-value';
+
 import styles from './index-table.module.css';
 
-export interface TableProps {
+export interface TableProperties {
   data: Record<string, unknown>[];
   page: number;
   tableId: string;
 }
 
-export default function IndexTable({ data, page, tableId }: TableProps) {
-  const tableRef = useRef<HTMLTableElement>(null);
-  const searchParams = useSearchParams();
+export default function IndexTable({ data, page, tableId }: TableProperties) {
+  const tableReference = useRef<HTMLTableElement>(null);
+  const searchParameters = useSearchParams();
   const matchedTokens = useMemo(
-    () => searchParams.get('matched_tokens')?.split(',') || [],
-    [searchParams],
+    () => searchParameters.get('matched_tokens')?.split(',') || [],
+    [searchParameters],
   );
   useEffect(() => {
-    if (!tableRef.current) {
+    if (!tableReference.current) {
       return;
     }
-    const targetRowId = searchParams.get('show_row');
+    const targetRowId = searchParameters.get('show_row');
     if (!targetRowId) {
       return;
     }
-    const targetRow = tableRef.current.querySelector(`#row-${targetRowId}`);
+    const targetRow = tableReference.current.querySelector(
+      `#row-${targetRowId}`,
+    );
     if (!targetRow) {
       console.error(`Row with id row-${targetRowId} not found`);
       return;
@@ -38,10 +41,10 @@ export default function IndexTable({ data, page, tableId }: TableProps) {
       behavior: 'smooth',
       block: 'center',
     });
-  }, [searchParams]);
+  }, [searchParameters]);
 
   return (
-    <table ref={tableRef} className={styles.table}>
+    <table ref={tableReference} className={styles.table}>
       <thead className={styles.thead}>
         <tr>
           {Object.keys(data[0]).map((key) => (
@@ -50,13 +53,16 @@ export default function IndexTable({ data, page, tableId }: TableProps) {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {data.map((row, i) => (
-          <tr key={i} id={`row-${tableId}-${(page - 1) * PER_PAGE + i + 1}`}>
-            {Object.values(row).map((value, j) => (
+        {data.map((row, index) => (
+          <tr
+            key={index}
+            id={`row-${tableId}-${(page - 1) * PER_PAGE + index + 1}`}
+          >
+            {Object.values(row).map((value, index) => (
               <IndexTableValue
-                key={j}
+                key={index}
                 matchedTokens={matchedTokens}
-                value={`${value}`}
+                value={`${/* eslint-disable @typescript-eslint/no-explicit-any */ value as any}`}
               />
             ))}
           </tr>

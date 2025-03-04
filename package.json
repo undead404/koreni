@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev --turbopack",
-    "lint": "next lint",
+    "lint": "eslint .",
     "populate-typesense": "tsx src/populate-typesense/index.ts",
     "start": "next start",
     "test": "vitest",
@@ -27,6 +27,7 @@
     "zod": "~3.24.2"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.2.7",
     "@eslint/eslintrc": "^3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -38,14 +39,23 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
-    "eslint": "^9",
+    "@vitest/eslint-plugin": "^1.1.36",
+    "eslint": "^9.21.0",
     "eslint-config-next": "15.2.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "eslint-plugin-regexp": "^2.7.0",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unicorn": "^57.0.0",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5",
+    "typescript-eslint": "^8.26.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.7"
   }

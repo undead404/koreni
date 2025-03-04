@@ -4,9 +4,9 @@ import { Suspense } from 'react';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import Pagination from '../../components/pagination';
 import IndexTable from '../../components/index-table';
 import MapWrapper from '../../components/map-wrapper';
+import Pagination from '../../components/pagination';
 import { PER_PAGE } from '../../constants';
 import getTableMetadata from '../../helpers/get-table-metadata';
 

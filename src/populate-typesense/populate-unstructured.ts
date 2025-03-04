@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import type { IndexationTable } from '../shared/schemas/indexation-table.js';
+
 import typesense from './typesense.js';
 
 const CHUNK_SIZE = 100;
@@ -22,11 +23,11 @@ export default async function populateTypesense(
     title: table.title,
   }));
   const chunks = _.chunk(dataWithExtraFields, CHUNK_SIZE);
-  for (let i = 0; i < chunks.length; i += 1) {
-    console.log(`Chunk # ${i + 1}`);
+  for (const [index, chunk] of chunks.entries()) {
+    console.log(`Chunk # ${index + 1}`);
     await typesense
       .collections('unstructured_' + locale)
       .documents()
-      .import(chunks[i]!, { action: 'upsert' });
+      .import(chunk, { action: 'upsert' });
   }
 }

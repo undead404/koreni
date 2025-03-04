@@ -1,5 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
-import { describe, it, expect, afterEach } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
+
 import Header from './header';
 
 describe('Header component', () => {

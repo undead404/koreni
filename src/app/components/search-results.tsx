@@ -1,18 +1,18 @@
 import type { FC } from 'react';
 
+import guessPageFromRowId from '../helpers/guess-page-from-row-id';
+import resultSchema from '../schemas/search-result';
 import type { SearchResult } from '../services/search';
 
 import styles from './search-results.module.css';
-import guessPageFromRowId from '../helpers/guess-page-from-row-id';
-import resultSchema from '../schemas/search-result';
 
-export interface ResultsProps {
+export interface ResultsProperties {
   loading: boolean;
   results: SearchResult[];
   resultsNumber: number;
 }
 
-const SearchResults: FC<ResultsProps> = ({
+const SearchResults: FC<ResultsProperties> = ({
   loading,
   results,
   resultsNumber,

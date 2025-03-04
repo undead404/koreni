@@ -1,7 +1,9 @@
-import { render, cleanup } from '@testing-library/react';
-import { describe, it, expect, afterEach, vi } from 'vitest';
-import Map, { MapProps } from './map';
+import { cleanup, render } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import calculateCoordinatesAverage from '../helpers/calculate-coordinates-average';
+
+import Map, { MapProps as MapProperties } from './map';
 
 vi.mock('react-leaflet', () => ({
   __esModule: true,
@@ -23,7 +25,7 @@ vi.mock('../helpers/calculate-coordinates-average', () => ({
   default: vi.fn(() => [0, 0]),
 }));
 
-const defaultProps: MapProps = {
+const defaultProps: MapProperties = {
   points: [
     {
       coordinates: [51.505, -0.09],

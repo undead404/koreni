@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
 import Typesense from 'typesense';
+import { describe, expect, it, vi } from 'vitest';
 
 import getTypesenseClient from './typesense';
 

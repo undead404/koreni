@@ -1,14 +1,15 @@
-import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { type MapProps as MapProperties } from './map';
 import MapWrapper from './map-wrapper';
-import { type MapProps } from './map';
 
 vi.mock('./map', () => ({
   __esModule: true,
   default: vi.fn(() => <div>Map Component</div>),
 }));
 
-const defaultProps: MapProps = {
+const defaultProps: MapProperties = {
   points: [{ coordinates: [0, 0], title: 'test' }],
   zoom: 1,
 };
