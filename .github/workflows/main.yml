@@ -47,6 +47,7 @@ jobs:
     needs:
       - lint
       - test
+      - deploy
 
     steps:
       - name: Checkout repository
@@ -64,7 +65,7 @@ jobs:
         run: yarn populate-typesense
         env:
           TYPESENSE_ADMIN_KEY: ${{ secrets.TYPESENSE_ADMIN_KEY }}
-          TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
+          NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
 
   build:
     runs-on: ubuntu-latest
