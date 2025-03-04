@@ -1,4 +1,4 @@
-import styles from "./pagination.module.css";
+import styles from './pagination.module.css';
 
 export default function Pagination({
   currentPage,
@@ -18,10 +18,12 @@ export default function Pagination({
               {currentPage === page ? (
                 <span className={styles.currentPage}>{page}</span>
               ) : (
-                <a href={urlBuilder(page)} className={styles.link}>{page}</a>
+                <a href={urlBuilder(page)} className={styles.link}>
+                  {page}
+                </a>
               )}
             </li>
-          )
+          ),
         )}
       </ul>
     </nav>

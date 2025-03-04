@@ -1,8 +1,8 @@
-import type { ChangeEvent, FC } from "react";
+import type { ChangeEvent, FC } from 'react';
 
-import getTypesenseClient from "../services/typesense";
+import getTypesenseClient from '../services/typesense';
 
-import styles from "./search-controls.module.css";
+import styles from './search-controls.module.css';
 
 interface ControlsProps {
   query: string;
@@ -16,24 +16,24 @@ interface ControlsProps {
 
 const SearchControls: FC<ControlsProps> = ({
   query,
-//   areRefinementsExpanded,
-//   client,
-//   onFacetChange,
-//   onRangeChange,
-//   onToggleRefinementsExpanded,
+  //   areRefinementsExpanded,
+  //   client,
+  //   onFacetChange,
+  //   onRangeChange,
+  //   onToggleRefinementsExpanded,
   onInput,
 }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const event = new CustomEvent("input", { detail: e.target.value });
+    const event = new CustomEvent('input', { detail: e.target.value });
     onInput(event);
   };
 
   return (
     <div className={styles.container}>
-      <input 
-        type="text" 
-        value={query} 
-        onChange={handleInputChange} 
+      <input
+        type="text"
+        value={query}
+        onChange={handleInputChange}
         className={styles.input}
         placeholder="Мельник"
       />

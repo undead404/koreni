@@ -1,14 +1,14 @@
-import { cleanup, render } from "@testing-library/react";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { cleanup, render } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 
-import RootLayout, { metadata } from "./layout";
-import githubIcon from "./github.svg";
-import type { ImageProps } from "next/image";
+import RootLayout, { metadata } from './layout';
+import githubIcon from './github.svg';
+import type { ImageProps } from 'next/image';
 
-vi.mock("./components/header", () => ({
+vi.mock('./components/header', () => ({
   default: () => <div>Mocked Header</div>,
 }));
-vi.mock("next/image", () => ({
+vi.mock('next/image', () => ({
   default: ({ src, alt, className, height, title, width }: ImageProps) => (
     <img
       src={src as string}
@@ -20,55 +20,55 @@ vi.mock("next/image", () => ({
     />
   ),
 }));
-vi.mock("next/font/google", () => ({
+vi.mock('next/font/google', () => ({
   Geist: () => ({
-    variable: "geistSans-variable",
+    variable: 'geistSans-variable',
   }),
   Geist_Mono: () => ({
-    variable: "geistMono-variable",
+    variable: 'geistMono-variable',
   }),
 }));
 
-describe("RootLayout", () => {
+describe('RootLayout', () => {
   afterEach(() => {
     cleanup();
   });
 
-  it("renders metadata correctly", () => {
+  it('renders metadata correctly', () => {
     expect(metadata).toEqual({
-      title: "Корені",
-      description: "Пошук у народних генеалогічних індексах",
+      title: 'Корені',
+      description: 'Пошук у народних генеалогічних індексах',
     });
   });
 
-  it("renders children correctly", () => {
+  it('renders children correctly', () => {
     const { getByText } = render(
       <RootLayout>
         <div>Test Child</div>
-      </RootLayout>
+      </RootLayout>,
     );
-    expect(getByText("Test Child")).toBeInTheDocument();
+    expect(getByText('Test Child')).toBeInTheDocument();
   });
 
-  it("renders header correctly", () => {
+  it('renders header correctly', () => {
     const { getByText } = render(
       <RootLayout>
         <div />
-      </RootLayout>
+      </RootLayout>,
     );
-    expect(getByText("Mocked Header")).toBeInTheDocument();
+    expect(getByText('Mocked Header')).toBeInTheDocument();
   });
 
-  it("renders GitHub link correctly", () => {
+  it('renders GitHub link correctly', () => {
     const { getByTitle } = render(
       <RootLayout>
         <div />
-      </RootLayout>
+      </RootLayout>,
     );
-    const githubLink = getByTitle("undead404/koreni на GitHub");
+    const githubLink = getByTitle('undead404/koreni на GitHub');
     expect(githubLink).toBeInTheDocument();
-    expect(githubLink.getAttribute("src")).toBe(githubIcon);
-    expect(githubLink.getAttribute("alt")).toBe("undead404/koreni на GitHub");
-    expect(githubLink.getAttribute("class")).toContain("githubIcon");
+    expect(githubLink.getAttribute('src')).toBe(githubIcon);
+    expect(githubLink.getAttribute('alt')).toBe('undead404/koreni на GitHub');
+    expect(githubLink.getAttribute('class')).toContain('githubIcon');
   });
 });

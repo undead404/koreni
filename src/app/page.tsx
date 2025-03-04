@@ -1,9 +1,9 @@
-import { Suspense } from "react";
+import { Suspense } from 'react';
 
-import getTablesMetadata from "@/shared/get-tables-metadata";
-import Search from "./components/search";
+import getTablesMetadata from '@/shared/get-tables-metadata';
+import Search from './components/search';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
 export default async function Home() {
   const tablesMetadata = await getTablesMetadata();
@@ -22,9 +22,7 @@ export default async function Home() {
         <ul>
           {tablesMetadata.map((tableMetadata) => (
             <li key={tableMetadata.id}>
-              <a href={`/${tableMetadata.id}/1`}>
-                {tableMetadata.title}
-              </a>
+              <a href={`/${tableMetadata.id}/1`}>{tableMetadata.title}</a>
             </li>
           ))}
         </ul>

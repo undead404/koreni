@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { nonEmptyString } from "./non-empty-string";
+import { nonEmptyString } from './non-empty-string';
 
 export const indexationTableSchema = z.object({
   id: z.number().min(1),
@@ -9,7 +9,7 @@ export const indexationTableSchema = z.object({
   size: z.number().min(1),
   sources: z.array(nonEmptyString),
   title: nonEmptyString,
-  tableLocale: z.enum(["ru", "uk"]),
+  tableLocale: z.enum(['ru', 'uk']),
 });
 
 export type IndexationTable = z.infer<typeof indexationTableSchema>;

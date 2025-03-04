@@ -1,7 +1,7 @@
-"use client";
-import { useMemo, useRef } from "react";
+'use client';
+import { useMemo, useRef } from 'react';
 
-import styles from "./index-table-value.module.css";
+import styles from './index-table-value.module.css';
 
 export default function IndexTableValue({
   matchedTokens,
@@ -17,8 +17,8 @@ export default function IndexTableValue({
     // Highlight matched tokens with <mark> tag
     return matchedTokens.reduce((acc, token) => {
       return acc.replace(
-        new RegExp(token, "gi"),
-        match => `<mark class="${styles.mark}">${match}</mark>`
+        new RegExp(token, 'gi'),
+        (match) => `<mark class="${styles.mark}">${match}</mark>`,
       );
     }, value);
   }, [matchedTokens, value]);

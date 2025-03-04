@@ -1,11 +1,11 @@
-"use client";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+'use client';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useMemo, useRef } from 'react';
 
-import { PER_PAGE } from "../constants";
+import { PER_PAGE } from '../constants';
 
-import IndexTableValue from "./index-table-value";
-import styles from "./index-table.module.css";
+import IndexTableValue from './index-table-value';
+import styles from './index-table.module.css';
 
 export interface TableProps {
   data: Record<string, unknown>[];
@@ -17,14 +17,14 @@ export default function IndexTable({ data, page, tableId }: TableProps) {
   const tableRef = useRef<HTMLTableElement>(null);
   const searchParams = useSearchParams();
   const matchedTokens = useMemo(
-    () => searchParams.get("matched_tokens")?.split(",") || [],
-    [searchParams]
+    () => searchParams.get('matched_tokens')?.split(',') || [],
+    [searchParams],
   );
   useEffect(() => {
     if (!tableRef.current) {
       return;
     }
-    const targetRowId = searchParams.get("show_row");
+    const targetRowId = searchParams.get('show_row');
     if (!targetRowId) {
       return;
     }
@@ -33,8 +33,11 @@ export default function IndexTable({ data, page, tableId }: TableProps) {
       console.error(`Row with id row-${targetRowId} not found`);
       return;
     }
-    const markInRow = targetRow.querySelector("mark");
-    (markInRow || targetRow).scrollIntoView({ behavior: "smooth", block: "center" });
+    const markInRow = targetRow.querySelector('mark');
+    (markInRow || targetRow).scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
   }, [searchParams]);
 
   return (

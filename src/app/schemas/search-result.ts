@@ -1,6 +1,6 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import { nonEmptyString } from "@/shared/schemas/non-empty-string";
+import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 const highlightSchema = z.object({
   data: z
@@ -8,7 +8,7 @@ const highlightSchema = z.object({
       z.object({
         snippet: z.string(),
         matched_tokens: z.array(z.string()),
-      })
+      }),
     )
     .optional(),
 });
@@ -21,10 +21,10 @@ const resultSchema = z.object({
   }),
   highlight: highlightSchema,
   text_match_info: z.object({
-    best_field_score: nonEmptyString
-  })
+    best_field_score: nonEmptyString,
+  }),
 });
 
-export type SearchResultRow = z.infer<typeof resultSchema>
+export type SearchResultRow = z.infer<typeof resultSchema>;
 
 export default resultSchema;

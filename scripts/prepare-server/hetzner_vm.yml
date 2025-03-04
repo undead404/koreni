@@ -1,6 +1,5 @@
 #cloud-config
 
-
 # Ensure the typesense service is running
 bootcmd:
   - systemctl start typesense-server
@@ -23,7 +22,7 @@ runcmd:
     apt-get install -y typesense-server
     systemctl enable typesense-server
     systemctl start typesense-server
-    
+
     # Install Node.js 22
     curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
     apt-get install -y nodejs
@@ -51,4 +50,3 @@ write_files:
       data-dir = /var/lib/typesense/data
       log-dir = /var/log/typesense
       api-key = YOUR_API_KEY_HERE
-

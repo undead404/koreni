@@ -8,7 +8,8 @@
     "lint": "next lint",
     "populate-typesense": "tsx src/populate-typesense/index.ts",
     "start": "next start",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky"
   },
   "dependencies": {
     "dotenv": "~16.4.7",
@@ -39,7 +40,10 @@
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.0.0",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",

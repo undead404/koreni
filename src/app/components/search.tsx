@@ -1,18 +1,17 @@
-"use client";
+'use client';
 
-import _ from "lodash";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import _ from 'lodash';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import environment from "../../environment";
-import search, { type SearchResult } from "../services/search";
-import getTypesenseClient from "../services/typesense";
+import environment from '../../environment';
+import search, { type SearchResult } from '../services/search';
+import getTypesenseClient from '../services/typesense';
 
-import SearchControls from "./search-controls";
-import SearchResults from "./search-results";
+import SearchControls from './search-controls';
+import SearchResults from './search-results';
 
-import styles from "./search.module.css";
-
+import styles from './search.module.css';
 
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
@@ -26,45 +25,46 @@ export default function SearchPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const searchQuery = useMemo(() => _.debounce(async (query: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const [hits, hitsNumber] = await search({
-        client,
-        // facets,
-        query: query,
-        // ranges,
-      });
-      setSearchHits(hits);
-      setSearchHitsNumber(hitsNumber);
-    } catch (err) {
-      setError("Під час пошуку сталася помилка. Будь ласка, спробуйте ще.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }, 1000), []);
-
+  const searchQuery = useMemo(
+    () =>
+      _.debounce(async (query: string) => {
+        setLoading(true);
+        setError(null);
+        try {
+          const [hits, hitsNumber] = await search({
+            client,
+            // facets,
+            query: query,
+            // ranges,
+          });
+          setSearchHits(hits);
+          setSearchHitsNumber(hitsNumber);
+        } catch (err) {
+          setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      }, 1000),
+    [],
+  );
 
   const handleInput = useCallback(
     (value: string) => {
-      router.replace(
-        `/?query=${encodeURIComponent(value)}`,
-      );
+      router.replace(`/?query=${encodeURIComponent(value)}`);
     },
-    [router]
+    [router],
   );
 
   useEffect(() => {
-    searchQuery(searchParams.get("query") || "");
+    searchQuery(searchParams.get('query') || '');
   }, [searchParams, searchQuery]);
 
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>Пошук</h2>
       <SearchControls
-        query={searchParams.get("query") || ""}
+        query={searchParams.get('query') || ''}
         // areRefinementsExpanded={areRefinementsExpanded}
         client={client}
         // onFacetChange={(event) => handleFacetChange(event.detail)}

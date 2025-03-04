@@ -1,10 +1,10 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
-import type { SearchResult } from "../services/search";
+import type { SearchResult } from '../services/search';
 
-import styles from "./search-results.module.css";
-import guessPageFromRowId from "../helpers/guess-page-from-row-id";
-import resultSchema from "../schemas/search-result";
+import styles from './search-results.module.css';
+import guessPageFromRowId from '../helpers/guess-page-from-row-id';
+import resultSchema from '../schemas/search-result';
 
 export interface ResultsProps {
   loading: boolean;
@@ -31,7 +31,7 @@ const SearchResults: FC<ResultsProps> = ({
                 <tr key={key}>
                   <th scope="row">{key}</th>
                   <td
-                  className="snippet"
+                    className="snippet"
                     dangerouslySetInnerHTML={{
                       __html: value.snippet,
                     }}
@@ -42,9 +42,9 @@ const SearchResults: FC<ResultsProps> = ({
                       href={`/${
                         typedResult.document.tableId
                       }/${guessPageFromRowId(
-                        typedResult.document.id
+                        typedResult.document.id,
                       )}?matched_tokens=${value.matched_tokens.join(
-                        ","
+                        ',',
                       )}&show_row=${typedResult.document.id}`}
                     >
                       {typedResult.document.title}

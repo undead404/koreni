@@ -1,19 +1,19 @@
-
 import getTableData from '../shared/get-table-data.js';
 import getTablesMetadata from '../shared/get-tables-metadata.js';
 import populateTypesense from './populate-unstructured.js';
 
-
 async function main() {
   try {
     const tablesMetadata = await getTablesMetadata();
-    const tables = await Promise.all(tablesMetadata.map(async (tableMetadata) => {
-      const tableData = await getTableData(tableMetadata);
-      return {
-        ...tableMetadata,
-        data: tableData,
-      };
-    }));
+    const tables = await Promise.all(
+      tablesMetadata.map(async (tableMetadata) => {
+        const tableData = await getTableData(tableMetadata);
+        return {
+          ...tableMetadata,
+          data: tableData,
+        };
+      }),
+    );
     if (tables.length === 0) {
       console.log('No tables to populate');
       process.exit(0);

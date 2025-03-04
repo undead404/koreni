@@ -1,16 +1,16 @@
-import _ from "lodash";
-import { Suspense } from "react";
+import _ from 'lodash';
+import { Suspense } from 'react';
 
-import getTableData from "@/shared/get-table-data";
-import getTablesMetadata from "@/shared/get-tables-metadata";
+import getTableData from '@/shared/get-table-data';
+import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import Pagination from "../../components/pagination";
-import IndexTable from "../../components/index-table";
-import MapWrapper from "../../components/map-wrapper";
-import { PER_PAGE } from "../../constants";
-import getTableMetadata from "../../helpers/get-table-metadata";
+import Pagination from '../../components/pagination';
+import IndexTable from '../../components/index-table';
+import MapWrapper from '../../components/map-wrapper';
+import { PER_PAGE } from '../../constants';
+import getTableMetadata from '../../helpers/get-table-metadata';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
 export default async function Table({
   params,
@@ -23,7 +23,7 @@ export default async function Table({
   const pageInt = Number.parseInt(page, 10) || 1;
   const tableDataToDisplay = tableData.slice(
     (pageInt - 1) * PER_PAGE,
-    pageInt * PER_PAGE
+    pageInt * PER_PAGE,
   );
   return (
     <article className={styles.article}>
@@ -46,7 +46,11 @@ export default async function Table({
             totalPages={Math.ceil(tableData.length / PER_PAGE)}
             urlBuilder={(page: number) => `/${tableId}/${page}`}
           />
-          <IndexTable data={tableDataToDisplay} page={pageInt} tableId={tableId} />
+          <IndexTable
+            data={tableDataToDisplay}
+            page={pageInt}
+            tableId={tableId}
+          />
           <Pagination
             currentPage={pageInt}
             totalPages={Math.ceil(tableData.length / PER_PAGE)}
@@ -64,7 +68,7 @@ export async function generateStaticParams() {
     _.times(Math.ceil(tableMetadata.size / PER_PAGE), (index) => ({
       page: `${index + 1}`,
       tableId: `${tableMetadata.id}`,
-    }))
+    })),
   );
   return result;
 }

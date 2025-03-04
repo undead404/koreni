@@ -6,7 +6,7 @@ import typesense from './typesense.js';
 const CHUNK_SIZE = 100;
 
 export interface IndexationTableWithData extends IndexationTable {
-    data: Record<string, unknown>[];
+  data: Record<string, unknown>[];
 }
 
 export default async function populateTypesense(

@@ -1,6 +1,6 @@
-import { render, cleanup } from "@testing-library/react";
-import { describe, it, expect, afterEach } from "vitest";
-import Pagination from "./pagination";
+import { render, cleanup } from '@testing-library/react';
+import { describe, it, expect, afterEach } from 'vitest';
+import Pagination from './pagination';
 
 const defaultProps = {
   currentPage: 1,
@@ -8,52 +8,52 @@ const defaultProps = {
   urlBuilder: (page: number) => `/page/${page}`,
 };
 
-describe("Pagination component", () => {
+describe('Pagination component', () => {
   // Cleanup after each test
   afterEach(() => {
     cleanup();
   });
 
-  it("should render the nav element", () => {
+  it('should render the nav element', () => {
     const { container } = render(<Pagination {...defaultProps} />);
-    const nav = container.querySelector("nav");
+    const nav = container.querySelector('nav');
     expect(nav).toBeInTheDocument();
   });
 
-  it("should render the correct number of page links", () => {
+  it('should render the correct number of page links', () => {
     const { container } = render(<Pagination {...defaultProps} />);
-    const pageLinks = container.querySelectorAll("li");
+    const pageLinks = container.querySelectorAll('li');
     expect(pageLinks.length).toBe(defaultProps.totalPages);
   });
 
-  it("should render the current page as a span element", () => {
+  it('should render the current page as a span element', () => {
     const { getByText } = render(<Pagination {...defaultProps} />);
     const currentPage = getByText(`${defaultProps.currentPage}`);
-    expect(currentPage.tagName).toBe("SPAN");
-    expect(currentPage).toHaveClass("currentPage");
+    expect(currentPage.tagName).toBe('SPAN');
+    expect(currentPage).toHaveClass('currentPage');
   });
 
-  it("should render other pages as anchor elements with correct href", () => {
+  it('should render other pages as anchor elements with correct href', () => {
     const { container } = render(<Pagination {...defaultProps} />);
-    const links = container.querySelectorAll("a");
+    const links = container.querySelectorAll('a');
     links.forEach((link, index) => {
       // +2 because the first page is current, rendered as a span
-      expect(link).toHaveAttribute("href", `/page/${index + 2}`);
+      expect(link).toHaveAttribute('href', `/page/${index + 2}`);
     });
   });
 
-  it("should apply the correct classes to the elements", () => {
+  it('should apply the correct classes to the elements', () => {
     const { container, getByText } = render(<Pagination {...defaultProps} />);
-    const nav = container.querySelector("nav");
-    const ul = container.querySelector("ul");
-    const li = container.querySelector("li");
+    const nav = container.querySelector('nav');
+    const ul = container.querySelector('ul');
+    const li = container.querySelector('li');
     const currentPage = getByText(`${defaultProps.currentPage}`);
-    const link = container.querySelector("a");
+    const link = container.querySelector('a');
 
-    expect(nav).toHaveClass("nav");
-    expect(ul).toHaveClass("ul");
-    expect(li).toHaveClass("li");
-    expect(currentPage).toHaveClass("currentPage");
-    expect(link).toHaveClass("link");
+    expect(nav).toHaveClass('nav');
+    expect(ul).toHaveClass('ul');
+    expect(li).toHaveClass('li');
+    expect(currentPage).toHaveClass('currentPage');
+    expect(link).toHaveClass('link');
   });
 });
