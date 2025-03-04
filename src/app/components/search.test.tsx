@@ -20,6 +20,13 @@ vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
   useSearchParams: vi.fn(),
 }));
+vi.mock('../../environment', () => ({
+  __esModule: true,
+  default: {
+    NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: 'api-key',
+    NEXT_PUBLIC_TYPESENSE_HOST: 'typesense.host',
+  },
+}));
 
 const mockSearchResults = [
   {
