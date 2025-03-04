@@ -119,11 +119,11 @@ jobs:
 
       - name: Copy files via rsync
         run: |
-          rsync -avz -e "ssh" --no-perms --no-times ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/home/${{ secrets.SSH_USERNAME }}/dist
+          rsync -avz -e "ssh" --no-perms --no-times ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
 
       - name: Set permissions
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R www-data:www-data /home/${{ secrets.SSH_USERNAME }}/dist && sudo chmod -R 755 /home/${{ secrets.SSH_USERNAME }}/dist'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
 
       - name: Restart NGINX
         run: |
