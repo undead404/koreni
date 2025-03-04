@@ -60,9 +60,6 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      - name: Pull data
-        run: yarn pull-data
-
       - name: Populate Typesense
         run: yarn populate-typesense
         env:
