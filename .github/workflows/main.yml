@@ -121,6 +121,10 @@ jobs:
         run: |
           rsync -avz -e "ssh" --no-perms --no-times ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/home/${{ secrets.SSH_USERNAME }}/dist
 
+      - name: Set permissions
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R www-data:www-data /home/${{ secrets.SSH_USERNAME }}/dist && sudo chmod -R 755 /home/${{ secrets.SSH_USERNAME }}/dist'
+
       - name: Restart NGINX
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo systemctl restart nginx'
