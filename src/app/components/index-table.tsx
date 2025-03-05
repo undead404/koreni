@@ -2,6 +2,8 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef } from 'react';
 
+import { IndexationTable } from '@/shared/schemas/indexation-table';
+
 import { PER_PAGE } from '../constants';
 import withErrorBoundary from '../hocs/with-error-boundary';
 
@@ -11,11 +13,12 @@ import styles from './index-table.module.css';
 
 export interface TableProperties {
   data: Record<string, unknown>[];
+  locale: IndexationTable['tableLocale'];
   page: number;
   tableId: string;
 }
 
-export function IndexTable({ data, page, tableId }: TableProperties) {
+export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
   const searchParameters = useSearchParams();
   const matchedTokens = useMemo(
@@ -45,7 +48,7 @@ export function IndexTable({ data, page, tableId }: TableProperties) {
   }, [searchParameters]);
 
   return (
-    <table ref={tableReference} className={styles.table}>
+    <table ref={tableReference} className={styles.table} lang={locale}>
       <thead className={styles.thead}>
         <tr>
           {Object.keys(data[0]).map((key) => (

@@ -28,7 +28,7 @@ export function MapWrapper(properties: MapProperties & { open?: boolean }) {
       open={properties.open}
     >
       <summary>
-        <h3>Місце</h3>
+        <h4>Місце</h4>
       </summary>
       <Suspense fallback={<p>Завантаження...</p>}>
         {show && <Map {...properties} />}

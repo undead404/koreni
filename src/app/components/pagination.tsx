@@ -9,6 +9,9 @@ export default function Pagination({
   totalPages: number;
   urlBuilder: (page: number) => string;
 }) {
+  if (totalPages <= 1) {
+    return null;
+  }
   return (
     <nav className={styles.nav}>
       <ul className={styles.ul}>

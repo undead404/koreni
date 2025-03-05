@@ -36,8 +36,9 @@ export default async function Table({ params }: TablePageProperties) {
   return (
     <article className={styles.article}>
       <h1>{tableMetadata.title}</h1>
-      <div className={styles.tableContainer}>
-        <h3>Дані</h3>
+      <section>
+        <h3>Метадані</h3>
+        <p>Виконавець індексації: {tableMetadata.author || 'Невідомий'}</p>
         <MapWrapper
           points={[
             {
@@ -47,6 +48,9 @@ export default async function Table({ params }: TablePageProperties) {
           ]}
           zoom={8}
         />
+      </section>
+      <section className={styles.tableContainer}>
+        <h3>Дані</h3>
         <Suspense
           fallback={
             <div className={styles.suspenseFallback}>Завантаження...</div>
@@ -59,6 +63,7 @@ export default async function Table({ params }: TablePageProperties) {
           />
           <IndexTable
             data={tableDataToDisplay}
+            locale={tableMetadata.tableLocale}
             page={pageInt}
             tableId={tableId}
           />
@@ -68,7 +73,7 @@ export default async function Table({ params }: TablePageProperties) {
             urlBuilder={(page: number) => `/${tableId}/${page}`}
           />
         </Suspense>
-      </div>
+      </section>
     </article>
   );
 }
