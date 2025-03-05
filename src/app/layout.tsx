@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
 
 import Header from './components/header';
+import SimpleAnalytics from './components/simple-analytics';
 
 import './globals.css';
 import styles from './layout.module.css';
@@ -52,6 +53,7 @@ export default function RootLayout({
             </a>
           </footer>
         </div>
+        <SimpleAnalytics />
       </body>
     </html>
   );
