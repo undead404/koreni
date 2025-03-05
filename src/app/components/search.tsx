@@ -13,6 +13,11 @@ import SearchControls from './search-controls';
 import SearchResults from './search-results';
 
 import styles from './search.module.css';
+declare global {
+  interface Window {
+    sa_event: (eventName: string, metadata: object) => void;
+  }
+}
 
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
@@ -34,6 +39,8 @@ export function SearchPage() {
         setLoading(true);
         setError(null);
         try {
+          // eslint-disable-next-line unicorn/prefer-global-this
+          window.sa_event('search', { query });
           const [hits, hitsNumber] = await search({
             client,
             // facets,

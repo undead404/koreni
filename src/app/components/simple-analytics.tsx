@@ -14,6 +14,10 @@ export default function SimpleAnalytics() {
           src="https://queue.simpleanalyticscdn.com/noscript.gif"
         />
       </noscript>
+      <script
+        async
+        src="https://scripts.simpleanalyticscdn.com/auto-events.js"
+      ></script>
     </>
   );
 }
