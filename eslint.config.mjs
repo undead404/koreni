@@ -223,6 +223,7 @@ export default [
     rules: {
       'no-console': 'off',
       'unicorn/no-process-exit': 'off',
+      'unicorn/prefer-top-level-await': 'off',
     },
   },
   eslintConfigPrettier, // align prettier rules with eslint rules

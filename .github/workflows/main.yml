@@ -123,7 +123,7 @@ jobs:
 
       - name: Set permissions
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R www-data:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
 
       - name: Restart NGINX
         run: |
