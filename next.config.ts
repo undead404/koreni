@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  exportTrailingSlash: true,
+  trailingSlash: true,
   output: 'export',
 };
 

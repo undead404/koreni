@@ -25,6 +25,8 @@ export default function SearchPage() {
   const searchParameters = useSearchParams();
   const router = useRouter();
 
+  const query = searchParameters.get('query') || '';
+
   const searchQuery = useMemo(
     () =>
       _.debounce(async (query: string) => {
@@ -57,14 +59,14 @@ export default function SearchPage() {
   );
 
   useEffect(() => {
-    void searchQuery(searchParameters.get('query') || '');
-  }, [searchParameters, searchQuery]);
+    void searchQuery(query);
+  }, [query, searchQuery]);
 
   return (
     <section className={styles.section}>
       <h2 className={styles.heading}>Пошук</h2>
       <SearchControls
-        query={searchParameters.get('query') || ''}
+        query={query}
         // areRefinementsExpanded={areRefinementsExpanded}
         client={client}
         // onFacetChange={(event) => handleFacetChange(event.detail)}
