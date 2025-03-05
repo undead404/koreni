@@ -1,8 +1,13 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import MapWrapper from '../components/map-wrapper';
+
+export const metadata: Metadata = {
+  title: 'Корені | Карта доступних даних',
+};
 
 export default async function MapPage() {
   const tablesMetadata = await getTablesMetadata();

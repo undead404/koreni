@@ -12,11 +12,19 @@ import getTableMetadata from '../../helpers/get-table-metadata';
 
 import styles from './page.module.css';
 
-export default async function Table({
-  params,
-}: {
+type TablePageProperties = {
   params: Promise<{ page: string; tableId: string }>;
-}) {
+};
+
+export async function generateMetadata({ params }: TablePageProperties) {
+  const { page, tableId } = await params;
+  const tableMetadata = await getTableMetadata(tableId);
+  return {
+    title: `Корені | ${tableMetadata.title} | Ст. ${page}`,
+  };
+}
+
+export default async function Table({ params }: TablePageProperties) {
   const { page, tableId } = await params;
   const tableMetadata = await getTableMetadata(tableId);
   const tableData = await getTableData(tableMetadata);
