@@ -3,6 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef } from 'react';
 
 import { PER_PAGE } from '../constants';
+import withErrorBoundary from '../hocs/with-error-boundary';
 
 import IndexTableValue from './index-table-value';
 
@@ -14,7 +15,7 @@ export interface TableProperties {
   tableId: string;
 }
 
-export default function IndexTable({ data, page, tableId }: TableProperties) {
+export function IndexTable({ data, page, tableId }: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
   const searchParameters = useSearchParams();
   const matchedTokens = useMemo(
@@ -71,3 +72,5 @@ export default function IndexTable({ data, page, tableId }: TableProperties) {
     </table>
   );
 }
+
+export default withErrorBoundary(IndexTable);

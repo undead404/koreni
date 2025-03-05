@@ -4,7 +4,8 @@ import _ from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import environment from '../../environment';
+import environment from '../environment';
+import withErrorBoundary from '../hocs/with-error-boundary';
 import search, { type SearchResult } from '../services/search';
 import getTypesenseClient from '../services/typesense';
 
@@ -17,7 +18,7 @@ const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
 
-export default function SearchPage() {
+export function SearchPage() {
   const [searchHits, setSearchHits] = useState<SearchResult[]>([]);
   const [searchHitsNumber, setSearchHitsNumber] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -89,3 +90,5 @@ export default function SearchPage() {
     </section>
   );
 }
+
+export default withErrorBoundary(SearchPage);

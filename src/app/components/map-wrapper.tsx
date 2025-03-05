@@ -5,11 +5,11 @@ import { type MapProperties } from './map';
 
 const Map = lazy(() => import('./map'));
 
+import withErrorBoundary from '../hocs/with-error-boundary';
+
 import styles from './map-wrapper.module.css';
 
-export default function MapWrapper(
-  properties: MapProperties & { open?: boolean },
-) {
+export function MapWrapper(properties: MapProperties & { open?: boolean }) {
   const [show, setShow] = useState(false);
   const handleClick = useCallback(() => {
     setShow(true);
@@ -36,3 +36,5 @@ export default function MapWrapper(
     </details>
   );
 }
+
+export default withErrorBoundary(MapWrapper);

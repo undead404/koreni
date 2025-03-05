@@ -1,8 +1,8 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { type MapProps as MapProperties } from './map';
-import MapWrapper from './map-wrapper';
+import { MapProperties } from './map';
+import { MapWrapper } from './map-wrapper';
 
 vi.mock('./map', () => ({
   __esModule: true,

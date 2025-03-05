@@ -12,6 +12,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@bugsnag/js": "^8.2.0",
+    "@bugsnag/plugin-react": "^8.2.0",
     "dotenv": "~16.4.7",
     "leaflet": "~1.9.4",
     "leaflet-defaulticon-compatibility": "0.1.2",

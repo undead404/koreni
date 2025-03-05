@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import search from '../services/search';
 
-import SearchPage from './search';
+import { SearchPage } from './search';
 
 vi.mock('../services/search', () => ({
   __esModule: true,

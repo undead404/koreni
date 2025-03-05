@@ -2,7 +2,7 @@ import { cleanup, render } from '@testing-library/react';
 import { useSearchParams } from 'next/navigation';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import IndexTable, { type TableProperties } from './index-table';
+import { IndexTable, type TableProperties } from './index-table';
 
 vi.mock('next/navigation', () => ({
   useSearchParams: vi.fn(),
