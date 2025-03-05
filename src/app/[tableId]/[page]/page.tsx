@@ -38,7 +38,15 @@ export default async function Table({ params }: TablePageProperties) {
       <h1>{tableMetadata.title}</h1>
       <section>
         <h3>Метадані</h3>
-        <p>Виконавець індексації: {tableMetadata.author || 'Невідомий'}</p>
+        <p>Виконавець індексації: {tableMetadata.author || 'народ України'}</p>
+        <p>
+          Джерела:{' '}
+          {tableMetadata.sources.map((source) => (
+            <a key={source} href={source}>
+              {source}
+            </a>
+          ))}
+        </p>
         <MapWrapper
           points={[
             {
