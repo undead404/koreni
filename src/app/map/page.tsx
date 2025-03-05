@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import MapWrapper from '../components/map-wrapper';
+import combinePoints from '../helpers/combine-points';
 
 export const metadata: Metadata = {
   title: 'Корені | Карта доступних даних',
@@ -13,7 +13,13 @@ export default async function MapPage() {
   const tablesMetadata = await getTablesMetadata();
   const points = tablesMetadata.map((tableMetadata) => ({
     coordinates: tableMetadata.location,
-    title: <Link href={`/${tableMetadata.id}/1`}>{tableMetadata.title}</Link>,
+    linkedRecords: [
+      {
+        link: `/${tableMetadata.id}/1`,
+        title: tableMetadata.title,
+      },
+    ],
   }));
-  return <MapWrapper open points={points} zoom={6} />;
+  const combinedPoints = combinePoints(points);
+  return <MapWrapper open points={combinedPoints} zoom={6} />;
 }

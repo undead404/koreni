@@ -40,7 +40,10 @@ export default async function Table({ params }: TablePageProperties) {
         <h3>Дані</h3>
         <MapWrapper
           points={[
-            { coordinates: tableMetadata.location, title: tableMetadata.title },
+            {
+              coordinates: tableMetadata.location,
+              linkedRecords: [{ title: tableMetadata.title }],
+            },
           ]}
           zoom={8}
         />

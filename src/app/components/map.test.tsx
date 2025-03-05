@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import calculateCoordinatesAverage from '../helpers/calculate-coordinates-average';
 
-import Map, { MapProps as MapProperties } from './map';
+import Map, { type MapProperties } from './map';
 
 vi.mock('react-leaflet', () => ({
   __esModule: true,
@@ -29,9 +29,9 @@ const defaultProps: MapProperties = {
   points: [
     {
       coordinates: [51.505, -0.09],
-      title: 'A pretty CSS3 popup.<br>Easily customizable.',
+      linkedRecords: [{ title: 'A pretty CSS3 popup. Easily customizable.' }],
     },
-    { coordinates: [51.51, -0.1], title: 'Another popup' },
+    { coordinates: [51.51, -0.1], linkedRecords: [{ title: 'Another popup' }] },
   ],
   zoom: 13,
 };
@@ -78,7 +78,7 @@ describe('Map component', () => {
   it('should render the Popup components with the correct titles', () => {
     const { getByText } = render(<Map {...defaultProps} />);
     expect(
-      getByText('A pretty CSS3 popup.<br>Easily customizable.'),
+      getByText('A pretty CSS3 popup. Easily customizable.'),
     ).toBeInTheDocument();
     expect(getByText('Another popup')).toBeInTheDocument();
   });
