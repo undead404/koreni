@@ -6,26 +6,20 @@ import search from '../services/search';
 
 import { SearchPage } from './search';
 
-vi.mock('../services/search', () => ({
-  __esModule: true,
-  default: vi.fn(),
-}));
-
-vi.mock('../services/typesense', () => ({
-  __esModule: true,
-  default: vi.fn(),
-}));
-
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
   useSearchParams: vi.fn(),
 }));
-vi.mock('../environment', () => ({
+
+vi.mock('../environment');
+vi.mock('../hocs/with-error-boundary');
+vi.mock('../services/search', () => ({
   __esModule: true,
-  default: {
-    NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: 'api-key',
-    NEXT_PUBLIC_TYPESENSE_HOST: 'typesense.host',
-  },
+  default: vi.fn(),
+}));
+vi.mock('../services/typesense', () => ({
+  __esModule: true,
+  default: vi.fn(),
 }));
 
 const mockSearchResults = [

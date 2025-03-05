@@ -8,6 +8,8 @@ vi.mock('next/navigation', () => ({
   useSearchParams: vi.fn(),
 }));
 
+vi.mock('../hocs/with-error-boundary');
+
 const mockData = [
   { name: 'John', age: 30 },
   { name: 'Jane', age: 25 },

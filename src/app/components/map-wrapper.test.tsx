@@ -4,6 +4,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MapProperties } from './map';
 import { MapWrapper } from './map-wrapper';
 
+vi.mock('../hocs/with-error-boundary');
+
 vi.mock('./map', () => ({
   __esModule: true,
   default: vi.fn(() => <div>Map Component</div>),
