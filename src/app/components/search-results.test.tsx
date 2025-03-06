@@ -1,9 +1,7 @@
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import SearchResults, {
-  ResultsProps as ResultsProperties,
-} from './search-results';
+import SearchResults, { ResultsProperties } from './search-results';
 
 vi.mock('../schemas/search-result', () => ({
   __esModule: true,
