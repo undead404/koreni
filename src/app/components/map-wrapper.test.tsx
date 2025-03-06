@@ -12,7 +12,7 @@ vi.mock('./map', () => ({
 }));
 
 const defaultProps: MapProperties = {
-  points: [{ coordinates: [0, 0], title: 'test' }],
+  points: [{ coordinates: [0, 0], linkedRecords: [{ title: 'test' }] }],
   zoom: 1,
 };
 

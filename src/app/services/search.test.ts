@@ -36,7 +36,7 @@ describe('search', () => {
       },
     ];
 
-    (mockClient.search as vi.Mock)
+    mockClient.search
       .mockResolvedValueOnce(mockSearchResult(mockHitsRu, 1))
       .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
 
@@ -66,7 +66,7 @@ describe('search', () => {
       },
     ];
 
-    (mockClient.search as vi.Mock)
+    mockClient.search
       .mockRejectedValueOnce(new Error('Search failed'))
       .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
 
@@ -87,7 +87,7 @@ describe('search', () => {
   });
 
   it('should throw an error if both collections reject', async () => {
-    (mockClient.search as vi.Mock)
+    mockClient.search
       .mockRejectedValueOnce(new Error('Search failed'))
       .mockRejectedValueOnce(new Error('Search failed'));
 

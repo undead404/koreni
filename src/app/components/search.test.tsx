@@ -1,6 +1,6 @@
 import { cleanup, render } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import search from '../services/search';
 
@@ -58,9 +58,9 @@ describe('SearchPage component', () => {
   });
 
   beforeEach(() => {
-    (useRouter as vi.Mock).mockReturnValue(mockRouter);
-    (useSearchParams as vi.Mock).mockReturnValue(mockSearchParameters);
-    (search as vi.Mock).mockResolvedValue([
+    (useRouter as Mock).mockReturnValue(mockRouter);
+    (useSearchParams as Mock).mockReturnValue(mockSearchParameters);
+    (search as Mock).mockResolvedValue([
       mockSearchResults,
       mockSearchResults.length,
     ]);
