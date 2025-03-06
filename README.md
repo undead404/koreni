@@ -4,6 +4,41 @@ A project aimed to provide full-text search through ambiguous indexations of Ukr
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js
+- copy `.env.example` into `.env`
+
+### Typesense setup
+
+#### Run a local server
+
+- using docker:
+  ```sh
+  ./scripts/prepare-server/setup-typesense-via-docker.sh
+  ```
+- or as a DEB package:
+  ```sh
+  ./scripts/prepare-server/setup-typesense.sh
+  ```
+
+[_Read more._](https://typesense.org/docs/guide/install-typesense.html#option-2-local-machine-self-hosting)
+
+> Be aware of using `xyz` as a TYPESENSE_BOOTSTRAP_KEY
+
+#### Get keys
+
+1. Run `./scripts/prepare-server/create-admin-key.sh` and copy a `value` from a response into `.env`'s `TYPESENSE_ADMIN_KEY`
+2. Run `./scripts/prepare-server/create-search-key.sh` and copy a `value` from a response into `.env`'s `NEXT_PUBLIC_TYPESENSE_SEARCH_KEY`
+
+### BugSnag setup
+
+To not use BugSnag, comment `NEXT_PUBLIC_BUGSNAG_API_KEY=` in `.env` file.
+
+// TODO add more information
+
+### Start a project
+
 First, run the development server:
 
 ```bash

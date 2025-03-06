@@ -12,6 +12,8 @@ if (environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
     plugins: [new BugsnagPluginReact()],
   });
 } else {
+  // eslint-disable-next-line no-console
   console.warn('Bugsnag API key is missing');
 }
+
 export default ActiveBugsnag;
