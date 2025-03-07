@@ -5,6 +5,8 @@ import getTablesMetadata from '@/shared/get-tables-metadata';
 import MapWrapper from '../components/map-wrapper';
 import combinePoints from '../helpers/combine-points';
 
+import styles from './page.module.css';
+
 export const metadata: Metadata = {
   title: 'Корені | Карта доступних даних',
 };
@@ -21,5 +23,12 @@ export default async function MapPage() {
     ],
   }));
   const combinedPoints = combinePoints(points);
-  return <MapWrapper open points={combinedPoints} zoom={6} />;
+  return (
+    <MapWrapper
+      open
+      points={combinedPoints}
+      zoom={6}
+      mapClassName={styles.fullMap}
+    />
+  );
 }

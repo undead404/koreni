@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+:root {
+  --side-gap: 16px;
+}
+
 html,
 body {
   font-family: var(--font-geist-sans), sans-serif;

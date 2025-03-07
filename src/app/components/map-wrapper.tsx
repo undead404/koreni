@@ -9,7 +9,14 @@ import withErrorBoundary from '../hocs/with-error-boundary';
 
 import styles from './map-wrapper.module.css';
 
-export function MapWrapper(properties: MapProperties & { open?: boolean }) {
+// TODO rework this wrapper to independent details component with children
+// and pass then Map to it as a child
+export function MapWrapper(
+  properties: MapProperties & {
+    open?: boolean;
+    title?: string;
+  },
+) {
   const [show, setShow] = useState(false);
   const handleClick = useCallback(() => {
     setShow(true);
@@ -21,19 +28,21 @@ export function MapWrapper(properties: MapProperties & { open?: boolean }) {
     }
   }, [properties.open]);
 
-  return (
+  return properties.title ? (
     <details
       className={styles.location}
       onClick={handleClick}
       open={properties.open}
     >
       <summary>
-        <h4>Місце</h4>
+        <h4>{properties.title}</h4>
       </summary>
       <Suspense fallback={<p>Завантаження...</p>}>
         {show && <Map {...properties} />}
       </Suspense>
     </details>
+  ) : (
+    <Map {...properties} />
   );
 }
 

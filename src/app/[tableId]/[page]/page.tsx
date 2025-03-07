@@ -47,6 +47,7 @@ export default async function Table({ params }: TablePageProperties) {
           ))}
         </p>
         <MapWrapper
+          title="На карті"
           points={[
             {
               coordinates: tableMetadata.location,
@@ -56,24 +57,21 @@ export default async function Table({ params }: TablePageProperties) {
           zoom={8}
         />
       </section>
-      <section className={styles.tableContainer}>
+      <section>
         <h3>Дані</h3>
         <Pagination
           currentPage={pageInt}
           totalPages={Math.ceil(tableData.length / PER_PAGE)}
           urlBuilder={(page: number) => `/${tableId}/${page}`}
         />
-        <IndexTable
-          data={tableDataToDisplay}
-          locale={tableMetadata.tableLocale}
-          page={pageInt}
-          tableId={tableId}
-        />
-        <Pagination
-          currentPage={pageInt}
-          totalPages={Math.ceil(tableData.length / PER_PAGE)}
-          urlBuilder={(page: number) => `/${tableId}/${page}`}
-        />
+        <div className={styles.tableContainer}>
+          <IndexTable
+            data={tableDataToDisplay}
+            locale={tableMetadata.tableLocale}
+            page={pageInt}
+            tableId={tableId}
+          />
+        </div>
       </section>
     </article>
   );

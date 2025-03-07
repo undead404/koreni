@@ -1,8 +1,3 @@
-.article {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
 .article h1 {
   font-size: 2.5rem;
   color: #2c3e50;
@@ -17,16 +12,22 @@
   margin-bottom: 20px;
 }
 
+.article p {
+  word-break: break-word;
+}
+
 .tableContainer {
-  border: 1px solid black;
-  max-width: calc(100vw - 80px);
+  max-width: calc(100vw - var(--side-gap) * 2);
+  max-height: calc(
+    100vh - 110px - 20px - 2 * var(--side-gap)
+  ); /* 110px - is just about a height of footer and header */
+  /* TODO reconsider pagination height */
+  /* TODO think on all those full page height measurements */
   overflow: auto;
-  padding: 0.5rem;
 }
 
 .suspenseFallback {
   text-align: center;
   font-size: 1.2rem;
   color: #7f8c8d;
-  margin-top: 20px;
 }

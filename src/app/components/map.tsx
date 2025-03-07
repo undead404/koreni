@@ -15,9 +15,10 @@ import styles from './map.module.css';
 export interface MapProperties {
   points: MapPoint[];
   zoom: number;
+  mapClassName?: string;
 }
 
-export default function Map({ points, zoom }: MapProperties) {
+export default function Map({ points, zoom, mapClassName }: MapProperties) {
   const averagePoint = useMemo(
     () => calculateCoordinatesAverage(points.map((point) => point.coordinates)),
     [points],
@@ -34,7 +35,7 @@ export default function Map({ points, zoom }: MapProperties) {
       </Head>
       <MapContainer
         center={averagePoint}
-        className={styles.mapContainer}
+        className={`${styles.mapContainer} ${mapClassName}`}
         zoom={zoom}
         scrollWheelZoom={false}
       >
@@ -43,7 +44,7 @@ export default function Map({ points, zoom }: MapProperties) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {points.map((point, index) => {
-          console.log(point);
+          // console.log(point);
           const linkedRecords = point.linkedRecords;
           return (
             <Marker key={index} position={point.coordinates}>

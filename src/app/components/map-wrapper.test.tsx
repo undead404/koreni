@@ -23,7 +23,9 @@ describe('MapWrapper component', () => {
   });
 
   it('should render the details and summary elements', () => {
-    const { container } = render(<MapWrapper {...defaultProps} />);
+    const { container } = render(
+      <MapWrapper {...defaultProps} title="На карті" />,
+    );
     const details = container.querySelector('details');
     const summary = container.querySelector('summary');
     expect(details).toBeInTheDocument();
@@ -31,20 +33,24 @@ describe('MapWrapper component', () => {
   });
 
   it("should render the Map component when 'open' prop is true", async () => {
-    const { getByText } = render(<MapWrapper {...defaultProps} open={true} />);
+    const { getByText } = render(
+      <MapWrapper {...defaultProps} open={true} title="На карті" />,
+    );
     await waitFor(() => getByText('Map Component'));
     expect(getByText('Map Component')).toBeInTheDocument();
   });
 
   it("should not render the Map component when 'open' prop is false initially", () => {
     const { queryByText } = render(
-      <MapWrapper {...defaultProps} open={false} />,
+      <MapWrapper {...defaultProps} open={false} title="На карті" />,
     );
     expect(queryByText('Map Component')).not.toBeInTheDocument();
   });
 
   it('should render the Map component when the details element is clicked', async () => {
-    const { container, getByText } = render(<MapWrapper {...defaultProps} />);
+    const { container, getByText } = render(
+      <MapWrapper {...defaultProps} title="На карті" />,
+    );
     const details = container.querySelector('details');
     fireEvent.click(details!);
     await waitFor(() => getByText('Map Component'));

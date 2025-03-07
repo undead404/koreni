@@ -1,0 +1,4 @@
+.fullMap {
+  /* TODO find a workaround regarding css modules and specificity */
+  height: calc(100vh - 110px - 4 * var(--side-gap)) !important;
+}
