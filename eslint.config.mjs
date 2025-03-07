@@ -103,6 +103,7 @@ export default [
   },
   {
     files: [
+      'src/dockerize-typesense/**/*.{js,mjs,cjs,ts}',
       'src/populate-typesense/**/*.{js,mjs,cjs,ts}',
       'src/shared/**/*.{js,mjs,cjs,ts}',
       'next.config.ts',
@@ -124,6 +125,7 @@ export default [
     name: 'NodeJS only',
     rules: {
       // '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
   {
@@ -213,13 +215,16 @@ export default [
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@next/next/no-img-element': 'off',
       'jsx-a11y/heading-has-content': 'off',
     },
   },
   {
-    files: ['src/populate-typesense/**/*.ts'],
+    files: [
+      'src/dockerize-typesense/**/*.ts',
+      'src/populate-typesense/**/*.ts',
+    ],
     rules: {
       'no-console': 'off',
       'unicorn/no-process-exit': 'off',

@@ -62,7 +62,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Populate Typesense
-        run: yarn populate-typesense
+        run: yarn typesense:populate
         env:
           TYPESENSE_ADMIN_KEY: ${{ secrets.TYPESENSE_ADMIN_KEY }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}

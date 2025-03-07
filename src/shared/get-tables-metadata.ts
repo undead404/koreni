@@ -2,12 +2,11 @@ import { readFile } from 'node:fs/promises';
 
 import { parse } from 'yaml';
 
-import getYamlFilepaths from '../populate-typesense/get-yaml-filepaths';
-
 import {
   type IndexationTable,
   indexationTableSchema,
 } from './schemas/indexation-table';
+import getYamlFilepaths from './get-yaml-filepaths';
 
 const TABLES_FOLDER = './data/tables';
 
