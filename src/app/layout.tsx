@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
+import Script from 'next/script';
 
 import Header from './components/header';
 import SimpleAnalytics from './components/simple-analytics';
@@ -32,6 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
+      <head>
+        <Script id="sa-placeholder">{`window.sa_event=window.sa_event||function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]};`}</Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className={styles.page}>
           <Header />
