@@ -54,6 +54,7 @@
     "node": "22"
   },
   "name": "koreni",
+  "packageManager": "yarn@1.22.22",
   "private": true,
   "scripts": {
     "build": "next build",
