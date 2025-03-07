@@ -4,6 +4,7 @@ import { nonEmptyString } from './non-empty-string';
 
 export const indexationTableSchema = z.object({
   author: z.string().optional(),
+  date: z.string().transform((dateString) => new Date(dateString)),
   id: z.number().min(1),
   tableFilename: nonEmptyString,
   location: z.tuple([z.number(), z.number()]),

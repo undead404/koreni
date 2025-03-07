@@ -7,6 +7,7 @@ import {
   indexationTableSchema,
 } from './schemas/indexation-table';
 import getYamlFilepaths from './get-yaml-filepaths';
+import validateMetadata from './validate-metadata';
 
 const TABLES_FOLDER = './data/tables';
 
@@ -18,5 +19,6 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     const tableMetadata = indexationTableSchema.parse(parse(fileContent));
     tablesMetadata.push(tableMetadata);
   }
+  validateMetadata(tablesMetadata);
   return tablesMetadata;
 }
