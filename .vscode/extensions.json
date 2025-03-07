@@ -20,7 +20,8 @@
     "naumovs.color-highlight", // Highlight web colors
     "wayou.vscode-todo-highlight", // Highlight TODO comments
     "aaron-bond.better-comments", // Colored comments
-    "foxundermoon.shell-format" // Shell script formatter
+    "foxundermoon.shell-format",
+    "ms-azuretools.vscode-docker" // Shell script formatter
   ],
   "unwantedRecommendations": [
     "hookyqr.beautify", // Conflicts with Prettier

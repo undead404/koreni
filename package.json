@@ -1,16 +1,4 @@
 {
-  "name": "koreni",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev --turbopack",
-    "lint": "eslint .",
-    "populate-typesense": "tsx src/populate-typesense/index.ts",
-    "start": "next start",
-    "test": "vitest",
-    "prepare": "husky"
-  },
   "dependencies": {
     "@bugsnag/js": "^8.2.0",
     "@bugsnag/plugin-react": "^8.2.0",
@@ -42,6 +30,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/eslint-plugin": "^1.1.36",
+    "axios": "~1.8.2",
     "eslint": "^9.21.0",
     "eslint-config-next": "15.2.0",
     "eslint-config-prettier": "^10.0.2",
@@ -60,5 +49,23 @@
     "typescript-eslint": "^8.26.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.7"
-  }
+  },
+  "engines": {
+    "node": "22"
+  },
+  "name": "koreni",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbopack",
+    "docker:typesense:remove": "docker rm typesense-server",
+    "docker:typesense:start": "tsx src/dockerize-typesense/index.ts",
+    "docker:typesense:stop": "docker stop typesense-server",
+    "lint": "eslint .",
+    "prepare": "husky",
+    "start": "next start",
+    "test": "vitest",
+    "typesense:populate": "tsx src/populate-typesense/index.ts"
+  },
+  "version": "0.1.0"
 }

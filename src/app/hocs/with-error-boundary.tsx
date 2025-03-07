@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { type ComponentType, type ReactNode } from 'react';
 
 import ActiveBugsnag from '../services/bugsnag';
 
-const ErrorBoundary =
-  ActiveBugsnag.getPlugin('react')!.createErrorBoundary(React);
+const ErrorBoundary = ActiveBugsnag.isStarted()
+  ? ActiveBugsnag.getPlugin('react')!.createErrorBoundary(React)
+  : ({ children }: { children: ReactNode }) => children;
 
 const withErrorBoundary = <P extends object>(
-  WrappedComponent: React.ComponentType<P>,
+  WrappedComponent: ComponentType<P>,
 ) => {
   return function ErrorBoundaryWrapper(properties: P) {
     return (
