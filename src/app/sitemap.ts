@@ -21,9 +21,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: new URL('/map', environment.NEXT_PUBLIC_SITE).toString(),
     },
     {
-      changeFrequency: 'weekly',
+      changeFrequency: 'daily',
       lastModified: new Date(),
       url: new URL('/tables', environment.NEXT_PUBLIC_SITE).toString(),
+    },
+    {
+      changeFrequency: 'monthly',
+      lastModified: new Date(),
+      url: new URL('/about', environment.NEXT_PUBLIC_SITE).toString(),
     },
     ...tablesMetadata.flatMap((tableMetadata) => {
       const numberOfPages = Math.ceil(tableMetadata.size / PER_PAGE);

@@ -1,0 +1,32 @@
+.root {
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.root h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.root h2 {
+  font-size: 2rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.root p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.root ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.root ul li {
+  margin-bottom: 5px;
+}
