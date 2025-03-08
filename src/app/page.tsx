@@ -14,14 +14,14 @@ export default async function Home() {
     <>
       <h1 className={styles.title}>Корені</h1>
       <p className={styles.description}>
-        Аморфні генеалогічні індекси, зібрані з{' '}
+        Неструктуровані генеалогічні індекси, зібрані з&nbsp;
         <Link href="/tables">
-          {tablesMetadata.length}{' '}
+          {tablesMetadata.length}&nbsp;
           {String(tablesMetadata.length).endsWith('1')
             ? 'різної таблиці'
             : 'різних таблиць'}
-        </Link>{' '}
-        у пошуковому рушії.
+        </Link>
+        &nbsp;у пошуковому рушії.
       </p>
       <Suspense fallback={<p>Завантаження...</p>}>
         <Search />
