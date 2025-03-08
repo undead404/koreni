@@ -27,7 +27,7 @@
   border: var(--default-border);
 }
 
-tbody tr:first-child th {
+.tbody tr:first-child th {
   padding-top: 20px;
   border: 0;
   font-weight: normal;

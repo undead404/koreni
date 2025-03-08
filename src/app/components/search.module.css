@@ -6,4 +6,5 @@
   color: var(--error-color);
   font-weight: bold;
   margin: 1rem 0;
+  text-align: center;
 }
