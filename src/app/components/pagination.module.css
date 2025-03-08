@@ -1,3 +1,4 @@
+/* TODO rework pagination to have maximum mobile-friendly width */
 .nav {
   display: flex;
   justify-content: center;
@@ -18,22 +19,22 @@
 .currentPage {
   display: block;
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: var(--default-border);
   border-radius: 4px;
   text-decoration: none;
-  color: #2c3e50;
   transition:
     background-color 0.3s,
     color 0.3s;
 }
 
-.link:hover {
-  background-color: #2980b9;
-  color: white;
+.link:hover,
+.link:focus {
+  border: 1px dotted var(--clickable-color);
+  text-decoration: none;
 }
 
 .currentPage {
-  background-color: #2980b9;
-  color: white;
+  background-color: var(--clickable-color);
+  color: var(--reversed-text-color);
   cursor: default;
 }

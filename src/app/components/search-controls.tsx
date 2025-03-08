@@ -59,6 +59,7 @@ const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
         onChange={handleInputChange}
         className={styles.input}
         placeholder="Мельник"
+        autoFocus={!query}
       />
     </div>
   );

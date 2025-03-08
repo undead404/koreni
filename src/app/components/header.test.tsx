@@ -15,14 +15,14 @@ describe('Header component', () => {
 
   it('should render the home link with correct text and href', () => {
     const { getByText } = render(<Header />);
-    const homeLink = getByText('🏠 Корені');
+    const homeLink = getByText('Корені');
     expect(homeLink).toBeInTheDocument();
     expect(homeLink).toHaveAttribute('href', '/');
   });
 
   it('should render the map link with correct text and href', () => {
     const { getByText } = render(<Header />);
-    const mapLink = getByText('🗺️ Карта');
+    const mapLink = getByText('Мапа');
     expect(mapLink).toBeInTheDocument();
     expect(mapLink).toHaveAttribute('href', '/map');
   });
@@ -30,8 +30,8 @@ describe('Header component', () => {
   it('should have the correct class names for the header and links', () => {
     const { container, getByText } = render(<Header />);
     const header = container.querySelector('header');
-    const homeLink = getByText('🏠 Корені');
-    const mapLink = getByText('🗺️ Карта');
+    const homeLink = getByText('Корені');
+    const mapLink = getByText('Мапа');
 
     expect(header).toHaveClass('header');
     expect(homeLink).toHaveClass('link');

@@ -1,5 +1,5 @@
 'use client';
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 
 import { type MapProperties } from './map';
 
@@ -9,31 +9,11 @@ import withErrorBoundary from '../hocs/with-error-boundary';
 
 import styles from './map-wrapper.module.css';
 
-export function MapWrapper(properties: MapProperties & { open?: boolean }) {
-  const [show, setShow] = useState(false);
-  const handleClick = useCallback(() => {
-    setShow(true);
-  }, []);
-
-  useEffect(() => {
-    if (properties.open) {
-      setShow(true);
-    }
-  }, [properties.open]);
-
+export function MapWrapper(properties: MapProperties) {
   return (
-    <details
-      className={styles.location}
-      onClick={handleClick}
-      open={properties.open}
-    >
-      <summary>
-        <h4>Місце</h4>
-      </summary>
-      <Suspense fallback={<p>Завантаження...</p>}>
-        {show && <Map {...properties} />}
-      </Suspense>
-    </details>
+    <Suspense fallback={<p className={styles.loading}>Завантаження...</p>}>
+      <Map {...properties} />
+    </Suspense>
   );
 }
 

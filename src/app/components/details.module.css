@@ -1,0 +1,19 @@
+.details {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.details summary {
+  padding-bottom: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--clickable-color);
+}
+
+.details summary > * {
+  display: inline;
+}
+
+.details summary:hover {
+  text-decoration: underline dotted;
+}

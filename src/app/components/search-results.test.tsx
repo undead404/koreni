@@ -85,13 +85,11 @@ describe('SearchResults component', () => {
       'href',
       '/table1/4?matched_tokens=highlighted&show_row=1-3001',
     );
-    expect(links[0]).toHaveTextContent('Document 1');
 
     expect(links[1]).toHaveAttribute(
       'href',
       '/table2/1?matched_tokens=another&show_row=2-2',
     );
-    expect(links[1]).toHaveTextContent('Document 2');
   });
 
   it('should apply the correct styles based on loading state', () => {

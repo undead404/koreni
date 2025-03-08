@@ -18,6 +18,7 @@ const SearchResults: FC<ResultsProperties> = ({
   resultsNumber,
 }) => {
   return (
+    // TODO enhance results visuals, keep manual selection possibility
     <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
         Знайдено результатів: {resultsNumber}
@@ -26,32 +27,39 @@ const SearchResults: FC<ResultsProperties> = ({
         const typedResult = resultSchema.parse(result);
         return (
           <tbody key={index} className={styles.tbody}>
+            {typedResult.highlight.data && (
+              <tr key={`${index}-${typedResult.document.tableId}`}>
+                <th colSpan={3}>{typedResult.document.title}</th>
+              </tr>
+            )}
             {typedResult.highlight.data &&
-              Object.entries(typedResult.highlight.data).map(([key, value]) => (
-                <tr key={key}>
-                  <th scope="row">{key}</th>
-                  <td
-                    className="snippet"
-                    dangerouslySetInnerHTML={{
-                      __html: value.snippet,
-                    }}
-                  ></td>
-                  <td>
-                    <a
-                      className={styles.link}
-                      href={`/${
-                        typedResult.document.tableId
-                      }/${guessPageFromRowId(
-                        typedResult.document.id,
-                      )}?matched_tokens=${value.matched_tokens.join(
-                        ',',
-                      )}&show_row=${typedResult.document.id}`}
-                    >
-                      {typedResult.document.title}
-                    </a>
-                  </td>
-                </tr>
-              ))}
+              Object.entries(typedResult.highlight.data).map(
+                ([key, value], index) => (
+                  <tr key={`${key}-${index}`}>
+                    <th scope="row">{key}</th>
+                    <td
+                      className="snippet"
+                      dangerouslySetInnerHTML={{
+                        __html: value.snippet,
+                      }}
+                    ></td>
+                    <td>
+                      <a
+                        className={styles.link}
+                        href={`/${
+                          typedResult.document.tableId
+                        }/${guessPageFromRowId(
+                          typedResult.document.id,
+                        )}?matched_tokens=${value.matched_tokens.join(
+                          ',',
+                        )}&show_row=${typedResult.document.id}`}
+                      >
+                        Див.
+                      </a>
+                    </td>
+                  </tr>
+                ),
+              )}
           </tbody>
         );
       })}
