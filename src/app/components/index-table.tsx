@@ -1,10 +1,10 @@
 'use client';
-import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef } from 'react';
 
 import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
+import getSearchParameters from '../helpers/get-search-parameters';
 import withErrorBoundary from '../hocs/with-error-boundary';
 
 import IndexTableValue from './index-table-value';
@@ -20,7 +20,7 @@ export interface TableProperties {
 
 export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
-  const searchParameters = useSearchParams();
+  const searchParameters = useMemo(() => getSearchParameters(), []);
   const matchedTokens = useMemo(
     () => searchParameters.get('matched_tokens')?.split(',') || [],
     [searchParameters],

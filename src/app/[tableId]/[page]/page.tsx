@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { Suspense } from 'react';
 
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
@@ -59,28 +58,22 @@ export default async function Table({ params }: TablePageProperties) {
       </section>
       <section className={styles.tableContainer}>
         <h3>Дані</h3>
-        <Suspense
-          fallback={
-            <div className={styles.suspenseFallback}>Завантаження...</div>
-          }
-        >
-          <Pagination
-            currentPage={pageInt}
-            totalPages={Math.ceil(tableData.length / PER_PAGE)}
-            urlBuilder={(page: number) => `/${tableId}/${page}`}
-          />
-          <IndexTable
-            data={tableDataToDisplay}
-            locale={tableMetadata.tableLocale}
-            page={pageInt}
-            tableId={tableId}
-          />
-          <Pagination
-            currentPage={pageInt}
-            totalPages={Math.ceil(tableData.length / PER_PAGE)}
-            urlBuilder={(page: number) => `/${tableId}/${page}`}
-          />
-        </Suspense>
+        <Pagination
+          currentPage={pageInt}
+          totalPages={Math.ceil(tableData.length / PER_PAGE)}
+          urlBuilder={(page: number) => `/${tableId}/${page}`}
+        />
+        <IndexTable
+          data={tableDataToDisplay}
+          locale={tableMetadata.tableLocale}
+          page={pageInt}
+          tableId={tableId}
+        />
+        <Pagination
+          currentPage={pageInt}
+          totalPages={Math.ceil(tableData.length / PER_PAGE)}
+          urlBuilder={(page: number) => `/${tableId}/${page}`}
+        />
       </section>
     </article>
   );
