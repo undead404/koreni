@@ -6,7 +6,7 @@ export default function AboutPage() {
       <section>
         <h2>Хто автор Коренів?</h2>
         <p>
-          Привіт. Я – Віталій Перегончук, розробник ПЗ,{' '}
+          Привіт. Я – Віталій Перегончук, розробник ПЗ,&nbsp;
           <a
             href="https://www.linkedin.com/in/vitalii-perehonchuk-10570693/"
             target="_blank"
