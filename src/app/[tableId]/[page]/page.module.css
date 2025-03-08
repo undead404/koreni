@@ -1,33 +1,29 @@
 .article h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
   text-align: center;
 }
 
-.article h3 {
-  font-size: 1.5rem;
-  color: #34495e;
+.article h2 {
   margin-top: 40px;
   margin-bottom: 20px;
 }
 
 .article p {
+  margin-top: 8px;
   word-break: break-word;
 }
 
-.tableContainer {
-  max-width: calc(100vw - var(--side-gap) * 2);
-  max-height: calc(
-    100vh - 110px - 20px - 2 * var(--side-gap)
-  ); /* 110px - is just about a height of footer and header */
-  /* TODO reconsider pagination height */
-  /* TODO think on all those full page height measurements */
-  overflow: auto;
+/* Using this media is for printing */
+@media screen {
+  .tableContainer {
+    max-width: calc(100vw - var(--side-gap) * 2);
+    max-height: calc(100vh - 1.2rem - 24px - 20px - 6 * var(--side-gap));
+    /* TODO reconsider showing pagination for mobile */
+    overflow: auto;
+  }
 }
 
 .suspenseFallback {
   text-align: center;
   font-size: 1.2rem;
-  color: #7f8c8d;
+  color: var(--description-color);
 }

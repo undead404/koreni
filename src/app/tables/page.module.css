@@ -1,0 +1,19 @@
+.section h1 {
+  margin-bottom: 30px;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .section ul {
+    column-count: 2;
+    column-gap: var(--side-gap);
+  }
+}
+
+.section ul li {
+  margin-bottom: 10px;
+}

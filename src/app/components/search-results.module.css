@@ -3,45 +3,33 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
   font-size: 1rem;
   text-align: left;
 }
 
 .caption {
   caption-side: top;
-  text-align: left;
   font-size: 1.2rem;
-  color: #2c3e50;
   margin-bottom: 10px;
 }
 
 .tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--table-row-even-bg);
 }
 
 .tbody tr:not(:first-child):hover {
-  background-color: #ddd;
+  background-color: var(--table-row-hover-bg);
 }
 
 .tbody th,
 .tbody td {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: var(--default-border);
 }
 
 tbody tr:first-child th {
   padding-top: 20px;
   border: 0;
-}
-
-.link {
-  color: #2980b9;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.link:hover {
-  color: #3498db;
+  font-weight: normal;
+  font-style: italic;
 }

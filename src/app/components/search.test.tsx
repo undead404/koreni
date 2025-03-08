@@ -67,9 +67,8 @@ describe('SearchPage component', () => {
   });
 
   it('should render the search controls and results components', () => {
-    const { getByText, getByPlaceholderText } = render(<SearchPage />);
+    const { getByPlaceholderText } = render(<SearchPage />);
 
-    expect(getByText('Пошук')).toBeInTheDocument();
     expect(getByPlaceholderText('Мельник')).toBeInTheDocument();
   });
 });

@@ -1,24 +1,5 @@
-.location {
-  margin: 20px 0;
-  width: 100%;
-}
-
-.location summary {
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: #2c3e50;
-}
-
-.location summary h4 {
-  display: inline;
-}
-
-.location summary:hover {
-  color: #2980b9;
-}
-
-.location p {
+.loading {
   margin-top: 10px;
   font-size: 1rem;
-  color: #7f8c8d;
+  color: var(--description-color);
 }

@@ -15,10 +15,10 @@ import styles from './map.module.css';
 export interface MapProperties {
   points: MapPoint[];
   zoom: number;
-  mapClassName?: string;
+  isFullScreen?: boolean;
 }
 
-export default function Map({ points, zoom, mapClassName }: MapProperties) {
+export default function Map({ points, zoom, isFullScreen }: MapProperties) {
   const averagePoint = useMemo(
     () => calculateCoordinatesAverage(points.map((point) => point.coordinates)),
     [points],
@@ -35,7 +35,7 @@ export default function Map({ points, zoom, mapClassName }: MapProperties) {
       </Head>
       <MapContainer
         center={averagePoint}
-        className={`${styles.mapContainer} ${mapClassName}`}
+        className={`${styles.mapContainer} ${isFullScreen && styles.isFullScreen}`}
         zoom={zoom}
         scrollWheelZoom={false}
       >

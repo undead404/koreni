@@ -5,14 +5,13 @@ import getTablesMetadata from '@/shared/get-tables-metadata';
 import MapWrapper from '../components/map-wrapper';
 import combinePoints from '../helpers/combine-points';
 
-import styles from './page.module.css';
-
 export const metadata: Metadata = {
-  title: 'Корені | Карта доступних даних',
+  title: 'Корені | Мапа доступних даних',
 };
 
 export default async function MapPage() {
   const tablesMetadata = await getTablesMetadata();
+
   const points = tablesMetadata.map((tableMetadata) => ({
     coordinates: tableMetadata.location,
     linkedRecords: [
@@ -23,12 +22,6 @@ export default async function MapPage() {
     ],
   }));
   const combinedPoints = combinePoints(points);
-  return (
-    <MapWrapper
-      open
-      points={combinedPoints}
-      zoom={6}
-      mapClassName={styles.fullMap}
-    />
-  );
+
+  return <MapWrapper points={combinedPoints} zoom={6} isFullScreen />;
 }

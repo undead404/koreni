@@ -11,22 +11,29 @@
   top: 0;
 }
 
-.thead th {
-  background-color: #2c3e50;
-  color: white;
-  padding: 10px;
-  border: 1px solid #ddd;
+.thead tr:first-child {
+  background-color: var(--table-row-header-bg);
+  color: var(--table-row-header-text);
 }
 
 .tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--table-row-even-bg);
 }
 
 .tbody tr:hover {
-  background-color: #ddd;
+  background-color: var(--table-row-hover-bg);
 }
 
+.thead th,
 .tbody td {
   padding: 10px;
-  border: 1px solid #ddd;
+}
+
+.thead th:not(:last-child),
+.tbody td:not(:last-child) {
+  border-right: var(--default-border);
+}
+
+.tbody tr:not(:last-child) {
+  border-bottom: var(--default-border);
 }

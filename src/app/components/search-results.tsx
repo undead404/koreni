@@ -18,7 +18,7 @@ const SearchResults: FC<ResultsProperties> = ({
   resultsNumber,
 }) => {
   return (
-    // TODO rework this table to have a clickable row
+    // TODO enhance results visuals, keep manual selection possibility
     <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
         Знайдено результатів: {resultsNumber}

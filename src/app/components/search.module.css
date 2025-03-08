@@ -1,15 +1,9 @@
 .section {
-  margin-top: 40px;
-}
-
-.heading {
-  font-size: 2rem;
-  color: #2c3e50;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .errorMessage {
-  color: red;
+  color: var(--error-color);
   font-weight: bold;
-  margin-top: 1rem;
+  margin: 1rem 0;
 }

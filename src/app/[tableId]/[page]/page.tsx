@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+import { Details } from '@/app/components/details';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
@@ -36,7 +37,7 @@ export default async function Table({ params }: TablePageProperties) {
     <article className={styles.article}>
       <h1>{tableMetadata.title}</h1>
       <section>
-        <h3>Метадані</h3>
+        <h2>Метадані</h2>
         <p>Виконавець індексації: {tableMetadata.author || 'народ України'}</p>
         <p>
           Джерела:{' '}
@@ -46,19 +47,20 @@ export default async function Table({ params }: TablePageProperties) {
             </a>
           ))}
         </p>
-        <MapWrapper
-          title="На карті"
-          points={[
-            {
-              coordinates: tableMetadata.location,
-              linkedRecords: [{ title: tableMetadata.title }],
-            },
-          ]}
-          zoom={8}
-        />
+        <Details summary={<h3>На карті</h3>}>
+          <MapWrapper
+            points={[
+              {
+                coordinates: tableMetadata.location,
+                linkedRecords: [{ title: tableMetadata.title }],
+              },
+            ]}
+            zoom={8}
+          />
+        </Details>
       </section>
       <section>
-        <h3>Дані</h3>
+        <h2>Дані</h2>
         <Pagination
           currentPage={pageInt}
           totalPages={Math.ceil(tableData.length / PER_PAGE)}

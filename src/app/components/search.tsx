@@ -67,7 +67,6 @@ export function SearchPage() {
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.heading}>Пошук</h2>
       <SearchControls
         query={query}
         // areRefinementsExpanded={areRefinementsExpanded}
