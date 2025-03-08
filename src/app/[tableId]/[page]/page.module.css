@@ -1,14 +1,4 @@
-.article h1 {
-  text-align: center;
-}
-
-.article h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-
 .article p {
-  margin-top: 8px;
   word-break: break-word;
 }
 

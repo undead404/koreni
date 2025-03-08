@@ -55,18 +55,33 @@ img {
 }
 
 h1 {
+  margin-bottom: 40px;
   font-size: 2rem;
   line-height: 1.2em;
+  text-align: center;
 }
 
 h2 {
+  margin: 40px 0 20px;
   font-size: 1.6rem;
   line-height: 1.2em;
 }
 
 h3 {
   font-size: 1.2rem;
-  line-height: 1em;
+  line-height: 1.2em;
+}
+
+p {
+  margin: 8px 0;
+  font-size: 1rem;
+  line-height: 1.4em;
+}
+
+ul li {
+  margin: 6px 0;
+  font-size: 1rem;
+  line-height: 1.4em;
 }
 
 @media (prefers-color-scheme: dark) {
