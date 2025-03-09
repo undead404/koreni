@@ -40,7 +40,7 @@ export default async function Table({ params }: TablePageProperties) {
         <h2>Метадані</h2>
         <p>Виконавець індексації: {tableMetadata.author || 'народ України'}</p>
         <p>
-          Джерела:&nbsp;
+          Джерела:&#20;
           {tableMetadata.sources.map((source) => (
             <a key={source} href={source}>
               {source}

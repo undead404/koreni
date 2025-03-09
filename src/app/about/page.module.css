@@ -2,7 +2,12 @@
   max-width: 768px;
 }
 
+.root section {
+  text-align: justify;
+}
+
 .root ul {
   list-style-type: disc;
   padding-left: 20px;
+  text-align: left;
 }
