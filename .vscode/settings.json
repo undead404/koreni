@@ -11,7 +11,26 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["NEXTJS"],
+  "cSpell.language": "en,uk",
+  "cSpell.enabled": true,
+  "cSpell.enabledFileTypes": {
+    "*": true,
+    "csv": false,
+    "properties": false,
+    "yaml": false
+  },
+  "cSpell.words": [
+    "виконавець",
+    "Корені",
+    "метадані",
+    "Bugsnag",
+    "defaulticon",
+    "hocs",
+    "koreni",
+    "NextJS",
+    "nvmrc",
+    "Typesense"
+  ],
   // Enable ESLint as the formatter for JS/TS files
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"

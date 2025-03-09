@@ -21,7 +21,8 @@
     "wayou.vscode-todo-highlight", // Highlight TODO comments
     "aaron-bond.better-comments", // Colored comments
     "foxundermoon.shell-format",
-    "ms-azuretools.vscode-docker" // Shell script formatter
+    "ms-azuretools.vscode-docker", // Shell script formatter
+    "streetsidesoftware.code-spell-checker-ukrainian"
   ],
   "unwantedRecommendations": [
     "hookyqr.beautify", // Conflicts with Prettier
