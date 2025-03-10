@@ -16,7 +16,7 @@ const highlightSchema = z.object({
 const resultSchema = z.object({
   document: z.object({
     id: nonEmptyString,
-    tableId: z.number(),
+    tableId: nonEmptyString,
     title: nonEmptyString,
   }),
   highlight: highlightSchema,

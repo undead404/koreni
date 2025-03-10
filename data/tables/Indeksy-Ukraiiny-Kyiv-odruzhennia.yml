@@ -1,0 +1,13 @@
+archiveItems:
+  - ЦДІАК-127-1080-184
+date: 2025-03-05
+id: Indeksy-Ukraiiny-Kyiv-odruzhennia
+location:
+  - 50.4545147547705
+  - 30.530316525664336
+size: 206
+sources:
+  - https://docs.google.com/spreadsheets/d/1qd70Mk-UWcaspUjFcfZvp7YYDDOWNUuGDdslJFGmaEg/edit?usp=sharing
+tableFilename: Київ - Одруження.csv
+tableLocale: ru
+title: Київ - Одруження (1907, 1920)

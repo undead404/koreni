@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
+import { sortBy } from 'lodash';
 import { parse } from 'yaml';
 
 import {
@@ -20,5 +21,5 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);
-  return tablesMetadata;
+  return sortBy(tablesMetadata, 'id');
 }

@@ -47,6 +47,15 @@ export default async function Table({ params }: TablePageProperties) {
             </a>
           ))}
         </p>
+        {tableMetadata.archiveItems && (
+          <Details summary={<h3>Використані архівні справи</h3>}>
+            <ul>
+              {tableMetadata.archiveItems.map((archiveItem) => (
+                <li key={archiveItem}>{archiveItem}</li>
+              ))}
+            </ul>
+          </Details>
+        )}
         <Details summary={<h3>На карті</h3>}>
           <MapWrapper
             points={[

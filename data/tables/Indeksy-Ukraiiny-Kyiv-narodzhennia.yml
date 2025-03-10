@@ -1,0 +1,14 @@
+archiveItems:
+  - ЦДІАК-127-1080-184
+  - ЦДІАК-127-1080-275
+date: 2025-03-05
+id: Indeksy-Ukraiiny-Kyiv-narodzhennia
+location:
+  - 50.4545147547705
+  - 30.530316525664336
+size: 551
+sources:
+  - https://docs.google.com/spreadsheets/d/1qd70Mk-UWcaspUjFcfZvp7YYDDOWNUuGDdslJFGmaEg/edit?usp=sharing
+tableFilename: Київ - Народження.csv
+tableLocale: ru
+title: Київ - Народження (спорадично 1874-1920)

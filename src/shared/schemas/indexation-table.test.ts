@@ -6,7 +6,7 @@ describe('indexationTableSchema', () => {
   it('should validate a correct indexation table', () => {
     const validTable = {
       date: '2024-09-17',
-      id: 1,
+      id: 'valid-id',
       tableFilename: 'valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 100,
@@ -19,7 +19,7 @@ describe('indexationTableSchema', () => {
 
   it('should invalidate a table with missing fields', () => {
     const invalidTable = {
-      id: 1,
+      id: 'invalid-id',
       tableFilename: 'valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 100,
@@ -32,7 +32,7 @@ describe('indexationTableSchema', () => {
   it('should invalidate a table with invalid id', () => {
     const invalidTable = {
       date: '2024-09-17',
-      id: 0,
+      id: '',
       tableFilename: 'valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 100,
@@ -46,7 +46,7 @@ describe('indexationTableSchema', () => {
   it('should invalidate a table with invalid size', () => {
     const invalidTable = {
       date: '2024-09-17',
-      id: 1,
+      id: 'valid-id',
       tableFilename: 'valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 0,
@@ -60,7 +60,7 @@ describe('indexationTableSchema', () => {
   it('should invalidate a table with invalid locale', () => {
     const invalidTable = {
       date: '2024-09-17',
-      id: 1,
+      id: 'valid-id',
       tableFilename: 'valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 100,

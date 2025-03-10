@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-12-451
+  - ДАКО-384-12-452
+  - ДАКО-384-12-453
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-03-10
+id: DAKO-384-12-Ivanky
+location:
+  - 48.99420411380326
+  - 30.445093687043716
+size: 25
+sources:
+  - https://docs.google.com/spreadsheets/d/1jmU-Dg7jDmDfoI9N_U8sJXLtgEMBKdWn/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: Юд Іваньки.xlsm - Іваньки.csv
+tableLocale: uk
+title: Юд Іваньки
