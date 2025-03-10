@@ -1,5 +1,6 @@
 import _ from 'lodash';
 
+import ArchiveItem from '@/app/components/archive-item';
 import { Details } from '@/app/components/details';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
@@ -48,18 +49,13 @@ export default async function Table({ params }: TablePageProperties) {
           ))}
         </p>
         {tableMetadata.archiveItems && (
-          <Details summary={<h3>Використані архівні справи</h3>}>
+          <Details
+            open={tableMetadata.archiveItems.length < 4}
+            summary={<h3>Використані архівні справи</h3>}
+          >
             <ul className={styles.archiveItems}>
               {tableMetadata.archiveItems.map((archiveItem) => (
-                <li key={archiveItem}>
-                  <a
-                    href={`https://inspector.duckarchive.com/search?q=${archiveItem}`}
-                    target="_blank"
-                    title="Шукати в Качиному інспекторі"
-                  >
-                    {archiveItem} 🦆
-                  </a>
-                </li>
+                <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
               ))}
             </ul>
           </Details>

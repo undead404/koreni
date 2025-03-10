@@ -1,0 +1,12 @@
+.root {
+  line-height: normal;
+  margin: 0 0 12px 0;
+}
+
+.root .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-right: 24px;
+}
