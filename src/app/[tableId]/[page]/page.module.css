@@ -2,6 +2,31 @@
   word-break: break-word;
 }
 
+.article ul.archiveItems {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
+
+@media screen and (min-width: 512px) {
+  .article ul.archiveItems {
+    column-count: 2;
+    column-gap: var(--side-gap);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .article ul.archiveItems {
+    column-count: 3;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .article ul.archiveItems {
+    column-count: 4;
+  }
+}
+
 /* Using this media is for printing */
 @media screen {
   .tableContainer {

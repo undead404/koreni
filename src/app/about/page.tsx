@@ -39,10 +39,10 @@ export default function AboutPage() {
         <p>Уклінно дякую наступним особам і&nbsp;спільнотам:</p>
         <ul>
           <li>
-            <li>
-              Володимиру Цибульському&nbsp;– за&nbsp;результати довгих років
-              індексації
-            </li>
+            Володимиру Цибульському&nbsp;– за&nbsp;результати довгих років
+            індексації
+          </li>
+          <li>
             <a href="https://t.me/+fF7z745gQBhhYmIy" target="_blank">
               Спільноті "Генеалогічне IT" в&nbsp;Telegram
             </a>

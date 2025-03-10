@@ -49,7 +49,7 @@ export default async function Table({ params }: TablePageProperties) {
         </p>
         {tableMetadata.archiveItems && (
           <Details summary={<h3>Використані архівні справи</h3>}>
-            <ul>
+            <ul className={styles.archiveItems}>
               {tableMetadata.archiveItems.map((archiveItem) => (
                 <li key={archiveItem}>{archiveItem}</li>
               ))}
