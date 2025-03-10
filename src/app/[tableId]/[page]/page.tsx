@@ -51,7 +51,15 @@ export default async function Table({ params }: TablePageProperties) {
           <Details summary={<h3>Використані архівні справи</h3>}>
             <ul className={styles.archiveItems}>
               {tableMetadata.archiveItems.map((archiveItem) => (
-                <li key={archiveItem}>{archiveItem}</li>
+                <li key={archiveItem}>
+                  <a
+                    href={`https://inspector.duckarchive.com/search?q=${archiveItem}`}
+                    target="_blank"
+                    title="Шукати в Качиному інспекторі"
+                  >
+                    {archiveItem} 🦆
+                  </a>
+                </li>
               ))}
             </ul>
           </Details>
