@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import MapWrapperBound from '../components/map-wrapper';
+import MapWrapper from '../components/map-wrapper';
 import combinePoints from '../helpers/combine-points';
 
 export const metadata: Metadata = {
@@ -24,9 +23,5 @@ export default async function MapPage() {
   }));
   const combinedPoints = combinePoints(points);
 
-  return (
-    <Suspense fallback={<p>Завантаження...</p>}>
-      <MapWrapperBound points={combinedPoints} zoom={6} isFullScreen />
-    </Suspense>
-  );
+  return <MapWrapper points={combinedPoints} zoom={6} isFullScreen />;
 }
