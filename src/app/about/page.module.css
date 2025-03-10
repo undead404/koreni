@@ -1,0 +1,12 @@
+.root {
+  max-width: 768px;
+}
+
+.root section {
+}
+
+.root ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
