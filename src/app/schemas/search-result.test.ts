@@ -7,7 +7,7 @@ describe('resultSchema', () => {
     const validResult = {
       document: {
         id: '1',
-        tableId: 1,
+        tableId: 'valid-id',
         title: 'Valid Title',
       },
       highlight: {
@@ -30,7 +30,7 @@ describe('resultSchema', () => {
     const invalidResult = {
       document: {
         id: '',
-        tableId: 1,
+        tableId: 'valid-id',
         title: '',
       },
       highlight: {
@@ -53,7 +53,7 @@ describe('resultSchema', () => {
     const invalidResult = {
       document: {
         id: 1, // should be a string
-        tableId: '1', // should be a number
+        tableId: 1, // should be a string
         title: 123, // should be a string
       },
       highlight: {
@@ -76,7 +76,7 @@ describe('resultSchema', () => {
     const validResult = {
       document: {
         id: '1',
-        tableId: 1,
+        tableId: 'valid-id',
         title: 'Valid Title',
       },
       highlight: {},
@@ -92,7 +92,7 @@ describe('resultSchema', () => {
     const invalidResult = {
       document: {
         id: '1',
-        tableId: 1,
+        tableId: 'valid-id',
         title: 'Valid Title',
       },
       highlight: {
