@@ -29,11 +29,12 @@
 
 html,
 body {
-  font-family:
-    var(--font-geist-sans), 'Open Sans', Arial, 'Helvetica Neue', Helvetica,
-    sans-serif;
+  font-family: 'Open Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
   background-color: var(--bg-color);
   color: var(--text-color);
