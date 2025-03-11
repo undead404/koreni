@@ -106,3 +106,12 @@ ul li {
     --error-color: #ff4747;
   }
 }
+
+.leaflet-popup-content-wrapper {
+  max-height: 66vh;
+  overflow: auto;
+}
+
+.leaflet-popup-content-wrapper ul {
+  margin-left: 40px;
+}
