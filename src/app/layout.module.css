@@ -33,10 +33,3 @@
   display: inline-block;
   height: 1em;
 }
-
-/* TODO do it in a more eloquent way */
-@media (prefers-color-scheme: dark) {
-  .footer img {
-    filter: invert(1);
-  }
-}

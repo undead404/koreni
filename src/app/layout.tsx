@@ -48,14 +48,14 @@ export default function RootLayout({
               href="https://github.com/undead404/koreni"
               target="_blank"
               rel="noopener noreferrer"
+              title="undead404/koreni на GitHub"
             >
               GitHub
               <Image
-                alt="undead404/koreni на GitHub"
-                className={styles.githubIcon}
-                height={24}
                 src={githubIcon}
-                title="undead404/koreni на GitHub"
+                alt="GitHub logo"
+                className="filter-inverted"
+                height={24}
                 width={24}
               />
             </a>

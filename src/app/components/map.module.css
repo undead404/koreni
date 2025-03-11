@@ -7,7 +7,7 @@
 
 /* TODO consider an idea of really full screen map */
 .isFullScreen {
-  height: calc(100vh - 1.2rem - 24px - 7 * var(--side-gap));
+  height: calc(100vh - 44px - 24px - 5 * var(--side-gap));
 }
 
 /* TODO add styles for a leaflet map */

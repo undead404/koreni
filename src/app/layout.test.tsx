@@ -61,15 +61,15 @@ describe('RootLayout', () => {
   });
 
   it('renders GitHub link correctly', () => {
-    const { getByTitle } = render(
+    const { getByAltText } = render(
       <RootLayout>
         <div />
       </RootLayout>,
     );
-    const githubLink = getByTitle('undead404/koreni на GitHub');
+    const githubLink = getByAltText('GitHub logo');
     expect(githubLink).toBeInTheDocument();
     expect(githubLink.getAttribute('src')).toBe(githubIcon);
-    expect(githubLink.getAttribute('alt')).toBe('undead404/koreni на GitHub');
-    expect(githubLink.getAttribute('class')).toContain('githubIcon');
+    expect(githubLink.getAttribute('alt')).toBe('GitHub logo');
+    expect(githubLink.getAttribute('class')).toContain('filter-inverted');
   });
 });

@@ -105,6 +105,10 @@ ul li {
 
     --error-color: #ff4747;
   }
+
+  .filter-inverted {
+    filter: invert(1);
+  }
 }
 
 .leaflet-popup-content-wrapper {

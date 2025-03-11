@@ -31,7 +31,7 @@
 @media screen {
   .tableContainer {
     max-width: calc(100vw - var(--side-gap) * 2);
-    max-height: calc(100vh - 1.2rem - 24px - 20px - 6 * var(--side-gap));
+    max-height: calc(100vh - 44px - 24px - 20px - 4 * var(--side-gap));
     /* TODO reconsider showing pagination for mobile */
     overflow: auto;
   }
