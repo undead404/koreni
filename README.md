@@ -2,6 +2,10 @@
 
 A project aimed to provide full-text search through ambiguous indexations of Ukrainian genealogical documents collected from volunteers.
 
+## License
+
+This project's code is licensed under [MIT license](./LICENSE.txt), while its [`data` folder](./data/) is licensed under [ODbL license]('./data/LICENSE.md).
+
 ## Development setup
 
 ### Prerequisites
