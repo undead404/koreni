@@ -9,6 +9,7 @@ describe('resultSchema', () => {
         id: '1',
         tableId: 'valid-id',
         title: 'Valid Title',
+        year: 1822,
       },
       highlight: {
         data: {
@@ -78,6 +79,7 @@ describe('resultSchema', () => {
         id: '1',
         tableId: 'valid-id',
         title: 'Valid Title',
+        year: 1822,
       },
       highlight: {},
       text_match_info: {

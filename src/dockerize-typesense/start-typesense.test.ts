@@ -67,6 +67,7 @@ describe('startTypesense', () => {
 
     expect(execSync).toHaveBeenCalledWith(
       `docker run -d --name typesense-server -p ${TYPESENSE_PORT}:8108 -v ${DATA_DIR}:/data typesense/typesense:28.0 --api-key=${bootstrapKey} --data-dir=/data`,
+      { stdio: 'inherit' },
     );
   });
 
