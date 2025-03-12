@@ -15,13 +15,15 @@ describe('guessPageFromRowId', () => {
     expect(guessPageFromRowId('table-21')).toBe(3);
   });
 
-  it('should handle non-numeric row numbers gracefully', () => {
-    expect(guessPageFromRowId('table-abc')).toBeNaN();
-    expect(guessPageFromRowId('table-')).toBeNaN();
+  it('should work for longer ids', () => {
+    expect(guessPageFromRowId('table-whatever-13')).toBe(2);
   });
 
-  it('should handle invalid rowId formats gracefully', () => {
-    expect(guessPageFromRowId('invalid-row-id')).toBeNaN();
-    expect(guessPageFromRowId('')).toBeNaN();
+  it('should throw at empty row id', () => {
+    expect(() => guessPageFromRowId('')).toThrow();
+  });
+
+  it('should throw at invalid formats', () => {
+    expect(() => guessPageFromRowId('invalid-row-id')).toThrow();
   });
 });
