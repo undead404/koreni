@@ -38,7 +38,7 @@ describe('RootLayout', () => {
   it('renders metadata correctly', () => {
     expect(metadata).toEqual({
       title: 'Корені',
-      description: 'Пошук у&nbsp;народних генеалогічних індексах',
+      description: 'Пошук у народних генеалогічних індексах',
     });
   });
 

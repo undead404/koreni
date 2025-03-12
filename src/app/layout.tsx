@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Корені',
-  description: 'Пошук у&nbsp;народних генеалогічних індексах',
+  description: 'Пошук у народних генеалогічних індексах',
 };
 
 export default function RootLayout({
@@ -51,7 +51,7 @@ export default function RootLayout({
                 className={styles.githubIcon}
                 height={24}
                 src={githubIcon}
-                title="undead404/koreni на&nbsp;GitHub"
+                title="undead404/koreni на GitHub"
                 width={24}
               />
             </a>
