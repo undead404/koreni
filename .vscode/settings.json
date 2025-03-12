@@ -26,8 +26,8 @@
     ".git/{index,*refs,*HEAD}",
     ".vscode",
     ".vscode-insiders",
-    "LICENSE.txt",
-    "LICENSE.md"
+    "LICENSE.*",
+    "LICENSE-*.*"
   ],
   "cSpell.language": "en,uk",
   "cSpell.words": [
