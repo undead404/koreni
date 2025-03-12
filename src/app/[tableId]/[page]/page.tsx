@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import ArchiveItem from '@/app/components/archive-item';
 import { Details } from '@/app/components/details';
+import SourceLink from '@/app/components/source-link';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
@@ -43,9 +44,7 @@ export default async function Table({ params }: TablePageProperties) {
         <p>
           Таблиці:{' '}
           {tableMetadata.sources.map((source) => (
-            <a key={source} href={source}>
-              {source}
-            </a>
+            <SourceLink key={source} href={source} />
           ))}
         </p>
         <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
