@@ -30,7 +30,7 @@ const SearchResults: FC<ResultsProperties> = ({
             {typedResult.highlight.data && (
               <tr key={`${index}-${typedResult.document.tableId}`}>
                 <th colSpan={2}>{typedResult.document.title}</th>
-                <th>{typedResult.document.year}</th>
+                <th>{typedResult.document.year || '?'}</th>
               </tr>
             )}
             {typedResult.highlight.data &&
