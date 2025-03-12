@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import type { HTTPError } from 'typesense/lib/Typesense/Errors';
 
+import calculatePayloadSizeInBytes from './calculate-payload-size-in-bytes';
 import type { RowForImport } from './types';
 import typesense from './typesense';
 
@@ -8,7 +9,9 @@ export default async function importBatch(
   collectionName: string,
   batch: RowForImport[],
 ) {
-  console.log(`importBatch for `);
+  console.log(
+    `importBatch for a batch of ${batch.length} weighing ${calculatePayloadSizeInBytes(batch)}`,
+  );
   try {
     await typesense
       .collections(collectionName)
@@ -19,7 +22,9 @@ export default async function importBatch(
     let processedSize = 0;
     console.error(error);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
-    console.log((error as any)['httpStatus']);
+    console.log((error as any)['name']);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    console.log((error as any)['httpBody']);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
     console.log(Object.keys(error as any));
     if ((error as HTTPError).httpStatus === 413) {
