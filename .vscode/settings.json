@@ -11,7 +11,6 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.language": "en,uk",
   "cSpell.enabled": true,
   "cSpell.enabledFileTypes": {
     "*": true,
@@ -19,6 +18,18 @@
     "properties": false,
     "yaml": false
   },
+  "cSpell.ignorePaths": [
+    "yarn.lock",
+    "node_modules",
+    "vscode-extension",
+    ".git/{info,lfs,logs,refs,objects}/**",
+    ".git/{index,*refs,*HEAD}",
+    ".vscode",
+    ".vscode-insiders",
+    "LICENSE.*",
+    "LICENSE-*.*"
+  ],
+  "cSpell.language": "en,uk",
   "cSpell.words": [
     "Корені",
     "невалідний",
