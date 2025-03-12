@@ -12,3 +12,5 @@ sources:
 tableFilename: 1811 Глухівці - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
 tableLocale: uk
 title: 1811 Глухівці - шляхта - ДАКО ф.280, оп. 2, спр.267
+yearsRange:
+  - 1811

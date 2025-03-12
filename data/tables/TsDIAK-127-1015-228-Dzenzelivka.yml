@@ -12,3 +12,5 @@ sources:
 tableFilename: 1814 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 228 +.xlsx - 1814.csv
 tableLocale: uk
 title: 1814 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 228 +
+yearsRange:
+  - 1814

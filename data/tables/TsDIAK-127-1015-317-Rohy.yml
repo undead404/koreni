@@ -12,3 +12,5 @@ sources:
 tableFilename: 1821 Роги ЦДІАК, ф.127,оп.1015, спр.317 обр.xlsx - Сповідка.csv
 tableLocale: uk
 title: 1821 Роги ЦДІАК, ф.127,оп.1015, спр.317 обр
+yearsRange:
+  - 1821

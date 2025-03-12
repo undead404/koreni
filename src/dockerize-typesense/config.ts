@@ -16,7 +16,8 @@ export const RU_COLLECTION_CONFIGURATION = {
       type: 'object',
     },
     { name: 'location', type: 'geopoint' },
-    { facet: true, name: 'tableId', type: 'int64' },
+    { facet: true, name: 'tableId', type: 'string' },
+    { facet: true, name: 'year', type: 'int32' },
   ],
 };
 
@@ -32,6 +33,7 @@ export const UK_COLLECTION_CONFIGURATION = {
       type: 'object',
     },
     { name: 'location', type: 'geopoint' },
-    { facet: true, name: 'tableId', type: 'int64' },
+    { facet: true, name: 'tableId', type: 'string' },
+    { facet: true, name: 'year', type: 'int32' },
   ],
 };

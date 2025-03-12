@@ -12,3 +12,5 @@ sources:
 tableFilename: 1801 Соколівка ЦДІАК, ф.127,оп.1012, спр.1197а обр.xlsx - МК.csv
 tableLocale: uk
 title: 1801 Соколівка ЦДІАК, ф.127,оп.1012, спр.1197а обр
+yearsRange:
+  - 1801

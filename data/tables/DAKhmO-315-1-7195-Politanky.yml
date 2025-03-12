@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1827 – сповідний розпис, ДАХмО 315-1-7298 - master.csv
 tableLocale: ru
 title: Політанки 1827 – сповідний розпис
+yearsRange:
+  - 1827

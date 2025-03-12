@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1823 – сповідний розпис, ДАХмО 315-1-7195 - master.csv
 tableLocale: ru
 title: Політанки 1823 – сповідний розпис
+yearsRange:
+  - 1823

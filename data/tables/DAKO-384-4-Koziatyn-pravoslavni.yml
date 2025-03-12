@@ -24,3 +24,5 @@ sources:
 tableFilename: Козятин православні - Козятин.csv
 tableLocale: uk
 title: Козятин православні
+yearsRange:
+  - 1897

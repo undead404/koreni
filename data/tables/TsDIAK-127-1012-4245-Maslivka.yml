@@ -12,3 +12,5 @@ sources:
 tableFilename: 1872 Маслівка - ДАКО ф.127, оп. 1012, спр.4245.xlsx.xlsm - Маслівка 1872.csv
 tableLocale: uk
 title: 1872 Маслівка - ДАКО ф.127, оп. 1012, спр.4245
+yearsRange:
+  - 1872

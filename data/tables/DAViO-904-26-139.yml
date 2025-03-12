@@ -12,3 +12,6 @@ sources:
 tableFilename: Політанки 1896-1900 – ДАВіО 904-26-139 - master.csv
 tableLocale: ru
 title: Політанки 1896-1900
+yearsRange:
+  - 1896
+  - 1900

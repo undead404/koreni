@@ -11,3 +11,6 @@ sources:
 tableFilename: Київська губернія СПОВІДКИ - Махнівський повіт.csv
 tableLocale: uk
 title: Київська губернія СПОВІДКИ - Махнівський повіт
+yearsRange:
+  - 1814
+  - 1866

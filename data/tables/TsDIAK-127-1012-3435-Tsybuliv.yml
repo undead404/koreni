@@ -12,3 +12,5 @@ sources:
 tableFilename: Цибулів мк 1862 ЦДІАК, ф.127,оп.1012, спр.3435.xlsx - МК.csv
 tableLocale: uk
 title: Цибулів мк 1862 ЦДІАК, ф.127,оп.1012, спр.3435
+yearsRange:
+  - 1862

@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1850 – ревізька казка, ДАХмО 226-79-5231 т. 6 - master.csv
 tableLocale: ru
 title: Політанки 1850 – ревізька казка
+yearsRange:
+  - 1850

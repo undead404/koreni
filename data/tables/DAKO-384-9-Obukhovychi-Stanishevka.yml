@@ -16,3 +16,5 @@ sources:
 tableFilename: Іванківська волость прізвища.xlsm - Обуховичі, Станішевка (1).csv
 tableLocale: uk
 title: Іванківська волость прізвища - Обуховичі, Станішевка
+yearsRange:
+  - 1897

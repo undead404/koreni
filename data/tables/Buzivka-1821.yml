@@ -10,3 +10,5 @@ sources:
 tableFilename: Бузівка - 1821 (1).xlsx - Лист1.csv
 tableLocale: uk
 title: Бузівка - 1821
+yearsRange:
+  - 1821

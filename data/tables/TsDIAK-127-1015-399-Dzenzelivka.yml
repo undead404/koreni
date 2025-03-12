@@ -12,3 +12,5 @@ sources:
 tableFilename: 1828 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 399.xlsx - Сповідка.csv
 tableLocale: uk
 title: 1828 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 399
+yearsRange:
+  - 1828

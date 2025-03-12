@@ -11,3 +11,5 @@ sources:
 tableFilename: Черепашинці 1802 Сповідний розпис ДАХмО 315-1-6816 - master.csv
 tableLocale: ru
 title: Черепашинці 1802 Сповідний розпис ДАХмО 315-1-6816
+yearsRange:
+  - 1802

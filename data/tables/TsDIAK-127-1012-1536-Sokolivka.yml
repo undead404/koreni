@@ -12,3 +12,5 @@ sources:
 tableFilename: 1824 Соколівка ЦДІАК, ф.127,оп.1012, спр.1536 обр.xlsx - МК 1824.csv
 tableLocale: uk
 title: 1824 Соколівка ЦДІАК, ф.127,оп.1012, спр.1536 обр
+yearsRange:
+  - 1824

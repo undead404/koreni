@@ -12,3 +12,5 @@ sources:
 tableFilename: 1840 Дзенгелівка ЦДІАК, ф.127,оп.1014, спр.194 обр.xlsx - МК.csv
 tableLocale: uk
 title: 1840 Дзенгелівка ЦДІАК, ф.127,оп.1014, спр.194 обр
+yearsRange:
+  - 1840

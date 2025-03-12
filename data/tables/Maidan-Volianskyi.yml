@@ -58,3 +58,6 @@ sources:
 tableFilename: оцифровки - Майдан Волянський.csv
 tableLocale: uk
 title: Майдан Волянський
+yearsRange:
+  - 1795
+  - 1885

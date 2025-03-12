@@ -12,3 +12,5 @@ sources:
 tableFilename: 1874 Нестерівка ЦДІАК, ф.127,оп.1012, спр.1536 обр.xlsx - МК.csv
 tableLocale: uk
 title: 1874 Нестерівка ЦДІАК, ф.127,оп.1012, спр.1536 обр
+yearsRange:
+  - 1874

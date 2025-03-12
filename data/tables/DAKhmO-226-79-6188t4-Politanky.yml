@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1858 – ревізька казка, ДАХмО 226-79-6188 т. 4 - master.csv
 tableLocale: ru
 title: Політанки 1858 – ревізька казка
+yearsRange:
+  - 1858

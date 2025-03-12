@@ -11,3 +11,6 @@ sources:
 tableFilename: Київ - Одруження.csv
 tableLocale: ru
 title: Київ - Одруження (1907, 1920)
+yearsRange:
+  - 1907
+  - 1920

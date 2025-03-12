@@ -12,3 +12,6 @@ sources:
 tableFilename: Хижня - 1836+.xlsx - Сповідка.csv
 tableLocale: uk
 title: Хижня - 1836+
+yearsRange:
+  - 1836
+  - 1850

@@ -12,3 +12,6 @@ sources:
 tableFilename: Київ - Смерть.csv
 tableLocale: ru
 title: Київ - Смерть (1907-1920)
+yearsRange:
+  - 1907
+  - 1920

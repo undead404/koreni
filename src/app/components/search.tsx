@@ -1,11 +1,13 @@
 'use client';
 
+import type { NotifiableError } from '@bugsnag/js';
 import _ from 'lodash';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import environment from '../environment';
 import withErrorBoundary from '../hocs/with-error-boundary';
+import ActiveBugsnag from '../services/bugsnag';
 import search, { type SearchResult } from '../services/search';
 import trackEvent from '../services/simple-analytics';
 import getTypesenseClient from '../services/typesense';
@@ -47,6 +49,7 @@ export function SearchPage() {
         } catch (error_) {
           setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
           console.error(error_);
+          ActiveBugsnag.notify(error_ as NotifiableError);
         } finally {
           setLoading(false);
         }

@@ -41,13 +41,14 @@ export default async function Table({ params }: TablePageProperties) {
         <h2>Метадані</h2>
         <p>Виконавець індексації: {tableMetadata.author || 'народ України'}</p>
         <p>
-          Джерела:&#20;
+          Таблиці:{' '}
           {tableMetadata.sources.map((source) => (
             <a key={source} href={source}>
               {source}
             </a>
           ))}
         </p>
+        <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
         {tableMetadata.archiveItems && (
           <Details
             open={tableMetadata.archiveItems.length < 4}

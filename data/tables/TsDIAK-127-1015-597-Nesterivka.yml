@@ -12,3 +12,5 @@ sources:
 tableFilename: 1840 Нестерівка ЦДІАК, ф.127,оп.1015, спр.597.xlsx - Лист1.csv
 tableLocale: uk
 title: 1840 Нестерівка ЦДІАК, ф.127,оп.1015, спр.597
+yearsRange:
+  - 1840

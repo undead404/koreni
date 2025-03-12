@@ -16,10 +16,10 @@ export default async function startTypesense(
     mkdirSync(DATA_DIR);
   }
 
+  const command = `docker run -d --name typesense-server -p ${TYPESENSE_PORT}:8108 -v ${DATA_DIR}:/data typesense/typesense:28.0 --api-key=${bootstrapKey} --data-dir=/data`;
+  console.log(command);
   // Run Typesense in Docker
-  execSync(
-    `docker run -d --name typesense-server -p ${TYPESENSE_PORT}:8108 -v ${DATA_DIR}:/data typesense/typesense:28.0 --api-key=${bootstrapKey} --data-dir=/data`,
-  );
+  execSync(command, { stdio: 'inherit' });
 
   // Wait until Typesense is ready
 
@@ -32,7 +32,7 @@ export default async function startTypesense(
       console.log('Please wait...');
       return false;
     }
-  });
+  }, 10_000);
 
   console.log(
     'Typesense successfully started in Docker at localhost:' + TYPESENSE_PORT,

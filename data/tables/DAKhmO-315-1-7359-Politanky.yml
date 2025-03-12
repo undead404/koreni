@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1831 – сповідний розпис, ДАХмО 315-1-7359 - master.csv
 tableLocale: ru
 title: Політанки 1831 – сповідний розпис, ДАХмО 315-1-7359
+yearsRange:
+  - 1831

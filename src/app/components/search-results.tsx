@@ -29,7 +29,8 @@ const SearchResults: FC<ResultsProperties> = ({
           <tbody key={index} className={styles.tbody}>
             {typedResult.highlight.data && (
               <tr key={`${index}-${typedResult.document.tableId}`}>
-                <th colSpan={3}>{typedResult.document.title}</th>
+                <th colSpan={2}>{typedResult.document.title}</th>
+                <th>{typedResult.document.year}</th>
               </tr>
             )}
             {typedResult.highlight.data &&

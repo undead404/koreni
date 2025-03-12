@@ -40,6 +40,7 @@ export default async function search({
       query_by: 'data.*',
       // facet_by: Object.keys(facets).join(","),
       // filter_by: filter_by,
+      sort_by: '_text_match:desc,year:desc',
     }),
     client.collections('unstructured_uk').documents().search({
       q: query,

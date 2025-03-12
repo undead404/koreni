@@ -12,3 +12,5 @@ sources:
 tableFilename: Помийник 1814 ЦДІАК, ф.127,оп.1015, спр.228.xlsx - Сповідка.csv
 tableLocale: uk
 title: Помийник 1814 ЦДІАК, ф.127,оп.1015, спр.228
+yearsRange:
+  - 1814

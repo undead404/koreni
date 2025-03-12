@@ -2,7 +2,7 @@ archiveItems:
   - ЦДІАК-127-1015-1133
 author: Володимир Цибульський <unclelado@ukr.net>
 date: 2025-03-08
-id: TsDIAK-127-1015-1133
+id: TsDIAK-127-1015-1133-Sokolivka
 location:
   - 49.02959876088926
   - 30.13074179370111
@@ -12,3 +12,5 @@ sources:
 tableFilename: 1867 Соколівка ЦДІАК, ф.127,оп 1015, спр 1133.xlsx - Сповідка.csv
 tableLocale: uk
 title: 1867 Соколівка ЦДІАК, ф.127,оп 1015, спр 1133
+yearsRange:
+  - 1867

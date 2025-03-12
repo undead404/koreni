@@ -18,6 +18,7 @@ const resultSchema = z.object({
     id: nonEmptyString,
     tableId: nonEmptyString,
     title: nonEmptyString,
+    year: z.number().min(0),
   }),
   highlight: highlightSchema,
   text_match_info: z.object({

@@ -12,3 +12,5 @@ sources:
 tableFilename: Сорокотяга - 1840+ ЦДІАК, ф.127,оп.1015, спр.595.xlsx - Лист1.csv
 tableLocale: uk
 title: Сорокотяга - 1840+ ЦДІАК, ф.127,оп.1015, спр.595
+yearsRange:
+  - 1840

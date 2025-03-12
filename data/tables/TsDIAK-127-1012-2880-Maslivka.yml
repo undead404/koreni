@@ -12,3 +12,5 @@ sources:
 tableFilename: 1854 Маслівка - ДАКО ф.127, оп. 1012, спр.2880.xlsm - Маслівка 1854.csv
 tableLocale: uk
 title: 1854 Маслівка - ДАКО ф.127, оп. 1012, спр.2880
+yearsRange:
+  - 1854

@@ -12,3 +12,5 @@ sources:
 tableFilename: 1836 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 524.xlsx - Сповідка.csv
 tableLocale: uk
 title: 1836 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 524
+yearsRange:
+  - 1836

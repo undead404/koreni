@@ -12,3 +12,5 @@ sources:
 tableFilename: РГИА 592-25-2075-57 1907 Заява на позику - Аркуш1.csv
 tableLocale: ru
 title: Політанки 1907 Заява на позику
+yearsRange:
+  - 1907

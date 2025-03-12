@@ -27,3 +27,5 @@ sources:
 tableFilename: Розважівська волость прізвища.xlsm - Розважів.csv
 tableLocale: ru
 title: Розважівська волость прізвища - Розважів
+yearsRange:
+  - 1897

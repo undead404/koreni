@@ -12,3 +12,5 @@ sources:
 tableFilename: 1852 Дзензелівка ЦДІАК, ф.127,оп 1012, спр 2769 обр.xlsx - МК.csv
 tableLocale: uk
 title: 1852 Дзензелівка ЦДІАК, ф.127,оп 1012, спр 2769 обр
+yearsRange:
+  - 1852

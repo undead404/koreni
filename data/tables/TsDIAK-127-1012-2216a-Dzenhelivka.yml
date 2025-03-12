@@ -12,3 +12,5 @@ sources:
 tableFilename: 1844 Дзенгелівка ЦДІАК, ф.127,оп. 1012, спр. 2216а обр.xlsx - МК.csv
 tableLocale: uk
 title: 1844 Дзенгелівка ЦДІАК, ф.127,оп. 1012, спр. 2216а обр
+yearsRange:
+  - 1844

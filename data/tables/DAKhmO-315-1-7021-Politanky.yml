@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1816 - master.csv
 tableLocale: ru
 title: Політанки 1816
+yearsRange:
+  - 1816

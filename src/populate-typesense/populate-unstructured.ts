@@ -2,9 +2,10 @@ import _ from 'lodash';
 
 import type { IndexationTable } from '../shared/schemas/indexation-table.js';
 
+import determineRowYear from './determine-row-year.js';
 import typesense from './typesense.js';
 
-const CHUNK_SIZE = 100;
+const CHUNK_SIZE = 1000;
 
 export interface IndexationTableWithData extends IndexationTable {
   data: Record<string, unknown>[];
@@ -19,8 +20,8 @@ export default async function populateTypesense(
     id: `${table.id}-${index + 1}`,
     location,
     tableId: table.id,
-    sources: table.sources,
     title: table.title,
+    year: determineRowYear(row, table),
   }));
   const chunks = _.chunk(dataWithExtraFields, CHUNK_SIZE);
   for (const [index, chunk] of chunks.entries()) {

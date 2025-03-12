@@ -12,3 +12,5 @@ sources:
 tableFilename: 1796 Соколівка ЦДІАК, ф.127,оп.1012, спр.1063.xlsx - МК.csv
 tableLocale: uk
 title: 1796 Соколівка ЦДІАК, ф.127,оп.1012, спр.1063
+yearsRange:
+  - 1796

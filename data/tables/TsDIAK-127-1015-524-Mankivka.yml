@@ -12,3 +12,6 @@ sources:
 tableFilename: Маньківка, Черкаська - 1866+..xlsx - Розпис.csv
 tableLocale: uk
 title: Маньківка, Черкаська - 1866+.
+yearsRange:
+  - 1817
+  - 1850

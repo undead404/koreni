@@ -12,3 +12,5 @@ sources:
 tableFilename: Помийник 1840 ЦДІАК, ф.127,оп.1015, спр.597.xlsx - СпРозпис.csv
 tableLocale: uk
 title: Помийник 1840 ЦДІАК, ф.127,оп.1015, спр.597
+yearsRange:
+  - 1840

@@ -12,3 +12,5 @@ sources:
 tableFilename: 1841 Дзензелівка ЦДІАК, ф.127,оп 1017, спр 127.xlsx - Сповідка.csv
 tableLocale: uk
 title: 1841 Дзензелівка ЦДІАК, ф.127,оп 1017, спр 127
+yearsRange:
+  - 1841

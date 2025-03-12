@@ -23,14 +23,24 @@ describe('search', () => {
   it('should return combined and sorted search results from both collections', async () => {
     const mockHitsRu: SearchResultRow[] = [
       {
-        document: { id: '1', tableId: 1, title: 'Document 1' },
+        document: {
+          id: '1',
+          tableId: 'valid-id',
+          title: 'Document 1',
+          year: 1821,
+        },
         highlight: {},
         text_match_info: { best_field_score: '1' },
       },
     ];
     const mockHitsUk: SearchResultRow[] = [
       {
-        document: { id: '2', tableId: 2, title: 'Document 2' },
+        document: {
+          id: '2',
+          tableId: 'valid-id',
+          title: 'Document 2',
+          year: 1836,
+        },
         highlight: {},
         text_match_info: { best_field_score: '2' },
       },
@@ -60,7 +70,12 @@ describe('search', () => {
   it('should handle rejection from one collection and return results from the other', async () => {
     const mockHitsUk: SearchResultRow[] = [
       {
-        document: { id: '2', tableId: 2, title: 'Document 2' },
+        document: {
+          id: '2',
+          tableId: 'valid-id',
+          title: 'Document 2',
+          year: 1858,
+        },
         highlight: {},
         text_match_info: { best_field_score: '2' },
       },

@@ -9,3 +9,6 @@ sources:
 tableFilename: Київська губернія СПОВІДКИ - Чигиринський повіт.csv
 tableLocale: uk
 title: Київська губернія СПОВІДКИ - Чигиринський повіт
+yearsRange:
+  - 1814
+  - 1866

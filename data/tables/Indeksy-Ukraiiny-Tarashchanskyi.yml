@@ -13,3 +13,6 @@ sources:
 tableFilename: Київська губернія СПОВІДКИ - Таращанський повіт.csv
 tableLocale: uk
 title: Київська губернія СПОВІДКИ - Таращанський повіт
+yearsRange:
+  - 1820
+  - 1837

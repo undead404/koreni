@@ -12,3 +12,6 @@ sources:
 tableFilename: Зелений Ріг 1836 ЦДІАК, ф.127,оп 1015, спр 524+.xlsx - Лист1.csv
 tableLocale: uk
 title: Зелений Ріг 1836 ЦДІАК, ф.127,оп 1015, спр 524+
+yearsRange:
+  - 1836
+  - 1850

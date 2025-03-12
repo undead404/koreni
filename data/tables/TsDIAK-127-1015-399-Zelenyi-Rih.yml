@@ -12,3 +12,5 @@ sources:
 tableFilename: Зелений Ріг 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv
 tableLocale: uk
 title: Зелений Ріг 1828 ЦДІАК, ф.127,оп.1015, спр.399
+yearsRange:
+  - 1828

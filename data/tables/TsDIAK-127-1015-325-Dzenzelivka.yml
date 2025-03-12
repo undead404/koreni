@@ -12,3 +12,5 @@ sources:
 tableFilename: 1822 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 325 +.xlsx - 1822.csv
 tableLocale: uk
 title: 1822 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 325 +
+yearsRange:
+  - 1822

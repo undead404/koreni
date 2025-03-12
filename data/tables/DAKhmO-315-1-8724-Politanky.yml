@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1865, ДАХмО 315-1-8724 - master.csv
 tableLocale: ru
 title: Політанки 1865
+yearsRange:
+  - 1865

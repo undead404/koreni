@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1925, ДАВіО Р-6129-15-139 - master.csv
 tableLocale: uk
 title: Політанки 1925
+yearsRange:
+  - 1925

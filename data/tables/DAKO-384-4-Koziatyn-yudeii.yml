@@ -24,3 +24,5 @@ sources:
 tableFilename: Козятин юдеї.xlsm - Козятин.csv
 tableLocale: uk
 title: Козятин юдеї
+yearsRange:
+  - 1897

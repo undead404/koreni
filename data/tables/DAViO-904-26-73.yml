@@ -12,3 +12,6 @@ sources:
 tableFilename: Політанки 1883-1895, ДАВіО Д-904-26-73 - master.csv
 tableLocale: ru
 title: Політанки 1883-1895
+yearsRange:
+  - 1883
+  - 1895

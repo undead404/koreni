@@ -12,3 +12,5 @@ sources:
 tableFilename: Миронівка 1911 ЦДІАК, ф.127,оп 1079, спр 625 обр.xlsx - Лист і.csv
 tableLocale: uk
 title: Миронівка 1911 ЦДІАК, ф.127,оп 1079, спр 625 обр
+yearsRange:
+  - 1911

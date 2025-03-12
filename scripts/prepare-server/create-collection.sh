@@ -12,7 +12,8 @@ curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
          "fields": [
            {"dynamic": true, "locale": "ru", "name": "data", "optional": false, "type": "object"},
            {"name": "location", "type": "geopoint"},
-           {"facet": true, "name": "tableId", "type": "string"}
+           {"facet": true, "name": "tableId", "type": "string"},
+           {"facet": true, "name": "year", "type": "int32"}
          ]
        }'
 
@@ -26,6 +27,7 @@ curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
          "fields": [
            {"dynamic": true, "locale": "uk", "name": "data", "optional": false, "type": "object"},
            {"name": "location", "type": "geopoint"},
-           {"facet": true, "name": "tableId", "type": "string"}
+           {"facet": true, "name": "tableId", "type": "string"},
+           {"facet": true, "name": "year", "type": "int32"}
          ]
        }'

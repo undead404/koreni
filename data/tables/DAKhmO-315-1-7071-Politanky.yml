@@ -12,3 +12,5 @@ sources:
 tableFilename: Політанки 1820 – сповідний розпис, ДАХмО 315-1-7071 - master.csv
 tableLocale: ru
 title: Політанки 1820 – сповідний розпис
+yearsRange:
+  - 1820
