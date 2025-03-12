@@ -23,6 +23,7 @@ export default async function populateTypesense(
   let processedSize = 0;
   for (const [index, chunk] of chunks.entries()) {
     console.log(`Chunk # ${index + 1}`);
+    console.log(chunk[0].id);
     processedSize += await importBatch(`unstructured_${locale}`, chunk);
   }
   if (processedSize !== tableSize) {
