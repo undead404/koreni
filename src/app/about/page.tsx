@@ -1,8 +1,17 @@
+import Link from 'next/link';
+
 import styles from './page.module.css';
+
 export default function AboutPage() {
   return (
     <article className={styles.root}>
       <h1>Про проєкт "Корені"</h1>
+      <section>
+        <h2>Ліцензія</h2>
+        <p>
+          Дивіться на окремій сторінці: <Link href="/license">Ліцензія</Link>
+        </p>
+      </section>
       <section>
         <h2>Хто автор Коренів?</h2>
         <p>
