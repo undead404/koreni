@@ -8,6 +8,7 @@ export default async function importBatch(
   collectionName: string,
   batch: RowForImport[],
 ) {
+  console.log(`importBatch for `);
   try {
     await typesense
       .collections(collectionName)
@@ -17,6 +18,10 @@ export default async function importBatch(
   } catch (error) {
     let processedSize = 0;
     console.error(error);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+    console.log((error as any)['httpStatus']);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+    console.log(Object.keys(error as any));
     if ((error as HTTPError).httpStatus === 413) {
       console.log(`Batch too big: ${batch.length}. Splitting it in halves.`);
       const chunks = _.chunk(batch, Math.trunc(batch.length / 2));
