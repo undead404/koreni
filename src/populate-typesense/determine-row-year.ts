@@ -7,7 +7,12 @@ export default function determineRowYear(
   table: IndexationTable,
 ): number {
   let result;
-  const yearInRow = row['Рік'] || row['рік життя'] || row['Рік сповідки'];
+  const yearInRow =
+    row['Рік'] ||
+    row['Рік сповідки'] ||
+    row['рік життя'] ||
+    row['рік смерті'] ||
+    row['рік народження'];
   if (yearInRow) {
     if (yearInRow === '') {
       return 0;

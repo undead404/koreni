@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАСО-1188-5-42
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-03-13
+id: DASO-1188-5-42-1913
+location:
+  - 50.84682535379167
+  - 33.89026202816826
+size: 1747
+sources:
+  - https://docs.google.com/spreadsheets/d/1KGWMUszpfEUV32Bc54vAbI7v1Q0W0YYp/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: Засулля мк 1913 ДАСО, ф. 1188, оп.5, спр.42.xlsx - МК оригінал.csv
+tableLocale: uk
+title: Засулля мк 1913 ДАСО, ф. 1188, оп.5, спр.42
+yearsRange:
+  - 1913

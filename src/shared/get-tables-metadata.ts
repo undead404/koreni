@@ -17,7 +17,8 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
   const tablesMetadata: IndexationTable[] = [];
   for (const yamlFilepath of yamlFilepaths) {
     const fileContent = await readFile(yamlFilepath, 'utf8');
-    const tableMetadata = indexationTableSchema.parse(parse(fileContent));
+    const fileData = parse(fileContent) as unknown;
+    const tableMetadata = indexationTableSchema.parse(fileData);
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);

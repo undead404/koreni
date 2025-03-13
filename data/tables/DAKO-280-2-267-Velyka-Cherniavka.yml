@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-280-2-267
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-03-13
+id: DAKO-280-267-Velyka-Cherniavka
+location:
+  - 49.97977297476336
+  - 29.5887616512014
+size: 352
+sources:
+  - https://docs.google.com/spreadsheets/d/1mcYDMjh_j0nvXllOGItafi1dbZZOYjiP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1811 Велика Чернявка - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+tableLocale: uk
+title: 1811 Велика Чернявка - шляхта - ДАКО ф.280, оп. 2, спр.267
+yearsRange:
+  - 1811

@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-280-2-267
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-03-13
+id: DAKO-280-267-Horodok
+location:
+  - 49.67750960543093
+  - 29.155926838430144
+size: 50
+sources:
+  - https://docs.google.com/spreadsheets/d/1dnlvPSV_ayvzG4uYrhIMYAGXXzz4NO6K/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1811 Городок - шляхта - ДАКО ф.280, оп. 2, спр.267 раб.xlsx - Шляхта 1811.csv
+tableLocale: uk
+title: 1811 Городок - шляхта - ДАКО ф.280, оп. 2, спр.267 раб
+yearsRange:
+  - 1811
