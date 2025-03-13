@@ -25,9 +25,13 @@
 }
 
 .footer {
-  display: flex;
-  justify-content: center;
   padding: calc(var(--side-gap) / 2) var(--side-gap);
+  text-align: center;
+}
+
+.footer img {
+  display: inline-block;
+  height: 1em;
 }
 
 /* TODO do it in a more eloquent way */

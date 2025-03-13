@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
+import Link from 'next/link';
 import Script from 'next/script';
 
 import Header from './components/header';
@@ -41,11 +42,14 @@ export default function RootLayout({
           <Header />
           <main className={styles.main}>{children}</main>
           <footer className={styles.footer}>
+            Дані поширюються за <Link href="/license">ліцензією ODbL</Link>. Код
+            доступний на{' '}
             <a
               href="https://github.com/undead404/koreni"
               target="_blank"
               rel="noopener noreferrer"
             >
+              GitHub
               <Image
                 alt="undead404/koreni на GitHub"
                 className={styles.githubIcon}
@@ -55,6 +59,7 @@ export default function RootLayout({
                 width={24}
               />
             </a>
+            .
           </footer>
         </div>
         <SimpleAnalytics />
