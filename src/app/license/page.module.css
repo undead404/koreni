@@ -1,11 +1,3 @@
 .root {
   max-width: 768px;
 }
-
-.root pre {
-  border: 1px solid black;
-  margin-top: var(--side-gap);
-  max-width: 100vw;
-  overflow: auto;
-  padding: var(--side-gap);
-}

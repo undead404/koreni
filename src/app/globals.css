@@ -73,6 +73,10 @@ h3 {
   line-height: 1.2em;
 }
 
+h3:not(:only-child) {
+  margin: 24px 0 16px;
+}
+
 p {
   margin: 8px 0;
   font-size: 1rem;
@@ -83,6 +87,15 @@ ul li {
   margin: 6px 0;
   font-size: 1rem;
   line-height: 1.4em;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  padding: 0;
+  margin: var(--side-gap) 0;
+  border: none;
+  border-top: var(--default-border);
 }
 
 @media (prefers-color-scheme: dark) {
