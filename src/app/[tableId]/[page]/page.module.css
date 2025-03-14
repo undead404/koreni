@@ -25,7 +25,7 @@
 @media screen {
   .tableContainer {
     max-width: calc(100vw - var(--side-gap) * 2);
-    max-height: calc(100vh - 44px - 24px - 20px - 4 * var(--side-gap));
+    max-height: var(--content-full-height);
     /* TODO reconsider showing pagination for mobile */
     overflow: auto;
     border: var(--default-border);

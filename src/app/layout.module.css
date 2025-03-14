@@ -31,9 +31,10 @@
 .footer {
   padding: calc(var(--side-gap) / 2) var(--side-gap);
   text-align: center;
+  color: var(--description-color);
 }
 
 .footer img {
   display: inline-block;
-  height: 1em;
+  vertical-align: text-bottom;
 }

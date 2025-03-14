@@ -31,24 +31,26 @@ export default function RootLayout({
           <Header />
           <main className={styles.main}>{children}</main>
           <footer className={styles.footer}>
-            Дані поширюються за <Link href="/license">ліцензією ODbL</Link>. Код
-            доступний на{' '}
-            <a
-              href="https://github.com/undead404/koreni"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="undead404/koreni на GitHub"
-            >
-              GitHub
-              <Image
-                src={githubIcon}
-                alt="GitHub logo"
-                className="filter-inverted"
-                height={24}
-                width={24}
-              />
-            </a>
-            .
+            <p>
+              Дані поширюються за <Link href="/license">ліцензією ODbL</Link>.
+              Код доступний на{' '}
+              <a
+                href="https://github.com/undead404/koreni"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="undead404/koreni на GitHub"
+              >
+                GitHub&nbsp;
+                <Image
+                  src={githubIcon}
+                  alt="GitHub logo"
+                  className="filter-inverted"
+                  height={20}
+                  width={20}
+                />
+              </a>
+              .
+            </p>
           </footer>
         </div>
         <SimpleAnalytics />
