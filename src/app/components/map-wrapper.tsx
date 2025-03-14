@@ -1,13 +1,12 @@
 'use client';
 import { lazy, Suspense, useEffect, useState } from 'react';
 
+import Loader from './loader';
 import { type MapProperties } from './map';
 
 const Map = lazy(() => import('./map'));
 
 import withErrorBoundary from '../hocs/with-error-boundary';
-
-import styles from './map-wrapper.module.css';
 
 /**
  * This components enables to load Map component lazily
@@ -19,7 +18,7 @@ export function MapWrapper(properties: MapProperties) {
     setIsShown(true);
   }, []);
   return (
-    <Suspense fallback={<p className={styles.loading}>Завантаження...</p>}>
+    <Suspense fallback={<Loader />}>
       {isShown && <Map {...properties} />}
     </Suspense>
   );

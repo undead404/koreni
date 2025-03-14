@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
+import Loader from './components/loader';
 import Search from './components/search';
 
 import styles from './page.module.css';
@@ -23,7 +24,7 @@ export default async function Home() {
         </Link>{' '}
         у пошуковому рушії. Можливо, десь тут є і твої корені?
       </p>
-      <Suspense fallback={<p>Завантаження...</p>}>
+      <Suspense fallback={<Loader />}>
         <Search />
       </Suspense>
     </>

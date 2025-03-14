@@ -19,6 +19,7 @@ const SearchResults: FC<ResultsProperties> = ({
 }) => {
   return (
     // TODO enhance results visuals, keep manual selection possibility
+    // TODO add accessible and more visible loader on loading
     <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
         Знайдено результатів: {resultsNumber}
