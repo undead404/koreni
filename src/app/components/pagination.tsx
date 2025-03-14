@@ -13,7 +13,10 @@ export default function Pagination({
     return null;
   }
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} aria-labelledby="table-pagination">
+      <h3 id="table-pagination" className="visually-hidden">
+        Пагінація
+      </h3>
       <ul className={`no-disc ${styles.ul}`}>
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
           (page) => (

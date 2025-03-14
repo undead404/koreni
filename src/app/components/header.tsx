@@ -17,7 +17,7 @@ export default function Header() {
           height={44}
         />
       </Link>
-      <nav>
+      <nav aria-label="Main navigation">
         <Link href="/map" className={styles.link}>
           Мапа
         </Link>
