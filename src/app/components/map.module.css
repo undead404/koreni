@@ -9,6 +9,3 @@
 .isFullScreen {
   height: var(--content-full-height);
 }
-
-/* TODO add styles for a leaflet map */
-/* TODO consider dark theme for a leaflet map */

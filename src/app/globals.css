@@ -160,7 +160,34 @@ hr {
   }
 }
 
+/* LEAFLET */
+
 .leaflet-popup-content-wrapper {
-  max-height: 66vh;
+  max-height: 50vh;
   overflow: auto;
+}
+
+/* Dark mode styles - https://github.com/Leaflet/Leaflet/issues/7577 */
+
+@media (prefers-color-scheme: dark) {
+  .leaflet-layer,
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out,
+  .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  }
+}
+
+.leaflet-container {
+  background: var(--bg-color) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.leaflet-container a {
+  color: var(--clickable-color) !important;
 }
