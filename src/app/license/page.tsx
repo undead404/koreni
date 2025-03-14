@@ -27,7 +27,7 @@ export default async function LicensePage() {
         </a>
         .
       </p>
-      <section dangerouslySetInnerHTML={{ __html: licenseHTML }} />
+      <div dangerouslySetInnerHTML={{ __html: licenseHTML }} />
     </article>
   );
 }

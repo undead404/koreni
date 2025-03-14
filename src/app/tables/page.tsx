@@ -12,7 +12,7 @@ export default async function TablesPage() {
   const tablesMetadata = await getTablesMetadata();
 
   return (
-    <section>
+    <>
       <h1>Наявні таблиці</h1>
       <ul className={`no-disc ${styles.list}`}>
         {tablesMetadata.map((tableMetadata) => (
@@ -21,6 +21,6 @@ export default async function TablesPage() {
           </li>
         ))}
       </ul>
-    </section>
+    </>
   );
 }
