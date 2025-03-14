@@ -83,6 +83,17 @@ p {
   line-height: 1.4em;
 }
 
+ul.no-disc {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul:not(.no-disc) {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
+
 ul li {
   margin: 6px 0;
   font-size: 1rem;
@@ -128,8 +139,4 @@ hr {
 .leaflet-popup-content-wrapper {
   max-height: 66vh;
   overflow: auto;
-}
-
-.leaflet-popup-content-wrapper ul {
-  margin-left: 40px;
 }

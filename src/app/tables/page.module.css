@@ -1,10 +1,5 @@
-.section ul {
-  list-style: none;
-  padding: 0;
-}
-
 @media screen and (min-width: 1024px) {
-  .section ul {
+  .list {
     column-count: 2;
     column-gap: var(--side-gap);
   }

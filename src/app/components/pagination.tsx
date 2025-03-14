@@ -14,7 +14,7 @@ export default function Pagination({
   }
   return (
     <nav className={styles.nav}>
-      <ul className={styles.ul}>
+      <ul className={`no-disc ${styles.ul}`}>
         {Array.from({ length: totalPages }, (_, index) => index + 1).map(
           (page) => (
             <li key={page} className={styles.li}>

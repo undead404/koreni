@@ -1,10 +1,8 @@
 import Link from 'next/link';
 
-import styles from './page.module.css';
-
 export default function AboutPage() {
   return (
-    <article className={styles.root}>
+    <article className="col-sm">
       <h1>Про проєкт "Корені"</h1>
       <section>
         <h2>Ліцензія</h2>

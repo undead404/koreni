@@ -12,9 +12,9 @@ export default async function TablesPage() {
   const tablesMetadata = await getTablesMetadata();
 
   return (
-    <section className={styles.section}>
+    <section>
       <h1>Наявні таблиці</h1>
-      <ul>
+      <ul className={`no-disc ${styles.list}`}>
         {tablesMetadata.map((tableMetadata) => (
           <li key={tableMetadata.id}>
             <a href={`/${tableMetadata.id}/1`}>{tableMetadata.title}</a>

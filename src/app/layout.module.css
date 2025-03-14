@@ -22,6 +22,10 @@
   .main > * {
     max-width: 1024px;
   }
+
+  .main > *:global(.col-sm) {
+    max-width: 768px;
+  }
 }
 
 .footer {

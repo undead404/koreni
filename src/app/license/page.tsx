@@ -3,8 +3,6 @@ import { readFile } from 'node:fs/promises';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-import styles from './page.module.css';
-
 export default async function LicensePage() {
   const licenseMarkdownBuffer = await readFile('./LICENSE.md');
   const licenseHTMLVFile = await remark()
@@ -13,7 +11,7 @@ export default async function LicensePage() {
   const licenseHTML = licenseHTMLVFile.toString();
 
   return (
-    <article className={styles.root}>
+    <article className="col-sm">
       <h1>Ліцензія</h1>
       <p>
         Вміст Коренів заснований на праці багатьох осіб, вказаних на сторінках
