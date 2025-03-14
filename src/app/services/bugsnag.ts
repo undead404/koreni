@@ -8,7 +8,9 @@ const ActiveBugsnag = Bugsnag;
 if (environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
   ActiveBugsnag.start({
     apiKey: environment.NEXT_PUBLIC_BUGSNAG_API_KEY,
+    autoTrackSessions: false,
     collectUserIp: false,
+    generateAnonymousId: false,
     plugins: [new BugsnagPluginReact()],
   });
 } else {
