@@ -51,8 +51,10 @@ const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
   );
 
   return (
-    <div className={styles.container}>
+    // TODO think of using form
+    <div className={styles.container} role="search">
       <input
+        id="genealogical-indexes-search"
         ref={inputReference}
         type="text"
         value={inputValue}
@@ -60,6 +62,7 @@ const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
         className={styles.input}
         placeholder="Мельник"
         autoFocus={!query}
+        aria-label="Шукати в генеалогічних індексах"
       />
     </div>
   );
