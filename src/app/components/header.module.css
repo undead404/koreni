@@ -10,10 +10,15 @@
   /* TODO add box-shadow ? */
 }
 
+.header nav {
+  text-align: right;
+}
+
 .link {
   color: var(--text-color);
   font-size: 1.2rem;
   padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2);
+  display: inline-block;
 }
 
 /* TODO add active styles ? */
