@@ -1,13 +1,12 @@
 /* page.module.css */
 
 .title {
-  margin: 15vh auto 20px;
+  font-size: max(min(6vh, 11vw), 2.5rem);
+  margin: 15vh auto 8px;
 }
 
 .description {
-  font-size: 1.2rem;
-  color: var(--description-color);
-  text-align: center;
   max-width: 600px;
-  margin: 0 auto;
+  font-size: 1.2rem;
+  text-align: center;
 }

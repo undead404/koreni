@@ -132,9 +132,9 @@ hr {
   }
 
   :root {
-    --bg-color: #232323;
-    --text-color: #fcfcfc;
-    --description-color: #777;
+    --bg-color: #212121;
+    --text-color: #f0f0f0;
+    --description-color: #888;
     --reversed-text-color: #212121;
     --clickable-color: #a3bbf9;
 
