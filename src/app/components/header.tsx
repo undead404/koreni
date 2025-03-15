@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import styles from './header.module.css';
 
-import logo from './logo.png';
+import logo from '../assets/logo.png';
 
 export default function Header() {
   return (
