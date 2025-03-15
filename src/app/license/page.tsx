@@ -1,14 +1,10 @@
 import { readFile } from 'node:fs/promises';
 
-import { remark } from 'remark';
-import html from 'remark-html';
+import renderMarkdown from '../helpers/render-markdown';
 
 export default async function LicensePage() {
   const licenseMarkdownBuffer = await readFile('./LICENSE.md');
-  const licenseHTMLVFile = await remark()
-    .use(html)
-    .process(licenseMarkdownBuffer);
-  const licenseHTML = licenseHTMLVFile.toString();
+  const licenseHTML = await renderMarkdown(licenseMarkdownBuffer);
 
   return (
     <article className="col-sm">
