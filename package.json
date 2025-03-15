@@ -12,6 +12,8 @@
     "react-dom": "~19.0.0",
     "react-leaflet": "~5.0.0",
     "react-paginate": "~8.3.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
     "typesense": "~2.0.3",
     "yaml": "~2.7.0",
     "zod": "~3.24.2"

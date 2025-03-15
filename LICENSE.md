@@ -285,12 +285,12 @@ required URI's with the above notice.
 a. Any Derivative Database that You Publicly Use must be only under
 the terms of:
 
-    i. This License;
+i. This License;
 
-    ii. A later version of this License similar in spirit to this
-      License; or
+ii. A later version of this License similar in spirit to this
+License; or
 
-    iii. A compatible license.
+iii. A compatible license.
 
 If You license the Derivative Database under one of the licenses
 mentioned in (iii), You must comply with the terms of that license.
@@ -361,15 +361,15 @@ contravention of Section 4.74 a. only if You also make a copy of the
 Database or a Derivative Database available to the recipient of the
 Restricted Database:
 
-    i. That is available without additional fee;
+i. That is available without additional fee;
 
-    ii. That is available in a medium that does not alter or restrict
-    the terms of this License, or any rights granted under it, or have
-    the effect or intent of restricting the ability of any person to
-    exercise those rights (an "Unrestricted Database"); and
+ii. That is available in a medium that does not alter or restrict
+the terms of this License, or any rights granted under it, or have
+the effect or intent of restricting the ability of any person to
+exercise those rights (an "Unrestricted Database"); and
 
-    iii. The Unrestricted Database is at least as accessible to the
-    recipient as a practical matter as the Restricted Database.
+iii. The Unrestricted Database is at least as accessible to the
+recipient as a practical matter as the Restricted Database.
 
 c. For the avoidance of doubt, You may place this Database or a
 Derivative Database in an authenticated environment, behind a

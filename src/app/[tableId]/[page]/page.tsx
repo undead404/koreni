@@ -73,13 +73,18 @@ export default async function Table({ params }: TablePageProperties) {
         </Details>
       </section>
       <section>
-        <h2>Дані</h2>
+        <h2 id="table-data">Дані</h2>
         <Pagination
           currentPage={pageInt}
           totalPages={Math.ceil(tableData.length / PER_PAGE)}
           urlBuilder={(page: number) => `/${tableId}/${page}`}
         />
-        <div className={styles.tableContainer}>
+        <div
+          role="region"
+          aria-labelledby="table-data"
+          tabIndex={0}
+          className={styles.tableContainer}
+        >
           <IndexTable
             data={tableDataToDisplay}
             locale={tableMetadata.tableLocale}

@@ -22,21 +22,19 @@
   .main > * {
     max-width: 1024px;
   }
+
+  .main > *:global(.col-sm) {
+    max-width: 768px;
+  }
 }
 
 .footer {
   padding: calc(var(--side-gap) / 2) var(--side-gap);
   text-align: center;
+  color: var(--description-color);
 }
 
 .footer img {
   display: inline-block;
-  height: 1em;
-}
-
-/* TODO do it in a more eloquent way */
-@media (prefers-color-scheme: dark) {
-  .footer img {
-    filter: invert(1);
-  }
+  vertical-align: text-bottom;
 }

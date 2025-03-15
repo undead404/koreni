@@ -7,8 +7,5 @@
 
 /* TODO consider an idea of really full screen map */
 .isFullScreen {
-  height: calc(100vh - 1.2rem - 24px - 7 * var(--side-gap));
+  height: var(--content-full-height);
 }
-
-/* TODO add styles for a leaflet map */
-/* TODO consider dark theme for a leaflet map */

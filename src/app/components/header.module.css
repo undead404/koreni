@@ -3,17 +3,22 @@
   top: 0;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: calc(var(--side-gap) * 1.5) var(--side-gap);
+  padding: calc(var(--side-gap) / 2) var(--side-gap);
   background-color: var(--bg-color);
   /* TODO add box-shadow ? */
+}
+
+.header nav {
+  text-align: right;
 }
 
 .link {
   color: var(--text-color);
   font-size: 1.2rem;
-  margin: 0 10px;
+  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2);
+  display: inline-block;
 }
 
 /* TODO add active styles ? */

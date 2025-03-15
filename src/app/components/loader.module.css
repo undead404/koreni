@@ -1,0 +1,5 @@
+.loading {
+  margin: var(--side-gap) 0;
+  color: var(--description-color);
+  text-align: center;
+}

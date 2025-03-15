@@ -69,6 +69,7 @@ export function SearchPage() {
   }, [query, searchQuery]);
 
   return (
+    // TODO rework results and error to be accessible and connect them to an input
     <section className={styles.section}>
       <SearchControls
         query={query}

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
@@ -11,16 +10,6 @@ import './globals.css';
 import styles from './layout.module.css';
 
 import githubIcon from './github.svg';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: 'Корені',
@@ -37,29 +26,31 @@ export default function RootLayout({
       <head>
         <Script id="sa-placeholder">{`window.sa_event=window.sa_event||function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]};`}</Script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <div className={styles.page}>
           <Header />
           <main className={styles.main}>{children}</main>
           <footer className={styles.footer}>
-            Дані поширюються за <Link href="/license">ліцензією ODbL</Link>. Код
-            доступний на{' '}
-            <a
-              href="https://github.com/undead404/koreni"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-              <Image
-                alt="undead404/koreni на GitHub"
-                className={styles.githubIcon}
-                height={24}
-                src={githubIcon}
+            <p>
+              Дані поширюються за <Link href="/license">ліцензією ODbL</Link>.
+              Код доступний на{' '}
+              <a
+                href="https://github.com/undead404/koreni"
+                target="_blank"
+                rel="noopener noreferrer"
                 title="undead404/koreni на GitHub"
-                width={24}
-              />
-            </a>
-            .
+              >
+                GitHub&nbsp;
+                <Image
+                  src={githubIcon}
+                  alt="GitHub logo"
+                  className="filter-inverted"
+                  height={20}
+                  width={20}
+                />
+              </a>
+              .
+            </p>
           </footer>
         </div>
         <SimpleAnalytics />

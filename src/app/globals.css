@@ -10,6 +10,7 @@
 /* Theme to start with */
 :root {
   --side-gap: 16px;
+  --content-full-height: calc(100vh - 44px - 1.4rem - 5 * var(--side-gap));
 
   --bg-color: #fcfcfc;
   --text-color: #212121;
@@ -29,11 +30,12 @@
 
 html,
 body {
-  font-family:
-    var(--font-geist-sans), 'Open Sans', Arial, 'Helvetica Neue', Helvetica,
-    sans-serif;
+  font-family: 'Open Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -72,10 +74,28 @@ h3 {
   line-height: 1.2em;
 }
 
+h3:not(:only-child) {
+  margin: 24px 0 16px;
+}
+
 p {
-  margin: 8px 0;
   font-size: 1rem;
   line-height: 1.4em;
+}
+
+p:not(:only-child) {
+  margin: 8px 0;
+}
+
+ul.no-disc {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul:not(.no-disc) {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
 }
 
 ul li {
@@ -84,15 +104,37 @@ ul li {
   line-height: 1.4em;
 }
 
+hr {
+  display: block;
+  height: 1px;
+  padding: 0;
+  margin: var(--side-gap) 0;
+  border: none;
+  border-top: var(--default-border);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 
   :root {
-    --bg-color: #232323;
-    --text-color: #fcfcfc;
-    --description-color: #777;
+    --bg-color: #212121;
+    --text-color: #f0f0f0;
+    --description-color: #888;
     --reversed-text-color: #212121;
     --clickable-color: #a3bbf9;
 
@@ -105,13 +147,47 @@ ul li {
 
     --error-color: #ff4747;
   }
+
+  .filter-inverted {
+    filter: invert(1);
+  }
 }
 
+@media screen and (max-width: 767px) {
+  :root {
+    /* 2.8rem is just close to 2 lines of non-zoomed text */
+    --content-full-height: calc(100vh - 44px - 2.8rem - 5 * var(--side-gap));
+  }
+}
+
+/* LEAFLET */
+
 .leaflet-popup-content-wrapper {
-  max-height: 66vh;
+  max-height: 50vh;
   overflow: auto;
 }
 
-.leaflet-popup-content-wrapper ul {
-  margin-left: 40px;
+/* Dark mode styles - https://github.com/Leaflet/Leaflet/issues/7577 */
+
+@media (prefers-color-scheme: dark) {
+  .leaflet-layer,
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out,
+  .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  }
+}
+
+.leaflet-container {
+  background: var(--bg-color) !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.leaflet-container a {
+  color: var(--clickable-color) !important;
 }

@@ -23,5 +23,10 @@ export default async function MapPage() {
   }));
   const combinedPoints = combinePoints(points);
 
-  return <MapWrapper points={combinedPoints} zoom={6} isFullScreen />;
+  return (
+    <>
+      <h1 className="visually-hidden">Мапа доступних даних</h1>
+      <MapWrapper points={combinedPoints} zoom={6} isFullScreen />
+    </>
+  );
 }
