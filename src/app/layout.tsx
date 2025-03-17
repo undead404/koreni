@@ -9,7 +9,7 @@ import SimpleAnalytics from './components/simple-analytics';
 import './globals.css';
 import styles from './layout.module.css';
 
-import githubIcon from './github.svg';
+import githubIcon from './assets/github.svg';
 
 export const metadata: Metadata = {
   title: 'Корені',
@@ -42,6 +42,7 @@ export default function RootLayout({
               >
                 GitHub&nbsp;
                 <Image
+                   
                   src={githubIcon}
                   alt="GitHub logo"
                   className="filter-inverted"
