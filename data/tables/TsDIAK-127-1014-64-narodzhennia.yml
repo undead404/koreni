@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1014-64
+author: Андрій Каленський <andreyaquarius@gmail.com>
+date: 2025-03-17
+id: TsDIAK-127-1014-64-narodzhennia
+location:
+  - 49.79607150464578
+  - 29.383284630446262
+size: 2955
+sources:
+  - https://docs.google.com/spreadsheets/d/1AJyUFRLE29jpy7wo3SEPFQ4suPqsC9yb/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: ЦДІАК 127-1014-64.xlsx - Народження.csv
+tableLocale: uk
+title: ЦДІАК 127-1014-64 - Народження
+yearsRange:
+  - 1777
+  - 1818

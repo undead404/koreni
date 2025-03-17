@@ -47,6 +47,7 @@ export default async function search({
       query_by: 'data.*',
       // facet_by: Object.keys(facets).join(","),
       // filter_by: filter_by,
+      sort_by: '_text_match:desc,year:desc',
     }),
   ]);
 
@@ -69,8 +70,8 @@ export default async function search({
   return [
     _.orderBy(
       [...resultsRu, ...resultsUk],
-      ['text_match_info.best_field_score'],
-      ['desc'],
+      ['text_match_info.best_field_score', 'document.year'],
+      ['desc', 'desc'],
     ),
     foundRu + foundUk,
   ] as SearchResults;
