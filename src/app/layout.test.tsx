@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import RootLayout, { metadata } from './layout';
 
-import githubIcon from './github.svg';
+import githubIcon from './assets/github.svg';
 
 vi.mock('./components/header', () => ({
   default: () => <div>Mocked Header</div>,
