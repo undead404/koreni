@@ -13,6 +13,7 @@ vi.mock('../schemas/search-result', () => ({
 
 const defaultProps = {
   loading: false,
+  recordsNumber: 10,
   results: [
     {
       document: {

@@ -67,7 +67,7 @@ describe('SearchPage component', () => {
   });
 
   it('should render the search controls and results components', () => {
-    const { getByPlaceholderText } = render(<SearchPage />);
+    const { getByPlaceholderText } = render(<SearchPage recordsNumber={10} />);
 
     expect(getByPlaceholderText('Мельник')).toBeInTheDocument();
   });

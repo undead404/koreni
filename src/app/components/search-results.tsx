@@ -8,12 +8,14 @@ import styles from './search-results.module.css';
 
 export interface ResultsProperties {
   loading: boolean;
+  recordsNumber: number;
   results: SearchResult[];
   resultsNumber: number;
 }
 
 const SearchResults: FC<ResultsProperties> = ({
   loading,
+  recordsNumber,
   results,
   resultsNumber,
 }) => {
@@ -22,7 +24,11 @@ const SearchResults: FC<ResultsProperties> = ({
     // TODO add accessible and more visible loader on loading
     <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
-        Знайдено результатів: {resultsNumber}
+        {resultsNumber ? (
+          <>Знайдено результатів: {resultsNumber}</>
+        ) : (
+          <>Всього рядків у таблицях: {recordsNumber}</>
+        )}
       </caption>
       {results.map((result, index) => {
         const typedResult = resultSchema.parse(result);

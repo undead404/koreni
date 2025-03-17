@@ -21,7 +21,7 @@ const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
 
-export function SearchPage() {
+export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   const [searchHits, setSearchHits] = useState<SearchResult[]>([]);
   const [searchHitsNumber, setSearchHitsNumber] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -34,6 +34,11 @@ export function SearchPage() {
   const searchQuery = useMemo(
     () =>
       _.debounce(async (query: string) => {
+        if (!query) {
+          setSearchHits([]);
+          setSearchHitsNumber(0);
+          return;
+        }
         setLoading(true);
         setError(null);
         try {
@@ -89,6 +94,7 @@ export function SearchPage() {
 
       <SearchResults
         loading={loading}
+        recordsNumber={recordsNumber}
         results={searchHits}
         resultsNumber={searchHitsNumber}
       />

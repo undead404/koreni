@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -10,6 +11,7 @@ import styles from './page.module.css';
 
 export default async function Home() {
   const tablesMetadata = await getTablesMetadata();
+  const recordsNumber = _.sumBy(tablesMetadata, 'size');
 
   return (
     <>
@@ -25,7 +27,7 @@ export default async function Home() {
         у пошуковому рушії. Можливо, десь тут є і твої корені?
       </p>
       <Suspense fallback={<Loader />}>
-        <Search />
+        <Search recordsNumber={recordsNumber} />
       </Suspense>
     </>
   );
