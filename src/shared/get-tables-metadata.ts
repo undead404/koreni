@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 import { sortBy } from 'lodash';
 import { parse } from 'yaml';
@@ -19,6 +20,11 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     const fileContent = await readFile(yamlFilepath, 'utf8');
     const fileData = parse(fileContent) as unknown;
     const tableMetadata = indexationTableSchema.parse(fileData);
+    const bareFileName = yamlFilepath.split(path.sep).at(-1);
+    if (bareFileName !== `${tableMetadata.id}.yml`) {
+      console.log(bareFileName, '!==', `${tableMetadata.id}.yml`);
+      throw new Error('Filename mismatch');
+    }
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);
