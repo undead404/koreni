@@ -9,6 +9,7 @@ export default function determineRowYear(
   let result;
   const yearInRow =
     row['Рік'] ||
+    row['Год'] ||
     row['Рік сповідки'] ||
     row['рік життя'] ||
     row['рік смерті'] ||
@@ -25,7 +26,8 @@ export default function determineRowYear(
       row['Дата'] ||
       row['Дата народження'] ||
       row['Дата одруження'] ||
-      row['Дата смерті'];
+      row['Дата смерті'] ||
+      row['Начато'];
     if (dateInRow) {
       if (dateInRow === '?') {
         return 0;
