@@ -1,7 +1,7 @@
-import { Client } from 'typesense';
+import type { Client } from 'typesense';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { SearchResultRow } from '../schemas/search-result';
+import type { SearchResultRow } from '../schemas/search-result';
 
 import search, { type SearchParameters } from './search';
 
@@ -67,7 +67,7 @@ describe('search', () => {
     expect(mockClient.search).toHaveBeenCalledTimes(2);
   });
 
-  it('should handle rejection from one collection and return results from the other', async () => {
+  it('should throw rejection from the first collection', async () => {
     const mockHitsUk: SearchResultRow[] = [
       {
         document: {
@@ -90,15 +90,33 @@ describe('search', () => {
       query: 'test',
     };
 
-    const [results, total] = await search(parameters);
+    await expect(search(parameters)).rejects.toThrow('Search failed');
+  });
 
-    expect(results).toHaveLength(1);
-    expect(results[0].document.id).toBe('2');
-    expect(total).toBe(1);
+  it('should throw rejection from the second collection', async () => {
+    const mockHitsRu: SearchResultRow[] = [
+      {
+        document: {
+          id: '2',
+          tableId: 'valid-id',
+          title: 'Document 2',
+          year: 1858,
+        },
+        highlight: {},
+        text_match_info: { best_field_score: '2' },
+      },
+    ];
 
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_ru');
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_uk');
-    expect(mockClient.search).toHaveBeenCalledTimes(2);
+    mockClient.search
+      .mockResolvedValueOnce(mockSearchResult(mockHitsRu, 1))
+      .mockRejectedValueOnce(new Error('Search failed'));
+
+    const parameters: SearchParameters = {
+      client: mockClient as unknown as Client,
+      query: 'test',
+    };
+
+    await expect(search(parameters)).rejects.toThrow('Search failed');
   });
 
   it('should throw an error if both collections reject', async () => {

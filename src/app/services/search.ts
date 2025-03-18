@@ -51,8 +51,17 @@ export default async function search({
     }),
   ]);
 
-  if (resultRu.status === 'rejected' && resultUk.status === 'rejected') {
-    throw new Error('Search failed in both languages');
+  if (resultRu.status === 'rejected') {
+    const error =
+      resultUk.status === 'rejected'
+        ? new AggregateError(
+            [resultRu.reason, resultUk.reason],
+            'Search failed in both languages',
+          )
+        : (resultRu.reason as Error);
+    throw error;
+  } else if (resultUk.status === 'rejected') {
+    throw resultUk.reason;
   }
   let resultsRu: SearchResult[] = [];
   let resultsUk: SearchResult[] = [];
