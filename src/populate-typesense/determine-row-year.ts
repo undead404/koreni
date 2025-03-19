@@ -27,7 +27,8 @@ export default function determineRowYear(
       row['Дата народження'] ||
       row['Дата одруження'] ||
       row['Дата смерті'] ||
-      row['Начато'];
+      row['Начато'] ||
+      row['Окончено'];
     if (dateInRow) {
       if (dateInRow === '?') {
         return 0;

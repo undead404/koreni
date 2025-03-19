@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-280-2-460
+author: Yekaterina Lukina <ancestors2025@gmail.com>
+date: 2025-03-19
+id: DAKO-280-2-460-part
+location:
+  - 49.71286782095465
+  - 30.590545852502835
+size: 32
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-460 1834.csv
+tableLocale: ru
+title: РС 1834 (ДАКО-280-2-460)
+yearsRange:
+  - 1834
