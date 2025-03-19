@@ -1,0 +1,16 @@
+archiveItems:
+  - ЦДІАК-1316-1-363
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-03-19
+id: TsDIAK-1316-1-363-Holovkivka
+location:
+  - 48.577030830723935
+  - 33.059107316972174
+size: 132
+sources:
+  - https://docs.google.com/spreadsheets/d/1EK5no_vnRVwh6lvGj_zA7X8AM7ejmU8U/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: NovaPraha1863-головківка.csv
+tableLocale: uk
+title: ЦДІАК-1316-1-363, Головківка, Общественный Приговор
+yearsRange:
+  - 1863
