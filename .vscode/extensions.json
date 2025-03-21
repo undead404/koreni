@@ -22,7 +22,8 @@
     "aaron-bond.better-comments", // Colored comments
     "foxundermoon.shell-format",
     "ms-azuretools.vscode-docker", // Shell script formatter
-    "streetsidesoftware.code-spell-checker-ukrainian"
+    "streetsidesoftware.code-spell-checker-ukrainian",
+    "mechatroner.rainbow-csv"
   ],
   "unwantedRecommendations": [
     "hookyqr.beautify", // Conflicts with Prettier
