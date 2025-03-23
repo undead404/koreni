@@ -1,0 +1,15 @@
+author: Павло Солтис <soltisp@gmail.com>
+date: 2025-03-23
+id: Kamianka-Voloska
+location:
+  - 50.19969745697505
+  - 23.728066659885066
+size: 24399
+sources:
+  - https://docs.google.com/spreadsheets/d/1NFdRpIZ9aDdKZjddw6nnbiZpHPnonRTyt6voJ2xWups/edit?usp=sharing
+tableFilename: Кам.Вол - індекси – копія - Аркуш1.csv
+tableLocale: uk
+title: Кам'янка-Волоська
+yearsRange:
+  - 1784
+  - 1921
