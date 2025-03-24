@@ -40,6 +40,8 @@ export default function determineRowYear(
         result = toNumber(last(dateInRowAsString.split('.')));
       } else if (dateInRowAsString.includes('/')) {
         result = toNumber(last(dateInRowAsString.split('/')));
+      } else if (dateInRowAsString.includes('-')) {
+        result = toNumber(last(dateInRowAsString.split('-')));
       } else {
         const dateInRowAsNumber = Number.parseInt(dateInRowAsString);
         if (Number.isNaN(dateInRowAsNumber)) {

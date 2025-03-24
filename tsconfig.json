@@ -30,6 +30,6 @@
     "next-env.d.ts",
     "build/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "search-middleware"],
   "types": ["node", "vitest", "@testing-library/dom"]
 }

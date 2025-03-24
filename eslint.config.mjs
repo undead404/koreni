@@ -37,6 +37,17 @@ export default [
       },
     },
   },
+  {
+    files: ['search-middleware/*.{js,mjs,cjs,ts}'],
+    name: 'Search middleware',
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: {
+        projectService: true,
+        project: ['./search-middleware/tsconfig.json'],
+      },
+    },
+  },
   includeIgnoreFile(gitignorePath),
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommendedTypeChecked.map((config) => ({
@@ -44,7 +55,7 @@ export default [
     ...config,
   })),
   pluginPromise.configs['flat/recommended'],
-  eslintPluginUnicorn.configs['flat/recommended'],
+  eslintPluginUnicorn.configs.recommended,
   regexpPlugin.configs['flat/recommended'],
   {
     name: 'Custom rules for all the code',
@@ -109,6 +120,7 @@ export default [
       'next.config.ts',
       'vitest.config.ts',
       'vitest.setup.ts',
+      'search-middleware/**/*.{js,mjs,cjs,ts}',
     ],
     ...pluginSecurity.configs.recommended,
     languageOptions: {
@@ -224,6 +236,7 @@ export default [
     files: [
       'src/dockerize-typesense/**/*.ts',
       'src/populate-typesense/**/*.ts',
+      'search-middleware/**/*.ts',
     ],
     rules: {
       'no-console': 'off',

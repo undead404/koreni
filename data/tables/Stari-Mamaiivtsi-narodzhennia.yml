@@ -1,0 +1,15 @@
+author: Ярослав Бойчук + Назар Логозар <yava.ua@gmail.com>
+date: 2025-03-24
+id: Stari-Mamaiivtsi-narodzhennia
+location:
+  - 48.352116771348115
+  - 25.80416694706334
+size: 6953
+sources:
+  - https://docs.google.com/spreadsheets/d/1Kzvap0MgxLvz_N5csjpBHX0gJMBlw7sm9vc2N1fgHJw/edit?usp=sharing
+tableFilename: Метричні Книги. Мамаївці - С.М.Н..csv
+tableLocale: uk
+title: Старі Мамаївці – народження
+yearsRange:
+  - 1840
+  - 1907
