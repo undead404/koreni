@@ -7,6 +7,7 @@ import type { SearchResult } from '../services/search';
 import styles from './search-results.module.css';
 
 export interface ResultsProperties {
+  searchValue: string;
   loading: boolean;
   recordsNumber: number;
   results: SearchResult[];
@@ -14,6 +15,7 @@ export interface ResultsProperties {
 }
 
 const SearchResults: FC<ResultsProperties> = ({
+  searchValue,
   loading,
   recordsNumber,
   results,
@@ -24,10 +26,14 @@ const SearchResults: FC<ResultsProperties> = ({
     // TODO add accessible and more visible loader on loading
     <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
-        {resultsNumber ? (
-          <>Знайдено результатів: {resultsNumber}</>
-        ) : (
+        {loading && !resultsNumber ? (
+          <>Завантаження...</>
+        ) : !searchValue && !resultsNumber ? (
           <>Всього рядків у таблицях: {recordsNumber}</>
+        ) : (
+          <>
+            Знайдено результатів для "{searchValue}": {resultsNumber}
+          </>
         )}
       </caption>
       {results.map((result, index) => {
@@ -46,7 +52,7 @@ const SearchResults: FC<ResultsProperties> = ({
                   <tr key={`${key}-${index}`}>
                     <th scope="row">{key}</th>
                     <td
-                      className="snippet"
+                      className="snippet break-word"
                       dangerouslySetInnerHTML={{
                         __html: value.snippet,
                       }}
