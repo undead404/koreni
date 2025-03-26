@@ -18,28 +18,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       changeFrequency: 'weekly',
       lastModified: new Date(),
-      url: new URL('/map', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/map/', environment.NEXT_PUBLIC_SITE).toString(),
     },
     {
       changeFrequency: 'daily',
       lastModified: new Date(),
-      url: new URL('/tables', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/tables/', environment.NEXT_PUBLIC_SITE).toString(),
     },
     {
       changeFrequency: 'monthly',
       lastModified: new Date(),
-      url: new URL('/about', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/about/', environment.NEXT_PUBLIC_SITE).toString(),
     },
     {
       changeFrequency: 'yearly',
       lastModified: new Date(),
-      url: new URL('/license', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/license/', environment.NEXT_PUBLIC_SITE).toString(),
     },
     ...tablesMetadata.flatMap((tableMetadata) => {
       const numberOfPages = Math.ceil(tableMetadata.size / PER_PAGE);
       return Array.from({ length: numberOfPages }, (item, index) => {
         const url = new URL(
-          `/${tableMetadata.id}/${index + 1}`,
+          `/${tableMetadata.id}/${index + 1}/`,
           environment.NEXT_PUBLIC_SITE,
         );
         return {
