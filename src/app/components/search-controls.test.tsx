@@ -1,13 +1,13 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
-import type { Client } from 'typesense';
+// import type { Client } from 'typesense';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import SearchControls from './search-controls';
 
 const defaultProps = {
-  query: 'Мельник',
+  initialValue: 'Мельник',
   areRefinementsExpanded: false,
-  client: {} as Client,
+  // client: {} as Client,
   onFacetChange: vi.fn(),
   onRangeChange: vi.fn(),
   onToggleRefinementsExpanded: vi.fn(),
@@ -31,7 +31,7 @@ describe('SearchControls component', () => {
       <SearchControls {...defaultProps} />,
     );
     const input = getByPlaceholderText('Мельник');
-    expect(input).toHaveValue(defaultProps.query);
+    expect(input).toHaveValue(defaultProps.initialValue);
   });
 
   it('should call onInput when the input value changes', () => {
