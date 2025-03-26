@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { ReactNode } from 'react';
 
 import ArchiveItem from '@/app/components/archive-item';
 import { Details } from '@/app/components/details';
@@ -35,18 +36,22 @@ export default async function Table({ params }: TablePageProperties) {
     (pageInt - 1) * PER_PAGE,
     pageInt * PER_PAGE,
   );
+  const sourcesLinks = tableMetadata.sources
+    .map((source) => <SourceLink key={source} href={source} />)
+    // eslint-disable-next-line unicorn/no-array-reduce
+    .reduce(
+      (previous, current) => [...previous, ', ', current],
+      [] as ReactNode[],
+    );
+  void sourcesLinks.shift(); // remove first comma
+
   return (
     <article className={styles.article}>
       <h1>{tableMetadata.title}</h1>
       <section>
         <h2>Метадані</h2>
         <p>Виконавець індексації: {tableMetadata.author || 'народ України'}</p>
-        <p>
-          Таблиці:{' '}
-          {tableMetadata.sources.map((source) => (
-            <SourceLink key={source} href={source} />
-          ))}
-        </p>
+        <p>Таблиці: {sourcesLinks}</p>
         <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
         {tableMetadata.archiveItems && (
           <Details

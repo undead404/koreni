@@ -1,4 +1,5 @@
 const SITES_MAPPING: Record<string, string> = {
+  'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
   'docs.google.com': 'Google Docs',
 };
 
