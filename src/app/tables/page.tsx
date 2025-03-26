@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import Head from 'next/head';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
+
+import environment from '../environment';
 
 import styles from './page.module.css';
 
@@ -13,6 +16,13 @@ export default async function TablesPage() {
 
   return (
     <>
+      <Head>
+        <link
+          rel="canonical"
+          href={`${environment.NEXT_PUBLIC_SITE}/tables/`}
+          key="canonical"
+        />
+      </Head>
       <h1>Наявні таблиці</h1>
       <ul className={`no-disc ${styles.list}`}>
         {tablesMetadata.map((tableMetadata) => (
