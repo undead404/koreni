@@ -21,4 +21,8 @@
   display: inline-block;
 }
 
+.link:visited {
+  color: var(--text-color);
+}
+
 /* TODO add active styles ? */

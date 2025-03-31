@@ -17,6 +17,7 @@
   --description-color: #777;
   --reversed-text-color: #fcfcfc;
   --clickable-color: #344cb7;
+  --visited-clickable-color: #5d34b7;
 
   --default-border: 1px solid #ddd;
 
@@ -44,6 +45,10 @@ body {
 a {
   color: var(--clickable-color);
   text-decoration: none;
+}
+
+a:visited {
+  color: var(--visited-clickable-color);
 }
 
 a:hover,
@@ -145,6 +150,7 @@ hr {
     --description-color: #888;
     --reversed-text-color: #212121;
     --clickable-color: #a3bbf9;
+    --visited-clickable-color: #b6a3f9;
 
     --default-border: 1px solid #444;
 
