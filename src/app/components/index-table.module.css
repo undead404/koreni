@@ -3,12 +3,15 @@
   border-collapse: collapse;
   font-size: 1rem;
   text-align: left;
-  text-wrap: nowrap;
 }
 
 .thead {
   position: sticky;
   top: 0;
+}
+
+.table th:global(.break-word) {
+  min-width: 40ch;
 }
 
 .thead tr:first-child {

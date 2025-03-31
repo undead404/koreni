@@ -3,3 +3,7 @@
   padding: 2px 4px;
   border-radius: 2px;
 }
+
+.verbose {
+  min-width: 80ch;
+}

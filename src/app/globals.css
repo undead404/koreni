@@ -126,6 +126,14 @@ hr {
   white-space: nowrap;
 }
 
+.break-word {
+  word-break: break-word;
+}
+
+.text-nowrap {
+  text-wrap: nowrap;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
