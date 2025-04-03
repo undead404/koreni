@@ -35,11 +35,9 @@ export default async function main() {
     await createCollections(client, adminKey);
 
     await getTypesenseSearchKey(client, adminKey, isBootstrap);
-    process.exit(0);
   } catch (error) {
     console.error(error);
     console.log(toString(error));
     stopTypesense();
-    process.exit(1);
   }
 }

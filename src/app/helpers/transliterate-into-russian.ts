@@ -78,7 +78,7 @@ const digraphsMap = new Map<string, string>([
 ]);
 
 export default function transliterateIntoRussian(input: string): string {
-  console.log(`Transliterating: ${input}`);
+  // console.log(`Transliterating: ${input}`);
   if (!input) {
     return input;
   }

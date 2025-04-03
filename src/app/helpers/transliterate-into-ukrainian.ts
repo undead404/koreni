@@ -90,7 +90,7 @@ const specialCasesBeginning = new Map<string, string>([
 ]);
 
 export default function transliterateIntoUkrainian(input: string): string {
-  console.log(`Transliterating: ${input}`);
+  // console.log(`Transliterating: ${input}`);
   if (!input) {
     return input;
   }
@@ -113,7 +113,7 @@ export default function transliterateIntoUkrainian(input: string): string {
 
   // Handle digraphs
   for (const [latin, cyrillic] of digraphsMap.entries()) {
-    console.log(latin);
+    // console.log(latin);
     // const regex = new RegExp(latin, 'g');
     input = input.replaceAll(latin, cyrillic);
   }

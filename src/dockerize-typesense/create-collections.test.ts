@@ -2,6 +2,7 @@ import type { AxiosInstance } from 'axios';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  PL_COLLECTION_CONFIGURATION,
   RU_COLLECTION_CONFIGURATION,
   UK_COLLECTION_CONFIGURATION,
 } from './config';
@@ -23,9 +24,17 @@ describe('createCollections', () => {
   it('should create RU and UK collections successfully', async () => {
     mockClient.post.mockResolvedValueOnce({ status: 201 });
     mockClient.post.mockResolvedValueOnce({ status: 201 });
+    mockClient.post.mockResolvedValueOnce({ status: 201 });
 
     await createCollections(mockClientAsClient, apiKey);
 
+    expect(mockClient.post).toHaveBeenCalledWith(
+      '/collections',
+      PL_COLLECTION_CONFIGURATION,
+      {
+        headers: { 'X-TYPESENSE-API-KEY': apiKey },
+      },
+    );
     expect(mockClient.post).toHaveBeenCalledWith(
       '/collections',
       RU_COLLECTION_CONFIGURATION,
@@ -43,6 +52,7 @@ describe('createCollections', () => {
   });
 
   it('should handle RU collection already exists error', async () => {
+    mockClient.post.mockResolvedValueOnce({ status: 201 });
     mockClient.post.mockRejectedValueOnce({ status: 409 });
     mockClient.post.mockResolvedValueOnce({ status: 201 });
 
@@ -50,6 +60,13 @@ describe('createCollections', () => {
 
     await createCollections(mockClientAsClient, apiKey);
 
+    expect(mockClient.post).toHaveBeenCalledWith(
+      '/collections',
+      PL_COLLECTION_CONFIGURATION,
+      {
+        headers: { 'X-TYPESENSE-API-KEY': apiKey },
+      },
+    );
     expect(mockClient.post).toHaveBeenCalledWith(
       '/collections',
       RU_COLLECTION_CONFIGURATION,
@@ -71,12 +88,20 @@ describe('createCollections', () => {
 
   it('should handle UK collection already exists error', async () => {
     mockClient.post.mockResolvedValueOnce({ status: 201 });
+    mockClient.post.mockResolvedValueOnce({ status: 201 });
     mockClient.post.mockRejectedValueOnce({ status: 409 });
 
     const consoleLogSpy = vi.spyOn(console, 'log');
 
     await createCollections(mockClientAsClient, apiKey);
 
+    expect(mockClient.post).toHaveBeenCalledWith(
+      '/collections',
+      PL_COLLECTION_CONFIGURATION,
+      {
+        headers: { 'X-TYPESENSE-API-KEY': apiKey },
+      },
+    );
     expect(mockClient.post).toHaveBeenCalledWith(
       '/collections',
       RU_COLLECTION_CONFIGURATION,
@@ -100,6 +125,7 @@ describe('createCollections', () => {
     const error = new Error('Server error');
 
     (error as any).status = 500;
+    mockClient.post.mockResolvedValueOnce({ status: 201 });
     mockClient.post.mockRejectedValueOnce(error);
     mockClient.post.mockResolvedValueOnce({ status: 201 });
 
@@ -107,6 +133,13 @@ describe('createCollections', () => {
       error as unknown as Error,
     );
 
+    expect(mockClient.post).toHaveBeenCalledWith(
+      '/collections',
+      PL_COLLECTION_CONFIGURATION,
+      {
+        headers: { 'X-TYPESENSE-API-KEY': apiKey },
+      },
+    );
     expect(mockClient.post).toHaveBeenCalledWith(
       '/collections',
       RU_COLLECTION_CONFIGURATION,
