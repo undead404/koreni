@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-01
+id: Powiat-Przemysliany-Dobrzanica
+location:
+  - 49.5630744819424
+  - 24.526038109554754
+size: 30
+sources: []
+tableFilename: Powiat Przemysliany - Dobrzanica.csv
+tableLocale: pl
+title: Powiat Przemysliany - Dobrzanica
+yearsRange:
+  - 1781
+  - 1945

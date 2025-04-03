@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Slowita
+location:
+  - 49.75784454875161
+  - 24.591489649067146
+size: 13
+sources: []
+tableFilename: Powiat Przemysliany - Slowita.csv
+tableLocale: pl
+title: Powiat Przemysliany - Slowita
+yearsRange:
+  - 1751
+  - 1914

@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Siworogi
+location:
+  - 49.700756278137675
+  - 24.54855642885719
+size: 502
+sources: []
+tableFilename: Powiat Przemysliany - Siworogi.csv
+tableLocale: pl
+title: Powiat Przemysliany - Siworogi
+yearsRange:
+  - 1737
+  - 1945

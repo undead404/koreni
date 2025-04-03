@@ -13,7 +13,10 @@ export default function determineRowYear(
     row['Рік сповідки'] ||
     row['рік життя'] ||
     row['рік смерті'] ||
-    row['рік народження'];
+    row['рік народження'] ||
+    row['Рік народження'] ||
+    row['Рік одруження'] ||
+    row['Рік смерті'];
   if (yearInRow) {
     if (yearInRow === '') {
       return 0;

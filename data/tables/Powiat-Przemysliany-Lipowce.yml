@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-03
+id: Powiat-Przemysliany-Lipowce
+location:
+  - 49.69253486522404
+  - 24.65086737012591
+size: 74
+sources: []
+tableFilename: Powiat Przemysliany - Lipowce.csv
+tableLocale: pl
+title: Powiat Przemysliany - Lipowce
+yearsRange:
+  - 1789
+  - 1945

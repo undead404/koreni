@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-03-28
+id: Powiat-Przemysliany-Bilka
+location:
+  - 49.5978080154243
+  - 24.62304382317954
+size: 246
+sources: []
+tableFilename: Powiat Przemysliany - Bilka.csv
+tableLocale: pl
+title: Powiat Przemysliany - Bilka
+yearsRange:
+  - 1738
+  - 1945

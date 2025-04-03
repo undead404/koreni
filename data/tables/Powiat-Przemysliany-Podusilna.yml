@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Podusilna
+location:
+  - 49.512299231253344
+  - 24.70447778797054
+size: 5
+sources: []
+tableFilename: Powiat Przemysliany - Podusilna.csv
+tableLocale: pl
+title: Powiat Przemysliany - Podusilna
+yearsRange:
+  - 1812
+  - 1945

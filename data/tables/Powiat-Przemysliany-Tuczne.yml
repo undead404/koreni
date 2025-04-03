@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Tuczne
+location:
+  - 49.575805156530684
+  - 24.46884500314628
+size: 21
+sources: []
+tableFilename: Powiat Przemysliany - Tuczne.csv
+tableLocale: pl
+title: Powiat Przemysliany - Tuczne
+yearsRange:
+  - 1823
+  - 1945

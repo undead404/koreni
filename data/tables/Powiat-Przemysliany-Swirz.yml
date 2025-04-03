@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Swirz
+location:
+  - 49.64812896562634
+  - 24.43602067494692
+size: 40
+sources: []
+tableFilename: Powiat Przemysliany - Swirz.csv
+tableLocale: pl
+title: Powiat Przemysliany - Swirz
+yearsRange:
+  - 1826
+  - 1941

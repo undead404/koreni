@@ -29,7 +29,7 @@ export const indexationTableSchema = z.object({
   size: z.number().min(1),
   sources: z.array(nonEmptyString),
   title: nonEmptyString,
-  tableLocale: z.enum(['ru', 'uk']),
+  tableLocale: z.enum(['pl', 'ru', 'uk']),
   yearsRange: z
     .array(z.number().min(1500).max(new Date().getFullYear()), {
       message: `Рік повинен бути в діапазоні між 1500 і ${

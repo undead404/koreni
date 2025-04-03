@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-03
+id: Powiat-Przemysliany-Loni
+location:
+  - 49.730389849806905
+  - 24.67237136139265
+size: 14
+sources: []
+tableFilename: Powiat Przemysliany - Loni.csv
+tableLocale: pl
+title: Powiat Przemysliany - Loni
+yearsRange:
+  - 1859
+  - 1945

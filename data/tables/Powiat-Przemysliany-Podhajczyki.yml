@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Podhajczyki
+location:
+  - 49.752804721176375
+  - 24.488903202888736
+size: 17
+sources: []
+tableFilename: Powiat Przemysliany - Podhajczyki.csv
+tableLocale: pl
+title: Powiat Przemysliany - Podhajczyki
+yearsRange:
+  - 1777
+  - 1908

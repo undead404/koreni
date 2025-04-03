@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Janczyn
+location:
+  - 49.56392076501739
+  - 24.62370409076058
+size: 34
+sources: []
+tableFilename: Powiat Przemysliany - Janczyn.csv
+tableLocale: pl
+title: Powiat Przemysliany - Janczyn
+yearsRange:
+  - 1810
+  - 1945

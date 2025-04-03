@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Hologury
+location:
+  - 49.75489803702518
+  - 24.72147796179367
+size: 12
+sources: []
+tableFilename: Powiat Przemysliany - Hologury.csv
+tableLocale: pl
+title: Powiat Przemysliany - Hologury
+yearsRange:
+  - 1787
+  - 1939

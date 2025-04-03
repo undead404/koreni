@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Pniatyn
+location:
+  - 49.64809417632876
+  - 24.686166240036155
+size: 112
+sources: []
+tableFilename: Powiat Przemysliany - Pniatyn.csv
+tableLocale: pl
+title: Powiat Przemysliany - Pniatyn
+yearsRange:
+  - 1790
+  - 1945

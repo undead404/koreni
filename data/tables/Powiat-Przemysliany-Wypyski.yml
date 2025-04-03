@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-04-02
+id: Powiat-Przemysliany-Wypyski
+location:
+  - 49.66094225794571
+  - 24.656077881047228
+size: 82
+sources: []
+tableFilename: Powiat Przemysliany - Wypyski.csv
+tableLocale: pl
+title: Powiat Przemysliany - Wypyski
+yearsRange:
+  - 1753
+  - 1942

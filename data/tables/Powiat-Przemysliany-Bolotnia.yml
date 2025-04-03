@@ -1,0 +1,14 @@
+author: Ліля Кушнір-Баран <liliya.baran@icloud.com>
+date: 2025-03-28
+id: Powiat-Przemysliany-Bolotnia
+location:
+  - 49.55472377199274
+  - 24.67460484896892
+size: 20
+sources: []
+tableFilename: Powiat Przemysliany - Bolotnia.csv
+tableLocale: pl
+title: Powiat Przemysliany - Bolotnia
+yearsRange:
+  - 1837
+  - 1941

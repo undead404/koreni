@@ -2,7 +2,7 @@ import sleep from './sleep';
 
 export default async function waitUntil(
   predicate: () => Promise<boolean>,
-  timeout = 5000,
+  timeout?: number,
 ): Promise<void> {
   let isSettled = false;
 
@@ -15,6 +15,9 @@ export default async function waitUntil(
         await sleep(1000);
       }
     }
+  }
+  if (!timeout) {
+    return wait();
   }
   await Promise.race([
     wait(),
