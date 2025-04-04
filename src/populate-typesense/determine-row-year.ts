@@ -29,6 +29,7 @@ export default function determineRowYear(
       row['Дата'] ||
       row['Дата народження'] ||
       row['Дата одруження'] ||
+      row['Дата шлюбу'] ||
       row['Дата смерті'] ||
       row['дата крещ'] ||
       row['Начато'] ||
