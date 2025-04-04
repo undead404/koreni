@@ -1,4 +1,4 @@
-import { last, toNumber, toString } from 'lodash';
+import { isInteger, last, toNumber, toString } from 'lodash';
 
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
@@ -68,6 +68,20 @@ export default function determineRowYear(
     console.warn('Failed to determine the year.');
     return 0;
     // throw new Error('Failed to determine the year.');
+  }
+  if (!isInteger(result)) {
+    throw new TypeError(`Year is not an integer: ${result} (${typeof result})`);
+  }
+  if (result < 0) {
+    throw new RangeError(`Year is negative: ${result}`);
+  }
+  if (result > 9999) {
+    throw new RangeError(`Year is too large: ${result}`);
+  }
+  if (result < 1500 && result !== 0) {
+    throw new RangeError(
+      `Year is too small: ${result}. It should be greater than 1500.`,
+    );
   }
   return result || 0;
 }
