@@ -70,18 +70,22 @@ export default function determineRowYear(
     // throw new Error('Failed to determine the year.');
   }
   if (!isInteger(result)) {
-    throw new TypeError(`Year is not an integer: ${result} (${typeof result})`);
+    console.warn(`Year is not an integer: ${result} (${typeof result})`);
+    return 0;
   }
   if (result < 0) {
-    throw new RangeError(`Year is negative: ${result}`);
+    console.warn(`Year is negative: ${result}`);
+    return 0;
   }
   if (result > 9999) {
-    throw new RangeError(`Year is too large: ${result}`);
+    console.warn(`Year is too large: ${result}`);
+    return 0;
   }
   if (result < 1500 && result !== 0) {
-    throw new RangeError(
+    console.warn(
       `Year is too small: ${result}. It should be greater than 1500.`,
     );
+    return 0;
   }
   return result || 0;
 }
