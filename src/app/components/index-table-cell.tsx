@@ -42,7 +42,7 @@ export default function IndexTableCell({
     <td
       dangerouslySetInnerHTML={{ __html: tweakedValue }}
       ref={setElement}
-      className={`${value.length < 80 ? 'text-nowrap' : styles.verbose} ${value.startsWith('http') && 'break-word'}`}
+      className={`${value.length < 80 ? 'text-nowrap' : styles.verbose} ${value.startsWith('http') ? 'break-word' : ''}`}
     />
   );
 }

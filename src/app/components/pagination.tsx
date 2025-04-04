@@ -24,7 +24,7 @@ export default function Pagination({
         <ul className={`no-disc ${styles.ul}`}>
           {Array.from({ length: totalPages }, (_, index) => index + 1).map(
             (page) => (
-              <li>
+              <li key={page}>
                 <PaginationButton
                   key={page}
                   page={page}
