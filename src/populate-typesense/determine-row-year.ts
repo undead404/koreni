@@ -69,5 +69,5 @@ export default function determineRowYear(
     return 0;
     // throw new Error('Failed to determine the year.');
   }
-  return result;
+  return result || 0;
 }
