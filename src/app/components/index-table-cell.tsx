@@ -39,6 +39,10 @@ export default function IndexTableCell({
   }, [element, isInTarget, tweakedValue, value]);
 
   return (
-    <td dangerouslySetInnerHTML={{ __html: tweakedValue }} ref={setElement} />
+    <td
+      dangerouslySetInnerHTML={{ __html: tweakedValue }}
+      ref={setElement}
+      className={`${value.length < 80 ? 'text-nowrap' : styles.verbose} ${value.startsWith('http') ? 'break-word' : ''}`}
+    />
   );
 }

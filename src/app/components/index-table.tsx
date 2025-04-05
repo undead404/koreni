@@ -35,7 +35,15 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
       <thead className={styles.thead}>
         <tr>
           {Object.keys(data[0]).map((key) => (
-            <th key={key}>{key}</th>
+            <th
+              key={key}
+              className={
+                `${key.length < 80 && 'text-nowrap'} ${key.toLowerCase().includes('.pdf') && 'break-word'}`
+                // .pdf is for /DAKO-384-9-Rozvazhivska-prizvyshcha/1/
+              }
+            >
+              {key}
+            </th>
           ))}
         </tr>
       </thead>

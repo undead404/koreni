@@ -47,13 +47,11 @@ describe('Pagination component', () => {
     const { container, getByText } = render(<Pagination {...defaultProps} />);
     const nav = container.querySelector('nav');
     const ul = container.querySelector('ul');
-    const li = container.querySelector('li');
     const currentPage = getByText(`${defaultProps.currentPage}`);
     const link = container.querySelector('a');
 
     expect(nav).toHaveClass('nav');
     expect(ul).toHaveClass('ul');
-    expect(li).toHaveClass('li');
     expect(currentPage).toHaveClass('currentPage');
     expect(link).toHaveClass('link');
   });

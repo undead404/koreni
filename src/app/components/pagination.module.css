@@ -7,32 +7,12 @@
 
 .ul {
   display: flex;
+  gap: 4px;
 }
 
-.li {
-  margin: 0 5px;
-}
-
-.link,
-.currentPage {
-  display: block;
+.rest {
+  display: inline-block;
+  min-width: 44px;
   padding: 8px 12px;
-  border: var(--default-border);
-  border-radius: 4px;
-  text-decoration: none;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-}
-
-.link:hover,
-.link:focus {
-  border: 1px dotted var(--clickable-color);
-  text-decoration: none;
-}
-
-.currentPage {
-  background-color: var(--clickable-color);
-  color: var(--reversed-text-color);
-  cursor: default;
+  text-align: center;
 }
