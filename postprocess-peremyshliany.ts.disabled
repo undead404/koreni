@@ -1,0 +1,125 @@
+import * as fs from 'node:fs';
+import path from 'node:path';
+
+import csvParser from 'csv-parser';
+import { createObjectCsvWriter } from 'csv-writer';
+import _ from 'lodash';
+
+// Directory containing the CSV files
+const csvDirectory = './data/tables';
+const filePattern = /^Powiat Przemysliany - .*\.csv$/;
+
+function getKeyByEvent(
+  row: Record<string, unknown>,
+  { adjustment, name }: { adjustment: number; name: string },
+): string {
+  const yearValue = row['Рік ' + name];
+  if (!yearValue) {
+    return '';
+  }
+  const year = Number.parseInt(yearValue);
+  if (Number.isNaN(year)) {
+    console.warn('Illegal year: ' + yearValue);
+    return '';
+  }
+  return [year + adjustment, row['Місяць ' + name], row['День ' + name]]
+    .filter(Boolean)
+    .map((part) => _.padStart(part, 2, '0'))
+    .join('-');
+}
+
+// Callback for sorting rows, to be implemented by you
+const sortCallback = (row: Record<string, unknown>): string => {
+  const events = [
+    {
+      adjustment: 0,
+      name: 'народження',
+    },
+    {
+      adjustment: -20,
+      name: 'одруження',
+    },
+    {
+      adjustment: -40,
+      name: 'смерті',
+    },
+    {
+      adjustment: 0,
+      name: 'народження подружжя',
+    },
+  ];
+  for (const event of events) {
+    const sortingKey = getKeyByEvent(row, event);
+    if (sortingKey) {
+      return sortingKey;
+    }
+  }
+  console.log(row);
+  return 'unknown';
+};
+
+// Function to process a single CSV file
+const processCsvFile = async (filePath: string) => {
+  console.log(filePath);
+  let rows: Record<string, unknown>[] = [];
+  const headers: Set<string> = new Set();
+
+  // Read CSV file
+  await new Promise<void>((resolve, reject) => {
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on('data', (row) => {
+        rows.push(row);
+        for (const header of Object.keys(row)) headers.add(header);
+      })
+      .on('end', () => {
+        resolve();
+      })
+      .on('error', (error) => {
+        reject(error);
+      });
+  });
+
+  // Sort rows
+  rows = _.sortBy(rows, sortCallback);
+
+  // Determine columns to keep
+  const columnsToKeep = [...headers].filter((header) =>
+    rows.some((row) => row[header]),
+  );
+
+  // Filter rows to only include columns to keep
+  const filteredRows = rows.map((row) => {
+    const filteredRow: any = {};
+    for (const header of columnsToKeep) {
+      filteredRow[header] = row[header];
+    }
+    return filteredRow;
+  });
+
+  // Write CSV file
+  const outputFilePath = filePath;
+  const writer = createObjectCsvWriter({
+    path: outputFilePath,
+    header: columnsToKeep.map((header) => ({ id: header, title: header })),
+  });
+
+  await writer.writeRecords(filteredRows);
+};
+
+// Main function to process all CSV files
+const processAllCsvFiles = async () => {
+  const files = fs
+    .readdirSync(csvDirectory)
+    .filter((file) => filePattern.test(file));
+
+  for (const file of files) {
+    const filePath = path.join(csvDirectory, file);
+    await processCsvFile(filePath);
+  }
+};
+
+// Execute the script
+processAllCsvFiles()
+  .then(() => console.log('CSV files processed successfully.'))
+  .catch((error) => console.error('Error processing CSV files:', error));
