@@ -28,3 +28,10 @@ yarn dev
 ## Production setup
 
 Use scripts from scripts/prepare-server folder.
+
+## Clean repo
+
+```sh
+yarn artifacts:clean
+yarn cache clean
+```
