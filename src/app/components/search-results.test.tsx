@@ -12,6 +12,7 @@ vi.mock('../schemas/search-result', () => ({
 }));
 
 const defaultProps = {
+  searchValue: 'Мельник',
   loading: false,
   recordsNumber: 10,
   results: [
@@ -65,7 +66,9 @@ describe('SearchResults component', () => {
 
   it('should render the correct number of results', () => {
     const { getByText } = render(<SearchResults {...defaultProps} />);
-    expect(getByText('Знайдено результатів: 2')).toBeInTheDocument();
+    expect(
+      getByText('Знайдено результатів для "Мельник": 2'),
+    ).toBeInTheDocument();
   });
 
   it('should render the correct number of tbody elements', () => {
