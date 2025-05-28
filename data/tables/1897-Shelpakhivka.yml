@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-116
+  - ДАКО-384-12-117
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Shelpakhivka
+location:
+  - 48.702007890954974
+  - 29.90977199273382
+size: 132
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Shelpakhivka.csv
+tableLocale: uk
+title: Шельпахівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

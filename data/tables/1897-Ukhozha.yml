@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-12-114
+  - ДАКО-384-12-115
+  - ДАКО-384-12-519
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Ukhozha
+location:
+  - 48.69504405467516
+  - 29.90673549740156
+size: 88
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Ukhozha.csv
+tableLocale: uk
+title: Ухожа – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

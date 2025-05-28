@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-126
+  - ДАКО-384-12-127
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Holiakivka
+location:
+  - 48.79432782788104
+  - 30.077930917707647
+size: 73
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Holiakivka.csv
+tableLocale: uk
+title: Голяківка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

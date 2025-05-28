@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-88
+  - ДАКО-384-12-93
+  - ДАКО-384-12-94
+  - ДАКО-384-12-95
+  - ДАКО-384-12-96
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Kocherzhyntsi
+location:
+  - 48.697114464178185
+  - 30.13518798213384
+size: 142
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Kocherzhyntsi.csv
+tableLocale: uk
+title: Кочержинці – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

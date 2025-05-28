@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-149
+  - ДАКО-384-12-150
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Krasnostavka
+location:
+  - 48.96508062017456
+  - 30.11012393458362
+size: 96
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Krasnostavka.csv
+tableLocale: uk
+title: Красноставка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-151
+  - ДАКО-384-12-152
+  - ДАКО-384-12-153
+  - ДАКО-384-12-154
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Dobra
+location:
+  - 48.95494200697605
+  - 30.136328073473088
+size: 173
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Dobra.csv
+tableLocale: uk
+title: Добра – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

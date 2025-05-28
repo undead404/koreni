@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-146
+  - ДАКО-384-12-147
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Prytyka
+location:
+  - 48.885842629586456
+  - 29.985129526822472
+size: 89
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Prytyka.csv
+tableLocale: uk
+title: Притика – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

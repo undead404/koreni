@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-168
+  - ДАКО-384-12-169
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Sharyn
+location:
+  - 48.61794790427623
+  - 30.249991934253565
+size: 67
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Sharyn.csv
+tableLocale: uk
+title: Шарин – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
