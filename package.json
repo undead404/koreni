@@ -60,6 +60,7 @@
   "packageManager": "yarn@1.22.22",
   "private": true,
   "scripts": {
+    "artifacts:clean": "./scripts/clean-repo/clean-repo.sh",
     "build": "next build",
     "dev": "next dev --turbopack",
     "docker:typesense:remove": "docker rm typesense-server",

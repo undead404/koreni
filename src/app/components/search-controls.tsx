@@ -1,29 +1,17 @@
-import {
-  type ChangeEvent,
-  type FC,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-import getTypesenseClient from '../services/typesense';
+import { type ChangeEvent, type FC, useCallback, useState } from 'react';
 
 import styles from './search-controls.module.css';
 
 interface ControlsProperties {
-  query: string;
-  client: ReturnType<typeof getTypesenseClient>;
+  initialValue: string;
   onInput: (event: CustomEvent<string>) => void;
 }
 
-const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
-  const [inputValue, setInputValue] = useState(query);
-  const inputReference = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setInputValue(query);
-  }, [query]);
+// This input is responsible only for changing value within itself.
+// The only source of change is user input, though it can take initial value
+// from query or other source.
+const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
+  const [inputValue, setInputValue] = useState(initialValue);
 
   const handleInputChange = useCallback(
     (changeEvent: ChangeEvent<HTMLInputElement>) => {
@@ -34,18 +22,6 @@ const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
         detail: newValue,
       });
       onInput(event);
-
-      if (inputReference.current) {
-        const { selectionStart, selectionEnd } = changeEvent.target;
-        setTimeout(() => {
-          if (inputReference.current) {
-            inputReference.current.setSelectionRange(
-              selectionStart,
-              selectionEnd,
-            );
-          }
-        }, 0);
-      }
     },
     [onInput],
   );
@@ -55,13 +31,12 @@ const SearchControls: FC<ControlsProperties> = ({ query, onInput }) => {
     <div className={styles.container} role="search">
       <input
         id="genealogical-indexes-search"
-        ref={inputReference}
-        type="text"
+        type="search"
         value={inputValue}
         onChange={handleInputChange}
         className={styles.input}
         placeholder="Мельник"
-        autoFocus={!query}
+        autoFocus={!initialValue}
         aria-label="Шукати в генеалогічних індексах"
       />
     </div>
