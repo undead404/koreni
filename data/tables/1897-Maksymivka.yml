@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-189
+  - ДАКО-384-12-191
+  - ДАКО-384-12-192
+  - ДАКО-384-12-193
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Maksymivka
+location:
+  - 48.612777638066326
+  - 30.039554337761523
+size: 118
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Maksymivka.csv
+tableLocale: uk
+title: Максимівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
