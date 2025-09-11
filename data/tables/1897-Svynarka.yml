@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-231
+  - ДАКО-384-12-232
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Svynarka
+location:
+  - 48.73058897993797
+  - 30.456094010940717
+size: 80
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Svynarka.csv
+tableLocale: uk
+title: Свинарка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

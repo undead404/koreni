@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-218
+  - ДАКО-384-12-219
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Vilshana-Slobidka
+location:
+  - 48.609746008270704
+  - 30.453609008018805
+size: 58
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Vilshana-Slobidka.csv
+tableLocale: uk
+title: Вільшана Слобідка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

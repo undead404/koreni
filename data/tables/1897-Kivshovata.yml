@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-12-247
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Kivshovata
+location:
+  - 49.48802743199049
+  - 30.625236158413017
+size: 4
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Kivshovata.csv
+tableLocale: uk
+title: Ківшовата – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

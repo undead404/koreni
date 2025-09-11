@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-12-236
+  - ДАКО-384-12-237
+  - ДАКО-384-12-238
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Tanske
+location:
+  - 48.79390618347475
+  - 30.390289511174633
+size: 117
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Tanske.csv
+tableLocale: uk
+title: Танське – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
