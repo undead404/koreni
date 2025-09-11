@@ -67,6 +67,7 @@ const SearchResults: FC<ResultsProperties> = ({
                         )}?matched_tokens=${value.matched_tokens.join(
                           ',',
                         )}&show_row=${typedResult.document.id}`}
+                        rel="nofollow"
                       >
                         Див.
                       </a>
