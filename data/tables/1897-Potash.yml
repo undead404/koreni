@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-328
+  - ДАКО-384-12-329
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Potash
+location:
+  - 48.920862824840384
+  - 30.330711547970537
+size: 93
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Polonyste.csv
+tableLocale: uk
+title: Полонисте – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
