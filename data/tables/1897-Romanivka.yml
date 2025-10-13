@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-330
+  - ДАКО-384-12-331
+  - ДАКО-384-12-332
+  - ДАКО-384-12-333
+  - ДАКО-384-12-334
+  - ДАКО-384-12-519
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Romanivka
+location:
+  - 48.93613153950175
+  - 30.51106788821214
+size: 195
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Romanivka.csv
+tableLocale: uk
+title: Романівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
