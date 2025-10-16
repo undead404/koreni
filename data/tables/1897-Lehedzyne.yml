@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-352
+  - ДАКО-384-12-353
+  - ДАКО-384-12-354
+  - ДАКО-384-12-355
+  - ДАКО-384-12-356
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Lehedzyne
+location:
+  - 48.79620341932666
+  - 30.514874938856387
+size: 153
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Lehedzyne.csv
+tableLocale: uk
+title: Легедзине – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

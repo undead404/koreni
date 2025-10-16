@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-12-364
+  - ДАКО-384-12-365
+  - ДАКО-384-12-366
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Kameniache
+location:
+  - 48.72383398165309
+  - 30.697044207931206
+size: 186
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Kameniache.csv
+tableLocale: uk
+title: Каменяче – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
