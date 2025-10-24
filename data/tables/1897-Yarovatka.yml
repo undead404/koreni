@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-12-388
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Yarovatка
+location:
+  - 48.9055897856941
+  - 30.11350043062506
+size: 34
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Yarovatka.csv
+tableLocale: uk
+title: Яроватка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

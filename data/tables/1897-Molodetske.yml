@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-398
+  - ДАКО-384-12-399
+  - ДАКО-384-12-400
+  - ДАКО-384-12-401
+  - ДАКО-384-12-402
+  - ДАКО-384-12-403
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Molodetske
+location:
+  - 48.88193226064421
+  - 30.390883796526822
+size: 175
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Molodetske.csv
+tableLocale: uk
+title: Молодецьке – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-384
+  - ДАКО-384-12-385
+  - ДАКО-384-12-386
+  - ДАКО-384-12-387
+  - ДАКО-384-12-191
+  - ДАКО-384-12-405
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Tsebermanivka
+location:
+  - 48.89800662519698
+  - 30.163444295862504
+size: 126
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Tsebermanivka.csv
+tableLocale: uk
+title: Цеберманівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
