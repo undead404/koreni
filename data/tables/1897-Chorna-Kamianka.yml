@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-370
+  - ДАКО-384-12-371
+  - ДАКО-384-12-375
+  - ДАКО-384-12-376
+  - ДАКО-384-12-377
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Chorna-Kamianka
+location:
+  - 49.025113453846394
+  - 30.511392469809586
+size: 227
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Chorna-Kamianka.csv
+tableLocale: uk
+title: Чорна Кам'янка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
