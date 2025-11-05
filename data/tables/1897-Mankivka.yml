@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-12-413
+  - ДАКО-384-12-414
+  - ДАКО-384-12-415
+  - ДАКО-384-12-416
+  - ДАКО-384-12-417
+  - ДАКО-384-12-418
+  - ДАКО-384-12-419
+  - ДАКО-384-12-524
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Mankivka
+location:
+  - 48.96303282501083
+  - 30.333594236017955
+size: 440
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Mankivka.csv
+tableLocale: uk
+title: Маньківка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
