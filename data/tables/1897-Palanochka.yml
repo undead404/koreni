@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-441
+  - ДАКО-384-12-442
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Palanochka
+location:
+  - 48.9240450793775
+  - 30.442826967043516
+size: 128
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Palanochka.csv
+tableLocale: uk
+title: Паланочка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

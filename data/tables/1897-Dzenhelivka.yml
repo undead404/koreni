@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-430
+  - ДАКО-384-12-431
+  - ДАКО-384-12-432
+  - ДАКО-384-12-433
+  - ДАКО-384-12-434
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-Dzenhelivka
+location:
+  - 48.96241240370531
+  - 30.249487305932114
+size: 173
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Dzenhelivka.csv
+tableLocale: uk
+title: Дзенгелівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
