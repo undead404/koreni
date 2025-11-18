@@ -272,7 +272,9 @@ export function generateJsonLd(item: IndexationTable): string {
 
   // Clean undefined fields
   // eslint-disable-next-line unicorn/prefer-structured-clone
-  const cleanJsonLd = JSON.parse(JSON.stringify(jsonLd)) as unknown;
+  const cleanJsonLd = JSON.parse(
+    JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }),
+  ) as unknown;
 
   return process.env.NODE_ENV === 'development'
     ? JSON.stringify(cleanJsonLd, null, 2)
