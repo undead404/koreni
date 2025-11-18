@@ -5,6 +5,8 @@ import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import environment from '../environment';
 
+import JsonLdTables from './table-json-ld';
+
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -27,10 +29,11 @@ export default async function TablesPage() {
       <ul className={`no-disc ${styles.list}`}>
         {tablesMetadata.map((tableMetadata) => (
           <li key={tableMetadata.id}>
-            <a href={`/${tableMetadata.id}/1`}>{tableMetadata.title}</a>
+            <a href={`/${tableMetadata.id}/1/`}>{tableMetadata.title}</a>
           </li>
         ))}
       </ul>
+      <JsonLdTables tablesMetadata={tablesMetadata} />
     </>
   );
 }

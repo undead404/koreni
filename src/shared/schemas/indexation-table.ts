@@ -20,16 +20,15 @@ export const indexationTableSchema = z.object({
       ),
     )
     .optional(),
-  author: z.string().optional(),
+  author: z.string().optional(), // e.g., 'Андрій Мельник <a.melnyk@example.com>
   date: z.string().transform((dateString) => new Date(dateString)),
-
-  id: z.string().min(1),
-  tableFilename: nonEmptyString,
-  location: z.tuple([z.number(), z.number()]),
+  id: z.string().min(1), // e.g., '1897-PZZ'
+  tableFilename: nonEmptyString, // e.g., '1897-PZZ.csv'. Guaranteed to be unique across all tables.
+  location: z.tuple([z.number(), z.number()]), // [latitude, longitude]
   size: z.number().min(1),
   sources: z.array(nonEmptyString),
-  title: nonEmptyString,
-  tableLocale: z.enum(['pl', 'ru', 'uk']),
+  title: nonEmptyString, // e.g., 'По лінії ПЗЗ – Перший Всеросійський перепис 1897 року'. Guaranteed to be unique across all tables.
+  tableLocale: z.enum(['pl', 'ru', 'uk']), // Supported locales for now
   yearsRange: z
     .array(z.number().min(1500).max(new Date().getFullYear()), {
       message: `Рік повинен бути в діапазоні між 1500 і ${
@@ -37,7 +36,7 @@ export const indexationTableSchema = z.object({
       }`,
     })
     .min(1)
-    .max(2),
+    .max(2), // e.g., [1897] (single year) or [1919, 1921] (range)
 });
 
 export type IndexationTable = z.infer<typeof indexationTableSchema>;

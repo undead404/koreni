@@ -46,6 +46,8 @@
     "jsdom": "^26.0.0",
     "lint-staged": "^15.4.3",
     "prettier": "^3.5.3",
+    "schema-dts": "^1.1.5",
+    "serve": "^14.2.5",
     "tsx": "^4.19.3",
     "typescript": "^5",
     "typescript-eslint": "^8.26.0",
@@ -68,7 +70,7 @@
     "docker:typesense:stop": "docker stop typesense-server",
     "lint": "eslint .",
     "prepare": "husky",
-    "start": "next start",
+    "start": "serve out",
     "test": "vitest",
     "typesense:populate": "tsx src/populate-typesense/index.ts"
   },

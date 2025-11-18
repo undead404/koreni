@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
+import { object, string } from 'zod';
 
 import ArchiveItem from '@/app/components/archive-item';
 import { Details } from '@/app/components/details';
@@ -10,32 +11,41 @@ import Pagination from '@/app/components/pagination';
 import SourceLink from '@/app/components/source-link';
 import { PER_PAGE } from '@/app/constants';
 import environment from '@/app/environment';
+import {
+  generateIndexationMetadata,
+  generateJsonLd,
+} from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
+import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import styles from './page.module.css';
 
 type TablePageProperties = {
-  params: Promise<{ page: string; tableId: string }>;
+  params: Promise<unknown>;
 };
 
+const parametersSchema = object({
+  page: string().transform((page) => (page ? Number.parseInt(page) : 1)),
+  tableId: nonEmptyString,
+});
+
 export async function generateMetadata({ params }: TablePageProperties) {
-  const { page, tableId } = await params;
-  const tableMetadata = await getTableMetadata(tableId);
-  return {
-    title: `Корені | ${tableMetadata.title} | Ст. ${page}`,
-  };
+  const { page, tableId } = parametersSchema.parse(await params);
+  const item = await getTableMetadata(tableId);
+  if (!item) return {};
+  return generateIndexationMetadata(item, page);
 }
 
 export default async function Table({ params }: TablePageProperties) {
-  const { page, tableId } = await params;
+  const gotParameters = await params;
+  const { page, tableId } = parametersSchema.parse(gotParameters);
   const tableMetadata = await getTableMetadata(tableId);
   const tableData = await getTableData(tableMetadata);
-  const pageInt = Number.parseInt(page, 10) || 1;
   const tableDataToDisplay = tableData.slice(
-    (pageInt - 1) * PER_PAGE,
-    pageInt * PER_PAGE,
+    (page - 1) * PER_PAGE,
+    page * PER_PAGE,
   );
   const sourcesLinks = tableMetadata.sources
     .map((source) => <SourceLink key={source} href={source} />)
@@ -45,6 +55,8 @@ export default async function Table({ params }: TablePageProperties) {
       [] as ReactNode[],
     );
   void sourcesLinks.shift(); // remove first comma
+
+  const jsonLd = page === 1 ? generateJsonLd(tableMetadata) : null;
 
   return (
     <>
@@ -91,7 +103,7 @@ export default async function Table({ params }: TablePageProperties) {
         <section>
           <h2 id="table-data">Дані</h2>
           <Pagination
-            currentPage={pageInt}
+            currentPage={page}
             totalPages={Math.ceil(tableData.length / PER_PAGE)}
             urlBuilder={(page: number) => `/${tableId}/${page}`}
           />
@@ -104,12 +116,18 @@ export default async function Table({ params }: TablePageProperties) {
             <IndexTable
               data={tableDataToDisplay}
               locale={tableMetadata.tableLocale}
-              page={pageInt}
+              page={page}
               tableId={tableId}
             />
           </div>
         </section>
       </article>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd }}
+        ></script>
+      )}
     </>
   );
 }
