@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { object, string } from 'zod';
 
 import ArchiveItem from '@/app/components/archive-item';
+import ContactGate from '@/app/components/contact-gate';
 import { Details } from '@/app/components/details';
 import IndexTable from '@/app/components/index-table';
 import MapWrapper from '@/app/components/map-wrapper';
@@ -72,7 +73,12 @@ export default async function Table({ params }: TablePageProperties) {
         <section>
           <h2>Метадані</h2>
           <p>
-            Виконавець індексації: {tableMetadata.author || 'народ України'}
+            Виконавець індексації:{' '}
+            {tableMetadata.author ? (
+              <ContactGate contact={tableMetadata.author} />
+            ) : (
+              'народ України'
+            )}
           </p>
           <p>Таблиці: {sourcesLinks}</p>
           <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
