@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-11-18
+id: DAKhmO-315-1-7359-Yampil-SM
+location:
+  - 48.23555716679428
+  - 28.280667082523976
+size: 106
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+tableFilename: DAKhmO-315-1-7359-Yampil-SM.csv
+tableLocale: ru
+title: Ямпіль 1831 – сповідний розпис (прізвища), Свято-Миколаївська церква, ДАХмО 315-1-7359
+yearsRange:
+  - 1831
