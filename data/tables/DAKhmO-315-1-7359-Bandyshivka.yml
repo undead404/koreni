@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-11-21
+id: DAKhmO-315-1-7359-Bandyshivka
+location:
+  - 48.40836385247053
+  - 27.994389384835525
+size: 104
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+tableFilename: DAKhmO-315-1-7359-Bandyshivka.csv
+tableLocale: ru
+title: Бандишівка 1831 – сповідний розпис (прізвища), ДАХмО 315-1-7359
+yearsRange:
+  - 1831

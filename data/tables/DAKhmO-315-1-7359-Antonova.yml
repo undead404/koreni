@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-11-20
+id: DAKhmO-315-1-7359-Antonova
+location:
+  - 48.42856410437729
+  - 28.725613493312572
+size: 45
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+tableFilename: DAKhmO-315-1-7359-Antonova.csv
+tableLocale: ru
+title: Антонова (Кісниця, зх.) 1831 – сповідний розпис (прізвища), ДАХмО 315-1-7359
+yearsRange:
+  - 1831

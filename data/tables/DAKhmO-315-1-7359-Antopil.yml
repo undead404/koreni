@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-11-20
+id: DAKhmO-315-1-7359-Antopil
+location:
+  - 48.46880400120386
+  - 28.67926584662996
+size: 73
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+tableFilename: DAKhmO-315-1-7359-Antopil.csv
+tableLocale: ru
+title: Антопіль (Тульчинський) 1831 – сповідний розпис (прізвища), ДАХмО 315-1-7359
+yearsRange:
+  - 1831
