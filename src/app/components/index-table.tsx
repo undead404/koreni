@@ -31,7 +31,12 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
     setTargetRowId(tri);
   }, []);
   return (
-    <table ref={tableReference} className={styles.table} lang={locale}>
+    <table
+      ref={tableReference}
+      className={styles.table}
+      id="data"
+      lang={locale}
+    >
       <thead className={styles.thead}>
         <tr>
           {Object.keys(data[0]).map((key) => (

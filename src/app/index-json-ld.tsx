@@ -54,14 +54,23 @@ export default function JsonLdHome({
         isPartOf: { '@id': `${site}/#website` },
         primaryImageOfPage: {
           '@type': 'ImageObject',
+          height: {
+            '@type': 'QuantitativeValue',
+            value: 512,
+          },
           url: `${site}/icon.png`,
+          width: {
+            '@type': 'QuantitativeValue',
+            value: 512,
+          },
         },
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         mainEntity: {
           '@type': 'CollectionPage',
-          name: 'Корені',
-          about: 'Пошукова сторінка проекту Корені',
+          description: 'Сторінка зі списком усіх таблиць проекту Корені',
+          name: 'Корені – Список таблиць',
           numberOfItems: Number(tablesMetadata.length || 0),
+          url: `${site}/tables/`,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,
         ...(latestDate ? { datePublished: latestDate.toISOString() } : {}),

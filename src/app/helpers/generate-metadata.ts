@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import type {
   DataDownload,
-  Dataset,
   GeoCoordinates,
+  Graph,
   Person,
   Place,
 } from 'schema-dts';
@@ -11,6 +11,8 @@ import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
 import environment from '../environment';
+
+import parsePerson from './parse-person';
 
 const METADATA_OPTIONS = {
   siteUrl: environment.NEXT_PUBLIC_SITE,
@@ -37,21 +39,6 @@ function buildDescription(item: IndexationTable) {
   return `${item.title}${years ? ` — роки: ${years}` : ''}${
     archiveItems ? `; архівні справи: ${archiveItems}` : ''
   }${item.size > 0 ? `; записів: ${item.size}.` : '.'}`;
-}
-
-function extractAuthorData(author?: string): { name?: string; email?: string } {
-  if (!author) return {};
-  const match = author.match(
-    /^\s*([^<\s][^<]+)(?: <([^<>@]+@[^.<>@][^<>@][^.<>@]*\.[^<>@]+)>)?$/,
-  );
-  if (match)
-    return {
-      name: match[1].trim(),
-      email: match[2]?.trim(),
-    };
-  return {
-    name: author.trim(),
-  };
 }
 
 function normalizeTwitterHandle(raw?: string | null) {
@@ -106,7 +93,8 @@ export function generateIndexationMetadata(
   const canonical = buildCanonical(siteUrl, relativePath);
 
   const description = buildDescription(item);
-  const { name: authorName } = extractAuthorData(item.author);
+  const author = (item.author ? parsePerson(item.author) : null) ?? null;
+  const authorName: string | null = author?.name ?? null;
 
   const publishedISO = (() => {
     try {
@@ -167,43 +155,6 @@ export function generateIndexationMetadata(
   return metadata;
 }
 
-/**
- * Example small helper to be used in a route's generateMetadata:
- *
- * // app/tables/[tableFilename]/route.tsx (or page.tsx)
- * import { generateIndexationMetadata } from '@/lib/metadata/indexation';
- * import { getTableByFilename } from '@/lib/data';
- *
- * export async function generateMetadata({ params }: { params: { tableFilename: string } }) {
- *   const item = await getTableByFilename(params.tableFilename);
- *   if (!item) return {};
- *   return generateIndexationMetadata(item, {
- *     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
- *     siteName: 'Мій Архів',
- *     twitterCreator: '@myarchive',
- *   });
- * }
- *
- * // In the page/server component itself you can add the JSON-LD script:
- *
- * // app/tables/[tableFilename]/page.tsx
- * /*
- * export default async function TablePage({ params }) {
- *   const item = await getTableByFilename(params.tableFilename);
- *   const metadata = generateIndexationMetadata(item, { siteUrl: process.env.NEXT_PUBLIC_SITE_URL });
- *
- *   return (
- *     <>
- *       <script
- *         type="application/ld+json"
- *         // prefer injecting JSON-LD as a script element
- *         dangerouslySetInnerHTML={{ __html: metadata.other?.ldjson ?? '{}' }}
- *       />
- *       <main>...render table...</main>
- *     </>
- *   );
- * }
- * */
 export function generateJsonLd(item: IndexationTable): string {
   const siteUrl =
     METADATA_OPTIONS.siteUrl ??
@@ -214,9 +165,9 @@ export function generateJsonLd(item: IndexationTable): string {
 
   const description = buildDescription(item);
 
-  const { name: authorName, email: authorEmail } = extractAuthorData(
-    item.author,
-  );
+  const author = item.author ? parsePerson(item.author) : null;
+  const authorName = author?.name ?? null;
+  const authorEmail = author?.email ?? null;
 
   const publishedISO = (() => {
     try {
@@ -228,53 +179,79 @@ export function generateJsonLd(item: IndexationTable): string {
     }
   })();
 
+  const keywords = item.archiveItems?.length
+    ? [
+        ...new Set(
+          item.archiveItems?.map((archiveItem) => archiveItem.split('-')[0]),
+        ),
+      ]
+    : undefined;
+
   // Build a JSON-LD object (Dataset-like). Prefer adding as a <script> in the page component,
   // but we include it here as a JSON string in metadata.other.ldjson for convenience.
-  const jsonLd: Dataset = {
-    '@type': 'Dataset',
-    '@id': canonical,
-    name: item.title,
-    description,
-    inLanguage: item.tableLocale,
-    creator: authorName
-      ? ({
-          '@type': 'Person',
-          email: authorEmail,
-          name: authorName,
-        } satisfies Person)
-      : undefined,
-    datePublished: publishedISO,
-    spatialCoverage:
-      item.location && item.location.length === 2
-        ? ({
-            '@type': 'Place',
-            geo: {
-              '@type': 'GeoCoordinates',
-              latitude: item.location[0],
-              longitude: item.location[1],
-            } satisfies GeoCoordinates,
-          } satisfies Place)
-        : undefined,
-    distribution: [
+  const jsonLd: Graph = {
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        '@type': 'DataDownload',
-        contentUrl: `https://raw.githubusercontent.com/undead404/koreni/refs/heads/main/data/tables/${encodeURIComponent(
-          item.tableFilename,
-        )}`,
-        encodingFormat: 'text/csv',
-        name: item.tableFilename,
-      } satisfies DataDownload,
+        '@id': `${canonical}/#webpage`,
+        '@type': 'WebPage',
+        datePublished: publishedISO,
+        description,
+        inLanguage: item.tableLocale,
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        mainEntity: { '@id': canonical },
+        name: item.title,
+        url: canonical,
+      },
+      {
+        '@id': canonical,
+        '@type': 'Dataset',
+        creator: authorName
+          ? ({
+              '@type': 'Person',
+              email: authorEmail || undefined,
+              name: authorName,
+            } satisfies Person)
+          : undefined,
+        datePublished: publishedISO,
+        description,
+        distribution: [
+          {
+            '@type': 'DataDownload',
+            contentUrl: `https://raw.githubusercontent.com/undead404/koreni/refs/heads/main/data/tables/${encodeURIComponent(
+              item.tableFilename,
+            )}`,
+            encodingFormat: 'text/csv',
+            name: item.tableFilename,
+          } satisfies DataDownload,
+        ],
+        inLanguage: item.tableLocale,
+        keywords,
+        license: `${siteUrl}/license/`,
+        name: item.title,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Корені',
+          url: 'https://example.com/',
+        },
+        spatialCoverage:
+          item.location && item.location.length === 2
+            ? ({
+                '@type': 'Place',
+                geo: {
+                  '@type': 'GeoCoordinates',
+                  latitude: item.location[0],
+                  longitude: item.location[1],
+                } satisfies GeoCoordinates,
+              } satisfies Place)
+            : undefined,
+      },
     ],
-    keywords:
-      item.archiveItems?.map((archiveItem) => archiveItem.split('-')[0]) ??
-      undefined,
   };
 
   // Clean undefined fields
   // eslint-disable-next-line unicorn/prefer-structured-clone
-  const cleanJsonLd = JSON.parse(
-    JSON.stringify({ '@context': 'https://schema.org', ...jsonLd }),
-  ) as unknown;
+  const cleanJsonLd = JSON.parse(JSON.stringify(jsonLd)) as unknown;
 
   return process.env.NODE_ENV === 'development'
     ? JSON.stringify(cleanJsonLd, null, 2)
