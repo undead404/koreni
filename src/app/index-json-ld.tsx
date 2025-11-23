@@ -67,7 +67,7 @@ export default function JsonLdHome({
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         mainEntity: {
           '@type': 'CollectionPage',
-          description: 'Сторінка зі списком усіх таблиць проекту Корені',
+          description: `Сторінка зі списком усіх ${tablesMetadata.length} таблиць проекту Корені`,
           name: 'Корені – Список таблиць',
           numberOfItems: Number(tablesMetadata.length || 0),
           url: `${site}/tables/`,
