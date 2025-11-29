@@ -33,7 +33,6 @@ export default [
         // However, using this "projectService" resolved it for us
         // More details on "projectService": https://typescript-eslint.io/blog/announcing-typescript-eslint-v8-beta#project-service
         projectService: true,
-        project: ['./tsconfig.json'],
       },
     },
   },
@@ -44,7 +43,6 @@ export default [
       globals: globals.node,
       parserOptions: {
         projectService: true,
-        project: ['./search-middleware/tsconfig.json'],
       },
     },
   },
@@ -131,7 +129,6 @@ export default [
         // However, using this "projectService" resolved it for us
         // More details on "projectService": https://typescript-eslint.io/blog/announcing-typescript-eslint-v8-beta#project-service
         projectService: true,
-        project: ['./tsconfig.json'],
       },
     },
     name: 'NodeJS only',
@@ -159,7 +156,6 @@ export default [
         // However, using this "projectService" resolved it for us
         // More details on "projectService": https://typescript-eslint.io/blog/announcing-typescript-eslint-v8-beta#project-service
         projectService: true,
-        project: ['./tsconfig.json'],
       },
     },
     plugins: {
@@ -215,7 +211,6 @@ export default [
         // However, using this "projectService" resolved it for us
         // More details on "projectService": https://typescript-eslint.io/blog/announcing-typescript-eslint-v8-beta#project-service
         projectService: true,
-        project: ['./tsconfig.json'],
       },
     },
     name: 'Tests only',
