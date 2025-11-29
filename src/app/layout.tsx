@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 
@@ -42,8 +42,7 @@ export default function RootLayout({
               >
                 GitHub&nbsp;
                 <Image
-                   
-                  src={githubIcon}
+                  src={githubIcon as StaticImageData}
                   alt="GitHub logo"
                   className="filter-inverted"
                   height={20}
