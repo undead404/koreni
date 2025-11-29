@@ -40,6 +40,7 @@ describe('Map component', () => {
   // Cleanup after each test
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('should render the Head component with the script tag', () => {
@@ -81,5 +82,11 @@ describe('Map component', () => {
       getByText('A pretty CSS3 popup. Easily customizable.'),
     ).toBeInTheDocument();
     expect(getByText('Another popup')).toBeInTheDocument();
+  });
+
+  it('should consider the center prop when provided', () => {
+    const center: [number, number] = [40.7128, -74.006];
+    render(<Map {...defaultProps} center={center} />);
+    expect(calculateCoordinatesAverage).not.toHaveBeenCalled();
   });
 });

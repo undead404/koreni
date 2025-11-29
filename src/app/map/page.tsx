@@ -1,30 +1,15 @@
 import type { Metadata } from 'next';
 import Head from 'next/head';
 
-import getTablesMetadata from '@/shared/get-tables-metadata';
-
 import MapWrapper from '../components/map-wrapper';
 import environment from '../environment';
-import combinePoints from '../helpers/combine-points';
+import combinedPoints from '../services/map-points';
 
 export const metadata: Metadata = {
   title: 'Корені | Мапа доступних даних',
 };
 
-export default async function MapPage() {
-  const tablesMetadata = await getTablesMetadata();
-
-  const points = tablesMetadata.map((tableMetadata) => ({
-    coordinates: tableMetadata.location,
-    linkedRecords: [
-      {
-        link: `/${tableMetadata.id}/1`,
-        title: tableMetadata.title,
-      },
-    ],
-  }));
-  const combinedPoints = combinePoints(points);
-
+export default function MapPage() {
   return (
     <>
       <Head>

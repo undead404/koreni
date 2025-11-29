@@ -1,28 +1,36 @@
 'use client';
-import 'leaflet-defaulticon-compatibility';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useMemo } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { useMemo, useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
 import calculateCoordinatesAverage from '../helpers/calculate-coordinates-average';
 import type { MapPoint } from '../helpers/combine-points';
 
+import MapPointOnMap from './map-point';
+
 import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
 import styles from './map.module.css';
 
 export interface MapProperties {
+  center?: [number, number];
   points: MapPoint[];
   zoom: number;
   isFullScreen?: boolean;
 }
 
-export default function Map({ points, zoom, isFullScreen }: MapProperties) {
-  const averagePoint = useMemo(
-    () => calculateCoordinatesAverage(points.map((point) => point.coordinates)),
-    [points],
+export default function Map({
+  center,
+  points,
+  zoom,
+  isFullScreen,
+}: MapProperties) {
+  const centerOn = useMemo(
+    () =>
+      center ||
+      calculateCoordinatesAverage(points.map((point) => point.coordinates)),
+    [center, points],
   );
+  const [activePoint, setActivePoint] = useState<MapPoint | null>(null);
   return (
     <>
       <Head>
@@ -34,10 +42,9 @@ export default function Map({ points, zoom, isFullScreen }: MapProperties) {
         ></script>
       </Head>
       <MapContainer
-        center={averagePoint}
+        center={centerOn}
         className={`${styles.mapContainer} ${isFullScreen && styles.isFullScreen}`}
         zoom={zoom}
-        scrollWheelZoom={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -45,19 +52,19 @@ export default function Map({ points, zoom, isFullScreen }: MapProperties) {
         />
         {points.map((point, index) => {
           // console.log(point);
-          const linkedRecords = point.linkedRecords;
+          const isActive =
+            `${point.coordinates.toString()}` === `${centerOn.toString()}` ||
+            (activePoint &&
+              `${point.coordinates.toString()}` ===
+                `${activePoint.coordinates.toString()}`) ||
+            false;
           return (
-            <Marker key={index} position={point.coordinates}>
-              <Popup>
-                <ul>
-                  {linkedRecords.map(({ link, title }, index2) => (
-                    <li key={index2}>
-                      {link ? <Link href={link}>{title}</Link> : title}
-                    </li>
-                  ))}
-                </ul>
-              </Popup>
-            </Marker>
+            <MapPointOnMap
+              key={index}
+              isPrimary={isActive}
+              point={point}
+              setActive={setActivePoint}
+            />
           );
         })}
       </MapContainer>

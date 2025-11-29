@@ -4,7 +4,6 @@
     "@bugsnag/plugin-react": "^8.2.0",
     "dotenv": "~16.4.7",
     "leaflet": "~1.9.4",
-    "leaflet-defaulticon-compatibility": "0.1.2",
     "lodash": "~4.17.21",
     "next": "15.2.0",
     "papaparse": "~5.5.2",

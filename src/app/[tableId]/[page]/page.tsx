@@ -17,6 +17,7 @@ import {
   generateJsonLd,
 } from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
+import combinedPoints from '@/app/services/map-points';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
@@ -96,12 +97,8 @@ export default async function Table({ params }: TablePageProperties) {
           )}
           <Details summary={<h3>На карті</h3>}>
             <MapWrapper
-              points={[
-                {
-                  coordinates: tableMetadata.location,
-                  linkedRecords: [{ title: tableMetadata.title }],
-                },
-              ]}
+              center={tableMetadata.location}
+              points={combinedPoints}
               zoom={8}
             />
           </Details>
