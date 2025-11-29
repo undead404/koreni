@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import type { Client } from 'typesense';
-import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents.js';
+import type {
+  SearchResponse,
+  SearchResponseHit,
+} from 'typesense/lib/Typesense/Documents.js';
 
 import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
@@ -15,6 +18,30 @@ export interface SearchParameters {
 
 export type SearchResult = SearchResponseHit<Record<string, unknown>>;
 export type SearchResults = [SearchResult[], number];
+
+async function searchInCollection(
+  client: Client,
+  collection: string,
+  query: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<PromiseSettledResult<SearchResponse<any>>> {
+  try {
+    const result = await client.collections(collection).documents().search({
+      q: query,
+      query_by: 'data.*',
+      sort_by: '_text_match:desc,year:desc',
+    });
+    return {
+      value: result,
+      status: 'fulfilled' as const,
+    };
+  } catch (error) {
+    return {
+      reason: error,
+      status: 'rejected',
+    };
+  }
+}
 
 export default async function search({
   client,
@@ -38,38 +65,23 @@ export default async function search({
 
   // const filter_by = [facetFilters, rangeFilters].filter(Boolean).join(" && ");
 
-  const resultPartitions = await Promise.allSettled([
-    client
-      .collections('unstructured_pl')
-      .documents()
-      .search({
-        q: transliterateIntoPolish(query.toLowerCase()),
-        query_by: 'data.*',
-        // facet_by: Object.keys(facets).join(","),
-        // filter_by: filter_by,
-        sort_by: '_text_match:desc,year:desc',
-      }),
-    client
-      .collections('unstructured_ru')
-      .documents()
-      .search({
-        q: transliterateIntoRussian(query.toLowerCase()),
-        query_by: 'data.*',
-        // facet_by: Object.keys(facets).join(","),
-        // filter_by: filter_by,
-        sort_by: '_text_match:desc,year:desc',
-      }),
-    client
-      .collections('unstructured_uk')
-      .documents()
-      .search({
-        q: transliterateIntoUkrainian(query.toLowerCase()),
-        query_by: 'data.*',
-        // facet_by: Object.keys(facets).join(","),
-        // filter_by: filter_by,
-        sort_by: '_text_match:desc,year:desc',
-      }),
-  ]);
+  const resultPartitions = [
+    await searchInCollection(
+      client,
+      'unstructured_pl',
+      transliterateIntoPolish(query.toLowerCase()),
+    ),
+    await searchInCollection(
+      client,
+      'unstructured_ru',
+      transliterateIntoRussian(query.toLowerCase()),
+    ),
+    await searchInCollection(
+      client,
+      'unstructured_uk',
+      transliterateIntoUkrainian(query.toLowerCase()),
+    ),
+  ];
 
   if (resultPartitions.some((result) => result.status === 'rejected')) {
     const error = new AggregateError(
