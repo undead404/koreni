@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+author: Віталій Перегончук <brute18@gmail.com>
+date: 2025-11-24
+id: DAKhmO-315-1-7359-Pysarivka-Ruska
+location:
+  - 48.67642043632789
+  - 28.129250440731653
+size: 1022
+sources:
+  - https://docs.google.com/spreadsheets/d/1HmURxoHDtP_ZpQtLpZ5e91d49Oskp-U5qrfWQmhPXYg/edit?usp=sharing
+tableFilename: Писарівка-Руська 1831 – сповідний розпис, ДАХмО-315-1-7359 - master.csv
+tableLocale: ru
+title: Писарівка (Шаргородська) 1831 – сповідний розпис, ДАХмО 315-1-7359
+yearsRange:
+  - 1831
