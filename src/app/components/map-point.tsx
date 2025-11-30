@@ -1,12 +1,13 @@
 import { Icon, type IconOptions } from 'leaflet';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
 import type { MapPoint } from '../helpers/combine-points';
 
-import filledIconPath from '../assets/icons8-marker-40.png';
-import defaultIconPath from '../assets/icons8-marker-50.png';
+import filledIconImage from '../assets/icons8-marker-40.png';
+import blackIconImage from '../assets/icons8-marker-50.png';
+import whiteIconImage from '../assets/icons8-marker-50-white.png';
 
 export interface MapPointProperties {
   isPrimary: boolean;
@@ -21,14 +22,18 @@ const defaultIconParameters: Partial<IconOptions> = {
   // shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
   // shadowSize: [41, 41],
 };
-const defaultIcon: Icon = new Icon({
+const blackIcon: Icon = new Icon({
   ...defaultIconParameters,
-  iconUrl: defaultIconPath.src,
+  iconUrl: blackIconImage.src,
+});
+const whiteIcon: Icon = new Icon({
+  ...defaultIconParameters,
+  iconUrl: whiteIconImage.src,
 });
 
 const filledIcon = new Icon({
   ...defaultIconParameters,
-  iconUrl: filledIconPath.src,
+  iconUrl: filledIconImage.src,
 });
 export default function MapPointOnMap({
   isPrimary,
@@ -44,6 +49,25 @@ export default function MapPointOnMap({
     }),
     [point, setActive],
   );
+  const [defaultIcon, setDefaultIcon] = useState<Icon>(() =>
+    globalThis.matchMedia &&
+    globalThis.matchMedia('(prefers-color-scheme: dark)').matches
+      ? whiteIcon
+      : blackIcon,
+  );
+
+  const handleThemeChange = useCallback((event: MediaQueryListEvent) => {
+    setDefaultIcon(event.matches ? whiteIcon : blackIcon);
+  }, []);
+
+  useEffect(() => {
+    if (!globalThis.matchMedia) return;
+    const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', handleThemeChange);
+    return () => {
+      mediaQuery.removeEventListener('change', handleThemeChange);
+    };
+  }, [handleThemeChange]);
   return (
     <Marker
       eventHandlers={eventHandlers}
