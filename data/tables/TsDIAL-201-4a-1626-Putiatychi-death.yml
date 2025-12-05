@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАЛ-201-4а-1626
+author: Наталія Сабат <natalja.sab@gmail.com>
+date: 2025-10-21
+id: TsDIAL-201-4a-1626-Putiatychi-death
+location:
+  - 49.74107547497084
+  - 23.484908681735014
+size: 306
+sources:
+  - https://docs.google.com/spreadsheets/d/1_GiKwH7mkWVyFla1lBbNrvZzuJC0IuC-/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: TsDIAL-201-4a-1626-Putiatychi-death.csv
+tableLocale: uk
+title: Путятичі, повіт Городок, за 1791-1830 рр .  ЦДІАЛ 201/4а/1626 (метрики про смерть)
+yearsRange:
+  - 1791
+  - 1830
