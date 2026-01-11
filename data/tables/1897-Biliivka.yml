@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-47
+  - ДАКО-384-10-48
+  - ДАКО-384-10-49
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Biliivka
+location:
+  - 49.594870270499754
+  - 29.79265730603815
+size: 110
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Biliivka.csv
+tableLocale: uk
+title: Біліївка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
