@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-79
+  - ДАКО-384-10-80
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Zlodiivka
+location:
+  - 50.13510859900302
+  - 30.743802227376477
+size: 70
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Zlodiivka.csv
+tableLocale: uk
+title: Злодієвка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
