@@ -49,6 +49,9 @@ export default async function Table({ params }: TablePageProperties) {
     (page - 1) * PER_PAGE,
     page * PER_PAGE,
   );
+  if (tableData.length === 0 || !tableMetadata) {
+    throw new Error('Table not found');
+  }
   const sourcesLinks = tableMetadata.sources
     .map((source) => <SourceLink key={source} href={source} />)
     // eslint-disable-next-line unicorn/no-array-reduce
