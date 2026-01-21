@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   applicationName: 'Корені',
   authors: [
     {
-      name: 'Віталій Перегончук',
-      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
-    },
-    {
       name: 'Аліна Лістунова',
       url: 'https://www.linkedin.com/in/alina-listunova/',
+    },
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
     },
   ],
   creator: 'Віталій Перегончук',
