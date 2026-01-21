@@ -1,0 +1,26 @@
+archiveItems:
+  - ДАКО-384-10-94
+  - ДАКО-384-10-95
+  - ДАКО-384-10-96
+  - ДАКО-384-10-97
+  - ДАКО-384-10-98
+  - ДАКО-384-10-99
+  - ДАКО-384-10-100
+  - ДАКО-384-10-101
+  - ДАКО-384-10-102
+  - ДАКО-384-10-103
+  - ДАКО-384-10-147
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Vchoraishe
+location:
+  - 49.86347820510209
+  - 29.141862435791705
+size: 483
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Vchoraishe.csv
+tableLocale: uk
+title: Вчорайше – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

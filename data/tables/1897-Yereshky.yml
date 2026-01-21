@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-113
+  - ДАКО-384-10-114
+  - ДАКО-384-10-115
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Yereshky
+location:
+  - 49.91629749815438
+  - 29.210635810099447
+size: 135
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Yereshky.csv
+tableLocale: uk
+title: Єрешки (Ярешки) – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

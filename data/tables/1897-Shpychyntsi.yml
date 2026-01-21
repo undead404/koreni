@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-104
+  - ДАКО-384-10-105
+  - ДАКО-384-10-106
+  - ДАКО-384-10-107
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Shpychyntsi
+location:
+  - 49.84741388797464
+  - 29.202422112776826
+size: 183
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Shpychyntsi.csv
+tableLocale: uk
+title: Шпичинці – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
