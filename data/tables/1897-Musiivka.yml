@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-129
+  - ДАКО-384-10-130
+  - ДАКО-384-10-131
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Musiivka
+location:
+  - 49.841170279178584
+  - 29.345498289375904
+size: 144
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Musiivka.csv
+tableLocale: uk
+title: Мусіївка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

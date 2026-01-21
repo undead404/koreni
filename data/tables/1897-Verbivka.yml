@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-140
+  - ДАКО-384-10-141
+  - ДАКО-384-10-142
+  - ДАКО-384-10-143
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Verbivka
+location:
+  - 49.778873780176205
+  - 29.4340077183325
+size: 143
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Verbivka.csv
+tableLocale: uk
+title: Вербівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

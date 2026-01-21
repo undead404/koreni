@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-151
+  - ДАКО-384-10-152
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Krylivka
+location:
+  - 49.797115761633975
+  - 29.202755230659506
+size: 76
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Krylivka.csv
+tableLocale: uk
+title: Крилівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
