@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-10-154
+  - ДАКО-384-10-155
+  - ДАКО-384-10-156
+  - ДАКО-384-10-157
+  - ДАКО-384-10-158
+  - ДАКО-384-10-159
+  - ДАКО-384-10-160
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Volodarka
+location:
+  - 49.52302143992456
+  - 29.92971237222199
+size: 470
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Volodarka.csv
+tableLocale: uk
+title: Володарка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

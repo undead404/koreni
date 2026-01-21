@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-169
+  - ДАКО-384-10-170
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Shaliivka
+location:
+  - 49.66074315871791
+  - 29.697252262600752
+size: 121
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Shaliivka.csv
+tableLocale: uk
+title: Шаліївка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
