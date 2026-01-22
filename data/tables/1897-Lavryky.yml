@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-178
+  - ДАКО-384-10-179
+  - ДАКО-384-10-180
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Lavryky
+location:
+  - 49.59923506223629
+  - 29.718761078023633
+size: 72
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Lavryky.csv
+tableLocale: uk
+title: Лаврики – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

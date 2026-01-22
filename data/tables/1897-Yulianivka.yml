@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-10-192
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Yulianivka
+location:
+  - 49.621896884192026
+  - 29.53821478967136
+size: 19
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Yulianivka.csv
+tableLocale: uk
+title: Юльянівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
