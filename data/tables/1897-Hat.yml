@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-254
+  - ДАКО-384-10-255
+  - ДАКО-384-10-256
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Hat
+location:
+  - 49.866856209344704
+  - 29.476298544153796
+size: 56
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Hat.csv
+tableLocale: uk
+title: Гать – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-10-242
+  - ДАКО-384-10-243
+  - ДАКО-384-10-245
+  - ДАКО-384-10-246
+  - ДАКО-384-10-247
+  - ДАКО-384-10-248
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Andrushky
+location:
+  - 49.87460947772727
+  - 29.347058976473914
+size: 217
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Andrushky.csv
+tableLocale: uk
+title: Андрушки – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
