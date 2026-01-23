@@ -82,7 +82,7 @@ export default function AboutPage() {
             – український переклад статей MDN
           </li>
           <li>
-            <a href="https://you-must-hear.web.app" target="_blank">
+            <a href="https://ymh8.pages.dev" target="_blank">
               You Must Hear
             </a>{' '}
             – тут куди важче розповісти, що це таке 😂
