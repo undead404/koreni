@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-10-257
+  - ДАКО-384-10-258
+  - ДАКО-384-10-259
+  - ДАКО-384-10-272
+  - ДАКО-384-10-273
+  - ДАКО-384-10-274
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Parkhomivka
+location:
+  - 49.54871408490321
+  - 30.04639022538101
+size: 246
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Parkhomivka.csv
+tableLocale: uk
+title: Пархомівка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

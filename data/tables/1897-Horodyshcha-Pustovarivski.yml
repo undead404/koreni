@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-270
+  - ДАКО-384-10-271
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Horodyshcha-Pustovarivski
+location:
+  - 49.63593245592943
+  - 29.93851245386276
+size: 137
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Horodyshcha-Pustovarivski.csv
+tableLocale: uk
+title: Городища-Пустоварівські – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
