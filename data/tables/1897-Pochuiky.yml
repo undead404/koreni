@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-297
+  - ДАКО-384-10-298
+  - ДАКО-384-10-299
+  - ДАКО-384-10-300
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Pochuiky
+location:
+  - 49.942730020492014
+  - 29.606379451742093
+size: 207
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Pochuiky.csv
+tableLocale: uk
+title: Почуйки – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

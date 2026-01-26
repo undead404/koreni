@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-10-301
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Novoselytsia
+location:
+  - 49.90318823728218
+  - 29.627495066415154
+size: 80
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Novoselytsia.csv
+tableLocale: uk
+title: Новоселиця (Попільнянська) – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

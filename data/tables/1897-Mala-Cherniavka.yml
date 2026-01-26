@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-384-10-293
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Mala-Cherniavka
+location:
+  - 49.988732609098086
+  - 29.57422968695738
+size: 50
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Mala-Cherniavka.csv
+tableLocale: uk
+title: Мала Чернявка – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
