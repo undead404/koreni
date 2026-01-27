@@ -1,16 +1,17 @@
 archiveItems:
-  - ДАКО-384-10-290
+  - ДАКО-384-10-356
+  - ДАКО-384-10-357
 author: Володимир Цибульський <unclelado@ukr.net>
 date: 2025-09-01
-id: 1897-Spychyntsi
+id: 1897-Korchmyshche
 location:
-  - 49.408488259202336
-  - 29.157681242301315
-size: 17
+  - 50.10953079520738
+  - 29.150864738364078
+size: 93
 sources:
   - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilename: 1897-Spychyntsi.csv
+tableFilename: 1897-Korchmyshche.csv
 tableLocale: uk
-title: Спичинці – Перший Всеросійський перепис 1897 року
+title: Корчмище – Перший Всеросійський перепис 1897 року
 yearsRange:
   - 1897

@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-350
+  - ДАКО-384-10-351
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Pustelnyky-Zhytomyrski
+location:
+  - 50.11535051901835
+  - 29.261526951490275
+size: 180
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Pustelnyky-Zhytomyrski.csv
+tableLocale: uk
+title: Пустельники (Житомирські) – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
