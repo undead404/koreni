@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-10-374
+  - ДАКО-384-10-375
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Chubyntsi
+location:
+  - 49.824569850138914
+  - 29.68134035827448
+size: 122
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Chubyntsi.csv
+tableLocale: uk
+title: Чубинці – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

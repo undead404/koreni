@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-10-379
+  - ДАКО-384-10-380
+  - ДАКО-384-10-381
+  - ДАКО-384-10-382
+  - ДАКО-384-10-383
+  - ДАКО-384-10-384
+  - ДАКО-384-10-385
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-04-04
+id: 1897-PZZ-Skvyrska
+location:
+  - 49.94584934433313
+  - 29.46137424738059
+size: 153
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-PZZ-Skvyrska.csv
+tableLocale: uk
+title: По лінії ПЗЗ (Сквирський повіт) – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897

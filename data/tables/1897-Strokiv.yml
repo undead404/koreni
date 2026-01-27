@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-370
+  - ДАКО-384-10-376
+  - ДАКО-384-10-377
+author: Володимир Цибульський <unclelado@ukr.net>
+date: 2025-09-01
+id: 1897-Strokiv
+location:
+  - 49.85684629870295
+  - 29.592225991002238
+size: 193
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilename: 1897-Strokiv.csv
+tableLocale: uk
+title: Строків – Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
