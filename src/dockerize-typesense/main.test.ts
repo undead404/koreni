@@ -82,7 +82,7 @@ describe('main', () => {
     await main();
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(error);
-    expect(consoleLogSpy).toHaveBeenCalledWith('[object Undefined]');
+    expect(consoleLogSpy).toHaveBeenCalledWith(undefined);
     expect(stopTypesense).toHaveBeenCalled();
 
     consoleErrorSpy.mockRestore();
