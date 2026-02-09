@@ -38,6 +38,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
+          add-paths: |
+            data/tables/*.csv
+            data/tables/*.yml
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'feat(data): import table ${{ steps.process.outputs.import_id }}'
           branch: 'import/${{ steps.process.outputs.import_id }}'
