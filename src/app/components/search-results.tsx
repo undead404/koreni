@@ -1,8 +1,9 @@
 import type { FC } from 'react';
 
-import guessPageFromRowId from '../helpers/guess-page-from-row-id';
 import resultSchema from '../schemas/search-result';
 import type { SearchResult } from '../services/search';
+
+import SearchResultItem from './search-result';
 
 import styles from './search-results.module.css';
 
@@ -49,30 +50,13 @@ const SearchResults: FC<ResultsProperties> = ({
             {typedResult.highlight.data &&
               Object.entries(typedResult.highlight.data).map(
                 ([key, value], index) => (
-                  <tr key={`${key}-${index}`}>
-                    <th scope="row">{key}</th>
-                    <td
-                      className="snippet break-word"
-                      dangerouslySetInnerHTML={{
-                        __html: value.snippet,
-                      }}
-                    ></td>
-                    <td>
-                      <a
-                        className={styles.link}
-                        href={`/${
-                          typedResult.document.tableId
-                        }/${guessPageFromRowId(
-                          typedResult.document.id,
-                        )}?matched_tokens=${value.matched_tokens.join(
-                          ',',
-                        )}&show_row=${typedResult.document.id}`}
-                        rel="nofollow"
-                      >
-                        Див.
-                      </a>
-                    </td>
-                  </tr>
+                  <SearchResultItem
+                    document={typedResult.document}
+                    key={`${key}-${index}`}
+                    index={index}
+                    searchValue={searchValue}
+                    value={value}
+                  />
                 ),
               )}
           </tbody>

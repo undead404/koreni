@@ -90,6 +90,7 @@ export default async function Table({ params }: TablePageProperties) {
             <Details
               open={tableMetadata.archiveItems.length < 4}
               summary={<h3>Використані архівні справи</h3>}
+              sectionName="archive_items"
             >
               <ul className={styles.archiveItems}>
                 {tableMetadata.archiveItems.map((archiveItem) => (
@@ -98,7 +99,7 @@ export default async function Table({ params }: TablePageProperties) {
               </ul>
             </Details>
           )}
-          <Details summary={<h3>На карті</h3>}>
+          <Details summary={<h3>На карті</h3>} sectionName="map">
             <MapWrapper
               center={tableMetadata.location}
               points={combinedPoints}

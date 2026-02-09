@@ -4,6 +4,7 @@ import helmet from 'helmet';
 
 import { bugsnagMiddleware } from './bugsnag';
 import environment from './environment';
+import posthog from './posthog';
 import { protectedImportPayloadSchema } from './schemata';
 import validateTurnstile from './validate-turnstile';
 
@@ -21,6 +22,13 @@ app.post('/api/submit', async (request, response) => {
     const parseResult = protectedImportPayloadSchema.safeParse(request.body);
 
     if (!parseResult.success) {
+      posthog.capture({
+        distinctId: request.socket.remoteAddress,
+        event: 'payload_validation_failed',
+        properties: {
+          errors: parseResult.error.errors,
+        },
+      });
       return response.status(400).json({ error: parseResult.error.format() });
     }
 
@@ -37,6 +45,14 @@ app.post('/api/submit', async (request, response) => {
         token,
       );
       if (!turnstileValidationResult.success) {
+        posthog.capture({
+          distinctId: ip as string,
+          event: 'turnstile_validation_failed',
+          properties: {
+            ip,
+            reason: turnstileValidationResult['error-codes'] || [],
+          },
+        });
         return response
           .status(403)
           .json({ error: 'Captcha validation failed' });
@@ -68,14 +84,29 @@ app.post('/api/submit', async (request, response) => {
     if (!githubResponse.ok) {
       const errorText = await githubResponse.text();
       console.error('GitHub API Error:', errorText);
+      posthog.capture({
+        distinctId: ip as string,
+        event: 'github_api_error',
+        properties: {
+          status: githubResponse.status,
+          statusText: githubResponse.statusText,
+          response: errorText,
+        },
+      });
       return response
         .status(502)
         .json({ error: 'Failed to trigger GitHub pipeline' });
     }
 
+    posthog.capture({
+      distinctId: ip as string,
+      event: 'pr_creation_triggered',
+    });
+
     return response.json({ success: true, message: 'PR creation started' });
   } catch (error) {
     console.error(error);
+    posthog.captureException(error as Error);
     return response.status(500).json({ error: 'Internal Server Error' });
   }
 });

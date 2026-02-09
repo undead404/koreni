@@ -96,9 +96,12 @@ jobs:
         run: yarn build
         env:
           NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars.BUGSNAG_API_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
           NEXT_PUBLIC_SITE: ${{ vars.SITE }}
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
+          NODE_ENV: production
 
       # 3. Upload Artifacts
       - name: Upload frontend artifact
@@ -219,7 +222,10 @@ jobs:
             echo "GITHUB_OWNER=${{ github.repository_owner }}" >> .env
             echo "GITHUB_REPO=${{ github.repository }}" >> .env
             echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
+            echo "POSTHOG_KEY=${{ secrets.POSTHOG_KEY }}" >> .env
+            echo "POSTHOG_HOST=${{ vars.POSTHOG_HOST }}" >> .env
             echo "NEXT_PUBLIC_SITE=${{ vars.SITE }}" >> .env
+            echo "NODE_ENV=production" >> .env
 
             # Install dependencies ON THE SERVER
             yarn install --frozen-lockfile --production --prefer-offline

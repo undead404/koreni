@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Script from 'next/script';
 
 import Header from './components/header';
-import SimpleAnalytics from './components/simple-analytics';
 
 import './globals.css';
 import styles from './layout.module.css';
@@ -53,7 +52,6 @@ export default function RootLayout({
             </p>
           </footer>
         </div>
-        <SimpleAnalytics />
       </body>
     </html>
   );

@@ -1,12 +1,12 @@
 'use client';
 
 import type { NotifiableError } from '@bugsnag/js';
+import posthog from 'posthog-js';
 import { useCallback, useState } from 'react';
 
 import environment from '../environment';
 import ActiveBugsnag from '../services/bugsnag';
 import search, { type SearchResult } from '../services/search';
-import trackEvent from '../services/simple-analytics';
 import getTypesenseClient from '../services/typesense';
 
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
@@ -32,7 +32,10 @@ export function useSearch() {
     setLoading(true);
     setError(null);
     try {
-      trackEvent('search', { query: value });
+      posthog.capture('search_performed', {
+        query: value,
+        query_length: value.length,
+      });
       const [hits, hitsNumber] = await search({
         client,
         // facets,
@@ -41,10 +44,15 @@ export function useSearch() {
       });
       setResults(hits);
       setResultsNumber(hitsNumber);
+      posthog.capture('search_results_returned', {
+        query: value,
+        results_count: hitsNumber,
+      });
     } catch (error_) {
       setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
       console.error(error_);
       ActiveBugsnag.notify(error_ as NotifiableError);
+      posthog.captureException(error_ as Error);
     } finally {
       setLoading(false);
     }

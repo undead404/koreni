@@ -29,7 +29,7 @@ export default function Pagination({
                   key={page}
                   page={page}
                   isCurrent={currentPage === page}
-                  urlBuilder={urlBuilder}
+                  href={urlBuilder(page)}
                 />
               </li>
             ),
@@ -52,7 +52,7 @@ export default function Pagination({
           <PaginationButton
             page={1}
             isCurrent={currentPage === 1}
-            urlBuilder={urlBuilder}
+            href={urlBuilder(1)}
           />
         </li>
 
@@ -61,7 +61,7 @@ export default function Pagination({
             <PaginationButton
               page={2}
               isCurrent={currentPage === 2}
-              urlBuilder={urlBuilder}
+              href={urlBuilder(2)}
             />
           </li>
         ) : (
@@ -74,7 +74,9 @@ export default function Pagination({
           <PaginationButton
             page={isStarting ? 3 : isEnding ? totalPages - 4 : currentPage - 1}
             isCurrent={currentPage === 3}
-            urlBuilder={urlBuilder}
+            href={urlBuilder(
+              isStarting ? 3 : isEnding ? totalPages - 4 : currentPage - 1,
+            )}
           />
         </li>
         <li>
@@ -87,14 +89,18 @@ export default function Pagination({
                   ? currentPage === totalPages - 3
                   : true
             }
-            urlBuilder={urlBuilder}
+            href={urlBuilder(
+              isStarting ? 4 : isEnding ? totalPages - 3 : currentPage,
+            )}
           />
         </li>
         <li>
           <PaginationButton
             page={isStarting ? 5 : isEnding ? totalPages - 2 : currentPage + 1}
             isCurrent={currentPage === totalPages - 2}
-            urlBuilder={urlBuilder}
+            href={urlBuilder(
+              isStarting ? 5 : isEnding ? totalPages - 2 : currentPage + 1,
+            )}
           />
         </li>
 
@@ -103,7 +109,7 @@ export default function Pagination({
             <PaginationButton
               page={totalPages - 1}
               isCurrent={currentPage === totalPages - 1}
-              urlBuilder={urlBuilder}
+              href={urlBuilder(totalPages - 1)}
             />
           </li>
         ) : (
@@ -116,7 +122,7 @@ export default function Pagination({
           <PaginationButton
             page={totalPages}
             isCurrent={currentPage === totalPages}
-            urlBuilder={urlBuilder}
+            href={urlBuilder(totalPages)}
           />
         </li>
       </ul>

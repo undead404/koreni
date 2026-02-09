@@ -15,6 +15,8 @@ const environmentSchema = z.object({
     .enum(['development', 'production', 'test'])
     .default('development'),
   PORT: z.string().optional().default('4000'),
+  POSTHOG_KEY: nonEmptyString,
+  POSTHOG_HOST: nonEmptyString,
   TURNSTILE_SECRET_KEY: nonEmptyString,
 });
 
