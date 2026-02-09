@@ -3,11 +3,15 @@ import BugsnagPluginExpress from '@bugsnag/plugin-express';
 
 import environment from './environment';
 
-Bugsnag.start({
-  apiKey: environment.BUGSNAG_API_API_KEY,
-  plugins: [BugsnagPluginExpress],
-});
+if (environment.BUGSNAG_API_API_KEY) {
+  Bugsnag.start({
+    apiKey: environment.BUGSNAG_API_API_KEY,
+    plugins: [BugsnagPluginExpress],
+  });
+}
 
-const middleware = Bugsnag.getPlugin('express');
+const middleware = environment.BUGSNAG_API_API_KEY
+  ? Bugsnag.getPlugin('express')
+  : undefined;
 
 export { middleware as bugsnagMiddleware };

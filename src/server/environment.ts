@@ -6,7 +6,7 @@ dotenv.config();
 const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
-  BUGSNAG_API_API_KEY: nonEmptyString,
+  BUGSNAG_API_API_KEY: nonEmptyString.optional(),
   GITHUB_OWNER: nonEmptyString,
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
@@ -28,6 +28,8 @@ const environment = environmentSchema.parse({
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
+  POSTHOG_KEY: process.env.POSTHOG_KEY,
+  POSTHOG_HOST: process.env.POSTHOG_HOST,
   TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
 });
 

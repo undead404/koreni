@@ -231,5 +231,5 @@ jobs:
             yarn install --frozen-lockfile --production --prefer-offline
             
             # Restart Service
-            sudo systemctl restart koreni-api
+            systemctl restart koreni-api
           EOF
