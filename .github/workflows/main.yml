@@ -20,7 +20,11 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile  --prefer-offline
+        run: yarn --frozen-lockfile --prefer-offline
+
+      - name: Install server dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+        working-directory: src/server
 
       - name: Lint
         run: yarn lint
@@ -124,7 +128,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      # --- Frontend Deploy (без змін) ---
+      # --- Frontend Deploy ---
       - name: Download frontend artifact
         uses: actions/download-artifact@v4
         with:
@@ -136,38 +140,47 @@ jobs:
           rsync -avz -e "ssh" --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
 
-      # --- Backend Deploy (Source + Install) ---
+      # --- Backend Deploy ---
       - name: Download backend source
         uses: actions/download-artifact@v4
         with:
           name: api-dist
           path: api-dist
 
+      # 1. Verify manifest files exist before deploying (Safety Check)
+      - name: Check for package.json
+        run: |
+          if [ ! -f ./api-dist/package.json ]; then
+            echo "Error: package.json missing in artifact. Ensure build script copies it to dist."
+            exit 1
+          fi
+
       - name: Deploy Backend Source
         run: |
+          # Ensure target directory exists
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
-          # sync files
+
+          # Sync files
           rsync -avz -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
 
-      - name: Set environment variables
+      - name: Configure Environment and Install Dependencies
         run: |
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
+            set -e
+            cd /var/www/koreni-api
+            
+            # Write .env to the correct directory
             echo "PORT=4000" > .env
             echo "BUGSNAG_API_API_KEY=${{ secrets.BUGSNAG_API_API_KEY }}" >> .env
             echo "GITHUB_TOKEN=${{ secrets.IMPORT_TOKEN }}" >> .env
             echo "GITHUB_OWNER=${{ github.repository_owner }}" >> .env
             echo "GITHUB_REPO=${{ github.repository }}" >> .env
             echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
+
+            # Install dependencies ON THE SERVER
+            yarn install --frozen-lockfile --production --prefer-offline
+            
+            # Restart Service
+            sudo systemctl restart koreni-api
+            sudo systemctl reload nginx
           EOF
-
-      - name: Install Dependencies
-        run: |
-          yarn install --frozen-lockfile --production --prefer-offline
-        working-directory: /var/www/koreni-api
-      - name: Restart
-        run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'systemctl restart koreni-api'
-
-      - name: Restart NGINX
-        run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo systemctl reload nginx'
