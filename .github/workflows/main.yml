@@ -139,7 +139,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build
+      - deploy-api
     steps:
       - name: Set up SSH
         run: |
