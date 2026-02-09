@@ -26,12 +26,12 @@ jobs:
 
       - name: Save Payload to File
         # Ми зберігаємо JSON з вебхука у файл, щоб скрипт міг його прочитати
-        run: echo '${{ toJson(github.event.client_payload) }}' > payload.json
+        run: echo '${{ toJson(github.event.client_payload) }}' > "${{ runner.temp }}/payload.json"
 
       - name: Run Processing Script
         id: process
         env:
-          PAYLOAD_PATH: ./payload.json
+          PAYLOAD_PATH: ${{ runner.temp }}/payload.json
         # Використовуємо tsx для запуску TS файлу без компіляції
         run: yarn exec tsx src/import/index.ts
 
