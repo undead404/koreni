@@ -123,6 +123,9 @@ jobs:
           cache: 'yarn'
           node-version-file: .nvmrc
 
+      - name: Install frontend dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+
       - name: Install API dependencies
         run: yarn --frozen-lockfile --prefer-offline
         working-directory: src/server
