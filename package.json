@@ -31,7 +31,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/eslint-plugin": "^1.1.36",
-    "axios": "~1.8.2",
+    "axios": "~1.13.5",
     "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9.21.0",
     "eslint-config-next": "15.2.0",
