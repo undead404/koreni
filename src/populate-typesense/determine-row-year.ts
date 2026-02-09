@@ -1,4 +1,5 @@
-import { isInteger, last, toNumber, toString } from 'lodash';
+import _ from 'lodash';
+const { isInteger, last, toNumber, toString } = _;
 
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
 

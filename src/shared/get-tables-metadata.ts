@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { sortBy } from 'lodash';
+import _ from 'lodash';
 import { parse } from 'yaml';
 
 import {
@@ -11,6 +11,7 @@ import {
 import getYamlFilepaths from './get-yaml-filepaths';
 import validateMetadata from './validate-metadata';
 
+const { sortBy } = _;
 const TABLES_FOLDER = './data/tables';
 
 export default async function getTablesMetadata(): Promise<IndexationTable[]> {
