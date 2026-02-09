@@ -3,14 +3,16 @@ import path from 'node:path';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { handleImport, InputPayload } from './handle-import';
+import type { ImportPayload } from '@/shared/schemas/import';
+
+import { handleImport } from './handle-import';
 
 // Мокаємо файлову систему, щоб не писати на диск
 vi.mock('node:fs/promises');
 
 describe('Import Data Script', () => {
   // Тестові дані
-  const validPayload: InputPayload = {
+  const validPayload: ImportPayload = {
     date: new Date('2026-01-01'),
     id: '1897-kyiv-city',
     title: 'Тестова метрика 1897',

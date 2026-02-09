@@ -36,6 +36,16 @@ export default [
       },
     },
   },
+  {
+    files: ['src/server/*.{js,mjs,cjs,ts}'],
+    name: 'Server code',
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: {
+        projectService: true,
+      },
+    },
+  },
   includeIgnoreFile(gitignorePath),
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommendedTypeChecked.map((config) => ({
@@ -108,6 +118,7 @@ export default [
       'next.config.ts',
       'vitest.config.ts',
       'vitest.setup.ts',
+      'src/server/**/*.{js,mjs,cjs,ts}',
     ],
     ...pluginSecurity.configs.recommended,
     languageOptions: {
@@ -221,6 +232,7 @@ export default [
       'src/dockerize-typesense/**/*.ts',
       'src/import/**/*.ts',
       'src/populate-typesense/**/*.ts',
+      'src/server/**/*.{js,mjs,cjs,ts}',
     ],
     rules: {
       'no-console': 'off',

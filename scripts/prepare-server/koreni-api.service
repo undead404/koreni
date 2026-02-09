@@ -1,0 +1,23 @@
+[Unit]
+Description=Koreni API Server
+After=network.target
+
+[Service]
+User=nonroot
+Group=nonroot
+
+WorkingDirectory=/var/www/koreni-api
+
+ExecStart=/usr/bin/yarn start
+
+EnvironmentFile=/var/www/koreni-api/.env
+
+Restart=always
+RestartSec=10
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=koreni-api
+
+[Install]
+WantedBy=multi-user.target

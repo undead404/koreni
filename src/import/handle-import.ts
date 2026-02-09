@@ -3,31 +3,11 @@ import path from 'node:path';
 
 import Papa from 'papaparse';
 import yaml from 'yaml';
-import { z } from 'zod';
 
-import {
-  type IndexationTable,
-  indexationTableSchema,
-} from '@/shared/schemas/indexation-table';
-
-// 1. Схеми (залишаємо як були)
-export const inputPayloadSchema = indexationTableSchema
-  .omit({
-    size: true,
-    tableFilename: true,
-  })
-  .extend({
-    date: z.coerce
-      .string()
-      .transform((dateString) => new Date(dateString))
-      .refine((date) => !Number.isNaN(date.getTime()), {
-        message: 'Invalid date format. Expected ISO string.',
-      }),
-    records: z.array(z.record(z.string(), z.unknown())), // Дозволяємо будь-які значення в записах
-  });
+import { importPayloadSchema } from '@/shared/schemas/import';
+import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 // Тип для вхідних даних (виведений із Zod)
-export type InputPayload = z.infer<typeof inputPayloadSchema>;
 
 // 2. Основна логіка винесена в експортовану функцію
 // rootDir дозволяє підмінити папку під час тестів
@@ -36,7 +16,7 @@ export async function handleImport(
   rootDirectory: string = process.cwd(),
 ) {
   // Валідація
-  const parsed = inputPayloadSchema.parse(jsonData);
+  const parsed = importPayloadSchema.parse(jsonData);
 
   // Генерація шляхів
   const slugId = parsed.id; // Використовуємо id як slugId

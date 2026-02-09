@@ -1,0 +1,29 @@
+{
+  "author": "Vitalii Perehonchuk <brute18@gmail.com>",
+  "dependencies": {
+    "@bugsnag/js": "^8.8.1",
+    "@bugsnag/plugin-express": "^8.8.0",
+    "cors": "^2.8.6",
+    "dotenv": "~16.4.7",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "tsx": "~4.21.0",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "node": "^22.12"
+  },
+  "license": "MIT",
+  "main": "dist/server/index.js",
+  "name": "koreni-server",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx index.ts",
+    "start": "node dist/server/index.js"
+  },
+  "version": "1.0.0"
+}

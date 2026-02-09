@@ -85,35 +85,38 @@ jobs:
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
-
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
 
-      - name: Build project
+      - name: Build Next.js project
         run: yarn build
         env:
-          NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars. BUGSNAG_API_KEY }}
+          NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars.BUGSNAG_API_KEY }}
           NEXT_PUBLIC_SITE: ${{ vars.SITE }}
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
 
-      - name: Upload artifact
+      - name: Build API project
+        run: yarn build
+        working-directory: src/server
+
+      # 3. Upload Artifacts
+      - name: Upload frontend artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: out
 
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-dist
+          path: src/server/dist
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
-
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -121,18 +124,50 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Fix permissions
-        run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
+      # --- Frontend Deploy (без змін) ---
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
 
-      - name: Copy files via rsync
+      - name: Deploy Frontend Files
         run: |
-          rsync -avz -e "ssh" --no-perms --no-times ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
+          rsync -avz -e "ssh" --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
+          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
 
-      - name: Set permissions
+      # --- Backend Deploy (Source + Install) ---
+      - name: Download backend source
+        uses: actions/download-artifact@v4
+        with:
+          name: api-dist
+          path: api-dist
+
+      - name: Deploy Backend Source
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
+          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
+          # sync files
+          rsync -avz -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
+
+      - name: Set environment variables
+        run: |
+          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
+            echo "PORT=4000" > .env
+            echo "BUGSNAG_API_API_KEY=${{ secrets.BUGSNAG_API_API_KEY }}" >> .env
+            echo "GITHUB_TOKEN=${{ secrets.IMPORT_TOKEN }}" >> .env
+            echo "GITHUB_OWNER=${{ github.repository_owner }}" >> .env
+            echo "GITHUB_REPO=${{ github.repository }}" >> .env
+            echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
+          EOF
+
+      - name: Install Dependencies
+        run: |
+          yarn install --frozen-lockfile --production --prefer-offline
+        working-directory: /var/www/koreni-api
+      - name: Restart
+        run: |
+          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'systemctl restart koreni-api'
 
       - name: Restart NGINX
         run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo systemctl restart nginx'
+          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo systemctl reload nginx'

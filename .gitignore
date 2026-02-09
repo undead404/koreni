@@ -42,3 +42,6 @@ next-env.d.ts
 
 !.env.example
 /typesense
+
+/src/server/node_modules
+/src/server/dist
