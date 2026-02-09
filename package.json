@@ -4,7 +4,7 @@
     "@bugsnag/plugin-react": "^8.2.0",
     "dotenv": "~16.4.7",
     "leaflet": "~1.9.4",
-    "lodash": "~4.17.21",
+    "lodash": "~4.17.23",
     "next": "15.2.0",
     "papaparse": "~5.5.2",
     "react": "~19.0.0",
