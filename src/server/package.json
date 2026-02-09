@@ -1,12 +1,13 @@
 {
   "author": "Vitalii Perehonchuk <brute18@gmail.com>",
   "dependencies": {
-    "@bugsnag/js": "^8.8.1",
-    "@bugsnag/plugin-express": "^8.8.0",
+    "@bugsnag/js": "~8.8.1",
+    "@bugsnag/plugin-express": "~8.8.0",
     "cors": "^2.8.6",
     "dotenv": "~16.4.7",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0"
+    "express": "~5.2.1",
+    "helmet": "~8.1.0",
+    "zod": "~3.24.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
