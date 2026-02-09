@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАКО-1-1-1
+author: Tester <test@koreni.org.ua>
+date: 2026-02-09T10:30:51.005Z
+id: test-import-1770633020
+location:
+  - 49
+  - 31
+size: 2
+sources:
+  - https://example.com/source
+tableFilename: test-import-1770633020.csv
+tableLocale: pl
+title: E2E Test Table
+yearsRange:
+  - 1920
