@@ -162,7 +162,7 @@ jobs:
 
       - name: Deploy Frontend Files
         run: |
-          rsync -avz -e "ssh" --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
+          rsync -avz --no-o --no-g -e "ssh" --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
 
       - name: Reload Nginx
@@ -204,7 +204,7 @@ jobs:
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
 
           # Sync files
-          rsync -avz -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
+          rsync -avz --no-o --no-g -e "ssh" --delete ./api-source/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
 
       - name: Configure Environment and Install Dependencies
         run: |
