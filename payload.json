@@ -1,0 +1,21 @@
+{
+  "archiveItems": ["ДАКО-1-1-1"],
+  "author": "Tester <test@koreni.org.ua>",
+  "date": "2024-06-01T12:00:00Z",
+  "id": "test-import-1770632580",
+  "location": [49, 31],
+  "records": [
+    {
+      "Name": "Test1",
+      "Year": 1920
+    },
+    {
+      "Name": "Test2",
+      "Year": 1921
+    }
+  ],
+  "sources": ["https://example.com/source"],
+  "tableLocale": "pl",
+  "title": "E2E Test Table",
+  "yearsRange": [1920]
+}
