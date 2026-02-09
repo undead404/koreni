@@ -22,11 +22,6 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile  --prefer-offline
 
-      - name: Install search-middleware dependencies
-        run: |
-          cd search-middleware
-          yarn --frozen-lockfile
-
       - name: Lint
         run: yarn lint
 
@@ -45,11 +40,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
-
-      - name: Install search-middleware dependencies
-        run: |
-          cd search-middleware
-          yarn --frozen-lockfile
 
       - name: Run tests
         run: yarn test

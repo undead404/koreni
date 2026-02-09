@@ -13,5 +13,3 @@ if [ -d ./out ]; then rm -rf ./out; fi
 
 # typesense, search
 if [ -d ./typesense ]; then rm -rf ./typesense; fi
-if [ -d ./search-middleware/node_modules ]; then rm -rf ./search-middleware/node_modules; fi
-if [ -d ./search-middleware/dist ]; then rm -rf ./search-middleware/dist; fi
