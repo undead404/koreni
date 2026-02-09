@@ -219,6 +219,7 @@ jobs:
             echo "GITHUB_OWNER=${{ github.repository_owner }}" >> .env
             echo "GITHUB_REPO=${{ github.repository }}" >> .env
             echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
+            echo "NEXT_PUBLIC_SITE=${{ vars.SITE }}" >> .env
 
             # Install dependencies ON THE SERVER
             yarn install --frozen-lockfile --production --prefer-offline
