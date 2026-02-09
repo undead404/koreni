@@ -16,10 +16,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile  --prefer-offline
 
       - name: Install search-middleware dependencies
         run: |
@@ -39,10 +40,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile --prefer-offline
 
       - name: Install search-middleware dependencies
         run: |
@@ -66,10 +68,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile --prefer-offline
 
       - name: Populate Typesense
         run: yarn typesense:populate
@@ -90,10 +93,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
+          cache: 'yarn'
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile --prefer-offline
 
       - name: Build project
         run: yarn build

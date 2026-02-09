@@ -1,0 +1,21 @@
+{
+  "archiveItems": ["ДАКО-1-1-1"],
+  "author": "Me <me@test.com>",
+  "date": "2026-01-01T00:00:00.000Z",
+  "id": "1900-kyiv-city",
+  "location": [50.4501, 30.5234],
+  "records": [
+    {
+      "ПІБ": "Тест 1",
+      "Рік": 1850
+    },
+    {
+      "ПІБ": "Тест 2",
+      "Рік": 1852
+    }
+  ],
+  "sources": ["https://example.com/source1", "https://example.com/source2"],
+  "tableLocale": "uk",
+  "title": "Тестовий імпорт 1900",
+  "yearsRange": [1900]
+}

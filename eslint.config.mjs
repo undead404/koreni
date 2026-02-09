@@ -230,6 +230,7 @@ export default [
   {
     files: [
       'src/dockerize-typesense/**/*.ts',
+      'src/import/**/*.ts',
       'src/populate-typesense/**/*.ts',
       'search-middleware/**/*.ts',
     ],
