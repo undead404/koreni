@@ -100,6 +100,10 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
 
+      - name: Install API dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+        working-directory: src/server
+
       - name: Build API project
         run: yarn build
         working-directory: src/server
