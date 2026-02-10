@@ -18,6 +18,19 @@ const environmentSchema = z.object({
   POSTHOG_KEY: nonEmptyString,
   POSTHOG_HOST: nonEmptyString,
   TURNSTILE_SECRET_KEY: nonEmptyString,
+  VALID_API_KEYS: z
+    .string()
+    .optional()
+    .default('')
+    .transform(
+      (string_) =>
+        new Set(
+          string_
+            .split(',')
+            .map((key) => key.trim())
+            .filter(Boolean),
+        ),
+    ),
 });
 
 const environment = environmentSchema.parse({
@@ -31,6 +44,7 @@ const environment = environmentSchema.parse({
   POSTHOG_KEY: process.env.POSTHOG_KEY,
   POSTHOG_HOST: process.env.POSTHOG_HOST,
   TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
+  VALID_API_KEYS: process.env.VALID_API_KEYS,
 });
 
 export default environment;

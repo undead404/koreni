@@ -228,6 +228,7 @@ jobs:
             echo "POSTHOG_HOST=${{ vars.POSTHOG_HOST }}" >> .env
             echo "NEXT_PUBLIC_SITE=${{ vars.SITE }}" >> .env
             echo "NODE_ENV=production" >> .env
+            echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
 
             # Install dependencies ON THE SERVER
             yarn install --frozen-lockfile --production --prefer-offline

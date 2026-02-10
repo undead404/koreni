@@ -1,6 +1,8 @@
 import type { RequestHandler } from 'express';
 
 import environment from '../environment';
+import getClientIdentifier from '../helpers/get-client-identifier';
+import isValidApiKey from '../helpers/is-valid-api-key';
 import { protectedImportPayloadSchema } from '../schemata';
 import submitToGithub from '../services/github';
 import posthog from '../services/posthog';
@@ -8,35 +10,43 @@ import validateTurnstile from '../services/validate-turnstile';
 
 const handleSubmit: RequestHandler = async (request, response) => {
   try {
+    // Extract API key from header
+    const apiKey = request.headers['x-api-key'] as string | undefined;
+    const isApiKeyAuth = isValidApiKey(apiKey);
+
     // 1. Валідація даних (Zod)
     const parseResult = protectedImportPayloadSchema.safeParse(request.body);
 
     if (!parseResult.success) {
+      const clientId = getClientIdentifier(request, apiKey);
       posthog.capture({
-        distinctId: request.socket.remoteAddress,
+        distinctId: clientId,
         event: 'payload_validation_failed',
         properties: {
           errors: parseResult.error.errors,
+          authMethod: isApiKeyAuth ? 'api_key' : 'web',
         },
       });
       return response.status(400).json({ error: parseResult.error.format() });
     }
 
     const data = parseResult.data;
-
-    // 2. Валідація Turnstile (Капча) - Обов'язково для VPS!
-    const token = data.turnstileToken;
     const ip =
-      request.headers['x-forwarded-for'] || request.socket.remoteAddress;
+      (request.headers['x-forwarded-for'] as string) ||
+      request.socket.remoteAddress;
+    const clientId = getClientIdentifier(request, apiKey);
 
-    if (environment.NODE_ENV === 'production') {
+    // 2. Валідація Turnstile (Капча) - Обов'язково для VPS, але не для API!
+    if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
+      const token = data.turnstileToken;
+
       const turnstileValidationResult = await validateTurnstile(
         ip as string,
         token,
       );
       if (!turnstileValidationResult.success) {
         posthog.capture({
-          distinctId: ip as string,
+          distinctId: clientId,
           event: 'turnstile_validation_failed',
           properties: {
             ip,
@@ -66,9 +76,13 @@ const handleSubmit: RequestHandler = async (request, response) => {
         .status(502)
         .json({ error: 'Failed to trigger GitHub pipeline' });
     }
+
     posthog.capture({
-      distinctId: ip as string,
+      distinctId: clientId,
       event: 'pr_creation_triggered',
+      properties: {
+        authMethod: isApiKeyAuth ? 'api_key' : 'web',
+      },
     });
 
     return response.json({ success: true, message: 'PR creation started' });
