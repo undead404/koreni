@@ -8,7 +8,7 @@ export default async function getTypesenseAdminKey(
   apiKey: string,
   isBootstrap: boolean,
 ) {
-  console.log('getTypesenseAdminKey', apiKey, isBootstrap);
+  console.log('getTypesenseAdminKey called', { isBootstrap });
   if (!isBootstrap && process.env.TYPESENSE_ADMIN_KEY) {
     console.log('Typesense admin key already exists.');
     return process.env.TYPESENSE_ADMIN_KEY;
