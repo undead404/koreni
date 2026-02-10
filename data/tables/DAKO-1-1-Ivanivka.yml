@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-1-1-1
+  - ДАКО-1-1-2
+author: John Doe <john.doe@example.com>
+date: 2026-02-10T12:05:22.084Z
+id: DAKO-1-1-Ivanivka
+location:
+  - 50.4501
+  - 30.5234
+size: 4
+sources:
+  - https://example.com/source1
+  - https://example.com/source2
+tableFilename: DAKO-1-1-Ivanivka.csv
+tableLocale: pl
+title: Sample Data Submission
+yearsRange:
+  - 1990
+  - 2020
