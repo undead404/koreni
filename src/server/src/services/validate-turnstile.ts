@@ -1,5 +1,5 @@
-import environment from './environment';
-import { turnstileResponseSchema } from './schemata';
+import environment from '../environment';
+import { turnstileResponseSchema } from '../schemata';
 
 export default async function validateTurnstile(ip: string, token: string) {
   const formData = new FormData();

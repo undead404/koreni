@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { importPayloadSchema } from '../shared/schemas/import';
+import { importPayloadSchema } from '../../shared/schemas/import';
 
 export const protectedImportPayloadSchema = importPayloadSchema.extend({
   secret: z.string().min(1), // Додаткове поле для секретного ключа
