@@ -2,6 +2,8 @@
 
 A project aimed to provide full-text search through ambiguous indexations of Ukrainian genealogical documents collected from volunteers.
 
+For data integration see [API docs](./src/server/README.md).
+
 ## License
 
 Koreni's [data folder](./data) is licensed under [ODbL license](./LICENSE.md).
