@@ -3,14 +3,13 @@ import express from 'express';
 import helmet from 'helmet';
 
 import handleSubmit from './handlers/handle-submit';
+import { rateLimitMiddleware } from './middlewares/rate-limiter';
 import { bugsnagMiddleware } from './bugsnag';
 import environment from './environment';
 
 const app = express();
 
 app.use(helmet());
-app.use(cors({ origin: environment.NEXT_PUBLIC_SITE }));
-app.use(express.json({ limit: '60kb' }));
 if (bugsnagMiddleware) {
   app.use(bugsnagMiddleware.requestHandler);
 } else {
@@ -18,6 +17,9 @@ if (bugsnagMiddleware) {
     'Bugsnag middleware is not initialized. Requests will not be reported to Bugsnag.',
   );
 }
+app.use(cors({ origin: environment.NEXT_PUBLIC_SITE }));
+app.use(express.json({ limit: '60kb' }));
+app.use(rateLimitMiddleware);
 
 app.post('/api/submit', handleSubmit);
 

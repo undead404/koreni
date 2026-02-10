@@ -12,7 +12,22 @@ const handleSubmit: RequestHandler = async (request, response) => {
   try {
     // Extract API key from header
     const apiKey = request.headers['x-api-key'] as string | undefined;
+    const ip =
+      (request.headers['x-forwarded-for'] as string) ||
+      request.socket.remoteAddress;
+    const clientId = getClientIdentifier(request, apiKey);
     const isApiKeyAuth = isValidApiKey(apiKey);
+
+    if (apiKey && !isApiKeyAuth) {
+      posthog.capture({
+        distinctId: clientId,
+        event: 'invalid_api_key_attempt',
+        properties: {
+          apiKeyProvided: !!apiKey,
+        },
+      });
+      return response.status(401).json({ error: 'Invalid API key' });
+    }
 
     // 1. Валідація даних (Zod)
     const parseResult = protectedImportPayloadSchema.safeParse(request.body);
@@ -31,10 +46,6 @@ const handleSubmit: RequestHandler = async (request, response) => {
     }
 
     const data = parseResult.data;
-    const ip =
-      (request.headers['x-forwarded-for'] as string) ||
-      request.socket.remoteAddress;
-    const clientId = getClientIdentifier(request, apiKey);
 
     // 2. Валідація Turnstile (Капча) - Обов'язково для VPS, але не для API!
     if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
