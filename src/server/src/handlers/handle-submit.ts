@@ -40,6 +40,19 @@ const handleSubmit: RequestHandler = async (request, response) => {
     if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
       const token = data.turnstileToken;
 
+      if (!token) {
+        posthog.capture({
+          distinctId: clientId,
+          event: 'turnstile_token_missing',
+          properties: {
+            ip,
+          },
+        });
+        return response
+          .status(400)
+          .json({ error: 'Captcha token is required' });
+      }
+
       const turnstileValidationResult = await validateTurnstile(
         ip as string,
         token,

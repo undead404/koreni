@@ -3,8 +3,7 @@ import { z } from 'zod';
 import { importPayloadSchema } from '../../shared/schemas/import';
 
 export const protectedImportPayloadSchema = importPayloadSchema.extend({
-  secret: z.string().min(1), // Додаткове поле для секретного ключа
-  turnstileToken: z.string().min(1), // Додаткове поле для токена турнікета
+  turnstileToken: z.string().min(1).optional(), // Додаткове поле для токена турнікета
 });
 
 export type ProtectedImportPayload = z.infer<
