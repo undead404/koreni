@@ -7,8 +7,8 @@ const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
   NEXT_PUBLIC_BUGSNAG_API_KEY: z.string().optional(),
-  NEXT_PUBLIC_POSTHOG_KEY: nonEmptyString,
-  NEXT_PUBLIC_POSTHOG_HOST: nonEmptyString,
+  NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
+  NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
   NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: nonEmptyString,
   NEXT_PUBLIC_TYPESENSE_HOST: nonEmptyString,
   NEXT_PUBLIC_SITE: nonEmptyString,
