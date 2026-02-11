@@ -35,6 +35,7 @@ input[type='search']::-webkit-search-results-decoration {
 
   --note-bg-color: #eee;
 
+  --success-color: #10b981;
   --error-color: #ff4747;
 }
 
@@ -193,6 +194,7 @@ hr {
 
     --note-bg-color: #303030;
 
+    --success-color: #10b981;
     --error-color: #ff4747;
   }
 
