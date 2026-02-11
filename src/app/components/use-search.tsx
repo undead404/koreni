@@ -5,7 +5,7 @@ import posthog from 'posthog-js';
 import { useCallback, useState } from 'react';
 
 import environment from '../environment';
-import ActiveBugsnag from '../services/bugsnag';
+import { initBugsnag } from '../services/bugsnag';
 import search, { type SearchResult } from '../services/search';
 import getTypesenseClient from '../services/typesense';
 
@@ -51,7 +51,7 @@ export function useSearch() {
     } catch (error_) {
       setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
       console.error(error_);
-      ActiveBugsnag.notify(error_ as NotifiableError);
+      initBugsnag().notify(error_ as NotifiableError);
       posthog.captureException(error_ as Error);
     } finally {
       setLoading(false);

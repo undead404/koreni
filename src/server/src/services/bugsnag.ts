@@ -1,7 +1,7 @@
 import Bugsnag from '@bugsnag/js';
 import BugsnagPluginExpress from '@bugsnag/plugin-express';
 
-import environment from './environment';
+import environment from '../environment';
 
 if (environment.BUGSNAG_API_API_KEY) {
   Bugsnag.start({

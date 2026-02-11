@@ -1,0 +1,181 @@
+/* CookieBanner.module.css */
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: white;
+  border-top: 1px solid #e5e7eb; /* gray-200 */
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    padding: 1.5rem;
+  }
+}
+
+/* --- Layouts --- */
+
+/* Контейнер для простого вигляду */
+.containerSimple {
+  max-width: 80rem; /* max-w-7xl */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .containerSimple {
+    flex-direction: row;
+  }
+}
+
+/* Контейнер для налаштувань */
+.containerSettings {
+  max-width: 42rem; /* max-w-2xl */
+  margin: 0 auto;
+}
+
+/* --- Text Typography --- */
+
+.textBlock {
+  font-size: 0.875rem; /* text-sm */
+  color: #374151; /* text-gray-700 */
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.settingsTitle {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 0.75rem; /* text-xs */
+  color: #6b7280; /* text-gray-500 */
+  margin-top: 0.25rem;
+}
+
+/* --- Buttons --- */
+
+.buttonsGroup {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Загальні стилі для кнопок */
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btnSecondary {
+  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #4b5563; /* text-gray-600 */
+}
+
+.btnSecondary:hover {
+  background-color: #e5e7eb; /* bg-gray-200 */
+}
+
+.btnOutline {
+  background-color: transparent;
+  border-color: #d1d5db; /* border-gray-300 */
+  color: #4b5563;
+}
+
+.btnOutline:hover {
+  background-color: #f9fafb; /* hover:bg-gray-50 */
+}
+
+.btnPrimary {
+  background-color: black;
+  color: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btnPrimary:hover {
+  background-color: #1f2937; /* hover:bg-gray-800 */
+}
+
+.btnLink {
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btnLink:hover {
+  color: black;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* --- Options List (Settings) --- */
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  background-color: #f9fafb; /* bg-gray-50 default for necessary */
+}
+
+.optionItemInteractive {
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.optionItemInteractive:hover {
+  background-color: #f9fafb;
+}
+
+.optionLabel {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* --- Checkbox --- */
+.checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: black; /* Сучасний спосіб фарбувати чекбокси */
+  cursor: pointer;
+}
+
+.checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

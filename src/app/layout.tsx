@@ -1,14 +1,11 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import Script from 'next/script';
 
+import CookieBanner from './components/cookie-banner';
+import Footer from './components/footer';
 import Header from './components/header';
 
 import './globals.css';
 import styles from './layout.module.css';
-
-import githubIcon from './assets/github.svg';
 
 export const metadata: Metadata = {
   title: 'Корені',
@@ -22,35 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <head>
-        <Script id="sa-placeholder">{`window.sa_event=window.sa_event||function(){var a=[].slice.call(arguments);window.sa_event.q?window.sa_event.q.push(a):window.sa_event.q=[a]};`}</Script>
-      </head>
       <body>
         <div className={styles.page}>
           <Header />
           <main className={styles.main}>{children}</main>
-          <footer className={styles.footer}>
-            <p>
-              Дані поширюються за <Link href="/license">ліцензією ODbL</Link>.
-              Код доступний на{' '}
-              <a
-                href="https://github.com/undead404/koreni"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="undead404/koreni на GitHub"
-              >
-                GitHub&nbsp;
-                <Image
-                  src={githubIcon}
-                  alt="GitHub logo"
-                  className="filter-inverted"
-                  height={20}
-                  width={20}
-                />
-              </a>
-              .
-            </p>
-          </footer>
+          <Footer />
+          <CookieBanner />
         </div>
       </body>
     </html>

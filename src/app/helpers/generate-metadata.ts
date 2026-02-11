@@ -107,6 +107,9 @@ export function generateIndexationMetadata(
   })();
 
   const metadata: Metadata = {
+    alternates: {
+      canonical,
+    },
     title: item.title,
     description,
     metadataBase: new URL(siteUrl),

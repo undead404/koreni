@@ -4,7 +4,7 @@ import helmet from 'helmet';
 
 import handleSubmit from './handlers/handle-submit';
 import { rateLimitMiddleware } from './middlewares/rate-limiter';
-import { bugsnagMiddleware } from './bugsnag';
+import { bugsnagMiddleware } from './services/bugsnag';
 import environment from './environment';
 
 const app = express();

@@ -27,14 +27,3 @@
     max-width: 768px;
   }
 }
-
-.footer {
-  padding: calc(var(--side-gap) / 2) var(--side-gap);
-  text-align: center;
-  color: var(--description-color);
-}
-
-.footer img {
-  display: inline-block;
-  vertical-align: text-bottom;
-}

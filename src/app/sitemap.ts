@@ -35,6 +35,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       url: new URL('/license/', environment.NEXT_PUBLIC_SITE).toString(),
     },
+    {
+      changeFrequency: 'yearly',
+      lastModified: new Date(2026, 1, 11),
+      url: new URL('/privacy/', environment.NEXT_PUBLIC_SITE).toString(),
+    },
     ...tablesMetadata.flatMap((tableMetadata) => {
       const numberOfPages = Math.ceil(tableMetadata.size / PER_PAGE);
       return Array.from({ length: numberOfPages }, (item, index) => {
