@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
+import { Toaster } from 'sonner';
 
 import Header from './components/header';
 
@@ -52,6 +53,7 @@ export default function RootLayout({
             </p>
           </footer>
         </div>
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );
