@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 100vw;
+  width: 100vw;
+  z-index: 1;
+}
+
+.title {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+}
+
+.image {
+  height: 300px;
+  max-width: 100%;
+  width: auto;
+}

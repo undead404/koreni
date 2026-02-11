@@ -5,7 +5,7 @@ import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
 import getSearchParameters from '../helpers/get-search-parameters';
-import withErrorBoundary from '../hocs/with-error-boundary';
+import withProviders from '../hocs/with-providers';
 
 import IndexTableRow from './index-table-row';
 
@@ -70,4 +70,4 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   );
 }
 
-export default withErrorBoundary(IndexTable);
+export default withProviders(IndexTable);

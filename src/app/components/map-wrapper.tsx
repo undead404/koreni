@@ -6,7 +6,7 @@ import { type MapProperties } from './map';
 
 const Map = lazy(() => import('./map'));
 
-import withErrorBoundary from '../hocs/with-error-boundary';
+import withProviders from '../hocs/with-providers';
 
 /**
  * This components enables to load Map component lazily
@@ -24,4 +24,4 @@ export function MapWrapper(properties: MapProperties) {
   );
 }
 
-export default withErrorBoundary(MapWrapper);
+export default withProviders(MapWrapper);
