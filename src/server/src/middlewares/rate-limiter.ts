@@ -4,7 +4,7 @@ import { RateLimiterMemory } from 'rate-limiter-flexible';
 // Rate limit per IP: 10 requests per 15 minutes
 const rateLimiterIp = new RateLimiterMemory({
   points: 10,
-  duration: 15 * 60,
+  duration: 60 * 60,
 });
 
 // Rate limit per API key: 10 requests per hour (much more generous)
@@ -18,6 +18,9 @@ export const rateLimitMiddleware: RequestHandler = async (
   response,
   next,
 ) => {
+  if (request.path === '/health') {
+    return next();
+  }
   try {
     const apiKey = request.headers['x-api-key'] as string | undefined;
     const isApiAuthenticated = !!apiKey;
