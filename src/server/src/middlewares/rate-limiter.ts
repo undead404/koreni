@@ -18,9 +18,6 @@ export const rateLimitMiddleware: RequestHandler = async (
   response,
   next,
 ) => {
-  if (request.path === '/health') {
-    return next();
-  }
   try {
     const apiKey = request.headers['x-api-key'] as string | undefined;
     const isApiAuthenticated = !!apiKey;
