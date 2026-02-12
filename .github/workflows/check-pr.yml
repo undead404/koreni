@@ -1,0 +1,50 @@
+name: Check PR
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+
+      - name: Install server dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+        working-directory: src/server
+
+      - name: Lint
+        run: yarn lint
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+
+      - name: Run tests
+        run: yarn test
