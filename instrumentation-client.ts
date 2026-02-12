@@ -17,7 +17,7 @@ if (
     defaults: '2025-11-30',
     ip: false,
     loaded: (posthog) => {
-      if (process.env.NODE_ENV === 'development') posthog.debug();
+      if (environment.NODE_ENV === 'development') posthog.debug();
     },
     opt_out_capturing_by_default: true,
     persistence: 'memory',
