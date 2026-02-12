@@ -1,43 +1,33 @@
-import type { RequestHandler } from 'express';
+import { getConnInfo } from '@hono/node-server/conninfo';
+import type { MiddlewareHandler } from 'hono';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
-// Rate limit per IP: 10 requests per 15 minutes
 const rateLimiterIp = new RateLimiterMemory({
   points: 10,
   duration: 60 * 60,
 });
 
-// Rate limit per API key: 10 requests per hour (much more generous)
 const rateLimiterApiKey = new RateLimiterMemory({
   points: 10,
   duration: 60 * 60,
 });
 
-export const rateLimitMiddleware: RequestHandler = async (
-  request,
-  response,
-  next,
-) => {
+export const rateLimitMiddleware: MiddlewareHandler = async (c, next) => {
   try {
-    const apiKey = request.headers['x-api-key'] as string | undefined;
+    const apiKey = c.req.header('x-api-key');
     const isApiAuthenticated = !!apiKey;
 
     if (isApiAuthenticated && apiKey) {
-      // Use API key as identifier for API requests
       await rateLimiterApiKey.consume(apiKey);
     } else {
-      // Use IP for web requests (stricter limit)
+      const connInfo = getConnInfo(c);
       const ip =
-        (request.headers['x-forwarded-for'] as string) ||
-        request.socket.remoteAddress ||
-        'unknown';
+        c.req.header('x-forwarded-for') || connInfo.remote.address || 'unknown';
       await rateLimiterIp.consume(ip);
     }
 
-    next();
+    await next();
   } catch {
-    return response.status(429).json({
-      error: 'Too many requests. Please try again later.',
-    });
+    return c.json({ error: 'Too many requests. Please try again later.' }, 429);
   }
 };

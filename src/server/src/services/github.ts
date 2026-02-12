@@ -1,36 +1,91 @@
+import { Octokit } from '@octokit/rest';
+
 import environment from '../environment';
 
-import posthog from './posthog';
+const octokit = new Octokit({ auth: environment.GITHUB_TOKEN });
 
-export default async function submitToGithub(data: unknown, ip: string) {
-  const githubResponse = await fetch(
-    `https://api.github.com/repos/${environment.GITHUB_OWNER}/${environment.GITHUB_REPO}/dispatches`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${environment.GITHUB_TOKEN}`,
-        Accept: 'application/vnd.github.v3+json',
-        'User-Agent': 'Koreni-API-Server',
-      },
-      body: JSON.stringify({
-        event_type: 'import_data',
-        client_payload: data,
-      }),
-    },
+const OWNER = environment.GITHUB_OWNER;
+const REPO = environment.GITHUB_REPO;
+const BASE_BRANCH = 'main';
+
+interface FilePayload {
+  path: string;
+  content: string;
+  mode: '100644' | '100755' | '040000' | '160000' | '120000';
+  type: 'blob' | 'tree' | 'commit';
+}
+
+export default async function submitToGithub(
+  files: FilePayload[],
+  meta: { id: string; title: string },
+) {
+  const branchName = `import/${meta.id}`;
+
+  // 1. Get the SHA of the base branch
+  const { data: referenceData } = await octokit.git.getRef({
+    owner: OWNER,
+    repo: REPO,
+    ref: `heads/${BASE_BRANCH}`,
+  });
+  const baseSha = referenceData.object.sha;
+
+  // 2. Create Blobs (File contents)
+  const treeItems = await Promise.all(
+    files.map(async (file) => {
+      const { data: blob } = await octokit.git.createBlob({
+        owner: OWNER,
+        repo: REPO,
+        content: file.content,
+        encoding: 'utf8',
+      });
+      return {
+        path: file.path,
+        mode: file.mode,
+        type: file.type,
+        sha: blob.sha,
+      };
+    }),
   );
 
-  if (!githubResponse.ok) {
-    const errorText = await githubResponse.text();
-    console.error('GitHub API Error:', errorText);
-    posthog.capture({
-      distinctId: ip,
-      event: 'github_api_error',
-      properties: {
-        status: githubResponse.status,
-        statusText: githubResponse.statusText,
-        response: errorText,
-      },
-    });
-    throw new Error(`GitHub API Error: ${errorText}`);
-  }
+  // 3. Create Tree (Snapshot of directory structure)
+  const { data: tree } = await octokit.git.createTree({
+    owner: OWNER,
+    repo: REPO,
+    base_tree: baseSha,
+    tree: treeItems,
+  });
+
+  // 4. Create Commit
+  const { data: commit } = await octokit.git.createCommit({
+    owner: OWNER,
+    repo: REPO,
+    message: `feat(data): import ${meta.title} (${meta.id})`,
+    tree: tree.sha,
+    parents: [baseSha],
+    author: {
+      name: 'API Import Bot',
+      email: 'bot@example.com',
+      date: new Date().toISOString(),
+    },
+  });
+
+  // 5. Create Branch Reference
+  await octokit.git.createRef({
+    owner: OWNER,
+    repo: REPO,
+    ref: `refs/heads/${branchName}`,
+    sha: commit.sha,
+  });
+
+  // 6. Create Pull Request
+  const { data: pr } = await octokit.pulls.create({
+    owner: OWNER,
+    repo: REPO,
+    title: `Import: ${meta.title}`,
+    head: branchName,
+    base: BASE_BRANCH,
+    body: `Automated import`,
+  });
+
+  return { prNumber: pr.number, htmlUrl: pr.html_url };
 }

@@ -14,9 +14,9 @@ const environmentSchema = z.object({
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
     .default('development'),
-  PORT: z.string().optional().default('4000'),
-  POSTHOG_KEY: nonEmptyString,
-  POSTHOG_HOST: nonEmptyString,
+  PORT: z.string().optional().default('4000').transform(Number),
+  POSTHOG_KEY: nonEmptyString.optional(),
+  POSTHOG_HOST: nonEmptyString.optional(),
   TURNSTILE_SECRET_KEY: nonEmptyString,
   VALID_API_KEYS: z
     .string()

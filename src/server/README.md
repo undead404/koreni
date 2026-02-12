@@ -9,27 +9,21 @@ First, you must acquire an API key. Drop us a line at [brute18@gmail.com](mailto
 Then, you can submit your indexation data to the API like this (see comments):
 
 ```sh
-curl -X POST https://koreni.org.ua/api/submit \
-  -H "x-api-key: %YOUR_API_KEY%" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "archiveItems": ["ДАКО-1-1-1", "ДАКО-1-1-2"],
-    "author": "John Doe <john.doe@example.com>",
-    "date": "2024-06-01T12:00:00Z",
-    "id": "DAKO-1-1-Ivanivka",
-    "tableFilename": "ivanivka.csv", # You can make this up, just make it filename-like
-    "location": [50.4501, 30.5234], # Coordinates of the settlement your data is about. If it concerns the whole district, provide coordinates of the district center.
-    "records": [
-      {"year": 1990, "value": 100},
-      {"year": 2000, "value": 150},
-      {"year": 2010, "value": 200},
-      {"year": 2020, "value": 250}
-    ],
-    "sources": ["https://example.com/source1", "https://example.com/source2"],
-    "title": "Sample Data Submission",
-    "tableLocale": "pl", # Possible values: "pl", "ru", "ua"
-    "yearsRange": [1990, 2020] # Either 1 or 2 numbers. If 1 number, all records are assumed to be from that year. If 2 numbers, they are assumed to be the start and end of the range of years covered by the records.
-    }'
+curl -X POST https://your-api-endpoint.com/api/submit \
+  -H "X-Api-Key: your-api-key-here" \
+  -F "file=@file.csv" \
+  -F 'metadata={"archiveItems":["ДАКО-1-1-1","ДАКО-2-2-2"],"author":"Test Author <test@example.com>","date":"2024-01-01","id":"test-table-001","location":[55.75,37.62],"sources":["https://example.com/source1","https://example.com/source2"],"tableLocale":"ru","title":"Test Data Import","yearsRange":[2020,2021]}'
 ```
 
-Max payload size is 60 kB. It is limited by Github Actions dispatching constraints.
+Required fields
+
+- `file`: the CSV file containing the data to be imported
+- `metadata`: a JSON object containing the metadata for the import
+
+## How to run the server locally
+
+1. `cd` into the `src/server` directory
+2. Install dependencies with `yarn install`
+3. Run the server with `yarn dev`
+
+The server will start on port 4000 by default.
