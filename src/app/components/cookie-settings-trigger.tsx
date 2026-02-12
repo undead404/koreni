@@ -2,8 +2,6 @@
 
 import { useCallback } from 'react';
 
-import styles from './cookie-settings-trigger.module.css';
-
 export default function CookieSettingsTrigger() {
   const openSettings = useCallback(() => {
     // Використовуємо window замість globalThis для безпеки типів у DOM,
@@ -14,8 +12,8 @@ export default function CookieSettingsTrigger() {
   return (
     <button
       onClick={openSettings}
-      className={styles.trigger}
       type="button" // Гарна практика явно вказувати type для кнопок
+      className="button-text"
     >
       Налаштування Cookie
     </button>
