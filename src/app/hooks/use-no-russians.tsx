@@ -4,6 +4,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
+import styles from './use-no-russians.module.css';
+
 const useNoRussians = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -21,32 +23,43 @@ const useNoRussians = () => {
   }, [router, pathname, lang]);
 
   useEffect(() => {
-    if (preferredLangs.length > 0) {
-      const ukPos = preferredLangs.findIndex((l) => l.startsWith('uk'));
-      const ruPos = preferredLangs.findIndex((l) => l.startsWith('ru'));
+    if (preferredLangs.length === 0) {
+      return;
+    }
+    const ruPos = preferredLangs.findIndex((l) => l.startsWith('ru'));
+    if (ruPos === -1) {
+      // all good
+      return;
+    }
 
-      if (ukPos !== -1 && ruPos === -1) {
-        // all good
-        return;
-      } else if (ukPos === -1 && ruPos !== -1) {
-        // no ukrainian, only russian
-        router.push('/not-welcome');
-      } else if (ruPos > ukPos) {
-        // light ukrainization
-        toast.error('Лагідна українізація!', {
-          action: (
-            <a href="https://support.google.com/accounts/answer/32047?hl=uk">
-              Як це виправити?
-            </a>
-          ),
-          description: `Ви знали, що ваш браузер використовує російську мову в якості запасної?`,
-          duration: 20_000,
-          icon: '🇺🇦',
-        });
-      } else if (ukPos > ruPos) {
-        // hard ukrainization
-        router.push('/not-welcome');
-      }
+    const ukPos = preferredLangs.findIndex((l) => l.startsWith('uk'));
+
+    if (ukPos === -1) {
+      // no ukrainian, only russian
+      router.push('/not-welcome');
+    } else if (ruPos > ukPos) {
+      // light ukrainization
+      toast.error('Лагідна українізація!', {
+        action: (
+          <a
+            className={styles.help}
+            href="https://support.google.com/accounts/answer/32047?hl=uk"
+          >
+            Як це виправити?
+          </a>
+        ),
+        classNames: {
+          content: styles.content,
+          icon: styles.icon,
+          toast: styles.toast,
+        },
+        description: `Ви знали, що ваш браузер використовує російську мову в якості запасної?`,
+        duration: 20_000,
+        icon: '🇺🇦',
+      });
+    } else if (ukPos > ruPos) {
+      // hard ukrainization
+      router.push('/not-welcome');
     }
   }, [pathname, preferredLangs]);
 
