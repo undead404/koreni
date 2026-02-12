@@ -7,6 +7,10 @@ const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
   NEXT_PUBLIC_BUGSNAG_API_KEY: z.string().optional(),
+  NEXT_PUBLIC_GISCUS_REPO_ID: nonEmptyString,
+  NEXT_PUBLIC_GISCUS_CATEGORY_ID: nonEmptyString,
+  NEXT_PUBLIC_GITHUB_OWNER: nonEmptyString,
+  NEXT_PUBLIC_GITHUB_REPO: nonEmptyString,
   NEXT_PUBLIC_POSTHOG_KEY: nonEmptyString,
   NEXT_PUBLIC_POSTHOG_HOST: nonEmptyString,
   NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: nonEmptyString,
@@ -19,6 +23,10 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse({
   NEXT_PUBLIC_BUGSNAG_API_KEY: process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
+  NEXT_PUBLIC_GISCUS_REPO_ID: process.env.NEXT_PUBLIC_GISCUS_REPO_ID,
+  NEXT_PUBLIC_GISCUS_CATEGORY_ID: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+  NEXT_PUBLIC_GITHUB_OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER,
+  NEXT_PUBLIC_GITHUB_REPO: process.env.NEXT_PUBLIC_GITHUB_REPO,
   NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
   NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
   NEXT_PUBLIC_TYPESENSE_SEARCH_KEY:

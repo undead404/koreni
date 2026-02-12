@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Toaster } from 'sonner';
 
 import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
@@ -26,6 +27,7 @@ export default function RootLayout({
           <Footer />
           <CookieBanner />
         </div>
+        <Toaster position="bottom-right" richColors />
       </body>
     </html>
   );

@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import withErrorBoundary from '../hocs/with-error-boundary';
+import withProviders from '../hocs/with-providers';
 
 import SearchControls from './search-controls';
 import SearchResults from './search-results';
@@ -69,4 +69,4 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   );
 }
 
-export default withErrorBoundary(SearchPage);
+export default withProviders(SearchPage);

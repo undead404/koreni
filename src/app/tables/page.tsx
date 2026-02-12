@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
+import Comments from '../components/comments';
 import environment from '../environment';
 
 import JsonLdTables from './table-json-ld';
@@ -33,6 +34,7 @@ export default async function TablesPage() {
           </li>
         ))}
       </ul>
+      <Comments />
       <JsonLdTables tablesMetadata={tablesMetadata} />
     </>
   );
