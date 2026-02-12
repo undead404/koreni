@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-1-1-1
+  - ДАКО-2-2-2
+author: Test Author <test@example.com>
+date: 2026-02-12T09:06:46.491Z
+id: test-table-001
+location:
+  - 55.75
+  - 37.62
+sources:
+  - https://example.com/source1
+  - https://example.com/source2
+title: Test Data Import
+tableLocale: ru
+yearsRange:
+  - 2020
+  - 2021
+tableFilename: test-table-001.csv
+size: 3
