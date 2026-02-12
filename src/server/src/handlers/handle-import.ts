@@ -65,10 +65,7 @@ const handleImport = async (c: Context) => {
           type: 'blob',
         },
       ],
-      {
-        id: yamlData.id,
-        title: yamlData.title,
-      },
+      yamlData,
     );
 
     return c.json({

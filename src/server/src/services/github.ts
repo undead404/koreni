@@ -1,5 +1,6 @@
 import { Octokit } from '@octokit/rest';
 
+import type { IndexationTable } from '../../../shared/schemas/indexation-table';
 import environment from '../environment';
 
 const octokit = new Octokit({ auth: environment.GITHUB_TOKEN });
@@ -17,7 +18,7 @@ interface FilePayload {
 
 export default async function submitToGithub(
   files: FilePayload[],
-  meta: { id: string; title: string },
+  meta: IndexationTable,
 ) {
   const branchName = `import/${meta.id}`;
 
@@ -77,14 +78,21 @@ export default async function submitToGithub(
     sha: commit.sha,
   });
 
+  const prBody = `Title: ${meta.title}\n\nAuthor: ${meta.author}\n\nDate: ${meta.date.toString()}\n\nId: ${meta.id}\n\nLocation: ${meta.location.join(
+    ', ',
+  )}\n\nSources: ${meta.sources.join(', ')}\n\nTableLocale: ${meta.tableLocale}\n\nTitle: ${meta.title}\n\nYearsRange: ${meta.yearsRange.join(
+    ', ',
+  )}\n\nArchiveItems: ${meta.archiveItems?.join(', ')}\n\n`;
+
   // 6. Create Pull Request
   const { data: pr } = await octokit.pulls.create({
+    labels: ['automated-import'],
     owner: OWNER,
     repo: REPO,
     title: `Import: ${meta.title}`,
     head: branchName,
     base: BASE_BRANCH,
-    body: `Automated import`,
+    body: prBody,
   });
 
   return { prNumber: pr.number, htmlUrl: pr.html_url };
