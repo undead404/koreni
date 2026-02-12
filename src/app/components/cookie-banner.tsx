@@ -43,14 +43,14 @@ export default function CookieBanner() {
       {isSettingsOpen ? (
         // --- 2. Детальні налаштування ---
         <div className={styles.containerSettings}>
-          <h3 className={styles.settingsTitle}>Налаштування файлів Cookie</h3>
+          <h3 className={styles.title}>Налаштування файлів Cookie</h3>
 
           <div className={styles.optionsList}>
             {/* Necessary */}
             <div className={styles.optionItem}>
               <div>
-                <p className={styles.optionLabel}>Технічно необхідні</p>
-                <p className={styles.description}>
+                <p>Технічно необхідні</p>
+                <p className={styles.optionDescription}>
                   Потрібні для роботи сайту (збереження цих налаштувань, а також
                   анонімне логування помилок).
                 </p>
@@ -59,17 +59,15 @@ export default function CookieBanner() {
                 type="checkbox"
                 checked
                 disabled
-                className={styles.checkbox}
+                className="checkbox-primary"
               />
             </div>
 
             {/* Analytics */}
-            <div
-              className={`${styles.optionItem} ${styles.optionItemInteractive}`}
-            >
+            <div className={`${styles.optionItem}`}>
               <div>
-                <p className={styles.optionLabel}>Аналітика (PostHog)</p>
-                <p className={styles.description}>
+                <p>Аналітика (PostHog)</p>
+                <p className={styles.optionDescription}>
                   Допомагає нам зрозуміти, які функції сайту найпопулярніші.
                 </p>
               </div>
@@ -77,19 +75,16 @@ export default function CookieBanner() {
                 type="checkbox"
                 checked={preferences.analytics}
                 onChange={handleAnalyticsChange}
-                className={styles.checkbox}
+                className="checkbox-primary"
               />
             </div>
           </div>
 
-          <div className={styles.footerActions}>
-            <button onClick={close} className={styles.btnLink}>
+          <div className={styles.buttons}>
+            <button onClick={close} className="btn btn-secondary">
               Назад
             </button>
-            <button
-              onClick={save}
-              className={`${styles.btn} ${styles.btnPrimary}`}
-            >
+            <button onClick={save} className="btn btn-primary">
               Зберегти вибір
             </button>
           </div>
@@ -97,30 +92,21 @@ export default function CookieBanner() {
       ) : (
         // --- 1. Простий вигляд ---
         <div className={styles.containerSimple}>
-          <div className={styles.textBlock}>
-            <span className={styles.title}>Ми цінуємо вашу приватність</span>
+          <div>
+            <h3 className={styles.title}>Ми цінуємо вашу приватність</h3>
             <p>
               Ми використовуємо файли cookie для покращення роботи сайту та
               аналітики. Ви можете погодитися на всі або налаштувати їх окремо.
             </p>
           </div>
-          <div className={styles.buttonsGroup}>
-            <button
-              onClick={open}
-              className={`${styles.btn} ${styles.btnSecondary}`}
-            >
+          <div className={styles.buttons}>
+            <button onClick={open} className="btn btn-outlined">
               Налаштувати
             </button>
-            <button
-              onClick={rejectAll}
-              className={`${styles.btn} ${styles.btnOutline}`}
-            >
+            <button onClick={rejectAll} className="btn btn-secondary">
               Відхилити
             </button>
-            <button
-              onClick={acceptAll}
-              className={`${styles.btn} ${styles.btnPrimary}`}
-            >
+            <button onClick={acceptAll} className="btn btn-primary">
               Прийняти всі
             </button>
           </div>

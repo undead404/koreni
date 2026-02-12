@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         {/* Ліва частина: Копірайт */}
-        <span>
+        <p>
           Дані поширюються за <Link href="/license">ліцензією ODbL</Link>. Код
           доступний на{' '}
           <a
@@ -31,7 +31,7 @@ export default function Footer() {
             />
           </a>
           .
-        </span>
+        </p>
 
         {/* Права частина: Посилання */}
         <nav className={styles.links}>
@@ -39,7 +39,6 @@ export default function Footer() {
             href="https://t.me/koreni_org_ua"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.link} ${styles.statusLink}`}
             title="Канал у Telegram"
           >
             Telegram
@@ -48,7 +47,7 @@ export default function Footer() {
             href="https://status.koreni.org.ua/uk"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${styles.link} ${styles.statusLink}`}
+            className={styles.status}
             title="Перевірити працездатність системи"
           >
             <span className={styles.statusDot} aria-hidden="true" />
@@ -56,9 +55,7 @@ export default function Footer() {
           </a>
 
           {/* 2. Політика конфіденційності */}
-          <Link href="/privacy" className={styles.link}>
-            Політика конфіденційності
-          </Link>
+          <Link href="/privacy">Політика конфіденційності</Link>
 
           {/* 3. Тригер налаштувань Cookie */}
           <CookieSettingsTrigger />
