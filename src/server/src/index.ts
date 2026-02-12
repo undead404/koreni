@@ -1,84 +1,74 @@
-import cors from 'cors';
-import express, { type Request, type Response } from 'express';
-import helmet from 'helmet';
+import { serve } from '@hono/node-server';
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { secureHeaders } from 'hono/secure-headers';
 
-import handleSubmit from './handlers/handle-submit';
+import handleImport from './handlers/handle-import';
+import handleHealth from './handlers/health';
+import notifyAboutError from './helpers/notify-about-error';
+import errorMiddleware from './middlewares/error';
 import { rateLimitMiddleware } from './middlewares/rate-limiter';
-import { bugsnagMiddleware } from './bugsnag';
+import uploadMiddleware from './middlewares/upload';
 import environment from './environment';
 
-const app = express();
+const app = new Hono();
 
 // Security headers - should be first
-app.use(helmet());
+app.use(secureHeaders());
 
-// CORS configuration
-app.use(cors({ origin: environment.NEXT_PUBLIC_SITE }));
+// CORS configuration for NEXT_PUBLIC_SITE (frontend)
+app.use(
+  '*',
+  cors({
+    origin: [environment.NEXT_PUBLIC_SITE],
+    allowHeaders: ['X-Api-Key', 'X-Forwarded-For', 'Content-Type'],
+    allowMethods: ['POST', 'GET', 'OPTIONS'],
+  }),
+);
 
 // Body parsing
-app.use(express.json({ limit: '60kb' }));
+app.use(uploadMiddleware);
 
-// Bugsnag Request Handler (must be the first middleware logic)
-if (bugsnagMiddleware) {
-  app.use(bugsnagMiddleware.requestHandler);
-} else {
-  console.warn(
-    'Bugsnag middleware is not initialized. Requests will not be reported to Bugsnag.',
-  );
+if (environment.NODE_ENV === 'production') {
+  // Rate Limiting (applied specifically to API routes)
+  app.use('/api/*', rateLimitMiddleware);
 }
 
-// Rate Limiting (applied specifically to API routes)
-app.use('/api', rateLimitMiddleware);
+app.onError(errorMiddleware);
 
 // Routes
-app.post('/api/submit', handleSubmit);
+app.post('/api/submit', handleImport);
 
-app.get('/health', (_request, response) => {
-  response.json({ status: 'ok' });
-});
+app.get('/health', handleHealth);
 
 // 404 Handler for undefined routes
-app.use((_request: Request, response: Response) => {
-  response.status(404).json({ error: 'Not Found' });
+app.notFound((c) => {
+  return c.json({ error: 'Not found' }, 404);
 });
 
-// Bugsnag Error Handler (must be before any other error middleware)
-if (bugsnagMiddleware) {
-  app.use(bugsnagMiddleware.errorHandler);
-} else {
-  console.warn(
-    'Bugsnag middleware is not initialized. Errors will not be reported to Bugsnag.',
-  );
-}
-
-// Global Error Handler
-
-app.use((error: Error, _request: Request, response: Response) => {
-  console.error('Unhandled error:', error);
-  // Ensure we don't try to send a response if one was already sent
-  if (!response.headersSent) {
-    response.status(500).json({ error: 'Internal Server Error' });
-  }
+const server = serve({
+  fetch: app.fetch,
+  port: environment.PORT,
 });
-
-const server = app.listen(environment.PORT, () => {
-  console.log(`Server running on http://localhost:${environment.PORT}`);
+server.on('listening', () => {
+  console.log(`Server listening on port ${environment.PORT}`);
 });
-
 // Graceful Shutdown
-const shutdown = () => {
-  console.log('Shutting down server...');
-  server.close(() => {
-    console.log('Server closed');
+process.on('SIGINT', () => {
+  server.close((error) => {
+    if (error) {
+      notifyAboutError(error);
+      process.exit(1);
+    }
     process.exit(0);
   });
-
-  // Force close after 10s if connections don't drain
-  setTimeout(() => {
-    console.error('Forcing server shutdown');
-    process.exit(1);
-  }, 10_000);
-};
-
-process.on('SIGTERM', shutdown);
-process.on('SIGINT', shutdown);
+});
+process.on('SIGTERM', () => {
+  server.close((error) => {
+    if (error) {
+      notifyAboutError(error);
+      process.exit(1);
+    }
+    process.exit(0);
+  });
+});

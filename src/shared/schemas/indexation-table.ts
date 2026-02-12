@@ -36,9 +36,7 @@ export const indexationTableSchema = z.object({
   tableLocale: z.enum(['pl', 'ru', 'uk']), // Supported locales for now
   yearsRange: z
     .array(z.number().min(1500).max(new Date().getFullYear()), {
-      message: `Рік повинен бути в діапазоні між 1500 і ${
-        new Date().getFullYear() - 75
-      }`,
+      message: `Рік повинен бути в діапазоні між 1500 і ${new Date().getFullYear()}`,
     })
     .min(1)
     .max(2), // e.g., [1897] (single year) or [1919, 1921] (range)

@@ -15,7 +15,6 @@ export const importPayloadSchema = indexationTableSchema
       .refine((date) => !Number.isNaN(date.getTime()), {
         message: 'Invalid date format. Expected ISO string.',
       }),
-    records: z.array(z.record(z.string(), z.unknown())), // Дозволяємо будь-які значення в записах
   });
 
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
