@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { object, string } from 'zod';
 
 import ArchiveItem from '@/app/components/archive-item';
+import Comments from '@/app/components/comments';
 import ContactGate from '@/app/components/contact-gate';
 import { Details } from '@/app/components/details';
 import IndexTable from '@/app/components/index-table';
@@ -129,6 +130,7 @@ export default async function Table({ params }: TablePageProperties) {
           </div>
         </section>
       </article>
+      <Comments />
       {jsonLd && (
         <script
           type="application/ld+json"
