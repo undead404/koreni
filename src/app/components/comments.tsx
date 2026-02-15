@@ -1,6 +1,6 @@
 'use client';
 
-import Giscus from '@giscus/react';
+import Giscus, { type Repo } from '@giscus/react';
 
 import environment from '../environment';
 
@@ -10,7 +10,7 @@ export default function Comments() {
       <h2 className="text-2xl font-bold mb-6">Обговорення та запитання</h2>
       <Giscus
         id="comments"
-        repo={`${environment.NEXT_PUBLIC_GITHUB_OWNER}/${environment.NEXT_PUBLIC_GITHUB_REPO}`}
+        repo={environment.NEXT_PUBLIC_GITHUB_REPO as Repo}
         repoId={environment.NEXT_PUBLIC_GISCUS_REPO_ID}
         category="Announcements"
         categoryId={environment.NEXT_PUBLIC_GISCUS_CATEGORY_ID}

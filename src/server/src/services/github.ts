@@ -4,7 +4,7 @@ import posthog from './posthog';
 
 export default async function submitToGithub(data: unknown, ip: string) {
   const githubResponse = await fetch(
-    `https://api.github.com/repos/${environment.GITHUB_OWNER}/${environment.GITHUB_REPO}/dispatches`,
+    `https://api.github.com/repos/${environment.GITHUB_REPO}/dispatches`,
     {
       method: 'POST',
       headers: {

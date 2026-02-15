@@ -100,7 +100,6 @@ jobs:
           NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars.BUGSNAG_API_KEY }}
           NEXT_PUBLIC_GISCUS_REPO_ID: ${{ secrets.GISCUS_REPO_ID }}
           NEXT_PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.GISCUS_CATEGORY_ID }}
-          NEXT_PUBLIC_GITHUB_OWNER: ${{ github.repository_owner }}
           NEXT_PUBLIC_GITHUB_REPO: ${{ github.repository }}
           NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
@@ -225,7 +224,6 @@ jobs:
             echo "PORT=4000" > .env
             echo "BUGSNAG_API_API_KEY=${{ secrets.BUGSNAG_API_API_KEY }}" >> .env
             echo "GITHUB_TOKEN=${{ secrets.IMPORT_TOKEN }}" >> .env
-            echo "GITHUB_OWNER=${{ github.repository_owner }}" >> .env
             echo "GITHUB_REPO=${{ github.repository }}" >> .env
             echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
             echo "POSTHOG_KEY=${{ secrets.POSTHOG_KEY }}" >> .env
