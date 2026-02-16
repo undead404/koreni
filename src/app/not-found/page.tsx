@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-import ActiveBugsnag from '../services/bugsnag';
+import { initBugsnag } from '../services/bugsnag';
 
 import styles from './page.module.css';
 
@@ -15,7 +15,7 @@ class NotFoundError extends Error {
 
 export default function NotFound() {
   useEffect(() => {
-    ActiveBugsnag.notify(new NotFoundError(globalThis.location.pathname));
+    initBugsnag().notify(new NotFoundError(globalThis.location.pathname));
   }, []);
   return (
     <div className={styles.container}>

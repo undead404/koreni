@@ -49,6 +49,14 @@ jobs:
 
       - name: Run tests
         run: yarn test
+        env:
+          NEXT_PUBLIC_GITHUB_OWNER: owner
+          NEXT_PUBLIC_GITHUB_REPO: repo
+          NEXT_PUBLIC_GISCUS_REPO_ID: repo-id
+          NEXT_PUBLIC_GISCUS_CATEGORY_ID: category-id
+          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
+          NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
+          NEXT_PUBLIC_SITE: site
 
   populate-typesense:
     runs-on: ubuntu-latest
