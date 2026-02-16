@@ -14,13 +14,11 @@
   line-height: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #111827;
 }
 
 .subtitle {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  color: #4b5563;
   margin-left: auto;
   margin-right: auto;
 }
@@ -53,7 +51,6 @@
 .card {
   height: 100%;
   padding: 1.5rem;
-  background-color: white;
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -77,20 +74,17 @@
 }
 
 .arrow {
-  color: #9ca3af;
   font-size: 0.875rem;
   transition: color 0.2s;
 }
 
 .cardLink:hover .arrow {
-  color: #4b5563;
 }
 
 .name {
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
-  color: #111827;
   margin-bottom: 0.5rem;
   transition: color 0.2s;
 }
@@ -110,19 +104,16 @@
   font-size: 1.875rem;
   line-height: 2.25rem;
   font-weight: 900;
-  color: #1f2937;
 }
 
 .powerLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #6b7280;
 }
 
 .footer {
   margin-top: 0.5rem;
   font-size: 0.875rem;
-  color: #6b7280;
 }
 
 /* Бейджі рангів */
