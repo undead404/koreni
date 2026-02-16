@@ -7,7 +7,6 @@ const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
   BUGSNAG_API_API_KEY: nonEmptyString.optional(),
-  GITHUB_OWNER: nonEmptyString,
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
   NEXT_PUBLIC_SITE: nonEmptyString,
@@ -35,7 +34,6 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
-  GITHUB_OWNER: process.env.GITHUB_OWNER,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,

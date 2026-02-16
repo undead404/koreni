@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import Head from 'next/head';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { object, string } from 'zod';
 
 import ArchiveItem from '@/app/components/archive-item';
 import Comments from '@/app/components/comments';
-import ContactGate from '@/app/components/contact-gate';
 import { Details } from '@/app/components/details';
 import IndexTable from '@/app/components/index-table';
 import MapWrapper from '@/app/components/map-wrapper';
@@ -18,6 +18,8 @@ import {
   generateJsonLd,
 } from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
+import removeEmails from '@/app/helpers/remove-emails';
+import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 import combinedPoints from '@/app/services/map-points';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
@@ -63,6 +65,9 @@ export default async function Table({ params }: TablePageProperties) {
   void sourcesLinks.shift(); // remove first comma
 
   const jsonLd = page === 1 ? generateJsonLd(tableMetadata) : null;
+  const authorName = tableMetadata.author
+    ? removeEmails(tableMetadata.author)
+    : 'невідомі';
 
   return (
     <>
@@ -79,11 +84,9 @@ export default async function Table({ params }: TablePageProperties) {
           <h2>Метадані</h2>
           <p>
             Виконавець індексації:{' '}
-            {tableMetadata.author ? (
-              <ContactGate contact={tableMetadata.author} />
-            ) : (
-              'народ України'
-            )}
+            <Link href={`/volunteers/${slugifyUkrainian(authorName)}/`}>
+              {removeEmails(authorName)}
+            </Link>
           </p>
           <p>Таблиці: {sourcesLinks}</p>
           <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>

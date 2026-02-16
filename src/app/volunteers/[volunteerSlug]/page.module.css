@@ -1,0 +1,154 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 2rem;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.backLink {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #111827;
+  text-decoration: underline;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  gap: 3rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.statLabel {
+  color: #6b7280;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Rank Badges (Copy from main page for consistency) */
+.rankBadge {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.rankLegend {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.rankArchivist {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+  border-color: #e9d5ff;
+}
+
+.rankRegistrar {
+  background-color: #dbeafe;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+
+.rankScribe {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #e2e8f0;
+}
+
+/* Divider */
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 2rem 0;
+}
+
+/* Tables List */
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #374151;
+}
+
+.list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.listItem {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.tableLink {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.tableLink:hover {
+  text-decoration: underline;
+}
+
+.tableMeta {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.commentsWrapper {
+  margin-top: 4rem;
+}
+
+.header .contact {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}

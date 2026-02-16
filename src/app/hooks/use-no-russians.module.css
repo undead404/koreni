@@ -1,0 +1,18 @@
+.content {
+  grid-area: content;
+}
+
+.help {
+  grid-area: help;
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.toast {
+  display: grid;
+  grid-template-areas:
+    'icon title'
+    'icon help';
+}
