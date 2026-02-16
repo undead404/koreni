@@ -32,12 +32,10 @@ const useNoRussians = () => {
       return;
     }
 
-    const ukPos = preferredLangs.findIndex((l) => l.startsWith('uk'));
-
-    if (ukPos === -1) {
-      // no ukrainian, only russian
+    if (ruPos === 0) {
+      // russian speaker
       router.push('/not-welcome');
-    } else if (ruPos > ukPos) {
+    } else if (ruPos !== -1) {
       // light ukrainization
       toast.error('Лагідна українізація!', {
         action: (
@@ -57,9 +55,6 @@ const useNoRussians = () => {
         duration: 20_000,
         icon: '🇺🇦',
       });
-    } else if (ukPos > ruPos) {
-      // hard ukrainization
-      router.push('/not-welcome');
     }
   }, [pathname, preferredLangs]);
 
