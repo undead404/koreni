@@ -24,6 +24,9 @@ export default function Header() {
         <Link href="/tables" className={styles.link}>
           Таблиці
         </Link>
+        <Link href="/volunteers" className={styles.link}>
+          Волонтери
+        </Link>
         <Link href="https://status.koreni.org.ua/uk" className={styles.link}>
           Статус
         </Link>
