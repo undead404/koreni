@@ -24,14 +24,12 @@
 }
 
 .backLink:hover {
-  color: #111827;
   text-decoration: underline;
 }
 
 .name {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #111827;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
@@ -50,11 +48,9 @@
 .statValue {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #1f2937;
 }
 
 .statLabel {
-  color: #6b7280;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -107,7 +103,6 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #374151;
 }
 
 .list {
@@ -140,7 +135,6 @@
 
 .tableMeta {
   font-size: 0.875rem;
-  color: #6b7280;
 }
 
 .commentsWrapper {
@@ -149,6 +143,5 @@
 
 .header .contact {
   font-size: 0.875rem;
-  color: #6b7280;
   margin-bottom: 2rem;
 }
