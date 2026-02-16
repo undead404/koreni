@@ -1,9 +1,9 @@
 import React, { type ComponentType, type ReactNode } from 'react';
 
-import ActiveBugsnag from '../services/bugsnag';
+import { initBugsnag } from '../services/bugsnag';
 
-const ErrorBoundary = ActiveBugsnag.isStarted()
-  ? ActiveBugsnag.getPlugin('react')!.createErrorBoundary(React)
+const ErrorBoundary = initBugsnag().isStarted()
+  ? initBugsnag().getPlugin('react')!.createErrorBoundary(React)
   : ({ children }: { children: ReactNode }) => children;
 
 const withErrorBoundary = <P extends object>(
