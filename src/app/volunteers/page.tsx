@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 // Конфігурація рангів прив'язана до класів CSS
-const RANKS = [
+export const RANKS = [
   {
     threshold: 10_000,
     title: 'Хранитель',
@@ -23,7 +23,7 @@ const RANKS = [
   { threshold: 0, title: 'Писар', className: styles.rankNovice },
 ];
 
-function getRank(power: number) {
+export function getRank(power: number) {
   return RANKS.find((r) => power >= r.threshold) || RANKS.at(-1);
 }
 

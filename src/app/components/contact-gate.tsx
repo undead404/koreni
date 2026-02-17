@@ -1,7 +1,7 @@
 'use client';
 import { lazy, Suspense, useState } from 'react';
 
-import { ContactProperties } from './contact';
+import type { ContactProperties } from './contact';
 
 const Contact = lazy(() => import('./contact'));
 

@@ -8,7 +8,7 @@ import { initBugsnag } from '../services/bugsnag';
 
 import styles from './use-no-russians.module.css';
 
-let shown: ReturnType<typeof setTimeout> | null = null;
+let isToastShown = false;
 
 const useNoRussians = () => {
   const router = useRouter();
@@ -17,12 +17,8 @@ const useNoRussians = () => {
   const [preferredLangs, setPreferredLangs] = useState<readonly string[]>([]);
 
   useEffect(() => {
-    if (lang) {
-      if (lang.includes('ru')) {
-        router.push('/not-welcome');
-      } else if (!lang.includes('uk')) {
-        // foreigner; fine
-      }
+    if (lang && lang.includes('ru')) {
+      router.push('/not-welcome');
     }
   }, [router, pathname, lang]);
 
@@ -32,28 +28,23 @@ const useNoRussians = () => {
     }
     const ruPos = preferredLangs.findIndex((l) => l.startsWith('ru'));
     if (ruPos === -1) {
-      // all good
       return;
     }
 
     if (ruPos === 0) {
-      // russian speaker
+      // Primary language is Russian
       router.push('/not-welcome');
-    } else if (ruPos !== -1) {
-      if (shown) {
-        clearTimeout(shown);
-        shown = setTimeout(() => {
-          shown = null;
-        }, 20_000);
-        return;
-      }
-      shown = setTimeout(() => {
-        shown = null;
+    } else if (!isToastShown) {
+      // Secondary language is Russian
+      isToastShown = true;
+      setTimeout(() => {
+        isToastShown = false;
       }, 20_000);
-      // light ukrainization
+
+      // Light ukrainization toast
       import('sonner')
-        .then(({ toast }) => {
-          return toast.error('Лагідна українізація!', {
+        .then(({ toast }) =>
+          toast.error('Лагідна українізація!', {
             action: (
               <a
                 className={styles.help}
@@ -70,15 +61,15 @@ const useNoRussians = () => {
             description: `Ви знали, що ваш браузер використовує російську мову в якості запасної?`,
             duration: 20_000,
             icon: '🇺🇦',
-          });
-        })
+          }),
+        )
         .catch((error) => {
           console.error(error);
           initBugsnag().notify(error as Error);
           posthog.captureException(error);
         });
     }
-  }, [pathname, preferredLangs]);
+  }, [pathname, preferredLangs, router]);
 
   useEffect(() => {
     if (typeof navigator === 'undefined' || typeof document === 'undefined')
@@ -100,8 +91,8 @@ const useNoRussians = () => {
     });
 
     observer.observe(htmlElement, {
-      attributes: true, // Watch for attribute changes
-      attributeFilter: ['lang'], // Only track 'lang' attribute
+      attributes: true,
+      attributeFilter: ['lang'],
     });
 
     return () => observer.disconnect();

@@ -6,11 +6,7 @@ import environment from '../environment';
 import generateTableDescription from '../helpers/generate-table-description';
 import parsePerson from '../helpers/parse-person';
 
-export default function JsonLdTables({
-  tablesMetadata,
-}: {
-  tablesMetadata: IndexationTable[];
-}) {
+export function generateJsonLd(tablesMetadata: IndexationTable[]) {
   const site = environment.NEXT_PUBLIC_SITE.replace(/\/$/, '');
 
   // Для кожної таблиці сформуємо Dataset і/або ListItem
@@ -63,6 +59,16 @@ export default function JsonLdTables({
       },
     ],
   };
+
+  return json;
+}
+
+export default function JsonLdTables({
+  tablesMetadata,
+}: {
+  tablesMetadata: IndexationTable[];
+}) {
+  const json = generateJsonLd(tablesMetadata);
 
   return (
     <script

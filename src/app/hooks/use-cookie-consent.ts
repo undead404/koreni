@@ -13,31 +13,6 @@ export const useCookieConsent = () => {
     marketing: false,
   });
 
-  useEffect(() => {
-    const consent = readCookieConsent();
-
-    if (consent) {
-      setConsent(consent);
-      applyConsent(consent);
-    } else {
-      showBanner(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleOpenSettings = () => {
-      showBanner(true);
-    };
-    globalThis.addEventListener('open-cookie-settings', handleOpenSettings);
-
-    return () => {
-      globalThis.removeEventListener(
-        'open-cookie-settings',
-        handleOpenSettings,
-      );
-    };
-  });
-
   const applyConsent = useCallback((settings: ConsentState) => {
     // Логіка для PostHog
     if (settings.analytics) {
@@ -54,6 +29,31 @@ export const useCookieConsent = () => {
 
     // Встановлюємо дозвіл на відправку
     setBugsnagConsent(settings.necessary);
+  }, []);
+
+  useEffect(() => {
+    const consent = readCookieConsent();
+
+    if (consent) {
+      setConsent(consent);
+      applyConsent(consent);
+    } else {
+      showBanner(true);
+    }
+  }, [applyConsent]);
+
+  useEffect(() => {
+    const handleOpenSettings = () => {
+      showBanner(true);
+    };
+    globalThis.addEventListener('open-cookie-settings', handleOpenSettings);
+
+    return () => {
+      globalThis.removeEventListener(
+        'open-cookie-settings',
+        handleOpenSettings,
+      );
+    };
   }, []);
 
   const saveConsent = useCallback(
