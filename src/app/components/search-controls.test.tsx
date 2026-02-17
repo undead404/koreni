@@ -48,10 +48,10 @@ describe('SearchControls component', () => {
 
   it('should apply the correct classes to the elements', () => {
     const { container } = render(<SearchControls {...defaultProps} />);
-    const div = container.querySelector('div');
+    const form = container.querySelector('form');
     const input = container.querySelector('input');
 
-    expect(div).toHaveClass('container');
+    expect(form).toHaveClass('container');
     expect(input).toHaveClass('input');
   });
 });

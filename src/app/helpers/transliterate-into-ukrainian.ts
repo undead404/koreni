@@ -86,40 +86,34 @@ const specialCasesBeginning = new Map<string, string>([
   ['yi', 'ї'],
   ['yu', 'ю'],
   ['ya', 'я'],
-  ['ye', 'є'],
 ]);
 
 export default function transliterateIntoUkrainian(input: string): string {
-  // console.log(`Transliterating: ${input}`);
   if (!input) {
     return input;
   }
-  if (input.includes(' ')) {
-    return input
-      .split(' ')
-      .map((word) => transliterateIntoUkrainian(word))
-      .join(' ');
-  }
+
   // Check if input is in Cyrillic script
   if (/[\u0400-\u04FF]/.test(input)) {
     return input;
   }
 
+  let result = input;
+
   // Handle special cases at the beginning of the word
   for (const [latin, cyrillic] of specialCasesBeginning.entries()) {
     const regex = new RegExp(`\\b${latin}`, 'g');
-    input = input.replace(regex, cyrillic);
+    result = result.replace(regex, cyrillic);
   }
 
   // Handle digraphs
   for (const [latin, cyrillic] of digraphsMap.entries()) {
-    // console.log(latin);
-    // const regex = new RegExp(latin, 'g');
-    input = input.replaceAll(latin, cyrillic);
+    result = result.replaceAll(latin, cyrillic);
   }
 
   // Transliterate remaining Latin script to Ukrainian Cyrillic script
-  return [...input]
-    .map((char) => latinToCyrillicMap.get(char) || char)
-    .join('');
+  return result.replaceAll(
+    /[A-Z]/gi,
+    (char) => latinToCyrillicMap.get(char) || char,
+  );
 }

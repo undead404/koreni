@@ -14,22 +14,22 @@ const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
 
 export function useSearch() {
-  // TODO rework it to the common data/isLoading/error structure?
-  // TODO add isFetched or other similar variables for appropriate display of results and its state
   const [searchValue, setSearchValue] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [data, setData] = useState<SearchResult[]>([]);
   const [resultsNumber, setResultsNumber] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = useCallback(async (value: string) => {
     setSearchValue(value);
     if (!value) {
-      setResults([]);
+      setData([]);
       setResultsNumber(0);
       return;
     }
-    setLoading(true);
+    setIsLoading(true);
+    setIsFetched(false);
     setError(null);
     try {
       posthog.capture('search_performed', {
@@ -42,8 +42,9 @@ export function useSearch() {
         query: value,
         // ranges,
       });
-      setResults(hits);
+      setData(hits);
       setResultsNumber(hitsNumber);
+      setIsFetched(true);
       posthog.capture('search_results_returned', {
         query: value,
         results_count: hitsNumber,
@@ -54,11 +55,20 @@ export function useSearch() {
       initBugsnag().notify(error_ as NotifiableError);
       posthog.captureException(error_ as Error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }, []);
 
-  return { searchValue, results, resultsNumber, loading, error, handleSearch };
+  return {
+    data,
+    error,
+    handleSearch,
+    isFetched,
+    isLoading,
+    results: data,
+    resultsNumber,
+    searchValue,
+  };
 }
 
 export default useSearch;

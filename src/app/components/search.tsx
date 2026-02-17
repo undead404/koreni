@@ -1,9 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-
-import withProviders from '../hocs/with-providers';
+import { useCallback, useEffect, useState } from 'react';
 
 import SearchControls from './search-controls';
 import SearchResults from './search-results';
@@ -16,9 +14,20 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   const router = useRouter();
   const { error, handleSearch, ...rest } = useSearch();
 
-  const initialQuery = useRef(searchParameters.get('query') || '');
-  const [query, setQuery] = useState(initialQuery.current);
+  const [query, setQuery] = useState(searchParameters.get('query') || '');
   const [isInputChanged, setInputChanged] = useState(false);
+
+  // Sync query with URL changes (e.g. back/forward button)
+  useEffect(() => {
+    const urlQuery = searchParameters.get('query') || '';
+    if (urlQuery !== query) {
+      setQuery(urlQuery);
+      setInputChanged(false);
+      if (!urlQuery) {
+        void handleSearch('');
+      }
+    }
+  }, [searchParameters]);
 
   const handleInput = useCallback(
     (event: CustomEvent<string>) => {
@@ -34,7 +43,13 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
     if (isInputChanged || query) {
       timeoutId = setTimeout(
         () => {
-          router.replace(`/?query=${encodeURIComponent(query)}`);
+          const parameters = new URLSearchParams(searchParameters.toString());
+          if (query) {
+            parameters.set('query', query);
+          } else {
+            parameters.delete('query');
+          }
+          router.replace(`/?${parameters.toString()}`);
           void handleSearch(query);
         },
         isInputChanged ? 1000 : 0,
@@ -50,7 +65,7 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
     // TODO rework results and error to be accessible and connect them to an input
     <section className={styles.section}>
       <SearchControls
-        initialValue={initialQuery.current}
+        initialValue={searchParameters.get('query') || ''}
         // areRefinementsExpanded={areRefinementsExpanded}
         // onFacetChange={(event) => handleFacetChange(event.detail)}
         // onRangeChange={(event) => handleRangeChange(event.detail)}
@@ -69,4 +84,4 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   );
 }
 
-export default withProviders(SearchPage);
+export default SearchPage;

@@ -34,7 +34,7 @@ export default function Footer() {
         </p>
 
         {/* Права частина: Посилання */}
-        <nav className={styles.links}>
+        <nav className={styles.links} aria-label="Footer">
           <a
             href="https://t.me/koreni_org_ua"
             target="_blank"

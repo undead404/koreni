@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import Comments from '../components/comments';
+import CommentsWrapped from '../components/comments-wrapped';
 import environment from '../environment';
 
 import JsonLdTables from './table-json-ld';
@@ -30,11 +31,11 @@ export default async function TablesPage() {
       <ul className={`no-disc ${styles.list}`}>
         {tablesMetadata.map((tableMetadata) => (
           <li key={tableMetadata.id}>
-            <a href={`/${tableMetadata.id}/1/`}>{tableMetadata.title}</a>
+            <Link href={`/${tableMetadata.id}/1/`}>{tableMetadata.title}</Link>
           </li>
         ))}
       </ul>
-      <Comments />
+      <CommentsWrapped />
       <JsonLdTables tablesMetadata={tablesMetadata} />
     </>
   );

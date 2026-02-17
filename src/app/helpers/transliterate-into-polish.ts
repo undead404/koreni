@@ -76,11 +76,10 @@ export default function transliterateIntoPolish(text: string): string {
   if (!text) {
     return '';
   }
-  if (text.includes(' ')) {
-    return text
-      .split(' ')
-      .map((word) => transliterateIntoPolish(word))
-      .join(' ');
-  }
-  return [...text].map((char) => cyrillicToPolishMap[char] || char).join('');
+
+  return text.replaceAll(
+    // eslint-disable-next-line regexp/no-obscure-range
+    /[А-Яа-яЁёЄєЇїІіҐґ']/g,
+    (char) => cyrillicToPolishMap[char] || char,
+  );
 }

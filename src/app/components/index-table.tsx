@@ -5,7 +5,6 @@ import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
 import getSearchParameters from '../helpers/get-search-parameters';
-import withProviders from '../hocs/with-providers';
 
 import IndexTableRow from './index-table-row';
 
@@ -42,10 +41,12 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
           {Object.keys(data[0]).map((key) => (
             <th
               key={key}
-              className={
-                `${key.length < 80 && 'text-nowrap'} ${key.toLowerCase().includes('.pdf') && 'break-word'}`
-                // .pdf is for /DAKO-384-9-Rozvazhivska-prizvyshcha/1/
-              }
+              className={[
+                key.length < 80 ? 'text-nowrap' : '',
+                key.toLowerCase().includes('.pdf') ? 'break-word' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
             >
               {key}
             </th>
@@ -70,4 +71,4 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   );
 }
 
-export default withProviders(IndexTable);
+export default IndexTable;

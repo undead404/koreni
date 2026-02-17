@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { object } from 'zod';
 
-import Comments from '@/app/components/comments'; // Перевірте шлях імпорту
+import CommentsWrapped from '@/app/components/comments-wrapped';
 import ContactGate from '@/app/components/contact-gate';
 import environment from '@/app/environment';
 import getVolunteers from '@/app/helpers/get-volunteers';
-import JsonLdTables from '@/app/tables/table-json-ld'; // Перевірте шлях
+import JsonLdTables from '@/app/tables/table-json-ld';
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import styles from './page.module.css';
@@ -141,7 +141,7 @@ export default async function VolunteerPage({
         </section>
 
         <div className={styles.commentsWrapper}>
-          <Comments />
+          <CommentsWrapped />
         </div>
 
         {/* JSON-LD для Google, щоб він бачив зв'язок автора і таблиць */}

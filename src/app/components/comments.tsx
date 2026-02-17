@@ -4,10 +4,18 @@ import Giscus, { type Repo } from '@giscus/react';
 
 import environment from '../environment';
 
+import styles from './comments.module.css';
+
 export default function Comments() {
+  if (!environment.NEXT_PUBLIC_GISCUS_REPO_ID) {
+    return null;
+  }
+  if (!environment.NEXT_PUBLIC_GISCUS_CATEGORY_ID) {
+    return null;
+  }
   return (
-    <div className="mt-10 pt-10 border-t border-gray-200">
-      <h2 className="text-2xl font-bold mb-6">Обговорення та запитання</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Обговорення та запитання</h2>
       <Giscus
         id="comments"
         repo={environment.NEXT_PUBLIC_GITHUB_REPO as Repo}
@@ -15,7 +23,6 @@ export default function Comments() {
         category="Announcements"
         categoryId={environment.NEXT_PUBLIC_GISCUS_CATEGORY_ID}
         mapping="pathname" // Найважливіше: прив'язка до URL
-        term="Welcome to @giscus/react component!"
         strict="0"
         reactionsEnabled="1"
         emitMetadata="0"

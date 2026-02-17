@@ -1,8 +1,8 @@
 /* page.module.css */
 
 .title {
-  font-size: max(min(6vh, 11vw), 2.5rem);
-  margin: 15vh auto 8px;
+  font-size: max(min(6svh, 11vw), 2.5rem);
+  margin: 15svh auto 8px;
 }
 
 .description {

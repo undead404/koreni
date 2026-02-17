@@ -4,6 +4,8 @@ import { Toaster } from 'sonner';
 import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
 import Header from './components/header';
+import ErrorBoundary from './providers/error-boundary';
+import NoRussians from './providers/no-russians';
 
 import './globals.css';
 import styles from './layout.module.css';
@@ -20,14 +22,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <body>
-        <div className={styles.page}>
-          <Header />
-          <main className={styles.main}>{children}</main>
-          <Footer />
-          <CookieBanner />
-        </div>
-        <Toaster position="bottom-right" richColors />
+      <body suppressHydrationWarning>
+        <ErrorBoundary>
+          <NoRussians />
+          <div className={styles.page}>
+            <Header />
+            <main className={styles.main}>{children}</main>
+            <Footer />
+            <CookieBanner />
+          </div>
+          <Toaster position="bottom-right" richColors />
+        </ErrorBoundary>
       </body>
     </html>
   );

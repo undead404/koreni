@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import posthog from 'posthog-js';
 import { useCallback } from 'react';
 
@@ -24,8 +25,8 @@ export default function PaginationButton({
   return isCurrent ? (
     <span className={styles.currentPage}>{page}</span>
   ) : (
-    <a href={href} className={styles.link} onClick={handleClick}>
+    <Link href={href} className={styles.link} onClick={handleClick}>
       {page}
-    </a>
+    </Link>
   );
 }

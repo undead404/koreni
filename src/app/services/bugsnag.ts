@@ -20,24 +20,26 @@ export const setBugsnagConsent = (allowed: boolean) => {
 };
 
 export const initBugsnag = () => {
-  if (ActiveBugsnag.isStarted()) return Bugsnag;
-  if (environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
-    ActiveBugsnag.start({
-      apiKey: environment.NEXT_PUBLIC_BUGSNAG_API_KEY,
-      autoTrackSessions: false,
-      collectUserIp: false,
-      generateAnonymousId: false,
-      onError: () => {
-        if (!isConsentGiven) {
-          return false; // Блокує відправку помилки
-        }
-        return true;
-      },
-      plugins: [new BugsnagPluginReact()],
-      releaseStage: process.env.NODE_ENV || 'development',
-    });
-  } else {
+  if (ActiveBugsnag.isStarted()) return ActiveBugsnag;
+  if (typeof window === 'undefined') return ActiveBugsnag;
+  if (!environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
     console.warn('Bugsnag API key is missing');
+    return ActiveBugsnag;
   }
+  ActiveBugsnag.start({
+    apiKey: environment.NEXT_PUBLIC_BUGSNAG_API_KEY,
+    autoTrackSessions: false,
+    collectUserIp: false,
+    generateAnonymousId: false,
+    onError: () => {
+      if (!isConsentGiven) {
+        return false; // Блокує відправку помилки
+      }
+      return true;
+    },
+    plugins: [new BugsnagPluginReact()],
+    releaseStage: process.env.NODE_ENV || 'development',
+  });
+
   return ActiveBugsnag;
 };

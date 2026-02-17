@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import Comments from '../components/comments';
+import CommentsWrapped from '../components/comments-wrapped';
 import environment from '../environment';
 
 export const metadata: Metadata = {
@@ -97,7 +97,7 @@ export default function AboutPage() {
             Володимиру Цибульському – за результати довгих років індексації
           </li>
           <li>
-            Спільноті "Генеалогічне IT – за концентрацію контексту та
+            Спільноті "Генеалогічне IT" – за концентрацію контексту та
             обговорення
           </li>
           <li>Проєкту "Індекси України" – за результати своєї праці</li>
@@ -188,7 +188,7 @@ export default function AboutPage() {
           я б дуже хотів знати, що моя праця допомогла комусь.
         </p>
       </article>
-      <Comments />
+      <CommentsWrapped />
     </>
   );
 }

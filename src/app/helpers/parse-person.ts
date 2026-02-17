@@ -8,23 +8,29 @@ const CACHE = new Map<string, SimplePerson | null>();
 
 export default function parsePerson(input: string): SimplePerson | null {
   if (!input) return null;
-  if (CACHE.has(input)) return CACHE.get(input)!;
+  const cached = CACHE.get(input);
+  if (cached) return cached;
+
   const match = input.match(
-    /^\s*([^<\s][^<]+)(?: <([^<>@]+@[^.<>@][^<>@][^.<>@]*\.[^<>@]+)>)?$/,
+    /^\s*([^<\s][^<]+)(?: <([\w.+-]+@[\w-]+\.[\w.-]+)>)?$/,
   );
+
+  let person: SimplePerson;
   if (match) {
-    const person: SimplePerson = {
+    const name = match[1].trim();
+    const email = match[2]?.trim();
+    person = {
       '@type': 'Person',
-      name: match[1].trim(),
-      email: 'mailto:' + match[2]?.trim(),
+      name,
+      ...(email ? { email: `mailto:${email}` } : {}),
     };
-    CACHE.set(input, person);
-    return person;
+  } else {
+    person = {
+      '@type': 'Person',
+      name: input.trim(),
+    };
   }
-  const person: SimplePerson = {
-    '@type': 'Person',
-    name: input.trim(),
-  };
+
   CACHE.set(input, person);
   return person;
 }

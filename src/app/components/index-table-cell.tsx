@@ -16,8 +16,10 @@ export default function IndexTableCell({
 }) {
   const [element, setElement] = useState<HTMLTableCellElement | null>(null);
   const [tweakedValue, setTweakedValue] = useState(value);
+
   useEffect(() => {
     if (!matchedTokens?.length) {
+      setTweakedValue(value);
       return;
     }
     // Highlight matched tokens with <mark> tag
@@ -38,11 +40,18 @@ export default function IndexTableCell({
     scrollOnce(mark);
   }, [element, isInTarget, tweakedValue, value]);
 
+  const className = [
+    value.length < 80 ? 'text-nowrap' : styles.verbose,
+    value.startsWith('http') ? 'break-word' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
     <td
       dangerouslySetInnerHTML={{ __html: tweakedValue }}
       ref={setElement}
-      className={`${value.length < 80 ? 'text-nowrap' : styles.verbose} ${value.startsWith('http') ? 'break-word' : ''}`}
+      className={className}
     />
   );
 }

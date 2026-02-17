@@ -42,10 +42,10 @@ export const useCookieConsent = () => {
     // Логіка для PostHog
     if (settings.analytics) {
       posthog.opt_in_capturing();
-      posthog.set_config({ persistence: 'localStorage+cookie' }); // Вмикаємо кукі
+      posthog.set_config({ persistence: 'localStorage+cookie' });
     } else {
       posthog.opt_out_capturing();
-      posthog.set_config({ persistence: 'memory' });
+      posthog.set_config({ persistence: 'sessionStorage' });
     }
 
     // 2. Логіка BugSnag

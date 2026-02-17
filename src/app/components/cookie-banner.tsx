@@ -47,7 +47,7 @@ export default function CookieBanner() {
 
           <div className={styles.optionsList}>
             {/* Necessary */}
-            <div className={styles.optionItem}>
+            <label className={styles.optionItem}>
               <div>
                 <p>Технічно необхідні</p>
                 <p className={styles.optionDescription}>
@@ -61,10 +61,10 @@ export default function CookieBanner() {
                 disabled
                 className="checkbox-primary"
               />
-            </div>
+            </label>
 
             {/* Analytics */}
-            <div className={`${styles.optionItem}`}>
+            <label className={`${styles.optionItem}`}>
               <div>
                 <p>Аналітика (PostHog)</p>
                 <p className={styles.optionDescription}>
@@ -77,7 +77,7 @@ export default function CookieBanner() {
                 onChange={handleAnalyticsChange}
                 className="checkbox-primary"
               />
-            </div>
+            </label>
           </div>
 
           <div className={styles.buttons}>

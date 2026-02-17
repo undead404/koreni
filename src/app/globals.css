@@ -21,7 +21,7 @@ input[type='search']::-webkit-search-results-decoration {
 /* Theme to start with */
 :root {
   --side-gap: 16px;
-  --content-full-height: calc(100vh - 44px - 1.4rem - 5 * var(--side-gap));
+  --content-full-height: calc(100svh - 44px - 1.4rem - 5 * var(--side-gap));
 
   --bg-color: #fcfcfc;
   --text-color: #212121;
@@ -266,7 +266,7 @@ hr {
 @media screen and (max-width: 767px) {
   :root {
     /* 2.8rem is just close to 2 lines of non-zoomed text */
-    --content-full-height: calc(100vh - 44px - 2.8rem - 5 * var(--side-gap));
+    --content-full-height: calc(100svh - 44px - 2.8rem - 5 * var(--side-gap));
   }
 }
 

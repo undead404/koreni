@@ -16,12 +16,9 @@ export default function combinePoints(points: MapPoint[]): MapPoint[] {
     const key = calculatePointKey(point);
     const knownValue = map.get(key);
     if (knownValue) {
-      map.set(key, {
-        ...knownValue,
-        linkedRecords: [...knownValue.linkedRecords, ...point.linkedRecords],
-      });
+      knownValue.linkedRecords.push(...point.linkedRecords);
     } else {
-      map.set(key, point);
+      map.set(key, { ...point, linkedRecords: [...point.linkedRecords] });
     }
   }
   return [...map.values()];

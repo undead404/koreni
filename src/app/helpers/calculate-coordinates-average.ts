@@ -10,6 +10,5 @@ export default function calculateCoordinatesAverage(
     sumX += x;
     sumY += y;
   }
-  const sum = [sumX, sumY];
-  return [sum[0] / points.length, sum[1] / points.length];
+  return [sumX / points.length, sumY / points.length];
 }

@@ -1,4 +1,4 @@
-import { IndexationTable } from './schemas/indexation-table';
+import type { IndexationTable } from './schemas/indexation-table';
 
 function areDistinctBy(
   tablesMetadata: IndexationTable[],

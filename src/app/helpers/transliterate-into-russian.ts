@@ -69,8 +69,6 @@ const digraphsMap = new Map<string, string>([
   ['yu', 'ю'],
   ['ya', 'я'],
   ['yo', 'ё'],
-  ['yu', 'ю'],
-  ['ya', 'я'],
   ['ia', 'я'],
   ['ie', 'е'],
   ['iu', 'ю'],
@@ -78,28 +76,24 @@ const digraphsMap = new Map<string, string>([
 ]);
 
 export default function transliterateIntoRussian(input: string): string {
-  // console.log(`Transliterating: ${input}`);
   if (!input) {
     return input;
   }
-  if (input.includes(' ')) {
-    return input
-      .split(' ')
-      .map((word) => transliterateIntoRussian(word))
-      .join(' ');
-  }
+
   // Check if input is in Cyrillic script
   if (/[\u0400-\u04FF]/.test(input)) {
     return input;
   }
 
   // Handle digraphs
+  let result = input;
   for (const [latin, cyrillic] of digraphsMap.entries()) {
-    input = input.replaceAll(latin, cyrillic);
+    result = result.replaceAll(latin, cyrillic);
   }
 
   // Transliterate remaining Latin script to Russian Cyrillic script
-  return [...input]
-    .map((char) => latinToCyrillicMap.get(char) || char)
-    .join('');
+  return result.replaceAll(
+    /[A-Z]/gi,
+    (char) => latinToCyrillicMap.get(char) || char,
+  );
 }

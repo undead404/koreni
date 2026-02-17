@@ -1,4 +1,11 @@
-import { type ChangeEvent, type FC, useCallback, useState } from 'react';
+import {
+  type ChangeEvent,
+  type FC,
+  type FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import styles from './search-controls.module.css';
 
@@ -13,6 +20,10 @@ interface ControlsProperties {
 const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
   const [inputValue, setInputValue] = useState(initialValue);
 
+  useEffect(() => {
+    setInputValue(initialValue);
+  }, [initialValue]);
+
   const handleInputChange = useCallback(
     (changeEvent: ChangeEvent<HTMLInputElement>) => {
       const newValue = changeEvent.target.value;
@@ -26,9 +37,12 @@ const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
     [onInput],
   );
 
+  const handleSubmit = useCallback((event: FormEvent) => {
+    event.preventDefault();
+  }, []);
+
   return (
-    // TODO think of using form
-    <div className={styles.container} role="search">
+    <form className={styles.container} role="search" onSubmit={handleSubmit}>
       <input
         id="genealogical-indexes-search"
         type="search"
@@ -39,7 +53,7 @@ const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
         autoFocus={!initialValue}
         aria-label="Шукати в генеалогічних індексах"
       />
-    </div>
+    </form>
   );
 };
 

@@ -18,18 +18,28 @@ export default function Header() {
         />
       </Link>
       <nav aria-label="Main navigation">
-        <Link href="/map" className={styles.link}>
-          Мапа
-        </Link>
-        <Link href="/tables" className={styles.link}>
-          Таблиці
-        </Link>
-        <Link href="/volunteers" className={styles.link}>
-          Волонтери
-        </Link>
-        <Link href="/about" className={styles.link}>
-          Про проєкт
-        </Link>
+        <ul className={`${styles.navList} no-disc`}>
+          <li>
+            <Link href="/map" className={styles.link}>
+              Мапа
+            </Link>
+          </li>
+          <li>
+            <Link href="/tables" className={styles.link}>
+              Таблиці
+            </Link>
+          </li>
+          <li>
+            <Link href="/volunteers" className={styles.link}>
+              Волонтери
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className={styles.link}>
+              Про проєкт
+            </Link>
+          </li>
+        </ul>
       </nav>
     </header>
   );

@@ -9,7 +9,7 @@ import styles from './search-results.module.css';
 
 export interface ResultsProperties {
   searchValue: string;
-  loading: boolean;
+  isLoading: boolean;
   recordsNumber: number;
   results: SearchResult[];
   resultsNumber: number;
@@ -17,7 +17,7 @@ export interface ResultsProperties {
 
 const SearchResults: FC<ResultsProperties> = ({
   searchValue,
-  loading,
+  isLoading,
   recordsNumber,
   results,
   resultsNumber,
@@ -25,9 +25,9 @@ const SearchResults: FC<ResultsProperties> = ({
   return (
     // TODO enhance results visuals, keep manual selection possibility
     // TODO add accessible and more visible loader on loading
-    <table className={styles.table} style={{ opacity: loading ? 0.5 : 1 }}>
+    <table className={styles.table} style={{ opacity: isLoading ? 0.5 : 1 }}>
       <caption className={styles.caption}>
-        {loading && !resultsNumber ? (
+        {isLoading && !resultsNumber ? (
           <>Завантаження...</>
         ) : !searchValue && !resultsNumber ? (
           <>Всього рядків у таблицях: {recordsNumber}</>
@@ -49,10 +49,11 @@ const SearchResults: FC<ResultsProperties> = ({
             )}
             {typedResult.highlight.data &&
               Object.entries(typedResult.highlight.data).map(
-                ([key, value], index) => (
+                ([rowKey, value], index) => (
                   <SearchResultItem
                     document={typedResult.document}
-                    key={`${key}-${index}`}
+                    key={`${rowKey}-${index}`}
+                    rowKey={rowKey}
                     index={index}
                     searchValue={searchValue}
                     value={value}

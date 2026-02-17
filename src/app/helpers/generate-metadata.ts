@@ -252,11 +252,7 @@ export function generateJsonLd(item: IndexationTable): string {
     ],
   };
 
-  // Clean undefined fields
-  // eslint-disable-next-line unicorn/prefer-structured-clone
-  const cleanJsonLd = JSON.parse(JSON.stringify(jsonLd)) as unknown;
-
   return process.env.NODE_ENV === 'development'
-    ? JSON.stringify(cleanJsonLd, null, 2)
-    : JSON.stringify(cleanJsonLd);
+    ? JSON.stringify(jsonLd, null, 2)
+    : JSON.stringify(jsonLd);
 }

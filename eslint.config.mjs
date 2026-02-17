@@ -61,8 +61,6 @@ export default [
       'simple-import-sort': simpleImportSort,
     },
     rules: {
-      // Due to a bug: https://github.com/eslint/eslint/issues/19134
-      // '@typescript-eslint/no-unused-expressions': 'off',
       'simple-import-sort/exports': 'error',
       'simple-import-sort/imports': [
         'error',
@@ -95,11 +93,8 @@ export default [
           ],
         },
       ],
-      // 'unicorn/expiring-todo-comments': 'off',
-      // 'unicorn/prefer-top-level-await': 'off',
       'no-console': 'warn',
       'unicorn/no-null': 'off',
-      // 'unicorn/no-array-reduce': 'off',
       'unicorn/prevent-abbreviations': [
         'error',
         {
@@ -108,6 +103,7 @@ export default [
           },
         },
       ],
+      'unicorn/prefer-global-this': 'off',
     },
   },
   {

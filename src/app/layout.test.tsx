@@ -9,6 +9,8 @@ import githubIcon from './assets/github.svg';
 vi.mock('./components/header', () => ({
   default: () => <div>Mocked Header</div>,
 }));
+vi.mock('./environment');
+vi.mock('./providers/no-russians');
 vi.mock('next/image', () => ({
   default: ({ src, alt, className, height, title, width }: ImageProps) => (
     <img

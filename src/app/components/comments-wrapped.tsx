@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic';
 
 import Loader from './loader';
 
-const MapWrapper = dynamic(() => import('./map'), {
+const CommentsWrapped = dynamic(() => import('./comments'), {
   ssr: false,
   loading: () => <Loader />,
 });
-export default MapWrapper;
+export default CommentsWrapped;

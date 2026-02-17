@@ -5,7 +5,12 @@ import { type ReactNode, useCallback } from 'react';
 
 import styles from './details.module.css';
 
-export function Details(properties: {
+function Details({
+  open,
+  summary,
+  sectionName,
+  children,
+}: {
   open?: boolean;
   summary: string | ReactNode;
   sectionName?: string;
@@ -15,21 +20,17 @@ export function Details(properties: {
     (event: React.SyntheticEvent<HTMLDetailsElement>) => {
       const isOpen = event.currentTarget.open;
       posthog.capture('details_toggled', {
-        section_name: properties.sectionName || 'unknown',
+        section_name: sectionName || 'unknown',
         is_expanded: isOpen,
       });
     },
-    [],
+    [sectionName],
   );
 
   return (
-    <details
-      className={styles.details}
-      open={properties.open}
-      onToggle={handleToggle}
-    >
-      <summary>{properties.summary}</summary>
-      {properties.children}
+    <details className={styles.details} open={open} onToggle={handleToggle}>
+      <summary>{summary}</summary>
+      {children}
     </details>
   );
 }

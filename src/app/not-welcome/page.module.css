@@ -6,7 +6,7 @@
   text-align: center;
   background-color: var(--bg-color);
   color: var(--text-color);
-  height: 100vh;
+  height: 100svh;
   position: fixed;
   top: 0;
   left: 0;

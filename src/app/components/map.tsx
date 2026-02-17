@@ -1,5 +1,4 @@
 'use client';
-import Head from 'next/head';
 import { useMemo, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 
@@ -32,42 +31,38 @@ export default function Map({
   );
   const [activePoint, setActivePoint] = useState<MapPoint | null>(null);
   return (
-    <>
-      <Head>
-        <script
-          defer
-          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-          crossOrigin=""
-        ></script>
-      </Head>
-      <MapContainer
-        center={centerOn}
-        className={`${styles.mapContainer} ${isFullScreen && styles.isFullScreen}`}
-        zoom={zoom}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {points.map((point, index) => {
-          // console.log(point);
-          const isActive =
-            `${point.coordinates.toString()}` === `${centerOn.toString()}` ||
-            (activePoint &&
-              `${point.coordinates.toString()}` ===
-                `${activePoint.coordinates.toString()}`) ||
-            false;
-          return (
-            <MapPointOnMap
-              key={index}
-              isPrimary={isActive}
-              point={point}
-              setActive={setActivePoint}
-            />
-          );
-        })}
-      </MapContainer>
-    </>
+    <MapContainer
+      center={centerOn}
+      className={`${styles.mapContainer} ${isFullScreen ? styles.isFullScreen : ''}`}
+      zoom={zoom}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      {points.map((point, index) => {
+        const isCenter =
+          point.coordinates[0] === centerOn[0] &&
+          point.coordinates[1] === centerOn[1];
+        const isActive =
+          isCenter ||
+          (activePoint &&
+            point.coordinates[0] === activePoint.coordinates[0] &&
+            point.coordinates[1] === activePoint.coordinates[1]) ||
+          false;
+        return (
+          <MapPointOnMap
+            key={index}
+            isPrimary={isActive}
+            point={point}
+            setActive={setActivePoint}
+          />
+        );
+      })}
+    </MapContainer>
   );
 }

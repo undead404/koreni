@@ -1,10 +1,14 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
+
+import { initBugsnag } from '../services/bugsnag';
 
 import styles from './use-no-russians.module.css';
+
+let shown: ReturnType<typeof setTimeout> | null = null;
 
 const useNoRussians = () => {
   const router = useRouter();
@@ -36,25 +40,43 @@ const useNoRussians = () => {
       // russian speaker
       router.push('/not-welcome');
     } else if (ruPos !== -1) {
+      if (shown) {
+        clearTimeout(shown);
+        shown = setTimeout(() => {
+          shown = null;
+        }, 20_000);
+        return;
+      }
+      shown = setTimeout(() => {
+        shown = null;
+      }, 20_000);
       // light ukrainization
-      toast.error('Лагідна українізація!', {
-        action: (
-          <a
-            className={styles.help}
-            href="https://support.google.com/accounts/answer/32047?hl=uk"
-          >
-            Як це виправити?
-          </a>
-        ),
-        classNames: {
-          content: styles.content,
-          icon: styles.icon,
-          toast: styles.toast,
-        },
-        description: `Ви знали, що ваш браузер використовує російську мову в якості запасної?`,
-        duration: 20_000,
-        icon: '🇺🇦',
-      });
+      import('sonner')
+        .then(({ toast }) => {
+          return toast.error('Лагідна українізація!', {
+            action: (
+              <a
+                className={styles.help}
+                href="https://support.google.com/accounts/answer/32047?hl=uk"
+              >
+                Як це виправити?
+              </a>
+            ),
+            classNames: {
+              content: styles.content,
+              icon: styles.icon,
+              toast: styles.toast,
+            },
+            description: `Ви знали, що ваш браузер використовує російську мову в якості запасної?`,
+            duration: 20_000,
+            icon: '🇺🇦',
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          initBugsnag().notify(error as Error);
+          posthog.captureException(error);
+        });
     }
   }, [pathname, preferredLangs]);
 

@@ -13,7 +13,7 @@ vi.mock('../schemas/search-result', () => ({
 
 const defaultProps = {
   searchValue: 'Мельник',
-  loading: false,
+  isLoading: false,
   recordsNumber: 10,
   results: [
     {
@@ -98,13 +98,13 @@ describe('SearchResults component', () => {
 
   it('should apply the correct styles based on loading state', () => {
     const { container: container1 } = render(
-      <SearchResults {...defaultProps} loading={false} />,
+      <SearchResults {...defaultProps} isLoading={false} />,
     );
     const table1 = container1.querySelector('table');
     expect(table1).toHaveStyle({ opacity: 1 });
 
     const { container: container2 } = render(
-      <SearchResults {...defaultProps} loading={true} />,
+      <SearchResults {...defaultProps} isLoading={true} />,
     );
     const table2 = container2.querySelector('table');
     expect(table2).toHaveStyle({ opacity: 0.5 });

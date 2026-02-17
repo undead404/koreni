@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import posthog from 'posthog-js';
 import { useCallback, useMemo } from 'react';
 
@@ -11,7 +12,7 @@ export interface SearchResultItemProperties {
     title: string;
     year?: number;
   };
-  key: string;
+  rowKey: string;
   index: number;
   searchValue: string;
   value: {
@@ -23,7 +24,7 @@ export interface SearchResultItemProperties {
 export default function SearchResultItem({
   document,
   index,
-  key,
+  rowKey,
   searchValue,
   value,
 }: SearchResultItemProperties) {
@@ -52,13 +53,13 @@ export default function SearchResultItem({
   ]);
   return (
     <tr>
-      <th scope="row">{key}</th>
+      <th scope="row">{rowKey}</th>
       <td
         className="snippet break-word"
         dangerouslySetInnerHTML={valueSnippet}
       ></td>
       <td>
-        <a
+        <Link
           href={`/${document.tableId}/${guessPageFromRowId(
             document.id,
           )}?matched_tokens=${value.matched_tokens.join(
@@ -68,7 +69,7 @@ export default function SearchResultItem({
           onClick={handleClick}
         >
           Див.
-        </a>
+        </Link>
       </td>
     </tr>
   );

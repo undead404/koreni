@@ -6,7 +6,7 @@ export default function guessPageFromRowId(rowId: string): number {
   if (!rowNumber) {
     throw new Error('Empty row id');
   }
-  const result = Math.ceil(Number.parseInt(rowNumber) / PER_PAGE);
+  const result = Math.ceil(Number.parseInt(rowNumber, 10) / PER_PAGE);
   if (Number.isNaN(result)) {
     throw new TypeError('Failed to determine page from row id ' + rowId);
   }

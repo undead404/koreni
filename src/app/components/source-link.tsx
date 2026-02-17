@@ -22,7 +22,12 @@ export default function SourceLink({ href }: { href: string }) {
     }, [host, url]);
 
     return (
-      <a href={url.toString()} target="_blank" onClick={handleClick}>
+      <a
+        href={url.toString()}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleClick}
+      >
         {SITES_MAPPING[host] || host}
       </a>
     );

@@ -1,16 +1,7 @@
 import _ from 'lodash';
 import Head from 'next/head';
-import Link from 'next/link';
-import type { ReactNode } from 'react';
 import { object, string } from 'zod';
 
-import ArchiveItem from '@/app/components/archive-item';
-import Comments from '@/app/components/comments';
-import { Details } from '@/app/components/details';
-import IndexTable from '@/app/components/index-table';
-import MapWrapper from '@/app/components/map-wrapper';
-import Pagination from '@/app/components/pagination';
-import SourceLink from '@/app/components/source-link';
 import { PER_PAGE } from '@/app/constants';
 import environment from '@/app/environment';
 import {
@@ -18,14 +9,11 @@ import {
   generateJsonLd,
 } from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
-import removeEmails from '@/app/helpers/remove-emails';
-import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
-import combinedPoints from '@/app/services/map-points';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
-import styles from './page.module.css';
+import TableContent from './table-content';
 
 type TablePageProperties = {
   params: Promise<unknown>;
@@ -55,19 +43,8 @@ export default async function Table({ params }: TablePageProperties) {
   if (tableData.length === 0 || !tableMetadata) {
     throw new Error('Table not found');
   }
-  const sourcesLinks = tableMetadata.sources
-    .map((source) => <SourceLink key={source} href={source} />)
-    // eslint-disable-next-line unicorn/no-array-reduce
-    .reduce(
-      (previous, current) => [...previous, ', ', current],
-      [] as ReactNode[],
-    );
-  void sourcesLinks.shift(); // remove first comma
 
   const jsonLd = page === 1 ? generateJsonLd(tableMetadata) : null;
-  const authorName = tableMetadata.author
-    ? removeEmails(tableMetadata.author)
-    : 'невідомі';
 
   return (
     <>
@@ -78,68 +55,14 @@ export default async function Table({ params }: TablePageProperties) {
           key="canonical"
         />
       </Head>
-      <article className={styles.article}>
-        <h1>{tableMetadata.title}</h1>
-        <section>
-          <h2>Метадані</h2>
-          <p>
-            Виконавець індексації:{' '}
-            <Link href={`/volunteers/${slugifyUkrainian(authorName)}/`}>
-              {removeEmails(authorName)}
-            </Link>
-          </p>
-          <p>Таблиці: {sourcesLinks}</p>
-          <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
-          {tableMetadata.archiveItems && (
-            <Details
-              open={tableMetadata.archiveItems.length < 4}
-              summary={<h3>Використані архівні справи</h3>}
-              sectionName="archive_items"
-            >
-              <ul className={styles.archiveItems}>
-                {tableMetadata.archiveItems.map((archiveItem) => (
-                  <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
-                ))}
-              </ul>
-            </Details>
-          )}
-          <Details summary={<h3>На карті</h3>} sectionName="map">
-            <MapWrapper
-              center={tableMetadata.location}
-              points={combinedPoints}
-              zoom={8}
-            />
-          </Details>
-        </section>
-        <section>
-          <h2 id="table-data">Дані</h2>
-          <Pagination
-            currentPage={page}
-            totalPages={Math.ceil(tableData.length / PER_PAGE)}
-            urlBuilder={(page: number) => `/${tableId}/${page}`}
-          />
-          <div
-            role="region"
-            aria-labelledby="table-data"
-            tabIndex={0}
-            className={styles.tableContainer}
-          >
-            <IndexTable
-              data={tableDataToDisplay}
-              locale={tableMetadata.tableLocale}
-              page={page}
-              tableId={tableId}
-            />
-          </div>
-        </section>
-      </article>
-      <Comments />
-      {jsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: jsonLd }}
-        ></script>
-      )}
+      <TableContent
+        tableMetadata={tableMetadata}
+        tableData={tableDataToDisplay}
+        page={page}
+        tableId={tableId}
+        totalRecords={tableData.length}
+        jsonLd={jsonLd}
+      />
     </>
   );
 }

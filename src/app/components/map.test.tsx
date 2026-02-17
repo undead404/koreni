@@ -43,19 +43,6 @@ describe('Map component', () => {
     vi.clearAllMocks();
   });
 
-  it('should render the Head component with the script tag', () => {
-    const { container } = render(<Map {...defaultProps} />);
-    const scriptTag = container.querySelector('script');
-    expect(scriptTag).toHaveAttribute(
-      'src',
-      'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
-    );
-    expect(scriptTag).toHaveAttribute(
-      'integrity',
-      'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=',
-    );
-  });
-
   it('should render the MapContainer component', () => {
     const { container } = render(<Map {...defaultProps} />);
     const mapContainer = container.querySelector('.mapContainer');

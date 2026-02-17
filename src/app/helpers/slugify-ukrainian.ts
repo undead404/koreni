@@ -11,11 +11,10 @@ export default function slugifyUkrainian(text: string): string {
   // However, strict transliteration relies on "Start of Word" detection.
   // It is safer to transliterate FIRST (preserving case/spaces), THEN slugify.
 
-  let result = text;
+  let result = text.toLowerCase();
 
   // 2. Handle the "zg" -> "zgh" exception first to avoid conflict with "z" + "h"
-  // Case-insensitive regex to catch Зг, зг, ЗГ
-  result = result.replaceAll(/зг/gi, 'zgh');
+  result = result.replaceAll('зг', 'zgh');
 
   // 3. Define the position-dependent replacements (Start of word vs. Other)
   // Resolution 55 defines "Start of word" as:
@@ -23,11 +22,11 @@ export default function slugifyUkrainian(text: string): string {
   // - Following a space (or potentially other separators, but space is primary)
 
   const substitutions = [
-    { char: 'є', start: 'ye', other: 'ie' },
-    { char: 'ї', start: 'yi', other: 'i' },
-    { char: 'й', start: 'y', other: 'i' },
-    { char: 'ю', start: 'yu', other: 'iu' },
-    { char: 'я', start: 'ya', other: 'ia' },
+    { char: 'є', other: 'ie', start: 'ye' },
+    { char: 'ї', other: 'i', start: 'yi' },
+    { char: 'й', other: 'i', start: 'y' },
+    { char: 'ю', other: 'iu', start: 'yu' },
+    { char: 'я', other: 'ia', start: 'ya' },
   ];
 
   // Apply position-dependent rules
@@ -35,7 +34,7 @@ export default function slugifyUkrainian(text: string): string {
     // Regex explanation:
     // (^|\s) captures start of string OR a whitespace character
     // We utilize the capture group $1 to preserve the space if it existed.
-    const regex = new RegExp(`(^|\\s)${char}`, 'gi');
+    const regex = new RegExp(`(^|\\s)${char}`, 'g');
 
     result = result.replace(regex, (match, separator) => {
       // If the original char was uppercase, ideally we'd match case, but for slugs
@@ -44,11 +43,12 @@ export default function slugifyUkrainian(text: string): string {
     });
 
     // Replace all remaining instances (not at start) with the 'other' variant
-    result = result.replaceAll(new RegExp(char, 'gi'), other);
+    result = result.replaceAll(char, other);
   }
 
   // 4. Standard single-character mapping
   const map: Record<string, string> = {
+    "'": '',
     а: 'a',
     б: 'b',
     в: 'v',
@@ -77,19 +77,17 @@ export default function slugifyUkrainian(text: string): string {
     ш: 'sh',
     щ: 'shch',
     ь: '',
-    "'": '',
     '’': '', // Soft sign and apostrophe are skipped
   };
 
   result = result.replaceAll(
     // eslint-disable-next-line regexp/no-obscure-range
-    /[а-яґєії]/gi,
-    (char) => map[char.toLowerCase()] || char,
+    /[а-яґєії'’]/g,
+    (char) => map[char] || char,
   );
 
   // 5. Final Slugification
   return result
-    .toLowerCase()
     .trim()
     .replaceAll(/[^a-z0-9\s-]/g, '') // Remove non-alphanumeric (except spaces and hyphens)
     .replaceAll(/\s+/g, '-') // Replace spaces with hyphens
