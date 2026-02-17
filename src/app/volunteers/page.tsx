@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import getVolunteers from '@/app/helpers/get-volunteers';
 
+import { getRank } from './ranks';
+
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -10,22 +12,6 @@ export const metadata: Metadata = {
   description:
     'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
 };
-
-// Конфігурація рангів прив'язана до класів CSS
-export const RANKS = [
-  {
-    threshold: 10_000,
-    title: 'Хранитель',
-    className: styles.rankLegend,
-  },
-  { threshold: 1000, title: 'Архіваріус', className: styles.rankArchivist },
-  { threshold: 100, title: 'Упорядник', className: styles.rankResearcher },
-  { threshold: 0, title: 'Писар', className: styles.rankNovice },
-];
-
-export function getRank(power: number) {
-  return RANKS.find((r) => power >= r.threshold) || RANKS.at(-1);
-}
 
 export default async function VolunteersPage() {
   const volunteers = await getVolunteers();

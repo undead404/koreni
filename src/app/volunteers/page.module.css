@@ -126,35 +126,6 @@
   border-style: solid;
 }
 
-.rankLegend {
-  background-color: #fef3c7;
-  color: #92400e;
-  border-color: #fde68a;
-}
-
-/* Архіваріус - Фіолетовий (Мудрість) */
-.rankArchivist {
-  background-color: #f3e8ff;
-  color: #6b21a8;
-  border-color: #e9d5ff;
-}
-
-/* Реєстратор (Researcher) - Синій (Діловий/Спокійний) */
-/* Змінив з зеленого на синій, щоб відрізнити від "успіху" */
-.rankRegistrar {
-  background-color: #dbeafe; /* Blue-100 */
-  color: #1e40af; /* Blue-800 */
-  border-color: #bfdbfe; /* Blue-200 */
-}
-
-/* Писар (Scribe) - Сланцевий/Сірий (Нейтральний, але солідний) */
-/* Був .rankNovice */
-.rankScribe {
-  background-color: #f1f5f9;
-  color: #334155;
-  border-color: #e2e8f0;
-}
-
 /* Порожній стан */
 .emptyState {
   text-align: center;

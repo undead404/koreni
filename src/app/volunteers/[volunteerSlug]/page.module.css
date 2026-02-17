@@ -66,30 +66,6 @@
   border-style: solid;
 }
 
-.rankLegend {
-  background-color: #fef3c7;
-  color: #92400e;
-  border-color: #fde68a;
-}
-
-.rankArchivist {
-  background-color: #f3e8ff;
-  color: #6b21a8;
-  border-color: #e9d5ff;
-}
-
-.rankRegistrar {
-  background-color: #dbeafe;
-  color: #1e40af;
-  border-color: #bfdbfe;
-}
-
-.rankScribe {
-  background-color: #f1f5f9;
-  color: #334155;
-  border-color: #e2e8f0;
-}
-
 /* Divider */
 .divider {
   border: 0;
