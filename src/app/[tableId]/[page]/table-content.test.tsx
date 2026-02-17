@@ -5,9 +5,9 @@ import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import TableContent from './table-content';
 
-vi.mock('@/app/components/archive-item', () => () => (
-  <div data-testid="archive-item">ArchiveItem</div>
-));
+vi.mock('@/app/components/archive-item', () => ({
+  default: () => <div data-testid="archive-item">ArchiveItem</div>,
+}));
 vi.mock('@/app/components/comments-wrapped', () => ({
   default: () => <div data-testid="comments-wrapped">CommentsWrapped</div>,
 }));

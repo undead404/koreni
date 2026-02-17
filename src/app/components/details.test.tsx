@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { Details } from './details';
+import Details from './details';
 
 vi.mock('../hocs/with-error-boundary');
 
