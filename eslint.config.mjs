@@ -103,7 +103,6 @@ export default [
           },
         },
       ],
-      'unicorn/prefer-global-this': 'off',
     },
   },
   {

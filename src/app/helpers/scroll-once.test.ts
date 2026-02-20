@@ -20,7 +20,6 @@ describe('scrollOnce', () => {
 
     scrollOnce(element);
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(element.scrollIntoView).not.toHaveBeenCalled();
   });
 
@@ -29,7 +28,6 @@ describe('scrollOnce', () => {
 
     scrollOnce(element);
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(element.scrollIntoView).toHaveBeenCalledWith({
       behavior: 'smooth',
       block: 'center',
@@ -43,7 +41,6 @@ describe('scrollOnce', () => {
     scrollOnce(element);
     scrollOnce(element);
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(element.scrollIntoView).toHaveBeenCalledTimes(1);
   });
 });

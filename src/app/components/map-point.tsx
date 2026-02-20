@@ -50,9 +50,9 @@ export default function MapPointOnMap({
     [point, setActive],
   );
   const [defaultIcon, setDefaultIcon] = useState<Icon>(() =>
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
+    globalThis.window !== undefined &&
+    globalThis.matchMedia &&
+    globalThis.matchMedia('(prefers-color-scheme: dark)').matches
       ? whiteIcon
       : blackIcon,
   );
@@ -62,8 +62,8 @@ export default function MapPointOnMap({
   }, []);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (globalThis.window === undefined || !globalThis.matchMedia) return;
+    const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', handleThemeChange);
     return () => {
       mediaQuery.removeEventListener('change', handleThemeChange);
