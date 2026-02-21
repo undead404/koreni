@@ -33,6 +33,12 @@ export default function RootLayout({
           </div>
           <Toaster position="bottom-right" richColors />
         </ErrorBoundary>
+        <script
+          src="https://uptime.betterstack.com/widgets/announcement.js"
+          data-id="237385"
+          async
+          type="text/javascript"
+        ></script>
       </body>
     </html>
   );
