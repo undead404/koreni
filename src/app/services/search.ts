@@ -5,7 +5,7 @@ import type {
   SearchResponseHit,
 } from 'typesense/lib/Typesense/Documents.js';
 
-import transliterateIntoPolish from '../helpers/transliterate-into-polish';
+// import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
 import transliterateIntoUkrainian from '../helpers/transliterate-into-ukrainian';
 
@@ -66,11 +66,11 @@ export default async function search({
   // const filter_by = [facetFilters, rangeFilters].filter(Boolean).join(" && ");
 
   const resultPartitions = [
-    await searchInCollection(
-      client,
-      'unstructured_pl',
-      transliterateIntoPolish(query.toLowerCase()),
-    ),
+    // await searchInCollection(
+    //   client,
+    //   'unstructured_pl',
+    //   transliterateIntoPolish(query.toLowerCase()),
+    // ),
     await searchInCollection(
       client,
       'unstructured_ru',
