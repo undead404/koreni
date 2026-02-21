@@ -1,5 +1,5 @@
 import _ from 'lodash';
-const { isInteger, last, toNumber, toString } = _;
+const { first, isInteger, last, toNumber, toString } = _;
 
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
@@ -34,7 +34,9 @@ export default function determineRowYear(
       row['Дата смерті'] ||
       row['дата крещ'] ||
       row['Начато'] ||
-      row['Окончено'];
+      row['Окончено'] ||
+      row['дата нар.'] ||
+      row['дата'];
     if (dateInRow) {
       if (dateInRow === '?') {
         return 0;
@@ -46,7 +48,7 @@ export default function determineRowYear(
       } else if (dateInRowAsString.includes('/')) {
         result = toNumber(last(dateInRowAsString.split('/')));
       } else if (dateInRowAsString.includes('-')) {
-        result = toNumber(last(dateInRowAsString.split('-')));
+        result = toNumber(first(dateInRowAsString.split('-')));
       } else {
         const dateInRowAsNumber = Number.parseInt(dateInRowAsString);
         if (Number.isNaN(dateInRowAsNumber)) {
