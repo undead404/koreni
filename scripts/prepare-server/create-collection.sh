@@ -10,7 +10,7 @@ curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
          "name": "unstructured_pl",
          "enable_nested_fields": true,
          "fields": [
-           {"dynamic": true, "locale": "pl", "name": "data", "optional": false, "type": "object"},
+           {"locale": "pl", "name": "data.*", "optional": true, "type": "auto"},
            {"name": "location", "type": "geopoint"},
            {"facet": true, "name": "tableId", "type": "string"},
            {"facet": true, "name": "year", "type": "int32"}
@@ -25,7 +25,7 @@ curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
          "name": "unstructured_ru",
          "enable_nested_fields": true,
          "fields": [
-           {"dynamic": true, "locale": "ru", "name": "data", "optional": false, "type": "object"},
+           {"locale": "ru", "name": "data.*", "optional": true, "type": "auto"},
            {"name": "location", "type": "geopoint"},
            {"facet": true, "name": "tableId", "type": "string"},
            {"facet": true, "name": "year", "type": "int32"}
@@ -40,7 +40,7 @@ curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
          "name": "unstructured_uk",
          "enable_nested_fields": true,
          "fields": [
-           {"dynamic": true, "locale": "uk", "name": "data", "optional": false, "type": "object"},
+           {"locale": "uk", "name": "data.*", "optional": true, "type": "auto"},
            {"name": "location", "type": "geopoint"},
            {"facet": true, "name": "tableId", "type": "string"},
            {"facet": true, "name": "year", "type": "int32"}

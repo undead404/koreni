@@ -17,7 +17,7 @@ export interface SearchParameters {
 }
 
 export type SearchResult = SearchResponseHit<Record<string, unknown>>;
-export type SearchResults = [SearchResult[], number];
+export type SearchResults = [SearchResult[], number, string | null];
 
 async function searchInCollection(
   client: Client,
@@ -82,15 +82,15 @@ export default async function search({
       transliterateIntoUkrainian(query.toLowerCase()),
     ),
   ];
+  let error: string | null = null;
 
   if (resultPartitions.some((result) => result.status === 'rejected')) {
-    const error = new AggregateError(
+    error = new AggregateError(
       resultPartitions
         .filter((result) => result.status === 'rejected')
         .map((result) => result.reason as unknown as Error),
       'Search failed in one or more languages',
-    );
-    throw error;
+    ).toString();
   }
 
   const totalFound = _.sumBy(resultPartitions, (result) =>
@@ -107,5 +107,6 @@ export default async function search({
       ['desc', 'desc'],
     ),
     totalFound,
+    error,
   ] as SearchResults;
 }
