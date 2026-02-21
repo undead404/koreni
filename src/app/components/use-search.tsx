@@ -36,7 +36,7 @@ export function useSearch() {
         query: value,
         query_length: value.length,
       });
-      const [hits, hitsNumber, searchError] = await search({
+      const [hits, hitsNumber] = await search({
         client,
         // facets,
         query: value,
@@ -45,7 +45,6 @@ export function useSearch() {
       setData(hits);
       setResultsNumber(hitsNumber);
       setIsFetched(true);
-      setError(searchError);
       posthog.capture('search_results_returned', {
         query: value,
         results_count: hitsNumber,
