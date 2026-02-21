@@ -28,9 +28,21 @@ export default async function importBatch(
     }
     return processedSize;
   }
-  await typesense
+  const results = await typesense
     .collections(collectionName)
     .documents()
     .import(batch, { action: 'upsert' });
+  let failsNumber = 0;
+  for (const result of results) {
+    if (result.success === false) {
+      console.log(result);
+      console.error(`Failed to import batch: ${result.error}`);
+      failsNumber += 1;
+    }
+  }
+  if (failsNumber > 0) {
+    throw new Error(`Failed to import ${failsNumber} records.`);
+  }
+
   return batch.length;
 }
