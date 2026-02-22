@@ -6,7 +6,7 @@ import { indexationTableSchema } from './indexation-table';
 export const importPayloadSchema = indexationTableSchema
   .omit({
     size: true,
-    tableFilename: true,
+    tableFilePath: true,
   })
   .extend({
     date: z.coerce
