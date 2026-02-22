@@ -30,10 +30,12 @@ jobs:
       - name: Modernize Russian
         run: yarn data:modernize-russian
 
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "chore: auto-update data size"
-          git push
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: auto-update data size [skip ci]'
+          file_pattern: '.'
+          commit_user_name: 'GitHub Action'
+          commit_user_email: 'action@github.com'
+          skip_dirty_check: false
+          skip_fetch: true
