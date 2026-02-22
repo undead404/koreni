@@ -1,18 +1,26 @@
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import extractEmails from './extract-emails';
 import slugifyUkrainian from './slugify-ukrainian';
 
 export default async function getVolunteers() {
   const tables = await getTablesMetadata();
   const tablesByVolunteer: Record<string, typeof tables> = {};
+  const emailsByAuthor: Record<string, Set<string>> = {};
 
   for (const table of tables) {
-    const author = table.authorName || 'undefined';
-    if (!tablesByVolunteer[author]) {
-      tablesByVolunteer[author] = [];
+    const authorName = table.authorName || 'undefined';
+    if (!tablesByVolunteer[authorName]) {
+      tablesByVolunteer[authorName] = [];
     }
-    tablesByVolunteer[author].push(table);
+    tablesByVolunteer[authorName].push(table);
+    const authorEmail = table.authorEmail;
+    if (authorEmail) {
+      if (emailsByAuthor[authorName]) {
+        emailsByAuthor[authorName].add(authorEmail);
+      } else {
+        emailsByAuthor[authorName] = new Set([authorEmail]);
+      }
+    }
   }
 
   const knownSlugs = new Set();
@@ -27,7 +35,7 @@ export default async function getVolunteers() {
       }
       knownSlugs.add(slug);
       return {
-        emails: extractEmails(author),
+        emails: [...(emailsByAuthor[author] ?? [])].join(', '),
         name: name,
         power: tables.reduce(
           (accumulator, table) => accumulator + table.size,
