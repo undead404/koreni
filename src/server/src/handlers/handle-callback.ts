@@ -10,6 +10,12 @@ const querySchema = z.object({
   code: nonEmptyString,
 });
 
+const githubResponseSchema = z.object({
+  access_token: nonEmptyString,
+  token_type: z.literal('Bearer'),
+  scope: nonEmptyString,
+});
+
 const handleCallback: RequestHandler = async (request, response) => {
   if (!environment.GITHUB_OAUTH_CLIENT_ID) {
     return response
@@ -45,7 +51,16 @@ const handleCallback: RequestHandler = async (request, response) => {
     },
   );
 
-  const data = await oauthTokenResponse.json();
+  const githubResponse = await oauthTokenResponse.json();
+  const githubData = githubResponseSchema.parse(githubResponse);
+
+  const data = {
+    token: githubData.access_token,
+    access_token: githubData.access_token, // keep both to be safe
+    token_type: githubData.token_type,
+    scope: githubData.scope,
+  };
+
   const nonce = crypto.randomBytes(16).toString('base64');
 
   // Set the CSP header specifically for this response
