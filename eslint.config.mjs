@@ -229,6 +229,7 @@ export default [
       'src/import/**/*.ts',
       'src/populate-typesense/**/*.ts',
       'src/server/**/*.{js,mjs,cjs,ts}',
+      'src/modernize-russian/**/*.ts',
     ],
     rules: {
       'no-console': 'off',
