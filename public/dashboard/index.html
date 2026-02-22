@@ -11,33 +11,21 @@
   </head>
   <body>
     <script>
-      const authChannel = new BroadcastChannel('static-cms-auth');
+      // Listen for the token being written to LocalStorage by the callback tab
+      window.addEventListener('storage', (event) => {
+        if (event.key === 'static-cms-auth-bridge' && event.newValue) {
+          console.log('Auth data detected in LocalStorage. Bridging to CMS...');
 
-      authChannel.onmessage = (event) => {
-        if (event.data.type === 'auth-success') {
-          console.log('Auth message received via BroadcastChannel.');
+          const authData = event.newValue; // The string 'authorization:github:success:...'
 
-          // Static CMS is very picky.
-          // We must dispatch the event as if it came from the window it was expecting.
-          const authEvent = new MessageEvent('message', {
-            data: event.data.data,
-            origin: window.location.origin,
-            source: window, // Usually it expects the popup, but since the popup is gone, we try the window
-          });
+          // Inject the handshake and the data exactly as the CMS expects
+          window.postMessage('authorizing:github', window.location.origin);
+          window.postMessage(authData, window.location.origin);
 
-          // Dispatch "authorizing" handshake first
-          window.dispatchEvent(
-            new MessageEvent('message', {
-              data: 'authorizing:github',
-              origin: window.location.origin,
-              source: window,
-            }),
-          );
-
-          // Dispatch the actual success data
-          window.dispatchEvent(authEvent);
+          // Clean up to prevent re-triggering on refresh
+          localStorage.removeItem('static-cms-auth-bridge');
         }
-      };
+      });
     </script>
     <script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
     <script>

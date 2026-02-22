@@ -57,37 +57,33 @@ const handleCallback: RequestHandler = async (request, response) => {
   // The CMS expects a postMessage to the opener window
   const content = `<!DOCTYPE html>
 <html>
-  <head><title>Успіх авторизації GitHub</title></head>
-  <body>
-  <div id="status" style="font-family:sans-serif;text-align:center;margin-top:50px;">
-    <h2>Авторизація...</h2>
-  </div>
-  <script nonce="${nonce}">
-  (function() {
-      const data = ${JSON.stringify(data)};
-      const message = 'authorization:github:success:' + JSON.stringify(data);
-      const targetOrigin = "${environment.NEXT_PUBLIC_SITE}";
+<head><title>Авторизація</title></head>
+<body style="font-family:sans-serif; text-align:center; padding-top:50px;">
+  <h2>Авторизація успішна</h2>
+  <p>Натисніть кнопку нижче, щоб завершити вхід:</p>
+  <button id="finish" style="padding:10px 20px; font-size:1.2em; cursor:pointer;">
+    Завершити та закрити
+  </button>
 
-      // 1. Standard Popup Flow
+  <script nonce="${nonce}">
+    const data = ${JSON.stringify(data)};
+    const message = 'authorization:github:success:' + JSON.stringify(data);
+
+    document.getElementById('finish').addEventListener('click', () => {
+      // 1. Write to LocalStorage (triggers 'storage' event in the dashboard tab)
+      localStorage.setItem('static-cms-auth-bridge', message);
+      
+      // 2. Standard popup fallback
       if (window.opener) {
         window.opener.postMessage("authorizing:github", "*");
-        window.opener.postMessage(message, targetOrigin);
-      } 
-      
-      // 2. Tab-fix Bridge
-      const channel = new BroadcastChannel('static-cms-auth');
-      channel.postMessage({ type: 'auth-success', data: message });
-      
-      // Fix: Check if element exists before setting innerHTML
-      const statusEl = document.getElementById('status');
-      if (statusEl) {
-        statusEl.innerHTML = '<h2>Авторизація успішна!</h2><p>Ця вкладка зараз закриється...</p>';
+        window.opener.postMessage(message, "https://koreni.org.ua");
       }
-                                
-      setTimeout(() => window.close(), 1000);
-    })()
-    </script>
-  </body>
+
+      // 3. Close the tab (now permitted because of the click)
+      setTimeout(() => window.close(), 500);
+    });
+  </script>
+</body>
 </html>`;
   response.set('Content-Type', 'text/html');
   return response.send(content);
