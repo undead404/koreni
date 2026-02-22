@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-9-417
+  - ДАКО-384-9-418
+  - ДАКО-384-9-419
+  - ДАКО-384-9-420
+  - ДАКО-384-9-421
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-384-9-Obukhovychi-Stanishevka
+tableFilename: Іванківська волость прізвища.xlsm - Обуховичі, Станішевка (1).csv
+location:
+  - 50.98490921195622
+  - 29.76919880209769
+size: 141
+sources:
+  - https://docs.google.com/spreadsheets/d/17PLjQVZ7mVFECWykae5_b1NvC9NPTEO9/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Іванківська волость прізвища - Обуховичі, Станішевка
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Іванківська волость прізвища.xlsm - Обуховичі, Станішевка (1).csv

@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-05T00:00:00.000Z
+id: Indeksy-Ukraiiny-Makhnivskyi
+tableFilename: Київська губернія СПОВІДКИ - Махнівський повіт.csv
+location:
+  - 49.71898178663129
+  - 28.67174941317967
+size: 3988
+sources:
+  - https://docs.google.com/spreadsheets/d/1GqRimgUeScB8UftsrOrcOsbDGlNi58KTz0Jv2Sdffmc/edit?usp=sharing
+title: Київська губернія СПОВІДКИ - Махнівський повіт
+tableLocale: uk
+yearsRange:
+  - 1814
+  - 1866
+tableFilePath: public/csv/Київська губернія СПОВІДКИ - Махнівський повіт.csv

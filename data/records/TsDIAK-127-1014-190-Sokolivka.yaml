@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1014-190
+date: 2025-03-08T00:00:00.000Z
+id: TsDIAK-127-1014-190-Sokolivka
+tableFilename: 1839 Соколівка ЦДІАК, ф.127,оп 1014, спр 190 опр.xlsx - МК.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 264
+sources:
+  - https://docs.google.com/spreadsheets/d/1QwYypjeN38OeYJ7fvb19nvKTW-sBU0uL/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1839 Соколівка ЦДІАК, ф.127,оп 1014, спр 190 опр
+tableLocale: uk
+yearsRange:
+  - 1839
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1839 Соколівка ЦДІАК, ф.127,оп 1014, спр 190 опр.xlsx - МК.csv

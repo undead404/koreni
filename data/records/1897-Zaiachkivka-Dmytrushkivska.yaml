@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-245
+  - ДАКО-384-12-246
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Zaiachkivka-Dmytrushkivska
+tableFilename: 1897-Zaiachkivka-Dmytrushkivska.csv
+location:
+  - 48.649042889955915
+  - 30.35327775406099
+size: 60
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Заячківка (Дмитрушківська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Zaiachkivka-Dmytrushkivska.csv

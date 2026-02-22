@@ -12,8 +12,6 @@ import { IndexationTable } from '@/shared/schemas/indexation-table';
 import { PER_PAGE } from '../constants';
 import environment from '../environment';
 
-import parsePerson from './parse-person';
-
 const METADATA_OPTIONS = {
   siteUrl: environment.NEXT_PUBLIC_SITE,
   siteName: 'Корені',
@@ -93,8 +91,7 @@ export function generateIndexationMetadata(
   const canonical = buildCanonical(siteUrl, relativePath);
 
   const description = buildDescription(item);
-  const author = (item.author ? parsePerson(item.author) : null) ?? null;
-  const authorName: string | null = author?.name ?? null;
+  const authorName = item.authorName;
 
   const publishedISO = (() => {
     try {
@@ -168,9 +165,8 @@ export function generateJsonLd(item: IndexationTable): string {
 
   const description = buildDescription(item);
 
-  const author = item.author ? parsePerson(item.author) : null;
-  const authorName = author?.name ?? null;
-  const authorEmail = author?.email ?? null;
+  const authorName = item.authorName;
+  const authorEmail = item.authorEmail ?? null;
 
   const publishedISO = (() => {
     try {
@@ -221,11 +217,9 @@ export function generateJsonLd(item: IndexationTable): string {
         distribution: [
           {
             '@type': 'DataDownload',
-            contentUrl: `https://raw.githubusercontent.com/undead404/koreni/refs/heads/main/data/tables/${encodeURIComponent(
-              item.tableFilename,
-            )}`,
+            contentUrl: `https://raw.githubusercontent.com/undead404/koreni/refs/heads/main/${item.tableFilePath}`,
             encodingFormat: 'text/csv',
-            name: item.tableFilename,
+            name: item.tableFilePath.split('/').pop() ?? item.tableFilePath,
           } satisfies DataDownload,
         ],
         inLanguage: item.tableLocale,

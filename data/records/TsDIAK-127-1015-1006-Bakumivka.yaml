@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1015-1006
+date: 2025-03-18T00:00:00.000Z
+id: TsDIAK-127-1015-1006-Bakumivka
+tableFilename: ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница -
+  индекс.xlsx.xlsx - 127-1015-1006 Бакумівка.csv
+location:
+  - 49.708965533858986
+  - 30.600956601118014
+size: 82
+sources:
+  - https://docs.google.com/spreadsheets/d/1rDrCb4RmgRFt2iRDwOjjw7AbFBolX5zX/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Бакумівка 1862
+tableLocale: ru
+yearsRange:
+  - 1862
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница -
+  индекс.xlsx.xlsx - 127-1015-1006 Бакумівка.csv

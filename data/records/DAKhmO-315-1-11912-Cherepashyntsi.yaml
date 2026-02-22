@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-11912
+date: 2025-04-01T00:00:00.000Z
+id: DAKhmO-315-1-11912-Cherepashyntsi
+tableFilename: Черепашинці 1875 Сповідний розпис ДАХмО 315-1-11912 - master.csv
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 2371
+sources:
+  - https://docs.google.com/spreadsheets/d/1Adsfjc6LEbYxwEO_LUR75cYBoQRzqK4pKObGNQ8aIkk/edit?usp=sharing
+title: Черепашинці 1875 Сповідний розпис ДАХмО 315-1-11912
+tableLocale: ru
+yearsRange:
+  - 1875
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Черепашинці 1875 Сповідний розпис ДАХмО 315-1-11912 - master.csv

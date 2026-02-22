@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1080-184
+  - ЦДІАК-127-1080-500
+date: 2025-03-05T00:00:00.000Z
+id: Indeksy-Ukraiiny-Kyiv-smert
+tableFilename: Київ - Смерть.csv
+location:
+  - 50.4545147547705
+  - 30.530316525664336
+size: 1120
+sources:
+  - https://docs.google.com/spreadsheets/d/1qd70Mk-UWcaspUjFcfZvp7YYDDOWNUuGDdslJFGmaEg/edit?usp=sharing
+title: Київ - Смерть (1907-1920)
+tableLocale: ru
+yearsRange:
+  - 1907
+  - 1920
+tableFilePath: public/csv/Київ - Смерть.csv

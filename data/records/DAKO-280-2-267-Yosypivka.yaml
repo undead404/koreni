@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-280-2-267-Yosypivka
+tableFilename: 1811 Йосипівка - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+location:
+  - 49.594766872680026
+  - 28.861915208972462
+size: 51
+sources:
+  - https://docs.google.com/spreadsheets/d/1xUPUW28awYxq-YIBj6Bofv-lSK4yA-oA/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Йосипівка - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Йосипівка - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта 1811.csv

@@ -12,18 +12,18 @@ import getYamlFilepaths from './get-yaml-filepaths';
 import validateMetadata from './validate-metadata';
 
 const { sortBy } = _;
-const TABLES_FOLDER = './data/tables';
+const METADATA_FOLDER = path.join(process.cwd(), 'data/records');
 
 export default async function getTablesMetadata(): Promise<IndexationTable[]> {
-  const yamlFilepaths = await getYamlFilepaths(TABLES_FOLDER);
+  const yamlFilepaths = await getYamlFilepaths(METADATA_FOLDER);
   const tablesMetadata: IndexationTable[] = [];
   for (const yamlFilepath of yamlFilepaths) {
     const fileContent = await readFile(yamlFilepath, 'utf8');
     const fileData = parse(fileContent) as unknown;
     const tableMetadata = indexationTableSchema.parse(fileData);
     const bareFileName = yamlFilepath.split(path.sep).at(-1);
-    if (bareFileName !== `${tableMetadata.id}.yml`) {
-      console.log(bareFileName, '!==', `${tableMetadata.id}.yml`);
+    if (bareFileName !== `${tableMetadata.id}.yaml`) {
+      console.log(bareFileName, '!==', `${tableMetadata.id}.yaml`);
       throw new Error('Filename mismatch');
     }
     tablesMetadata.push(tableMetadata);

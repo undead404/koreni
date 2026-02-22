@@ -1,0 +1,16 @@
+date: 2025-03-13T00:00:00.000Z
+id: Velyka-Sevastianivka-1871
+tableFilename: Христинівка, Велика Севастянівка - 1871 (1).xlsx - Лист1.csv
+location:
+  - 48.88368916119225
+  - 29.770946554027553
+size: 248
+sources:
+  - https://docs.google.com/spreadsheets/d/1t8jgsbEzbsB253B_GGAhKbv5Pkoe-mIV/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Христинівка, Велика Севастянівка - 1871
+tableLocale: uk
+yearsRange:
+  - 1871
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Христинівка, Велика Севастянівка - 1871 (1).xlsx - Лист1.csv

@@ -36,13 +36,13 @@ describe('generateJsonLd', () => {
 
   it('should generate correct JSON-LD for a single table', () => {
     const table: IndexationTable = {
-      author: 'Author Name',
+      authorName: 'Author Name',
       date: new Date('2023-01-01'),
       id: 'table-1',
       location: [50, 30],
       size: 100,
       sources: ['source-1', 'source-2'],
-      tableFilename: 'table-1.csv',
+      tableFilePath: 'public/csv/table-1.csv',
       tableLocale: 'uk',
       title: 'Test Table',
       yearsRange: [1900, 1910],

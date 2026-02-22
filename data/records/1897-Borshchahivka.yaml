@@ -1,0 +1,28 @@
+archiveItems:
+  - ДАКО-384-10-82
+  - ДАКО-384-10-83
+  - ДАКО-384-10-84
+  - ДАКО-384-10-85
+  - ДАКО-384-10-86
+  - ДАКО-384-10-87
+  - ДАКО-384-10-88
+  - ДАКО-384-10-89
+  - ДАКО-384-10-90
+  - ДАКО-384-10-91
+  - ДАКО-384-10-256
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Borshchahivka
+tableFilename: 1897-Borshchahivka.csv
+location:
+  - 49.48834070428149
+  - 29.53591625054352
+size: 526
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Борщагівка (село) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Borshchahivka.csv

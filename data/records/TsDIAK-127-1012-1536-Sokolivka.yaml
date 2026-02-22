@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-1536
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1012-1536-Sokolivka
+tableFilename: 1824 Соколівка ЦДІАК, ф.127,оп.1012, спр.1536 обр.xlsx - МК 1824.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 215
+sources:
+  - https://docs.google.com/spreadsheets/d/1ljtv8gQJgn0PLI80JQWI1yOt6swgRTed/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1824 Соколівка ЦДІАК, ф.127,оп.1012, спр.1536 обр
+tableLocale: uk
+yearsRange:
+  - 1824
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1824 Соколівка ЦДІАК, ф.127,оп.1012, спр.1536 обр.xlsx - МК 1824.csv

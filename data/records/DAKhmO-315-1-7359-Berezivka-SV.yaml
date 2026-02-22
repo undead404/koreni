@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+date: 2025-11-21T00:00:00.000Z
+id: DAKhmO-315-1-7359-Berezivka-SV
+tableFilename: DAKhmO-315-1-7359-Berezivka-SV.csv
+location:
+  - 48.599910519257485
+  - 28.10964509319622
+size: 115
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+title: Березівка (Чернівецька), Свято-Введенська церква 1831 – сповідний розпис
+  (прізвища), ДАХмО 315-1-7359
+tableLocale: ru
+yearsRange:
+  - 1831
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-7359-Berezivka-SV.csv

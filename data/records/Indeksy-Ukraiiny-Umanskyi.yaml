@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1015-228
+  - ЦДІАК-127-1015-343
+  - ЦДІАК-127-1015-524
+  - ЦДІАК-127-1015-1110
+date: 2025-03-03T00:00:00.000Z
+id: Indeksy-Ukraiiny-Umanskyi
+tableFilename: Київська губернія СПОВІДКИ - Уманський повіт.csv
+location:
+  - 48.74931787853617
+  - 30.222536683036502
+size: 5257
+sources:
+  - https://docs.google.com/spreadsheets/d/1GqRimgUeScB8UftsrOrcOsbDGlNi58KTz0Jv2Sdffmc/edit?usp=sharing
+title: Київська губернія СПОВІДКИ - Уманський повіт
+tableLocale: uk
+yearsRange:
+  - 1814
+  - 1866
+tableFilePath: public/csv/Київська губернія СПОВІДКИ - Уманський повіт.csv

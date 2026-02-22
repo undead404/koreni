@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-328
+  - ДАКО-384-12-329
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Potash
+tableFilename: 1897-Potash.csv
+location:
+  - 48.920862824840384
+  - 30.330711547970537
+size: 93
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Поташ – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Potash.csv

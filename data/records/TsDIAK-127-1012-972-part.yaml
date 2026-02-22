@@ -1,0 +1,21 @@
+archiveItems:
+  - ЦДІАК-127-1012-972
+date: 2025-03-21T00:00:00.000Z
+id: TsDIAK-127-1012-972-part
+tableFilename: МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка - индекс.xlsx -
+  127-1012-972.csv
+location:
+  - 49.72244638885894
+  - 30.60819512225763
+size: 185
+sources:
+  - https://docs.google.com/spreadsheets/d/1woStdA7-QlB_juEQAyu5ur_shUrKUnBl/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Шарки, Бакумовка 1795,1796, Телешовка 1796
+tableLocale: ru
+yearsRange:
+  - 1795
+  - 1796
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка -
+  индекс.xlsx - 127-1012-972.csv

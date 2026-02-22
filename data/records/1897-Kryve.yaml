@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-10-208
+  - ДАКО-384-10-209
+  - ДАКО-384-10-210
+  - ДАКО-384-10-211
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Kryve
+tableFilename: 1897-Kryve.csv
+location:
+  - 50.06844608562979
+  - 29.461996200125814
+size: 231
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Криве (Попільнянське) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Kryve.csv

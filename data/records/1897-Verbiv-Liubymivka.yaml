@@ -1,0 +1,26 @@
+archiveItems:
+  - ДАКО-384-10-92
+  - ДАКО-384-10-353
+  - ДАКО-384-10-362
+  - ДАКО-384-10-363
+  - ДАКО-384-10-364
+  - ДАКО-384-10-365
+  - ДАКО-384-10-366
+  - ДАКО-384-10-367
+  - ДАКО-384-10-368
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Verbiv-Liubymivka
+tableFilename: 1897-Verbiv-Liubymivka.csv
+location:
+  - 50.03243564732727
+  - 29.23942133771334
+size: 270
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Вербів (Любимівка) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Verbiv-Liubymivka.csv

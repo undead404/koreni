@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-1198
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1015-1198-Rubchenky
+tableFilename: 1880 Рубченки ЦДІАК, ф.127,оп. 1015, спр. 1198.xlsx - Сповідка.csv
+location:
+  - 49.559119485093
+  - 29.714913105418724
+size: 1269
+sources:
+  - https://docs.google.com/spreadsheets/d/1mWGbB6WzSUVRS48KPMtT_YTEsItIVxc_/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1880 Рубченки ЦДІАК, ф.127,оп. 1015, спр. 1198 - Сповідка
+tableLocale: uk
+yearsRange:
+  - 1880
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1880 Рубченки ЦДІАК, ф.127,оп. 1015, спр. 1198.xlsx - Сповідка.csv

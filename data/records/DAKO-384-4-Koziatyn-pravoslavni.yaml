@@ -1,0 +1,30 @@
+archiveItems:
+  - ДАКО-384-4-146
+  - ДАКО-384-4-147
+  - ДАКО-384-4-148
+  - ДАКО-384-4-149
+  - ДАКО-384-4-150
+  - ДАКО-384-4-151
+  - ДАКО-384-4-152
+  - ДАКО-384-4-153
+  - ДАКО-384-4-154
+  - ДАКО-384-4-182
+  - ДАКО-384-4-183
+  - ДАКО-384-4-184
+  - ДАКО-384-4-185
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-384-4-Koziatyn-pravoslavni
+tableFilename: Козятин православні - Козятин.csv
+location:
+  - 49.71505395076936
+  - 28.83630582023679
+size: 25
+sources:
+  - https://docs.google.com/spreadsheets/d/1ElACmJd06ZBWDlEtwiIbaxTrtZb8nHQISZPZ0_2Q0rs/edit?usp=sharing
+title: Козятин православні
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Козятин православні - Козятин.csv

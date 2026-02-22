@@ -1,12 +1,14 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
-dotenv.config();
+import { nonEmptyString } from './schemata';
 
-const nonEmptyString = z.string().min(1);
+dotenv.config();
 
 const environmentSchema = z.object({
   BUGSNAG_API_API_KEY: nonEmptyString.optional(),
+  GITHUB_OAUTH_CLIENT_ID: nonEmptyString.optional(),
+  GITHUB_OAUTH_CLIENT_SECRET: nonEmptyString.optional(),
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
   NEXT_PUBLIC_SITE: nonEmptyString,
@@ -34,6 +36,7 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
+  GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,

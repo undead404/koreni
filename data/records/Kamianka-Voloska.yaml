@@ -1,0 +1,17 @@
+date: 2025-03-23T00:00:00.000Z
+id: Kamianka-Voloska
+tableFilename: Кам.Вол - індекси – копія - Аркуш1.csv
+location:
+  - 50.19969745697505
+  - 23.728066659885066
+size: 24399
+sources:
+  - https://docs.google.com/spreadsheets/d/1NFdRpIZ9aDdKZjddw6nnbiZpHPnonRTyt6voJ2xWups/edit?usp=sharing
+title: Кам'янка-Волоська
+tableLocale: uk
+yearsRange:
+  - 1784
+  - 1921
+authorName: Павло Солтис
+authorEmail: soltisp@gmail.com
+tableFilePath: public/csv/Кам.Вол - індекси – копія - Аркуш1.csv

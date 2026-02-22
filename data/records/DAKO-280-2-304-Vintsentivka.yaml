@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-304
+date: 2025-03-19T00:00:00.000Z
+id: DAKO-280-2-304-Vintsentivka
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-304
+  Вінцентівка 1816.csv
+location:
+  - 49.809222288582816
+  - 30.644071487240303
+size: 8
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Вінцентівка РС 1816
+tableLocale: ru
+yearsRange:
+  - 1816
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО
+  280-2-304 Вінцентівка 1816.csv

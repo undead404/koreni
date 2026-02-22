@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-345
+  - ДАКО-384-10-346
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Ozera-Zhytomyrska
+tableFilename: 1897-Ozera-Zhytomyrska.csv
+location:
+  - 50.15560357937413
+  - 29.322983020300615
+size: 106
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Озера (Житомирська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Ozera-Zhytomyrska.csv

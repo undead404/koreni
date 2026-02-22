@@ -20,7 +20,8 @@ export const indexationTableSchema = z.object({
       ),
     )
     .optional(),
-  author: z.string().optional(), // e.g., 'Андрій Мельник <a.melnyk@example.com>
+  authorName: nonEmptyString.optional(),
+  authorEmail: nonEmptyString.optional(),
   date: z
     .string()
     .transform((dateString) => new Date(dateString))
@@ -28,7 +29,7 @@ export const indexationTableSchema = z.object({
       message: 'Invalid date format. Expected ISO string.',
     }),
   id: z.string().min(1), // e.g., '1897-PZZ'
-  tableFilename: nonEmptyString, // e.g., '1897-PZZ.csv'. Guaranteed to be unique across all tables.
+  tableFilePath: nonEmptyString, // e.g., 'data/records/1897-PZZ.csv'. Guaranteed to be unique across all tables.
   location: z.tuple([z.number(), z.number()]), // [latitude, longitude]
   size: z.number().min(1),
   sources: z.array(nonEmptyString),

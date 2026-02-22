@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-399
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-399-Pomyinyk
+tableFilename: Помийник 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv
+location:
+  - 48.90041930814983
+  - 30.289070192598697
+size: 691
+sources:
+  - https://docs.google.com/spreadsheets/d/1OHNJULzG-GL660uFMeK_M5ggT0CpPf61/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Помийник 1828 ЦДІАК, ф.127,оп.1015, спр.399
+tableLocale: uk
+yearsRange:
+  - 1828
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Помийник 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv

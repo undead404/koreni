@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-597
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-597-Pomyinyk
+tableFilename: Помийник 1840 ЦДІАК, ф.127,оп.1015, спр.597.xlsx - СпРозпис.csv
+location:
+  - 48.90041930814983
+  - 30.289070192598697
+size: 733
+sources:
+  - https://docs.google.com/spreadsheets/d/1NjrlGEepD2b4F2OZCiic94i3juYi4C3a/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Помийник 1840 ЦДІАК, ф.127,оп.1015, спр.597
+tableLocale: uk
+yearsRange:
+  - 1840
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Помийник 1840 ЦДІАК, ф.127,оп.1015, спр.597.xlsx - СпРозпис.csv

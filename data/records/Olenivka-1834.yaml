@@ -1,0 +1,16 @@
+date: 2025-03-13T00:00:00.000Z
+id: Olenivka-1834
+tableFilename: Оленівка - ревізка 1834.xlsx - Ревізка.csv
+location:
+  - 50.116421456528116
+  - 30.12630726129651
+size: 1107
+sources:
+  - https://docs.google.com/spreadsheets/d/19GGXCm9902_t6bAC9BhMyxdL0Omzc3X3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Оленівка - ревізка 1834
+tableLocale: uk
+yearsRange:
+  - 1834
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Оленівка - ревізка 1834.xlsx - Ревізка.csv

@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-303
+date: 2025-03-19T00:00:00.000Z
+id: DAKO-280-2-303-Olshanytsia
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-303
+  Ольшаниця 1816.csv
+location:
+  - 49.70859696511235
+  - 30.62088145169667
+size: 8
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Ольшаниця РС 1816
+tableLocale: ru
+yearsRange:
+  - 1816
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО
+  280-2-303 Ольшаниця 1816.csv

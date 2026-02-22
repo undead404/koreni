@@ -1,0 +1,18 @@
+date: 2024-09-16T00:00:00.000Z
+id: DAKrO-P5907
+tableFilename: DAKirO_Fond5907.xlsx.xlsx - Опис+DGS.csv
+location:
+  - 48.50658065882304
+  - 32.26536187420993
+size: 13183
+sources:
+  - https://docs.google.com/spreadsheets/d/191ogcucW-EAqOFq1wrzhbfnwBr1pbk-g/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Опис фонду П-5907-2р Державного архіву Кіровоградської області (справи
+  репресованих)
+tableLocale: ru
+yearsRange:
+  - 1919
+  - 1994
+authorName: Дослідники історії Кіровоградщини
+authorEmail: vhavrus@gmail.com
+tableFilePath: public/csv/DAKirO_Fond5907.xlsx.xlsx - Опис+DGS.csv

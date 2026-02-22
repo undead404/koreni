@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-348
+  - ДАКО-384-12-349
+  - ДАКО-384-12-350
+  - ДАКО-384-12-351
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Kosenivka
+tableFilename: 1897-Kosenivka.csv
+location:
+  - 48.83089847580564
+  - 30.433044555775393
+size: 154
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Косенівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Kosenivka.csv

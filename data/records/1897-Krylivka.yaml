@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-151
+  - ДАКО-384-10-152
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Krylivka
+tableFilename: 1897-Krylivka.csv
+location:
+  - 49.797115761633975
+  - 29.202755230659506
+size: 76
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Крилівка (Вчорайшенська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Krylivka.csv

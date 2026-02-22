@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-06T00:00:00.000Z
+id: DAKO-280-2-267-Lebedyntsi
+tableFilename: 1811 Лебединці  шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx -
+  Шляхта, Лебединці.csv
+location:
+  - 49.92579046678381
+  - 29.120362724287848
+size: 50
+sources:
+  - https://docs.google.com/spreadsheets/d/1EBWlGxnE9JIXkjAw3GPIJT7AHvfimxnR/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Лебединці  шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Лебединці  шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта, Лебединці.csv

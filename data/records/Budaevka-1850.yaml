@@ -1,0 +1,16 @@
+date: 2025-04-04T00:00:00.000Z
+id: Budaevka-1850
+tableFilename: Будаевка 1850 (1).xlsx - Лист1.csv
+location:
+  - 50.31751541611289
+  - 30.298059138773493
+size: 454
+sources:
+  - https://docs.google.com/spreadsheets/d/1jTu0hciSuDqZJvRCUbJ2GBpG0j8XoBSW/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Будаевка 1850
+tableLocale: ru
+yearsRange:
+  - 1850
+authorName: Олег Лисенко
+authorEmail: Oleg.Lysenko@itsapr.com
+tableFilePath: public/csv/Будаевка 1850 (1).xlsx - Лист1.csv

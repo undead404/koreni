@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-399
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1015-399-Zelenyi-Rih
+tableFilename: Зелений Ріг 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv
+location:
+  - 49.10856962693231
+  - 30.13097870115258
+size: 519
+sources:
+  - https://docs.google.com/spreadsheets/d/17PUrAk8ouQ4_Imd0Y2P8gI0M4GVO_ZpE/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Зелений Ріг 1828 ЦДІАК, ф.127,оп.1015, спр.399
+tableLocale: uk
+yearsRange:
+  - 1828
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Зелений Ріг 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv

@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАЛ-201-4а-1626
+date: 2025-10-21T00:00:00.000Z
+id: TsDIAL-201-4a-1626-Dobriany-marriage
+tableFilename: TsDIAL-201-4a-1626-Dobriany-marriage.csv
+location:
+  - 49.745475764983524
+  - 23.52417077353701
+size: 274
+sources:
+  - https://docs.google.com/spreadsheets/d/1_GiKwH7mkWVyFla1lBbNrvZzuJC0IuC-/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Добряни, повіт Городок, за 1791-1830 рр.  ЦДІАЛ/201/4а/1626 (  Шлюби )
+tableLocale: uk
+yearsRange:
+  - 1791
+  - 1830
+authorName: Наталія Сабат
+authorEmail: natalja.sab@gmail.com
+tableFilePath: public/csv/TsDIAL-201-4a-1626-Dobriany-marriage.csv

@@ -4,7 +4,7 @@ import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import environment from '../environment';
 import generateTableDescription from '../helpers/generate-table-description';
-import parsePerson from '../helpers/parse-person';
+import getAuthor from '../helpers/get-author';
 
 export function generateJsonLd(tablesMetadata: IndexationTable[]) {
   const site = environment.NEXT_PUBLIC_SITE.replace(/\/$/, '');
@@ -15,7 +15,7 @@ export function generateJsonLd(tablesMetadata: IndexationTable[]) {
     const description = generateTableDescription(t);
     const dataset = {
       '@type': 'Dataset',
-      creator: t.author ? (parsePerson(t.author) ?? undefined) : undefined,
+      creator: getAuthor(t),
       description,
       identifier: t.id,
       license: `${site}/license/`,

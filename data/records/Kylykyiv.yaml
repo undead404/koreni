@@ -1,0 +1,16 @@
+date: 2025-03-26T00:00:00.000Z
+id: Kylykyiv
+tableFilename: Киликиїв - result.csv
+location:
+  - 50.536726593119724
+  - 27.04830361038984
+size: 10463
+sources:
+  - https://docs.google.com/spreadsheets/d/1dqOSRMiFWbzLMgQ9zZCOvML_nVp4d9_qgNynHVW8dbQ/edit?usp=sharing
+  - https://kylykyiv.pp.ua/
+title: Індекс мешканців містечка Киликиїв
+tableLocale: uk
+yearsRange:
+  - 1706
+  - 1949
+tableFilePath: public/csv/Киликиїв - result.csv

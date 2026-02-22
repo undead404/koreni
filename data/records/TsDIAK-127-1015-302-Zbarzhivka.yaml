@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-302
+date: 2025-03-13T00:00:00.000Z
+id: TsDIAK-127-1015-302-Zbarzhivka
+tableFilename: Збаржівка - 1820+ ЦДІАК, ф.127, оп.1015, спр.302.xlsx - Сповідка.csv
+location:
+  - 49.46155521352837
+  - 29.52680117505874
+size: 478
+sources:
+  - https://docs.google.com/spreadsheets/d/1ihkCwscU1HJO2GuEPvpxXOgpNKJWZU4j/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Збаржівка - 1820+ ЦДІАК, ф.127, оп.1015, спр.302
+tableLocale: uk
+yearsRange:
+  - 1820
+  - 1850
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Збаржівка - 1820+ ЦДІАК, ф.127, оп.1015, спр.302.xlsx - Сповідка.csv

@@ -2,6 +2,8 @@ import cors from 'cors';
 import express, { type Request, type Response } from 'express';
 import helmet from 'helmet';
 
+import handleAuth from './handlers/handle-auth';
+import handleCallback from './handlers/handle-callback';
 import handleSubmit from './handlers/handle-submit';
 import { rateLimitMiddleware } from './middlewares/rate-limiter';
 import { bugsnagMiddleware } from './services/bugsnag';
@@ -32,6 +34,9 @@ app.use('/api', rateLimitMiddleware);
 
 // Routes
 app.post('/api/submit', handleSubmit);
+
+app.get('/api/auth', handleAuth);
+app.get('/api/callback', handleCallback);
 
 app.get('/health', (_request, response) => {
   response.json({ status: 'ok' });

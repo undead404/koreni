@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-76
+date: 2025-03-19T00:00:00.000Z
+id: DAKO-280-2-76-Sharky
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-76 Шарки 1811.csv
+location:
+  - 49.6583578647971
+  - 30.624766944302507
+size: 123
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Шарки РС 1811
+tableLocale: ru
+yearsRange:
+  - 1811
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО
+  280-2-76 Шарки 1811.csv

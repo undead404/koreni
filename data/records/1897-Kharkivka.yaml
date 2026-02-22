@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-448
+  - ДАКО-384-12-449
+  - ДАКО-384-12-450
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Kharkivka
+tableFilename: 1897-Kharkivka.csv
+location:
+  - 49.016053817008405
+  - 30.312543798433172
+size: 152
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Харківка (Маньківська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Kharkivka.csv

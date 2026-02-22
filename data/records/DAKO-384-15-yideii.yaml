@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-15-
+date: 2025-03-06T00:00:00.000Z
+id: DAKO-384-15-yideii
+tableFilename: Бердичів перепис 1897 ДАКО, ф. 384, оп.15 спр.3-104 алф.xlsm –
+  копія.xlsm - Юдеї (Алф) (1).csv
+location:
+  - 49.910917181271515
+  - 28.59054132450711
+size: 2674
+sources:
+  - https://docs.google.com/spreadsheets/d/1G4DZnsFW4_OHmyVw2nFjemOwl2AZeRaH/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Бердичів перепис 1897 ДАКО, ф. 384, оп.15 спр.3-104 - Юдеї
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Бердичів перепис 1897 ДАКО, ф. 384, оп.15 спр.3-104
+  алф.xlsm – копія.xlsm - Юдеї (Алф) (1).csv

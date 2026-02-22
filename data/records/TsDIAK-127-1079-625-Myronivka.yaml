@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1079-625
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1079-625-Myronivka
+tableFilename: Миронівка 1911 ЦДІАК, ф.127,оп 1079, спр 625 обр.xlsx - Лист і.csv
+location:
+  - 49.66494004623009
+  - 30.987794662554197
+size: 1018
+sources:
+  - https://docs.google.com/spreadsheets/d/1uO-IuZkr-Y5XEYSZq8Z4bPXUkWySGvem/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Миронівка 1911 ЦДІАК, ф.127,оп 1079, спр 625 обр
+tableLocale: uk
+yearsRange:
+  - 1911
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Миронівка 1911 ЦДІАК, ф.127,оп 1079, спр 625 обр.xlsx - Лист і.csv

@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1012-3659
+date: 2025-03-21T00:00:00.000Z
+id: TsDIAK-127-1012-3659-Romashky
+tableFilename: МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка - индекс - Romashky 1866.csv
+location:
+  - 49.73186630283407
+  - 30.59951222348224
+size: 19
+sources:
+  - https://docs.google.com/spreadsheets/d/1woStdA7-QlB_juEQAyu5ur_shUrKUnBl/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Ромашки 1866 (шлюби)
+tableLocale: ru
+yearsRange:
+  - 1866
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка -
+  индекс - Romashky 1866.csv

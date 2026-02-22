@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1015-524
+  - ЦДІАК-127-1015-1119
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1015-Zelenyi-Rih
+tableFilename: Зелений Ріг - 1836+66.xlsx - Лист1.csv
+location:
+  - 49.10856962693231
+  - 30.13097870115258
+size: 1277
+sources:
+  - https://docs.google.com/spreadsheets/d/1TQpuUZxQCCMvc8ll2kxYZ92vLlFNBh51/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Зелений Ріг - 1836+66
+tableLocale: uk
+yearsRange:
+  - 1836
+  - 1866
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Зелений Ріг - 1836+66.xlsx - Лист1.csv

@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1012-2552
+date: 2025-03-09T00:00:00.000Z
+id: TsDIAK-127-1012-2552-Dzenhelivka
+tableFilename: 1849 Дзенгелівка ЦДІАК, ф.127,оп. 1012, спр. 2552 обр.xlsx - Метрика.csv
+location:
+  - 48.96241240370531
+  - 30.249487305932114
+size: 246
+sources:
+  - https://docs.google.com/spreadsheets/d/1-93KW4qe8FLboJbZ4fNuM8zoCML0Ecw9/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1849 Дзенгелівка ЦДІАК, ф.127,оп. 1012, спр. 2552 обр
+tableLocale: uk
+yearsRange:
+  - 1849
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1849 Дзенгелівка ЦДІАК, ф.127,оп. 1012, спр. 2552
+  обр.xlsx - Метрика.csv

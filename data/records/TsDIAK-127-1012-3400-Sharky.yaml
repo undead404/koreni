@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1012-3400
+date: 2025-03-21T00:00:00.000Z
+id: TsDIAK-127-1012-3400-Sharky
+tableFilename: МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка - индекс.xlsx -
+  127-1012-3400 .csv
+location:
+  - 49.6583578647971
+  - 30.624766944302507
+size: 22
+sources:
+  - https://docs.google.com/spreadsheets/d/1woStdA7-QlB_juEQAyu5ur_shUrKUnBl/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Шарки 1862 (шлюби)
+tableLocale: ru
+yearsRange:
+  - 1862
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка -
+  индекс.xlsx - 127-1012-3400 .csv

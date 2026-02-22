@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-431
+  - ДАКО-384-12-437
+  - ДАКО-384-12-438
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Berezivka
+tableFilename: 1897-Berezivka.csv
+location:
+  - 49.069387209008916
+  - 30.459585285680088
+size: 110
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Березівка (Іваньківська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Berezivka.csv

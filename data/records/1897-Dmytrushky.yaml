@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-12-401
+  - ДАКО-384-12-405
+  - ДАКО-384-12-408
+  - ДАКО-384-12-409
+  - ДАКО-384-12-410
+  - ДАКО-384-12-411
+  - ДАКО-384-12-412
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Dmytrushky
+tableFilename: 1897-Dmytrushky.csv
+location:
+  - 48.79804589233968
+  - 30.28235400504337
+size: 149
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Дмитрушки – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Dmytrushky.csv

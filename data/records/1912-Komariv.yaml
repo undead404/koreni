@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-1-74-406
+date: 2025-09-30T00:00:00.000Z
+id: 1912-Komariv
+tableFilename: Хворостів, Індекси - Комарів, 1912.csv
+location:
+  - 51.18787834942205
+  - 24.25865227580338
+size: 676
+sources:
+  - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?usp=sharing
+title: Сповідальні відомості, Комарів (Хворостів), 1912
+tableLocale: uk
+yearsRange:
+  - 1912
+authorName: Sergi Adamchuk
+authorEmail: adamchuk@gmail.com
+tableFilePath: public/csv/Хворостів, Індекси - Комарів, 1912.csv

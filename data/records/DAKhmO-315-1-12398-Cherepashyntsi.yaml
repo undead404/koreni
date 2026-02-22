@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-12398
+date: 2025-03-28T00:00:00.000Z
+id: DAKhmO-315-1-12398-Cherepashyntsi
+tableFilename: Черепашинці 1888 - Аркуш1.csv
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1146
+sources:
+  - https://docs.google.com/spreadsheets/d/1p3wDI4V16htoI_aNwPfh5RVnvSpXRg1rF8Al0R8A_BU/edit?usp=sharing
+title: Черепашинці 1888
+tableLocale: ru
+yearsRange:
+  - 1888
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Черепашинці 1888 - Аркуш1.csv

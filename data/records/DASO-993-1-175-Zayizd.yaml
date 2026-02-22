@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-993-1-175
+date: 2025-03-13T00:00:00.000Z
+id: DASO-993-1-175-Zayizd
+tableFilename: 1858 Рев.казка Заїзд ЦДІАК ф.993 оп.1 спр.175.xlsx - Лист1.csv
+location:
+  - 50.86617339793073
+  - 33.28959781529419
+size: 208
+sources:
+  - https://docs.google.com/spreadsheets/d/1-14o2wS5zfcj3kiOuJUXJcraqqPLAY_W/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1858 Рев.казка Заїзд ЦДІАК ф.993 оп.1 спр.175
+tableLocale: uk
+yearsRange:
+  - 1858
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1858 Рев.казка Заїзд ЦДІАК ф.993 оп.1 спр.175.xlsx - Лист1.csv

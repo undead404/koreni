@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-06T00:00:00.000Z
+id: DAKO-280-2-267-Ivankivtsi
+tableFilename: 1811 Іванківці - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+location:
+  - 49.84643185876062
+  - 28.67383042554413
+size: 114
+sources:
+  - https://docs.google.com/spreadsheets/d/12DDzLkunU3s2fZhI7h0S_j3x1IxvhsPl/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Іванківці - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Іванківці - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта 1811.csv

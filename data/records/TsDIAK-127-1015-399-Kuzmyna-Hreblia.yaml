@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-399
+date: 2025-03-30T00:00:00.000Z
+id: TsDIAK-127-1015-399-Kuzmyna-Hreblia
+tableFilename: Кузьмина Гребля 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv
+location:
+  - 48.67484601780623
+  - 30.04309997238442
+size: 551
+sources:
+  - https://docs.google.com/spreadsheets/d/1daFWN-eabrpgaC1h1oZM0gNvDIMMjeAC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Кузьмина Гребля 1828 ЦДІАК, ф.127,оп.1015, спр.399 - Сповідка
+tableLocale: uk
+yearsRange:
+  - 1828
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Кузьмина Гребля 1828 ЦДІАК, ф.127,оп.1015,
+  спр.399.xlsx - Сповідка.csv

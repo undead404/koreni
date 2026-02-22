@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-280-2-267-Kumanivka
+tableFilename: 1811 Куманівка - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+location:
+  - 49.65046760362728
+  - 28.69879217129228
+size: 264
+sources:
+  - https://docs.google.com/spreadsheets/d/1uI_PvD_a3Q0eirhl3jAFsdG1Xf6ciGkR/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Куманівка - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Куманівка - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта 1811.csv

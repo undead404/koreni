@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-1848
+date: 2025-03-13T00:00:00.000Z
+id: TsDIAK-127-1012-1848-Besidka
+tableFilename: 1837 Бесідка ДАКО ф.127, оп.1012, спр.1848.xlsx - Бесідка.csv
+location:
+  - 49.311095492521765
+  - 30.2719357994444
+size: 1346
+sources:
+  - https://docs.google.com/spreadsheets/d/1lIyXvoQtcJvmD9LOxJCi8aVfaahM0T_x/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1837 Бесідка ДАКО ф.127, оп.1012, спр.1848.xlsx - Бесідка.csv
+tableLocale: uk
+yearsRange:
+  - 1837
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1837 Бесідка ДАКО ф.127, оп.1012, спр.1848.xlsx - Бесідка.csv

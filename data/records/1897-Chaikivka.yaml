@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-12-145
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Chaikivka
+tableFilename: 1897-Chaikivka.csv
+location:
+  - 48.904949248874566
+  - 30.00956117088548
+size: 51
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Чайківка (Христинівська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Chaikivka.csv

@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-10-233
+  - ДАКО-384-10-234
+  - ДАКО-384-10-235
+  - ДАКО-384-10-236
+  - ДАКО-384-10-237
+date: 2025-03-13T00:00:00.000Z
+id: DAKO-384-10-Morozivka
+tableFilename: Морозівка перепис 1897 ДАКО, ф. 384, оп.10, спр.233-237.xlsm - Перепис.csv
+location:
+  - 49.609106758833505
+  - 29.372909530032974
+size: 1505
+sources:
+  - https://docs.google.com/spreadsheets/d/1u8nAxe6VG0Ce1CBKorxPkVRTG0rZ9UER/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Морозівка перепис 1897 ДАКО, ф. 384, оп.10, спр.233-237
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Морозівка перепис 1897 ДАКО, ф. 384, оп.10,
+  спр.233-237.xlsm - Перепис.csv
