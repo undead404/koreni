@@ -3,7 +3,6 @@ import type { MetadataRoute } from 'next';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import removeEmails from './helpers/remove-emails';
 import slugifyUkrainian from './helpers/slugify-ukrainian';
 import { PER_PAGE } from './constants';
 import environment from './environment';
@@ -14,9 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tablesMetadata = await getTablesMetadata();
   const knownSlugs = new Set();
   const volunteers = _.map(
-    _.groupBy(tablesMetadata, 'author'),
-    (tables, author) => {
-      const name = author === 'undefined' ? 'Невідомі' : removeEmails(author);
+    _.groupBy(tablesMetadata, 'authorName'),
+    (tables, name = 'Невідомі') => {
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {

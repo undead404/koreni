@@ -1,7 +1,6 @@
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import extractEmails from './extract-emails';
-import removeEmails from './remove-emails';
 import slugifyUkrainian from './slugify-ukrainian';
 
 export default async function getVolunteers() {
@@ -9,7 +8,7 @@ export default async function getVolunteers() {
   const tablesByVolunteer: Record<string, typeof tables> = {};
 
   for (const table of tables) {
-    const author = table.author || 'undefined';
+    const author = table.authorName || 'undefined';
     if (!tablesByVolunteer[author]) {
       tablesByVolunteer[author] = [];
     }
@@ -19,7 +18,7 @@ export default async function getVolunteers() {
   const knownSlugs = new Set();
   return Object.entries(tablesByVolunteer)
     .map(([author, tables]) => {
-      const name = author === 'undefined' ? 'Невідомі' : removeEmails(author);
+      const name = author ?? 'Невідомі';
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {

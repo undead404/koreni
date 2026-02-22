@@ -8,7 +8,6 @@ import MapWrapper from '@/app/components/map-wrapper';
 import Pagination from '@/app/components/pagination';
 import SourceLink from '@/app/components/source-link';
 import { PER_PAGE } from '@/app/constants';
-import removeEmails from '@/app/helpers/remove-emails';
 import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 import combinedPoints from '@/app/services/map-points';
 import { IndexationTable } from '@/shared/schemas/indexation-table';
@@ -39,9 +38,7 @@ export default function TableContent({
     </span>
   ));
 
-  const authorName = tableMetadata.author
-    ? removeEmails(tableMetadata.author)
-    : 'невідомі';
+  const authorName = tableMetadata.authorName ?? 'невідомі';
 
   const totalPages = Math.ceil(totalRecords / PER_PAGE);
 
@@ -54,7 +51,7 @@ export default function TableContent({
           <p>
             Виконавець індексації:{' '}
             <Link href={`/volunteers/${slugifyUkrainian(authorName)}/`}>
-              {removeEmails(authorName)}
+              {authorName}
             </Link>
           </p>
           <p>Таблиці: {sourcesLinks}</p>
