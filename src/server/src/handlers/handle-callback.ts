@@ -53,13 +53,6 @@ const handleCallback: RequestHandler = async (request, response) => {
     'Content-Security-Policy',
     `script-src 'self' 'nonce-${nonce}'`,
   );
-  response.setHeader('Cross-Origin-Opener-Policy', 'unsafe-none');
-  response.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  // Also ensure your CSP allows the script to run
-  response.setHeader(
-    'Content-Security-Policy',
-    "script-src 'self' 'unsafe-inline'",
-  );
 
   // The CMS expects a postMessage to the opener window
   const content = `<!DOCTYPE html>

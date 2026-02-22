@@ -36,7 +36,21 @@ app.use('/api', rateLimitMiddleware);
 app.post('/api/submit', handleSubmit);
 
 app.get('/api/auth', handleAuth);
-app.get('/api/callback', handleCallback);
+app.get(
+  '/api/callback',
+  (request, response, next) => {
+    response.setHeader(
+      'Content-Security-Policy',
+      "script-src 'self' 'unsafe-inline'",
+    );
+    response.setHeader(
+      'Cross-Origin-Opener-Policy',
+      'same-origin-allow-popups',
+    );
+    next();
+  },
+  handleCallback,
+);
 
 app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok' });
