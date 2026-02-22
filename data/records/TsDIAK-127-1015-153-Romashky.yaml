@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1015-153
+date: 2025-03-18T00:00:00.000Z
+id: TsDIAK-127-1015-153-Romashky
+tableFilename: ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница -
+  индекс.xlsx.xlsx - 127-1015-153.csv
+location:
+  - 49.73186630283407
+  - 30.59951222348224
+size: 130
+sources:
+  - https://docs.google.com/spreadsheets/d/1rDrCb4RmgRFt2iRDwOjjw7AbFBolX5zX/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Ромашки 1802
+tableLocale: ru
+yearsRange:
+  - 1802
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница -
+  индекс.xlsx.xlsx - 127-1015-153.csv

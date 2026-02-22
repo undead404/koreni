@@ -1,0 +1,34 @@
+name: Enrich Data
+on:
+  push:
+    branches:
+      - 'cms/**'
+
+jobs:
+  update-size:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+
+      - name: Enrich Data
+        run: yarn data:enrich
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "chore: auto-update data size"
+          git push

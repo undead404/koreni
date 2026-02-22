@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1012-2880
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1012-2880-Maslivka
+tableFilename: 1854 Маслівка - ДАКО ф.127, оп. 1012, спр.2880.xlsm - Маслівка 1854.csv
+location:
+  - 49.72348361652787
+  - 31.16434674509227
+size: 255
+sources:
+  - https://docs.google.com/spreadsheets/d/1N4nRVCvb1nUlmAEzZgTjNKaP1rYKKgJZ/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1854 Маслівка - ДАКО ф.127, оп. 1012, спр.2880
+tableLocale: uk
+yearsRange:
+  - 1854
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1854 Маслівка - ДАКО ф.127, оп. 1012, спр.2880.xlsm -
+  Маслівка 1854.csv

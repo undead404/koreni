@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-10-132
+  - ДАКО-384-10-133
+  - ДАКО-384-10-134
+  - ДАКО-384-10-135
+  - ДАКО-384-10-136
+  - ДАКО-384-10-137
+  - ДАКО-384-10-138
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Verkhivnia
+tableFilename: 1897-Verkhivnia.csv
+location:
+  - 49.80094760541531
+  - 29.30959137483879
+size: 346
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Верхівня – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Verkhivnia.csv

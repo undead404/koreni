@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+date: 2025-11-21T00:00:00.000Z
+id: DAKhmO-315-1-7359-Babchyntsi-SP
+tableFilename: DAKhmO-315-1-7359-Babchyntsi-SP.csv
+location:
+  - 48.41618304024789
+  - 28.158552513834007
+size: 222
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+title: Бабчинці, Свято-Покровська церква 1831 – сповідний розпис (прізвища),
+  ДАХмО 315-1-7359
+tableLocale: ru
+yearsRange:
+  - 1831
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-7359-Babchyntsi-SP.csv

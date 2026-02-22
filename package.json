@@ -68,6 +68,7 @@
   "scripts": {
     "artifacts:clean": "./scripts/clean-repo/clean-repo.sh",
     "build": "next build",
+    "data:enrich": "tsx src/enrich-data/index.ts",
     "dev": "next dev --turbopack",
     "docker:typesense:remove": "docker rm typesense-server",
     "docker:typesense:start": "tsx src/dockerize-typesense/index.ts",

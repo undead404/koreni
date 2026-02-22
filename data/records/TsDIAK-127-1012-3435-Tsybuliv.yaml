@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-3435
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1012-3435-Tsybuliv
+tableFilename: Цибулів мк 1862 ЦДІАК, ф.127,оп.1012, спр.3435.xlsx - МК.csv
+location:
+  - 49.07108747289961
+  - 29.848923174227096
+size: 526
+sources:
+  - https://docs.google.com/spreadsheets/d/1UMXUNtszSiOcpJSPfvSdOnUXwQU2k2J8/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Цибулів мк 1862 ЦДІАК, ф.127,оп.1012, спр.3435
+tableLocale: uk
+yearsRange:
+  - 1862
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Цибулів мк 1862 ЦДІАК, ф.127,оп.1012, спр.3435.xlsx - МК.csv

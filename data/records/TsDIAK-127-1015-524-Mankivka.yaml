@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-524
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-524-Mankivka
+tableFilename: Маньківка, Черкаська - 1866+..xlsx - Розпис.csv
+location:
+  - 48.961918387825214
+  - 30.336060913096002
+size: 867
+sources:
+  - https://docs.google.com/spreadsheets/d/1Dl-kENFYIj1fh4YxqpsA8nhkH8FUJLG2/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Маньківка, Черкаська - 1866+.
+tableLocale: uk
+yearsRange:
+  - 1817
+  - 1850
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Маньківка, Черкаська - 1866+..xlsx - Розпис.csv

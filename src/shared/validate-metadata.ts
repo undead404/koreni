@@ -29,6 +29,6 @@ function areDistinctBy(
 
 export default function validateMetadata(tablesMetadata: IndexationTable[]) {
   areDistinctBy(tablesMetadata, (tableMetadata) => tableMetadata.id);
-  areDistinctBy(tablesMetadata, (tableMetadata) => tableMetadata.tableFilename);
+  areDistinctBy(tablesMetadata, (tableMetadata) => tableMetadata.tableFilePath);
   areDistinctBy(tablesMetadata, (tableMetadata) => tableMetadata.title);
 }

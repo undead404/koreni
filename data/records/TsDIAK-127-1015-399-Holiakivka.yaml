@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-399
+date: 2025-03-13T00:00:00.000Z
+id: TsDIAK-127-1015-399-Holiakivka
+tableFilename: Голяківка 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv
+location:
+  - 48.79432782788104
+  - 30.077930917707647
+size: 373
+sources:
+  - https://docs.google.com/spreadsheets/d/1bNzDRFw4HCzxtQbKGvqGPLfOgWmg54cD/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Голяківка 1828 ЦДІАК, ф.127,оп.1015, спр.399
+tableLocale: uk
+yearsRange:
+  - 1828
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Голяківка 1828 ЦДІАК, ф.127,оп.1015, спр.399.xlsx - Сповідка.csv

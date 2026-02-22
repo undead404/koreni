@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАВіО-800-1-16
+date: 2025-10-22T00:00:00.000Z
+id: DAViO-800-1-16-Pysarivka-Ruska
+tableFilename: Писарівка-Руська 1812 – сповідний розпис, ДАВіО-800-1-16 - master.csv
+location:
+  - 48.67642043632789
+  - 28.129250440731653
+size: 730
+sources:
+  - https://docs.google.com/spreadsheets/d/1VKMd2Amu8EmwgsQP55kwTqOQ4VrBa8GHgphoZvZmWwA/edit?usp=sharing
+title: Писарівка-Руська 1812 – сповідний розпис
+tableLocale: ru
+yearsRange:
+  - 1812
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Писарівка-Руська 1812 – сповідний розпис,
+  ДАВіО-800-1-16 - master.csv

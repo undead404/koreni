@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЧгО-1262-1-12175
+date: 2025-09-05T00:00:00.000Z
+id: DAChhO-1262-1-12175
+tableFilename: DAChhO-1262-1-12175.csv
+location:
+  - 50.23975808003364
+  - 32.507636702293894
+size: 2231
+sources:
+  - https://drive.google.com/drive/folders/10mhd04hF55_QzzNu7xStB7kODECoiueO?usp=sharing
+title: Сповідна книга Різдво-Богородицької церкви м. Пирятин Полтавської
+  губернії, 1859 рік
+tableLocale: ru
+yearsRange:
+  - 1859
+authorName: Спільнота Cobook
+tableFilePath: public/csv/DAChhO-1262-1-12175.csv

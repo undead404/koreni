@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-426
+  - ДАКО-384-12-427
+  - ДАКО-384-12-428
+  - ДАКО-384-12-429
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Sokolivka
+tableFilename: 1897-Sokolivka.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 217
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Соколівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Sokolivka.csv

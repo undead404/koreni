@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХО-31-141-126
+date: 2025-11-18T00:00:00.000Z
+id: DAKhO-31-141-126-others
+tableFilename: 1811 Валки ДАХО Ф-31, оп.141, спр.126 опр.xlsx - К 188-209 Валки інші.csv
+location:
+  - 49.83865541904848
+  - 35.62017465017693
+size: 132
+sources:
+  - https://docs.google.com/spreadsheets/d/1hUKN7uQ0nWvR5QeEk2k21TFBqfhWi2fG/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Валки ДАХО Ф-31, оп.141, спр.126 – інші
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Валки ДАХО Ф-31, оп.141, спр.126 опр.xlsx - К
+  188-209 Валки інші.csv

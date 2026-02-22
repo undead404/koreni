@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-7037
+date: 2025-11-16T00:00:00.000Z
+id: DAKhmO-315-1-7037-Cherepashyntsi
+tableFilename: Черепашинці 1817 Сповідний розпис ДАХмО 315-1-7037 - master.csv
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1708
+sources:
+  - https://docs.google.com/spreadsheets/d/1adN43F7DK-endECUyagVW4vAxSfLhgkYJWn0X2UwzmE/edit?usp=sharing
+title: Черепашинці 1817 Сповідний розпис ДАХмО 315-1-7037
+tableLocale: ru
+yearsRange:
+  - 1817
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Черепашинці 1817 Сповідний розпис ДАХмО 315-1-7037 - master.csv

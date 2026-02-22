@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-512
+date: 2025-03-13T00:00:00.000Z
+id: TsDIAK-127-1015-512-Trylisy
+tableFilename: Триліси 1836 ЦДІАК, ф.127,оп.1015, спр.512.xlsx - Сповідка.csv
+location:
+  - 49.9848616737221
+  - 29.83644915629147
+size: 1476
+sources:
+  - https://docs.google.com/spreadsheets/d/1Cp8YdBmimVQutgipi3ayVPfLjEyYzp38/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Триліси 1836 ЦДІАК, ф.127,оп.1015, спр.512
+tableLocale: uk
+yearsRange:
+  - 1836
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Триліси 1836 ЦДІАК, ф.127,оп.1015, спр.512.xlsx - Сповідка.csv

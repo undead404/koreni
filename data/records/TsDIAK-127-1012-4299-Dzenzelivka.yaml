@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1012-4299
+date: 2025-03-09T00:00:00.000Z
+id: TsDIAK-127-1012-4299-Dzenzelivka
+tableFilename: 1872 Дзензелівка ЦДІАК, ф.127,оп 1012, спр 4299 обр.xlsx - Оригінал.csv
+location:
+  - 48.96241240370531
+  - 30.249487305932114
+size: 563
+sources:
+  - https://docs.google.com/spreadsheets/d/19izDKTlJcjkB4doe8EcQhKZTYtpkgQfy/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1872 Дзензелівка ЦДІАК, ф.127,оп 1012, спр 4299 обр
+tableLocale: uk
+yearsRange:
+  - 1872
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1872 Дзензелівка ЦДІАК, ф.127,оп 1012, спр 4299
+  обр.xlsx - Оригінал.csv

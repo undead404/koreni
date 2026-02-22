@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-2152
+date: 2025-03-09T00:00:00.000Z
+id: TsDIAK-127-1012-2152-Pidvysoke
+tableFilename: 1843 Підвисоке ЦДІАК ф.127 оп.1012 спр.2152.xlsx - МК.csv
+location:
+  - 49.07511984496891
+  - 29.600973322801053
+size: 222
+sources:
+  - https://docs.google.com/spreadsheets/d/17Ef7NwdKbmyhvvHFMsIJNPDY9CYNQS2Z/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1843 Підвисоке ЦДІАК ф.127 оп.1012 спр.2152
+tableLocale: uk
+yearsRange:
+  - 1843
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1843 Підвисоке ЦДІАК ф.127 оп.1012 спр.2152.xlsx - МК.csv

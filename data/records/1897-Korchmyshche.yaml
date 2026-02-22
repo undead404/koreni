@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-356
+  - ДАКО-384-10-357
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Korchmyshche
+tableFilename: 1897-Korchmyshche.csv
+location:
+  - 50.10953079520738
+  - 29.150864738364078
+size: 93
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Корчмище – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Korchmyshche.csv

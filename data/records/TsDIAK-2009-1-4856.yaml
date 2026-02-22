@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-2009-1-4856
+date: 2025-10-18T00:00:00.000Z
+id: TsDIAK-2009-1-4856
+tableFilename: ЦДІАК ф. 2009 спр. 4856 - 4856.csv
+location:
+  - 50.001674835698736
+  - 36.29772588253596
+size: 97
+sources:
+  - https://docs.google.com/spreadsheets/d/1f9oPPaFeM5ogL4GzvFv9BXm7cm5GSIsnlHfkBxG_BSE/edit?usp=sharing
+title: ЦДІАК ф. 2009 спр. 4856
+tableLocale: ru
+yearsRange:
+  - 1775
+  - 1834
+authorName: Maksim Laktionov
+authorEmail: maksimisgreat@gmail.com
+tableFilePath: public/csv/ЦДІАК ф. 2009 спр. 4856 - 4856.csv

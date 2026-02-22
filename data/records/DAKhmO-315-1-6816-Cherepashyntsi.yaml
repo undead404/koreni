@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-6816
+date: 2024-04-26T00:00:00.000Z
+id: DAKhmO-315-1-6816-Cherepashyntsi
+tableFilename: Черепашинці 1802 Сповідний розпис ДАХмО 315-1-6816 - master.csv
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1674
+sources:
+  - https://docs.google.com/spreadsheets/d/1YMBq4SvCQUgLGmzGOBIKm0xaGMKqducjESOTpkykAiQ/edit?usp=sharing
+title: Черепашинці 1802 Сповідний розпис ДАХмО 315-1-6816
+tableLocale: ru
+yearsRange:
+  - 1802
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Черепашинці 1802 Сповідний розпис ДАХмО 315-1-6816 - master.csv

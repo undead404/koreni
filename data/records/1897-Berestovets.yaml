@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-381
+  - ДАКО-384-12-382
+  - ДАКО-384-12-383
+  - ДАКО-384-12-519
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Berestovets
+tableFilename: 1897-Berestovets.csv
+location:
+  - 48.85918632544741
+  - 30.183905789701218
+size: 106
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Берестовець (Берестівець) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Berestovets.csv

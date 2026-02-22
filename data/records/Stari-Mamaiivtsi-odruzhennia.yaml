@@ -1,0 +1,17 @@
+date: 2025-03-24T00:00:00.000Z
+id: Stari-Mamaiivtsi-odruzhennia
+tableFilename: Метричні Книги. Мамаївці - С.М.О..csv
+location:
+  - 48.352116771348115
+  - 25.80416694706334
+size: 2149
+sources:
+  - https://docs.google.com/spreadsheets/d/1Kzvap0MgxLvz_N5csjpBHX0gJMBlw7sm9vc2N1fgHJw/edit?usp=sharing
+title: Старі Мамаївці – одруження
+tableLocale: uk
+yearsRange:
+  - 1840
+  - 1938
+authorName: Ярослав Бойчук + Назар Логозар
+authorEmail: yava.ua@gmail.com
+tableFilePath: public/csv/Метричні Книги. Мамаївці - С.М.О..csv

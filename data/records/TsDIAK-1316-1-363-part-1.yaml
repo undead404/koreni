@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-1316-1-363
+date: 2025-03-19T00:00:00.000Z
+id: TsDIAK-1316-1-363-part-1
+tableFilename: NovaPraha1863.csv
+location:
+  - 48.55850535863639
+  - 32.899790142988344
+size: 1138
+sources:
+  - https://docs.google.com/spreadsheets/d/1EK5no_vnRVwh6lvGj_zA7X8AM7ejmU8U/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: ЦДІАК-1316-1-363, 1 відділення, 1863, Нова Прага, Головківка, Митрофанівка
+tableLocale: uk
+yearsRange:
+  - 1863
+authorName: Вячеслав Хаврусь і Володимир Разін
+authorEmail: vhavrus@gmail.com
+tableFilePath: public/csv/NovaPraha1863.csv

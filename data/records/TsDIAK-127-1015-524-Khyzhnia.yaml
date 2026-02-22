@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-524
+date: 2025-03-08T00:00:00.000Z
+id: TsDIAK-127-1015-524-Khyzhnia
+tableFilename: Хижня - 1836+.xlsx - Сповідка.csv
+location:
+  - 49.10406901737459
+  - 30.27462704114379
+size: 1021
+sources:
+  - https://docs.google.com/spreadsheets/d/1q0tYnSNM4yDAcb9wo3n_GGiCgjirYYDT/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Хижня - 1836+
+tableLocale: uk
+yearsRange:
+  - 1836
+  - 1850
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Хижня - 1836+.xlsx - Сповідка.csv

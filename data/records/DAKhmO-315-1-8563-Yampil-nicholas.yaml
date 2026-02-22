@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+date: 2026-02-21T00:00:00.000Z
+id: DAKhmO-315-1-8563-Yampil-nicholas
+tableFilename: DAKhmO-315-1-8563-Yampil-nicholas.csv
+location:
+  - 48.24364253662342
+  - 28.28054962179073
+size: 1221
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+title: Ямпіль 1861 – сповідний розпис (повний), Свято-Миколаївська церква, ДАХмО
+  315-1-8563
+tableLocale: ru
+yearsRange:
+  - 1861
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-8563-Yampil-nicholas.csv

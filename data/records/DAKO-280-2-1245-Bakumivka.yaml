@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-1245
+date: 2025-03-19T00:00:00.000Z
+id: DAKO-280-2-1245-Bakumivka
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-1245
+  Бакумівка 1858.csv
+location:
+  - 49.708965533858986
+  - 30.600956601118014
+size: 6
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Бакумівка РС 1858
+tableLocale: ru
+yearsRange:
+  - 1858
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО
+  280-2-1245 Бакумівка 1858.csv

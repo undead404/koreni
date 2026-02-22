@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-12-330
+  - ДАКО-384-12-331
+  - ДАКО-384-12-332
+  - ДАКО-384-12-333
+  - ДАКО-384-12-334
+  - ДАКО-384-12-519
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Romanivka
+tableFilename: 1897-Romanivka.csv
+location:
+  - 48.93613153950175
+  - 30.51106788821214
+size: 195
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Романівка (Тальнівська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Romanivka.csv

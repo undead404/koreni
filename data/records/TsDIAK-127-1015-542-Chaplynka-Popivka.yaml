@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-542
+date: 2025-03-09T00:00:00.000Z
+id: TsDIAK-127-1015-542-Chaplynka-Popivka
+tableFilename: Чаплинка+Попівка 1837 ЦДІАК, ф.127,оп.1015, спр.542.xlsx - Сповідка.csv
+location:
+  - 49.33235942700875
+  - 30.64112064687288
+size: 676
+sources:
+  - https://docs.google.com/spreadsheets/d/12rF-wvXB9sQomHAC_RWnD2_O3R-RIzfG/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Чаплинка+Попівка 1837 ЦДІАК, ф.127,оп.1015, спр.542
+tableLocale: uk
+yearsRange:
+  - 1837
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Чаплинка+Попівка 1837 ЦДІАК, ф.127,оп.1015,
+  спр.542.xlsx - Сповідка.csv

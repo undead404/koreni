@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-170
+  - ДАКО-384-12-171
+  - ДАКО-384-12-172
+  - ДАКО-384-12-173
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Psiarivka
+tableFilename: 1897-Psiarivka.csv
+location:
+  - 48.64206886017052
+  - 30.28582614351341
+size: 89
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Псярівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Psiarivka.csv

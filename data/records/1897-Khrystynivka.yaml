@@ -1,0 +1,25 @@
+archiveItems:
+  - ДАКО-384-12-130
+  - ДАКО-384-12-131
+  - ДАКО-384-12-132
+  - ДАКО-384-12-133
+  - ДАКО-384-12-134
+  - ДАКО-384-12-135
+  - ДАКО-384-12-457
+  - ДАКО-384-12-519
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Khrystynivka
+tableFilename: 1897-Khrystynivka.csv
+location:
+  - 48.81188582430122
+  - 29.97456508500894
+size: 289
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Христинівка (місто) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Khrystynivka.csv

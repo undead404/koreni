@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-10-124
+  - ДАКО-384-10-125
+  - ДАКО-384-10-126
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Brovky
+tableFilename: 1897-Brovky.csv
+location:
+  - 49.937457939823524
+  - 29.200029242551715
+size: 156
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Бровки (перші) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Brovky.csv

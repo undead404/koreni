@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-10-119
+  - ДАКО-384-10-120
+  - ДАКО-384-10-121
+  - ДАКО-384-10-122
+  - ДАКО-384-10-123
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Viitivtsi
+tableFilename: 1897-Viitivtsi.csv
+location:
+  - 50.01723103308223
+  - 27.930422299170594
+size: 483
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Війтівці (нині Виноградівка) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Viitivtsi.csv

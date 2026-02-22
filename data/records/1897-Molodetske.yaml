@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-12-398
+  - ДАКО-384-12-399
+  - ДАКО-384-12-400
+  - ДАКО-384-12-401
+  - ДАКО-384-12-402
+  - ДАКО-384-12-403
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Molodetske
+tableFilename: 1897-Molodetske.csv
+location:
+  - 48.88193226064421
+  - 30.390883796526822
+size: 175
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Молодецьке (Маньківське) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Molodetske.csv

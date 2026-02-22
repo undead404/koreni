@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-347
+  - ДАКО-384-10-364
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Zapadnia-Brusylivska
+tableFilename: 1897-Zapadnia-Brusylivska.csv
+location:
+  - 50.189990682656685
+  - 29.32831688761187
+size: 81
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Западня (Брусиливська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Zapadnia-Brusylivska.csv

@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-12-207
+  - ДАКО-384-12-208
+  - ДАКО-384-12-209
+  - ДАКО-384-12-210
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Nebelivka
+tableFilename: 1897-Nebelivka.csv
+location:
+  - 48.634493222380684
+  - 30.57721775120055
+size: 190
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Небелівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Nebelivka.csv

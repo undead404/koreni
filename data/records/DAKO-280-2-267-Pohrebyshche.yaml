@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-13T00:00:00.000Z
+id: DAKO-280-2-267-Pohrebyshche
+tableFilename: 1811 Погребище - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx.xlsm -
+  Шляхта 1811.csv
+location:
+  - 49.486345184679884
+  - 29.268768983919557
+size: 202
+sources:
+  - https://docs.google.com/spreadsheets/d/1PyiGNZegDiXTAZOZuHE29tBJmElgN5Io/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Погребище - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Погребище - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx.xlsm - Шляхта 1811.csv

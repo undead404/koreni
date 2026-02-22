@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-280-2-267-Samhorodok
+tableFilename: 1811 Самгородок - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+location:
+  - 49.52781776500606
+  - 28.844541963505534
+size: 297
+sources:
+  - https://docs.google.com/spreadsheets/d/1g8hbRk8yhB8aKQAw-dWVoDFaPWx2d53p/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Самгородок - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Самгородок - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта 1811.csv

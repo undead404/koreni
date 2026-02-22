@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-10-262
+  - ДАКО-384-10-263
+  - ДАКО-384-10-264
+  - ДАКО-384-10-265
+  - ДАКО-384-10-266
+  - ДАКО-384-10-389
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Berezna
+tableFilename: 1897-Berezna.csv
+location:
+  - 49.58368797847035
+  - 29.90583056735338
+size: 150
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Березна (Володарська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Berezna.csv

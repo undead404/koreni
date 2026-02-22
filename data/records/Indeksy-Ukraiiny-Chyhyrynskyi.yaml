@@ -1,0 +1,15 @@
+date: 2025-03-05T00:00:00.000Z
+id: Indeksy-Ukraiiny-Chyhyrynskyi
+tableFilename: Київська губернія СПОВІДКИ - Чигиринський повіт.csv
+location:
+  - 49.07330034164399
+  - 32.66123993616166
+size: 815
+sources:
+  - https://docs.google.com/spreadsheets/d/1GqRimgUeScB8UftsrOrcOsbDGlNi58KTz0Jv2Sdffmc/edit?usp=sharing
+title: Київська губернія СПОВІДКИ - Чигиринський повіт
+tableLocale: uk
+yearsRange:
+  - 1814
+  - 1866
+tableFilePath: public/csv/Київська губернія СПОВІДКИ - Чигиринський повіт.csv

@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЗпО-Р5593-2-1229
+date: 2025-03-21T00:00:00.000Z
+id: DAZpO-R5593-2-1229-1876
+tableFilename: Книга-1876.xlsx - Лист1.csv
+location:
+  - 46.78960275207786
+  - 36.407333936026475
+size: 58
+sources:
+  - https://docs.google.com/spreadsheets/d/1TXZtp5K7_TWum8ym72GbyU6cCwtHmWbM/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Борисівка МК 1876 (народження)
+tableLocale: ru
+yearsRange:
+  - 1876
+authorName: Роман Скидан
+authorEmail: skydanroman2021@gmail.com
+tableFilePath: public/csv/Книга-1876.xlsx - Лист1.csv

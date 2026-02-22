@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-267
+date: 2025-03-08T00:00:00.000Z
+id: DAKO-280-2-267-Lishchyntsi
+tableFilename: 1811 Ліщинці - шляхта - ДАКО ф.280, оп. 2, спр.267.xlsx - Шляхта 1811.csv
+location:
+  - 49.567994743691315
+  - 29.168987064270752
+size: 71
+sources:
+  - https://docs.google.com/spreadsheets/d/1YhcTMARAD4_aovEYR469P2ZUvtC_30zy/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1811 Ліщинці - шляхта - ДАКО ф.280, оп. 2, спр.267
+tableLocale: uk
+yearsRange:
+  - 1811
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1811 Ліщинці - шляхта - ДАКО ф.280, оп. 2,
+  спр.267.xlsx - Шляхта 1811.csv

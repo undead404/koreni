@@ -2,6 +2,8 @@ import cors from 'cors';
 import express, { type Request, type Response } from 'express';
 import helmet from 'helmet';
 
+import handleAuth from './handlers/handle-auth';
+import handleCallback from './handlers/handle-callback';
 import handleSubmit from './handlers/handle-submit';
 import { rateLimitMiddleware } from './middlewares/rate-limiter';
 import { bugsnagMiddleware } from './services/bugsnag';
@@ -33,7 +35,34 @@ app.use('/api', rateLimitMiddleware);
 // Routes
 app.post('/api/submit', handleSubmit);
 
-app.get('/health', (_request, response) => {
+app.get(
+  '/api/auth',
+  (request, response, next) => {
+    response.setHeader(
+      'Cross-Origin-Opener-Policy',
+      'same-origin-allow-popups',
+    );
+    next();
+  },
+  handleAuth,
+);
+app.get(
+  '/api/callback',
+  (request, response, next) => {
+    response.setHeader(
+      'Content-Security-Policy',
+      "script-src 'self' 'unsafe-inline'",
+    );
+    response.setHeader(
+      'Cross-Origin-Opener-Policy',
+      'same-origin-allow-popups',
+    );
+    next();
+  },
+  handleCallback,
+);
+
+app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok' });
 });
 

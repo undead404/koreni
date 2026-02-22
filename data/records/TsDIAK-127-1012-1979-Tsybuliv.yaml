@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-1979
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1012-1979-Tsybuliv
+tableFilename: Цибулів мк 1840 ЦДІАК, ф.127,оп.1012, спр.1979.xlsx - Лист1.csv
+location:
+  - 49.07108747289961
+  - 29.848923174227096
+size: 372
+sources:
+  - https://docs.google.com/spreadsheets/d/1gmTcQ2sjtBOsiShrvujn86d-B2eTrFK_/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Цибулів мк 1840 ЦДІАК, ф.127,оп.1012, спр.1979
+tableLocale: uk
+yearsRange:
+  - 1840
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Цибулів мк 1840 ЦДІАК, ф.127,оп.1012, спр.1979.xlsx - Лист1.csv

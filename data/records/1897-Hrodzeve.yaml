@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-12-242
+  - ДАКО-384-12-243
+  - ДАКО-384-12-244
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Hrodzeve
+tableFilename: 1897-Hrodzeve.csv
+location:
+  - 48.719976710836185
+  - 30.341441637022307
+size: 106
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Гродзеве – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Hrodzeve.csv

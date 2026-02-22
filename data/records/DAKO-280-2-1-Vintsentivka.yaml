@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-280-2-1
+date: 2025-03-19T00:00:00.000Z
+id: DAKO-280-2-1-Vintsentivka
+tableFilename: РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО 280-2-1
+  Вінцентівка 1795.csv
+location:
+  - 49.809222288582816
+  - 30.644071487240303
+size: 19
+sources:
+  - https://docs.google.com/spreadsheets/d/1rtTrKCsKAZSHZrRkGglU_mXbxcWPmceC/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Вінцентівка РС 1795 (ДАКО 280-2-1)
+tableLocale: ru
+yearsRange:
+  - 1795
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/РС ДАКО - Васильковского уезда - индекс.xlsx - ДАКО
+  280-2-1 Вінцентівка 1795.csv

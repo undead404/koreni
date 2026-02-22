@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1012-1105
+date: 2025-03-21T00:00:00.000Z
+id: TsDIAK-127-1012-1105-Romashky-Bakumivka
+tableFilename: МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка - индекс.xlsx -
+  127-1012-1068.csv
+location:
+  - 49.73186630283407
+  - 30.59951222348224
+size: 66
+sources:
+  - https://docs.google.com/spreadsheets/d/1woStdA7-QlB_juEQAyu5ur_shUrKUnBl/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Ромашки 1797
+tableLocale: ru
+yearsRange:
+  - 1797
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/МК ЦДИАК -  Бакумовка, Ромашки, Шарки, Телешовка -
+  индекс.xlsx - 127-1012-1068.csv

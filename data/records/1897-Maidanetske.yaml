@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-12-303
+  - ДАКО-384-12-304
+  - ДАКО-384-12-305
+  - ДАКО-384-12-306
+  - ДАКО-384-12-307
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Maidanetske
+tableFilename: 1897-Maidanetske.csv
+location:
+  - 48.812680974967854
+  - 30.704505315069614
+size: 392
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Майданецьке – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Maidanetske.csv

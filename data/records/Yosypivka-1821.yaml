@@ -1,0 +1,16 @@
+date: 2025-03-13T00:00:00.000Z
+id: Yosypivka-1821
+tableFilename: Йосипівка - 1821 спвд.xlsx - Лист1.csv
+location:
+  - 48.853184121369665
+  - 31.70452663984101
+size: 475
+sources:
+  - https://docs.google.com/spreadsheets/d/1w_QUYKC58zmdHZLyD-QedY7KwgdD7VUy/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Йосипівка - 1821 спвд
+tableLocale: uk
+yearsRange:
+  - 1821
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Йосипівка - 1821 спвд.xlsx - Лист1.csv

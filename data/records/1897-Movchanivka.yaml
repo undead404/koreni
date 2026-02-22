@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАКО-384-10-70
+  - ДАКО-384-10-71
+  - ДАКО-384-10-72
+  - ДАКО-384-10-73
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Movchanivka
+tableFilename: 1897-Movchanivka.csv
+location:
+  - 49.590032733895676
+  - 29.530721568655007
+size: 125
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Мовчанівка (Сквирська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Movchanivka.csv

@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-12-185
+  - ДАКО-384-12-186
+  - ДАКО-384-12-187
+  - ДАКО-384-12-188
+  - ДАКО-384-12-189
+  - ДАКО-384-12-190
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Ryzhavka
+tableFilename: 1897-Ryzhavka.csv
+location:
+  - 48.54291039695513
+  - 30.13943709093802
+size: 252
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Рижавка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Ryzhavka.csv

@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-12-341
+  - ДАКО-384-12-342
+  - ДАКО-384-12-343
+  - ДАКО-384-12-344
+  - ДАКО-384-12-345
+  - ДАКО-384-12-346
+  - ДАКО-384-12-347
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Moshuriv
+tableFilename: 1897-Moshuriv.csv
+location:
+  - 48.89173532994865
+  - 30.57705639369211
+size: 272
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Мошурів – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Moshuriv.csv

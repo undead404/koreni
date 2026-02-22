@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-317
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-317-Rohy
+tableFilename: 1821 Роги ЦДІАК, ф.127,оп.1015, спр.317 обр.xlsx - Сповідка.csv
+location:
+  - 48.8721960815628
+  - 30.44534975163767
+size: 866
+sources:
+  - https://docs.google.com/spreadsheets/d/1QSPJ1qq0_P9hRF5OI6qQm7kXQ0V9jLWp/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1821 Роги ЦДІАК, ф.127,оп.1015, спр.317 обр
+tableLocale: uk
+yearsRange:
+  - 1821
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1821 Роги ЦДІАК, ф.127,оп.1015, спр.317 обр.xlsx - Сповідка.csv

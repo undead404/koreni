@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-1197а
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1012-1197a-Sokolivka
+tableFilename: 1801 Соколівка ЦДІАК, ф.127,оп.1012, спр.1197а обр.xlsx - МК.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 366
+sources:
+  - https://docs.google.com/spreadsheets/d/1ucV6mDu_CkYpCa60cSrLq3zEfaIleoLs/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1801 Соколівка ЦДІАК, ф.127,оп.1012, спр.1197а обр
+tableLocale: uk
+yearsRange:
+  - 1801
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1801 Соколівка ЦДІАК, ф.127,оп.1012, спр.1197а обр.xlsx - МК.csv

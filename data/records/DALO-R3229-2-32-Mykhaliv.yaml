@@ -1,0 +1,18 @@
+date: 2025-04-04T00:00:00.000Z
+id: DALO-R3229-2-32-Mykhaliv
+tableFilename: ДАЛО р-3229 оп 2 спр 32.xlsx - Михалів.csv
+location:
+  - 50.54732019339738
+  - 23.601049642679417
+size: 91
+sources:
+  - https://docs.google.com/spreadsheets/d/1XWDOaMHWswgGd77jBOj4Hz_xCIoCvGuX/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: "Списки сімей /ф. № 2/ евакуйованих з Польщі на територію УРСР по гміні
+  Рохань: Михалів Michalów Томашівський повіт Люблінське воєводство (потягом до
+  ст. Канкринівка)"
+tableLocale: uk
+yearsRange:
+  - 1945
+authorName: Наталія Сабат
+authorEmail: natalja.sab@gmail.com
+tableFilePath: public/csv/ДАЛО р-3229 оп 2 спр 32.xlsx - Михалів.csv

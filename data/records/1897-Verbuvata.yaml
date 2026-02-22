@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-128
+  - ДАКО-384-12-129
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Verbuvata
+tableFilename: 1897-Verbuvata.csv
+location:
+  - 48.818135671292154
+  - 30.091322198951005
+size: 108
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Вербувата – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Verbuvata.csv

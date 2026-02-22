@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-1063
+date: 2025-03-06T00:00:00.000Z
+id: TsDIAK-127-1012-1063-Sokolivka
+tableFilename: 1796 Соколівка ЦДІАК, ф.127,оп.1012, спр.1063.xlsx - МК.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 268
+sources:
+  - https://docs.google.com/spreadsheets/d/1MWkP8p_eWOAIh44yjAKvKg414Jci7YcQ/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1796 Соколівка ЦДІАК, ф.127,оп.1012, спр.1063
+tableLocale: uk
+yearsRange:
+  - 1796
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1796 Соколівка ЦДІАК, ф.127,оп.1012, спр.1063.xlsx - МК.csv

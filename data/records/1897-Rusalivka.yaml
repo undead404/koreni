@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-12-454
+  - ДАКО-384-12-455
+  - ДАКО-384-12-456
+  - ДАКО-384-12-457
+  - ДАКО-384-12-458
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Rusalivka
+tableFilename: 1897-Rusalivka.csv
+location:
+  - 49.13387328307548
+  - 30.424451543579437
+size: 191
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Русалівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Rusalivka.csv

@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-12-221
+  - ДАКО-384-12-222
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Korzhova
+tableFilename: 1897-Korzhova.csv
+location:
+  - 48.64466153821055
+  - 30.41005630494198
+size: 162
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Коржова (Уманська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Korzhova.csv

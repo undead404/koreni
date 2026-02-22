@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-1316-1-363
+date: 2025-03-19T00:00:00.000Z
+id: TsDIAK-1316-1-363-Mytrofanivka
+tableFilename: NovaPraha1863-митрофанівка.csv
+location:
+  - 48.49866520417491
+  - 32.71057727931522
+size: 51
+sources:
+  - https://docs.google.com/spreadsheets/d/1EK5no_vnRVwh6lvGj_zA7X8AM7ejmU8U/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: ЦДІАК-1316-1-363, Митрофанівка, Общественный Приговор
+tableLocale: uk
+yearsRange:
+  - 1863
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/NovaPraha1863-митрофанівка.csv

@@ -87,8 +87,7 @@ export default async function VolunteerPage({
 
           <h1 className={styles.name}>{volunteer.name}</h1>
           <p className={styles.contact}>
-            Електронна пошта:{' '}
-            <ContactGate contact={volunteer.emails.join(', ')} />
+            Електронна пошта: <ContactGate contact={volunteer.emails} />
           </p>
 
           <div className={styles.stats}>

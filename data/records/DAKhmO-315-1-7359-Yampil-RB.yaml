@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+date: 2025-11-06T00:00:00.000Z
+id: DAKhmO-315-1-7359-Yampil-RB
+tableFilename: DAKhmO-315-1-7359-Yampil-RB.csv
+location:
+  - 48.24364253662342
+  - 28.28054962179073
+size: 254
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+title: Ямпіль 1831 – сповідний розпис (прізвища), Різдво-Богородична церква,
+  ДАХмО 315-1-7359
+tableLocale: ru
+yearsRange:
+  - 1831
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-7359-Yampil-RB.csv

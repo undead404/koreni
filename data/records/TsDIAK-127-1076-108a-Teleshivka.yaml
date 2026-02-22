@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1076-108а
+date: 2025-03-18T00:00:00.000Z
+id: TsDIAK-127-1076-108a-Teleshivka
+tableFilename: Новий Лист Microsoft Excel.csv
+location:
+  - 49.74658771784269
+  - 30.60921731335616
+size: 522
+sources:
+  - https://docs.google.com/spreadsheets/d/1rDrCb4RmgRFt2iRDwOjjw7AbFBolX5zX/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Село Телешівка, нині Київська область, ЦДІАК 127-1076-108а
+tableLocale: ru
+yearsRange:
+  - 1759
+authorName: Тетяна Базяк
+authorEmail: lakrema@gmail.com
+tableFilePath: public/csv/Новий Лист Microsoft Excel.csv

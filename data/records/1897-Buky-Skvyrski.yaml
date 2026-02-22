@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-373
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Buky-Skvyrski
+tableFilename: 1897-Buky-Skvyrski.csv
+location:
+  - 49.839765027706534
+  - 29.64698542931202
+size: 109
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Буки (Сквирські) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Buky-Skvyrski.csv

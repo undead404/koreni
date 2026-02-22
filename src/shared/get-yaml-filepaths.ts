@@ -6,7 +6,7 @@ export default async function getYamlFilepaths(
 ): Promise<string[]> {
   const directory = await readdir(folder);
   const yamlFilepaths = directory
-    .filter((filename) => filename.endsWith('.yml'))
+    .filter((filename) => filename.endsWith('.yaml'))
     .map((filename) => path.join(folder, filename));
   return yamlFilepaths;
 }

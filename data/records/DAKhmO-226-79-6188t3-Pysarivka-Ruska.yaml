@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-226-79-6188Т3
+date: 2025-11-04T00:00:00.000Z
+id: DAKhmO-226-79-6188t3-Pysarivka-Ruska
+tableFilename: Писарівка-Руська 1858 – ревізька казка, ДАХмО 226-79-6188 т. 3 - master.csv
+location:
+  - 48.67642043632789
+  - 28.129250440731653
+size: 1458
+sources:
+  - https://docs.google.com/spreadsheets/d/1mjxuBn0qzfG-Ft-_gBE3UhHCh61RyD4GsIA-rp1uPWY/edit?usp=sharing
+title: Писарівка (Шаргородська) 1858 – ревізька казка
+tableLocale: ru
+yearsRange:
+  - 1858
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Писарівка-Руська 1858 – ревізька казка, ДАХмО
+  226-79-6188 т. 3 - master.csv

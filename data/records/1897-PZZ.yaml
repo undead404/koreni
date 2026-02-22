@@ -1,0 +1,27 @@
+archiveItems:
+  - ДАКО-384-12-508
+  - ДАКО-384-12-509
+  - ДАКО-384-12-510
+  - ДАКО-384-12-511
+  - ДАКО-384-12-512
+  - ДАКО-384-12-513
+  - ДАКО-384-12-514
+  - ДАКО-384-12-515
+  - ДАКО-384-12-516
+  - ДАКО-384-12-519
+date: 2025-04-04T00:00:00.000Z
+id: 1897-PZZ
+tableFilename: 1897-PZZ.csv
+location:
+  - 48.74931787853617
+  - 30.222536683036502
+size: 397
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: По лінії ПЗЗ (Уманський повіт) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-PZZ.csv

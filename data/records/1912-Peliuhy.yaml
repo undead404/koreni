@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-1-74-406
+date: 2025-09-09T00:00:00.000Z
+id: 1912-Peliuhy
+tableFilename: Пелюги - 1912 L.csv
+location:
+  - 51.21171898343489
+  - 24.259987393868776
+size: 104
+sources:
+  - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?usp=sharing
+title: Сповідальні відомості, Пелюги (Хворостів), 1912
+tableLocale: uk
+yearsRange:
+  - 1912
+authorName: Sergi Adamchuk
+authorEmail: adamchuk@gmail.com
+tableFilePath: public/csv/Пелюги - 1912 L.csv

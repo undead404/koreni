@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-7298
+date: 2024-10-24T00:00:00.000Z
+id: DAKhmO-315-1-7298-Pysarivka-Ruska
+tableFilename: Писарівка-Руська 1827 – сповідний розпис, ДАХмО-315-1-7298 - master.csv
+location:
+  - 48.67642043632789
+  - 28.129250440731653
+size: 1072
+sources:
+  - https://docs.google.com/spreadsheets/d/1ON2gPxJ7NhhJsEWksgCwGjieo7aNi9vvB76DG3_JAi8/edit?usp=sharing
+title: Писарівка-Руська 1827 – сповідний розпис
+tableLocale: ru
+yearsRange:
+  - 1827
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Писарівка-Руська 1827 – сповідний розпис,
+  ДАХмО-315-1-7298 - master.csv

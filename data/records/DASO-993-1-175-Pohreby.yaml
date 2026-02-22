@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-993-1-175
+date: 2025-03-13T00:00:00.000Z
+id: DASO-993-1-175-Pohreby
+tableFilename: 1858 Рев.казка Погреби ДАСО ф.993 оп.1 спр.175.xlsx - Лист1.csv
+location:
+  - 50.80743058822858
+  - 33.3994220239079
+size: 240
+sources:
+  - https://docs.google.com/spreadsheets/d/1s1trADwPy5Wjewsos5fF2gizPvMsp4d9/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1858 Рев.казка Погреби ДАСО ф.993 оп.1 спр.175
+tableLocale: uk
+yearsRange:
+  - 1858
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1858 Рев.казка Погреби ДАСО ф.993 оп.1 спр.175.xlsx - Лист1.csv

@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЛО-Р3229-13-26
+date: 2025-10-06T00:00:00.000Z
+id: Cieszyn-1944
+tableFilename: Депортація, Закерзоння - Чешин.csv
+location:
+  - 50.816139133469214
+  - 23.466423675033734
+size: 426
+sources:
+  - https://docs.google.com/spreadsheets/d/17n74ZAkrskP_o5to1C9bLvncDnAC_kco2wLLg3dXWhY/edit?usp=sharing
+title: Депортовані з села Чешин, 1944
+tableLocale: uk
+yearsRange:
+  - 1944
+authorName: Sergi Adamchuk
+authorEmail: adamchuk@gmail.com
+tableFilePath: public/csv/Депортація, Закерзоння - Чешин.csv

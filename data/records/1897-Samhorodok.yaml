@@ -1,0 +1,27 @@
+archiveItems:
+  - ДАКО-384-10-182
+  - ДАКО-384-10-183
+  - ДАКО-384-10-184
+  - ДАКО-384-10-185
+  - ДАКО-384-10-186
+  - ДАКО-384-10-187
+  - ДАКО-384-10-188
+  - ДАКО-384-10-189
+  - ДАКО-384-10-190
+  - ДАКО-384-10-191
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Samhorodok
+tableFilename: 1897-Samhorodok.csv
+location:
+  - 49.666122279672344
+  - 29.554296992034992
+size: 398
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Самгородок – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Samhorodok.csv

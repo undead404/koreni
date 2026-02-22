@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-597
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-597-Psiarivka
+tableFilename: Псярівка 1840 ЦДІАК, ф.127,оп.1015, спр.597.xlsx - Сповідка.csv
+location:
+  - 48.64206886017052
+  - 30.28582614351341
+size: 1065
+sources:
+  - https://docs.google.com/spreadsheets/d/1mnCqLOK_Zs92KRSDVv7HsdFBnyMWoIhF/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Псярівка 1840 ЦДІАК, ф.127,оп.1015, спр.597
+tableLocale: uk
+yearsRange:
+  - 1840
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Псярівка 1840 ЦДІАК, ф.127,оп.1015, спр.597.xlsx - Сповідка.csv

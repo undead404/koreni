@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАКО-384-12-496
+  - ДАКО-384-12-497
+  - ДАКО-384-12-498
+  - ДАКО-384-12-499
+  - ДАКО-384-12-500
+  - ДАКО-384-12-501
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Vorone
+tableFilename: 1897-Vorone.csv
+location:
+  - 49.14124213386217
+  - 30.224319981126946
+size: 238
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Вороне – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Vorone.csv

@@ -1,0 +1,25 @@
+archiveItems:
+  - ДАКО-384-12-413
+  - ДАКО-384-12-414
+  - ДАКО-384-12-415
+  - ДАКО-384-12-416
+  - ДАКО-384-12-417
+  - ДАКО-384-12-418
+  - ДАКО-384-12-419
+  - ДАКО-384-12-524
+date: 2025-04-04T00:00:00.000Z
+id: 1897-Mankivka
+tableFilename: 1897-Mankivka.csv
+location:
+  - 48.961918387825214
+  - 30.336060913096002
+size: 440
+sources:
+  - https://docs.google.com/spreadsheets/d/1hhJAoz7-6VrKDTlGsq5J5zvDB7FmU-JP/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Маньківка (Уманська) – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Mankivka.csv

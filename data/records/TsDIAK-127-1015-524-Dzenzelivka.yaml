@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-524
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-524-Dzenzelivka
+tableFilename: 1836 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 524.xlsx - Сповідка.csv
+location:
+  - 48.96241240370531
+  - 30.249487305932114
+size: 668
+sources:
+  - https://docs.google.com/spreadsheets/d/1sJX9t3cb7uEEBcXbMdYKHY__-N1Bz0aD/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1836 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 524
+tableLocale: uk
+yearsRange:
+  - 1836
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1836 Дзензелівка ЦДІАК, ф.127,оп 1015, спр 524.xlsx - Сповідка.csv

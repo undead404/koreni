@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-3431
+date: 2025-03-09T00:00:00.000Z
+id: TsDIAK-127-1012-3431-Dzenzelivka
+tableFilename: 1862 Дзензелівка ЦДІАК, ф.127,оп.1012, спр.3431 обр.xlsx - МК.csv
+location:
+  - 48.96241240370531
+  - 30.249487305932114
+size: 465
+sources:
+  - https://docs.google.com/spreadsheets/d/151iSWA_kmRzNC9i9YXWiu0yqn6Gu-dhg/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1862 Дзензелівка ЦДІАК, ф.127,оп.1012, спр.3431 обр
+tableLocale: uk
+yearsRange:
+  - 1862
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1862 Дзензелівка ЦДІАК, ф.127,оп.1012, спр.3431 обр.xlsx - МК.csv

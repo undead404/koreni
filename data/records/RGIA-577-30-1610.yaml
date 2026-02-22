@@ -1,0 +1,17 @@
+archiveItems:
+  - РГИА-577-30-1610
+date: 2025-02-08T00:00:00.000Z
+id: RGIA-577-30-1610
+tableFilename: RGIA-577-30-1610.csv
+location:
+  - 50.168531418922996
+  - 32.05819350952619
+size: 213
+sources:
+  - https://drive.google.com/file/d/1kuF_5eGOogFc2b0Q6ZlFQUWtna3nrVY7/view?usp=sharing
+title: Викупні справи (577-30-1610) 1883-1884
+tableLocale: ru
+yearsRange:
+  - 1884
+authorName: Спільнота Cobook
+tableFilePath: public/csv/RGIA-577-30-1610.csv

@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-1133
+date: 2025-03-08T00:00:00.000Z
+id: TsDIAK-127-1015-1133-Sokolivka
+tableFilename: 1867 Соколівка ЦДІАК, ф.127,оп 1015, спр 1133.xlsx - Сповідка.csv
+location:
+  - 49.02959876088926
+  - 30.13074179370111
+size: 1195
+sources:
+  - https://docs.google.com/spreadsheets/d/1ozFFJTn30BIRZywJNpBlDJ7sYXChHwNf/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1867 Соколівка ЦДІАК, ф.127,оп 1015, спр 1133
+tableLocale: uk
+yearsRange:
+  - 1867
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1867 Соколівка ЦДІАК, ф.127,оп 1015, спр 1133.xlsx - Сповідка.csv

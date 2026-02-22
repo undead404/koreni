@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАВіО-904-36-20
+date: 2024-09-17T00:00:00.000Z
+id: DAViO-904-36-20
+tableFilename: Велика Вулига 1909-1920, ДАВіО Д-904-36-20 - master.csv
+location:
+  - 48.860350579518474
+  - 28.583145065460812
+size: 5866
+sources:
+  - https://docs.google.com/spreadsheets/d/1X5EE1fmF15jsP8CIxU7jyaC-paKeqL7DMIs_mA50Vpw/edit?usp=sharing
+title: Велика Вулига 1909-1920
+tableLocale: ru
+yearsRange:
+  - 1909
+  - 1920
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Велика Вулига 1909-1920, ДАВіО Д-904-36-20 - master.csv

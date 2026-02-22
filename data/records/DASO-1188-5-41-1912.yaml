@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-1188-5-41
+date: 2025-03-13T00:00:00.000Z
+id: DASO-1188-5-41-1912
+tableFilename: Засулля мк 1912 ДАСО, ф. 1188, оп.5, спр.41.xlsm - МК оригінал.csv
+location:
+  - 50.84682535379167
+  - 33.89026202816826
+size: 1519
+sources:
+  - https://docs.google.com/spreadsheets/d/1b-566B8XnnjpLaw3ou76ir5Td20X-lWN/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Засулля мк 1912 ДАСО, ф. 1188, оп.5, спр.41
+tableLocale: uk
+yearsRange:
+  - 1912
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/Засулля мк 1912 ДАСО, ф. 1188, оп.5, спр.41.xlsm - МК оригінал.csv

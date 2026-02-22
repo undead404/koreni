@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1015-1110
+date: 2025-03-10T00:00:00.000Z
+id: TsDIAK-127-1015-1110-Potash
+tableFilename: 1866 Поташ ЦДІАК, ф.127,оп.1015, спр.1110.+.xlsx - Лист1.csv
+location:
+  - 48.920862824840384
+  - 30.330711547970537
+size: 551
+sources:
+  - https://docs.google.com/spreadsheets/d/1BjKGuIAm4wYBGyzCxMapGjOC1ET5BC0U/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1866 Поташ ЦДІАК, ф.127,оп.1015, спр.1110.+
+tableLocale: uk
+yearsRange:
+  - 1866
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1866 Поташ ЦДІАК, ф.127,оп.1015, спр.1110.+.xlsx - Лист1.csv

@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-10-192
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Shapiivka
+tableFilename: 1897-Shapiivka.csv
+location:
+  - 49.66452070721224
+  - 29.61868547607471
+size: 100
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Шапіївка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Shapiivka.csv

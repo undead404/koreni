@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАК-127-1076-108а
+date: 2025-03-18T00:00:00.000Z
+id: TsDIAK-127-1076-108a-Teleshivkaa
+tableFilename: ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница - индекс.xlsx -
+  127-1076-108а.csv
+location:
+  - 49.74658771784269
+  - 30.60921731335616
+size: 86
+sources:
+  - https://docs.google.com/spreadsheets/d/1rDrCb4RmgRFt2iRDwOjjw7AbFBolX5zX/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Телешовка 1759
+tableLocale: ru
+yearsRange:
+  - 1759
+authorName: Yekaterina Lukina
+authorEmail: ancestors2025@gmail.com
+tableFilePath: public/csv/ИВ ЦДИАК -  Бакумовка, Ромашки, Шарки, Ольшаница -
+  индекс.xlsx - 127-1076-108а.csv

@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+date: 2025-11-20T00:00:00.000Z
+id: DAKhmO-315-1-7359-Oleksandrivka
+tableFilename: DAKhmO-315-1-7359-Oleksandrivka.csv
+location:
+  - 48.636744215866045
+  - 28.5214614632863
+size: 92
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+title: Олександрівка (Томашпільська) 1831 – сповідний розпис (прізвища), ДАХмО
+  315-1-7359
+tableLocale: ru
+yearsRange:
+  - 1831
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-7359-Oleksandrivka.csv

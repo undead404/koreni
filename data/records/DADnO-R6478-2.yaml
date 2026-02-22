@@ -1,0 +1,18 @@
+date: 2025-03-22T00:00:00.000Z
+id: DADnO-R6478-2
+tableFilename: 6478-2.csv
+location:
+  - 48.4651761963565
+  - 35.046408387501685
+size: 11442
+sources:
+  - https://docs.google.com/spreadsheets/d/1_fp4rP9oCvz5bCPDbXTg92Iflfq3UAUY/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: ДАДнО-Р6478-2. Кримінальні справи позасудових органів на громадян, які
+  зазнали репресій у 30-х – на початку 50-х рр.
+tableLocale: ru
+yearsRange:
+  - 1930
+  - 1955
+authorName: Олександр Волок
+authorEmail: alexander.volok@gmail.com
+tableFilePath: public/csv/6478-2.csv

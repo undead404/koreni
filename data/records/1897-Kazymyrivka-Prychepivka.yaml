@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-384-10-198
+  - ДАКО-384-10-199
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Kazymyrivka-Prychepivka
+tableFilename: 1897-Kazymyrivka-Prychepivka.csv
+location:
+  - 49.70449622802201
+  - 29.58170090463587
+size: 108
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Казимирівка (Квітневе) і х. Причепівка – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Kazymyrivka-Prychepivka.csv

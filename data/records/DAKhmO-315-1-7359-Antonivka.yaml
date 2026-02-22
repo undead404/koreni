@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-7359
+date: 2025-11-20T00:00:00.000Z
+id: DAKhmO-315-1-7359-Antonivka
+tableFilename: DAKhmO-315-1-7359-Antonivka.csv
+location:
+  - 48.530275972387855
+  - 28.43021568747015
+size: 206
+sources:
+  - https://docs.google.com/spreadsheets/d/13OvFs7Kcw4z0kPbb59vyxMNmxBb_w8rTBqYBRzIYIVk/edit?usp=sharing
+title: Антонівка (Томашпільська) 1831 – сповідний розпис (прізвища), ДАХмО 315-1-7359
+tableLocale: ru
+yearsRange:
+  - 1831
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/DAKhmO-315-1-7359-Antonivka.csv

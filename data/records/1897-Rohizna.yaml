@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-10-161
+  - ДАКО-384-10-162
+  - ДАКО-384-10-163
+date: 2025-09-01T00:00:00.000Z
+id: 1897-Rohizna
+tableFilename: 1897-Rohizna.csv
+location:
+  - 49.54952570212574
+  - 29.788602183523263
+size: 96
+sources:
+  - https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: Рогізна – Перший Всеросійський перепис 1897 року
+tableLocale: uk
+yearsRange:
+  - 1897
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1897-Rohizna.csv

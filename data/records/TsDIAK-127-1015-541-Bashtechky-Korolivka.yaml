@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1015-541
+date: 2025-03-08T00:00:00.000Z
+id: TsDIAK-127-1015-541-Bashtechky-Korolivka
+tableFilename: 1837 Баштечки+Королівка ЦДІАК, ф.127,оп 1015, спр 541.xlsx - Сповідка.csv
+location:
+  - 49.2457424852168
+  - 30.326562230567276
+size: 704
+sources:
+  - https://docs.google.com/spreadsheets/d/133aBTSKS18JC2peU3RUTS89tlZJruD-y/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+title: 1837 Баштечки+Королівка ЦДІАК, ф.127,оп 1015, спр 541
+tableLocale: uk
+yearsRange:
+  - 1837
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+tableFilePath: public/csv/1837 Баштечки+Королівка ЦДІАК, ф.127,оп 1015, спр
+  541.xlsx - Сповідка.csv

@@ -1,0 +1,113 @@
+backend:
+  auth_endpoint: auth
+  name: github
+  repo: undead404/koreni
+  base_url: https://koreni.org.ua/api
+  branch: main
+locale: uk
+logo_link: https://koreni.org.ua
+logo_url: https://koreni.org.ua/icon.png
+media_folder: 'public/csv' # Required, even if not used heavily
+media_library:
+  display_in_navigation: true
+  max_file_size: 10000000
+public_folder: '/images'
+publish_mode: editorial_workflow
+site_url: https://koreni.org.ua
+collections:
+  - name: 'tables'
+    label: 'Таблиці даних'
+    folder: 'data/records'
+    extension: 'yaml'
+    format: 'yaml'
+    create: true
+    identifier_field: id
+    slug: '{{id}}'
+    fields:
+      - label: 'Унікальний ідентифікатор для URL'
+        name: 'id'
+        widget: 'string'
+        hint: 'Латинські літери, цифри та дефіси (наприклад, 1897-Kharkivka)'
+        pattern: ['^[a-zA-Z0-9-]+$', 'Лише латинські літери, цифри та дефіси']
+      - label: 'Назва'
+        name: 'title'
+        required: true
+        widget: 'string'
+      - label: "Ім'я автора"
+        name: 'authorName'
+        required: false
+        widget: 'string'
+      - label: 'Електронна пошта автора'
+        name: 'authorEmail'
+        widget: 'string'
+        pattern: ['^.+@.+\..+$', 'Дозволено лише адреси електронної пошти']
+      - label: 'Дата завершення роботи над таблицею'
+        name: 'date'
+        widget: 'datetime'
+        date_format: 'yyyy-MM-dd'
+        format: 'yyyy-MM-dd'
+      - label: 'Таблиця'
+        name: 'tableFilePath'
+        required: true
+        widget: 'file'
+        choose_url: false
+      - label: 'Використані архівні справи'
+        name: 'archiveItems'
+        min: 1
+        widget: 'list'
+        summary: '{{fields.item}}'
+        field:
+          label: 'Item'
+          name: 'item'
+          widget: 'string'
+          hint: 'Формат: Архів-Фонд-Опис-Справа (наприклад, ДАКО-384-12-448)'
+          pattern:
+            [
+              '^[^-]+-[^-]+-[^-]+-[^-]+$',
+              'Повинно бути в форматі Архів-Фонд-Опис-Справа',
+            ]
+      - label: 'Координати (широта, довгота)'
+        name: 'location'
+        widget: 'list'
+        min: 2
+        max: 2
+        fields:
+          - label: 'Coordinate'
+            name: 'coordinate'
+            widget: 'number'
+            value_type: 'float'
+      - label: 'Походження даних (спосіб індексації)'
+        name: 'origin'
+        required: false
+        widget: 'select'
+        options: ['manual', 'ai-only', 'ai-supported', 'other']
+      - label: 'Локаль даних таблиці'
+        name: 'tableLocale'
+        required: true
+        widget: 'select'
+        options: ['uk', 'ru', 'pl']
+      - label: 'Кількість рядів у таблиці (не рахуючи заголовок)'
+        name: 'size'
+        required: false
+        widget: 'number'
+        value_type: 'int'
+        min: 1
+      - label: 'Діапазон років, яких стосується таблиця'
+        name: 'yearsRange'
+        widget: 'list'
+        min: 1
+        max: 2
+        fields:
+          - label: 'Рік'
+            max: 2000
+            min: 1500
+            name: 'year'
+            widget: 'number'
+            value_type: 'int'
+      - label: 'Вихідні таблиці (Google Spreadsheets або щось подібне)'
+        name: 'sources'
+        widget: 'list'
+        fields:
+          - label: 'Link'
+            name: 'link'
+            widget: 'string'

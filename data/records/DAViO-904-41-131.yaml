@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАВіО-904-41-131
+date: 2025-11-12T00:00:00.000Z
+id: DAViO-904-41-131
+tableFilename: Писарівка 1865-1876, ДАВіО Д-904-41-131 - master.csv
+location:
+  - 48.67642043632789
+  - 28.129250440731653
+size: 3542
+sources:
+  - https://docs.google.com/spreadsheets/d/176AqD4SdQqclHd1XOKHG0QZ2HycEDcLpGzUsXj70T-4/edit?usp=sharing
+title: Писарівка (Шаргородська) 1865-1876
+tableLocale: ru
+yearsRange:
+  - 1865
+  - 1876
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+tableFilePath: public/csv/Писарівка 1865-1876, ДАВіО Д-904-41-131 - master.csv

@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАВоО-Р919-1-5
+date: 2025-03-21T00:00:00.000Z
+id: DAVoO-R919-1-5-part
+tableFilename: Індексація_ДАВоО ф.Р-919, о.1, с.5, арк. 78-98_Список
+  переселенців з Польщі по Горохівському р-ну, Волинська обл. на 1949 р. -
+  Аркуш1.csv
+location:
+  - 50.49636848727719
+  - 24.76209762065466
+size: 300
+sources:
+  - https://docs.google.com/spreadsheets/d/1xfDTj7w-KVMyupogAPCFjlxhj446MKkIwQBAWfKCiVg/edit?usp=sharing
+title: Список переселенців з Польщі по Горохівському р-ну, Волинська обл. на 1949 р.
+tableLocale: uk
+yearsRange:
+  - 1949
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+tableFilePath: public/csv/Індексація_ДАВоО ф.Р-919, о.1, с.5, арк. 78-98_Список
+  переселенців з Польщі по Горохівському р-ну, Волинська обл. на 1949 р. -
+  Аркуш1.csv
