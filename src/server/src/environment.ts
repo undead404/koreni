@@ -37,6 +37,7 @@ const environmentSchema = z.object({
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
   GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
+  GITHUB_OAUTH_CLIENT_SECRET: process.env.GITHUB_OAUTH_CLIENT_SECRET,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,
