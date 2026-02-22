@@ -55,30 +55,40 @@ const handleCallback: RequestHandler = async (request, response) => {
   );
 
   // The CMS expects a postMessage to the opener window
-  const content = `<script nonce="${nonce}">
+  const content = `<!DOCTYPE html>
+<html>
+  <head><title>Успіх авторизації GitHub</title></head>
+  <body>
+  <div id="status" style="font-family:sans-serif;text-align:center;margin-top:50px;">
+    <h2>Авторизація...</h2>
+  </div>
+  <script nonce="${nonce}">
   (function() {
-    const data = ${JSON.stringify(data)};
-    const message = 'authorization:github:success:' + JSON.stringify(data);
-    
-    // 1. Standard approach (Popups)
-    if (window.opener) {
-      window.opener.postMessage("authorizing:github", "*");
-      window.opener.postMessage(message, window.location.origin);
-      setTimeout(() => window.close(), 200);
-    } 
-    
-    // 2. Tab-fix approach (BroadcastChannel)
-    const channel = new BroadcastChannel('static-cms-auth');
-    channel.postMessage({ type: 'auth-success', data: message });
-    
-    // UI feedback so the user knows it worked
-    document.body.innerHTML = '<div style="font-family:sans-serif;text-align:center;margin-top:50px;">' +
-                              '<h2>Авторизація успішна!</h2>' +
-                              '<p>Ця вкладка зараз закриється...</p></div>';
-                              
-    setTimeout(() => window.close(), 1000);
-  })()
-</script>`;
+      const data = ${JSON.stringify(data)};
+      const message = 'authorization:github:success:' + JSON.stringify(data);
+      const targetOrigin = "${environment.NEXT_PUBLIC_SITE}";
+
+      // 1. Standard Popup Flow
+      if (window.opener) {
+        window.opener.postMessage("authorizing:github", "*");
+        window.opener.postMessage(message, targetOrigin);
+      } 
+      
+      // 2. Tab-fix Bridge
+      const channel = new BroadcastChannel('static-cms-auth');
+      channel.postMessage({ type: 'auth-success', data: message });
+      
+      // Fix: Check if element exists before setting innerHTML
+      const statusEl = document.getElementById('status');
+      if (statusEl) {
+        statusEl.innerHTML = '<h2>Авторизація успішна!</h2><p>Ця вкладка зараз закриється...</p>';
+      }
+                                
+      setTimeout(() => window.close(), 1000);
+    })()
+    </script>
+  </body>
+</html>`;
   response.set('Content-Type', 'text/html');
   return response.send(content);
 };
