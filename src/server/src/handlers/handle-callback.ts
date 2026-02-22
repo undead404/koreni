@@ -1,3 +1,5 @@
+import crypto from 'node:crypto';
+
 import type { RequestHandler } from 'express';
 import { z } from 'zod';
 
@@ -44,10 +46,17 @@ const handleCallback: RequestHandler = async (request, response) => {
   );
 
   const data = await oauthTokenResponse.json();
+  const nonce = crypto.randomBytes(16).toString('base64');
+
+  // Set the CSP header specifically for this response
+  response.setHeader(
+    'Content-Security-Policy',
+    `script-src 'self' 'nonce-${nonce}'`,
+  );
 
   // The CMS expects a postMessage to the opener window
   const content = `
-    <script>
+    <script nonce="${nonce}">
       (function() {
         function receiveMessage(e) {
           console.log("Sending message...", e.data);
