@@ -73,22 +73,34 @@ const handleCallback: RequestHandler = async (request, response) => {
   </button>
 
   <script nonce="${nonce}">
-    const data = ${JSON.stringify(data)};
-    const message = 'authorization:github:success:' + JSON.stringify(data);
+    (function() {
+    try {
+      const data = ${JSON.stringify(data)};
+      const message = 'authorization:github:success:' + JSON.stringify(data);
+      const KEY = 'static-cms-auth-bridge';
 
-    document.getElementById('finish').addEventListener('click', () => {
-      // 1. Write to LocalStorage (triggers 'storage' event in the dashboard tab)
-      localStorage.setItem('static-cms-auth-bridge', message);
-      
-      // 2. Standard popup fallback
-      if (window.opener) {
-        window.opener.postMessage("authorizing:github", "*");
-        window.opener.postMessage(message, "https://koreni.org.ua");
+      console.log("Attempting to set LocalStorage...");
+      localStorage.setItem(KEY, message);
+
+      // VERIFY IMMEDIATELY IN THIS TAB
+      const check = localStorage.getItem(KEY);
+      if (check) {
+        alert("SUCCESS: Item set in Callback tab. Value: " + check.substring(0, 20) + "...");
+      } else {
+        alert("FAIL: Item was NOT set even in this tab!");
       }
 
-      // 3. Close the tab (now permitted because of the click)
-      setTimeout(() => window.close(), 500);
-    });
+      // BroadcastChannel Fallback
+      const channel = new BroadcastChannel('static-cms-auth');
+      channel.postMessage({ type: 'auth-success', data: message });
+
+      alert("Handshake complete. Closing tab.");
+      window.close();
+    } catch (e) {
+      alert("CRITICAL ERROR: " + e.message);
+      console.error(e);
+    }
+  })()
   </script>
 </body>
 </html>`;
