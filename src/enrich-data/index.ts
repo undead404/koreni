@@ -7,7 +7,7 @@ import readCsv from '@/shared/read-csv-data';
 import { indexationTableSchema } from '@/shared/schemas/indexation-table';
 
 // 1. Find the changed YAML files in data/records, against main branch
-const changedFiles = execSync('git diff --name-only main...HEAD')
+const changedFiles = execSync('git diff --name-only origin/main...HEAD')
   .toString()
   .split('\n')
   .filter((f) => f.startsWith('data/records/') && f.endsWith('.yaml'));
