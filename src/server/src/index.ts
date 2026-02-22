@@ -35,7 +35,17 @@ app.use('/api', rateLimitMiddleware);
 // Routes
 app.post('/api/submit', handleSubmit);
 
-app.get('/api/auth', handleAuth);
+app.get(
+  '/api/auth',
+  (request, response, next) => {
+    response.setHeader(
+      'Cross-Origin-Opener-Policy',
+      'same-origin-allow-popups',
+    );
+    next();
+  },
+  handleAuth,
+);
 app.get(
   '/api/callback',
   (request, response, next) => {
