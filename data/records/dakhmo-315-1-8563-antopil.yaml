@@ -1,18 +1,17 @@
-id: DAKhmO-315-1-8563-Antopil
-title: Антопіль (Вапнярський) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
-authorName: Віталій Перегончук
-authorEmail: brute18@gmail.com
-date: 2026-02-22
-tableFilePath: public/csv/dakhmo-315-1-8563-antopil_transcription-1-.csv
 archiveItems:
   - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-02-22T00:00:00.000Z
+id: DAKhmO-315-1-8563-Antopil
+tableFilePath: public/csv/dakhmo-315-1-8563-antopil_transcription-1-.csv
 location:
   - 48.24364253662342
   - 28.28054962179073
-origin: ai-supported
-tableLocale: ru
 size: 580
-yearsRange:
-  - 1861
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+title: Антопіль (Вапнярський) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+tableLocale: ru
+yearsRange:
+  - 1861
