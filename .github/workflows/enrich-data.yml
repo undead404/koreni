@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -24,6 +26,9 @@ jobs:
 
       - name: Enrich Data
         run: yarn data:enrich
+
+      - name: Modernize Russian
+        run: yarn data:modernize-russian
 
       - name: Commit changes
         run: |
