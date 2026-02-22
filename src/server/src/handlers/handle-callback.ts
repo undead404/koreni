@@ -12,7 +12,7 @@ const querySchema = z.object({
 
 const githubResponseSchema = z.object({
   access_token: nonEmptyString,
-  token_type: z.literal('Bearer'),
+  token_type: nonEmptyString,
   scope: nonEmptyString,
 });
 
