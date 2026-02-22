@@ -15,15 +15,27 @@
 
       authChannel.onmessage = (event) => {
         if (event.data.type === 'auth-success') {
-          console.log(
-            'Auth message received via BroadcastChannel, bridging to CMS...',
+          console.log('Auth message received via BroadcastChannel.');
+
+          // Static CMS is very picky.
+          // We must dispatch the event as if it came from the window it was expecting.
+          const authEvent = new MessageEvent('message', {
+            data: event.data.data,
+            origin: window.location.origin,
+            source: window, // Usually it expects the popup, but since the popup is gone, we try the window
+          });
+
+          // Dispatch "authorizing" handshake first
+          window.dispatchEvent(
+            new MessageEvent('message', {
+              data: 'authorizing:github',
+              origin: window.location.origin,
+              source: window,
+            }),
           );
 
-          // Send the handshake first
-          window.postMessage('authorizing:github', window.location.origin);
-
-          // Then send the data
-          window.postMessage(event.data.data, window.location.origin);
+          // Dispatch the actual success data
+          window.dispatchEvent(authEvent);
         }
       };
     </script>
