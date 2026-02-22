@@ -11,6 +11,9 @@ vi.mock('@/app/components/archive-item', () => ({
 vi.mock('@/app/components/comments-wrapped', () => ({
   default: () => <div data-testid="comments-wrapped">CommentsWrapped</div>,
 }));
+vi.mock('@/app/services/map-points', () => ({
+  default: () => [],
+}));
 vi.mock('@/app/components/details', () => ({
   default: ({
     children,
