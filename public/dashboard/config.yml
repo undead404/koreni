@@ -1,8 +1,9 @@
 backend:
+  auth_endpoint: auth
   name: github
   repo: undead404/koreni
-base_url: https://koreni.org.ua
-branch: main
+  base_url: https://koreni.org.ua/api
+  branch: main
 locale: uk
 logo_link: https://koreni.org.ua
 logo_url: https://koreni.org.ua/icon.png
