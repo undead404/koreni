@@ -38,7 +38,7 @@ app.post('/api/submit', handleSubmit);
 app.get('/api/auth', handleAuth);
 app.get('/api/callback', handleCallback);
 
-app.get('/health', (_request, response) => {
+app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok' });
 });
 

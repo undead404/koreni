@@ -55,20 +55,30 @@ const handleCallback: RequestHandler = async (request, response) => {
   );
 
   // The CMS expects a postMessage to the opener window
-  const content = `
-    <script nonce="${nonce}">
-      (function() {
-        function receiveMessage(e) {
-          console.log("Sending message...", e.data);
-          window.opener.postMessage(
-            'authorization:github:success:${JSON.stringify(data)}',
-            e.origin
-          );
-        }
-        window.addEventListener("message", receiveMessage, false);
-        window.opener.postMessage("authorizing:github", "*");
-      })()
-    </script>`;
+  const content = `<script nonce="${nonce}">
+  (function() {
+    const data = ${JSON.stringify(data)};
+    const message = 'authorization:github:success:' + JSON.stringify(data);
+    
+    // 1. Standard approach (Popups)
+    if (window.opener) {
+      window.opener.postMessage("authorizing:github", "*");
+      window.opener.postMessage(message, window.location.origin);
+      setTimeout(() => window.close(), 200);
+    } 
+    
+    // 2. Tab-fix approach (BroadcastChannel)
+    const channel = new BroadcastChannel('static-cms-auth');
+    channel.postMessage({ type: 'auth-success', data: message });
+    
+    // UI feedback so the user knows it worked
+    document.body.innerHTML = '<div style="font-family:sans-serif;text-align:center;margin-top:50px;">' +
+                              '<h2>Авторизація успішна!</h2>' +
+                              '<p>Ця вкладка зараз закриється...</p></div>';
+                              
+    setTimeout(() => window.close(), 1000);
+  })()
+</script>`;
   response.set('Content-Type', 'text/html');
   return response.send(content);
 };

@@ -10,6 +10,22 @@
     />
   </head>
   <body>
+    <script>
+      // 1. Create the bridge for the "New Tab" auth flow
+      const authChannel = new BroadcastChannel('static-cms-auth');
+
+      authChannel.onmessage = (event) => {
+        if (event.data.type === 'auth-success') {
+          console.log(
+            'Auth message received via BroadcastChannel, bridging to CMS...',
+          );
+
+          // We re-post the message to the current window.
+          // Static CMS is listening for 'message' events on the window.
+          window.postMessage(event.data.data, window.location.origin);
+        }
+      };
+    </script>
     <script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
     <script>
       window.CMS.init();
