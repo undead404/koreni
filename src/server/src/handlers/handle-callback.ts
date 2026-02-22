@@ -90,19 +90,10 @@ const handleCallback: RequestHandler = async (request, response) => {
       console.log("Attempting to set LocalStorage...");
       localStorage.setItem(KEY, message);
 
-      // VERIFY IMMEDIATELY IN THIS TAB
-      const check = localStorage.getItem(KEY);
-      if (check) {
-        alert("SUCCESS: Item set in Callback tab. Value: " + check.substring(0, 20) + "...");
-      } else {
-        alert("FAIL: Item was NOT set even in this tab!");
-      }
-
       // BroadcastChannel Fallback
       const channel = new BroadcastChannel('static-cms-auth');
       channel.postMessage({ type: 'auth-success', data: message });
 
-      alert("Handshake complete. Closing tab.");
       window.close();
     } catch (e) {
       alert("CRITICAL ERROR: " + e.message);
