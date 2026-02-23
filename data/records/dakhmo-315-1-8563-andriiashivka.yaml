@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-02-23T00:00:00.000Z
+id: DAKhmO-315-1-8563-Andriiashivka
+tableFilePath: public/csv/dakhmo-315-1-8563-andriiashivka_transcription.csv
+location:
+  - 48.407946940233046
+  - 28.718744631773806
+size: 780
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+title: Андріяшівка (Городківська) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+tableLocale: ru
+yearsRange:
+  - 1861
