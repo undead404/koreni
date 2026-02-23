@@ -1,19 +1,18 @@
-id: DAKhmO-315-1-8563-Oleksandrivka
-title: Олександрівка (Томашпільська) 1861 – сповідний розпис (повний), ДАХмО
-  315-1-8563
-authorName: Віталій Перегончук
-authorEmail: brute18@gmail.com
-date: 2026-02-23
-tableFilePath: public/csv/dakhmo-315-1-8563-oleksandrivka_transcription.csv
 archiveItems:
   - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-02-23T00:00:00.000Z
+id: DAKhmO-315-1-8563-Oleksandrivka
+tableFilePath: public/csv/dakhmo-315-1-8563-oleksandrivka_transcription.csv
 location:
   - 48.636744215866045
   - 28.5214614632863
-origin: ai-supported
-size: 1
+size: 645
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+title: Олександрівка (Томашпільська) 1861 – сповідний розпис (повний), ДАХмО
+  315-1-8563
 tableLocale: ru
 yearsRange:
   - 1860
-sources:
-  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
