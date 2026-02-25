@@ -3,7 +3,7 @@ title: Біловоди 1743 МК
 authorName: Спільнота Cobook
 authorEmail: juralubimuy@gmail.com
 date: 2025-09-05
-tableFilePath: /csv/bilovody-1743.csv
+tableFilePath: public/csv/bilovody-1743.csv
 archiveItems:
   - ЦДІАК-2004-1-197
 location:

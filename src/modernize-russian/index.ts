@@ -23,6 +23,7 @@ const changedFiles = execSync('git diff --name-only origin/main...HEAD')
   .split('\n');
 const yamlFiles = changedFiles.filter((f) => f.endsWith('.yaml'));
 if (yamlFiles.length !== 1) {
+  console.log(yamlFiles);
   console.error('More than one YAML file changed');
   process.exit(1);
 }
@@ -30,6 +31,7 @@ const yamlFile = yamlFiles[0];
 
 const csvFiles = changedFiles.filter((f) => f.endsWith('.csv'));
 if (csvFiles.length !== 1) {
+  console.log(csvFiles);
   console.error('More than one CSV file changed');
   process.exit(1);
 }
