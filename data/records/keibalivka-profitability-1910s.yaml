@@ -1,0 +1,18 @@
+id: Keibalivka-profitability-1910s
+title: Кейбалівка – дохідність землі, 1911-1913
+authorName: Спільнота Cobook
+authorEmail: juralubimuy@gmail.com
+date: 2025-09-05
+tableFilePath: public/csv/кейбалівка-дохідність-землі-1911-1913-рр..xlsx-оригінал.csv
+archiveItems:
+  - ДАПО-828-1-297
+location:
+  - 50.309401
+  - 32.5026815
+origin: manual
+tableLocale: uk
+size: 1
+yearsRange:
+  - 1913
+sources:
+  - https://docs.google.com/spreadsheets/d/1cLNP7Ja4NEYbQY6vQWYgjsKGNx3X6x5t/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
