@@ -1,8 +1,8 @@
 name: Enrich Data
 on:
-  push:
-    branches:
-      - 'cms/**'
+  pull_request:
+    paths:
+      - 'data/**'
 
 jobs:
   update-size:

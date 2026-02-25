@@ -4,8 +4,9 @@ permissions:
 
 on:
   pull_request:
-    branches-ignore:
-      - 'cms/**'
+    paths:
+      - './**'
+      - 'src/**'
     types: [opened, synchronize, reopened]
 
 jobs:
