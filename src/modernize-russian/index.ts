@@ -20,7 +20,10 @@ const REPLACEMENTS = Object.entries({
 // 1. Find the changed YAML files in data/records, against main branch
 const changedFiles = execSync('git diff --name-only origin/main...HEAD')
   .toString()
-  .split('\n');
+  .split('\n')
+  // Trim double quotes
+  .map((f) => f.replace(/^"(.*)"$/, '$1'))
+  .filter(Boolean);
 const yamlFiles = changedFiles.filter((f) => f.endsWith('.yaml'));
 if (yamlFiles.length === 0) {
   console.log(changedFiles);
