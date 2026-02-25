@@ -1,6 +1,8 @@
+import posthog from 'posthog-js';
 import type { FC } from 'react';
 
 import resultSchema from '../schemas/search-result';
+import { initBugsnag } from '../services/bugsnag';
 import type { SearchResult } from '../services/search';
 
 import SearchResultItem from './search-result';
@@ -22,48 +24,88 @@ const SearchResults: FC<ResultsProperties> = ({
   results,
   resultsNumber,
 }) => {
+  // Safe parsing outside the render return prevents full-component crashes
+  const validResults = results.map((result) => {
+    const parsed = resultSchema.safeParse(result);
+    if (parsed.success) {
+      return parsed.data;
+    } else {
+      initBugsnag().notify(
+        new Error('Invalid search result schema'),
+        (event) => {
+          event.addMetadata('searchResult', {
+            search_value: searchValue,
+            result_id: result.document.id,
+            result_title: result.document.title,
+            result_year: result.document.year,
+            validation_errors: parsed.error.errors,
+          });
+        },
+      );
+      posthog.capture('invalid_search_result', {
+        search_value: searchValue,
+        result_id: result.document.id,
+        result_title: result.document.title,
+        result_year: result.document.year,
+      });
+      console.warn('Dropped invalid search result:', parsed.error);
+      return null;
+    }
+  }); // Replace 'any' with inferred schema type if exported
+
   return (
-    // TODO enhance results visuals, keep manual selection possibility
-    // TODO add accessible and more visible loader on loading
-    <table className={styles.table} style={{ opacity: isLoading ? 0.5 : 1 }}>
-      <caption className={styles.caption}>
+    <div className={styles.container} aria-busy={isLoading} aria-live="polite">
+      {/* Accessible Header/Status */}
+      <header className={styles.header}>
         {isLoading && !resultsNumber ? (
-          <>Завантаження...</>
+          <span className={styles.loader} role="status">
+            Завантаження...
+          </span>
         ) : !searchValue && !resultsNumber ? (
-          <>Всього рядків у таблицях: {recordsNumber}</>
+          <span>Всього рядків у таблицях: {recordsNumber}</span>
         ) : (
-          <>
+          <span>
             Знайдено результатів для "{searchValue}": {resultsNumber}
-          </>
+          </span>
         )}
-      </caption>
-      {results.map((result, index) => {
-        const typedResult = resultSchema.parse(result);
-        return (
-          <tbody key={index} className={styles.tbody}>
-            {typedResult.highlight.data && (
-              <tr key={`${index}-${typedResult.document.tableId}`}>
-                <th colSpan={2}>{typedResult.document.title}</th>
-                <th>{typedResult.document.year || '?'}</th>
-              </tr>
-            )}
-            {typedResult.highlight.data &&
-              Object.entries(typedResult.highlight.data).map(
-                ([rowKey, value], index) => (
-                  <SearchResultItem
-                    document={typedResult.document}
-                    key={`${rowKey}-${index}`}
-                    rowKey={rowKey}
-                    index={index}
-                    searchValue={searchValue}
-                    value={value}
-                  />
-                ),
-              )}
-          </tbody>
-        );
-      })}
-    </table>
+      </header>
+
+      {/* Grid/List wrapper instead of rigid table */}
+      <ul
+        className={`${styles.resultsList} ${isLoading ? styles.loadingState : ''}`}
+      >
+        {validResults.map((typedResult, index) =>
+          typedResult ? (
+            <li key={typedResult.document.id} className={styles.resultCard}>
+              {/* Record Header */}
+              <div className={styles.cardHeader}>
+                <h3>{typedResult.document.title || 'Невідомий документ'}</h3>
+                <span className={styles.yearBadge}>
+                  {typedResult.document.year || '?'}
+                </span>
+              </div>
+
+              {/* Pass the full ambiguous raw object to the item renderer. 
+              SearchResultItem must be refactored to handle Key-Value pairs dynamically 
+              instead of relying on index-mapped values arrays.
+            */}
+              <div className={styles.cardBody}>
+                <SearchResultItem
+                  document={typedResult.document}
+                  highlights={typedResult.highlights}
+                  index={index}
+                  searchValue={searchValue}
+                />
+              </div>
+            </li>
+          ) : (
+            <li key={index} className={styles.resultCard}>
+              Щось пішло не так
+            </li>
+          ),
+        )}
+      </ul>
+    </div>
   );
 };
 

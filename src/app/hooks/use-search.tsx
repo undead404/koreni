@@ -2,7 +2,7 @@
 
 import type { NotifiableError } from '@bugsnag/js';
 import posthog from 'posthog-js';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import environment from '../environment';
 import { initBugsnag } from '../services/bugsnag';
@@ -14,60 +14,73 @@ const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
 
 export function useSearch() {
-  const [searchValue, setSearchValue] = useState('');
-  const [data, setData] = useState<SearchResult[]>([]);
+  const [results, setResults] = useState<SearchResult[]>([]);
   const [resultsNumber, setResultsNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [isFetched, setIsFetched] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = useCallback(async (value: string) => {
-    setSearchValue(value);
-    if (!value) {
-      setData([]);
+  // Tracks the active fetch sequence to prevent race conditions
+  const currentRequestId = useRef(0);
+
+  const handleSearch = useCallback(async (value: string, page: number = 1) => {
+    // Increment ID for every new search call
+    const requestId = ++currentRequestId.current;
+    const normalizedQuery = value.trim();
+
+    if (!normalizedQuery) {
+      setResults([]);
       setResultsNumber(0);
+      setIsLoading(false);
+      setError(null);
       return;
     }
+
     setIsLoading(true);
-    setIsFetched(false);
     setError(null);
+
     try {
       posthog.capture('search_performed', {
-        query: value,
-        query_length: value.length,
+        query: normalizedQuery,
+        query_length: normalizedQuery.length,
       });
+
       const [hits, hitsNumber] = await search({
         client,
-        // facets,
-        query: value,
-        // ranges,
+        page, // Pass page to API
+        perPage: 24, // Matches typical 2-col or 3-col grid layouts
+        query: normalizedQuery,
       });
-      setData(hits);
+
+      // Drop stale execution context: if a newer request fired, halt state updates
+      if (requestId !== currentRequestId.current) return;
+
+      setResults(hits);
       setResultsNumber(hitsNumber);
-      setIsFetched(true);
+
       posthog.capture('search_results_returned', {
-        query: value,
+        query: normalizedQuery,
         results_count: hitsNumber,
       });
     } catch (error_) {
+      if (requestId !== currentRequestId.current) return;
+
       setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
       console.error(error_);
       initBugsnag().notify(error_ as NotifiableError);
       posthog.captureException(error_ as Error);
     } finally {
-      setIsLoading(false);
+      if (requestId === currentRequestId.current) {
+        setIsLoading(false);
+      }
     }
   }, []);
 
   return {
-    data,
     error,
     handleSearch,
-    isFetched,
     isLoading,
-    results: data,
+    results,
     resultsNumber,
-    searchValue,
   };
 }
 

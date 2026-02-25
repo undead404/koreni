@@ -221,6 +221,7 @@ export default [
       '@next/next/no-img-element': 'off',
       'jsx-a11y/heading-has-content': 'off',
       '@typescript-eslint/unbound-method': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
     },
   },
   {

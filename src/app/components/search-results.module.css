@@ -1,34 +1,98 @@
-/* SearchResults.module.css */
-
-.table {
+.container {
   width: 100%;
-  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
   font-size: 1rem;
-  text-align: left;
+  color: #374151;
+  font-weight: 500;
 }
 
-.caption {
-  caption-side: top;
-  margin-bottom: 10px;
+.loader {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  color: #2563eb;
 }
 
-.tbody tr:nth-child(even) {
-  background-color: var(--table-row-even-bg);
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-.tbody tr:not(:first-child):hover {
-  background-color: var(--table-row-hover-bg);
+/* Replaces the rigid <tbody>.
+  Automatically creates a 1-column layout on mobile, 
+  and expands to 2 or 3 columns on larger screens without media queries.
+*/
+.resultsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  transition: opacity 0.2s ease-in-out;
 }
 
-.tbody th,
-.tbody td {
-  padding: 10px;
-  border: var(--default-border);
+.loadingState {
+  opacity: 0.5;
+  pointer-events: none; /* Prevents clicks on stale data while fetching */
 }
 
-.tbody tr:first-child th {
-  padding-top: 20px;
-  border: 0;
-  font-weight: normal;
-  font-style: italic;
+/* Structural shell for the card. 
+  The inner layout is handled by search-result.module.css.
+*/
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.cardHeader h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.4;
+  /* Truncates excessively long archive titles to keep the grid aligned */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.yearBadge {
+  flex-shrink: 0;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Pushes the action button to the bottom evenly across sibling cards */
 }

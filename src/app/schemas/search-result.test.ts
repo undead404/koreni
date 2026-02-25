@@ -98,12 +98,14 @@ describe('resultSchema', () => {
         title: 'Valid Title',
       },
       highlight: {
-        data: {
-          field1: {
-            snippet: 123, // should be a string
-            matched_tokens: 'Sample', // should be an array of strings
+        values: [
+          {
+            field1: {
+              snippet: 123, // should be a string
+              matched_tokens: 'Sample', // should be an array of strings
+            },
           },
-        },
+        ],
       },
       text_match_info: {
         best_field_score: '2',

@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+  color: #374151; /* Tailwind gray-700 */
+  border-radius: 0.25rem;
+  border: none; /* Required to reset native button styles */
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #e5e7eb; /* Tailwind gray-200 */
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f3f4f6;
+}
+
+.text {
+  font-size: 0.875rem; /* Tailwind text-sm */
+  color: #4b5563; /* Tailwind gray-600 */
+  font-weight: 500; /* Tailwind font-medium */
+}

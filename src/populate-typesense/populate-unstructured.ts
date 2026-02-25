@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import determineRowYear from './determine-row-year.js';
+import convertRow from './convert-row.js';
 import importBatch from './import-batch.js';
 import type { IndexationTableWithData, RowForImport } from './types.js';
 
@@ -11,14 +11,9 @@ export default async function populateTypesense(
 ) {
   const { data, location, tableLocale: locale } = table;
   const tableSize = data.length;
-  const dataWithExtraFields: RowForImport[] = data.map((row, index) => ({
-    data: row,
-    id: `${table.id}-${index + 1}`,
-    location,
-    tableId: table.id,
-    title: table.title,
-    year: determineRowYear(row, table),
-  }));
+  const dataWithExtraFields: RowForImport[] = data.map((row, index) =>
+    convertRow(row, index, table, location),
+  );
   const chunks = _.chunk(dataWithExtraFields, CHUNK_SIZE);
   let processedSize = 0;
   for (const [index, chunk] of chunks.entries()) {

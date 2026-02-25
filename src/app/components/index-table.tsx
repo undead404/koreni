@@ -1,12 +1,13 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 
-import { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
-import getSearchParameters from '../helpers/get-search-parameters';
+import useSearchParametersHack from '../hooks/use-search-parameters-hack';
 
 import IndexTableRow from './index-table-row';
+import SearchParametersListener from './search-parameters-listener';
 
 import styles from './index-table.module.css';
 
@@ -17,57 +18,69 @@ export interface TableProperties {
   tableId: string;
 }
 
+const escapeRegExp = (string: string) =>
+  string.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
+
 export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
-  const searchParameters = useMemo(() => getSearchParameters(), []);
+  const searchParameters = useSearchParametersHack();
   const [targetRowId, setTargetRowId] = useState<null | string>(null);
   const matchedTokens = useMemo(
-    () => searchParameters.get('matched_tokens')?.split(',') || [],
+    () =>
+      (searchParameters.matchedTokens?.split(',') || [])
+        .map((item) => escapeRegExp(item))
+        .filter(Boolean),
     [searchParameters],
   );
   useEffect(() => {
-    const tri = searchParameters.get('show_row');
+    const tri = searchParameters.showRow;
     setTargetRowId(tri);
-  }, []);
+    console.log('tri', tri);
+  }, [searchParameters]);
   return (
-    <table
-      ref={tableReference}
-      className={styles.table}
-      id="data"
-      lang={locale}
-    >
-      <thead className={styles.thead}>
-        <tr>
-          {Object.keys(data[0]).map((key) => (
-            <th
-              key={key}
-              className={[
-                key.length < 80 ? 'text-nowrap' : '',
-                key.toLowerCase().includes('.pdf') ? 'break-word' : '',
-              ]
-                .filter(Boolean)
-                .join(' ')}
-            >
-              {key}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className={styles.tbody}>
-        {data.map((row, index) => {
-          const rowId = `row-${tableId}-${(page - 1) * PER_PAGE + index + 1}`;
-          return (
-            <IndexTableRow
-              key={index}
-              data={row}
-              id={rowId}
-              isTarget={rowId === 'row-' + targetRowId}
-              matchedTokens={matchedTokens}
-            ></IndexTableRow>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <table
+        ref={tableReference}
+        className={styles.table}
+        id="data"
+        lang={locale}
+      >
+        <thead className={styles.thead}>
+          <tr>
+            {Object.keys(data[0]).map((key) => (
+              <th
+                key={key}
+                className={[
+                  key.length < 80 ? 'text-nowrap' : '',
+                  key.toLowerCase().includes('.pdf') ? 'break-word' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+              >
+                {key}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className={styles.tbody}>
+          {data.map((row, index) => {
+            const rowId = `row-${tableId}-${(page - 1) * PER_PAGE + index + 1}`;
+            return (
+              <IndexTableRow
+                key={index}
+                data={row}
+                id={rowId}
+                isTarget={rowId === 'row-' + targetRowId}
+                matchedTokens={matchedTokens}
+              ></IndexTableRow>
+            );
+          })}
+        </tbody>
+      </table>
+      <Suspense fallback={null}>
+        <SearchParametersListener />
+      </Suspense>
+    </>
   );
 }
 

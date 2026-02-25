@@ -4,7 +4,7 @@ export interface IndexationTableWithData extends IndexationTable {
   data: Record<string, unknown>[];
 }
 export interface RowForImport {
-  data: IndexationTableWithData['data'][0];
+  values: string[];
   id: string;
   location: IndexationTable['location'];
   tableId: IndexationTable['id'];

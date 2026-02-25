@@ -1,4 +1,5 @@
 const environmentMock = {
+  NEXT_PUBLIC_GITHUB_REPO: 'owner/repo',
   NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: 'api-key',
   NEXT_PUBLIC_TYPESENSE_HOST: 'typesense.host',
 };

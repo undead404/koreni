@@ -1,0 +1,17 @@
+.emptyValue {
+  color: #9ca3af; /* Tailwind gray-400 */
+  font-style: italic;
+}
+
+.objectFallback {
+  font-size: 0.75rem; /* Tailwind text-xs */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background-color: #f9fafb;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
+  /* Forces long JSON strings to wrap instead of cutting off */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}

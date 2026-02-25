@@ -1,0 +1,95 @@
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+  /* Prevents the card from expanding beyond the parent grid track */
+  min-width: 0;
+}
+
+.itemContainer:hover {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dataGrid {
+  display: grid;
+  /* Auto-fits columns dynamically down to 200px width */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.dataGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  /* Ensures grid items do not cause internal overflow */
+  min-width: 0;
+}
+
+.dataLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dataValue {
+  font-size: 0.875rem;
+  color: #111827;
+  margin: 0;
+  /* Critical for ambiguous data: forces long IDs or unbroken text to wrap */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.actionRow {
+  margin-top: auto; /* Pushes the action row to the bottom if cards stretch */
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actionLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #2563eb;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.actionLink:hover {
+  background-color: #1d4ed8;
+}
+
+.actionLink:visited {
+  /* Still not equal to the default link color #ffffff, but visible on #2563eb background */
+  color: #d1d5db;
+}
+
+.highlightMarker {
+  background-color: #fef08a;
+  color: #1f2937;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}

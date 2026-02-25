@@ -7,6 +7,7 @@ import search from '../services/search';
 import { SearchPage } from './search';
 
 vi.mock('next/navigation', () => ({
+  usePathname: () => '/',
   useRouter: vi.fn(),
   useSearchParams: vi.fn(),
 }));
