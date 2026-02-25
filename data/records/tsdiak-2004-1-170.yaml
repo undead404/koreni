@@ -3,7 +3,7 @@ title: Біловоди 1741 МК
 authorName: Спільнота Cobook
 authorEmail: juralubimuy@gmail.com
 date: 2025-09-05
-tableFilePath: /csv/bilovody-1741.csv
+tableFilePath: public/csv/bilovody-1741.csv
 archiveItems:
   - ЦДІАК-2004-1-170
 location:
