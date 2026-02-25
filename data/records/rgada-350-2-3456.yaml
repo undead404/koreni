@@ -7,11 +7,11 @@ id: RGADA-350-2-3456
 tableFilePath: public/csv/census_1720.csv
 location:
   - 50.90819310821742
-  - 32
+  - 34.79856098725891
 size: 2045
 sources:
   - https://docs.google.com/document/d/1EA9FI_bBy0po_yHIEq30Qum3xf0rsKwa/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
 title: Подвірний перепис черкесів у Сумському повіті, 1720
 tableLocale: ru
 yearsRange:
-  - 1717
+  - 1720
