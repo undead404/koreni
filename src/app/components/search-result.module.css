@@ -7,8 +7,10 @@
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease-in-out;
-  /* Prevents the card from expanding beyond the parent grid track */
+  transition:
+    box-shadow 0.2s ease-in-out,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   min-width: 0;
 }
 
@@ -20,7 +22,6 @@
 
 .dataGrid {
   display: grid;
-  /* Auto-fits columns dynamically down to 200px width */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin: 0;
@@ -30,7 +31,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  /* Ensures grid items do not cause internal overflow */
   min-width: 0;
 }
 
@@ -49,13 +49,12 @@
   font-size: 0.875rem;
   color: #111827;
   margin: 0;
-  /* Critical for ambiguous data: forces long IDs or unbroken text to wrap */
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 .actionRow {
-  margin-top: auto; /* Pushes the action row to the bottom if cards stretch */
+  margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid #f3f4f6;
   display: flex;
@@ -81,15 +80,51 @@
 }
 
 .actionLink:visited {
-  /* Still not equal to the default link color #ffffff, but visible on #2563eb background */
   color: #d1d5db;
 }
 
 .highlightMarker {
-  background-color: #fef08a;
-  color: #1f2937;
+  background-color: #fef08a; /* Tailwind yellow-200 */
+  color: #1f2937; /* Tailwind gray-800 */
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   font-weight: 600;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme Overrides */
+@media (prefers-color-scheme: dark) {
+  .itemContainer {
+    background-color: #1f2937; /* Tailwind gray-800 */
+    border-color: #374151; /* Tailwind gray-700 */
+  }
+
+  .dataLabel {
+    color: #9ca3af; /* Tailwind gray-400 */
+  }
+
+  .dataValue {
+    color: #f3f4f6; /* Tailwind gray-100 */
+  }
+
+  .actionRow {
+    border-top-color: #374151; /* Tailwind gray-700 */
+  }
+
+  .actionLink {
+    background-color: #3b82f6; /* Tailwind blue-500 */
+  }
+
+  .actionLink:hover {
+    background-color: #2563eb; /* Tailwind blue-600 */
+  }
+
+  .actionLink:visited {
+    color: #e5e7eb; /* Tailwind gray-200 */
+  }
+
+  .highlightMarker {
+    background-color: #713f12; /* Tailwind yellow-900 */
+    color: #fef08a; /* Tailwind yellow-200 */
+  }
 }

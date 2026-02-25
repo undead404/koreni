@@ -9,18 +9,20 @@
 
 .button {
   padding: 0.5rem 1rem;
-  background-color: #f3f4f6; /* Tailwind gray-100 */
-  color: #374151; /* Tailwind gray-700 */
+  background-color: #f3f4f6;
+  color: #374151;
   border-radius: 0.25rem;
-  border: none; /* Required to reset native button styles */
+  border: none;
   font-family: inherit;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 150ms ease-in-out;
+  transition:
+    background-color 150ms ease-in-out,
+    color 150ms ease-in-out;
 }
 
 .button:hover:not(:disabled) {
-  background-color: #e5e7eb; /* Tailwind gray-200 */
+  background-color: #e5e7eb;
 }
 
 .button:disabled {
@@ -30,7 +32,27 @@
 }
 
 .text {
-  font-size: 0.875rem; /* Tailwind text-sm */
-  color: #4b5563; /* Tailwind gray-600 */
-  font-weight: 500; /* Tailwind font-medium */
+  font-size: 0.875rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+/* Dark Theme Overrides */
+@media (prefers-color-scheme: dark) {
+  .button {
+    background-color: #374151; /* Tailwind gray-700 */
+    color: #f3f4f6; /* Tailwind gray-100 */
+  }
+
+  .button:hover:not(:disabled) {
+    background-color: #4b5563; /* Tailwind gray-600 */
+  }
+
+  .button:disabled {
+    background-color: #374151;
+  }
+
+  .text {
+    color: #9ca3af; /* Tailwind gray-400 */
+  }
 }
