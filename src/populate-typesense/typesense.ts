@@ -1,10 +1,15 @@
+import http from 'node:http';
+
 import Typesense from 'typesense';
+import type { ConfigurationOptions } from 'typesense/lib/Typesense/Configuration.js';
 
 import environment from './environment.js';
 
 const hostUrl = new URL(environment.NEXT_PUBLIC_TYPESENSE_HOST);
 
-const typesense = new Typesense.Client({
+const options: ConfigurationOptions = {
+  apiKey: environment.TYPESENSE_ADMIN_KEY,
+  connectionTimeoutSeconds: 2,
   nodes: [
     {
       host: hostUrl.hostname, // For Typesense Cloud use xxx.a1.typesense.net
@@ -13,8 +18,12 @@ const typesense = new Typesense.Client({
       protocol: hostUrl.protocol.slice(0, -1), // For Typesense Cloud use https
     },
   ],
-  apiKey: environment.TYPESENSE_ADMIN_KEY,
-  connectionTimeoutSeconds: 2,
-});
+};
+
+if (hostUrl.hostname === 'localhost') {
+  options.httpAgent = new http.Agent({ keepAlive: true, maxSockets: 50 });
+}
+
+const typesense = new Typesense.Client(options);
 
 export default typesense;
