@@ -20,8 +20,16 @@ const REPLACEMENTS = Object.entries({
 // 1. Find the changed YAML files in data/records, against main branch
 const changedFiles = execSync('git diff --name-only origin/main...HEAD')
   .toString()
-  .split('\n');
+  .split('\n')
+  // Trim double quotes
+  .map((f) => f.replace(/^"(.*)"$/, '$1'))
+  .filter(Boolean);
 const yamlFiles = changedFiles.filter((f) => f.endsWith('.yaml'));
+if (yamlFiles.length === 0) {
+  console.log(changedFiles);
+  console.error('No YAML file changed');
+  process.exit(1);
+}
 if (yamlFiles.length !== 1) {
   console.log(yamlFiles);
   console.error('More than one YAML file changed');
@@ -30,6 +38,11 @@ if (yamlFiles.length !== 1) {
 const yamlFile = yamlFiles[0];
 
 const csvFiles = changedFiles.filter((f) => f.endsWith('.csv'));
+if (csvFiles.length === 0) {
+  console.log(changedFiles);
+  console.error('No CSV file changed');
+  process.exit(1);
+}
 if (csvFiles.length !== 1) {
   console.log(csvFiles);
   console.error('More than one CSV file changed');
