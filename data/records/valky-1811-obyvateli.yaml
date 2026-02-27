@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Тест
+authorEmail: brute18@gmail.com
+date: 2026-02-27
+id: valky-1811-obyvateli
+location:
+  - 48.24364253662342
+  - 28.28054962179073
+size: 8377
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableLocale: uk
+title: Валки 1811 Обивателі
+yearsRange:
+  - 1811
