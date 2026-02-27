@@ -1,7 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import isValidApiKey from './is-valid-api-key.js';
-
+vi.mock('@hono/node-server/conninfo', () => ({
+  getConnInfo: vi.fn(),
+}));
 vi.mock('../environment', () => ({
   default: {
     VALID_API_KEYS: new Set(['valid-key-1', 'valid-key-2']),

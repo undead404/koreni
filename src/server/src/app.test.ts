@@ -2,6 +2,11 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { createApp } from './app.js';
 
+vi.mock('@hono/node-server/conninfo', () => ({
+  getConnInfo: vi.fn().mockReturnValue({
+    remote: { address: '127.0.0.1', port: 3000 },
+  }),
+}));
 // Mock dependencies
 vi.mock('./handlers/handle-auth', () => ({
   default: vi.fn((c) => c.text('Auth Handler')),
@@ -25,6 +30,7 @@ vi.mock('./services/bugsnag', () => ({
     errorHandler: vi.fn(async (_c, next) => await next()),
   },
 }));
+vi.mock('./services/posthog');
 
 vi.mock('./environment', () => ({
   default: {

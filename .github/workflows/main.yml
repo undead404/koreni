@@ -32,6 +32,8 @@ jobs:
         run: yarn lint
 
   test:
+    needs:
+      - lint
     runs-on: ubuntu-latest
 
     steps:
@@ -58,11 +60,40 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
 
+  test-api:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version-file: src/server/.nvmrc
+
+      - name: Install API dependencies
+        run: yarn --frozen-lockfile --prefer-offline
+        working-directory: src/server
+
+      - name: Run tests
+        run: yarn test
+        working-directory: src/server
+        env:
+          NEXT_PUBLIC_GITHUB_OWNER: owner
+          NEXT_PUBLIC_GITHUB_REPO: repo
+          NEXT_PUBLIC_GISCUS_REPO_ID: repo-id
+          NEXT_PUBLIC_GISCUS_CATEGORY_ID: category-id
+          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
+          NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
+          NEXT_PUBLIC_SITE: site
+
   populate-typesense:
     runs-on: ubuntu-latest
     needs:
-      - lint
-      - test
       - deploy
 
     steps:
@@ -141,8 +172,7 @@ jobs:
   build-api:
     runs-on: ubuntu-latest
     needs:
-      - lint
-      - test
+      - test-api
 
     steps:
       - name: Checkout repository
