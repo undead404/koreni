@@ -23,8 +23,6 @@ export function createApp() {
   if (bugsnagMiddleware) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     app.use(bugsnagMiddleware.requestHandler);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    app.use(bugsnagMiddleware.errorHandler);
   }
 
   // CORS configuration
@@ -74,6 +72,10 @@ export function createApp() {
 
   // Global Error Handler
   app.onError((error, c) => {
+    if (bugsnagMiddleware) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
+      return bugsnagMiddleware.errorHandler(error, c);
+    }
     console.error('Unhandled error:', error);
     return c.json({ error: 'Internal Server Error' }, 500);
   });
