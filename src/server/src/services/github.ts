@@ -27,6 +27,7 @@ export default async function submitToGithub(data: ImportPayload) {
     location: data.location,
     size,
     sources: data.sources,
+    tableFilePath: csvPath,
     tableLocale: data.tableLocale,
     title: data.title,
     yearsRange: data.yearsRange,
