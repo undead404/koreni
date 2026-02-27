@@ -74,7 +74,6 @@ describe('VolunteersPage', () => {
       },
     ];
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     vi.mocked(getVolunteers).mockResolvedValue(mockVolunteers as any);
 
     const jsx = await VolunteersPage();
@@ -103,7 +102,6 @@ describe('VolunteersPage', () => {
       },
     ];
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     vi.mocked(getVolunteers).mockResolvedValue(mockVolunteers as any);
 
     const jsx = await VolunteersPage();
@@ -115,7 +113,6 @@ describe('VolunteersPage', () => {
   });
 
   it('should render empty state when no volunteers', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     vi.mocked(getVolunteers).mockResolvedValue([] as any);
 
     const jsx = await VolunteersPage();

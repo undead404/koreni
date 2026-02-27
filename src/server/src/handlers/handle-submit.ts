@@ -1,119 +1,55 @@
-import type { RequestHandler } from 'express';
+import type { Context } from 'hono';
 
-import environment from '../environment';
-import getClientIdentifier from '../helpers/get-client-identifier';
-import isValidApiKey from '../helpers/is-valid-api-key';
-import { protectedImportPayloadSchema } from '../schemata';
-import submitToGithub from '../services/github';
-import posthog from '../services/posthog';
-import validateTurnstile from '../services/validate-turnstile';
+import getClientIdentifier from '../helpers/get-client-identifier.js';
+import { importPayloadSchema } from '../schemata.js';
+import submitToGithub from '../services/github.js';
+import posthog from '../services/posthog.js';
 
-const handleSubmit: RequestHandler = async (request, response) => {
+const handleSubmit = async (c: Context) => {
   try {
-    // Extract API key from header
-    const apiKey = request.headers['x-api-key'] as string | undefined;
-    const ip =
-      (request.headers['x-forwarded-for'] as string) ||
-      request.socket.remoteAddress;
-    const clientId = getClientIdentifier(request, apiKey);
-    const isApiKeyAuth = isValidApiKey(apiKey);
+    const body = (await c.req.parseBody()) as unknown;
+    const parseResult = importPayloadSchema.safeParse(body);
 
-    if (apiKey && !isApiKeyAuth) {
-      posthog.capture({
-        distinctId: clientId,
-        event: 'invalid_api_key_attempt',
-        properties: {
-          apiKeyProvided: !!apiKey,
-        },
-      });
-      return response.status(401).json({ error: 'Invalid API key' });
-    }
-
-    // 1. Валідація даних (Zod)
-    const parseResult = protectedImportPayloadSchema.safeParse(request.body);
-
+    const apiKey = c.req.header('x-api-key');
+    const clientId = getClientIdentifier(c, apiKey);
     if (!parseResult.success) {
-      const clientId = getClientIdentifier(request, apiKey);
       posthog.capture({
         distinctId: clientId,
         event: 'payload_validation_failed',
         properties: {
           errors: parseResult.error.errors,
-          authMethod: isApiKeyAuth ? 'api_key' : 'web',
+          authMethod: apiKey ? 'api_key' : 'web',
         },
       });
-      return response.status(400).json({ error: parseResult.error.format() });
+      return c.json({ error: parseResult.error.format() }, 400);
     }
 
     const data = parseResult.data;
 
-    // 2. Валідація Turnstile (Капча) - Обов'язково для VPS, але не для API!
-    if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
-      const token = data.turnstileToken;
-
-      if (!token) {
-        posthog.capture({
-          distinctId: clientId,
-          event: 'turnstile_token_missing',
-          properties: {
-            ip,
-          },
-        });
-        return response
-          .status(400)
-          .json({ error: 'Captcha token is required' });
-      }
-
-      const turnstileValidationResult = await validateTurnstile(
-        ip as string,
-        token,
-      );
-      if (!turnstileValidationResult.success) {
-        posthog.capture({
-          distinctId: clientId,
-          event: 'turnstile_validation_failed',
-          properties: {
-            ip,
-            reason: turnstileValidationResult['error-codes'] || [],
-          },
-        });
-        return response
-          .status(403)
-          .json({ error: 'Captcha validation failed' });
-      }
-    }
-
-    // 3. Відправка на GitHub
-    // Видаляємо токен капчі перед відправкою, щоб не смітити в payload
     try {
-      await submitToGithub(
-        {
-          ...data,
-          turnstileToken: undefined,
+      const pr = await submitToGithub(data);
+      posthog.capture({
+        distinctId: getClientIdentifier(c, apiKey),
+        event: 'pr_creation_triggered',
+        properties: {
+          authMethod: apiKey ? 'api_key' : 'web',
         },
-        ip as string,
-      );
+      });
+
+      return c.json({
+        success: true,
+        message: 'PR creation started',
+        url: pr.html_url,
+      });
     } catch (error) {
       console.error('Error submitting to GitHub:', error);
       posthog.captureException(error as Error);
-      return response
-        .status(502)
-        .json({ error: 'Failed to trigger GitHub pipeline' });
+      return c.json({ error: `${error as Error}` }, 502);
     }
-
-    posthog.capture({
-      distinctId: clientId,
-      event: 'pr_creation_triggered',
-      properties: {
-        authMethod: isApiKeyAuth ? 'api_key' : 'web',
-      },
-    });
-
-    return response.json({ success: true, message: 'PR creation started' });
   } catch (error) {
     console.error(error);
     posthog.captureException(error as Error);
-    return response.status(500).json({ error: 'Internal Server Error' });
+    return c.json({ error: 'Internal Server Error' }, 500);
   }
 };
 

@@ -1,4 +1,4 @@
-import environment from '../environment';
+import environment from '../environment.js';
 
 const isValidApiKey = (apiKey: string | undefined): boolean => {
   if (!apiKey) return false;

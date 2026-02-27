@@ -1,15 +1,13 @@
-import type { RequestHandler } from 'express';
+import type { Context } from 'hono';
 
-import environment from '../environment';
+import environment from '../environment.js';
 
-const handleAuth: RequestHandler = (request, response) => {
+const handleAuth = (c: Context) => {
   if (!environment.GITHUB_OAUTH_CLIENT_ID) {
-    return response
-      .status(500)
-      .json({ error: 'GitHub OAuth Client ID is not configured' });
+    return c.json({ error: 'GitHub OAuth Client ID is not configured' }, 500);
   }
   const url = `https://github.com/login/oauth/authorize?client_id=${environment.GITHUB_OAUTH_CLIENT_ID}&scope=repo,user`;
-  return response.redirect(url);
+  return c.redirect(url);
 };
 
 export default handleAuth;

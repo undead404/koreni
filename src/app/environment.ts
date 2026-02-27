@@ -13,6 +13,11 @@ const validateEnvironment = (
 const isProduction = process.env.NODE_ENV === 'production';
 
 const environment = {
+  NEXT_PUBLIC_API_SITE: validateEnvironment(
+    'NEXT_PUBLIC_API_SITE',
+    process.env.NEXT_PUBLIC_API_SITE || process.env.NEXT_PUBLIC_SITE,
+    isProduction,
+  ),
   NEXT_PUBLIC_BUGSNAG_API_KEY: validateEnvironment(
     'NEXT_PUBLIC_BUGSNAG_API_KEY',
     process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
@@ -57,6 +62,11 @@ const environment = {
     'NEXT_PUBLIC_SITE',
     process.env.NEXT_PUBLIC_SITE,
     true,
+  ),
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: validateEnvironment(
+    'NEXT_PUBLIC_TURNSTILE_SITE_KEY',
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+    isProduction,
   ),
   NODE_ENV: process.env.NODE_ENV || ('development' as const),
 } as const;

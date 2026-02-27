@@ -24,7 +24,7 @@ vi.mock('../services/bugsnag', () => ({
 const mockToastError = vi.fn();
 vi.mock('sonner', () => ({
   toast: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+     
     error: (...arguments_: unknown[]) => mockToastError(...arguments_),
   },
 }));
@@ -34,7 +34,6 @@ describe('useNoRussians', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     vi.mocked(useRouter).mockReturnValue({ push: mockPush } as any);
 
     // Reset document lang

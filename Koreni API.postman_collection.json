@@ -1,0 +1,118 @@
+{
+  "info": {
+    "_postman_id": "b65ae4ba-06bf-4608-8350-a23d53bc56a8",
+    "name": "Koreni API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2013657"
+  },
+  "item": [
+    {
+      "name": "Submit Import (API Key)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_KEY}}",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "table",
+              "type": "file",
+              "uuid": "548bdc48-43f2-4308-bba2-6809160f83a8",
+              "src": "/Users/Vitalii_Perehonchuk/Projects/koreni/public/csv/1897-Andrushky.csv"
+            },
+            {
+              "key": "id",
+              "value": "1897-Andrushky-test2",
+              "type": "text",
+              "uuid": "630a017c-f884-4b79-a6cc-838e6683a1f9"
+            },
+            {
+              "key": "authorName",
+              "value": "Володимир Тест",
+              "type": "text",
+              "uuid": "302aa8a0-5f4b-4ddf-b819-2bda0b8b8a3b"
+            },
+            {
+              "key": "authorEmail",
+              "value": "test@ukr.net",
+              "type": "text",
+              "uuid": "05b4d8d7-ca92-4e54-86a0-7cb6f93cd0a0"
+            },
+            {
+              "key": "yearsRange",
+              "value": "[1897]",
+              "type": "text",
+              "uuid": "16f861b1-bbb0-4aff-9d08-a0c0bcec1580"
+            },
+            {
+              "key": "archiveItems",
+              "value": "[\"ДАКО-384-10-242\",\"ДАКО-384-10-243\",\"ДАКО-384-10-245\",\"ДАКО-384-10-246\",\"ДАКО-384-10-247\",\"ДАКО-384-10-248\"]",
+              "type": "text",
+              "uuid": "c9cb83a8-f7c9-4d78-8177-18b5f1d6d4b6"
+            },
+            {
+              "key": "location",
+              "value": "[49.87460947772727,29.347058976473914]",
+              "type": "text",
+              "uuid": "45b56ccf-779d-4f41-b123-64a1dd6cf63f"
+            },
+            {
+              "key": "sources",
+              "value": "[\"https://docs.google.com/spreadsheets/d/10TzQXn0U54T29S4dPaHmLbUbgamIoMhk/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true\"]",
+              "type": "text",
+              "uuid": "92dd53c3-4915-4b49-b3c5-a38345d6abce"
+            },
+            {
+              "key": "title",
+              "value": "Андрушки (Житомирські) – Перший Всеросійський перепис 1897 року",
+              "type": "text",
+              "uuid": "80a20192-c9cd-4b7d-8247-32b066359689"
+            },
+            {
+              "key": "tableLocale",
+              "value": "uk",
+              "type": "text",
+              "uuid": "9d67ac74-2d86-4050-bb43-5e1c019b7977"
+            },
+            {
+              "key": "authorGithubUsername",
+              "value": "alinkedd",
+              "type": "text",
+              "uuid": "0fc3d8c0-62b1-46d1-9b50-4d1579df3b29"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/api/submit",
+          "host": ["{{BASE_URL}}"],
+          "path": ["api", "submit"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:4000/api",
+      "type": "string"
+    },
+    {
+      "key": "API_KEY",
+      "value": "your-secret-api-key",
+      "type": "string"
+    }
+  ]
+}

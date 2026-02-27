@@ -36,16 +36,6 @@ export default [
       },
     },
   },
-  {
-    files: ['src/server/*.{js,mjs,cjs,ts}'],
-    name: 'Server code',
-    languageOptions: {
-      globals: globals.node,
-      parserOptions: {
-        projectService: true,
-      },
-    },
-  },
   includeIgnoreFile(gitignorePath),
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommendedTypeChecked.map((config) => ({
@@ -222,6 +212,8 @@ export default [
       'jsx-a11y/heading-has-content': 'off',
       '@typescript-eslint/unbound-method': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      'unicorn/no-useless-undefined': 'off',
     },
   },
   {

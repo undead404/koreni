@@ -66,7 +66,6 @@ describe('PostHogProvider', () => {
 
     // Simulate loaded callback
     const mockPostHogInstance = { debug: vi.fn() };
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     config?.loaded?.(mockPostHogInstance as any);
 
     expect(mockPostHogInstance.debug).not.toHaveBeenCalled();
@@ -122,7 +121,6 @@ describe('PostHogProvider (Development)', () => {
     // Simulate loaded callback
     const mockPostHogInstance = { debug: vi.fn() };
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     config?.loaded?.(mockPostHogInstance as any);
 
     expect(mockPostHogInstance.debug).toHaveBeenCalled();

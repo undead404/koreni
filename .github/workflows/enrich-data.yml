@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
 
-      - name: Enrich Data
-        run: yarn data:enrich
-
       - name: Modernize Russian
         run: yarn data:modernize-russian
 

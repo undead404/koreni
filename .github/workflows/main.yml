@@ -126,6 +126,7 @@ jobs:
           NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
           NEXT_PUBLIC_SITE: ${{ vars.SITE }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
           NODE_ENV: production
@@ -255,6 +256,7 @@ jobs:
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
             echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
             echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
+            echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
 
             # Install dependencies ON THE SERVER
             yarn install --frozen-lockfile --production --prefer-offline

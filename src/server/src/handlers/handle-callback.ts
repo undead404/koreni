@@ -1,10 +1,10 @@
 import crypto from 'node:crypto';
 
-import type { RequestHandler } from 'express';
+import type { Context } from 'hono';
 import { z } from 'zod';
 
-import environment from '../environment';
-import { nonEmptyString } from '../schemata';
+import environment from '../environment.js';
+import { nonEmptyString } from '../schemata.js';
 
 const querySchema = z.object({
   code: nonEmptyString,
@@ -16,21 +16,20 @@ const githubResponseSchema = z.object({
   scope: nonEmptyString,
 });
 
-const handleCallback: RequestHandler = async (request, response) => {
+const handleCallback = async (c: Context) => {
   if (!environment.GITHUB_OAUTH_CLIENT_ID) {
-    return response
-      .status(500)
-      .json({ error: 'GitHub OAuth Client ID is not configured' });
+    return c.json({ error: 'GitHub OAuth Client ID is not configured' }, 500);
   }
   if (!environment.GITHUB_OAUTH_CLIENT_SECRET) {
-    return response
-      .status(500)
-      .json({ error: 'GitHub OAuth Client Secret is not configured' });
+    return c.json(
+      { error: 'GitHub OAuth Client Secret is not configured' },
+      500,
+    );
   }
 
   const CLIENT_ID = environment.GITHUB_OAUTH_CLIENT_ID;
   const CLIENT_SECRET = environment.GITHUB_OAUTH_CLIENT_SECRET;
-  const query = querySchema.parse(request.query);
+  const query = querySchema.parse(c.req.query());
 
   const code = query.code;
 
@@ -64,10 +63,7 @@ const handleCallback: RequestHandler = async (request, response) => {
   const nonce = crypto.randomBytes(16).toString('base64');
 
   // Set the CSP header specifically for this response
-  response.setHeader(
-    'Content-Security-Policy',
-    `script-src 'self' 'nonce-${nonce}'`,
-  );
+  c.header('Content-Security-Policy', `script-src 'self' 'nonce-${nonce}'`);
 
   // The CMS expects a postMessage to the opener window
   const content = `<!DOCTYPE html>
@@ -103,8 +99,7 @@ const handleCallback: RequestHandler = async (request, response) => {
   </script>
 </body>
 </html>`;
-  response.set('Content-Type', 'text/html');
-  return response.send(content);
+  return c.html(content);
 };
 
 export default handleCallback;

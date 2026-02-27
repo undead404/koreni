@@ -94,7 +94,6 @@ describe('VolunteerPage', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     vi.mocked(getVolunteers).mockResolvedValue(mockVolunteers as any);
   });
 
@@ -137,7 +136,7 @@ describe('generateMetadata', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
     vi.mocked(getVolunteers).mockResolvedValue(mockVolunteers as any);
   });
 

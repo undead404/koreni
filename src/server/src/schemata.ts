@@ -1,15 +1,32 @@
 import { z } from 'zod';
 
-import { importPayloadSchema } from '../../shared/schemas/import';
-
 export const nonEmptyString = z.string().min(1);
-export const protectedImportPayloadSchema = importPayloadSchema.extend({
-  turnstileToken: z.string().min(1).optional(), // Додаткове поле для токена турнікета
+const stringifiedValue = <T>(itemSchema: z.ZodType<T>) =>
+  z
+    .string()
+    .transform((value) => itemSchema.parse(JSON.parse(value) as unknown));
+const stringifiedStringArray = stringifiedValue(z.array(z.string()));
+const stringifiedLocation = stringifiedValue(z.tuple([z.number(), z.number()]));
+export const importPayloadSchema = z.object({
+  archiveItems: stringifiedValue(z.array(nonEmptyString).min(1)),
+  authorGithubUsername: z.string().optional(),
+  authorName: nonEmptyString,
+  authorEmail: z.string().email(),
+  // id may contain letters, numbers and dashes
+  id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+  location: stringifiedLocation,
+  sources: stringifiedStringArray,
+  table: z.instanceof(File),
+  tableLocale: z.enum(['ru', 'uk']),
+  title: nonEmptyString,
+  yearsRange: stringifiedValue(z.array(z.number()).min(1).max(2)),
 });
 
-export type ProtectedImportPayload = z.infer<
-  typeof protectedImportPayloadSchema
->;
+export type ImportPayload = z.infer<typeof importPayloadSchema>;
+
+export const turnstilePayloadSchema = z.object({
+  turnstileToken: nonEmptyString.optional(),
+});
 export const turnstileResponseSchema = z.object({
   success: z.boolean(),
   challenge_ts: z.string().optional(),

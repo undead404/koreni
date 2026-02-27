@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
-import { nonEmptyString } from './schemata';
+import { nonEmptyString } from './schemata.js';
 
 dotenv.config();
 
