@@ -10,6 +10,7 @@ location:
 size: 2023
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableFilePath: public/csv/dakhmo-315-1-8563-antonivka.csv
 tableLocale: ru
 title: Антонівка (Томашпільська) і Ельжбитівка (Калинка) 1861 – сповідний розпис
   (повний), ДАХмО 315-1-8563
