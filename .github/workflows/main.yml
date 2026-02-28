@@ -54,8 +54,6 @@ jobs:
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
-          NEXT_PUBLIC_GISCUS_REPO_ID: repo-id
-          NEXT_PUBLIC_GISCUS_CATEGORY_ID: category-id
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
@@ -85,8 +83,6 @@ jobs:
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
-          NEXT_PUBLIC_GISCUS_REPO_ID: repo-id
-          NEXT_PUBLIC_GISCUS_CATEGORY_ID: category-id
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
@@ -128,12 +124,11 @@ jobs:
         run: yarn build
         env:
           NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars.BUGSNAG_API_KEY }}
-          NEXT_PUBLIC_GISCUS_REPO_ID: ${{ secrets.GISCUS_REPO_ID }}
-          NEXT_PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.GISCUS_CATEGORY_ID }}
           NEXT_PUBLIC_GITHUB_REPO: ${{ github.repository }}
           NEXT_PUBLIC_LOCATIONIQ_KEY: ${{ secrets.LOCATIONIQ_KEY }}
           NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
+          NEXT_PUBLIC_REMARK42_HOST: ${{ vars.REMARK42_HOST }}
           NEXT_PUBLIC_SITE: ${{ vars.SITE }}
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}

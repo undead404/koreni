@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import CommentsWrapped from './components/comments-wrapped';
+import CommentsWrapped from './components/comments/comments-wrapped';
 import Loader from './components/loader';
 import Search from './components/search';
 import environment from './environment';

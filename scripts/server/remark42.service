@@ -1,0 +1,16 @@
+[Unit]
+Description=Remark42 Commenting Server
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/remark42
+EnvironmentFile=/opt/remark42/remark42.env
+ExecStart=/opt/remark42/remark42.linux-amd64 server
+Restart=always
+ReadWritePaths=/opt/remark42
+
+[Install]
+WantedBy=multi-user.target

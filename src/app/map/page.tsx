@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Head from 'next/head';
 
-import CommentsWrapped from '../components/comments-wrapped';
+import CommentsWrapped from '../components/comments/comments-wrapped';
 import MapWrapper from '../components/map-wrapper';
 import environment from '../environment';
 import combinedPoints from '../services/map-points';

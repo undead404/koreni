@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { object } from 'zod';
 
-import CommentsWrapped from '@/app/components/comments-wrapped';
+import CommentsWrapped from '@/app/components/comments/comments-wrapped';
 import ContactGate from '@/app/components/contact-gate';
 import environment from '@/app/environment';
 import getVolunteers from '@/app/helpers/get-volunteers';

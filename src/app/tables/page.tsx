@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import CommentsWrapped from '../components/comments-wrapped';
+import CommentsWrapped from '../components/comments/comments-wrapped';
 import environment from '../environment';
 
 import JsonLdTables from './table-json-ld';

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import CommentsWrapped from '../components/comments-wrapped';
+import CommentsWrapped from '../components/comments/comments-wrapped';
 import environment from '../environment';
 
 export const metadata: Metadata = {

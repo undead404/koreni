@@ -23,16 +23,6 @@ const environment = {
     process.env.NEXT_PUBLIC_BUGSNAG_API_KEY,
     isProduction,
   ),
-  NEXT_PUBLIC_GISCUS_REPO_ID: validateEnvironment(
-    'NEXT_PUBLIC_GISCUS_REPO_ID',
-    process.env.NEXT_PUBLIC_GISCUS_REPO_ID,
-    isProduction,
-  ),
-  NEXT_PUBLIC_GISCUS_CATEGORY_ID: validateEnvironment(
-    'NEXT_PUBLIC_GISCUS_CATEGORY_ID',
-    process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
-    isProduction,
-  ),
   NEXT_PUBLIC_GITHUB_REPO: validateEnvironment(
     'NEXT_PUBLIC_GITHUB_REPO',
     process.env.NEXT_PUBLIC_GITHUB_REPO,
@@ -52,6 +42,11 @@ const environment = {
     'NEXT_PUBLIC_POSTHOG_HOST',
     process.env.NEXT_PUBLIC_POSTHOG_HOST,
     isProduction,
+  ),
+  NEXT_PUBLIC_REMARK42_HOST: validateEnvironment(
+    'NEXT_PUBLIC_REMARK42_HOST',
+    process.env.NEXT_PUBLIC_REMARK42_HOST,
+    false,
   ),
   NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: validateEnvironment(
     'NEXT_PUBLIC_TYPESENSE_SEARCH_KEY',

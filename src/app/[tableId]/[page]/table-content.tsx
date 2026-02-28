@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import ArchiveItem from '@/app/components/archive-item';
-import CommentsWrapped from '@/app/components/comments-wrapped';
+import CommentsWrapped from '@/app/components/comments/comments-wrapped';
 import Details from '@/app/components/details';
 import IndexTable from '@/app/components/index-table';
 import MapWrapper from '@/app/components/map-wrapper';
