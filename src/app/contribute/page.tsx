@@ -311,8 +311,8 @@ export default function ContributePage() {
               name="id"
               type="text"
               required
-              pattern="^[a-z\-0-9]+$"
-              title="Лише маленькі латинські літери, цифри та дефіси"
+              pattern="^[a-zA-Z\-0-9]+$"
+              title="Лише латинські літери, цифри та дефіси"
               minLength={5}
               maxLength={128}
               aria-describedby="id-desc"
