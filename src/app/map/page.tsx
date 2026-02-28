@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Head from 'next/head';
 
-import CommentsWrapped from '../components/comments/comments-wrapped';
+import Comments from '../components/comments/comments';
 import MapWrapper from '../components/map-wrapper';
 import environment from '../environment';
 import combinedPoints from '../services/map-points';
@@ -22,7 +22,7 @@ export default function MapPage() {
       </Head>
       <h1 className="visually-hidden">Мапа доступних даних</h1>
       <MapWrapper points={combinedPoints} zoom={6} isFullScreen />
-      <CommentsWrapped />
+      <Comments />
     </>
   );
 }

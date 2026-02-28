@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import CommentsWrapped from './components/comments/comments-wrapped';
+import Comments from './components/comments/comments';
 import Loader from './components/loader';
 import Search from './components/search';
 import environment from './environment';
@@ -75,7 +75,7 @@ export default async function Home() {
       <Suspense fallback={<Loader />}>
         <Search recordsNumber={recordsNumber} />
       </Suspense>
-      <CommentsWrapped />
+      <Comments />
       <JsonLdHome tablesMetadata={tablesMetadata} />
     </>
   );

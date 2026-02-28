@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { object } from 'zod';
 
-import CommentsWrapped from '@/app/components/comments/comments-wrapped';
+import Comments from '@/app/components/comments/comments';
 import ContactGate from '@/app/components/contact-gate';
 import environment from '@/app/environment';
 import getVolunteers from '@/app/helpers/get-volunteers';
@@ -129,7 +129,7 @@ export default async function VolunteerPage({
         </section>
 
         <div className={styles.commentsWrapper}>
-          <CommentsWrapped />
+          <Comments />
         </div>
 
         {/* JSON-LD для Google, щоб він бачив зв'язок автора і таблиць */}

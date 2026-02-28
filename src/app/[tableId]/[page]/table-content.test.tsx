@@ -5,11 +5,13 @@ import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import TableContent from './table-content';
 
+vi.mock('@/app/environment', () => ({
+  default: {
+    NEXT_PUBLIC_SITE: 'https://koreni.test',
+  },
+}));
 vi.mock('@/app/components/archive-item', () => ({
   default: () => <div data-testid="archive-item">ArchiveItem</div>,
-}));
-vi.mock('@/app/components/comments-wrapped', () => ({
-  default: () => <div data-testid="comments-wrapped">CommentsWrapped</div>,
 }));
 vi.mock('@/app/services/map-points', () => ({
   default: () => [],
@@ -84,7 +86,6 @@ describe('TableContent', () => {
     expect(screen.getByTestId('map-wrapper')).toBeInTheDocument();
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
     expect(screen.getByTestId('index-table')).toBeInTheDocument();
-    expect(screen.getByTestId('comments-wrapped')).toBeInTheDocument();
   });
 
   it('renders jsonLd script when provided', () => {

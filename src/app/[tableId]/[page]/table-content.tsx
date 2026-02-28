@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import ArchiveItem from '@/app/components/archive-item';
-import CommentsWrapped from '@/app/components/comments/comments-wrapped';
+import Comments from '@/app/components/comments/comments';
 import Details from '@/app/components/details';
 import IndexTable from '@/app/components/index-table';
 import MapWrapper from '@/app/components/map-wrapper';
@@ -99,7 +99,7 @@ export default function TableContent({
           </div>
         </section>
       </article>
-      <CommentsWrapped />
+      <Comments />
       {jsonLd && (
         <script
           type="application/ld+json"

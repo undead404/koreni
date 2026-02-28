@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
 
-import CommentsWrapped from '../components/comments/comments-wrapped';
+import Comments from '../components/comments/comments';
 import environment from '../environment';
 
 import JsonLdTables from './table-json-ld';
@@ -35,7 +35,7 @@ export default async function TablesPage() {
           </li>
         ))}
       </ul>
-      <CommentsWrapped />
+      <Comments />
       <JsonLdTables tablesMetadata={tablesMetadata} />
     </>
   );

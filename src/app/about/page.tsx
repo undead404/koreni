@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import CommentsWrapped from '../components/comments/comments-wrapped';
+import Comments from '../components/comments/comments';
 import environment from '../environment';
 
 export const metadata: Metadata = {
@@ -188,7 +188,7 @@ export default function AboutPage() {
           я б дуже хотів знати, що моя праця допомогла комусь.
         </p>
       </article>
-      <CommentsWrapped />
+      <Comments />
     </>
   );
 }

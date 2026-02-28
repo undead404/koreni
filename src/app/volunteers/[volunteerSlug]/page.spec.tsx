@@ -35,10 +35,6 @@ vi.mock('next/navigation', () => ({
 }));
 
 // Mock sub-components
-vi.mock('@/app/components/comments-wrapped', () => ({
-  default: () => <div data-testid="comments-wrapped" />,
-}));
-
 vi.mock('@/app/components/contact-gate', () => ({
   default: ({ contact }: { contact: string }) => <span>{contact}</span>,
 }));
