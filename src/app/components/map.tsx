@@ -43,6 +43,7 @@ export default function Map({
     <MapContainer
       center={centerOn}
       className={`${styles.mapContainer} ${isFullScreen ? styles.isFullScreen : ''}`}
+      maxZoom={15}
       zoom={zoom}
     >
       <TileLayer

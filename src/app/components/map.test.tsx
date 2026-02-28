@@ -5,11 +5,9 @@ import calculateCoordinatesAverage from '../helpers/calculate-coordinates-averag
 
 import Map, { type MapProperties } from './map';
 
-vi.mock('react-leaflet', () => ({
+vi.mock('react-leaflet', async (importOriginal) => ({
   __esModule: true,
-  MapContainer: vi.fn(({ children }) => (
-    <div className="mapContainer">{children}</div>
-  )),
+  ...(await importOriginal()),
   Marker: vi.fn(({ children }) => <div className="marker">{children}</div>),
   Popup: vi.fn(({ children }) => <div>{children}</div>),
   TileLayer: vi.fn(() => <div />),
