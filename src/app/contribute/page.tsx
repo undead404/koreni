@@ -1,8 +1,10 @@
 'use client';
 
+import type { Metadata } from 'next';
+import posthog from 'posthog-js';
 import {
   type FocusEvent,
-  FormEvent,
+  type SubmitEvent,
   useCallback,
   useEffect,
   useRef,
@@ -14,16 +16,27 @@ import environment from '../environment';
 import slugifyUkrainian from '../helpers/slugify-ukrainian';
 import { submitErrorSchema, submitResponseSchema } from '../schemas/api';
 
-import convertImportFormData from './convert-import-form-data';
+import convertContributeFormData from './convert-contribute-form-data';
 import {
-  resetImportPageState,
-  restoreImportPageState,
-  saveImportPageState,
+  resetContributePageState,
+  restoreAuthorIdentity,
+  restoreContributePageState,
+  saveAuthorIdentity,
+  saveContributePageState,
 } from './local-storage';
 
-import styles from './import.module.css';
+import styles from './page.module.css';
 
-export default function ImportPage() {
+export const metadata: Metadata = {
+  title: 'Додавання власної таблиці',
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+};
+
+export default function ContributePage() {
   const [prUrl, setPrUrl] = useState('');
   const [status, setStatus] = useState<{
     type: 'success' | 'error';
@@ -37,12 +50,15 @@ export default function ImportPage() {
   const idInputReference = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const savedData = restoreImportPageState();
-    if (savedData && formReference.current) {
+    const savedData = restoreContributePageState();
+    const savedAuthorIdentity = restoreAuthorIdentity();
+
+    if (formReference.current) {
       try {
         const form = formReference.current;
+        const dataToLoad = { ...savedAuthorIdentity, ...savedData };
 
-        for (const [name, value] of Object.entries(savedData)) {
+        for (const [name, value] of Object.entries(dataToLoad)) {
           const element = form.elements.namedItem(name);
           if (
             (element instanceof HTMLInputElement ||
@@ -55,10 +71,10 @@ export default function ImportPage() {
           }
         }
 
-        if (savedData._isRange === 'true') {
+        if (savedData?._isRange === 'true') {
           setIsRange(true);
         }
-        if (savedData._isRange === 'false') {
+        if (savedData?._isRange === 'false') {
           setIsRange(false);
         }
       } catch (error) {
@@ -76,9 +92,9 @@ export default function ImportPage() {
       const { name, value } = event.target;
       if (name === 'table') return;
 
-      const data = restoreImportPageState() || {};
+      const data = restoreContributePageState() || {};
       data[name] = value;
-      saveImportPageState(data);
+      saveContributePageState(data);
     },
     [],
   );
@@ -93,9 +109,9 @@ export default function ImportPage() {
         !idInputReference.current.value
       ) {
         idInputReference.current.value = slugifyUkrainian(title);
-        const data = restoreImportPageState() || {};
+        const data = restoreContributePageState() || {};
         data['id'] = idInputReference.current.value;
-        saveImportPageState(data);
+        saveContributePageState(data);
       }
     },
     [handleInputBlur],
@@ -103,20 +119,20 @@ export default function ImportPage() {
 
   const handleRangeChange = useCallback((newValue: boolean) => {
     setIsRange(newValue);
-    const data = restoreImportPageState() || {};
+    const data = restoreContributePageState() || {};
     data['_isRange'] = newValue ? 'true' : 'false';
-    saveImportPageState(data);
+    saveContributePageState(data);
   }, []);
 
   const handleReset = useCallback(() => {
     if (confirm('Ви впевнені, що хочете очистити форму?')) {
-      resetImportPageState();
+      resetContributePageState();
       globalThis.location.reload();
     }
   }, []);
 
   const submit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
+    async (event: SubmitEvent<HTMLFormElement>) => {
       event.preventDefault();
       setStatus(null);
       setIsSubmitting(true);
@@ -128,7 +144,9 @@ export default function ImportPage() {
         const form = event.currentTarget;
         const formData = new FormData(form);
 
-        const adjustedFormData = convertImportFormData(formData, { isRange });
+        const adjustedFormData = convertContributeFormData(formData, {
+          isRange,
+        });
 
         if (turnstileToken) {
           adjustedFormData.append('turnstileToken', turnstileToken);
@@ -155,18 +173,41 @@ export default function ImportPage() {
         const responseParsed = submitResponseSchema.parse(responseData);
         setPrUrl(responseParsed.url);
 
+        posthog.capture('contribution_success', {
+          url: responseParsed.url,
+        });
+
+        const authorIdentity = {
+          authorName: formData.get('authorName') as string,
+          authorEmail: formData.get('authorEmail') as string,
+          authorGithubUsername: formData.get('authorGithubUsername') as string,
+        };
+        saveAuthorIdentity(authorIdentity);
+
         setStatus({
           type: 'success',
           message: 'Таблиця успішно подана на розгляд!',
         });
-        resetImportPageState();
+        resetContributePageState();
         form.reset();
         setIsRange(null);
+
+        // Restore author identity after reset
+        for (const [key, value] of Object.entries(authorIdentity)) {
+          const element = form.elements.namedItem(key);
+          if (element instanceof HTMLInputElement) {
+            element.value = value;
+          }
+        }
       } catch (error) {
+        const message =
+          error instanceof Error ? error.message : 'Сталася невідома помилка';
         setStatus({
           type: 'error',
-          message:
-            error instanceof Error ? error.message : 'Сталася невідома помилка',
+          message,
+        });
+        posthog.capture('contribution_error', {
+          error: message,
         });
       } finally {
         setIsSubmitting(false);
@@ -176,11 +217,19 @@ export default function ImportPage() {
   );
 
   const handleSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    (event: SubmitEvent<HTMLFormElement>) => {
       void submit(event);
     },
     [submit],
   );
+  const contributionStartedReference = useRef(false);
+
+  const handleFileChange = useCallback(() => {
+    if (!contributionStartedReference.current) {
+      contributionStartedReference.current = true;
+      posthog.capture('contribution_started');
+    }
+  }, []);
 
   return (
     <>
@@ -207,7 +256,7 @@ export default function ImportPage() {
             <label htmlFor="table" className={styles.label}>
               Файл таблиці у форматі CSV (UTF-8)
             </label>
-            <p className={styles.description}>
+            <p id="table-desc" className={styles.description}>
               Поки що ми не приймаємо файли у інших форматах (наприклад, Excel).
               Експортуйте таблицю в форматі CSV (UTF-8). Перший рядок має
               містити <b>заголовки стовпців</b>.
@@ -218,7 +267,9 @@ export default function ImportPage() {
               name="table"
               type="file"
               accept=".csv"
+              onChange={handleFileChange}
               required
+              aria-describedby="table-desc"
               className={styles.input}
             />
           </div>
@@ -227,7 +278,7 @@ export default function ImportPage() {
             <label htmlFor="title" className={styles.label}>
               Назва таблиці
             </label>
-            <p className={styles.description}>
+            <p id="title-desc" className={styles.description}>
               Повна описова назва, яка буде відображатися на сайті.
             </p>
             <input
@@ -238,6 +289,7 @@ export default function ImportPage() {
               required
               minLength={10}
               maxLength={256}
+              aria-describedby="title-desc"
               className={styles.input}
               placeholder="Перепис населення с. Андрушки 1897"
               onBlur={handleTitleBlur}
@@ -248,7 +300,7 @@ export default function ImportPage() {
             <label htmlFor="id" className={styles.label}>
               Унікальний ID
             </label>
-            <p className={styles.description}>
+            <p id="id-desc" className={styles.description}>
               Детальний ідентифікатор латиницею, наприклад:{' '}
               <code>DAKhmO-315-1-8563-Antonivka</code>.
             </p>
@@ -263,6 +315,7 @@ export default function ImportPage() {
               title="Лише маленькі латинські літери, цифри та дефіси"
               minLength={5}
               maxLength={128}
+              aria-describedby="id-desc"
               className={styles.input}
               placeholder="e.g. 1897-andrushky"
               onBlur={handleInputBlur}
@@ -273,7 +326,7 @@ export default function ImportPage() {
             <label htmlFor="authorName" className={styles.label}>
               Ім'я автора індексації (транскрибування)
             </label>
-            <p className={styles.description}>
+            <p id="authorName-desc" className={styles.description}>
               Бажано використовувати справжнє ім'я, але якщо не хочете –
               вигадайте постійний псевдонім.
             </p>
@@ -285,6 +338,7 @@ export default function ImportPage() {
               required
               minLength={2}
               maxLength={128}
+              aria-describedby="authorName-desc"
               className={styles.input}
               onBlur={handleInputBlur}
             />
@@ -294,7 +348,7 @@ export default function ImportPage() {
             <label htmlFor="authorEmail" className={styles.label}>
               Email автора
             </label>
-            <p className={styles.description}>
+            <p id="authorEmail-desc" className={styles.description}>
               Необов'язково, але варто заповнити, аби зацікавлені читачі
               індексації могли з Вами зв'язатися.
             </p>
@@ -303,6 +357,7 @@ export default function ImportPage() {
               id="authorEmail"
               name="authorEmail"
               type="email"
+              aria-describedby="authorEmail-desc"
               className={styles.input}
               onBlur={handleInputBlur}
             />
@@ -312,7 +367,7 @@ export default function ImportPage() {
             <label htmlFor="authorGithubUsername" className={styles.label}>
               Ім'я користувача на GitHub (необов'язково)
             </label>
-            <p className={styles.description}>
+            <p id="authorGithubUsername-desc" className={styles.description}>
               Введіть, якщо хочете отримувати сповіщення про розгляд і додання
               цієї таблиці на Корені.
             </p>
@@ -321,6 +376,7 @@ export default function ImportPage() {
               id="authorGithubUsername"
               name="authorGithubUsername"
               type="text"
+              aria-describedby="authorGithubUsername-desc"
               className={styles.input}
               onBlur={handleInputBlur}
             />
@@ -330,7 +386,7 @@ export default function ImportPage() {
             <label htmlFor="tableLocale" className={styles.label}>
               Мова таблиці
             </label>
-            <p className={styles.description}>
+            <p id="tableLocale-desc" className={styles.description}>
               Код мови, якою написані дані в таблиці.
             </p>
             <select
@@ -339,6 +395,7 @@ export default function ImportPage() {
               name="tableLocale"
               defaultValue=""
               required
+              aria-describedby="tableLocale-desc"
               className={styles.input}
               onBlur={handleInputBlur}
             >
@@ -353,9 +410,9 @@ export default function ImportPage() {
             </select>
           </div>
 
-          <div className={styles.field}>
-            <span className={styles.label}>Роки</span>
-            <p className={styles.description}>
+          <fieldset className={styles.field}>
+            <legend className={styles.label}>Роки</legend>
+            <p id="period-desc" className={styles.description}>
               Ця таблиця стосується одного року чи діапазону років?
             </p>
             <div className={styles.radioGroup}>
@@ -367,6 +424,7 @@ export default function ImportPage() {
                   checked={isRange === false}
                   onChange={() => handleRangeChange(false)}
                   required
+                  aria-describedby="period-desc"
                 />{' '}
                 Один рік
               </label>
@@ -378,6 +436,7 @@ export default function ImportPage() {
                   checked={isRange === true}
                   onChange={() => handleRangeChange(true)}
                   required
+                  aria-describedby="period-desc"
                 />{' '}
                 Період
               </label>
@@ -395,6 +454,7 @@ export default function ImportPage() {
                   min="1600"
                   max="2030"
                   onBlur={handleInputBlur}
+                  aria-label="Рік початку"
                 />
                 <input
                   disabled={isSubmitting}
@@ -406,6 +466,7 @@ export default function ImportPage() {
                   min="1600"
                   max="2030"
                   onBlur={handleInputBlur}
+                  aria-label="Рік кінця"
                 />
               </div>
             ) : (
@@ -419,9 +480,10 @@ export default function ImportPage() {
                 min="1600"
                 max="2030"
                 onBlur={handleInputBlur}
+                aria-label="Рік"
               />
             )}
-          </div>
+          </fieldset>
 
           <div className={styles.field}>
             <label htmlFor="location" className={styles.label}>
@@ -449,7 +511,7 @@ export default function ImportPage() {
             <label htmlFor="archiveItems" className={styles.label}>
               Архівні шифри
             </label>
-            <p className={styles.description}>
+            <p id="archiveItems-desc" className={styles.description}>
               Перелік архівних справ, з яких взято дані. Кожен шифр з нового
               рядка.
             </p>
@@ -459,6 +521,7 @@ export default function ImportPage() {
               name="archiveItems"
               required
               minLength={5}
+              aria-describedby="archiveItems-desc"
               className={styles.textarea}
               placeholder="ДАКО-384-10-242"
               onBlur={handleInputBlur}
@@ -469,7 +532,7 @@ export default function ImportPage() {
             <label htmlFor="sources" className={styles.label}>
               Вихідні таблиці
             </label>
-            <p className={styles.description}>
+            <p id="sources-desc" className={styles.description}>
               Публічно доступні таблиці, наприклад, на Google Spreadsheets.
             </p>
             <textarea
@@ -477,6 +540,7 @@ export default function ImportPage() {
               id="sources"
               name="sources"
               minLength={10}
+              aria-describedby="sources-desc"
               className={styles.textarea}
               placeholder="https://example.com/source"
               onBlur={handleInputBlur}

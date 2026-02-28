@@ -38,7 +38,7 @@ const handleSubmit = async (c: Context) => {
 
       return c.json({
         success: true,
-        message: 'PR creation started',
+        message: 'PR created successfully',
         url: pr.html_url,
       });
     } catch (error) {

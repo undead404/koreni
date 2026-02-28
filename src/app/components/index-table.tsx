@@ -35,7 +35,6 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   useEffect(() => {
     const tri = searchParameters.showRow;
     setTargetRowId(tri);
-    console.log('tri', tri);
   }, [searchParameters]);
   return (
     <>

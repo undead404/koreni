@@ -40,6 +40,9 @@
     "koreni",
     "NextJS",
     "nvmrc",
+    "papaparse",
+    "posthog",
+    "turbopack",
     "Typesense"
   ],
   // Enable ESLint as the formatter for JS/TS files

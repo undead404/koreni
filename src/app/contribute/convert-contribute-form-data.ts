@@ -1,4 +1,4 @@
-export default function convertImportFormData(
+export default function convertContributeFormData(
   data: FormData,
   { isRange }: { isRange: boolean },
 ) {

@@ -114,3 +114,9 @@
   background-color: #f8d7da;
   color: #721c24;
 }
+
+.locationInput {
+  align-items: 'center';
+  display: flex;
+  gap: 8px;
+}
