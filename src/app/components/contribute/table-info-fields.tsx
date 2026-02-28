@@ -47,6 +47,7 @@ export default function TableInfoFields({
           Повна описова назва, яка буде відображатися на сайті.
         </p>
         <input
+          autoComplete="on"
           disabled={isSubmitting}
           id="title"
           type="text"
@@ -70,6 +71,7 @@ export default function TableInfoFields({
           <code>DAKhmO-315-1-8563-Antonivka</code>.
         </p>
         <input
+          autoComplete="on"
           disabled={isSubmitting}
           id="id"
           type="text"

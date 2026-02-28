@@ -46,6 +46,7 @@ export default function YearFields({
       {isRange ? (
         <div className={styles.yearsRow}>
           <input
+            autoComplete="on"
             disabled={isSubmitting}
             type="number"
             {...register('yearStart', {
@@ -58,6 +59,7 @@ export default function YearFields({
             aria-label="Рік початку"
           />
           <input
+            autoComplete="on"
             disabled={isSubmitting}
             type="number"
             {...register('yearEnd', {
@@ -72,6 +74,7 @@ export default function YearFields({
         </div>
       ) : (
         <input
+          autoComplete="on"
           disabled={isSubmitting}
           type="number"
           {...register('year', { required: !isRange, min: 1600, max: 2030 })}

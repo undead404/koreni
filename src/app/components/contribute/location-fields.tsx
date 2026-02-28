@@ -34,6 +34,7 @@ export default function LocationFields({
           Запозичити в іншої таблиці
         </button>
         <input
+          autoComplete="on"
           disabled={isSubmitting}
           id="location"
           type="text"
