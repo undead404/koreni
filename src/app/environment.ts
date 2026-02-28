@@ -38,6 +38,11 @@ const environment = {
     process.env.NEXT_PUBLIC_GITHUB_REPO,
     true,
   ),
+  NEXT_PUBLIC_LOCATIONIQ_KEY: validateEnvironment(
+    'NEXT_PUBLIC_LOCATIONIQ_KEY',
+    process.env.NEXT_PUBLIC_LOCATIONIQ_KEY,
+    false,
+  ),
   NEXT_PUBLIC_POSTHOG_KEY: validateEnvironment(
     'NEXT_PUBLIC_POSTHOG_KEY',
     process.env.NEXT_PUBLIC_POSTHOG_KEY,
