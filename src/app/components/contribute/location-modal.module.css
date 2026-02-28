@@ -10,12 +10,27 @@
   flex-direction: column;
   gap: 10px;
 }
+
+@media (prefers-color-scheme: dark) {
+  .innerWrapper {
+    background-color: #333;
+    color: #fff;
+  }
+}
+
 .list {
   flex: 1;
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
+@media (prefers-color-scheme: dark) {
+  .list {
+    border-color: #555;
+  }
+}
+
 .listItem {
   display: block;
   width: 100%;
@@ -25,6 +40,16 @@
   border: none;
   border-bottom: 1px solid #eee;
   cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .listItem {
+    color: #fff;
+    border-bottom-color: #555;
+  }
+  .listItem:hover {
+    background-color: #444;
+  }
 }
 .wrapper {
   position: fixed;

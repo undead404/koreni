@@ -1,18 +1,16 @@
-import type { UseFormRegister } from 'react-hook-form';
+'use client';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from 'react-hook-form';
 
 import type { ContributeFormValues } from './types';
 
 import styles from './contribute-form.module.css';
 
-interface AdditionalInfoFieldsProperties {
-  isSubmitting: boolean;
-  register: UseFormRegister<ContributeFormValues>;
-}
-
-export default function AdditionalInfoFields({
-  isSubmitting,
-  register,
-}: AdditionalInfoFieldsProperties) {
+export default function AdditionalInfoFields() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeFormValues>();
   return (
     <>
       <div className={styles.field}>
@@ -23,7 +21,6 @@ export default function AdditionalInfoFields({
           Перелік архівних справ, з яких взято дані. Кожен шифр з нового рядка.
         </p>
         <textarea
-          disabled={isSubmitting}
           id="archiveItems"
           {...register('archiveItems', {
             required: true,
@@ -33,6 +30,7 @@ export default function AdditionalInfoFields({
           className={styles.textarea}
           placeholder="ДАКО-384-10-242"
         />
+        <ErrorMessage errors={errors} name="archiveItems" />
       </div>
 
       <div className={styles.field}>
@@ -43,7 +41,6 @@ export default function AdditionalInfoFields({
           Публічно доступні таблиці, наприклад, на Google Spreadsheets.
         </p>
         <textarea
-          disabled={isSubmitting}
           id="sources"
           {...register('sources', {
             minLength: 10,
@@ -52,6 +49,7 @@ export default function AdditionalInfoFields({
           className={styles.textarea}
           placeholder="https://example.com/source"
         />
+        <ErrorMessage errors={errors} name="sources" />
       </div>
     </>
   );

@@ -1,19 +1,22 @@
-import type { UseFormRegister } from 'react-hook-form';
+'use client';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from 'react-hook-form';
+
+import type { ContributeFormValues } from './types';
 
 import styles from './contribute-form.module.css';
 
 interface TableInfoFieldsProperties {
-  isSubmitting: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
   onFileChange: () => void;
 }
 
 export default function TableInfoFields({
-  isSubmitting,
-  register,
   onFileChange,
 }: TableInfoFieldsProperties) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeFormValues>();
   return (
     <>
       <div className={styles.field}>
@@ -26,7 +29,6 @@ export default function TableInfoFields({
           <b>заголовки стовпців</b>.
         </p>
         <input
-          disabled={isSubmitting}
           id="table"
           type="file"
           accept=".csv"
@@ -37,6 +39,7 @@ export default function TableInfoFields({
           aria-describedby="table-desc"
           className={styles.input}
         />
+        <ErrorMessage errors={errors} name="table" />
       </div>
 
       <div className={styles.field}>
@@ -48,7 +51,6 @@ export default function TableInfoFields({
         </p>
         <input
           autoComplete="on"
-          disabled={isSubmitting}
           id="title"
           type="text"
           {...register('title', {
@@ -60,6 +62,7 @@ export default function TableInfoFields({
           className={styles.input}
           placeholder="Перепис населення с. Андрушки 1897"
         />
+        <ErrorMessage errors={errors} name="title" />
       </div>
 
       <div className={styles.field}>
@@ -72,7 +75,6 @@ export default function TableInfoFields({
         </p>
         <input
           autoComplete="on"
-          disabled={isSubmitting}
           id="id"
           type="text"
           {...register('id', {
@@ -88,6 +90,7 @@ export default function TableInfoFields({
           className={styles.input}
           placeholder="e.g. 1897-andrushky"
         />
+        <ErrorMessage errors={errors} name="id" />
       </div>
 
       <div className={styles.field}>
@@ -98,7 +101,6 @@ export default function TableInfoFields({
           Код мови, якою написані дані в таблиці.
         </p>
         <select
-          disabled={isSubmitting}
           id="tableLocale"
           defaultValue=""
           {...register('tableLocale', { required: true })}
@@ -108,9 +110,7 @@ export default function TableInfoFields({
           <option value="" disabled>
             Оберіть мову
           </option>
-          <option value="pl" disabled>
-            Польська (тимчасово не підтримується)
-          </option>
+          <option value="pl">Польська</option>
           <option value="uk">Українська</option>
           <option value="ru">Російська</option>
         </select>

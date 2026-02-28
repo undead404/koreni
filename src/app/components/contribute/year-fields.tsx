@@ -1,19 +1,18 @@
-import type { UseFormRegister } from 'react-hook-form';
+'use client';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext, useWatch } from 'react-hook-form';
+
+import { ContributeFormValues } from './types';
 
 import styles from './contribute-form.module.css';
 
-interface YearFieldsProperties {
-  isSubmitting: boolean;
-  isRange: boolean | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
-}
-
-export default function YearFields({
-  isSubmitting,
-  isRange,
-  register,
-}: YearFieldsProperties) {
+export default function YearFields() {
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeFormValues>();
+  const periodTypeValue = useWatch({ control, name: 'periodType' });
   return (
     <fieldset className={styles.field}>
       <legend className={styles.label}>Роки</legend>
@@ -23,9 +22,8 @@ export default function YearFields({
       <div className={styles.radioGroup}>
         <label>
           <input
-            disabled={isSubmitting}
             type="radio"
-            value="false"
+            value="single"
             {...register('periodType', { required: true })}
             aria-describedby="period-desc"
           />{' '}
@@ -33,26 +31,26 @@ export default function YearFields({
         </label>
         <label>
           <input
-            disabled={isSubmitting}
             type="radio"
-            value="true"
+            value="multiple"
             {...register('periodType', { required: true })}
             aria-describedby="period-desc"
           />{' '}
           Період
         </label>
+        <ErrorMessage errors={errors} name="periodType" />
       </div>
 
-      {isRange ? (
+      {periodTypeValue === 'multiple' && (
         <div className={styles.yearsRow}>
           <input
             autoComplete="on"
-            disabled={isSubmitting}
             type="number"
             {...register('yearStart', {
-              required: isRange,
+              required: periodTypeValue === 'multiple',
               min: 1600,
               max: 2030,
+              valueAsNumber: true,
             })}
             className={styles.yearInput}
             placeholder="З (1897)"
@@ -60,28 +58,38 @@ export default function YearFields({
           />
           <input
             autoComplete="on"
-            disabled={isSubmitting}
             type="number"
             {...register('yearEnd', {
-              required: isRange,
+              required: periodTypeValue === 'multiple',
               min: 1600,
               max: 2030,
+              valueAsNumber: true,
             })}
             className={styles.yearInput}
             placeholder="По (1910)"
             aria-label="Рік кінця"
           />
+          <ErrorMessage errors={errors} name="yearStart" />
+          <ErrorMessage errors={errors} name="yearEnd" />
         </div>
-      ) : (
-        <input
-          autoComplete="on"
-          disabled={isSubmitting}
-          type="number"
-          {...register('year', { required: !isRange, min: 1600, max: 2030 })}
-          className={styles.yearInput}
-          placeholder="1897"
-          aria-label="Рік"
-        />
+      )}
+      {periodTypeValue === 'single' && (
+        <>
+          <input
+            autoComplete="on"
+            type="number"
+            {...register('year', {
+              required: periodTypeValue === 'single',
+              min: 1600,
+              max: 2030,
+              valueAsNumber: true,
+            })}
+            className={styles.yearInput}
+            placeholder="1897"
+            aria-label="Рік"
+          />
+          <ErrorMessage errors={errors} name="year" />
+        </>
       )}
     </fieldset>
   );

@@ -17,7 +17,7 @@ export const importPayloadSchema = z.object({
   location: stringifiedLocation,
   sources: stringifiedStringArray,
   table: z.instanceof(File),
-  tableLocale: z.enum(['ru', 'uk']),
+  tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
   yearsRange: stringifiedValue(z.array(z.number()).min(1).max(2)),
 });

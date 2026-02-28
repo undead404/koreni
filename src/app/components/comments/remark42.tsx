@@ -16,7 +16,6 @@ export default function Remark42({
   const pathname = usePathname();
   const handleThemeChange = useCallback((theme: 'light' | 'dark') => {
     if (globalThis.REMARK42) {
-      console.log(theme);
       globalThis.REMARK42.changeTheme(theme);
     } else {
       console.warn('REMARK42 is not loaded');

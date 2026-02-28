@@ -5,7 +5,7 @@ export default function convertContributeFormData(
   { isRange }: { isRange: boolean },
 ) {
   const convertedData = new FormData();
-  convertedData.append('table', data.table as Blob);
+  convertedData.append('table', data.table![0] as Blob);
   convertedData.append('id', data.id);
   convertedData.append('authorName', data.authorName);
   convertedData.append('authorEmail', data.authorEmail);

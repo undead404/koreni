@@ -1,18 +1,17 @@
-import type { UseFormRegister } from 'react-hook-form';
+'use client';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from 'react-hook-form';
 
 import type { ContributeFormValues } from './types';
 
 import styles from './contribute-form.module.css';
 
-interface AuthorFieldsProperties {
-  isSubmitting: boolean;
-  register: UseFormRegister<ContributeFormValues>;
-}
+export default function AuthorFields() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeFormValues>();
 
-export default function AuthorFields({
-  isSubmitting,
-  register,
-}: AuthorFieldsProperties) {
   return (
     <>
       <div className={styles.field}>
@@ -25,7 +24,6 @@ export default function AuthorFields({
         </p>
         <input
           autoComplete="name"
-          disabled={isSubmitting}
           id="authorName"
           type="text"
           {...register('authorName', {
@@ -36,6 +34,7 @@ export default function AuthorFields({
           aria-describedby="authorName-desc"
           className={styles.input}
         />
+        <ErrorMessage errors={errors} name="authorName" />
       </div>
 
       <div className={styles.field}>
@@ -48,13 +47,13 @@ export default function AuthorFields({
         </p>
         <input
           autoComplete="email"
-          disabled={isSubmitting}
           id="authorEmail"
           type="email"
           {...register('authorEmail')}
           aria-describedby="authorEmail-desc"
           className={styles.input}
         />
+        <ErrorMessage errors={errors} name="authorEmail" />
       </div>
 
       <div className={styles.field}>
@@ -67,13 +66,13 @@ export default function AuthorFields({
         </p>
         <input
           autoComplete="username"
-          disabled={isSubmitting}
           id="authorGithubUsername"
           type="text"
           {...register('authorGithubUsername')}
           aria-describedby="authorGithubUsername-desc"
           className={styles.input}
         />
+        <ErrorMessage errors={errors} name="authorGithubUsername" />
       </div>
     </>
   );

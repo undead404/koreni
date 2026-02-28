@@ -1,21 +1,24 @@
-import type { UseFormRegister } from 'react-hook-form';
+'use client';
+import { ErrorMessage } from '@hookform/error-message';
+import { useFormContext } from 'react-hook-form';
+
+import type { ContributeFormValues } from './types';
 
 import styles from './contribute-form.module.css';
 import ownStyles from './location-fields.module.css';
 interface LocationFieldsProperties {
-  isSubmitting: boolean;
   locationGuess: string;
   onShowLocationModal: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
 }
 
 export default function LocationFields({
-  isSubmitting,
   locationGuess,
   onShowLocationModal,
-  register,
 }: LocationFieldsProperties) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeFormValues>();
   return (
     <div className={styles.field}>
       <label htmlFor="location" className={styles.label}>
@@ -35,7 +38,6 @@ export default function LocationFields({
         </button>
         <input
           autoComplete="on"
-          disabled={isSubmitting}
           id="location"
           type="text"
           {...register('location', {
@@ -49,6 +51,7 @@ export default function LocationFields({
           className={`${styles.input} ${ownStyles.input}`}
           placeholder="50.45, 30.52"
         />
+        <ErrorMessage errors={errors} name="location" />
       </div>
       {locationGuess && (
         <p className={styles.locationGuess}>

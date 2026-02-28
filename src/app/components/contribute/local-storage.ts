@@ -1,56 +1,49 @@
-import { z } from 'zod';
-
 import { initBugsnag } from '@/app/services/bugsnag';
 
-const authorIdentitySchema = z.object({
-  authorName: z.string().optional(),
-  authorEmail: z.string().optional(),
-  authorGithubUsername: z.string().optional(),
-});
-export type AuthorIdentity = z.infer<typeof authorIdentitySchema>;
-const importStateSchema = authorIdentitySchema.extend({
-  id: z.string().optional(),
-  yearStart: z.number().optional(),
-  yearEnd: z.number().optional(),
-  year: z.number().optional(),
-  location: z.string().optional(),
-  sources: z.string().optional(),
-  title: z.string().optional(),
-  tableLocale: z.enum(['ru', 'uk']).optional(),
-  archiveItems: z.string().optional(),
-});
-export type ImportState = z.infer<typeof importStateSchema>;
-const IMPORT_STATE_KEY = 'import_state';
+import {
+  AuthorIdentity,
+  authorIdentitySchema,
+  RestorableState,
+  restorableStateSchema,
+} from './schemata';
 
-export function restoreContributePageState(): ImportState | null {
+const CONTRIBUTE_STATE_KEY = 'contribute_state';
+
+export function restoreContributePageState(): RestorableState | null {
   try {
     if (globalThis.window === undefined) return null;
-    const savedState = localStorage.getItem(IMPORT_STATE_KEY);
+    const savedState = localStorage.getItem(CONTRIBUTE_STATE_KEY);
     if (!savedState) return null;
     const parsedRaw = JSON.parse(savedState) as unknown;
-    const parsed = importStateSchema.parse(parsedRaw);
+    const parsed = restorableStateSchema.parse(parsedRaw);
     return parsed;
   } catch (error) {
-    console.error('Failed to restore import state', error);
+    console.error('Failed to restore contribute state', error);
+    resetContributePageState();
     initBugsnag().notify(error as Error);
     return null;
   }
 }
+
 export function resetContributePageState() {
-  localStorage.removeItem(IMPORT_STATE_KEY);
+  localStorage.removeItem(CONTRIBUTE_STATE_KEY);
 }
 
-export function saveContributePageState(data: ImportState) {
+export function saveContributePageState(data: RestorableState) {
   try {
-    const serialized = JSON.stringify(data);
-    localStorage.setItem(IMPORT_STATE_KEY, serialized);
+    const serialized = JSON.stringify(
+      { ...data, table: undefined },
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      (key, value) => value || undefined,
+    );
+    localStorage.setItem(CONTRIBUTE_STATE_KEY, serialized);
   } catch (error) {
-    console.error('Failed to save import state', error);
+    console.error('Failed to save contribute state', error);
     initBugsnag().notify(error as Error);
   }
 }
 
-const AUTHOR_IDENTITY_KEY = 'import_author_identity';
+const AUTHOR_IDENTITY_KEY = 'contribute_author_identity';
 
 export function restoreAuthorIdentity(): AuthorIdentity | null {
   try {
@@ -62,6 +55,7 @@ export function restoreAuthorIdentity(): AuthorIdentity | null {
     return parsed;
   } catch (error) {
     console.error('Failed to restore author identity', error);
+    localStorage.removeItem(AUTHOR_IDENTITY_KEY);
     return null;
   }
 }
@@ -72,6 +66,7 @@ export function saveAuthorIdentity(data: Record<string, string>) {
     localStorage.setItem(AUTHOR_IDENTITY_KEY, serialized);
   } catch (error) {
     console.error('Failed to save author identity', error);
+
     initBugsnag().notify(error as Error);
   }
 }

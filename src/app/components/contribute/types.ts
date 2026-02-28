@@ -13,8 +13,8 @@ export interface ContributeFormValues {
   location: string;
   periodType: string;
   sources: string;
-  table: File | null;
-  tableLocale?: 'ru' | 'uk';
+  table: FileList | null;
+  tableLocale?: 'pl' | 'ru' | 'uk';
   title: string;
   year: number;
   yearEnd: number;

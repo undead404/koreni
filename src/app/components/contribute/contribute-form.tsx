@@ -1,8 +1,13 @@
 'use client';
 import { throttle } from 'lodash';
 import posthog from 'posthog-js';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
+import { SubmitEvent, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  FormProvider,
+  SubmitHandler,
+  useForm,
+  useWatch,
+} from 'react-hook-form';
 import Turnstile from 'react-turnstile';
 
 import { reverseGeocode } from '@/app/services/locationiq';
@@ -29,6 +34,12 @@ import YearFields from './year-fields';
 
 import styles from './contribute-form.module.css';
 
+const DEFAULT_VALUES = {
+  periodType: '',
+  ...restoreContributePageState(),
+  ...restoreAuthorIdentity(),
+};
+
 export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
@@ -42,25 +53,21 @@ export default function ContributeForm({
   const hideLocationModal = useCallback(() => setShowLocationModal(false), []);
   const showLocationModal = useCallback(() => setShowLocationModal(true), []);
 
+  const form = useForm<ContributeFormValues>({
+    defaultValues: DEFAULT_VALUES,
+  });
   const {
-    register,
     handleSubmit,
     setValue,
     reset,
     control,
-    formState: { isSubmitting },
-  } = useForm<ContributeFormValues>({
-    defaultValues: {
-      ...restoreContributePageState(),
-      ...restoreAuthorIdentity(),
-    },
-  });
+    formState: { isSubmitting, touchedFields },
+  } = form;
 
   const allValues = useWatch({ control });
   const locationValue = useWatch({ control, name: 'location' });
-  const periodTypeValue = useWatch({ control, name: 'periodType' });
+
   const titleValue = useWatch({ control, name: 'title' });
-  const idValue = useWatch({ control, name: 'id' });
 
   useEffect(() => {
     saveContributePageState(allValues);
@@ -68,10 +75,10 @@ export default function ContributeForm({
 
   // Handle title to slug mapping
   useEffect(() => {
-    if (titleValue && !idValue) {
+    if (titleValue && !touchedFields.id) {
       setValue('id', slugifyUkrainian(titleValue));
     }
-  }, [titleValue, idValue, setValue]);
+  }, [setValue, titleValue, touchedFields.id]);
 
   const handleLocationSelect = useCallback(
     (coordinates: [number, number]) => {
@@ -89,12 +96,15 @@ export default function ContributeForm({
     }
   }, [reset]);
 
-  const submit = useCallback(
-    async (data: ContributeFormValues) => {
+  const submit: SubmitHandler<ContributeFormValues> = useCallback(
+    async (data, event) => {
+      if (event) {
+        event.preventDefault();
+      }
       setStatus(null);
       try {
         const adjustedFormData = convertContributeFormData(data, {
-          isRange: data.periodType === 'true',
+          isRange: data.periodType === 'multiple',
         });
 
         if (turnstileToken) {
@@ -186,17 +196,19 @@ export default function ContributeForm({
     return () => handler.cancel();
   }, [locationValue]);
 
-  const handleFormSubmit = useCallback(() => {
-    void handleSubmit(submit);
-  }, [handleSubmit, submit]);
+  const handleFormSubmit = useCallback(
+    (event: SubmitEvent<HTMLFormElement>) => {
+      void handleSubmit(submit, console.error)(event);
+    },
+    [handleSubmit, submit],
+  );
 
   return (
-    <>
+    <FormProvider {...form}>
       <div className={styles.container}>
         <div className={styles.headerRow}>
           <h1 className={styles.title}>Додання на Корені власної таблиці</h1>
           <button
-            disabled={isSubmitting}
             type="button"
             onClick={handleReset}
             className={styles.resetButton}
@@ -207,31 +219,18 @@ export default function ContributeForm({
         </div>
 
         <form className={styles.form} onSubmit={handleFormSubmit}>
-          <TableInfoFields
-            isSubmitting={isSubmitting}
-            register={register}
-            onFileChange={handleFileChange}
-          />
+          <TableInfoFields onFileChange={handleFileChange} />
 
-          <AuthorFields isSubmitting={isSubmitting} register={register} />
+          <AuthorFields />
 
-          <YearFields
-            isSubmitting={isSubmitting}
-            isRange={periodTypeValue === 'true'}
-            register={register}
-          />
+          <YearFields />
 
           <LocationFields
-            isSubmitting={isSubmitting}
             locationGuess={locationGuess}
             onShowLocationModal={showLocationModal}
-            register={register}
           />
 
-          <AdditionalInfoFields
-            isSubmitting={isSubmitting}
-            register={register}
-          />
+          <AdditionalInfoFields />
 
           <Turnstile
             sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
@@ -280,6 +279,6 @@ export default function ContributeForm({
           </div>
         )}
       </div>
-    </>
+    </FormProvider>
   );
 }
