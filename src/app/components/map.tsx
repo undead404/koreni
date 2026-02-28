@@ -1,12 +1,15 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import calculateCoordinatesAverage from '../helpers/calculate-coordinates-average';
 import type { MapPoint } from '../helpers/combine-points';
 
 import MapPointOnMap from './map-point';
 
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.css';
+import 'react-leaflet-cluster/dist/assets/MarkerCluster.Default.css';
 import 'leaflet/dist/leaflet.css';
 import styles from './map.module.css';
 
@@ -16,7 +19,13 @@ export interface MapProperties {
   zoom: number;
   isFullScreen?: boolean;
 }
-
+const CLUSTER_POLYGON_OPTIONS = {
+  fillColor: '#3d9970',
+  color: '#3d9970',
+  weight: 2,
+  opacity: 1,
+  fillOpacity: 0.5,
+};
 export default function Map({
   center,
   points,
@@ -44,25 +53,30 @@ export default function Map({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {points.map((point, index) => {
-        const isCenter =
-          point.coordinates[0] === centerOn[0] &&
-          point.coordinates[1] === centerOn[1];
-        const isActive =
-          isCenter ||
-          (activePoint &&
-            point.coordinates[0] === activePoint.coordinates[0] &&
-            point.coordinates[1] === activePoint.coordinates[1]) ||
-          false;
-        return (
-          <MapPointOnMap
-            key={index}
-            isPrimary={isActive}
-            point={point}
-            setActive={setActivePoint}
-          />
-        );
-      })}
+      <MarkerClusterGroup
+        chunkedLoading
+        polygonOptions={CLUSTER_POLYGON_OPTIONS}
+      >
+        {points.map((point, index) => {
+          const isCenter =
+            point.coordinates[0] === centerOn[0] &&
+            point.coordinates[1] === centerOn[1];
+          const isActive =
+            isCenter ||
+            (activePoint &&
+              point.coordinates[0] === activePoint.coordinates[0] &&
+              point.coordinates[1] === activePoint.coordinates[1]) ||
+            false;
+          return (
+            <MapPointOnMap
+              key={index}
+              isPrimary={isActive}
+              point={point}
+              setActive={setActivePoint}
+            />
+          );
+        })}
+      </MarkerClusterGroup>
     </MapContainer>
   );
 }
