@@ -1,6 +1,4 @@
 'use client';
-
-import type { Metadata } from 'next';
 import posthog from 'posthog-js';
 import {
   type FocusEvent,
@@ -26,15 +24,6 @@ import {
 } from './local-storage';
 
 import styles from './page.module.css';
-
-export const metadata: Metadata = {
-  title: 'Додавання власної таблиці',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-  },
-};
 
 export default function ContributePage() {
   const [prUrl, setPrUrl] = useState('');
