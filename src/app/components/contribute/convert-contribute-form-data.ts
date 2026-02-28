@@ -1,39 +1,31 @@
+import { ContributeFormValues } from './types';
+
 export default function convertContributeFormData(
-  data: FormData,
+  data: ContributeFormValues,
   { isRange }: { isRange: boolean },
 ) {
   const convertedData = new FormData();
-  convertedData.append('table', data.get('table') as Blob);
-  convertedData.append('id', data.get('id') as string);
-  convertedData.append('authorName', data.get('authorName') as string);
-  convertedData.append('authorEmail', data.get('authorEmail') as string);
-  convertedData.append(
-    'authorGithubUsername',
-    data.get('authorGithubUsername') as string,
-  );
+  convertedData.append('table', data.table as Blob);
+  convertedData.append('id', data.id);
+  convertedData.append('authorName', data.authorName);
+  convertedData.append('authorEmail', data.authorEmail);
+  convertedData.append('authorGithubUsername', data.authorGithubUsername);
   convertedData.append(
     'yearsRange',
     isRange
-      ? JSON.stringify(
-          [data.get('yearStart') as string, data.get('yearEnd') as string].map(
-            Number,
-          ),
-        )
-      : JSON.stringify([data.get('year') as string].map(Number)),
+      ? JSON.stringify([data.yearStart, data.yearEnd])
+      : JSON.stringify([data.year]),
   );
   convertedData.append(
     'archiveItems',
-    JSON.stringify((data.get('archiveItems')! as string).split('\n')),
+    JSON.stringify(data.archiveItems.split('\n')),
   );
   convertedData.append(
     'location',
-    JSON.stringify((data.get('location') as string).split(',').map(Number)),
+    JSON.stringify(data.location.split(',').map(Number)),
   );
-  convertedData.append(
-    'sources',
-    JSON.stringify((data.get('sources') as string).split('\n')),
-  );
-  convertedData.append('title', data.get('title') as string);
-  convertedData.append('tableLocale', data.get('tableLocale') as string);
+  convertedData.append('sources', JSON.stringify(data.sources.split('\n')));
+  convertedData.append('title', data.title);
+  convertedData.append('tableLocale', data.tableLocale as string);
   return convertedData;
 }

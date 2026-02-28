@@ -12,6 +12,7 @@
     "posthog-js": "^1.344.0",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
+    "react-hook-form": "^7.71.2",
     "react-leaflet": "~5.0.0",
     "react-leaflet-cluster": "^4.0.0",
     "react-paginate": "~8.3.0",

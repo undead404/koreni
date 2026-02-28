@@ -39,7 +39,7 @@ describe('ErrorBoundary', () => {
 
   it('should use Stub component when Bugsnag is started but react plugin is missing', async () => {
     mockIsStarted.mockReturnValue(true);
-    // eslint-disable-next-line unicorn/no-useless-undefined
+
     mockGetPlugin.mockReturnValue(undefined);
 
     const { default: ErrorBoundary } = await import('./error-boundary');

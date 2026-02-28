@@ -1,0 +1,12 @@
+.hint {
+  font-style: italic;
+}
+.input {
+  flex-grow: 1;
+  min-width: 200px;
+}
+.inputWrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

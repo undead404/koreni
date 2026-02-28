@@ -6,7 +6,6 @@ import SearchResults, { type ResultsProperties } from './search-results';
 vi.mock('../schemas/search-result', () => ({
   __esModule: true,
   default: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     parse: vi.fn((result) => result),
 
     safeParse: vi.fn((result) => ({ success: true, data: result })),
