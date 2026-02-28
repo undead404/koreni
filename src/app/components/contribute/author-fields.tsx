@@ -24,6 +24,7 @@ export default function AuthorFields({
           постійний псевдонім.
         </p>
         <input
+          autoComplete="name"
           disabled={isSubmitting}
           id="authorName"
           type="text"
@@ -46,6 +47,7 @@ export default function AuthorFields({
           могли з Вами зв'язатися.
         </p>
         <input
+          autoComplete="email"
           disabled={isSubmitting}
           id="authorEmail"
           type="email"
@@ -64,6 +66,7 @@ export default function AuthorFields({
           таблиці на Корені.
         </p>
         <input
+          autoComplete="username"
           disabled={isSubmitting}
           id="authorGithubUsername"
           type="text"
