@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1012-2052
+authorName: Юлія Хоменко
+authorEmail: yuliia.khomenko2999@gmail.com
+date: 2026-03-01
+id: TsDIAK-127-1012-2052-Mankivka
+location:
+  - 48.961918387825214
+  - 30.336060913096002
+size: 422
+sources:
+  - https://docs.google.com/spreadsheets/d/1F8R52nTKSUljvorVP4K8ZryaN0xbH1UWp8J1MHP3oDQ/edit?usp=sharing
+tableFilePath: public/csv/TsDIAK-127-1012-2052-Mankivka.csv
+tableLocale: ru
+title: Маньківка 1841 – МК Свято-Преображенської церкви, ЦДІАК-127-1012-2052
+yearsRange:
+  - 1841
