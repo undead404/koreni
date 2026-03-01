@@ -230,7 +230,7 @@ export default function ContributeForm({
             <div className={`${styles.status} ${styles.warning}`}>
               Якщо не виходить подати таблицю через форму – Ви завжди можете
               надіслати її нам на пошту:{' '}
-              <a href="mailto:brute18@gmail.com">brute18@gmail.com</a>
+              <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>
             </div>
           )}
         </div>

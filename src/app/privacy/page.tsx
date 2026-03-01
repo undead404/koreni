@@ -53,8 +53,8 @@ export default function PrivacyPage() {
 
       <h2>2. Сторонні сервіси</h2>
       <p>
-        Ми використовуємо мінімальний набір інструментів для підтримки
-        і перевірки функціональності проекту:
+        Ми використовуємо мінімальний набір інструментів для підтримки і
+        перевірки функціональності проекту:
       </p>
 
       <ul>
@@ -95,7 +95,7 @@ export default function PrivacyPage() {
       <p>
         Якщо у вас є питання:
         <br />
-        <a href="mailto:brute18@gmail.com">brute18@gmail.com</a>
+        <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>
       </p>
     </article>
   );

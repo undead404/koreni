@@ -171,7 +171,7 @@ export default function AboutPage() {
         <h2>Як можна допомогти?</h2>
         <p>
           Якщо маєте таблиці-індексації – присилайте мені на{' '}
-          <a href="mailto:brute18@gmail.com">brute18@gmail.com</a>. Корені
+          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>. Корені
           спроєктовані таким чином, щоб додавання нової таблиці займало не
           більше 5 хвилин, тому додавання нових даних відбудеться швидко.
         </p>
@@ -184,8 +184,8 @@ export default function AboutPage() {
         </p>
         <p>
           І – якщо Корені допомогли в якихось пошуках – напишіть мені на{' '}
-          <a href="mailto:brute18@gmail.com">brute18@gmail.com</a> обов'язково:
-          я б дуже хотів знати, що моя праця допомогла комусь.
+          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>{' '}
+          обов'язково: я б дуже хотів знати, що моя праця допомогла комусь.
         </p>
       </article>
       <Comments />

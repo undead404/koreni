@@ -4,7 +4,7 @@ This directory contains the server-side code for handling data import API reques
 
 ## How to use the API
 
-First, you must acquire an API key. Drop us a line at [brute18@gmail.com](mailto:brute18@gmail.com).
+First, you must acquire an API key. Drop us a line at [admin@koreni.org.ua](mailto:admin@koreni.org.ua).
 
 Then, you can submit your indexation data to the API like this (see comments):
 
