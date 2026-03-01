@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАІФО-631-9-17
+authorName: Тарас Семенюк
+authorEmail: semwoood@gmail.com
+date: 2026-03-01
+id: DAIFO-631-9-17
+location:
+  - 49.0364
+  - 24.213926
+size: 3113
+sources:
+  - https://docs.google.com/spreadsheets/d/18U4BS3r3smISAgQBebYd75QjFix8nsHNJY-IlU8xAuw/edit?usp=sharing
+tableFilePath: public/csv/DAIFO-631-9-17.csv
+tableLocale: uk
+title: Метрична книга церкви Св. Василя Великого с. Кадобна Калуського повіту
+  (частина), ДАІФО 631-9-17
+yearsRange:
+  - 1935
+  - 1939
