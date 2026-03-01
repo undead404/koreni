@@ -10,3 +10,9 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+.warning {
+  color: #d63a3a; /* red-500 */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+}

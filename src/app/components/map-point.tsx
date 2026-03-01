@@ -1,13 +1,10 @@
-import { Icon, type IconOptions } from 'leaflet';
+import type { Icon } from 'leaflet';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
 import type { MapPoint } from '../helpers/combine-points';
-
-import filledIconImage from '../assets/icons8-marker-40.png';
-import blackIconImage from '../assets/icons8-marker-50.png';
-import whiteIconImage from '../assets/icons8-marker-50-white.png';
+import { blackIcon, filledIcon, whiteIcon } from '../map-icons';
 
 export interface MapPointProperties {
   isPrimary: boolean;
@@ -15,26 +12,6 @@ export interface MapPointProperties {
   setActive: (point: MapPoint | null) => void;
 }
 
-const defaultIconParameters: Partial<IconOptions> = {
-  iconSize: [41, 41],
-  iconAnchor: [25, 41],
-  popupAnchor: [-4, -37],
-  // shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  // shadowSize: [41, 41],
-};
-const blackIcon: Icon = new Icon({
-  ...defaultIconParameters,
-  iconUrl: blackIconImage.src,
-});
-const whiteIcon: Icon = new Icon({
-  ...defaultIconParameters,
-  iconUrl: whiteIconImage.src,
-});
-
-const filledIcon = new Icon({
-  ...defaultIconParameters,
-  iconUrl: filledIconImage.src,
-});
 export default function MapPointOnMap({
   isPrimary,
   point,

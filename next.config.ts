@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 import buildAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
 
@@ -13,12 +11,6 @@ const nextConfig: NextConfig = {
   output: 'export',
   productionBrowserSourceMaps: false,
   trailingSlash: true,
-  turbopack: {
-    resolveAlias: {
-      react: path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom'),
-    },
-  },
 };
 
 export default buildAnalyzer({

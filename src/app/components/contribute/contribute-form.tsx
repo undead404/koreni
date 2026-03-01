@@ -1,5 +1,4 @@
 'use client';
-import { throttle } from 'lodash';
 import posthog from 'posthog-js';
 import { SubmitEvent, useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -9,8 +8,6 @@ import {
   useWatch,
 } from 'react-hook-form';
 import Turnstile from 'react-turnstile';
-
-import { reverseGeocode } from '@/app/services/locationiq';
 
 import environment from '../../environment';
 import slugifyUkrainian from '../../helpers/slugify-ukrainian';
@@ -27,7 +24,6 @@ import {
   saveContributePageState,
 } from './local-storage';
 import LocationFields from './location-fields';
-import LocationModal from './location-modal';
 import TableInfoFields from './table-info-fields';
 import type { ContributeFormProperties, ContributeFormValues } from './types';
 import YearFields from './year-fields';
@@ -49,9 +45,6 @@ export default function ContributeForm({
     message: string;
   } | null>(null);
   const [turnstileToken, setTurnstileToken] = useState('');
-  const [isLocationModalShown, setShowLocationModal] = useState(false);
-  const hideLocationModal = useCallback(() => setShowLocationModal(false), []);
-  const showLocationModal = useCallback(() => setShowLocationModal(true), []);
 
   const form = useForm<ContributeFormValues>({
     defaultValues: DEFAULT_VALUES,
@@ -65,7 +58,6 @@ export default function ContributeForm({
   } = form;
 
   const allValues = useWatch({ control });
-  const locationValue = useWatch({ control, name: 'location' });
 
   const titleValue = useWatch({ control, name: 'title' });
 
@@ -79,14 +71,6 @@ export default function ContributeForm({
       setValue('id', slugifyUkrainian(titleValue));
     }
   }, [setValue, titleValue, touchedFields.id]);
-
-  const handleLocationSelect = useCallback(
-    (coordinates: [number, number]) => {
-      setValue('location', coordinates.join(', '));
-      setShowLocationModal(false);
-    },
-    [setValue],
-  );
 
   const handleReset = useCallback(() => {
     if (confirm('Ви впевнені, що хочете очистити форму?')) {
@@ -173,29 +157,6 @@ export default function ContributeForm({
     }
   }, []);
 
-  const [locationGuess, setLocationGuess] = useState('');
-
-  useEffect(() => {
-    if (!locationValue) return;
-
-    const handler = throttle((value: string) => {
-      const [latString, longString] = value
-        .split(',')
-        .map((s) => s.trim())
-        .map(Number);
-      if (Number.isNaN(latString) || Number.isNaN(longString)) {
-        setLocationGuess('');
-      } else {
-        void reverseGeocode([latString, longString]).then((displayName) =>
-          setLocationGuess(displayName || ''),
-        );
-      }
-    }, 500);
-
-    handler(locationValue);
-    return () => handler.cancel();
-  }, [locationValue]);
-
   const handleFormSubmit = useCallback(
     (event: SubmitEvent<HTMLFormElement>) => {
       void handleSubmit(submit, console.error)(event);
@@ -225,10 +186,7 @@ export default function ContributeForm({
 
           <YearFields />
 
-          <LocationFields
-            locationGuess={locationGuess}
-            onShowLocationModal={showLocationModal}
-          />
+          <LocationFields knownLocations={knownLocations} />
 
           <AdditionalInfoFields />
 
@@ -245,13 +203,6 @@ export default function ContributeForm({
             {isSubmitting ? 'Подається...' : 'Подати'}
           </button>
         </form>
-
-        <LocationModal
-          isOpen={isLocationModalShown}
-          onClose={hideLocationModal}
-          onSelect={handleLocationSelect}
-          knownLocations={knownLocations}
-        />
 
         {status && (
           <div
