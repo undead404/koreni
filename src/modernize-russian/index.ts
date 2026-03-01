@@ -58,10 +58,17 @@ if (table.tableLocale !== 'ru') {
 
 // 2. Replace obsolete russian characters in CSV with modern ones
 const csvFile = csvFiles[0];
-let csvContent = await readFile(csvFile, 'utf8');
+const csvContent = await readFile(csvFile, 'utf8');
+// Don't change the first line
+const firstLineEnd = csvContent.indexOf('\n');
+const firstLine = csvContent.slice(0, firstLineEnd);
+let csvContentWithoutFirstLine = csvContent.slice(firstLineEnd + 1);
 for (const [old, new_] of REPLACEMENTS) {
-  csvContent = csvContent.replaceAll(old, new_);
+  csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(old, new_);
 }
-// eslint-disable-next-line regexp/no-obscure-range
-csvContent = csvContent.replaceAll(/ъ([^а-я])/g, '$1');
-await writeFile(csvFile, csvContent);
+csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(
+  // eslint-disable-next-line regexp/no-obscure-range
+  /ъ([^а-я])/g,
+  '$1',
+);
+await writeFile(csvFile, `${firstLine}\n${csvContentWithoutFirstLine}`);
