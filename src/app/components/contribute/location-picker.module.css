@@ -26,12 +26,29 @@
     box-shadow 0.15s ease-in-out;
 }
 
+@media (prefers-color-scheme: dark) {
+  .input {
+    color: #e2e8f0;
+    background-color: #1a202c;
+    border-color: #4a5568;
+  }
+}
+
 .input:focus {
   color: #212529;
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .input:focus {
+    color: #e2e8f0;
+    background-color: #1a202c;
+    border-color: #63b3ed;
+    box-shadow: 0 0 0 0.25rem rgb(66 153 225 / 25%);
+  }
 }
 
 .suggestionsList {
@@ -49,6 +66,13 @@
   z-index: 50;
 }
 
+@media (prefers-color-scheme: dark) {
+  .suggestionsList {
+    background-color: #1a202c;
+    border-color: #4a5568;
+  }
+}
+
 .suggestionItem {
   cursor: pointer;
   font-size: 0.875rem; /* text-sm */
@@ -59,12 +83,24 @@
   background-color: #f3f4f6; /* bg-gray-100 */
 }
 
+@media (prefers-color-scheme: dark) {
+  .suggestionItem:hover {
+    background-color: #2d3748;
+  }
+}
+
 .sourceBadge {
   color: #6b7280; /* text-gray-500 */
   font-size: 0.75rem; /* text-xs */
   font-weight: 600; /* font-semibold */
   margin-right: 0.5rem;
   text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sourceBadge {
+    color: #a0aec0;
+  }
 }
 
 .mapContainer {
@@ -74,6 +110,12 @@
   overflow: hidden;
   width: 100%;
   z-index: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mapContainer {
+    border-color: #4a5568;
+  }
 }
 
 .label {
