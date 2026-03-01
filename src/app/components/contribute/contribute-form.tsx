@@ -74,6 +74,7 @@ export default function ContributeForm({
 
   const handleReset = useCallback(() => {
     if (confirm('Ви впевнені, що хочете очистити форму?')) {
+      posthog.capture('contribution_form_reset');
       resetContributePageState();
       reset({});
       globalThis.location.reload();
@@ -204,31 +205,32 @@ export default function ContributeForm({
           </button>
         </form>
 
-        {status && (
-          <div
-            className={`${styles.status} ${
-              status.type === 'success' ? styles.success : styles.error
-            }`}
-          >
-            {status.message}
-          </div>
-        )}
-        {prUrl && (
-          <div className={styles.status}>
-            {' '}
-            Переглянути статус поданої таблиці можна за посиланням:{' '}
-            <a href={prUrl} target="_blank" rel="noreferrer">
-              Pull Request
-            </a>
-          </div>
-        )}
-        {status?.type !== 'success' && (
-          <div className={styles.comforting}>
-            Якщо не виходить подати таблицю через форму – Ви завжди можете
-            надіслати її нам на пошту:{' '}
-            <a href="mailto:brute18@gmail.com">brute18@gmail.com</a>
-          </div>
-        )}
+        <div className={styles.statusMessages}>
+          {status && (
+            <div
+              className={`${styles.status} ${
+                status.type === 'success' ? styles.success : styles.error
+              }`}
+            >
+              {status.message}
+            </div>
+          )}
+          {prUrl && (
+            <div className={`${styles.status} ${styles.info}`}>
+              Переглянути статус поданої таблиці можна за посиланням:{' '}
+              <a href={prUrl} target="_blank" rel="noreferrer">
+                Pull Request
+              </a>
+            </div>
+          )}
+          {status?.type !== 'success' && (
+            <div className={`${styles.status} ${styles.warning}`}>
+              Якщо не виходить подати таблицю через форму – Ви завжди можете
+              надіслати її нам на пошту:{' '}
+              <a href="mailto:brute18@gmail.com">brute18@gmail.com</a>
+            </div>
+          )}
+        </div>
       </div>
     </FormProvider>
   );

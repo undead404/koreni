@@ -3,22 +3,21 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { throttle } from 'lodash';
 import dynamic from 'next/dynamic';
+import posthog from 'posthog-js';
 import { useEffect, useMemo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import { initBugsnag } from '@/app/services/bugsnag';
 import { reverseGeocode } from '@/app/services/locationiq';
 
 import type { ContributeFormValues } from './types';
 
-import styles from './contribute-form.module.css';
-import ownStyles from './location-fields.module.css';
+import styles from './location-fields.module.css';
 
 // Динамічний імпорт критичний для react-leaflet у Next.js
 const LocationPicker = dynamic(() => import('./location-picker'), {
   ssr: false,
-  loading: () => (
-    <div className="h-12 w-full animate-pulse bg-gray-200 rounded" />
-  ),
+  loading: () => <div className={styles.locationPickerLoading} />,
 });
 
 interface LocationFieldsProperties {
@@ -49,9 +48,15 @@ export default function LocationFields({
         if (Number.isNaN(latString) || Number.isNaN(longString)) {
           setLocationGuess('');
         } else {
-          void reverseGeocode([latString, longString]).then((displayName) =>
-            setLocationGuess(displayName || ''),
-          );
+          void reverseGeocode([latString, longString])
+            .then((displayName) => setLocationGuess(displayName || ''))
+            .catch((error) => {
+              console.error('Reverse geocode failed', error);
+              posthog.capture('contribution_reverse_geocode_failed', {
+                error: error instanceof Error ? error.message : String(error),
+              });
+              initBugsnag().notify(error as Error);
+            });
         }
       }, 500),
     [],
@@ -71,7 +76,7 @@ export default function LocationFields({
         пункт за назвою або встановіть маркер на мапі
       </p>
 
-      <div className={ownStyles.inputWrapper}>
+      <div className={styles.inputWrapper}>
         {/* Компонент сам містить Controller та керує своїм UI (інпут + мапа) */}
         <LocationPicker knownLocations={knownLocations} />
 
@@ -79,12 +84,12 @@ export default function LocationFields({
       </div>
       {locationGuess && (
         <p className={styles.locationGuess}>
-          <span className={ownStyles.hint}>Найближче сучасне поселення</span>:{' '}
+          <span className={styles.hint}>Найближче сучасне поселення</span>:{' '}
           {locationGuess}
           {!locationGuess.includes('Україна') && (
             <>
               <br />
-              <span className={ownStyles.warning}>
+              <span className={styles.warning}>
                 Обрані координати не відповідають Україні. Ви впевнені, що вони
                 коректні?
               </span>

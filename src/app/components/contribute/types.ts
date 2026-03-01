@@ -5,14 +5,18 @@ export interface ContributeFormProperties {
   }[];
 }
 export interface ContributeFormValues {
-  archiveItems: string;
+  archiveItems: {
+    item: string;
+  }[];
   authorEmail: string;
   authorGithubUsername: string;
   authorName: string;
   id: string;
   location: string;
   periodType: string;
-  sources: string;
+  sources: {
+    url: string;
+  }[];
   table: FileList | null;
   tableLocale?: 'pl' | 'ru' | 'uk';
   title: string;

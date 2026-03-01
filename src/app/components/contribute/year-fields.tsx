@@ -1,10 +1,12 @@
 'use client';
 import { ErrorMessage } from '@hookform/error-message';
+import posthog from 'posthog-js';
+import { useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { ContributeFormValues } from './types';
 
-import styles from './contribute-form.module.css';
+import styles from './year-fields.module.css';
 
 export default function YearFields() {
   const {
@@ -13,6 +15,13 @@ export default function YearFields() {
     formState: { errors },
   } = useFormContext<ContributeFormValues>();
   const periodTypeValue = useWatch({ control, name: 'periodType' });
+  useEffect(() => {
+    if (periodTypeValue) {
+      posthog.capture('contribution_select_period_type', {
+        periodType: periodTypeValue,
+      });
+    }
+  }, [periodTypeValue]);
   return (
     <fieldset className={styles.field}>
       <legend className={styles.label}>Роки</legend>

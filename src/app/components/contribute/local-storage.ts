@@ -1,3 +1,5 @@
+import posthog from 'posthog-js';
+
 import { initBugsnag } from '@/app/services/bugsnag';
 
 import {
@@ -19,6 +21,9 @@ export function restoreContributePageState(): RestorableState | null {
     return parsed;
   } catch (error) {
     console.error('Failed to restore contribute state', error);
+    posthog.capture('contribution_state_restore_failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
     resetContributePageState();
     initBugsnag().notify(error as Error);
     return null;
@@ -39,6 +44,9 @@ export function saveContributePageState(data: RestorableState) {
     localStorage.setItem(CONTRIBUTE_STATE_KEY, serialized);
   } catch (error) {
     console.error('Failed to save contribute state', error);
+    posthog.capture('contribution_state_save_failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
     initBugsnag().notify(error as Error);
   }
 }
@@ -55,6 +63,10 @@ export function restoreAuthorIdentity(): AuthorIdentity | null {
     return parsed;
   } catch (error) {
     console.error('Failed to restore author identity', error);
+    posthog.capture('author_identity_restore_failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    initBugsnag().notify(error as Error);
     localStorage.removeItem(AUTHOR_IDENTITY_KEY);
     return null;
   }
@@ -66,7 +78,9 @@ export function saveAuthorIdentity(data: Record<string, string>) {
     localStorage.setItem(AUTHOR_IDENTITY_KEY, serialized);
   } catch (error) {
     console.error('Failed to save author identity', error);
-
+    posthog.capture('author_identity_save_failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
     initBugsnag().notify(error as Error);
   }
 }

@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 import type { ContributeFormValues } from './types';
 
-import styles from './contribute-form.module.css';
+import styles from './author-fields.module.css';
 
 export default function AuthorFields() {
   const {

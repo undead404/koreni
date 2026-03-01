@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 import type { ContributeFormValues } from './types';
 
-import styles from './contribute-form.module.css';
+import styles from './table-info-fields.module.css';
 
 interface TableInfoFieldsProperties {
   onFileChange: () => void;

@@ -1,7 +1,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 2rem;
 }
 
 .title {
@@ -12,7 +12,7 @@
 .headerRow {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -25,41 +25,22 @@
   cursor: pointer;
   font-size: 0.9rem;
   color: #666;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .resetButton:hover {
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: #f0f0f0;
+  border-color: #999;
+  color: #000;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.5rem;
-}
-
-.label {
-  font-weight: 500;
-}
-
-.input,
-.textarea {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.textarea {
-  min-height: 100px;
-  font-family: monospace;
 }
 
 .button {
@@ -71,14 +52,26 @@
   font-size: 1rem;
   cursor: pointer;
   align-self: flex-start;
+  transition: opacity 0.2s;
 }
 
 .button:hover {
   opacity: 0.9;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.statusMessages {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .status {
-  margin-top: 1rem;
   padding: 1rem;
   border-radius: 4px;
 }
@@ -93,31 +86,12 @@
   color: #721c24;
 }
 
-.yearsRow {
-  display: flex;
-  gap: 1rem;
+.info {
+  background-color: #e2e3e5;
+  color: #383d41;
 }
 
-.yearInput {
-  composes: input;
-  max-width: 120px;
-}
-
-.radioGroup {
-  display: flex;
-  gap: 1rem;
-}
-
-.comforting {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 4px;
-  background-color: #f8d7da;
-  color: #721c24;
-}
-
-.locationInput {
-  align-items: 'center';
-  display: flex;
-  gap: 8px;
+.warning {
+  background-color: #ffecb3;
+  color: #856404;
 }

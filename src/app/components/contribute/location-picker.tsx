@@ -1,12 +1,14 @@
 'use client';
 
 import type { Marker as LMarker } from 'leaflet';
+import posthog from 'posthog-js';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { z } from 'zod';
 
 import { filledIcon } from '@/app/map-icons';
+import { initBugsnag } from '@/app/services/bugsnag';
 import { autocomplete } from '@/app/services/locationiq';
 
 import MapUpdater from './map-updater';
@@ -67,6 +69,9 @@ export default function LocationPicker({
   const hasFoundReference = useRef(false);
 
   const search = useCallback(async () => {
+    posthog.capture('contribution_search_location', {
+      query: inputValue,
+    });
     // 1. Пошук у локальному масиві
     const localResults: Suggestion[] = knownLocations
       .filter((item) =>
@@ -89,6 +94,10 @@ export default function LocationPicker({
       setIsDropdownOpen(true);
     } catch (error) {
       console.error(error);
+      posthog.capture('contribution_location_search_failed', {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      initBugsnag().notify(error as Error);
       // Fallback до локальних даних при помилці API
       setSuggestions(localResults);
       setIsDropdownOpen(true);
@@ -110,17 +119,24 @@ export default function LocationPicker({
     return () => clearTimeout(timer);
   }, [inputValue]);
 
-  const handleSelect = useCallback((suggestion: Suggestion) => {
-    const coords = suggestion.coordinates;
-    hasFoundReference.current = true;
-    setIsDropdownOpen(false);
-    setInputValue(suggestion.title);
-    setMapCenter(coords);
-    setValue('location', coords.join(','), {
-      shouldValidate: true,
-      shouldDirty: true,
-    });
-  }, []);
+  const handleSelect = useCallback(
+    (suggestion: Suggestion) => {
+      posthog.capture('contribution_select_location', {
+        source: suggestion.source,
+        title: suggestion.title,
+      });
+      const coords = suggestion.coordinates;
+      hasFoundReference.current = true;
+      setIsDropdownOpen(false);
+      setInputValue(suggestion.title);
+      setMapCenter(coords);
+      setValue('location', coords.join(','), {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
+    },
+    [setValue],
+  );
 
   return (
     <ContributeFormController

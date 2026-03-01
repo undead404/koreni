@@ -18,13 +18,16 @@ export default function convertContributeFormData(
   );
   convertedData.append(
     'archiveItems',
-    JSON.stringify(data.archiveItems.split('\n')),
+    JSON.stringify(data.archiveItems.map(({ item }) => item)),
   );
   convertedData.append(
     'location',
     JSON.stringify(data.location.split(',').map(Number)),
   );
-  convertedData.append('sources', JSON.stringify(data.sources.split('\n')));
+  convertedData.append(
+    'sources',
+    JSON.stringify(data.sources.map(({ url }) => url)),
+  );
   convertedData.append('title', data.title);
   convertedData.append('tableLocale', data.tableLocale as string);
   return convertedData;
