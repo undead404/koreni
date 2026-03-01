@@ -7,7 +7,7 @@ import {
   useForm,
   useWatch,
 } from 'react-hook-form';
-import Turnstile from 'react-turnstile';
+import { Turnstile, useTurnstile } from 'react-turnstile';
 
 import environment from '../../environment';
 import slugifyUkrainian from '../../helpers/slugify-ukrainian';
@@ -39,6 +39,7 @@ const DEFAULT_VALUES = {
 export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
+  const turnstile = useTurnstile() as { reset: () => void };
   const [prUrl, setPrUrl] = useState('');
   const [status, setStatus] = useState<{
     type: 'success' | 'error';
@@ -105,6 +106,7 @@ export default function ContributeForm({
         );
 
         if (!response.ok) {
+          turnstile.reset();
           const errorData = (await response.json()) as unknown;
           const errorResponse = submitErrorSchema.safeParse(errorData);
           if (errorResponse.success) {
@@ -146,7 +148,7 @@ export default function ContributeForm({
         });
       }
     },
-    [turnstileToken, reset],
+    [turnstile, turnstileToken, reset],
   );
 
   const contributionStartedReference = useRef(false);
@@ -192,8 +194,9 @@ export default function ContributeForm({
           <AdditionalInfoFields />
 
           <Turnstile
-            sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
             onVerify={setTurnstileToken}
+            refreshExpired="auto"
+            sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
           />
 
           <button
