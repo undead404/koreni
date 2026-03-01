@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 const SITES_MAPPING: Record<string, string> = {
   'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
   'docs.google.com': 'Google Docs',
+  'uk.wikisource.org': 'Вікіджерела',
 };
 
 export default function SourceLink({ href }: { href: string }) {
