@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКО-384-12-308
+authorName: Георгій Олійник
+authorEmail: oliynyk.georgij@gmail.com
+date: 2026-03-01
+id: DAKO-384-12-308
+location:
+  - 48.82066064261521
+  - 30.80934572728936
+size: 357
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/308
+tableFilePath: public/csv/DAKO-384-12-308.csv
+tableLocale: ru
+title: Листи перепису населення, с. Корсунка
+yearsRange:
+  - 1897
