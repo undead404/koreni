@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКрО-707-1-1
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-02
+id: DAKrO-707-1-1
+location:
+  - 48.6689736
+  - 31.1223
+size: 2682
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?usp=sharing
+tableFilePath: public/csv/DAKrO-707-1-1.csv
+tableLocale: ru
+title: Метрична книга Покровської церкви с. Тимофіївка Єлисаветградського
+  повіту, 1881-1883, ДАКрО-707-1-1
+yearsRange:
+  - 1881
+  - 1883
