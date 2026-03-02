@@ -9,6 +9,7 @@ on:
     paths:
       - 'data/**'
       - 'public/csv/**'
+      - 'src/populate-typesense/**'
 
 jobs:
   populate-typesense:
