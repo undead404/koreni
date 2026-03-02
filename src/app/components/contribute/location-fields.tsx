@@ -63,7 +63,10 @@ export default function LocationFields({
   );
 
   useEffect(() => {
-    if (!locationValue) return;
+    if (!locationValue) {
+      setLocationGuess('');
+      return;
+    }
 
     handleSelect(locationValue);
     return () => handleSelect.cancel();

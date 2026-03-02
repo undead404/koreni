@@ -3,7 +3,7 @@
 import type { Marker as LMarker } from 'leaflet';
 import posthog from 'posthog-js';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { z } from 'zod';
 
@@ -67,6 +67,15 @@ export default function LocationPicker({
   const [mapCenter, setMapCenter] = useState<[number, number] | null>(null);
   const markerReference = useRef<LMarker>(null);
   const hasFoundReference = useRef(false);
+  const location = useWatch({ control, name: 'location' });
+
+  useEffect(() => {
+    if (!location) {
+      setInputValue('');
+      setSuggestions([]);
+      setIsDropdownOpen(false);
+    }
+  }, [location]);
 
   const search = useCallback(async () => {
     posthog.capture('contribution_search_location', {

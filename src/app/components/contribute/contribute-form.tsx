@@ -34,11 +34,41 @@ import YearFields from './year-fields';
 
 import styles from './contribute-form.module.css';
 
-const DEFAULT_VALUES = {
+const BLANK_VALUES: Partial<ContributeFormValues> = {
+  archiveItems: [],
+  authorEmail: '',
+  authorGithubUsername: '',
+  authorName: '',
+  id: '',
+  location: '',
   periodType: '',
-  ...restoreContributePageState(),
-  ...restoreAuthorIdentity(),
+  sources: [],
+  table: null,
+  tableLocale: undefined,
+  title: '',
+  year: undefined,
+  yearEnd: undefined,
+  yearStart: undefined,
 };
+
+function getDefaultValues(
+  otherDefaultValues: Partial<ContributeFormValues> = {},
+) {
+  const restored = restoreContributePageState();
+  if (restored) {
+    return {
+      ...BLANK_VALUES,
+      ...restored,
+      ...otherDefaultValues,
+    };
+  }
+  return {
+    ...BLANK_VALUES,
+    ...otherDefaultValues,
+  };
+}
+
+const DEFAULT_VALUES = getDefaultValues(restoreAuthorIdentity() || {});
 
 export default function ContributeForm({
   knownLocations,
@@ -139,7 +169,9 @@ export default function ContributeForm({
           message: 'Таблиця успішно подана на розгляд!',
         });
         resetContributePageState();
-        reset(authorIdentity);
+        reset(getDefaultValues(authorIdentity));
+        setTable(null);
+        contributionStartedReference.current = false;
       } catch (error) {
         const message =
           error instanceof Error ? error.message : 'Сталася невідома помилка';
@@ -161,14 +193,20 @@ export default function ContributeForm({
     if (!contributionStartedReference.current) {
       contributionStartedReference.current = true;
       posthog.capture('contribution_started');
+      setStatus(null);
+      setPrUrl('');
     }
+  }, []);
+
+  const handleSubmitFailed = useCallback(() => {
+    posthog.capture('contribution_submit_failed');
   }, []);
 
   const handleFormSubmit = useCallback(
     (event: SubmitEvent<HTMLFormElement>) => {
-      void handleSubmit(submit, console.error)(event);
+      void handleSubmit(submit, handleSubmitFailed)(event);
     },
-    [handleSubmit, submit],
+    [handleSubmit, handleSubmitFailed, submit],
   );
 
   return (

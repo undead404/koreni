@@ -4,8 +4,9 @@ import posthog from 'posthog-js';
 import { useCallback } from 'react';
 
 const SITES_MAPPING: Record<string, string> = {
-  'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
   'docs.google.com': 'Google Docs',
+  'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
+  'onedrive.live.com': 'OneDrive',
   'uk.wikisource.org': 'Вікіджерела',
 };
 

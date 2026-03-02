@@ -72,11 +72,17 @@ export default function useTableEditor(tableData: TableData) {
       }
     },
     {
-      excludedColumns: tableData.columns.filter((columnName) =>
-        tableData.data.every(
-          (row) => !row[columnName] || row[columnName] === '-',
-        ),
-      ),
+      excludedColumns: tableData.columns.filter((columnName) => {
+        if (
+          tableData.data.every(
+            (row) => !row[columnName] || row[columnName] === '-',
+          )
+        ) {
+          return true;
+        }
+        const firstValue = tableData.data?.[0]?.[columnName];
+        return tableData.data.every((row) => row[columnName] === firstValue);
+      }),
       excludedRows: tableData.data
         .map((row, index) => index)
         .filter((index) =>

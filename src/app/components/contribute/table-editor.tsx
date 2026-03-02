@@ -176,7 +176,7 @@ export default function TableEditor({
                 {rowsWithInitialIndexes.length -
                   topItems.length -
                   bottomItems.length}{' '}
-                рядів)
+                рядів приховано)
               </td>
             </tr>
             <tr>
