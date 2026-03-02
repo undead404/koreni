@@ -64,7 +64,7 @@ export default function CookieBanner() {
             </label>
 
             {/* Analytics */}
-            <label className={`${styles.optionItem}`}>
+            <label className={styles.optionItem}>
               <div>
                 <p>Аналітика (PostHog)</p>
                 <p className={styles.optionDescription}>

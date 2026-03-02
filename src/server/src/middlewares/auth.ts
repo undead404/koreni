@@ -16,7 +16,7 @@ export const authMiddleware = async (c: Context, next: Next) => {
   const clientId = getClientIdentifier(c, apiKey);
   const isApiKeyAuth = isValidApiKey(apiKey);
 
-  const body = (await c.req.parseBody()) as unknown;
+  const body = (await c.req.json()) as unknown;
   const parseResult = turnstilePayloadSchema.parse(body);
   if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
     const token = parseResult.turnstileToken;

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import posthog from 'posthog-js';
 import type { FC } from 'react';
 
@@ -72,7 +73,9 @@ const SearchResults: FC<ResultsProperties> = ({
 
       {/* Grid/List wrapper instead of rigid table */}
       <ul
-        className={`${styles.resultsList} ${isLoading ? styles.loadingState : ''}`}
+        className={clsx(styles.resultsList, {
+          [styles.loadingState]: isLoading,
+        })}
       >
         {validResults.map((typedResult, index) =>
           typedResult ? (

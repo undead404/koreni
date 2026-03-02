@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,7 +19,7 @@ export default function Header() {
         />
       </Link>
       <nav aria-label="Main navigation">
-        <ul className={`${styles.navList} no-disc`}>
+        <ul className={clsx(styles.navList, 'no-disc')}>
           <li>
             <Link href="/map" className={styles.link}>
               Мапа

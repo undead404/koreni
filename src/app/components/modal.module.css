@@ -1,0 +1,54 @@
+.dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  max-width: 90vw;
+  width: 500px;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: #6b7280;
+}
+
+.closeButton:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.body {
+  padding: 1rem;
+}

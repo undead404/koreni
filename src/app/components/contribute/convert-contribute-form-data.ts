@@ -1,34 +1,26 @@
-import { ContributeFormValues } from './types';
+import type { TableData } from '@/app/helpers/parse-csv-file';
+import { ImportPayload } from '@/shared/schemas/import';
+
+import type { ContributeFormValues } from './types';
 
 export default function convertContributeFormData(
   data: ContributeFormValues,
-  { isRange }: { isRange: boolean },
-) {
-  const convertedData = new FormData();
-  convertedData.append('table', data.table![0] as Blob);
-  convertedData.append('id', data.id);
-  convertedData.append('authorName', data.authorName);
-  convertedData.append('authorEmail', data.authorEmail);
-  convertedData.append('authorGithubUsername', data.authorGithubUsername);
-  convertedData.append(
-    'yearsRange',
-    isRange
-      ? JSON.stringify([data.yearStart, data.yearEnd])
-      : JSON.stringify([data.year]),
-  );
-  convertedData.append(
-    'archiveItems',
-    JSON.stringify(data.archiveItems.map(({ item }) => item)),
-  );
-  convertedData.append(
-    'location',
-    JSON.stringify(data.location.split(',').map(Number)),
-  );
-  convertedData.append(
-    'sources',
-    JSON.stringify(data.sources.map(({ url }) => url)),
-  );
-  convertedData.append('title', data.title);
-  convertedData.append('tableLocale', data.tableLocale as string);
-  return convertedData;
+  table: TableData,
+): ImportPayload {
+  return {
+    authorGithubUsername: data.authorGithubUsername,
+    authorName: data.authorName,
+    authorEmail: data.authorEmail,
+    id: data.id,
+    title: data.title,
+    tableLocale: data.tableLocale,
+    archiveItems: data.archiveItems.map(({ item }) => item),
+    location: data.location.split(',').map(Number) as [number, number],
+    sources: data.sources.map(({ url }) => url),
+    yearsRange:
+      data.periodType === 'multiple'
+        ? [data.yearStart, data.yearEnd]
+        : [data.year],
+    table,
+  };
 }

@@ -1,4 +1,6 @@
 'use client';
+
+import clsx from 'clsx';
 import posthog from 'posthog-js';
 import { SubmitEvent, useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -8,6 +10,8 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { Turnstile, useTurnstile } from 'react-turnstile';
+
+import type { TableData } from '@/app/helpers/parse-csv-file';
 
 import environment from '../../environment';
 import slugifyUkrainian from '../../helpers/slugify-ukrainian';
@@ -46,6 +50,7 @@ export default function ContributeForm({
     message: string;
   } | null>(null);
   const [turnstileToken, setTurnstileToken] = useState('');
+  const [table, setTable] = useState<TableData | null>(null);
 
   const form = useForm<ContributeFormValues>({
     defaultValues: DEFAULT_VALUES,
@@ -89,19 +94,18 @@ export default function ContributeForm({
       }
       setStatus(null);
       try {
-        const adjustedFormData = convertContributeFormData(data, {
-          isRange: data.periodType === 'multiple',
-        });
+        if (!table) throw new Error('Table is not loaded');
+        const adjustedFormData = convertContributeFormData(data, table);
 
         if (turnstileToken) {
-          adjustedFormData.append('turnstileToken', turnstileToken);
+          adjustedFormData.turnstileToken = turnstileToken;
         }
 
         const response = await fetch(
           new URL('/api/submit', environment.NEXT_PUBLIC_API_SITE),
           {
             method: 'POST',
-            body: adjustedFormData,
+            body: JSON.stringify(adjustedFormData),
           },
         );
 
@@ -148,7 +152,7 @@ export default function ContributeForm({
         });
       }
     },
-    [turnstile, turnstileToken, reset],
+    [reset, table, turnstile, turnstileToken],
   );
 
   const contributionStartedReference = useRef(false);
@@ -183,7 +187,11 @@ export default function ContributeForm({
         </div>
 
         <form className={styles.form} onSubmit={handleFormSubmit}>
-          <TableInfoFields onFileChange={handleFileChange} />
+          <TableInfoFields
+            onFileChange={handleFileChange}
+            onTableSave={setTable}
+            table={table}
+          />
 
           <AuthorFields />
 
@@ -211,15 +219,16 @@ export default function ContributeForm({
         <div className={styles.statusMessages}>
           {status && (
             <div
-              className={`${styles.status} ${
-                status.type === 'success' ? styles.success : styles.error
-              }`}
+              className={clsx(styles.status, {
+                [styles.success]: status.type === 'success',
+                [styles.error]: status.type === 'error',
+              })}
             >
               {status.message}
             </div>
           )}
           {prUrl && (
-            <div className={`${styles.status} ${styles.info}`}>
+            <div className={clsx(styles.status, styles.info)}>
               Переглянути статус поданої таблиці можна за посиланням:{' '}
               <a href={prUrl} target="_blank" rel="noreferrer">
                 Pull Request
@@ -227,7 +236,7 @@ export default function ContributeForm({
             </div>
           )}
           {status?.type !== 'success' && (
-            <div className={`${styles.status} ${styles.warning}`}>
+            <div className={clsx(styles.status, styles.warning)}>
               Якщо не виходить подати таблицю через форму – Ви завжди можете
               надіслати її нам на пошту:{' '}
               <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>

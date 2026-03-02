@@ -1,25 +1,28 @@
 import { z } from 'zod';
 
 export const nonEmptyString = z.string().min(1);
-const stringifiedValue = <T>(itemSchema: z.ZodType<T>) =>
-  z
-    .string()
-    .transform((value) => itemSchema.parse(JSON.parse(value) as unknown));
-const stringifiedStringArray = stringifiedValue(z.array(z.string()));
-const stringifiedLocation = stringifiedValue(z.tuple([z.number(), z.number()]));
 export const importPayloadSchema = z.object({
-  archiveItems: stringifiedValue(z.array(nonEmptyString).min(1)),
+  archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),
   authorName: nonEmptyString,
   authorEmail: z.string().email(),
   // id may contain letters, numbers and dashes
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
-  location: stringifiedLocation,
-  sources: stringifiedStringArray,
-  table: z.instanceof(File),
+  location: z.tuple([
+    z.number().min(-90).max(90),
+    z.number().min(-180).max(180),
+  ]),
+  sources: z.array(z.string()),
+  table: z.object({
+    columns: z.array(nonEmptyString).min(1),
+    data: z.array(z.record(z.any())).min(1),
+  }),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
-  yearsRange: stringifiedValue(z.array(z.number()).min(1).max(2)),
+  yearsRange: z.union([
+    z.tuple([z.number(), z.number()]),
+    z.tuple([z.number()]),
+  ]),
 });
 
 export type ImportPayload = z.infer<typeof importPayloadSchema>;

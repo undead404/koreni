@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import type { Metadata } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -28,7 +29,7 @@ export default async function TablesPage() {
         />
       </Head>
       <h1>Наявні таблиці</h1>
-      <ul className={`no-disc ${styles.list}`}>
+      <ul className={clsx(styles.list, 'no-disc')}>
         {tablesMetadata.map((tableMetadata) => (
           <li key={tableMetadata.id}>
             <Link href={`/${tableMetadata.id}/1/`}>{tableMetadata.title}</Link>

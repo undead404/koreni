@@ -18,7 +18,7 @@ export interface ContributeFormValues {
     url: string;
   }[];
   table: FileList | null;
-  tableLocale?: 'pl' | 'ru' | 'uk';
+  tableLocale: 'pl' | 'ru' | 'uk';
   title: string;
   year: number;
   yearEnd: number;

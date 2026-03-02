@@ -7,7 +7,7 @@ import posthog from '../services/posthog.js';
 
 const handleSubmit = async (c: Context) => {
   try {
-    const body = (await c.req.parseBody()) as unknown;
+    const body = (await c.req.json()) as unknown;
     const parseResult = importPayloadSchema.safeParse(body);
 
     const apiKey = c.req.header('x-api-key');

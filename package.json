@@ -3,6 +3,7 @@
     "@bugsnag/js": "^8.2.0",
     "@bugsnag/plugin-react": "^8.2.0",
     "@hookform/error-message": "^2.0.1",
+    "clsx": "^2.1.1",
     "dotenv": "~16.4.7",
     "leaflet": "~1.9.4",
     "leaflet.markercluster": "^1.5.3",

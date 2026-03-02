@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -45,7 +46,7 @@ export default async function VolunteersPage() {
                   {volunteer.name === 'Невідомі' ? (
                     <div />
                   ) : (
-                    <div className={`${styles.rankBadge} ${rank!.className}`}>
+                    <div className={clsx(styles.rankBadge, rank!.className)}>
                       {rank!.title}
                     </div>
                   )}

@@ -3,9 +3,9 @@ import { Octokit } from 'octokit';
 import YAML from 'yaml';
 
 import environment from '../environment.js';
-import calculateCsvLinesSize from '../helpers/calculate-csv-lines-size.js';
+import { convertArrayToCsvBase64 } from '../helpers/convert-array-to-csv-base64.js';
 import getCurrentDate from '../helpers/get-current-date.js';
-import { ImportPayload } from '../schemata.js';
+import type { ImportPayload } from '../schemata.js';
 
 const octokit = new Octokit({
   auth: environment.GITHUB_TOKEN,
@@ -16,7 +16,7 @@ export default async function submitToGithub(data: ImportPayload) {
   const branchName = `submission/${data.id}`;
   const yamlPath = `data/records/${data.id}.yaml`;
   const csvPath = `public/csv/${data.id}.csv`;
-  const size = await calculateCsvLinesSize(data.table);
+  const size = data.table.data.length;
 
   const metadata = {
     archiveItems: data.archiveItems,
@@ -68,8 +68,10 @@ export default async function submitToGithub(data: ImportPayload) {
   const baseTreeSha = baseCommit.tree.sha;
 
   // 3. Create Blobs
-  const csvBuffer = Buffer.from(await data.table.arrayBuffer());
-
+  const csvBase64 = await convertArrayToCsvBase64(
+    data.table.columns,
+    data.table.data,
+  );
   const [yamlBlob, csvBlob] = await Promise.all([
     octokit.rest.git.createBlob({
       owner,
@@ -80,7 +82,7 @@ export default async function submitToGithub(data: ImportPayload) {
     octokit.rest.git.createBlob({
       owner,
       repo,
-      content: csvBuffer.toString('base64'),
+      content: csvBase64,
       encoding: 'base64',
     }),
   ]);

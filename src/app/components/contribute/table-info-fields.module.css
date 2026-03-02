@@ -56,3 +56,8 @@
   box-shadow: 0 0 0 3px
     color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
+
+.tableEditorModal {
+  width: 100%;
+  height: 100%;
+}

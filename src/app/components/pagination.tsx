@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import PaginationButton from './pagination-button';
 
 import styles from './pagination.module.css';
@@ -21,7 +23,7 @@ export default function Pagination({
         <h3 id="table-pagination" className="visually-hidden">
           Пагінація
         </h3>
-        <ul className={`no-disc ${styles.ul}`}>
+        <ul className={clsx(styles.ul, 'no-disc')}>
           {Array.from({ length: totalPages }, (_, index) => index + 1).map(
             (page) => (
               <li key={page}>
@@ -47,7 +49,7 @@ export default function Pagination({
       <h3 id="table-pagination" className="visually-hidden">
         Пагінація
       </h3>
-      <ul className={`no-disc ${styles.ul}`}>
+      <ul className={clsx(styles.ul, 'no-disc')}>
         <li>
           <PaginationButton
             page={1}

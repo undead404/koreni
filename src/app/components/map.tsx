@@ -1,4 +1,5 @@
 'use client';
+import clsx from 'clsx';
 import { useMemo, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
@@ -42,7 +43,9 @@ export default function Map({
   return (
     <MapContainer
       center={centerOn}
-      className={`${styles.mapContainer} ${isFullScreen ? styles.isFullScreen : ''}`}
+      className={clsx(styles.mapContainer, {
+        [styles.isFullScreen]: isFullScreen,
+      })}
       maxZoom={15}
       zoom={zoom}
     >

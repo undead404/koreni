@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import type { Metadata } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -80,7 +81,7 @@ export default async function VolunteerPage({
             <Link href="/volunteers" className={styles.backLink}>
               ← Всі волонтери
             </Link>
-            <span className={`${styles.rankBadge} ${rank!.className}`}>
+            <span className={clsx(styles.rankBadge, rank!.className)}>
               {rank!.title}
             </span>
           </div>
@@ -111,7 +112,7 @@ export default async function VolunteerPage({
         {/* Список таблиць */}
         <section>
           <h2 className={styles.sectionTitle}>Додані таблиці</h2>
-          <ul className={`no-disc ${styles.list}`}>
+          <ul className={clsx(styles.list, 'no-disc')}>
             {volunteer.tables.map((tableMetadata) => (
               <li key={tableMetadata.id} className={styles.listItem}>
                 <a
