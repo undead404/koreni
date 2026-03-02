@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАКрО-Р7915-1-1168
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-02
+id: DAKrO-R7915-1-1168-Pokrovka
+location:
+  - 48.659821
+  - 31.037411
+size: 144
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?usp=sharing
+tableFilePath: public/csv/DAKrO-R7915-1-1168-Pokrovka.csv
+tableLocale: ru
+title: Книга реєстрації актів громадянського стану про народження, село Покровка, 1928
+yearsRange:
+  - 1921
