@@ -31,8 +31,8 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   useEffect(() => {
     const activeQuery = searchParameters.get('query') || '';
     setInputValue(activeQuery); // Sync local state in case of browser navigation
-    void handleSearch(activeQuery);
-  }, [searchParameters, handleSearch]);
+    void handleSearch(activeQuery, currentPage);
+  }, [currentPage, handleSearch, searchParameters]);
 
   // 3. Debounce the URL update. This prevents spamming Next.js router history.
   useEffect(() => {
