@@ -7,12 +7,13 @@ on:
     branches:
       - main
     paths:
-      - 'data/**'
       - '*'
+      - 'data/**'
+      - 'public/**'
       - 'src/app/**'
+      - 'src/server/**'
       - 'src/shared/**'
       - 'src/types/**'
-      - 'public/**'
 
 jobs:
   lint:
