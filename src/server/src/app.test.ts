@@ -24,12 +24,6 @@ vi.mock('./middlewares/rate-limiter', () => ({
   rateLimitMiddleware: vi.fn(async (_c, next) => await next()),
 }));
 
-vi.mock('./services/bugsnag', () => ({
-  bugsnagMiddleware: {
-    requestHandler: vi.fn(async (_c, next) => await next()),
-    errorHandler: vi.fn(async (_c, next) => await next()),
-  },
-}));
 vi.mock('./services/posthog');
 
 vi.mock('./environment', () => ({
@@ -81,7 +75,10 @@ describe('App Factory', () => {
 
   it('should route /api/submit', async () => {
     const app = createApp();
-    const response = await app.request('/api/submit', { method: 'POST' });
+    const response = await app.request('/api/submit', {
+      body: '{}',
+      method: 'POST',
+    });
     expect(response.status).toBe(200);
     expect(await response.text()).toBe('Submit Handler');
   });
