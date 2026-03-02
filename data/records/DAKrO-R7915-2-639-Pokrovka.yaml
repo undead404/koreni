@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКрО-Р7915-2-639
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-02
+id: DAKrO-R7915-2-639-Pokrovka
+location:
+  - 48.659821
+  - 31.037411
+size: 246
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
+tableFilePath: public/csv/DAKrO-R7915-2-639-Pokrovka.csv
+tableLocale: ru
+title: Книга реєстрації актів громадянського стану про народження, село
+  Покровка, 1937, ДАКрО-Р7915-2-639
+yearsRange:
+  - 1931

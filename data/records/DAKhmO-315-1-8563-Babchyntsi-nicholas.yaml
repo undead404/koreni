@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-02
+id: DAKhmO-315-1-8563-Babchyntsi-nicholas
+location:
+  - 48.41618304024789
+  - 28.158552513834007
+size: 1413
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1612466391#gid=1612466391
+tableFilePath: public/csv/DAKhmO-315-1-8563-Babchyntsi-nicholas.csv
+tableLocale: ru
+title: Бабчинці 1861 – сповідний розпис (повний), Свято-Миколаївська церква,
+  ДАХмО 315-1-8563
+yearsRange:
+  - 1861
