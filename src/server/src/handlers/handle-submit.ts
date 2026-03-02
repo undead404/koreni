@@ -5,6 +5,7 @@ import { importPayloadSchema } from '../schemata.js';
 import submitToGithub from '../services/github.js';
 import posthog from '../services/posthog.js';
 
+// TODO: remove; just a workflow trigger.
 const handleSubmit = async (c: Context) => {
   try {
     const body = (await c.req.json()) as unknown;
