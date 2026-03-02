@@ -75,3 +75,41 @@
 .table .saveButton:focus {
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.25);
 }
+
+@media (prefers-color-scheme: dark) {
+  .table th,
+  .table td {
+    border-color: #475569;
+  }
+
+  .table thead {
+    background-color: #1e293b;
+  }
+
+  .table tbody tr:hover {
+    background-color: #334155;
+  }
+
+  .table button {
+    background-color: #475569;
+    color: #f1f5f9;
+  }
+
+  .table button:hover {
+    background-color: #334155;
+  }
+
+  .excluded {
+    color: #94a3b8;
+    background-color: #0f172a;
+  }
+
+  .excluded label {
+    color: #f1f5f9;
+  }
+
+  .table .saveButton:hover,
+  .table .saveButton:focus {
+    box-shadow: 2px 2px 0 0 rgba(255, 255, 255, 0.1);
+  }
+}
