@@ -3,8 +3,6 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
-import handleAuth from './handlers/handle-auth.js';
-import handleCallback from './handlers/handle-callback.js';
 import handleSubmit from './handlers/handle-submit.js';
 import { authMiddleware } from './middlewares/auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
@@ -41,25 +39,6 @@ export function createApp() {
 
   // Routes
   app.post('/api/submit', authMiddleware, handleSubmit);
-
-  app.get(
-    '/api/auth',
-    async (c, next) => {
-      await next();
-      c.header('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-    },
-    handleAuth,
-  );
-
-  app.get(
-    '/api/callback',
-    async (c, next) => {
-      await next();
-      c.header('Content-Security-Policy', "script-src 'self' 'unsafe-inline'");
-      c.header('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-    },
-    handleCallback,
-  );
 
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });

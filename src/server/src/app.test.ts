@@ -82,27 +82,4 @@ describe('App Factory', () => {
     expect(response.status).toBe(200);
     expect(await response.text()).toBe('Submit Handler');
   });
-
-  it('should route /api/auth and apply specific headers', async () => {
-    const app = createApp();
-    const response = await app.request('/api/auth');
-    expect(response.status).toBe(200);
-    expect(await response.text()).toBe('Auth Handler');
-    expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe(
-      'same-origin-allow-popups',
-    );
-  });
-
-  it('should route /api/callback and apply specific headers', async () => {
-    const app = createApp();
-    const response = await app.request('/api/callback');
-    expect(response.status).toBe(200);
-    expect(await response.text()).toBe('Callback Handler');
-    expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe(
-      'same-origin-allow-popups',
-    );
-    expect(response.headers.get('Content-Security-Policy')).toContain(
-      "script-src 'self' 'unsafe-inline'",
-    );
-  });
 });
