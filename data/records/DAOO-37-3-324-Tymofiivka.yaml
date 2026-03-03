@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАОО-37-3-324
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-03
+id: DAOO-37-3-324-Tymofiivka
+location:
+  - 48.6689736
+  - 31.1223
+size: 343
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
+tableFilePath: public/csv/DAOO-37-3-324-Tymofiivka.csv
+tableLocale: ru
+title: Метричні книги православних церков Ольвіопольського повіту, село
+  Тимофіївка, 1827, ДАОО-37-3-324
+yearsRange:
+  - 1827
