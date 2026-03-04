@@ -4,7 +4,7 @@ import { useCallback, useMemo } from 'react';
 
 import type { TableData } from '@/app/helpers/parse-csv-file';
 
-import TableEditorCellValue from '../unknown-value';
+import UnknownValue from '../unknown-value';
 
 import useTableEditor, { ROW_STEP_SIZE } from './use-table-editor';
 
@@ -144,7 +144,7 @@ export default function TableEditor({
                   [styles.excluded]: state.excludedColumns.includes(column),
                 })}
               >
-                <TableEditorCellValue value={row[column]} />
+                <UnknownValue value={row[column]} />
               </td>
             ))}
           </tr>
@@ -223,7 +223,7 @@ export default function TableEditor({
                   [styles.excluded]: state.excludedColumns.includes(column),
                 })}
               >
-                <TableEditorCellValue value={row[column]} />
+                <UnknownValue value={row[column]} />
               </td>
             ))}
           </tr>

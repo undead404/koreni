@@ -1,4 +1,4 @@
-import TableEditorCellValue from './unknown-value';
+import UnknownValue from './unknown-value';
 
 import styles from './highlighted-text.module.css';
 // --- Safe Highlighting Utilities ---
@@ -12,12 +12,13 @@ export default function HighlightedText({
   text: string;
   tokens: string[];
 }) {
-  if (!text || tokens.length === 0) return <>{text}</>;
+  if (!text || tokens.length === 0) return <UnknownValue value={text} />;
+  if (text.startsWith('http')) return <UnknownValue value={text} />;
   const safeTokens = tokens.map((token) => escapeRegExp(token)).filter(Boolean);
-  if (safeTokens.length === 0) return <TableEditorCellValue value={text} />;
+  if (safeTokens.length === 0) return <UnknownValue value={text} />;
 
   const regex = new RegExp(`(${safeTokens.join('|')})`, 'gi');
-  const parts = text.split(regex);
+  const parts = text.split(regex).filter(Boolean);
 
   return (
     <>
@@ -27,7 +28,7 @@ export default function HighlightedText({
             {part}
           </mark>
         ) : (
-          <TableEditorCellValue key={index} value={part} />
+          part
         ),
       )}
     </>
