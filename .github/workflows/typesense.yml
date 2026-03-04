@@ -1,6 +1,5 @@
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 name: Data Ingestion
 permissions:
@@ -14,6 +13,13 @@ on:
       - 'data/**'
       - 'public/csv/**'
       - 'src/populate-typesense/**'
+  workflow_dispatch:
+    inputs:
+      full_sync:
+        description: 'Perform a full upsert'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   populate-typesense:
@@ -22,6 +28,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required to accurately compute diffs
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -32,8 +40,20 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
 
+      - name: Get changed CSV files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          separator: ','
+          files: |
+            data/**/*.yaml
+            public/csv/**/*.csv
+
       - name: Populate Typesense
         run: yarn typesense:populate
         env:
-          TYPESENSE_ADMIN_KEY: ${{ secrets.TYPESENSE_ADMIN_KEY }}
+          ADDED_MODIFIED_FILES: ${{ steps.changed-files.outputs.added_modified_files }}
+          DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
+          FULL_SYNC: ${{ inputs.full_sync }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
+          TYPESENSE_ADMIN_KEY: ${{ secrets.TYPESENSE_ADMIN_KEY }}
