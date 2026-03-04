@@ -73,7 +73,7 @@ export default function LocationFields({
   }, [handleSelect, locationValue]);
   return (
     <div className={styles.field}>
-      <label className={styles.label}>Локація (Пошук або координати)</label>
+      <p className={styles.label}>Локація (Пошук або координати)</p>
       <p className={styles.description}>
         Запозичте координати за наявною таблицею (бажано), знайдіть населений
         пункт за назвою або встановіть маркер на мапі

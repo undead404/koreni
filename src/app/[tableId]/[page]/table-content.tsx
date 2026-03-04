@@ -87,7 +87,6 @@ export default function TableContent({
           <div
             role="region"
             aria-labelledby="table-data"
-            tabIndex={0}
             className={styles.tableContainer}
           >
             <IndexTable

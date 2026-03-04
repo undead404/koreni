@@ -47,7 +47,10 @@ export default function CookieBanner() {
 
           <div className={styles.optionsList}>
             {/* Necessary */}
-            <label className={styles.optionItem}>
+            <label
+              className={styles.optionItem}
+              aria-label="Технічно необхідні"
+            >
               <div>
                 <p>Технічно необхідні</p>
                 <p className={styles.optionDescription}>
@@ -64,7 +67,7 @@ export default function CookieBanner() {
             </label>
 
             {/* Analytics */}
-            <label className={styles.optionItem}>
+            <label className={styles.optionItem} aria-label="Аналітика">
               <div>
                 <p>Аналітика (PostHog)</p>
                 <p className={styles.optionDescription}>

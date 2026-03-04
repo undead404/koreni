@@ -66,7 +66,7 @@ const SearchResults: FC<ResultsProperties> = ({
           <span>Всього рядків у таблицях: {recordsNumber}</span>
         ) : (
           <span>
-            Знайдено результатів для "{searchValue}": {resultsNumber}
+            Знайдено результатів для &quot;{searchValue}&quot;: {resultsNumber}
           </span>
         )}
       </header>

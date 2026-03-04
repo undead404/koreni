@@ -49,7 +49,7 @@ export default function TableInfoFields({
         });
         initBugsnag().notify(error as Error);
       });
-  }, [file]);
+  }, [file, onTableSave]);
   const [isTableEditorOpen, setIsTableEditorOpen] = useState(false);
   const showTableEditor = useCallback(() => {
     setIsEditorSaved(false);

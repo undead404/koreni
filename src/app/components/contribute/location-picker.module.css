@@ -66,6 +66,12 @@
   z-index: 50;
 }
 
+.suggestionsList li {
+  padding: 0;
+  border-style: none;
+  border-width: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   .suggestionsList {
     background-color: #1a202c;
@@ -77,6 +83,11 @@
   cursor: pointer;
   font-size: 0.875rem; /* text-sm */
   padding: 0.5rem;
+
+  border-style: none;
+  border-width: 0;
+  text-align: left;
+  background-color: inherit;
 }
 
 .suggestionItem:hover {

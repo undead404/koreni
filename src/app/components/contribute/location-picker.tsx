@@ -126,7 +126,7 @@ export default function LocationPicker({
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [inputValue]);
+  }, [inputValue, search]);
 
   const handleSelect = useCallback(
     (suggestion: Suggestion) => {
@@ -175,15 +175,17 @@ export default function LocationPicker({
             {isDropdownOpen && suggestions.length > 0 && (
               <ul className={styles.suggestionsList}>
                 {suggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    className={styles.suggestionItem}
-                    onClick={() => handleSelect(suggestion)}
-                  >
-                    <span className={styles.sourceBadge}>
-                      [{SOURCE_TRANSLATION[suggestion.source]}]
-                    </span>
-                    {suggestion.title}
+                  <li key={index}>
+                    <button
+                      className={styles.suggestionItem}
+                      onClick={() => handleSelect(suggestion)}
+                      type="button"
+                    >
+                      <span className={styles.sourceBadge}>
+                        [{SOURCE_TRANSLATION[suggestion.source]}]
+                      </span>
+                      {suggestion.title}
+                    </button>
                   </li>
                 ))}
               </ul>

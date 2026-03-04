@@ -53,7 +53,7 @@ export default function AboutPage() {
   return (
     <>
       <article className="col-sm">
-        <h1>Про проєкт "Корені"</h1>
+        <h1>Про проєкт &quot;Корені&quot;</h1>
 
         <h2>Ліцензія</h2>
         <p>
@@ -66,6 +66,7 @@ export default function AboutPage() {
           <a
             href="https://www.linkedin.com/in/vitalii-perehonchuk-10570693/"
             target="_blank"
+            rel="noreferrer"
           >
             ось мій профіль на LinkedIn
           </a>
@@ -77,13 +78,13 @@ export default function AboutPage() {
         </p>
         <ul>
           <li>
-            <a href="https://webdoky.org" target="_blank">
+            <a href="https://webdoky.org" target="_blank" rel="noreferrer">
               WebDoky
             </a>{' '}
             – український переклад статей MDN
           </li>
           <li>
-            <a href="https://ymh8.pages.dev" target="_blank">
+            <a href="https://ymh8.pages.dev" target="_blank" rel="noreferrer">
               You Must Hear
             </a>{' '}
             – тут куди важче розповісти, що це таке 😂
@@ -97,20 +98,27 @@ export default function AboutPage() {
             Володимиру Цибульському – за результати довгих років індексації
           </li>
           <li>
-            Спільноті "Генеалогічне IT" – за концентрацію контексту та
+            Спільноті &quot;Генеалогічне IT&quot; – за концентрацію контексту та
             обговорення
           </li>
-          <li>Проєкту "Індекси України" – за результати своєї праці</li>
+          <li>
+            Проєкту &quot;Індекси України&quot; – за результати своєї праці
+          </li>
           <li>
             Спільноті{' '}
             <a
               href="https://www.facebook.com/groups/425347154227812"
               target="_blank"
+              rel="noreferrer"
             >
               UAGenealogy на Facebook
             </a>{' '}
             і{' '}
-            <a href="https://ukrgenealogy.com.ua/" target="_blank">
+            <a
+              href="https://ukrgenealogy.com.ua/"
+              target="_blank"
+              rel="noreferrer"
+            >
               УГФ – Українському Генеалогічному Форуму
             </a>{' '}
             – за формування українського генеалогічного дискурсу.
@@ -121,7 +129,7 @@ export default function AboutPage() {
           </li>
         </ul>
 
-        <h2>Чому з'явилися Корені?</h2>
+        <h2>Чому з&apos;явилися Корені?</h2>
         <p>
           Вже деякий час я цікавлюся генеалогією; найдавніший відомий мій предок
           народився приблизно 1597 року. В процесі дослідження села Політанок,
@@ -147,15 +155,16 @@ export default function AboutPage() {
           <li>а також купа селян навколишніх сіл</li>
         </ul>
         <p>
-          В сленгу генеалогії таких осіб звуть "загуляками". Найбільше їх у
-          великих містах і великих залізничних вузлах, проте траплялися і в
+          В сленгу генеалогії таких осіб звуть &quot;загуляками&quot;. Найбільше
+          їх у великих містах і великих залізничних вузлах, проте траплялися і в
           глушині.
         </p>
         <p>
-          Що робити з "загуляками"? Один варіант – викладати в{' '}
+          Що робити з &quot;загуляками&quot;? Один варіант – викладати в{' '}
           <a
             href="https://www.facebook.com/groups/1828267990648440"
             target="_blank"
+            rel="noreferrer"
           >
             Загуляк на Facebook
           </a>
@@ -177,7 +186,11 @@ export default function AboutPage() {
         </p>
         <p>
           Якщо ж бажаєте допомогти з кодом – приходьте на{' '}
-          <a href="https://github.com/undead404/koreni" target="_blank">
+          <a
+            href="https://github.com/undead404/koreni"
+            target="_blank"
+            rel="noreferrer"
+          >
             Корені в Github
           </a>
           , реєструйте проблеми, присилайте PR!
@@ -185,7 +198,7 @@ export default function AboutPage() {
         <p>
           І – якщо Корені допомогли в якихось пошуках – напишіть мені на{' '}
           <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>{' '}
-          обов'язково: я б дуже хотів знати, що моя праця допомогла комусь.
+          обов&apos;язково: я б дуже хотів знати, що моя праця допомогла комусь.
         </p>
       </article>
       <Comments />

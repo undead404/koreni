@@ -16,11 +16,11 @@ export default function AuthorFields() {
     <>
       <div className={styles.field}>
         <label htmlFor="authorName" className={styles.label}>
-          Ім'я автора індексації (транскрибування)
+          Ім&apos;я автора індексації (транскрибування)
         </label>
         <p id="authorName-desc" className={styles.description}>
-          Бажано використовувати справжнє ім'я, але якщо не хочете – вигадайте
-          постійний псевдонім.
+          Бажано використовувати справжнє ім&apos;я, але якщо не хочете –
+          вигадайте постійний псевдонім.
         </p>
         <input
           autoComplete="name"
@@ -42,8 +42,8 @@ export default function AuthorFields() {
           Email автора
         </label>
         <p id="authorEmail-desc" className={styles.description}>
-          Необов'язково, але варто заповнити, аби зацікавлені читачі індексації
-          могли з Вами зв'язатися.
+          Необов&apos;язково, але варто заповнити, аби зацікавлені читачі
+          індексації могли з Вами зв&apos;язатися.
         </p>
         <input
           autoComplete="email"
@@ -58,7 +58,7 @@ export default function AuthorFields() {
 
       <div className={styles.field}>
         <label htmlFor="authorGithubUsername" className={styles.label}>
-          Ім'я користувача на GitHub (необов'язково)
+          Ім&apos;я користувача на GitHub (необов&apos;язково)
         </label>
         <p id="authorGithubUsername-desc" className={styles.description}>
           Введіть, якщо хочете отримувати сповіщення про розгляд і додання цієї

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
-import { generateJsonLd } from './table-json-ld';
+import generateJsonLd from './generate-json-ld';
 
 // Mock dependencies
 vi.mock('../environment', () => ({

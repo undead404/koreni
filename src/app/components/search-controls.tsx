@@ -50,7 +50,6 @@ const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
         onChange={handleInputChange}
         className={styles.input}
         placeholder="Мельник"
-        autoFocus={!initialValue}
         aria-label="Шукати в генеалогічних індексах"
       />
     </form>

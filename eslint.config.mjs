@@ -123,7 +123,7 @@ export default [
     },
   },
   {
-    files: ['*.{jsx,tsx}'],
+    files: ['**/*.{jsx,tsx}'],
     name: 'NextJS + React code',
     ...pluginReact.configs.flat.recommended,
     ...pluginReact.configs.flat['jsx-runtime'],
@@ -185,6 +185,13 @@ export default [
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    files: ['**/page.tsx', '**/layout.tsx'],
+    name: 'NextJS page file',
+    rules: {
+      'react-refresh/only-export-components': 'off',
     },
   },
   {

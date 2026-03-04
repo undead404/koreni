@@ -20,6 +20,7 @@ export default function ArchiveItem({ archiveItem }: { archiveItem: string }) {
           href={`https://inspector.duckarchive.com/search?q=${archiveItem}`}
           target="_blank"
           title={`Шукати справу ${archiveItem} в Качиному інспекторі`}
+          rel="noreferrer"
         >
           <svg
             width="24px"
