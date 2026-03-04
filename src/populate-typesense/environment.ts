@@ -6,6 +6,11 @@ dotenv.config();
 const nonEmptyString = z.string().min(1);
 
 const environmentSchema = z.object({
+  ADDED_MODIFIED_FILES: z
+    .string()
+    .transform((string_) => string_.trim().split(',')),
+  DELETED_FILES: z.string().transform((string_) => string_.trim().split(',')),
+  FULL_SYNC: z.string().transform((string_) => string_ === 'true'),
   TYPESENSE_ADMIN_KEY: nonEmptyString,
   NEXT_PUBLIC_TYPESENSE_HOST: nonEmptyString,
 });

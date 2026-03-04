@@ -2,23 +2,21 @@ import getTableData from '../shared/get-table-data.js';
 import getTablesMetadata from '../shared/get-tables-metadata.js';
 
 import deleteFromTypesense from './delete-from-typesense.js';
+import environment from './environment.js';
 import getTablesByFiles from './get-tables-by-files.js';
 import populateTypesense from './populate-unstructured.js';
 
 async function main() {
   try {
-    const isFullSync = process.env.FULL_SYNC === 'true';
+    const isFullSync = environment.FULL_SYNC;
 
     let filesToUpsert: string[] = [];
     let filesToDelete: string[] = [];
 
     // Parse delta files if not a full sync
     if (!isFullSync) {
-      const addedModified = process.env.ADDED_MODIFIED_FILES?.trim();
-      const deleted = process.env.DELETED_FILES?.trim();
-
-      filesToUpsert = addedModified ? addedModified.split(',') : [];
-      filesToDelete = deleted ? deleted.split(',') : [];
+      filesToUpsert = environment.ADDED_MODIFIED_FILES;
+      filesToDelete = environment.DELETED_FILES;
 
       if (filesToUpsert.length === 0 && filesToDelete.length === 0) {
         console.log('No changes detected. Exiting.');
