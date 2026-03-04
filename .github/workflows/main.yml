@@ -18,6 +18,7 @@ on:
       - 'src/server/**'
       - 'src/shared/**'
       - 'src/types/**'
+      - '.github/workflows/main.yml'
 
 jobs:
   lint:
