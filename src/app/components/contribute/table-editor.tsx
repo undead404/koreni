@@ -4,7 +4,8 @@ import { useCallback, useMemo } from 'react';
 
 import type { TableData } from '@/app/helpers/parse-csv-file';
 
-import TableEditorCellValue from './table-editor-cell-value';
+import TableEditorCellValue from '../unknown-value';
+
 import useTableEditor, { ROW_STEP_SIZE } from './use-table-editor';
 
 import styles from './table-editor.module.css';

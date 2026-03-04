@@ -1,4 +1,4 @@
-export default function TableEditorCellValue({ value }: { value: unknown }) {
+export default function UnknownValue({ value }: { value: unknown }) {
   if (typeof value === 'string') {
     if (value.startsWith('http://') || value.startsWith('https://')) {
       try {

@@ -1,3 +1,5 @@
+import TableEditorCellValue from './unknown-value';
+
 import styles from './highlighted-text.module.css';
 // --- Safe Highlighting Utilities ---
 const escapeRegExp = (string: string) =>
@@ -12,7 +14,7 @@ export default function HighlightedText({
 }) {
   if (!text || tokens.length === 0) return <>{text}</>;
   const safeTokens = tokens.map((token) => escapeRegExp(token)).filter(Boolean);
-  if (safeTokens.length === 0) return <>{text}</>;
+  if (safeTokens.length === 0) return <TableEditorCellValue value={text} />;
 
   const regex = new RegExp(`(${safeTokens.join('|')})`, 'gi');
   const parts = text.split(regex);
@@ -25,7 +27,7 @@ export default function HighlightedText({
             {part}
           </mark>
         ) : (
-          part
+          <TableEditorCellValue key={index} value={part} />
         ),
       )}
     </>
