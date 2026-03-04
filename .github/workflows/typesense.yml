@@ -45,15 +45,15 @@ jobs:
         uses: tj-actions/changed-files@v47
         with:
           fail_on_initial_diff_error: true
-          # files: |
-          #   data/**/*.yaml
-          #   public/csv/**/*.csv
+          files: |
+            data/**/*.yaml
+            public/csv/**/*.csv
           separator: ','
 
       - name: Populate Typesense
         run: yarn typesense:populate
         env:
-          ADDED_MODIFIED_FILES: ${{ steps.changed-files.outputs.added_modified_files }}
+          ADDED_MODIFIED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
           DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
           FULL_SYNC: ${{ inputs.full_sync }}
           NEXT_PUBLIC_TYPESENSE_HOST: ${{ vars.TYPESENSE_HOST }}
