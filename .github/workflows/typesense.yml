@@ -1,4 +1,5 @@
 concurrency:
+  cancel-in-progress: false
   group: ${{ github.workflow }}-${{ github.ref }}
 
 name: Data Ingestion
