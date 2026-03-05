@@ -55,6 +55,8 @@ export default async function search({
       client,
       'unstructured_uk',
       transliterateIntoUkrainian(normalizedQuery),
+      page,
+      perPage,
     ),
   ];
 
