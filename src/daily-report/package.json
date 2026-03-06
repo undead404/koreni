@@ -1,0 +1,28 @@
+{
+  "author": "Vitalii Perehonchuk <brute18@gmail.com>",
+  "dependencies": {
+    "dotenv": "~16.4.7",
+    "yaml": "~2.7.0",
+    "zod": "~3.24.2"
+  },
+  "devDependencies": {
+    "tsx": "~4.21.0",
+    "typescript": "~5.9.3",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": "^22.12"
+  },
+  "license": "MIT",
+  "main": "daily-report/src/index.js",
+  "name": "koreni-daily-report",
+  "scripts": {
+    "build": "tsc && cp package.json ./dist && cp yarn.lock ./dist",
+    "dev": "tsx ./src/index.ts",
+    "start": "node daily-report/src/index.js",
+    "test": "vitest"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

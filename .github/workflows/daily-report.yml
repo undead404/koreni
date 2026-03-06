@@ -1,0 +1,46 @@
+name: Daily Telegram Records Digest
+on:
+  schedule:
+    - cron: '0 18 * * *' # Запуск о 18:00 UTC (20:00/21:00 за Києвом)
+  workflow_dispatch: # Дозволяє запустити Action вручну з інтерфейсу GitHub
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find new records in the last 24 hours
+        id: find-files
+        run: |
+          # Шукаємо додані файли за останні 24 години
+          git log --since="24 hours ago" --diff-filter=A --name-only --format="" | grep -E '^data/records/.*\.(yaml|yml)$' | sort -u > added_files.txt
+
+          if [ -s added_files.txt ]; then
+            echo "has_files=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_files=false" >> $GITHUB_OUTPUT
+            echo "Нових файлів за добу не знайдено."
+          fi
+
+      - name: Setup Node.js
+        if: steps.find-files.outputs.has_files == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: src/daily-report/.nvmrc
+
+      - name: Install dependencies
+        if: steps.find-files.outputs.has_files == 'true'
+        run: yarn --frozen-lockfile --prefer-offline
+        working-directory: src/daily-report
+
+      - name: Run notification script
+        working-directory: src/daily-report
+        if: steps.find-files.outputs.has_files == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: yarn dev
