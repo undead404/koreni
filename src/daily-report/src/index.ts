@@ -8,7 +8,8 @@ import environment from './environment.js';
 const filesListPath = 'added_files.txt';
 
 if (!fs.existsSync(filesListPath)) {
-  process.exit(0);
+  console.error('Файл доданих файлів не знайдено');
+  process.exit(1);
 }
 
 const addedFiles = fs

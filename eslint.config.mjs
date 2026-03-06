@@ -230,6 +230,7 @@ export default [
       'src/populate-typesense/**/*.ts',
       'src/server/**/*.{js,mjs,cjs,ts}',
       'src/modernize-russian/**/*.ts',
+      'src/daily-report/**/*.ts',
     ],
     rules: {
       'no-console': 'off',

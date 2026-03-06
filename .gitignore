@@ -45,6 +45,8 @@ next-env.d.ts
 
 /src/server/node_modules
 /src/server/dist
+/src/daily-report/node_modules
+/src/daily-report/dist
 
 .aider*
 !.aiderignore
