@@ -19,6 +19,9 @@ jobs:
           # Шукаємо додані файли за останні 24 години
           git log --since="24 hours ago" --diff-filter=A --name-only --format="" | grep -E '^data/records/.*\.(yaml|yml)$' | sort -u > added_files.txt
 
+          # Вивести знайдені файли також в консоль
+            echo "added_files.txt:"
+            cat added_files.txt
           if [ -s added_files.txt ]; then
             echo "has_files=true" >> $GITHUB_OUTPUT
           else
