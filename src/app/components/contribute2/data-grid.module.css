@@ -1,0 +1,471 @@
+/* ── Wrapper ── */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Control bar above the table ── */
+.controlBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.625rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .controlBar {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controlLabel {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #64748b;
+  white-space: nowrap;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .controlLabel {
+    color: #94a3b8;
+  }
+}
+
+.controlInput {
+  width: 3.25rem;
+  padding: 0.25rem 0.375rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.3125rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: #0f172a;
+  background-color: #ffffff;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+  -moz-appearance: textfield;
+}
+
+.controlInput::-webkit-inner-spin-button,
+.controlInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.controlInput:focus {
+  border-color: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .controlInput {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: #f1f5f9;
+  }
+
+  .controlInput:focus {
+    border-color: #64748b;
+  }
+}
+
+.statBadge {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.flaggedBadge {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: #dc2626;
+  white-space: nowrap;
+}
+
+/* ── Scrollable table container ── */
+.tableContainer {
+  max-height: 22rem;
+  overflow: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: #ffffff;
+  position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tableContainer {
+    background-color: #0f172a;
+    border-color: #334155;
+  }
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  table-layout: auto;
+  min-width: max-content;
+}
+
+/* ── Header ── */
+.thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.thead th {
+  background-color: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0.375rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .thead th {
+    background-color: #1e293b;
+    border-bottom-color: #334155;
+    color: #cbd5e1;
+  }
+}
+
+/* Row-number / trash column header */
+.thRowCtrl {
+  width: 2.25rem;
+  min-width: 2.25rem;
+  text-align: center;
+  padding: 0.375rem 0.25rem;
+  position: sticky;
+  left: 0;
+  z-index: 12;
+  background-color: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .thRowCtrl {
+    background-color: #1e293b;
+  }
+}
+
+/* Data column header wrapper */
+.thInner {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.thLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 8rem;
+}
+
+/* Column trash button */
+.colTrashBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: none;
+  background: none;
+  color: #cbd5e1;
+  cursor: pointer;
+  border-radius: 0.1875rem;
+  padding: 0;
+  flex-shrink: 0;
+  opacity: 0;
+  transition:
+    opacity 0.12s ease,
+    color 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.thead th:hover .colTrashBtn {
+  opacity: 1;
+}
+
+.colTrashBtn:hover {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.colTrashBtnActive {
+  composes: colTrashBtn;
+  opacity: 1;
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .colTrashBtn:hover,
+  .colTrashBtnActive {
+    background-color: #450a0a;
+    color: #f87171;
+  }
+}
+
+/* Flagged column header */
+.thFlagged {
+  background-color: #fef2f2 !important;
+  color: #dc2626 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .thFlagged {
+    background-color: #450a0a !important;
+    color: #f87171 !important;
+  }
+
+  .thFlagged .thLabel {
+    text-decoration-color: #ef4444;
+  }
+}
+
+.thFlagged .thLabel {
+  text-decoration: line-through;
+  text-decoration-color: #fca5a5;
+}
+
+/* ── Body ── */
+.tbody tr {
+  transition: background-color 0.1s ease;
+}
+
+.tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tbody tr:hover {
+    background-color: #1e293b;
+  }
+}
+
+.tbody td {
+  padding: 0.3125rem 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  white-space: nowrap;
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tbody td {
+    border-bottom-color: #334155;
+    color: #e2e8f0;
+  }
+}
+
+/* Sticky row-number / trash cell */
+.tdRowCtrl {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 0.3125rem 0.25rem;
+  width: 2.25rem;
+  min-width: 2.25rem;
+  border-right: 1px solid #f1f5f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tdRowCtrl {
+    background-color: #0f172a;
+    border-right-color: #334155;
+  }
+}
+
+.tbody tr:hover .tdRowCtrl {
+  background-color: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tbody tr:hover .tdRowCtrl {
+    background-color: #1e293b;
+  }
+}
+
+/* Row trash button */
+.rowTrashBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  background: none;
+  color: #d1d5db;
+  cursor: pointer;
+  border-radius: 0.1875rem;
+  padding: 0;
+  opacity: 0;
+  transition:
+    opacity 0.12s ease,
+    color 0.12s ease,
+    background-color 0.12s ease;
+  margin: 0 auto;
+}
+
+.tbody tr:hover .rowTrashBtn {
+  opacity: 1;
+}
+
+.rowTrashBtn:hover {
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.rowTrashBtnActive {
+  composes: rowTrashBtn;
+  opacity: 1;
+  color: #dc2626;
+  background-color: #fef2f2;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rowTrashBtn:hover,
+  .rowTrashBtnActive {
+    background-color: #450a0a;
+    color: #f87171;
+  }
+}
+
+/* Flagged row */
+.rowFlagged td {
+  background-color: #fef2f2;
+  color: #f87171;
+  text-decoration: line-through;
+  text-decoration-color: #fca5a5;
+}
+
+.rowFlagged .tdRowCtrl {
+  background-color: #fef2f2;
+}
+
+/* Flagged column cells */
+.tdFlagged {
+  background-color: #fef2f2 !important;
+  color: #f87171 !important;
+  text-decoration: line-through;
+  text-decoration-color: #fca5a5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rowFlagged td,
+  .rowFlagged .tdRowCtrl,
+  .tdFlagged {
+    background-color: #450a0a !important;
+    color: #f87171 !important;
+    text-decoration-color: #ef4444;
+  }
+}
+
+/* Skipped header rows */
+.rowSkipped td {
+  background-color: #fffbeb;
+  color: #b45309;
+  font-style: italic;
+}
+
+.rowSkipped .tdRowCtrl {
+  background-color: #fffbeb;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rowSkipped td,
+  .rowSkipped .tdRowCtrl {
+    background-color: #451a03;
+    color: #fbbf24;
+  }
+}
+
+/* ── Ellipsis / expand row ── */
+.ellipsisRow td {
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ellipsisRow td {
+    border-bottom-color: #334155;
+  }
+}
+
+.ellipsisBtn {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: #64748b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+  letter-spacing: 0.025em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ellipsisBtn {
+    color: #94a3b8;
+  }
+}
+
+.ellipsisBtn:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ellipsisBtn:hover {
+    color: #f1f5f9;
+    background-color: #1e293b;
+  }
+}
+
+/* ── Empty state ── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  gap: 0.5rem;
+}
+
+.emptyText {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  font-weight: 500;
+}

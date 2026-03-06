@@ -1,24 +1,30 @@
 # NextJS build artifacts & cache
+
 .next/
 out/
 build/
 dist/
 src/server/dist
+src/daily-report/dist
 
 # Dependencies - Aider doesn't need to read library code
+
 node_modules/
 src/server/node_modules
+src/daily-report/node_modules
 
 # Lock files - Huge token waste, LLM doesn't need them to write code
+
 yarn.lock
-package-lock.json
-pnpm-lock.yaml
+src/server/yarn.lock
+src/daily-report/yarn.lock
 
 data/
 public/
 typesense/
 
 # Logs and system files
+
 *.log
 .DS_Store
 .env
@@ -28,11 +34,15 @@ typesense/
 .env.production.local
 
 # Git internals
+
 .git/
 
 # Testing coverage
+
 coverage/
 
 # Obsidian/Documentation specific (optional, uncomment if you don't want docs indexed)
+
 # *.md
+
 # docs/

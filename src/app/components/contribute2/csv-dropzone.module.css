@@ -1,0 +1,316 @@
+/* ── Dropzone container ── */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1.5rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 0.75rem;
+  background-color: #fafbfc;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropzone:hover {
+  border-color: #94a3b8;
+  background-color: #f1f5f9;
+}
+
+.dropzone:focus-visible {
+  outline: 2px solid #0f172a;
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropzone {
+    border-color: #4b5563;
+    background-color: #1e293b;
+  }
+  .dropzone:hover {
+    border-color: #64748b;
+    background-color: #334155;
+  }
+  .dropzone:focus-visible {
+    outline-color: #e2e8f0;
+  }
+}
+
+/* ── Drag-over highlight state ── */
+.dropzoneDragOver {
+  composes: dropzone;
+  border-color: #0f172a;
+  background-color: #f0f4ff;
+  border-style: solid;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropzoneDragOver {
+    border-color: #94a3b8;
+    background-color: #1e3a8a;
+  }
+}
+
+/* ── Uploading / parsing state ── */
+.dropzoneUploading {
+  composes: dropzone;
+  pointer-events: none;
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropzoneUploading {
+    border-color: #475569;
+    background-color: #0f172a;
+  }
+}
+
+/* ── Success state ── */
+.dropzoneSuccess {
+  composes: dropzone;
+  border-color: #16a34a;
+  background-color: #f0fdf4;
+  cursor: default;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropzoneSuccess {
+    border-color: #22c55e;
+    background-color: #064e3b;
+  }
+}
+
+/* ── Hidden file input ── */
+.hiddenInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Upload icon wrapper ── */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background-color: #f1f5f9;
+  color: #64748b;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iconWrapper {
+    background-color: #334155;
+    color: #94a3b8;
+  }
+}
+
+.iconWrapperDragOver {
+  composes: iconWrapper;
+  background-color: #e0e7ff;
+  color: #0f172a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iconWrapperDragOver {
+    background-color: #1e40af;
+    color: #e2e8f0;
+  }
+}
+
+.iconWrapperUploading {
+  composes: iconWrapper;
+  background-color: #f1f5f9;
+  color: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iconWrapperUploading {
+    background-color: #1e293b;
+    color: #475569;
+  }
+}
+
+.iconWrapperSuccess {
+  composes: iconWrapper;
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iconWrapperSuccess {
+    background-color: #065f46;
+    color: #4ade80;
+  }
+}
+
+/* ── Text content ── */
+.mainText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.mainTextMuted {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.mainTextSuccess {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #15803d;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mainText {
+    color: #e2e8f0;
+  }
+  .mainTextMuted {
+    color: #94a3b8;
+  }
+  .mainTextSuccess {
+    color: #4ade80;
+  }
+}
+
+.browse {
+  font-weight: 600;
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .browse {
+    color: #e2e8f0;
+  }
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hint {
+    color: #64748b;
+  }
+}
+
+/* ── File info row (after success) ── */
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.fileName {
+  font-size: 0.8125rem;
+  color: #475569;
+  font-weight: 500;
+  max-width: 16rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fileName {
+    color: #cbd5e1;
+  }
+}
+
+.fileSize {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.fileDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fileDot {
+    background-color: #475569;
+  }
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2.5px solid #e2e8f0;
+  border-top-color: #0f172a;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .spinner {
+    border-color: #334155;
+    border-top-color: #e2e8f0;
+  }
+}
+
+.spinnerLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 0.125rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .spinnerLabel {
+    color: #94a3b8;
+  }
+}
+
+/* ── Remove button ── */
+.removeBtn {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #94a3b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+  margin-top: 0.25rem;
+}
+
+.removeBtn:hover {
+  color: #475569;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
