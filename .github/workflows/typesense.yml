@@ -27,6 +27,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          # Only current branch
+          ref: ${{ github.head_ref }}
           fetch-depth: 0 # Required to accurately compute diffs
 
       - name: Set up Node.js

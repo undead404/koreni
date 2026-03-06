@@ -11,6 +11,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          # Only current branch
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Find new records in the last 24 hours
