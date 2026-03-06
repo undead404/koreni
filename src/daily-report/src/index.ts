@@ -60,7 +60,7 @@ for (const file of addedFiles) {
 
     // Припущення: URL будується на основі id
     if (tableMetadata.id) {
-      block += `🔗 <a href="https://koreni.org.ua/${tableMetadata.id}">Переглянути таблицю</a>\n`;
+      block += `🔗 <a href="https://koreni.org.ua/${tableMetadata.id}/1/">Переглянути таблицю</a>\n`;
     }
 
     blocks.push(block);
