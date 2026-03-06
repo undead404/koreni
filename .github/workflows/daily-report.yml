@@ -34,6 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: 'yarn'
+          cache-dependency-path: src/daily-report/yarn.lock
           node-version-file: src/daily-report/.nvmrc
 
       - name: Install dependencies

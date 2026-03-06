@@ -84,6 +84,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           cache: 'yarn'
+          cache-dependency-path: src/server/yarn.lock
           node-version-file: src/server/.nvmrc
 
       - name: Install API dependencies

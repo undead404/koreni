@@ -1,11 +1,13 @@
 import fs from 'node:fs';
+import path from 'node:path';
 
 import yaml from 'yaml';
 
 import { indexationTableSchema } from './schema/indexation-table.js';
 import environment from './environment.js';
 
-const filesListPath = '../../added_files.txt';
+const ROOT_FOLDER = path.resolve(path.join(import.meta.dirname, '../../'));
+const filesListPath = path.join(ROOT_FOLDER, 'added_files.txt');
 
 if (!fs.existsSync(filesListPath)) {
   console.error('Файл доданих файлів не знайдено');
@@ -27,7 +29,7 @@ const blocks = [];
 
 for (const file of addedFiles) {
   try {
-    const content = fs.readFileSync(file, 'utf8');
+    const content = fs.readFileSync(path.join(ROOT_FOLDER, file), 'utf8');
     const data = yaml.parse(content) as unknown;
 
     const tableMetadata = indexationTableSchema.parse(data);
@@ -65,6 +67,7 @@ for (const file of addedFiles) {
     count++;
   } catch (error) {
     console.error(`Помилка читання ${file}:`, error);
+    process.exit(1);
   }
 }
 
