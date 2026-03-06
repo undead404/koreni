@@ -6,9 +6,9 @@ import yaml from 'yaml';
 import { indexationTableSchema } from './schema/indexation-table.js';
 import environment from './environment.js';
 
-const ROOT_FOLDER = path.resolve(path.join(import.meta.dirname, '../../'));
+const ROOT_FOLDER = path.resolve('../../');
 const filesListPath = path.join(ROOT_FOLDER, 'added_files.txt');
-
+console.log(filesListPath);
 if (!fs.existsSync(filesListPath)) {
   console.error('Файл доданих файлів не знайдено');
   process.exit(1);
