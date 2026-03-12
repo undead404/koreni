@@ -153,7 +153,8 @@ export default function ContributeFormStep({
                 onClick={isLast ? undefined : handleContinue}
               >
                 {isSubmitting ? 'Подається...' : null}
-                {isLast && !isSubmitting ? 'Подати' : 'Далі'}
+                {isLast && !isSubmitting ? 'Подати' : null}
+                {!isLast && !isSubmitting ? 'Далі' : null}
                 {!isLast && (
                   <svg
                     width="14"
