@@ -1,0 +1,47 @@
+/* ── Standard text input ── */
+.input {
+  width: 100%;
+  padding: 0.4375rem 0.625rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input {
+    background-color: #1e293b;
+    color: #cbd5e1;
+  }
+}
+
+.input::placeholder {
+  color: #cbd5e1;
+}
+
+.input:focus {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+/* ── Shared label style ── */
+.label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: #cbd5e1;
+  }
+}

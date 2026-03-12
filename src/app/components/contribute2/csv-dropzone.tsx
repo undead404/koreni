@@ -1,6 +1,7 @@
 'use client';
-
+import { ErrorMessage } from '@hookform/error-message';
 import { CheckCircle2, FileSpreadsheet, Upload } from 'lucide-react';
+import posthog from 'posthog-js';
 import {
   type ChangeEvent,
   type DragEvent,
@@ -8,32 +9,27 @@ import {
   useRef,
   useState,
 } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import parseCsvToTuples from '@/app/helpers/parse-csv-file-to-tuples';
+import { initBugsnag } from '@/app/services/bugsnag';
+
+import { useTableStateStore } from './table-state';
+import type { DropzoneState, ParsedFile } from './types';
 
 import styles from './csv-dropzone.module.css';
 
-/* ────────────────────────────────────────── */
-/*  Types                                      */
-/* ────────────────────────────────────────── */
-
-type DropzoneState = 'idle' | 'drag-over' | 'uploading' | 'success';
-
-interface ParsedFile {
-  name: string;
-  size: number;
-}
-
-interface CsvDropzoneProperties {
-  onFileAccepted?: (file: File) => void;
-}
-
+// export interface CsvDropzoneProperties extends StepProperties {
+//   onFileAccepted?: (file: File) => void;
+// }
 /* ────────────────────────────────────────── */
 /*  Helpers                                    */
 /* ────────────────────────────────────────── */
 
 function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  if (bytes < 1024) return `${bytes} Б`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} КіБ`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} МіБ`;
 }
 
 function isCsvFile(file: File): boolean {
@@ -44,26 +40,53 @@ function isCsvFile(file: File): boolean {
 /*  Component                                  */
 /* ────────────────────────────────────────── */
 
-export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
+export default function CsvDropzone() {
   const [state, setState] = useState<DropzoneState>('idle');
   const [parsedFile, setParsedFile] = useState<ParsedFile | null>(null);
+  const {
+    formState: { errors },
+    register,
+    setValue,
+  } = useFormContext();
   const inputReference = useRef<HTMLInputElement>(null);
+  const { getTableDimensions, setTableData, setTableFileName } =
+    useTableStateStore();
+  console.log('errors', errors);
 
   /* ── Process file ── */
   const processFile = useCallback(
     (file: File) => {
-      if (!isCsvFile(file)) return;
+      if (!isCsvFile(file)) {
+        setState('error');
+        return;
+      }
 
-      setState('uploading');
-
-      // Simulate upload / parse time
-      setTimeout(() => {
-        setParsedFile({ name: file.name, size: file.size });
-        setState('success');
-        onFileAccepted?.(file);
-      }, 1800);
+      parseCsvToTuples(file)
+        .then(setTableData)
+        .catch((error: Error) => {
+          // Notify Bugsnag and Posthog
+          console.error(error);
+          posthog.capture('table_info_parse_error', {
+            error: error instanceof Error ? error.message : String(error),
+          });
+          posthog.capture('contribution_error', {
+            error: 'Не вдалося розібрати файл таблиці',
+          });
+          initBugsnag().notify(error);
+        })
+        .then(() => {
+          setParsedFile({ name: file.name, size: file.size });
+          setTableFileName(file.name);
+          setState('success');
+          // onFileAccepted?.(file);
+          return;
+        })
+        .catch((error: Error) => {
+          setState('error');
+          console.error(error);
+        });
     },
-    [onFileAccepted],
+    [setTableData, setTableFileName],
   );
 
   /* ── Drag handlers ── */
@@ -124,8 +147,8 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
   const handleRemove = useCallback(() => {
     setState('idle');
     setParsedFile(null);
-    if (inputReference.current) inputReference.current.value = '';
-  }, []);
+    setValue('table', null);
+  }, [setValue]);
 
   /* ── Style selection ── */
   const zoneClass =
@@ -146,6 +169,19 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
           ? styles.iconWrapperSuccess
           : styles.iconWrapper;
 
+  const { ref: rhfReference, ...tableInputAttributes } = register('table', {
+    required: true,
+    onChange: handleChange,
+  });
+
+  const setReference = useCallback(
+    (reference: HTMLInputElement | null) => {
+      rhfReference(reference);
+      inputReference.current = reference;
+    },
+    [rhfReference],
+  );
+
   return (
     <div>
       <div
@@ -156,16 +192,15 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
         {/* Hidden file input */}
         <input
-          ref={inputReference}
           type="file"
           accept=".csv,text/csv"
+          {...tableInputAttributes}
+          ref={setReference}
           className={styles.hiddenInput}
-          onChange={handleChange}
           tabIndex={-1}
           aria-hidden="true"
         />
@@ -182,15 +217,11 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
         </div>
 
         {/* Idle / drag-over */}
-        {(state === 'idle' || state === 'drag-over') && (
+        {(state === 'idle' || state === 'drag-over' || state === 'error') && (
           <>
-            <p
-              className={
-                state === 'drag-over' ? styles.mainText : styles.mainText
-              }
-            >
+            <p className={styles.mainText}>
               {state === 'drag-over' ? (
-                'Drop your CSV file here'
+                'Перетягніть свій файл CSV сюди'
               ) : (
                 <>
                   Перетягніть сюди файл CSV, або{' '}
@@ -203,6 +234,12 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
             <p className={styles.hint}>
               Приймаються лише файли CSV &middot; До 50 МіБ
             </p>
+            <ErrorMessage
+              className={styles.error}
+              errors={errors}
+              name="table"
+              as="p"
+            />
           </>
         )}
 
@@ -223,6 +260,14 @@ export default function CsvDropzone({ onFileAccepted }: CsvDropzoneProperties) {
               <span className={styles.fileDot} aria-hidden="true" />
               <span className={styles.fileSize}>
                 {formatBytes(parsedFile.size)}
+              </span>
+            </div>
+            <div className={styles.tableInfo}>
+              <span className={styles.tableRows}>
+                {getTableDimensions(true).rows} рядків
+              </span>
+              <span className={styles.tableColumns}>
+                {getTableDimensions(true).columns} колонок
               </span>
             </div>
           </>

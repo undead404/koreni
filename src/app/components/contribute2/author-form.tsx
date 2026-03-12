@@ -2,16 +2,13 @@
 
 import { Info, Mail, User } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 import styles from './author-form.module.css';
 
 import githubIcon from '../../icons/github.svg';
 export default function AuthorForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [github, setGithub] = useState('');
-
+  const { register } = useFormContext();
   return (
     <div className={styles.wrapper}>
       {/* Name */}
@@ -28,8 +25,9 @@ export default function AuthorForm() {
             type="text"
             className={styles.inputWithIcon}
             placeholder="Іван Мельник"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            {...register('authorName', {
+              required: true,
+            })}
             autoComplete="name"
           />
         </div>
@@ -49,8 +47,7 @@ export default function AuthorForm() {
             type="email"
             className={styles.inputWithIcon}
             placeholder="ivanmelnyk@gmail.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            {...register('authorEmail')}
             autoComplete="email"
           />
         </div>
@@ -70,8 +67,7 @@ export default function AuthorForm() {
             type="text"
             className={styles.inputWithIcon}
             placeholder="janedoe"
-            value={github}
-            onChange={(event) => setGithub(event.target.value)}
+            {...register('authorGithubUsername')}
             autoComplete="username"
           />
         </div>

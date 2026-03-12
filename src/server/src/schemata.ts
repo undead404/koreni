@@ -15,7 +15,7 @@ export const importPayloadSchema = z.object({
   sources: z.array(z.string()),
   table: z.object({
     columns: z.array(nonEmptyString).min(1),
-    data: z.array(z.record(z.any())).min(1),
+    data: z.array(z.record(z.string(), z.any())).min(1),
   }),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,

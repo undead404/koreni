@@ -1,20 +1,37 @@
 'use client';
 
 import { ExternalLink } from 'lucide-react';
+import { useCallback } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import { useContributionStateStore } from './contribution-state';
+import getDefaultValues from './default-values';
+import { ContributeForm2Values } from './types';
 
 import styles from './success-panel.module.css';
 
 interface SuccessPanelProperties {
   name: string;
-  title: string;
   prUrl: string;
+  title: string;
 }
 
 export default function SuccessPanel({
   name,
-  title,
   prUrl,
+  title,
 }: SuccessPanelProperties) {
+  const { reset } = useFormContext<ContributeForm2Values>();
+  const { setState } = useContributionStateStore();
+  const handleReset = useCallback(() => {
+    reset(getDefaultValues());
+    setState({
+      error: '',
+      isSubmitting: false,
+      prUrl: '',
+      title: '',
+    });
+  }, [reset, setState]);
   return (
     <div className={styles.wrapper} role="status" aria-live="polite">
       {/* Animated checkmark */}
@@ -34,16 +51,16 @@ export default function SuccessPanel({
 
       {/* Thank-you message */}
       <p className={styles.heading}>
-        {'Thank you, '}
+        {'Дякуємо, '}
         {name}
-        {'! Your submission '}
+        {'! Ваша таблиця '}
         <span className={styles.title}>{`\u201C${title}\u201D`}</span>
-        {' has been submitted as a GitHub PR:'}
+        {' була збережена у вигляді PR на GitHub:'}
       </p>
 
       <p className={styles.sub}>
         {
-          'A maintainer will review your pull request shortly. You\u2019ll receive a notification once it\u2019s merged.'
+          'Невдовзі команда Коренів її перевірить. Якщо все добре, вона буде опублікована на сайті.'
         }
       </p>
 
@@ -59,6 +76,13 @@ export default function SuccessPanel({
         </span>
         {prUrl.replace('https://', '')}
       </a>
+      <button
+        type="button"
+        className={styles.addAnotherBtn}
+        onClick={handleReset}
+      >
+        Додати ще одну таблицю
+      </button>
     </div>
   );
 }

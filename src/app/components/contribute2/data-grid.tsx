@@ -1,121 +1,72 @@
 'use client';
 
+import { ErrorMessage } from '@hookform/error-message';
+import clsx from 'clsx';
 import { Trash2 } from 'lucide-react';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import UnknownValue from '../unknown-value';
+
+import { DEFAULT_PREVIEW_SIZE, EXPAND_STEP } from './constants';
+import { useTableStateStore } from './table-state';
+import { ContributeForm2Values } from './types';
 
 import styles from './data-grid.module.css';
-
-/* ────────────────────────────────────────── */
-/*  Sample data generator                      */
-/* ────────────────────────────────────────── */
-
-const COLUMNS = [
-  'id',
-  'timestamp',
-  'user_email',
-  'country',
-  'revenue',
-  'sessions',
-  'bounce_rate',
-  'device',
-];
-
-function generateSampleData(rowCount: number): string[][] {
-  const countries = [
-    'US',
-    'UK',
-    'DE',
-    'FR',
-    'JP',
-    'BR',
-    'IN',
-    'CA',
-    'AU',
-    'KR',
-  ];
-  const devices = ['desktop', 'mobile', 'tablet'];
-  const emails = [
-    'alice@acme.co',
-    'bob@corp.io',
-    'carol@data.net',
-    'dave@lab.org',
-    'eve@cloud.dev',
-    'frank@sys.ai',
-  ];
-
-  const rows: string[][] = [];
-  for (let index = 0; index < rowCount; index++) {
-    const date = new Date(2026, 0, 1 + Math.floor(index / 10));
-    rows.push([
-      String(index + 1),
-      date.toISOString().slice(0, 10),
-      emails[index % emails.length],
-      countries[index % countries.length],
-      (Math.random() * 5000 + 100).toFixed(2),
-      String(Math.floor(Math.random() * 2000 + 50)),
-      (Math.random() * 80 + 5).toFixed(1) + '%',
-      devices[index % devices.length],
-    ]);
-  }
-  return rows;
-}
-
-const TOTAL_ROWS = 842;
-const ALL_DATA = generateSampleData(TOTAL_ROWS);
-const PREVIEW_COUNT = 5;
 
 /* ────────────────────────────────────────── */
 /*  Component                                  */
 /* ────────────────────────────────────────── */
 
 export default function DataGrid() {
-  const [skipRows, setSkipRows] = useState(0);
-  const [flaggedCols, setFlaggedCols] = useState<Set<number>>(new Set());
-  const [flaggedRows, setFlaggedRows] = useState<Set<number>>(new Set());
-  const [expanded, setExpanded] = useState(false);
-
-  /* ── Toggle helpers ── */
-  const toggleCol = useCallback((colIndex: number) => {
-    setFlaggedCols((previous) => {
-      const next = new Set(previous);
-      if (next.has(colIndex)) next.delete(colIndex);
-      else next.add(colIndex);
-      return next;
-    });
-  }, []);
-
-  const toggleRow = useCallback((rowIndex: number) => {
-    setFlaggedRows((previous) => {
-      const next = new Set(previous);
-      if (next.has(rowIndex)) next.delete(rowIndex);
-      else next.add(rowIndex);
-      return next;
-    });
-  }, []);
+  const [numberOfRowsShownAbove, setNumberOfRowsShownAbove] =
+    useState(DEFAULT_PREVIEW_SIZE);
+  const [numberOfRowsShownBelow, setNumberOfRowsShownBelow] =
+    useState(DEFAULT_PREVIEW_SIZE);
+  const {
+    getAllColumns,
+    getTableAsObjects,
+    getTableDimensions,
+    setSkippedRowsAbove,
+    skippedColumns,
+    skippedRowsAbove,
+    skippedRowsElsewhere,
+    toggleColumn,
+    toggleRow,
+  } = useTableStateStore();
 
   /* ── Visible rows (after header skip) ── */
-  const dataRows = useMemo(() => ALL_DATA.slice(skipRows), [skipRows]);
+  const dataRows = getTableAsObjects(true);
 
   /* ── Rows to display (truncated or full) ── */
   const { topRows, bottomRows, hiddenCount } = useMemo(() => {
-    if (expanded || dataRows.length <= PREVIEW_COUNT * 2 + 1) {
+    if (
+      dataRows.length <=
+      numberOfRowsShownAbove + numberOfRowsShownBelow + 1
+    ) {
       return {
         topRows: dataRows,
-        bottomRows: [] as string[][],
+        bottomRows: [] as Record<string, unknown>[],
         hiddenCount: 0,
       };
     }
     return {
-      topRows: dataRows.slice(0, PREVIEW_COUNT),
-      bottomRows: dataRows.slice(dataRows.length - PREVIEW_COUNT),
-      hiddenCount: dataRows.length - PREVIEW_COUNT * 2,
+      topRows: dataRows.slice(0, numberOfRowsShownAbove),
+      bottomRows: dataRows.slice(dataRows.length - numberOfRowsShownBelow),
+      hiddenCount:
+        dataRows.length - numberOfRowsShownAbove - numberOfRowsShownBelow,
     };
-  }, [dataRows, expanded]);
+  }, [dataRows, numberOfRowsShownAbove, numberOfRowsShownBelow]);
 
   /* ── Flagged counts ── */
-  const flaggedColCount = flaggedCols.size;
-  const flaggedRowCount = flaggedRows.size;
+  const flaggedColCount = skippedRowsElsewhere.size;
+  const flaggedRowCount = skippedColumns.size;
   const totalFlagged = flaggedColCount + flaggedRowCount;
+  const columns = getAllColumns(true);
+  const {
+    formState: { errors },
+    register,
+  } = useFormContext<ContributeForm2Values>();
 
   return (
     <div className={styles.wrapper}>
@@ -123,27 +74,29 @@ export default function DataGrid() {
       <div className={styles.controlBar}>
         <div className={styles.controlGroup}>
           <label htmlFor="skip-rows" className={styles.controlLabel}>
-            Пропустити ряди (зсув ряду заголовків)
+            Заголовки зсунуті на:
           </label>
           <input
             id="skip-rows"
             type="number"
             min={0}
-            max={TOTAL_ROWS - 1}
-            value={skipRows}
+            max={dataRows.length - 1}
+            value={skippedRowsAbove}
             onChange={(event) => {
               const v = Math.max(
                 0,
-                Math.min(TOTAL_ROWS - 1, Number(event.target.value) || 0),
+                Math.min(dataRows.length - 1, Number(event.target.value) || 0),
               );
-              setSkipRows(v);
+              setSkippedRowsAbove(v);
             }}
             className={styles.controlInput}
+            step={1}
           />
         </div>
         <div className={styles.controlGroup}>
           <span className={styles.statBadge}>
-            {dataRows.length} рядів &times; {COLUMNS.length} колонок
+            {dataRows.length} рядів &times; {getTableDimensions().columns}{' '}
+            колонок
           </span>
           {totalFlagged > 0 && (
             <span className={styles.flaggedBadge}>
@@ -157,7 +110,7 @@ export default function DataGrid() {
       <div
         className={styles.tableContainer}
         role="region"
-        aria-label="Data preview"
+        aria-label="Перегляд загального вигляду таблиці"
       >
         <table className={styles.table}>
           {/* ── Header ── */}
@@ -169,23 +122,24 @@ export default function DataGrid() {
               >
                 №
               </th>
-              {COLUMNS.map((col, ci) => (
+              {columns.map((col, ci) => (
                 <th
                   key={col}
-                  className={flaggedCols.has(ci) ? styles.thFlagged : undefined}
+                  className={clsx({
+                    [styles.thFlagged]: skippedColumns.has(ci),
+                  })}
                 >
                   <div className={styles.thInner}>
                     <span className={styles.thLabel}>{col}</span>
                     <button
                       type="button"
-                      className={
-                        flaggedCols.has(ci)
-                          ? styles.colTrashBtnActive
-                          : styles.colTrashBtn
-                      }
-                      onClick={() => toggleCol(ci)}
+                      className={clsx({
+                        [styles.colTrashBtnActive]: skippedColumns.has(ci),
+                        [styles.colTrashBtn]: !skippedColumns.has(ci),
+                      })}
+                      onClick={() => toggleColumn(ci)}
                       aria-label={
-                        flaggedCols.has(ci)
+                        skippedColumns.has(ci)
                           ? `Повернути колонку ${col}`
                           : `Позначити колонку ${col} для вилучення`
                       }
@@ -203,34 +157,83 @@ export default function DataGrid() {
             {renderRows(topRows, 0)}
 
             {/* ── Ellipsis row ── */}
-            {hiddenCount > 0 && !expanded && (
-              <tr className={styles.ellipsisRow}>
-                <td colSpan={COLUMNS.length + 1}>
-                  <button
-                    type="button"
-                    className={styles.ellipsisBtn}
-                    onClick={() => setExpanded(true)}
+            {hiddenCount > 0 && (
+              <>
+                <tr className={styles.ellipsisRow}>
+                  <td colSpan={columns.length + 1}>
+                    <button
+                      type="button"
+                      className={styles.ellipsisBtn}
+                      onClick={() =>
+                        setNumberOfRowsShownAbove(
+                          (previous) => previous + EXPAND_STEP,
+                        )
+                      }
+                      title={`Показати ще ${EXPAND_STEP} рядів`}
+                    >
+                      Показати ще {EXPAND_STEP} рядів
+                    </button>
+                  </td>
+                </tr>
+                <tr className={styles.ellipsisRow}>
+                  <td
+                    colSpan={columns.length + 1}
+                    title={`Іще ${hiddenCount.toLocaleString()} рядів приховано`}
                   >
-                    Іще {hiddenCount.toLocaleString()} рядів &mdash; клацніть
-                    тут, аби розгорнути їх
-                  </button>
-                </td>
-              </tr>
+                    Іще {hiddenCount.toLocaleString()} рядів приховано
+                  </td>
+                </tr>
+                <tr className={styles.ellipsisRow}>
+                  <td colSpan={columns.length + 1}>
+                    <button
+                      type="button"
+                      className={styles.ellipsisBtn}
+                      onClick={() =>
+                        setNumberOfRowsShownBelow(
+                          (previous) => previous + EXPAND_STEP,
+                        )
+                      }
+                      title={`Показати ще ${EXPAND_STEP} рядів`}
+                    >
+                      Показати ще {EXPAND_STEP} рядів
+                    </button>
+                  </td>
+                </tr>
+              </>
             )}
 
-            {bottomRows.length > 0 &&
-              renderRows(bottomRows, dataRows.length - PREVIEW_COUNT)}
+            {bottomRows.length > 0 && renderRows(bottomRows, skippedRowsAbove)}
           </tbody>
         </table>
       </div>
+      {/* Locale dropdown, using react-hook-form */}
+      <label className={styles.label} htmlFor="table-locale">
+        Мова таблиці
+      </label>
+      <select
+        id="table-locale"
+        className={styles.select}
+        {...register('tableLocale')}
+      >
+        <option disabled>Виберіть мову таблиці</option>
+        <option value="pl">Польська</option>
+        <option value="ru">російська</option>
+        <option value="uk">Українська</option>
+      </select>
+      <ErrorMessage
+        className={styles.error}
+        errors={errors}
+        name="tableLocale"
+        as="p"
+      />
     </div>
   );
 
   /* ── Row renderer ── */
-  function renderRows(rows: string[][], startOffset: number) {
+  function renderRows(rows: Record<string, unknown>[], startOffset: number) {
     return rows.map((row, localIndex) => {
-      const globalRowIndex = skipRows + startOffset + localIndex;
-      const isRowFlagged = flaggedRows.has(globalRowIndex);
+      const globalRowIndex = skippedRowsAbove + startOffset + localIndex;
+      const isRowFlagged = skippedRowsElsewhere.has(globalRowIndex);
       const isSkippedHeader = startOffset + localIndex < 0; // unused for now but future-proof
       const rowClass = isRowFlagged
         ? styles.rowFlagged
@@ -256,17 +259,17 @@ export default function DataGrid() {
               <Trash2 size={10} strokeWidth={2} />
             </button>
           </td>
-          {row.map((cell, ci) => (
+          {columns.map((column, ci) => (
             <td
               key={ci}
               className={
-                flaggedCols.has(ci) && !isRowFlagged
+                skippedColumns.has(ci) && !isRowFlagged
                   ? styles.tdFlagged
                   : undefined
               }
-              title={cell}
+              title={row[column] ? `${row[column] as string}` : ''}
             >
-              {cell}
+              <UnknownValue value={row[column]} />
             </td>
           ))}
         </tr>

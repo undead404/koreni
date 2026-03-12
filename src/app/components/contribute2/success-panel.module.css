@@ -86,6 +86,27 @@
   color: #64748b;
 }
 
+.addAnotherBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
 /* ── Animations ── */
 @keyframes fadeUp {
   from {

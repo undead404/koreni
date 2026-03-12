@@ -1,50 +1,18 @@
 'use client';
 
-import { Database, GitPullRequest, Info, MapPin, User } from 'lucide-react';
+import { Database, Info, MapPin, User } from 'lucide-react';
+import posthog from 'posthog-js';
+import { useEffect, useMemo, useState } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
+import z from 'zod';
+
+import { initBugsnag } from '@/app/services/bugsnag';
+import { reverseGeocode } from '@/app/services/locationiq';
+
+import { useTableStateStore } from './table-state';
+import { ContributeForm2Values } from './types';
 
 import styles from './review-summary.module.css';
-
-/* ────────────────────────────────────────── */
-/*  Mock summary data                          */
-/* ────────────────────────────────────────── */
-
-const DATASET_FIELDS: { key: string; value: React.ReactNode }[] = [
-  { key: 'File', value: 'dataset_q1_2026.csv' },
-  { key: 'Rows', value: '12,483' },
-  { key: 'Columns', value: '24 (3 flagged for removal)' },
-  { key: 'Skipped Rows', value: '1 (header offset)' },
-  { key: 'Nulls Filled', value: '142' },
-  { key: 'Duplicates', value: '3 removed' },
-];
-
-const CONTEXT_FIELDS: { key: string; value: React.ReactNode }[] = [
-  { key: 'Location', value: 'Tymofiivka' },
-  { key: 'Archive', value: 'DAOO' },
-  { key: 'Year / Range', value: '1897 - 1921' },
-  {
-    key: 'Tags',
-    value: (
-      <span className={styles.tagList}>
-        {['census', 'births', 'marriages', 'deaths'].map((t) => (
-          <span key={t} className={styles.tag}>
-            {t}
-          </span>
-        ))}
-      </span>
-    ),
-  },
-  { key: 'Generated ID', value: 'DAOO-TYM-1897' },
-  {
-    key: 'Generated Title',
-    value: 'Tymofiivka \u2014 census, births, marriages, deaths',
-  },
-];
-
-const AUTHOR_FIELDS: { key: string; value: React.ReactNode }[] = [
-  { key: 'Name', value: 'Jane Doe' },
-  { key: 'Email', value: 'jane@acme.com' },
-  { key: 'GitHub', value: 'janedoe' },
-];
 
 /* ────────────────────────────────────────── */
 /*  Summary card                               */
@@ -81,7 +49,112 @@ function SummaryCard({
 /*  Review summary                             */
 /* ────────────────────────────────────────── */
 
+const coordinatesStringAsTupleSchema = z
+  .string()
+  .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
+  .transform((value) => {
+    const [latString, longString] = value.split(',').map((s) => s.trim());
+    const result = [
+      Number.parseFloat(latString),
+      Number.parseFloat(longString),
+    ] as [number, number];
+    if (Number.isNaN(result[0]) || Number.isNaN(result[1])) {
+      throw new TypeError('Invalid coordinates');
+    }
+    return result;
+  });
 export default function ReviewSummary() {
+  const [modernLocation, setModernLocation] = useState<string | null>('...');
+  const { control } = useFormContext<ContributeForm2Values>();
+  const allValues = useWatch({ control });
+  useEffect(() => {
+    try {
+      const locationCoords = coordinatesStringAsTupleSchema.parse(
+        allValues.location,
+      );
+      void reverseGeocode(locationCoords)
+        .then((resultingLocation) =>
+          setModernLocation(resultingLocation || allValues.location || '?'),
+        )
+        .catch((error) => {
+          console.error(error);
+          initBugsnag().notify(error as Error);
+          posthog.capture('locationiq_reverse_geocode_error', {
+            error: error instanceof Error ? error.message : String(error),
+          });
+          setModernLocation(allValues.location || '?');
+        });
+    } catch {
+      setModernLocation(allValues.location || '?');
+    }
+  }, [allValues.location]);
+  const {
+    getTableDimensions,
+    skippedColumns,
+    skippedRowsAbove,
+    skippedRowsElsewhere,
+    tableFileName,
+  } = useTableStateStore();
+  const tableDimensions = getTableDimensions();
+  const dataSummaryFields = useMemo(() => {
+    return [
+      { key: 'Файл', value: tableFileName },
+      { key: 'Рядів', value: tableDimensions.rows.toLocaleString('uk') },
+      { key: 'Колонок', value: tableDimensions.columns.toLocaleString('uk') },
+      {
+        key: 'Рядів пропущено',
+        value: (skippedRowsAbove + skippedRowsElsewhere.size).toLocaleString(
+          'uk',
+        ),
+      },
+      {
+        key: 'Колонок пропущено',
+        value: skippedColumns.size.toLocaleString('uk'),
+      },
+      {
+        key: 'Мова таблиці',
+        value: allValues.tableLocale ?? null,
+      },
+    ];
+  }, [
+    allValues.tableLocale,
+    skippedColumns.size,
+    skippedRowsAbove,
+    skippedRowsElsewhere.size,
+    tableDimensions.columns,
+    tableDimensions.rows,
+    tableFileName,
+  ]);
+  const contextFields = useMemo(() => {
+    return [
+      { key: 'Ідетифікатор', value: allValues.id },
+      { key: 'Назва', value: allValues.title },
+      { key: 'Місце', value: modernLocation },
+      {
+        key: 'Архівні справи',
+        value:
+          allValues.archiveItems?.map((item) => item.item).join(', ') ?? null,
+      },
+      { key: 'Роки', value: allValues.yearsRange?.join(', ') ?? null },
+    ];
+  }, [
+    allValues.archiveItems,
+    allValues.id,
+    allValues.title,
+    allValues.yearsRange,
+    modernLocation,
+  ]);
+  const authorFields = useMemo(() => {
+    return [
+      { key: 'Ім’я', value: allValues.authorName },
+      { key: 'Електронна пошта', value: allValues.authorEmail ?? 'Не вказано' },
+      { key: 'GitHub', value: allValues.authorGithubUsername ?? 'Не вказано' },
+    ];
+  }, [
+    allValues.authorEmail,
+    allValues.authorGithubUsername,
+    allValues.authorName,
+  ]);
   return (
     <div className={styles.wrapper}>
       {/* Status */}
@@ -97,12 +170,12 @@ export default function ReviewSummary() {
         <SummaryCard
           icon={<Database size={13} />}
           title="Таблиця"
-          fields={DATASET_FIELDS}
+          fields={dataSummaryFields}
         />
         <SummaryCard
           icon={<MapPin size={13} />}
           title="Контекст"
-          fields={CONTEXT_FIELDS}
+          fields={contextFields}
         />
       </div>
 
@@ -110,7 +183,7 @@ export default function ReviewSummary() {
       <SummaryCard
         icon={<User size={13} />}
         title="Автор"
-        fields={AUTHOR_FIELDS}
+        fields={authorFields}
       />
 
       {/* Notice */}
@@ -124,14 +197,6 @@ export default function ReviewSummary() {
           доданням на сайт.
         </span>
       </div>
-
-      {/* CTA */}
-      <button type="button" className={styles.cta}>
-        <span className={styles.ctaIcon}>
-          <GitPullRequest size={15} strokeWidth={2.5} />
-        </span>
-        Подати
-      </button>
     </div>
   );
 }

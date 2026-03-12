@@ -434,6 +434,8 @@
     color 0.15s ease,
     background-color 0.15s ease;
   letter-spacing: 0.025em;
+  width: 100%;
+  position: relative;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -468,4 +470,51 @@
   font-size: 0.8125rem;
   color: #94a3b8;
   font-weight: 500;
+}
+
+.select {
+  composes: input;
+  padding-left: 1.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .select {
+    background-color: #1e293b;
+    color: #cbd5e1;
+  }
+}
+
+.select:focus-visible {
+  outline: none;
+  outline-offset: 2px;
+}
+
+.label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .label {
+    color: #cbd5e1;
+  }
+}
+
+.select option {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #0f172a;
+  background-color: #ffffff;
+  text-align: center;
+  outline: none;
+  transition: background-color 0.1s ease;
+  font-family: inherit;
+}
+
+.error {
+  color: #dc2626;
 }

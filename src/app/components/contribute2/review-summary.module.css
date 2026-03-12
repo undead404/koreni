@@ -82,7 +82,6 @@
 }
 
 .rowKey {
-  flex-shrink: 0;
   width: 7.5rem;
   font-size: 0.75rem;
   font-weight: 500;

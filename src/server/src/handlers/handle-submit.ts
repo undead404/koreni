@@ -17,7 +17,7 @@ const handleSubmit = async (c: Context) => {
         distinctId: clientId,
         event: 'payload_validation_failed',
         properties: {
-          errors: parseResult.error.errors,
+          errors: parseResult.error.issues.map((issue) => issue.message),
           authMethod: apiKey ? 'api_key' : 'web',
         },
       });
