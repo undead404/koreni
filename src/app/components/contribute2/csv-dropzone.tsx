@@ -51,7 +51,6 @@ export default function CsvDropzone() {
   const inputReference = useRef<HTMLInputElement>(null);
   const { getTableDimensions, setTableData, setTableFileName } =
     useTableStateStore();
-  console.log('errors', errors);
 
   /* ── Process file ── */
   const processFile = useCallback(
@@ -111,11 +110,12 @@ export default function CsvDropzone() {
       event.preventDefault();
       event.stopPropagation();
       if (state === 'uploading' || state === 'success') return;
+      setValue('table', event.dataTransfer.files);
 
       const file = event.dataTransfer.files[0];
       if (file) processFile(file);
     },
-    [processFile, state],
+    [processFile, setValue, state],
   );
 
   /* ── Click / input handler ── */
