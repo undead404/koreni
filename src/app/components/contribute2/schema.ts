@@ -65,11 +65,17 @@ export const contributeForm2Schema = z.object({
     }),
   ),
   table: z
-    .instanceof(FileList)
+    .unknown()
     .nullable()
-    .refine((fileList) => fileList && fileList.length > 0, {
-      message: 'Виберіть файл CSV',
-    }),
+    .refine(
+      (fileList) => {
+        if (typeof FileList === 'undefined') return true; // Skip on server
+        return fileList instanceof FileList && fileList.length > 0;
+      },
+      {
+        message: 'Виберіть файл CSV',
+      },
+    ),
   tableLocale: z
     .enum(['pl', 'ru', 'uk', ''])
     .nullable()

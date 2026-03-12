@@ -57,7 +57,7 @@ export default function SourcesInput() {
               <ErrorMessage
                 className={styles.error}
                 errors={errors}
-                name={`sources.${index}.url`}
+                name={`sources.${index}.url` as keyof ContributeForm2Values}
                 as="p"
               />
             </div>

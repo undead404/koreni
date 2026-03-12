@@ -277,7 +277,7 @@ export default function ContextForm() {
             key={archiveItem.item}
             className={styles.error}
             errors={errors}
-            name={`archiveItems.${index}.item`}
+            name={`archiveItems.${index}.item` as keyof ContributeForm2Values}
             as="p"
           />
         ))}
@@ -301,7 +301,7 @@ export default function ContextForm() {
             key={year}
             className={styles.error}
             errors={errors}
-            name={`yearsRange.${index}`}
+            name={`yearsRange.${index}` as keyof ContributeForm2Values}
             as="p"
           />
         )) ?? null}

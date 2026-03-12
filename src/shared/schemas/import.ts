@@ -13,7 +13,7 @@ export const importPayloadSchema = indexationTableSchema
     authorGithubUsername: z.string().optional(),
     table: z.object({
       columns: z.array(z.string()),
-      data: z.array(z.record(z.any())),
+      data: z.array(z.record(z.string(), z.any())),
     }),
     turnstileToken: z.optional(z.string()),
   });

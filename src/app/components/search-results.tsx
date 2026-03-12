@@ -39,7 +39,7 @@ const SearchResults: FC<ResultsProperties> = ({
             result_id: result.document.id,
             result_title: result.document.title,
             result_year: result.document.year,
-            validation_errors: parsed.error.errors,
+            validation_errors: parsed.error.issues,
           });
         },
       );

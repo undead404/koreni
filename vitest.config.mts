@@ -12,6 +12,6 @@ export default defineConfig({
     },
     environment: 'jsdom',
     setupFiles: ['vitest.setup.ts'],
-    exclude: ['node_modules', 'src/server'],
+    exclude: ['node_modules', 'src/server', 'src/daily-report'],
   },
 });
