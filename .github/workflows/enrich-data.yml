@@ -11,12 +11,12 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
@@ -28,7 +28,7 @@ jobs:
         run: yarn data:modernize-russian
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: auto-update data size [skip ci]'
           file_pattern: '.'

@@ -26,10 +26,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
@@ -51,10 +51,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
@@ -78,10 +78,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           cache-dependency-path: src/server/yarn.lock
@@ -110,10 +110,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
@@ -151,7 +151,7 @@ jobs:
 
       # 3. Upload Artifacts
       - name: Upload frontend artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: out
@@ -164,10 +164,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           cache: 'yarn'
           node-version-file: .nvmrc
@@ -184,7 +184,7 @@ jobs:
         working-directory: src/server
 
       - name: Upload backend artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-dist
           path: src/server/dist
@@ -204,7 +204,7 @@ jobs:
 
       # --- Frontend Deploy ---
       - name: Download frontend artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
@@ -236,7 +236,7 @@ jobs:
 
       # --- Backend Deploy ---
       - name: Download backend source
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: api-dist
           path: api-dist
