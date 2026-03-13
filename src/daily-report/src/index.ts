@@ -23,6 +23,7 @@ const addedFiles = fs
 if (addedFiles.length === 0) {
   process.exit(0);
 }
+console.log(addedFiles);
 
 let count = 0;
 const blocks = [];
@@ -67,7 +68,7 @@ for (const file of addedFiles) {
     count++;
   } catch (error) {
     console.error(`Помилка читання ${file}:`, error);
-    process.exit(1);
+    // process.exit(1);
   }
 }
 
