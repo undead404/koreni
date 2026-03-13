@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-22-1-48
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-13
+id: DAKheO-22-1-48-Tymofiivka
+location:
+  - 48.6689736
+  - 31.1223
+size: 347
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
+tableFilePath: public/csv/DAKheO-22-1-48-Tymofiivka.csv
+tableLocale: ru
+title: Ревізькі казки кріпаків, село Тимофіївка, 1858, ДАХеО-22-1-48
+yearsRange:
+  - 1858
