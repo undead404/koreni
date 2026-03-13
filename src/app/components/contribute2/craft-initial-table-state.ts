@@ -1,5 +1,5 @@
 export default function craftInitialTableState(table: string[][]) {
-  const [columns, ...rows] = table;
+  const [columns = [], ...rows] = table;
   const skippedRowsAbove = 0;
   const skippedRowsElsewhere = new Set(
     rows

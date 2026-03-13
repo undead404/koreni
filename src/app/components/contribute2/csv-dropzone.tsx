@@ -14,6 +14,7 @@ import { useFormContext } from 'react-hook-form';
 import parseCsvToTuples from '@/app/helpers/parse-csv-file-to-tuples';
 import { initBugsnag } from '@/app/services/bugsnag';
 
+import { useContributionStateStore } from './contribution-state';
 import { useTableStateStore } from './table-state';
 import type { DropzoneState, ParsedFile } from './types';
 
@@ -51,6 +52,7 @@ export default function CsvDropzone() {
   const inputReference = useRef<HTMLInputElement>(null);
   const { getTableDimensions, setTableData, setTableFileName } =
     useTableStateStore();
+  const { setState: setContributionState } = useContributionStateStore();
 
   /* ── Process file ── */
   const processFile = useCallback(
@@ -60,6 +62,7 @@ export default function CsvDropzone() {
         return;
       }
 
+      // eslint-disable-next-line promise/catch-or-return
       parseCsvToTuples(file)
         .then(setTableData)
         .catch((error: Error) => {
@@ -83,9 +86,17 @@ export default function CsvDropzone() {
         .catch((error: Error) => {
           setState('error');
           console.error(error);
+        })
+        .finally(() => {
+          setContributionState({
+            error: '',
+            isSubmitting: false,
+            prUrl: '',
+            title: '',
+          });
         });
     },
-    [setTableData, setTableFileName],
+    [setContributionState, setTableData, setTableFileName],
   );
 
   /* ── Drag handlers ── */

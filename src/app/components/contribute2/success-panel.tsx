@@ -6,6 +6,7 @@ import { useFormContext } from 'react-hook-form';
 
 import { useContributionStateStore } from './contribution-state';
 import getDefaultValues from './default-values';
+import { useTableStateStore } from './table-state';
 import { ContributeForm2Values } from './types';
 
 import styles from './success-panel.module.css';
@@ -23,6 +24,7 @@ export default function SuccessPanel({
 }: SuccessPanelProperties) {
   const { reset } = useFormContext<ContributeForm2Values>();
   const { setState } = useContributionStateStore();
+  const { reset: resetTableState } = useTableStateStore();
   const handleReset = useCallback(() => {
     reset(getDefaultValues());
     setState({
@@ -31,7 +33,8 @@ export default function SuccessPanel({
       prUrl: '',
       title: '',
     });
-  }, [reset, setState]);
+    resetTableState();
+  }, [reset, resetTableState, setState]);
   return (
     <div className={styles.wrapper} role="status" aria-live="polite">
       {/* Animated checkmark */}
