@@ -18,6 +18,12 @@ import styles from './data-grid.module.css';
 /*  Component                                  */
 /* ────────────────────────────────────────── */
 
+let incrementalId = 0;
+
+function getIncrementalId() {
+  return incrementalId++;
+}
+
 export default function DataGrid() {
   const [numberOfRowsShownAbove, setNumberOfRowsShownAbove] =
     useState(DEFAULT_PREVIEW_SIZE);
@@ -124,7 +130,7 @@ export default function DataGrid() {
               </th>
               {columns.map((col, ci) => (
                 <th
-                  key={col}
+                  key={col || `col-${getIncrementalId()}`}
                   className={clsx({
                     [styles.thFlagged]: skippedColumns.has(ci),
                   })}

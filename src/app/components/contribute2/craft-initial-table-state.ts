@@ -21,6 +21,7 @@ export default function craftInitialTableState(table: string[][]) {
   );
   return {
     tableData: table,
+    tableFileName: '',
     skippedRowsAbove,
     skippedRowsElsewhere,
     skippedColumns,
