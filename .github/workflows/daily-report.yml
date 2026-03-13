@@ -19,7 +19,11 @@ jobs:
         id: find-files
         run: |
           # Шукаємо додані файли за останні 24 години
-          git log --since="24 hours ago" --diff-filter=A --name-only --format="" | grep -E '^data/records/.*\.(yaml|yml)$' | sort -u > added_files.txt
+          START_COMMIT=$(git rev-list -1 --before="24 hours ago" HEAD)
+          if [ -z "$START_COMMIT" ]; then
+            START_COMMIT=$(git rev-list --max-parents=0 HEAD | tail -n 1)
+          fi
+          git diff --name-only --diff-filter=A "$START_COMMIT" HEAD | grep -E '^data/records/.*\.(yaml|yml)$' > added_files.txt
 
           # Вивести знайдені файли також в консоль
             echo "added_files.txt:"
