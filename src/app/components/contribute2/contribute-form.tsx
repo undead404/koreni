@@ -12,7 +12,6 @@ import Turnstile, { useTurnstile } from 'react-turnstile';
 import environment from '@/app/environment';
 import { submitErrorSchema, submitResponseSchema } from '@/app/schemas/api';
 
-import type { ContributeFormProperties } from '../contribute/types';
 import Loader from '../loader';
 
 import { useContributionStateStore } from './contribution-state';
@@ -21,7 +20,7 @@ import getDefaultValues from './default-values';
 import { KnownLocationsContext } from './known-locations-context';
 import { saveAuthorIdentity } from './local-storage';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values } from './types';
+import type { ContributeForm2Values, ContributeFormProperties } from './types';
 import useContributeForm from './use-contribute-form';
 
 import styles from './contribute-form.module.css';
