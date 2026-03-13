@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-22-1-44
+authorName: Павло Скляренко
+authorEmail: skliarenkopa@gmail.com
+date: 2026-03-13
+id: DAKheO-22-1-44-Sofiivka
+location:
+  - 48.659821
+  - 31.037411
+size: 64
+sources:
+  - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
+tableFilePath: public/csv/DAKheO-22-1-44-Sofiivka.csv
+tableLocale: ru
+title: Ревізькі казки кріпаків, село Софіївка (Покровка), 1858, ДАХеО-22-1-44
+yearsRange:
+  - 1858
