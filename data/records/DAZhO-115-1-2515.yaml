@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-115-1-2515
+authorName: Sergi Adamchuk
+authorEmail: adamchuk@gmail.com
+date: 2026-03-13
+id: DAZhO-115-1-2515
+location:
+  - 50.995098
+  - 24.31995
+size: 192
+sources:
+  - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?gid=1791401343#gid=1791401343
+tableFilePath: public/csv/DAZhO-115-1-2515.csv
+tableLocale: uk
+title: Про затвердження люстраційного акту по селищу Руда, 1874
+yearsRange:
+  - 1874
