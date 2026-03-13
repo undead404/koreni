@@ -2,10 +2,11 @@
 
 import { ErrorMessage } from '@hookform/error-message';
 import { MapPin, Search, X } from 'lucide-react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
+import { autocomplete } from '@/app/services/locationiq';
 
 import ArchiveItemsInput from './archive-items-input';
 import { useKnownLocations } from './known-locations-context';
@@ -21,6 +22,11 @@ const LocationController = Controller as typeof Controller<
   ContributeForm2Values,
   'location'
 >;
+
+const ORIGIN_TITLES = {
+  local: 'Наявна таблиця',
+  remote: 'Географія',
+};
 
 /* ────────────────────────────────────────── */
 /*  Component                                  */
@@ -55,14 +61,88 @@ export default function ContextForm() {
     }
   }, [setValue, titleValue, touchedFields.id]);
 
-  const filteredLocations =
-    locationQuery.length > 0
-      ? knownLocations.filter(
+  const [filteredLocations, setFilteredLocations] = useState<
+    (Location & { origin: 'local' | 'remote' })[]
+  >([]);
+
+  const [runSearch, cleanupSearch] = useMemo(() => {
+    const abortController = new AbortController();
+    let timeout: ReturnType<typeof setTimeout>;
+    let debounceTimeout: ReturnType<typeof setTimeout>;
+    function run() {
+      if (!locationQuery) {
+        setFilteredLocations(
+          knownLocations.slice(0, 10).map((l) => ({ ...l, origin: 'local' })),
+        );
+        return;
+      }
+      const localLocations = knownLocations
+        .filter(
           (l) =>
             l.title.toLowerCase().includes(locationQuery.toLowerCase()) ||
             l.title.toLowerCase().includes(locationQuery.toLowerCase()),
         )
-      : knownLocations;
+        .map((l) => ({ ...l, origin: 'local' as const }));
+      setFilteredLocations(localLocations);
+
+      debounceTimeout = setTimeout(() => {
+        timeout = setTimeout(() => {
+          abortController.abort('timeout');
+        }, 5000);
+
+        // eslint-disable-next-line promise/catch-or-return
+        autocomplete(locationQuery, abortController)
+          .then((data) => {
+            if (abortController.signal.aborted) {
+              return;
+            }
+            // eslint-disable-next-line promise/always-return
+            if (!data) {
+              return;
+            }
+            setFilteredLocations([
+              ...localLocations,
+              ...data.map((l) => ({
+                coordinates: [l.lat, l.lon] as [number, number],
+                title: l.display_name,
+                origin: 'remote' as const,
+              })),
+            ]);
+          })
+          .catch((error) => {
+            if (abortController.signal.aborted) {
+              return;
+            }
+            console.error(error);
+            setFilteredLocations(
+              knownLocations
+                .filter(
+                  (l) =>
+                    l.title
+                      .toLowerCase()
+                      .includes(locationQuery.toLowerCase()) ||
+                    l.title.toLowerCase().includes(locationQuery.toLowerCase()),
+                )
+                .map((l) => ({ ...l, origin: 'local' })),
+            );
+          })
+          .finally(() => {
+            clearTimeout(timeout);
+          });
+      }, 1000);
+    }
+    function cleanup() {
+      abortController.abort('unmount');
+      clearTimeout(timeout);
+      clearTimeout(debounceTimeout);
+    }
+    return [run, cleanup];
+  }, [knownLocations, locationQuery]);
+
+  useEffect(() => {
+    runSearch();
+    return cleanupSearch;
+  }, [cleanupSearch, runSearch]);
 
   const handleLocationSelect = useCallback(
     (loc: Location) => {
@@ -191,7 +271,7 @@ export default function ContextForm() {
                   <div className={styles.dropdown}>
                     {filteredLocations.map((loc) => (
                       <button
-                        key={loc.title}
+                        key={loc.coordinates.join(',') + loc.title}
                         type="button"
                         className={styles.dropdownItem}
                         onClick={() => handleLocationSelect(loc)}
@@ -199,6 +279,9 @@ export default function ContextForm() {
                       >
                         <span className={styles.dropdownItemIcon}>
                           <MapPin size={14} strokeWidth={2} />
+                        </span>
+                        <span className={styles.dropdownItemOrigin}>
+                          [{ORIGIN_TITLES[loc.origin]}]
                         </span>
                         <span className={styles.dropdownItemText}>
                           <span className={styles.dropdownItemName}>

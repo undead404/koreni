@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import posthog from 'posthog-js';
 import { z } from 'zod';
 
@@ -24,7 +25,10 @@ const errorResponseSchema = z.object({
 
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 
-export async function autocomplete(query: string) {
+async function autocompleteBounced(
+  query: string,
+  abortController: AbortController,
+) {
   try {
     if (!environment.NEXT_PUBLIC_LOCATIONIQ_KEY) {
       return;
@@ -33,7 +37,7 @@ export async function autocomplete(query: string) {
       `https://us1.locationiq.com/v1/autocomplete?key=${environment.NEXT_PUBLIC_LOCATIONIQ_KEY}&q=${encodeURIComponent(
         query,
       )}&limit=5&format=json`,
-      options,
+      { ...options, signal: abortController.signal },
     );
     if (!response.ok) {
       const errorData = (await response.json()) as unknown;
@@ -54,6 +58,8 @@ export async function autocomplete(query: string) {
     return;
   }
 }
+
+export const autocomplete = _.throttle(autocompleteBounced, 500);
 
 export async function reverseGeocode(coordinates: [number, number]) {
   try {

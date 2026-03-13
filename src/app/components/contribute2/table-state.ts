@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 import { DEFAULT_PREVIEW_SIZE } from './constants';
 import craftInitialTableState from './craft-initial-table-state';
+import skipFromTable from './skip-from-table';
 /**
  * Zustand state to hold table state:
  * - table data
@@ -59,22 +60,22 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
   },
   getTableAsObjects: (includeSkipped: boolean = false) => {
     const {
+      getAllColumns,
       tableData,
       skippedRowsAbove,
       skippedRowsElsewhere,
       skippedColumns,
     } = get();
     const table = tableData.slice(skippedRowsAbove);
-    const [headers, ...data] = table;
+    let [, ...data] = table;
+    const headers = getAllColumns(includeSkipped);
+
     if (!includeSkipped) {
-      for (const rowIndex of skippedRowsElsewhere) {
-        data.splice(rowIndex, 1);
-      }
-      for (const columnIndex of skippedColumns) {
-        for (const row of data) {
-          row.splice(columnIndex, 1);
-        }
-      }
+      data = skipFromTable(tableData, {
+        skippedRowsAbove,
+        skippedRowsElsewhere,
+        skippedColumns,
+      });
     }
     return data.map((row) =>
       Object.fromEntries(headers.map((h, index) => [h, row[index]])),

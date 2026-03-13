@@ -58,10 +58,14 @@ export default function ContributeForm2({
         title: data.title,
       });
       try {
-        const adjustedFormData = convertContributeFormData(data, {
+        const tableData = {
           columns: getAllColumns(),
           data: getTableAsObjects(),
-        });
+        };
+        console.log(tableData);
+        const adjustedFormData = convertContributeFormData(data, tableData);
+
+        console.log(adjustedFormData);
 
         if (turnstileToken) {
           adjustedFormData.turnstileToken = turnstileToken;
