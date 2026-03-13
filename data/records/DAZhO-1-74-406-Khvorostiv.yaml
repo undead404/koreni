@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-74-406
+authorName: Sergi Adamchuk
+authorEmail: adamchuk@gmail.com
+date: 2026-03-13
+id: DAZhO-1-74-406-Khvorostiv
+location:
+  - 50.8176
+  - 24.55444
+size: 913
+sources:
+  - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?gid=1571545709#gid=1571545709
+tableFilePath: public/csv/DAZhO-1-74-406-Khvorostiv.csv
+tableLocale: uk
+title: Сповідальні відомості, Хворостів, 1912
+yearsRange:
+  - 1912

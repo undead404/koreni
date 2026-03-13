@@ -1,17 +1,12 @@
 import z from 'zod';
 
+import { nonEmptyString } from '@/shared/schemas/non-empty-string';
+
 export const contributeForm2Schema = z.object({
   archiveItems: z
     .array(
       z.object({
-        item: z.string().regex(
-          // eslint-disable-next-line regexp/no-obscure-range
-          /^[а-я]{1,10}-[ПР]?\d+[а-я]{0,3}-\d+[а-я]{0,3}-\d+[а-я]{0,3}$/gi,
-          {
-            message:
-              'Очікуваний формат шифру архівної справи: архів-фонд-опис-справа. Наприклад, ДАХмО-315-1-8330',
-          },
-        ),
+        item: nonEmptyString,
       }),
     )
     .min(1, {
@@ -21,10 +16,12 @@ export const contributeForm2Schema = z.object({
     .email({ message: 'Введіть справжню адресу електронної пошти' })
     .optional(),
   authorGithubUsername: z
-    .string()
-    .regex(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i, {
-      message: 'Лише латинські літери, цифри та дефіси',
-    })
+    .union([
+      z.literal(''),
+      z.string().regex(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i, {
+        message: 'Лише латинські літери, цифри та дефіси',
+      }),
+    ])
     .optional(),
   authorName: z.string().min(1, {
     message: "Будь ласка, введіть своє ім'я, або хоча б псевдонім",

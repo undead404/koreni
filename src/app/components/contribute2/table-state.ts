@@ -30,25 +30,15 @@ interface TableStateActions {
     rows: number;
     columns: number;
   };
+  reset: () => void;
   setTableData: (tableData: string[][]) => void;
   setTableFileName: (tableFileName: string) => void;
   setSkippedRowsAbove: (skippedRowsAbove: number) => void;
-  //   skipColumn: (skippedColumnIndex: number, skip: boolean) => void;
-  //   skipRow: (skippedRowIndex: number, skip: boolean) => void;
   toggleColumn: (skippedColumnIndex: number) => void;
   toggleRow: (skippedRowIndex: number) => void;
 }
 
 export type TableStateStore = TableState & TableStateActions;
-
-// export const TABLE_STATE_KEY = 'tableState';
-
-// const tableStateSchema = z.object({
-//   tableData: z.array(z.array(z.string())),
-//   skippedRowsAbove: z.number().min(0),
-//   skippedRowsElsewhere: z.array(z.number().min(0)),
-//   skippedColumns: z.array(z.number().min(0)),
-// });
 
 export const useTableStateStore = create<TableStateStore>((set, get) => ({
   getAllColumns: (includeSkipped: boolean = false) => {
@@ -100,6 +90,9 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
       columns: tableData[0].length - skippedColumns.size,
     };
   },
+  reset: () => {
+    set(craftInitialTableState([]));
+  },
   rowsShownAbove: DEFAULT_PREVIEW_SIZE,
   rowsShownBelow: DEFAULT_PREVIEW_SIZE,
   setSkippedRowsAbove: (skippedRowsAbove: number) => {
@@ -107,31 +100,6 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
       skippedRowsAbove,
     });
   },
-  //   skipColumn: (skippedColumnIndex: number, skip: boolean) => {
-  //     set((state) => {
-  //       const { skippedColumns } = state;
-  //       const next = new Set(skippedColumns);
-  //       if (skip) next.add(skippedColumnIndex);
-  //       else next.delete(skippedColumnIndex);
-  //       return {
-  //         ...state,
-  //         skippedColumns: next,
-  //       };
-  //     });
-  //   },
-  //   skipRow: (skippedRowIndex: number, skip: boolean) => {
-  //     set((state) => {
-  //       const { skippedRowsElsewhere } = state;
-  //       const next = new Set(skippedRowsElsewhere);
-  //       if (skip) next.add(skippedRowIndex);
-  //       else next.delete(skippedRowIndex);
-  //       return {
-  //         ...state,
-  //         skippedRowsElsewhere: next,
-  //       };
-  //     });
-  //   },
-
   setTableData: (tableData: string[][]) => {
     set(craftInitialTableState(tableData));
   },

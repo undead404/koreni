@@ -1,14 +1,20 @@
 'use client';
 
+import { ErrorMessage } from '@hookform/error-message';
 import { Info, Mail, User } from 'lucide-react';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
+
+import type { ContributeForm2Values } from './types';
 
 import styles from './author-form.module.css';
 
 import githubIcon from '../../icons/github.svg';
 export default function AuthorForm() {
   const { register } = useFormContext();
+  const {
+    formState: { errors },
+  } = useFormContext<ContributeForm2Values>();
   return (
     <div className={styles.wrapper}>
       {/* Name */}
@@ -31,6 +37,12 @@ export default function AuthorForm() {
             autoComplete="name"
           />
         </div>
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="authorName"
+          as="p"
+        />
       </div>
 
       {/* Email */}
@@ -51,6 +63,12 @@ export default function AuthorForm() {
             autoComplete="email"
           />
         </div>
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="authorEmail"
+          as="p"
+        />
       </div>
 
       {/* GitHub Username */}
@@ -71,6 +89,12 @@ export default function AuthorForm() {
             autoComplete="username"
           />
         </div>
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="authorGithubUsername"
+          as="p"
+        />
       </div>
 
       {/* Info hint */}

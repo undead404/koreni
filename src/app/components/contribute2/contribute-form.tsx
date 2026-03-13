@@ -1,13 +1,20 @@
 'use client';
 import dynamic from 'next/dynamic';
 import posthog from 'posthog-js';
-import { type SubmitEvent, useCallback, useRef, useState } from 'react';
+import {
+  type SubmitEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
   FormProvider,
   type SubmitErrorHandler,
   type SubmitHandler,
 } from 'react-hook-form';
 import Turnstile, { useTurnstile } from 'react-turnstile';
+import { toast } from 'sonner';
 
 import environment from '@/app/environment';
 import { submitErrorSchema, submitResponseSchema } from '@/app/schemas/api';
@@ -40,6 +47,16 @@ export default function ContributeForm2({
   const contributionStartedReference = useRef(false);
   const { state: contributionState, setState: setContributionState } =
     useContributionStateStore();
+
+  useEffect(() => {
+    for (const error of Object.values(form.formState.errors)) {
+      toast.error(error.message, {
+        description: error.message,
+        duration: 5000,
+        icon: '🚨',
+      });
+    }
+  }, [form.formState.errors]);
 
   const submit: SubmitHandler<ContributeForm2Values> = useCallback(
     async (data, event) => {
