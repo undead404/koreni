@@ -1,0 +1,37 @@
+archiveItems:
+  - ДАКрО-Р7915-2-2193
+  - ДАКрО-Р7915-2-2358
+  - ДАКрО-Р7915-2-2359
+  - ДАКрО-Р7915-2-2360
+  - ДАКрО-Р7915-2-2361
+  - ДАКрО-Р7915-2-2363
+  - ДАКрО-Р7915-2-2499
+  - ДАКрО-Р7915-2-2500
+  - ДАКрО-Р7915-2-2501
+  - ДАКрО-Р7915-2-2505
+  - ДАКрО-Р7915-2-2506
+  - ДАКрО-Р7915-2-2599
+  - ДАКрО-Р7915-2-2600
+  - ДАКрО-Р7915-2-285
+  - ДАКрО-Р7915-2-724
+  - ДАКрО-Р7915-2-725
+  - ДАКрО-Р7915-2-824
+  - ДАКрО-Р7915-2-917
+  - ДАКрО-Р7915-2-920
+  - ДАКрО-Р7915-2-921
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-03-14
+id: novoukrainka-pomichna-pishchanyy-brid-narodzhennia
+location:
+  - 48.3250616
+  - 31.522047
+size: 10013
+sources:
+  - https://docs.google.com/spreadsheets/d/1X0tEYKFTawxTTIrxqX1GkC5Pfwa6xyD-39YXzxN2lkY/edit?usp=sharing
+tableFilePath: public/csv/novoukrainka-pomichna-pishchanyy-brid-narodzhennia.csv
+tableLocale: uk
+title: Новоукраїнка, Помічна, Піщаний Брід - Народження
+yearsRange:
+  - 1924
+  - 1947
