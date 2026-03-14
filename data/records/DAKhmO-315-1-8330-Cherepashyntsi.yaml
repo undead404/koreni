@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-14
+id: DAKhmO-315-1-8330-Cherepashyntsi
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1967
+sources:
+  - https://docs.google.com/spreadsheets/d/1ghAcxh3z_PDxt9D4VsYz7qDUsS7Bwnpgjpm_DDVnIgg/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8330-Cherepashyntsi.csv
+tableLocale: ru
+title: Черепашинці 1855 Сповідний розпис ДАХмО-315-1-8330
+yearsRange:
+  - 1855
