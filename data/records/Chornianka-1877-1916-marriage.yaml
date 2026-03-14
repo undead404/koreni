@@ -1,0 +1,27 @@
+archiveItems:
+  - ДАХеО-259-71-1
+  - ДАХеО-259-71-2
+  - ДАХеО-259-71-3
+  - ДАЗпО-5593-2-425
+  - ДАХеО-259-71-4
+  - ДАХеО-259-71-5
+  - ДАХеО-259-71-6
+  - ДАХеО-259-71-7
+  - ДАХеО-259-71-8
+  - ДАХеО-259-71-9
+  - ДАХеО-259-71-10
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-14
+id: Chornianka-1877-1916-marriage
+location:
+  - 46.645599
+  - 33.370171
+size: 414
+sources:
+  - https://docs.google.com/spreadsheets/d/1k78ylXv_D1gHPC2OO-mI9K-iY16zrm76S-9g8uT90hw/edit?usp=sharing
+tableFilePath: public/csv/Chornianka-1877-1916-marriage.csv
+tableLocale: uk
+title: Чорнянка (Чорненька) Дніровський пов. Таврійська губ. – шлюби (1877-1916)
+yearsRange:
+  - 1877
