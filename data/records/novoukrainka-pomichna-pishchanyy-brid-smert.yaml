@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКрО-Р7915-2-352
+  - ДАКрО-Р7915-2-353
+  - ДАКрО-Р7915-2-423
+  - ДАКрО-Р7915-2-504
+  - ДАКрО-Р7915-2-923
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-03-14
+id: novoukrainka-pomichna-pishchanyy-brid-smert
+location:
+  - 48.3250616
+  - 31.522047
+size: 1935
+sources:
+  - https://docs.google.com/spreadsheets/d/1X0tEYKFTawxTTIrxqX1GkC5Pfwa6xyD-39YXzxN2lkY/edit?usp=sharing
+tableFilePath: public/csv/novoukrainka-pomichna-pishchanyy-brid-smert.csv
+tableLocale: uk
+title: Новоукраїнка, Помічна, Піщаний Брід - Смерть
+yearsRange:
+  - 1935
+  - 1947
