@@ -1,0 +1,17 @@
+archiveItems:
+  - "ДАВіО-Р6023-1-"
+authorName: Андрій Каленський
+authorEmail: andreyaquarius@gmail.com
+date: 2026-03-14
+id: DAViO-R6023-1-v1
+location:
+  - 49.2320162
+  - 28.467975
+size: 8577
+sources: 
+  - https://docs.google.com/spreadsheets/d/1qm_ClJ7RMvmlrJsDxOZhjjfnrfqSp833/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/davio-fond-r-6023-opys-1-tom-1.csv
+tableLocale: uk
+title: "Колекція фільтраційних, слідчих та наглядових справ. ДАВіО Р-6023 опис 1 том 1"
+yearsRange:
+  - 1945
