@@ -39,7 +39,9 @@ export default function determineRowYear(
       row['Начато'] ||
       row['Окончено'] ||
       row['дата нар.'] ||
-      row['дата'];
+      row['дата'] ||
+      row['Народження'] ||
+      row['Хрещення'];
     if (dateInRow) {
       if (dateInRow === '?') {
         return 0;
