@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАВіО Р-6023-1 том 2
+authorName: Андрій Каленський
+authorEmail: andreyaquarius@gmail.com
+date: 2026-03-14
+id: kolektsiia-filtratsiinykh-slidchykh-ta-nahliadovykh-sprav-davio-fond-r-6023-opys-1-tom-2
+location:
+  - 49.2320162
+  - 28.467975
+size: 9112
+sources:
+  - https://drive.google.com/drive/folders/1v4r4pfyK8n_u95yEDU-J7ZcpTVDa9H-O
+  - https://docs.google.com/spreadsheets/d/1QB3GVK44pi5Co3V324fA9GkjpvzpCVv7/edit?gid=2136698849#gid=2136698849
+tableFilePath: public/csv/kolektsiia-filtratsiinykh-slidchykh-ta-nahliadovykh-sprav-davio-fond-r-6023-opys-1-tom-2.csv
+tableLocale: uk
+title: Колекція фільтраційних, слідчих та наглядових справ. .ДАВіО фонд Р-6023
+  опис 1 том 2
+yearsRange:
+  - 1945
