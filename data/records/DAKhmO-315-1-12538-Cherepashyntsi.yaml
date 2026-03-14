@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-12538
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-14
+id: DAKhmO-315-1-12538-Cherepashyntsi
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1429
+sources:
+  - https://docs.google.com/spreadsheets/d/1WO886g9_5mB346h_owqaU_XfEYg6xeRGwBWL899I_D8/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-12538-Cherepashyntsi.csv
+tableLocale: ru
+title: Черепашинці (1897) – метрична книга, ДАХмО-315-1-12538
+yearsRange:
+  - 1897
