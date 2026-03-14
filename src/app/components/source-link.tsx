@@ -5,6 +5,7 @@ import { useCallback, useMemo } from 'react';
 
 const SITES_MAPPING: Record<string, string> = {
   'docs.google.com': 'Google Docs',
+  'jbc.bj.uj.edu.pl': 'Jagiellońska Biblioteka Cyfrowa',
   'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
   'onedrive.live.com': 'OneDrive',
   'uk.wikisource.org': 'Вікіджерела',
