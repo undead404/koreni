@@ -1,0 +1,16 @@
+archiveItems:
+  - "Фонд Р-6023 опис 1 том 1 "
+authorName: Андрій Каленський
+authorEmail: andreyaquarius@gmail.com
+date: 2026-03-14
+id: davio-fond-r-6023-opys-1-tom-1
+location:
+  - 49.2320162
+  - 28.467975
+size: 8577
+sources: []
+tableFilePath: public/csv/davio-fond-r-6023-opys-1-tom-1.csv
+tableLocale: uk
+title: "ДАВіО фонд Р-6023 опис 1 том 1 "
+yearsRange:
+  - 1945
