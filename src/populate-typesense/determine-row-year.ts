@@ -41,7 +41,8 @@ export default function determineRowYear(
       row['дата нар.'] ||
       row['дата'] ||
       row['Народження'] ||
-      row['Хрещення'];
+      row['Хрещення'] ||
+      row['Рік'];
     if (dateInRow) {
       if (dateInRow === '?') {
         return 0;
