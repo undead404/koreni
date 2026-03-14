@@ -127,7 +127,7 @@ export default function ReviewSummary() {
   ]);
   const contextFields = useMemo(() => {
     return [
-      { key: 'Ідетифікатор', value: allValues.id },
+      { key: 'Ідентифікатор', value: allValues.id },
       { key: 'Назва', value: allValues.title },
       { key: 'Місце', value: modernLocation },
       {

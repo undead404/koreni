@@ -24,8 +24,9 @@ export default function YearsInput({
             } else {
               throw new Error('Invalid year range');
             }
+          } else {
+            onChange([start]);
           }
-          onChange([start]);
         } else {
           throw new Error('Invalid year range');
         }
