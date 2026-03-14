@@ -9,17 +9,24 @@ import logo from '../assets/logo.png';
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link href="/" title="Корені">
-        <Image
-          src={logo}
-          alt="Логотип Коренів"
-          className="filter-inverted"
-          width={44}
-          height={44}
-        />
-      </Link>
       <nav aria-label="Main navigation">
         <ul className={clsx(styles.navList, 'no-disc')}>
+          <li>
+            <Link href="/" title="Корені">
+              <Image
+                src={logo}
+                alt="Логотип Коренів"
+                className="filter-inverted"
+                width={44}
+                height={44}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href="/" className={styles.link} title="Головна сторінка">
+              Пошук
+            </Link>
+          </li>
           <li>
             <Link href="/map" className={styles.link}>
               Мапа
