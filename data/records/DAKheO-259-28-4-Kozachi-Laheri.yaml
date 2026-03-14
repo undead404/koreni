@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-259-28-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-14
+id: DAKheO-259-28-4-Kozachi-Laheri
+location:
+  - 46.70640132935297
+  - 32.98345401556288
+size: 388
+sources:
+  - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?gid=1431345974#gid=1431345974
+tableFilePath: public/csv/DAKheO-259-28-4-Kozachi-Laheri.csv
+tableLocale: uk
+title: Індексація_ДАХеО ф.259, о.28 - Козачі Лагері, Дніпровський пов.,
+  Таврійська губ. | народження (1849-1852)
+yearsRange:
+  - 1849
+  - 1852
