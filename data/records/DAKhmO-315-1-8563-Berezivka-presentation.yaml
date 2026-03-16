@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО 315-1-7359
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-16
+id: DAKhmO-315-1-8563-Berezivka-presentation
+location:
+  - 48.599910519257485
+  - 28.10964509319622
+size: 1099
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8563-Berezivka-presentation.csv
+tableLocale: ru
+title: Березівка (Чернівецька) 1861 – сповідний розпис (повний), Стрітенська
+  церква, ДАХмО-315-1-8563
+yearsRange:
+  - 1861
