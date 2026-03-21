@@ -91,3 +91,31 @@
     transform: scale(1);
   }
 }
+
+.hint {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hint {
+    color: #e2e8f0;
+  }
+}
+
+.warningText {
+  font-size: 0.875rem;
+  /* orange */
+  color: #f97316;
+}
+
+.warningIcon {
+  margin-left: 0.25rem;
+}
+
+/* ── Archive items input ── */
+.labelWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
