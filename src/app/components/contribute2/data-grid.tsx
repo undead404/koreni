@@ -112,6 +112,28 @@ export default function DataGrid() {
         </div>
       </div>
 
+      {skippedColumns.size > 0 && (
+        <div className={styles.infoAlert}>
+          ℹ️ Деякі колонки позначені для вилучення. Напевне, вони містять
+          порожні, дубльовані або несуттєві дані. Щоб скасувати вилучення,
+          натисніть піктограму відерця у заголовку.
+        </div>
+      )}
+
+      {skippedRowsElsewhere.size > 0 && (
+        <div className={styles.infoAlert}>
+          ℹ️ Деякі ряди позначені для вилучення. Щоб скасувати вилучення,
+          натисніть піктограму відерця зліва від ряду.
+        </div>
+      )}
+
+      {skippedRowsAbove > 0 && (
+        <div className={styles.infoAlert}>
+          ℹ️ Перші ряди (над заголовками) зсунуті та ігноруються. Це значення
+          можна змінити в налаштуваннях вище.
+        </div>
+      )}
+
       {/* ── Scrollable table ── */}
       <div
         className={styles.tableContainer}
@@ -144,10 +166,10 @@ export default function DataGrid() {
                         [styles.colTrashBtn]: !skippedColumns.has(ci),
                       })}
                       onClick={() => toggleColumn(ci)}
-                      aria-label={
+                      title={
                         skippedColumns.has(ci)
-                          ? `Повернути колонку ${col}`
-                          : `Позначити колонку ${col} для вилучення`
+                          ? `Повернути колонку "${col}"`
+                          : `Позначити колонку "${col}" для вилучення`
                       }
                     >
                       <Trash2 size={11} strokeWidth={2} />
@@ -256,7 +278,7 @@ export default function DataGrid() {
                 isRowFlagged ? styles.rowTrashBtnActive : styles.rowTrashBtn
               }
               onClick={() => toggleRow(globalRowIndex)}
-              aria-label={
+              title={
                 isRowFlagged
                   ? `Повернути ряд ${globalRowIndex + 1}`
                   : `Позначити ряд ${globalRowIndex + 1} для вилучення`

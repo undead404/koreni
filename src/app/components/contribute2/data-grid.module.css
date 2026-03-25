@@ -97,6 +97,31 @@
   white-space: nowrap;
 }
 
+/* ── Info Alert ── */
+.infoAlert {
+  background-color: #f0f9ff;
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0369a1;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.infoAlert:first-of-type {
+  border-top: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .infoAlert {
+    background-color: #0c4a6e;
+    border-left-color: #334155;
+    border-right-color: #334155;
+    color: #e0f2fe;
+  }
+}
+
 /* ── Scrollable table container ── */
 .tableContainer {
   max-height: 22rem;

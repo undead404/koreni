@@ -41,3 +41,13 @@
 - **Search**: Custom search implementation using Typesense, with helper scripts for Dockerizing and populating data.
 - **Localization/Text**: Hardcoded Ukrainian text strings in components; specific helpers for transliteration (e.g., `slugifyUkrainian`, `transliterateIntoPolish`).
 - **Blocking**: Specific logic to block access based on browser language preference (implied by `no-russians.tsx`).
+
+## Appearance
+
+- Always consider accessibility and responsiveness.
+- Always consider dark mode preference.
+
+## Testing
+
+- Unit tests have `.test.ts` or `.test.tsx` extensions.
+- Always try to create unit tests for all components and services.
