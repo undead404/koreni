@@ -235,6 +235,57 @@ export default function ContextForm() {
 
       <div className={styles.divider} />
 
+      {/* Archive codes */}
+      <div className={styles.fieldGroup}>
+        <Controller
+          control={control}
+          name="archiveItems"
+          render={({ field }) => <ArchiveItemsInput {...field} />}
+        />
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="archiveItems"
+          as="p"
+        />
+        {archiveItems.map((archiveItem, index) => (
+          <ErrorMessage
+            key={archiveItem.item}
+            className={styles.error}
+            errors={errors}
+            name={`archiveItems.${index}.item` as keyof ContributeForm2Values}
+            as="p"
+          />
+        ))}
+      </div>
+
+      {/* Year / range */}
+      <div className={styles.fieldGroup}>
+        <Controller
+          control={control}
+          name="yearsRange"
+          render={({ field }) => <YearsInput {...field} />}
+        />
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="yearsRange"
+          as="p"
+        />
+        {yearsRange?.map((year, index) => (
+          <ErrorMessage
+            key={year}
+            className={styles.error}
+            errors={errors}
+            name={`yearsRange.${index}` as keyof ContributeForm2Values}
+            as="p"
+          />
+        )) ?? null}
+      </div>
+      <div className={styles.fieldGroup}>
+        <SourcesInput />
+      </div>
+
       <LocationController
         control={control}
         name="location"
@@ -341,57 +392,6 @@ export default function ContextForm() {
           </div>
         )}
       />
-
-      {/* Archive codes */}
-      <div className={styles.fieldGroup}>
-        <Controller
-          control={control}
-          name="archiveItems"
-          render={({ field }) => <ArchiveItemsInput {...field} />}
-        />
-        <ErrorMessage
-          className={styles.error}
-          errors={errors}
-          name="archiveItems"
-          as="p"
-        />
-        {archiveItems.map((archiveItem, index) => (
-          <ErrorMessage
-            key={archiveItem.item}
-            className={styles.error}
-            errors={errors}
-            name={`archiveItems.${index}.item` as keyof ContributeForm2Values}
-            as="p"
-          />
-        ))}
-      </div>
-
-      {/* Year / range */}
-      <div className={styles.fieldGroup}>
-        <Controller
-          control={control}
-          name="yearsRange"
-          render={({ field }) => <YearsInput {...field} />}
-        />
-        <ErrorMessage
-          className={styles.error}
-          errors={errors}
-          name="yearsRange"
-          as="p"
-        />
-        {yearsRange?.map((year, index) => (
-          <ErrorMessage
-            key={year}
-            className={styles.error}
-            errors={errors}
-            name={`yearsRange.${index}` as keyof ContributeForm2Values}
-            as="p"
-          />
-        )) ?? null}
-      </div>
-      <div className={styles.fieldGroup}>
-        <SourcesInput />
-      </div>
     </div>
   );
 }

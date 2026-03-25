@@ -23,8 +23,8 @@ export default function SourcesInput() {
             Вихідні дані
           </label>
           <p className={styles.description}>
-            Публічно доступні таблиці, наприклад, на Google Spreadsheets. Можна
-            додати більш ніж одне посилання.
+            Публічно доступні дані: ваша вихідна таблиця, а також скани архівної
+            справи
           </p>
           {field.value.map((source, index) => (
             <div key={source.url} className={styles.arrayInputRow}>
@@ -69,7 +69,7 @@ export default function SourcesInput() {
               field.onChange([...field.value, { url: '' }]);
             }}
           >
-            Додати вихідну таблицю
+            Додати посилання
           </button>
 
           <ErrorMessage
