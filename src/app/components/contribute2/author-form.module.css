@@ -3,6 +3,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
 }
 
 /* ── Shared label ── */
