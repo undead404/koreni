@@ -1,32 +1,38 @@
-import clsx from 'clsx'; // Assuming you use clsx or similar for class merging
+import clsx from 'clsx';
 import { AlertTriangle, X } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
+
+import { UKR_ARCHIVE_REGEX } from '@/app/helpers/ukr-archive-regex';
 
 import type { ContributeForm2Values } from './types';
 
 import styles from './archive-items-input.module.css';
-
-// Approximate regex for standard signatures (adjust to your specific rules)
-// eslint-disable-next-line regexp/no-obscure-range
-const UKR_ARCHIVE_REGEX = /^[А-ЯІЇЄҐа-яіїєґ]+-[РП]?\d+-\d+[а-я]*-\d+[а-я]*$/;
 
 export default function ArchiveItemsInput({
   value = [],
   onChange,
 }: ControllerRenderProps<ContributeForm2Values, 'archiveItems'>) {
   const [tagInput, setTagInput] = useState('');
+  const inputReference = useRef<HTMLInputElement>(null);
 
   const handleRemove = useCallback(
-    (archiveItemCode: string) =>
-      onChange(value.filter((item) => item.item !== archiveItemCode)),
+    (archiveItemCode: string) => {
+      onChange(value.filter((item) => item.item !== archiveItemCode));
+      inputReference.current?.focus();
+    },
     [onChange, value],
   );
 
   const handleAdd = useCallback(
     (archiveItemCode: string) => {
       const trimmed = archiveItemCode.trim();
-      if (!trimmed || value.some((v) => v.item === trimmed)) return;
+      if (
+        !trimmed ||
+        value.some((v) => v.item.toLowerCase() === trimmed.toLowerCase())
+      ) {
+        return;
+      }
 
       onChange([...value, { item: trimmed }]);
       setTagInput('');
@@ -50,8 +56,48 @@ export default function ArchiveItemsInput({
     [tagInput, value, handleAdd, handleRemove],
   );
 
-  const hasSomeStandard = value.some((code) =>
-    UKR_ARCHIVE_REGEX.test(code.item),
+  const hasSomeStandard = useMemo(
+    () => value.some((code) => UKR_ARCHIVE_REGEX.test(code.item)),
+    [value],
+  );
+
+  const isTypingValid =
+    tagInput.trim() === '' || UKR_ARCHIVE_REGEX.test(tagInput.trim());
+
+  const renderedTags = useMemo(
+    () =>
+      value.map((tag) => {
+        const isStandard = UKR_ARCHIVE_REGEX.test(tag.item);
+
+        return (
+          <span
+            key={tag.item}
+            className={clsx(styles.tag, { [styles.tagWarning]: !isStandard })}
+            title={
+              isStandard
+                ? ''
+                : 'Нестандартний формат. Перевірте правильність введення.'
+            }
+          >
+            {!isStandard && (
+              <AlertTriangle size={14} className={styles.warningIcon} />
+            )}
+            {tag.item}
+            <button
+              type="button"
+              className={styles.tagRemove}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleRemove(tag.item);
+              }}
+              title={`Видалити ${tag.item}`}
+            >
+              <X size={10} strokeWidth={2.5} />
+            </button>
+          </span>
+        );
+      }),
+    [value, handleRemove],
   );
 
   return (
@@ -72,39 +118,14 @@ export default function ArchiveItemsInput({
         )}
       </div>
 
-      <div className={styles.tagsWrap}>
-        {value.map((tag) => {
-          const isStandard = UKR_ARCHIVE_REGEX.test(tag.item);
-
-          return (
-            <span
-              key={tag.item}
-              className={clsx(styles.tag, { [styles.tagWarning]: !isStandard })}
-              title={
-                isStandard
-                  ? ''
-                  : 'Нестандартний формат. Перевірте правильність введення.'
-              }
-            >
-              {!isStandard && (
-                <AlertTriangle size={12} className={styles.warningIcon} />
-              )}
-              {tag.item}
-              <button
-                type="button"
-                className={styles.tagRemove}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  handleRemove(tag.item);
-                }}
-                aria-label={`Remove ${tag.item}`}
-              >
-                <X size={10} strokeWidth={2.5} />
-              </button>
-            </span>
-          );
+      <div
+        className={clsx(styles.tagsWrap, {
+          [styles.tagsWrapInvalid]: !isTypingValid,
         })}
+      >
+        {renderedTags}
         <input
+          ref={inputReference}
           id="next-archive-item-input"
           type="text"
           className={styles.tagInput}
@@ -112,11 +133,17 @@ export default function ArchiveItemsInput({
           value={tagInput}
           onChange={(event) => setTagInput(event.target.value)}
           onKeyDown={handleKeyDown}
-          onBlur={() => {
-            if (tagInput.trim()) handleAdd(tagInput);
-          }}
+          aria-invalid={!isTypingValid}
+          aria-describedby="archive-item-enter-hint"
         />
       </div>
+
+      {tagInput.trim() !== '' && (
+        <p id="archive-item-enter-hint" className={styles.enterHint}>
+          Натисніть Enter, щоб додати
+        </p>
+      )}
+
       {/* Optional: Render a single warning text below the input if any tags are non-standard */}
       {value.some((tag) => !UKR_ARCHIVE_REGEX.test(tag.item)) && (
         <div className={styles.warningText}>

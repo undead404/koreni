@@ -5,8 +5,9 @@
   gap: 0.375rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
-  background-color: #ffffff;
   min-height: 2.125rem;
+  max-height: 8rem;
+  overflow-y: auto;
   cursor: text;
   transition:
     border-color 0.15s ease,
@@ -16,6 +17,11 @@
 .tagsWrap:focus-within {
   border-color: #0f172a;
   box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+.tagsWrapInvalid:focus-within {
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
 }
 
 .tag {
@@ -31,6 +37,12 @@
   white-space: nowrap;
   user-select: none;
   animation: tagIn 0.15s ease;
+}
+
+.tagWarning {
+  background-color: #fff7ed;
+  border: 1px solid #fdba74;
+  color: #9a3412;
 }
 
 .tagRemove {
@@ -75,6 +87,17 @@
     background-color: #1e293b;
     color: #cbd5e1;
   }
+
+  .tag {
+    background-color: #334155;
+    color: #f1f5f9;
+  }
+
+  .tagWarning {
+    background-color: rgba(249, 115, 22, 0.1);
+    border-color: #ea580c;
+    color: #fdba74;
+  }
 }
 
 .tagInput::placeholder {
@@ -106,7 +129,26 @@
 .warningText {
   font-size: 0.875rem;
   /* orange */
-  color: #f97316;
+  color: #ea580c;
+}
+
+@media (prefers-color-scheme: dark) {
+  .warningText {
+    color: #fb923c;
+  }
+}
+
+.enterHint {
+  font-size: 0.75rem;
+  color: #6366f1;
+  margin-top: 0.25rem;
+  animation: tagIn 0.15s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .enterHint {
+    color: #f1f5f9;
+  }
 }
 
 .warningIcon {

@@ -46,6 +46,7 @@
 
 - Always consider accessibility and responsiveness.
 - Always consider dark mode preference.
+- Use `clsx` for all conditional styling.
 
 ## Testing
 
