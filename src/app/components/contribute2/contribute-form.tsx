@@ -172,17 +172,18 @@ export default function ContributeForm2({
           дані.
         </p>
       </div>
-      <Turnstile
-        onVerify={setTurnstileToken}
-        refreshExpired="auto"
-        sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-      />
-
       <FormProvider {...form}>
         <KnownLocationsContext.Provider value={knownLocations}>
           <ContributeFormStepper />
         </KnownLocationsContext.Provider>
-      </FormProvider>
+      </FormProvider>{' '}
+      {!contributionState.prUrl && (
+        <Turnstile
+          onVerify={setTurnstileToken}
+          refreshExpired="auto"
+          sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        />
+      )}
     </form>
   );
 }
