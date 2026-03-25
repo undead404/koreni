@@ -23,7 +23,7 @@ jobs:
           if [ -z "$START_COMMIT" ]; then
             START_COMMIT=$(git rev-list --max-parents=0 HEAD | tail -n 1)
           fi
-          git diff --name-only --diff-filter=A "$START_COMMIT" HEAD | grep -E '^data/records/.*\.(yaml|yml)$' > added_files.txt
+          git diff --name-only --diff-filter=A "$START_COMMIT" HEAD | grep -E '^data/records/.*\.(yaml|yml)$' > added_files.txt || true
 
           # Вивести знайдені файли також в консоль
             echo "added_files.txt:"
