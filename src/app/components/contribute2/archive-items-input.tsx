@@ -9,7 +9,7 @@ import styles from './archive-items-input.module.css';
 
 // Approximate regex for standard signatures (adjust to your specific rules)
 // eslint-disable-next-line regexp/no-obscure-range
-const UKR_ARCHIVE_REGEX = /^[А-ЯІЇЄҐa-zA-Z0-9]+-\d+-[a-zA-Z0-9]+-[a-zA-Z0-9]+$/;
+const UKR_ARCHIVE_REGEX = /^[А-ЯІЇЄҐа-яіїєґ]+-[РП]?\d+-\d+[а-я]*-\d+[а-я]*$/;
 
 export default function ArchiveItemsInput({
   value = [],
