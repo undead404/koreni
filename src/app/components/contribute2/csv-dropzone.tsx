@@ -84,6 +84,7 @@ export default function CsvDropzone() {
         initBugsnag().notify(error as Error);
       } finally {
         setContributionState({
+          activeIndex: 0,
           error: '',
           isSubmitting: false,
           prUrl: '',
@@ -99,16 +100,14 @@ export default function CsvDropzone() {
   const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    setState((previous) =>
-      previous === 'uploading' || previous === 'success'
-        ? previous
-        : 'drag-over',
-    );
+    console.log('handleDragOver');
+    setState((previous) => (previous === 'uploading' ? previous : 'drag-over'));
   }, []);
 
   const handleDragLeave = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
+    console.log('handleDragLeave');
     setState((previous) => (previous === 'drag-over' ? 'idle' : previous));
   }, []);
 
@@ -116,7 +115,8 @@ export default function CsvDropzone() {
     (event: DragEvent<HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      if (state === 'uploading' || state === 'success') return;
+      console.log('handleDrop');
+      if (state === 'uploading') return;
       setValue('table', event.dataTransfer.files);
 
       const file = event.dataTransfer.files[0];

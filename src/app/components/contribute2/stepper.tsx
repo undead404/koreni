@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useContributionStateStore } from './contribution-state';
@@ -13,30 +13,42 @@ import type { ContributeForm2Values, StepStatus } from './types';
 import styles from './stepper.module.css';
 
 /* ────────────────────────────────────────── */
-/*  Main ContributeFormStepper                               */
+/*  Helpers                                    */
+/* ────────────────────────────────────────── */
+const getConnectorStatus = (
+  index: number,
+  active: number,
+  isAllDone: boolean,
+  total: number,
+): 'completed' | 'active' | 'pending' | 'hidden' => {
+  if (index === total - 1) return isAllDone ? 'completed' : 'hidden';
+  if (isAllDone || index < active) return 'completed';
+  if (index === active) return 'active';
+  return 'pending';
+};
+
+/* ────────────────────────────────────────── */
+/*  Main ContributeFormStepper                 */
 /* ────────────────────────────────────────── */
 export default function ContributeFormStepper() {
-  const [activeIndex, setActiveIndex] = useState(4);
   const { tableFileName } = useTableStateStore();
   const {
     formState: { errors },
     control,
   } = useFormContext<ContributeForm2Values>();
-  // Start with step 4 (Review) active so the summary is visible
-  useEffect(() => {
-    if (!tableFileName) setActiveIndex(0);
-  }, [tableFileName]);
 
-  // Listen for navigation events from the ReviewSummary component
+  const { state, setActiveIndex } = useContributionStateStore();
+  const { activeIndex, error, isSubmitting, prUrl, title } = state;
+
+  console.log('activeIndex', activeIndex);
+
+  // Reset to step 0 if no table file is selected
   useEffect(() => {
-    const handleGoToStep = (event: Event) => {
-      const customEvent = event as CustomEvent<number>;
-      setActiveIndex(customEvent.detail);
-    };
-    globalThis.addEventListener('contribute:go-to-step', handleGoToStep);
-    return () =>
-      globalThis.removeEventListener('contribute:go-to-step', handleGoToStep);
-  }, []);
+    if (!tableFileName) {
+      console.log('No tableFileName');
+      setActiveIndex(0);
+    }
+  }, [tableFileName, setActiveIndex]);
 
   const statusOf = useCallback(
     (index: number): StepStatus => {
@@ -48,53 +60,50 @@ export default function ContributeFormStepper() {
   );
 
   const handleContinue = useCallback(() => {
+    console.log('handleContinue');
     setActiveIndex((previous) => Math.min(previous + 1, STEPS.length));
-  }, []);
+  }, [setActiveIndex]);
 
   const handleBack = useCallback(() => {
+    console.log('handleBack');
     setActiveIndex((previous) => Math.max(previous - 1, 0));
-  }, []);
+  }, [setActiveIndex]);
 
-  /* After the last step is "continued", all are completed */
-  const allDone = activeIndex >= STEPS.length;
+  /* allDone is strictly defined by submission success */
+  const allDone = useMemo(() => !!prUrl, [prUrl]);
   const nameValue = useWatch({ control, name: 'authorName' });
-  const {
-    state: { error, isSubmitting, prUrl, title },
-  } = useContributionStateStore();
 
+  // Stable validation effect: only move backward if a previous step becomes invalid
   useEffect(() => {
+    let firstErrorIndex = -1;
     for (const [index, step] of STEPS.entries()) {
-      if (index > activeIndex) {
-        return;
-      }
-      for (const field of step.fields) {
-        if (errors[field]) {
-          setActiveIndex(index);
-          return;
-        }
+      if (step.fields.some((field) => errors[field])) {
+        firstErrorIndex = index;
+        break;
       }
     }
-  }, [activeIndex, errors]);
+
+    if (firstErrorIndex !== -1 && firstErrorIndex < activeIndex) {
+      console.log('firstErrorIndex', firstErrorIndex);
+      setActiveIndex(firstErrorIndex);
+    }
+  }, [errors, activeIndex, setActiveIndex]);
 
   return (
     <div
       className={styles.wrapper}
       role="list"
       aria-label="Кроки оформлення таблиці"
+      aria-live="polite"
     >
       {STEPS.map((step, index) => {
         const status: StepStatus = allDone ? 'completed' : statusOf(index);
-
-        let nextConnectorStatus: 'completed' | 'active' | 'pending' | 'hidden';
-        if (index === STEPS.length - 1) {
-          nextConnectorStatus = allDone ? 'completed' : 'hidden';
-        } else if (allDone || index + 1 < activeIndex) {
-          nextConnectorStatus = 'completed';
-        } else if (index + 1 === activeIndex) {
-          nextConnectorStatus = 'active';
-        } else {
-          nextConnectorStatus = 'pending';
-        }
+        const nextConnectorStatus = getConnectorStatus(
+          index,
+          activeIndex,
+          allDone,
+          STEPS.length,
+        );
 
         return (
           <ContributeFormStep
@@ -103,7 +112,10 @@ export default function ContributeFormStepper() {
             index={index}
             status={status}
             isLast={index === STEPS.length - 1 && !allDone}
-            onActivate={() => setActiveIndex(index)}
+            onActivate={() => {
+              console.log('onActivate', index);
+              setActiveIndex(index);
+            }}
             onContinue={handleContinue}
             onBack={handleBack}
             nextConnectorStatus={nextConnectorStatus}

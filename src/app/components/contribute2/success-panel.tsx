@@ -28,6 +28,8 @@ export default function SuccessPanel({
   const handleReset = useCallback(() => {
     reset(getDefaultValues());
     setState({
+      activeIndex: 0,
+      stage: 'idle',
       error: '',
       isSubmitting: false,
       prUrl: '',

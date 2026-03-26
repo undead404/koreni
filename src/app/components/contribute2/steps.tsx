@@ -8,6 +8,7 @@ import {
 
 import AuthorForm from './author-form';
 import ContextForm from './context-form';
+import { useContributionStateStore } from './contribution-state';
 import CsvDropzone from './csv-dropzone';
 import DataGrid from './data-grid';
 import ReviewSummary from './review-summary';
@@ -90,17 +91,12 @@ const STEPS: StepDefinition[] = [
               break;
             }
             case 'author': {
-              {
-                stepIndex = 3;
-                // No default
-              }
+              stepIndex = 3;
               break;
             }
-          } // AuthorForm step
+          }
 
-          globalThis.dispatchEvent(
-            new CustomEvent('contribute:go-to-step', { detail: stepIndex }),
-          );
+          useContributionStateStore.getState().setActiveIndex(stepIndex);
         }}
       />
     ),
