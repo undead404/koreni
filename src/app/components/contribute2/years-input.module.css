@@ -18,6 +18,7 @@
   .input {
     background-color: #1e293b;
     color: #cbd5e1;
+    border-color: #334155;
   }
 }
 
@@ -25,9 +26,43 @@
   color: #cbd5e1;
 }
 
+@media (prefers-color-scheme: dark) {
+  .input::placeholder {
+    color: #475569;
+  }
+}
+
 .input:focus {
   border-color: #0f172a;
   box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .input:focus {
+    border-color: #cbd5e1;
+    box-shadow: 0 0 0 3px rgba(203, 213, 225, 0.1);
+  }
+}
+
+/* ── Invalid state ── */
+.inputInvalid {
+  border-color: #dc2626;
+}
+
+.inputInvalid:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .inputInvalid {
+    border-color: #ef4444;
+  }
+
+  .inputInvalid:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
 }
 
 /* ── Shared label style ── */
@@ -38,10 +73,26 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   user-select: none;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
 @media (prefers-color-scheme: dark) {
   .label {
     color: #cbd5e1;
+  }
+}
+
+/* ── Error message ── */
+.errorMessage {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  .errorMessage {
+    color: #ef4444;
   }
 }
