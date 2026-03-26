@@ -4,11 +4,11 @@ import { Database, Info, MapPin, User } from 'lucide-react';
 import posthog from 'posthog-js';
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
-import z from 'zod';
 
 import { initBugsnag } from '@/app/services/bugsnag';
 import { reverseGeocode } from '@/app/services/locationiq';
 
+import { coordinatesStringAsTupleSchema } from './schema';
 import { useTableStateStore } from './table-state';
 import { ContributeForm2Values } from './types';
 
@@ -49,20 +49,6 @@ function SummaryCard({
 /*  Review summary                             */
 /* ────────────────────────────────────────── */
 
-const coordinatesStringAsTupleSchema = z
-  .string()
-  .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
-  .transform((value) => {
-    const [latString, longString] = value.split(',').map((s) => s.trim());
-    const result = [
-      Number.parseFloat(latString),
-      Number.parseFloat(longString),
-    ] as [number, number];
-    if (Number.isNaN(result[0]) || Number.isNaN(result[1])) {
-      throw new TypeError('Invalid coordinates');
-    }
-    return result;
-  });
 export default function ReviewSummary() {
   const [modernLocation, setModernLocation] = useState<string | null>('...');
   const { control } = useFormContext<ContributeForm2Values>();

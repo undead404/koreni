@@ -105,3 +105,18 @@ export const authorIdentitySchema = z.object({
   authorGithubUsername: z.string().optional(),
 });
 export type AuthorIdentity = z.infer<typeof authorIdentitySchema>;
+
+export const coordinatesStringAsTupleSchema = z
+  .string()
+  .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
+  .transform((value) => {
+    const [latString, longString] = value.split(',').map((s) => s.trim());
+    const result = [
+      Number.parseFloat(latString),
+      Number.parseFloat(longString),
+    ] as [number, number];
+    if (Number.isNaN(result[0]) || Number.isNaN(result[1])) {
+      throw new TypeError('Invalid coordinates');
+    }
+    return result;
+  });
