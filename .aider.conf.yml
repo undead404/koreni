@@ -1,0 +1,8 @@
+attribute-author: false
+auto-commits: false
+editor-model: gemini/gemini-3-flash-preview
+auto-lint: true
+model: gemini/gemini-3.1-pro-preview
+read:
+  - ./CONVENTIONS.md
+  - ./README.md
