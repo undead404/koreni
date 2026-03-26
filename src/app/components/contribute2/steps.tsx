@@ -76,7 +76,34 @@ const STEPS: StepDefinition[] = [
     placeholderTitle: 'Перевірити й подати',
     placeholderBody:
       'Перевірте загальну інформацію про таблицю, її метадані та відомості про автора. Якщо все має коректний вигляд, клацніть кнопку "Подати".',
-    renderContent: () => <ReviewSummary />,
+    renderContent: () => (
+      <ReviewSummary
+        onEditSection={(section) => {
+          let stepIndex = 4;
+          switch (section) {
+            case 'table': {
+              stepIndex = 1;
+              break;
+            }
+            case 'context': {
+              stepIndex = 2;
+              break;
+            }
+            case 'author': {
+              {
+                stepIndex = 3;
+                // No default
+              }
+              break;
+            }
+          } // AuthorForm step
+
+          globalThis.dispatchEvent(
+            new CustomEvent('contribute:go-to-step', { detail: stepIndex }),
+          );
+        }}
+      />
+    ),
   },
 ];
 export default STEPS;

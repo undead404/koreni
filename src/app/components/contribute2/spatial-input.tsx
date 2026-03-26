@@ -40,8 +40,8 @@ export const SpatialInput = memo(function SpatialInput({
 
   useEffect(() => {
     if (value && !query) {
-      setQuery('Manual Pin');
-    } else if (!value && query === 'Manual Pin') {
+      setQuery('Вручну обрані координати');
+    } else if (!value && query === 'Вручну обрані координати') {
       setQuery('');
     }
   }, [value, query, setQuery]);
@@ -187,7 +187,7 @@ export const SpatialInput = memo(function SpatialInput({
             value={value}
             onChange={(newValue) => {
               onChange(newValue);
-              setQuery('Manual Pin');
+              setQuery('Вручну обрані координати');
             }}
           />
         </div>

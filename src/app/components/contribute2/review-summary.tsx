@@ -10,9 +10,65 @@ import { reverseGeocode } from '@/app/services/locationiq';
 
 import { coordinatesStringAsTupleSchema } from './schema';
 import { useTableStateStore } from './table-state';
-import { ContributeForm2Values } from './types';
+import type { ContributeForm2Values } from './types';
 
 import styles from './review-summary.module.css';
+
+/* ────────────────────────────────────────── */
+/*  Types                                      */
+/* ────────────────────────────────────────── */
+
+interface SummaryField {
+  key: string;
+  value: string | string[] | number | null | undefined;
+  type?: 'text' | 'tags' | 'location';
+}
+
+/* ────────────────────────────────────────── */
+/*  Value Renderer                             */
+/* ────────────────────────────────────────── */
+
+function ValueRenderer({
+  field,
+  locationStatus,
+}: {
+  field: SummaryField;
+  locationStatus?: 'idle' | 'loading' | 'error';
+}) {
+  const { value, type } = field;
+
+  if (type === 'location' && locationStatus === 'loading') {
+    return <span className={styles.pulse}>Пошук...</span>;
+  }
+
+  if (
+    value === null ||
+    value === undefined ||
+    value === '' ||
+    (Array.isArray(value) && value.length === 0)
+  ) {
+    return <span className={styles.emptyState}>Не вказано</span>;
+  }
+
+  if (type === 'tags') {
+    const tags = Array.isArray(value) ? value : [value];
+    return (
+      <div className={styles.tagList}>
+        {tags.map((tag, index) => (
+          <span key={index} className={styles.tag}>
+            {tag}
+          </span>
+        ))}
+      </div>
+    );
+  }
+
+  if (typeof value === 'number') {
+    return <>{value.toLocaleString('uk-UA')}</>;
+  }
+
+  return <>{value}</>;
+}
 
 /* ────────────────────────────────────────── */
 /*  Summary card                               */
@@ -22,25 +78,43 @@ function SummaryCard({
   icon,
   title,
   fields,
+  onEdit,
+  locationStatus,
 }: {
   icon: ReactNode;
   title: string;
-  fields: { key: string; value: ReactNode }[];
+  fields: SummaryField[];
+  onEdit?: () => void;
+  locationStatus?: 'idle' | 'loading' | 'error';
 }) {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
-        <span className={styles.cardHeaderIcon}>{icon}</span>
-        <span className={styles.cardHeaderTitle}>{title}</span>
+        <div className={styles.cardHeaderLeft}>
+          <span className={styles.cardHeaderIcon}>{icon}</span>
+          <span className={styles.cardHeaderTitle}>{title}</span>
+        </div>
+        {onEdit && (
+          <button type="button" onClick={onEdit} className={styles.editButton}>
+            Редагувати
+          </button>
+        )}
       </div>
-      <div className={styles.rows}>
+      <dl className={styles.rows}>
         {fields.map((f) => (
           <div key={f.key} className={styles.row}>
-            <span className={styles.rowKey}>{f.key}</span>
-            <span className={styles.rowValue}>{f.value}</span>
+            <dt className={styles.rowKey}>{f.key}</dt>
+            <dd className={styles.rowValue}>
+              <ValueRenderer
+                field={f}
+                locationStatus={
+                  f.type === 'location' ? locationStatus : undefined
+                }
+              />
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </div>
   );
 }
@@ -49,31 +123,69 @@ function SummaryCard({
 /*  Review summary                             */
 /* ────────────────────────────────────────── */
 
-export default function ReviewSummary() {
-  const [modernLocation, setModernLocation] = useState<string | null>('...');
+export default function ReviewSummary({
+  onEditSection,
+}: {
+  onEditSection?: (section: string) => void;
+}) {
+  const [modernLocation, setModernLocation] = useState<string | null>(null);
+  const [locationStatus, setLocationStatus] = useState<
+    'idle' | 'loading' | 'error'
+  >('idle');
+
   const { control } = useFormContext<ContributeForm2Values>();
-  const allValues = useWatch({ control });
+
+  // Specific observers to prevent full re-renders
+  const locationValue = useWatch({ control, name: 'location' });
+  const tableLocale = useWatch({ control, name: 'tableLocale' });
+  const idValue = useWatch({ control, name: 'id' });
+  const titleValue = useWatch({ control, name: 'title' });
+  const archiveItems = useWatch({ control, name: 'archiveItems' });
+  const yearsRange = useWatch({ control, name: 'yearsRange' });
+  const authorName = useWatch({ control, name: 'authorName' });
+  const authorEmail = useWatch({ control, name: 'authorEmail' });
+  const authorGithubUsername = useWatch({
+    control,
+    name: 'authorGithubUsername',
+  });
+
+  // Debounced Geocoding
   useEffect(() => {
-    try {
-      const locationCoords = coordinatesStringAsTupleSchema.parse(
-        allValues.location,
-      );
-      void reverseGeocode(locationCoords)
-        .then((resultingLocation) =>
-          setModernLocation(resultingLocation || allValues.location || '?'),
-        )
-        .catch((error) => {
-          console.error(error);
-          initBugsnag().notify(error as Error);
-          posthog.capture('locationiq_reverse_geocode_error', {
-            error: error instanceof Error ? error.message : String(error),
-          });
-          setModernLocation(allValues.location || '?');
-        });
-    } catch {
-      setModernLocation(allValues.location || '?');
+    if (!locationValue) {
+      setModernLocation(null);
+      setLocationStatus('idle');
+      return;
     }
-  }, [allValues.location]);
+
+    setLocationStatus('loading');
+    const timeoutId = setTimeout(() => {
+      try {
+        const locationCoords =
+          coordinatesStringAsTupleSchema.parse(locationValue);
+        reverseGeocode(locationCoords)
+          .then((resultingLocation) => {
+            // eslint-disable-next-line promise/always-return
+            setModernLocation(resultingLocation || locationValue);
+            setLocationStatus('idle');
+          })
+          .catch((error) => {
+            console.error(error);
+            initBugsnag().notify(error as Error);
+            posthog.capture('locationiq_reverse_geocode_error', {
+              error: error instanceof Error ? error.message : String(error),
+            });
+            setModernLocation(locationValue);
+            setLocationStatus('error');
+          });
+      } catch {
+        setModernLocation(locationValue);
+        setLocationStatus('error');
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [locationValue]);
+
   const {
     getTableDimensions,
     skippedColumns,
@@ -81,29 +193,32 @@ export default function ReviewSummary() {
     skippedRowsElsewhere,
     tableFileName,
   } = useTableStateStore();
+
   const tableDimensions = getTableDimensions();
-  const dataSummaryFields = useMemo(() => {
+
+  const dataSummaryFields: SummaryField[] = useMemo(() => {
     return [
-      { key: 'Файл', value: tableFileName },
-      { key: 'Рядів', value: tableDimensions.rows.toLocaleString('uk') },
-      { key: 'Колонок', value: tableDimensions.columns.toLocaleString('uk') },
+      { key: 'Файл', value: tableFileName, type: 'text' },
+      { key: 'Рядів', value: tableDimensions.rows, type: 'text' },
+      { key: 'Колонок', value: tableDimensions.columns, type: 'text' },
       {
         key: 'Рядів пропущено',
-        value: (skippedRowsAbove + skippedRowsElsewhere.size).toLocaleString(
-          'uk',
-        ),
+        value: skippedRowsAbove + skippedRowsElsewhere.size,
+        type: 'text',
       },
       {
         key: 'Колонок пропущено',
-        value: skippedColumns.size.toLocaleString('uk'),
+        value: skippedColumns.size,
+        type: 'text',
       },
       {
         key: 'Мова таблиці',
-        value: allValues.tableLocale ?? null,
+        value: tableLocale,
+        type: 'text',
       },
     ];
   }, [
-    allValues.tableLocale,
+    tableLocale,
     skippedColumns.size,
     skippedRowsAbove,
     skippedRowsElsewhere.size,
@@ -111,38 +226,47 @@ export default function ReviewSummary() {
     tableDimensions.rows,
     tableFileName,
   ]);
-  const contextFields = useMemo(() => {
+
+  const contextFields: SummaryField[] = useMemo(() => {
+    let yearsDisplay = null;
+    if (yearsRange && yearsRange.length > 0) {
+      yearsDisplay =
+        yearsRange.length === 2
+          ? `${yearsRange[0]} — ${yearsRange[1]}`
+          : yearsRange.join(', ');
+    }
+
     return [
-      { key: 'Ідентифікатор', value: allValues.id },
-      { key: 'Назва', value: allValues.title },
-      { key: 'Місце', value: modernLocation },
+      { key: 'Ідентифікатор', value: idValue, type: 'text' },
+      { key: 'Назва', value: titleValue, type: 'text' },
+      { key: 'Місце', value: modernLocation, type: 'location' },
       {
         key: 'Архівні справи',
-        value:
-          allValues.archiveItems?.map((item) => item.item).join(', ') ?? null,
+        value: archiveItems?.map((item) => item.item) ?? null,
+        type: 'tags',
       },
-      { key: 'Роки', value: allValues.yearsRange?.join(', ') ?? null },
+      {
+        key: 'Роки',
+        value: yearsDisplay ? [yearsDisplay] : null,
+        type: 'tags',
+      },
     ];
-  }, [
-    allValues.archiveItems,
-    allValues.id,
-    allValues.title,
-    allValues.yearsRange,
-    modernLocation,
-  ]);
-  const authorFields = useMemo(() => {
+  }, [archiveItems, idValue, titleValue, yearsRange, modernLocation]);
+
+  const authorFields: SummaryField[] = useMemo(() => {
     return [
-      { key: 'Ім’я', value: allValues.authorName },
-      { key: 'Електронна пошта', value: allValues.authorEmail ?? 'Не вказано' },
-      { key: 'GitHub', value: allValues.authorGithubUsername ?? 'Не вказано' },
+      { key: 'Ім’я', value: authorName, type: 'text' },
+      { key: 'Електронна пошта', value: authorEmail, type: 'text' },
+      { key: 'GitHub', value: authorGithubUsername, type: 'text' },
     ];
-  }, [
-    allValues.authorEmail,
-    allValues.authorGithubUsername,
-    allValues.authorName,
-  ]);
+  }, [authorEmail, authorGithubUsername, authorName]);
+
   return (
-    <div className={styles.wrapper}>
+    <section aria-labelledby="summary-title" className={styles.wrapper}>
+      <h2 id="summary-title" className="sr-only" style={{ display: 'none' }}>
+        Підсумок
+      </h2>
+
       {/* Status */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
         <span className={styles.statusReady}>
@@ -151,17 +275,20 @@ export default function ReviewSummary() {
         </span>
       </div>
 
-      {/* Cards grid — 2 cols on desktop, stacked on mobile */}
+      {/* Cards grid */}
       <div className={styles.grid}>
         <SummaryCard
           icon={<Database size={13} />}
           title="Таблиця"
           fields={dataSummaryFields}
+          onEdit={() => onEditSection?.('table')}
         />
         <SummaryCard
           icon={<MapPin size={13} />}
           title="Контекст"
           fields={contextFields}
+          onEdit={() => onEditSection?.('context')}
+          locationStatus={locationStatus}
         />
       </div>
 
@@ -170,6 +297,7 @@ export default function ReviewSummary() {
         icon={<User size={13} />}
         title="Автор"
         fields={authorFields}
+        onEdit={() => onEditSection?.('author')}
       />
 
       {/* Notice */}
@@ -183,6 +311,6 @@ export default function ReviewSummary() {
           доданням на сайт.
         </span>
       </div>
-    </div>
+    </section>
   );
 }

@@ -27,6 +27,17 @@ export default function ContributeFormStepper() {
     if (!tableFileName) setActiveIndex(0);
   }, [tableFileName]);
 
+  // Listen for navigation events from the ReviewSummary component
+  useEffect(() => {
+    const handleGoToStep = (event: Event) => {
+      const customEvent = event as CustomEvent<number>;
+      setActiveIndex(customEvent.detail);
+    };
+    globalThis.addEventListener('contribute:go-to-step', handleGoToStep);
+    return () =>
+      globalThis.removeEventListener('contribute:go-to-step', handleGoToStep);
+  }, []);
+
   const statusOf = useCallback(
     (index: number): StepStatus => {
       if (index < activeIndex) return 'completed';
