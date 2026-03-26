@@ -46,9 +46,9 @@
 }
 
 /* Ensure all inputs use focus-visible for better accessibility */
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+.container input:focus-visible,
+.container textarea:focus-visible,
+.container select:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
