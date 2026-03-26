@@ -23,11 +23,11 @@ export interface StepDefinition {
   placeholderTitle: string;
   renderContent?: () => ReactNode;
   summary:
-    | string
+    | ReactNode
     | ((
         tableStore: TableStateStore,
         formData: Partial<ContributeForm2Values>,
-      ) => string);
+      ) => ReactNode);
 }
 
 export interface StepProperties {

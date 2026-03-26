@@ -25,17 +25,29 @@ import styles from './csv-dropzone.module.css';
 
 const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
+const FILE_SIZES = new Map<string, number>();
+
 export default function CsvDropzone() {
-  const [state, setState] = useState<DropzoneState>('idle');
-  const [parsedFile, setParsedFile] = useState<ParsedFile | null>(null);
   const {
     formState: { errors },
     register,
     setValue,
   } = useFormContext();
   const inputReference = useRef<HTMLInputElement>(null);
-  const { getTableDimensions, setTableData, setTableFileName } =
+  const { getTableDimensions, setTableData, setTableFileName, tableFileName } =
     useTableStateStore();
+  const [parsedFile, setParsedFile] = useState<ParsedFile | null>(() => {
+    if (tableFileName) {
+      const size = FILE_SIZES.get(tableFileName);
+      if (size) {
+        return { name: tableFileName, size };
+      }
+    }
+    return null;
+  });
+  const [state, setState] = useState<DropzoneState>(
+    parsedFile ? 'success' : 'idle',
+  );
   const { setState: setContributionState } = useContributionStateStore();
 
   /* ── Process file ── */
@@ -57,6 +69,7 @@ export default function CsvDropzone() {
         const data = await parseCsvToTuples(file);
         setTableData(data);
         setParsedFile({ name: file.name, size: file.size });
+        FILE_SIZES.set(file.name, file.size);
         setTableFileName(file.name);
         setState('success');
       } catch (error) {

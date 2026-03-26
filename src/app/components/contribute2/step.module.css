@@ -93,7 +93,9 @@
   width: 2px;
   flex-grow: 1;
   min-height: 1rem;
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    background 0.3s ease;
 }
 
 .connectorCompleted {
@@ -198,6 +200,16 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 2;
+  cursor: default;
+}
+
+button.indicator {
+  cursor: pointer;
+}
+
+.indicator:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
 }
 
 .indicatorCompleted {
@@ -245,6 +257,14 @@
   }
 }
 
+.indicatorValidating {
+  animation: pulse 1.5s infinite;
+}
+
+.shake {
+  animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
 /* ── Left rail: indicator + connector ── */
 .rail {
   display: flex;
@@ -280,6 +300,18 @@
   font-weight: 600;
   line-height: 1;
   transition: color 0.3s ease;
+  padding: 0;
+  text-align: left;
+}
+
+button.title {
+  cursor: pointer;
+}
+
+.title:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 .titleCompleted {
@@ -315,6 +347,18 @@
   }
 }
 
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -323,5 +367,35 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }

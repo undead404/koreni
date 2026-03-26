@@ -1,5 +1,6 @@
 'use client';
-import { useCallback } from 'react';
+import { clsx } from 'clsx';
+import { useCallback, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import CheckIcon from '@/app/icons/check';
@@ -13,6 +14,32 @@ import type {
 } from './types';
 
 import styles from './step.module.css';
+
+/* ────────────────────────────────────────── */
+/*  Class Maps                                 */
+/* ────────────────────────────────────────── */
+const indicatorStatusMap: Record<StepStatus, string> = {
+  completed: styles.indicatorCompleted,
+  active: styles.indicatorActive,
+  pending: styles.indicatorPending,
+};
+
+const connectorStatusMap: Record<
+  'completed' | 'active' | 'pending' | 'hidden',
+  string
+> = {
+  completed: styles.connectorCompleted,
+  active: styles.connectorActive,
+  pending: styles.connectorPending,
+  hidden: styles.connectorHidden,
+};
+
+const titleStatusMap: Record<StepStatus, string> = {
+  completed: styles.titleCompleted,
+  active: styles.titleActive,
+  pending: styles.titlePending,
+};
+
 /* ────────────────────────────────────────── */
 /*  Single step                                */
 /* ────────────────────────────────────────── */
@@ -37,32 +64,24 @@ export default function ContributeFormStep({
 }) {
   const tableStore = useTableStateStore();
   const { control, trigger } = useFormContext<ContributeForm2Values>();
-  /* indicator class */
-  const indicatorClass =
-    status === 'completed'
-      ? styles.indicatorCompleted
-      : status === 'active'
-        ? styles.indicatorActive
-        : styles.indicatorPending;
   const allValues = useWatch({ control });
 
-  /* connector class */
-  const connectorClass =
-    nextConnectorStatus === 'completed'
-      ? styles.connectorCompleted
-      : nextConnectorStatus === 'active'
-        ? styles.connectorActive
-        : nextConnectorStatus === 'hidden'
-          ? styles.connectorHidden
-          : styles.connectorPending;
+  const [isValidating, setIsValidating] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-  /* title class */
-  const titleClass =
-    status === 'completed'
-      ? styles.titleCompleted
-      : status === 'active'
-        ? styles.titleActive
-        : styles.titlePending;
+  const {
+    state: { isSubmitting },
+  } = useContributionStateStore();
+
+  /* Classes */
+  const indicatorClass = clsx(
+    indicatorStatusMap[status],
+    isValidating && styles.indicatorValidating,
+    hasError && styles.shake,
+  );
+  const connectorClass = connectorStatusMap[nextConnectorStatus];
+  const titleClass = titleStatusMap[status];
+
   const summary =
     typeof def.summary === 'function'
       ? def.summary(tableStore, allValues as ContributeForm2Values)
@@ -73,36 +92,86 @@ export default function ContributeFormStep({
       onContinue();
       return;
     }
+
+    setIsValidating(true);
+    setHasError(false);
+
     void trigger(def.fields).then((result) => {
+      setIsValidating(false);
+      // eslint-disable-next-line promise/always-return
       if (result) {
         onContinue();
+      } else {
+        setHasError(true);
+        // Remove shake class after animation completes so it can trigger again
+        setTimeout(() => setHasError(false), 400);
       }
-      return;
     });
   }, [def.fields, onContinue, trigger]);
-  const {
-    state: { isSubmitting },
-  } = useContributionStateStore();
+
+  const renderActions = () => (
+    <div className={styles.actions}>
+      {index > 0 && (
+        <button type="button" className={styles.btnSecondary} onClick={onBack}>
+          Назад
+        </button>
+      )}
+      <button
+        disabled={isSubmitting || isValidating}
+        type={isLast ? 'submit' : 'button'}
+        className={styles.btnPrimary}
+        onClick={isLast ? undefined : handleContinue}
+      >
+        {isSubmitting ? 'Подається...' : null}
+        {isLast && !isSubmitting ? 'Подати' : null}
+        {!isLast && !isSubmitting ? 'Далі' : null}
+        {!isLast && (
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 4l4 4-4 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </button>
+    </div>
+  );
 
   return (
-    <div className={styles.step}>
+    <div
+      className={styles.step}
+      aria-current={status === 'active' ? 'step' : undefined}
+    >
       {/* Left rail */}
       <div className={styles.rail}>
         {status === 'completed' ? (
           <button
             className={indicatorClass}
             onClick={onActivate}
-            aria-hidden="true"
             type="button"
+            aria-label={`Крок ${index + 1}: Завершено. Натисніть, щоб повернутися.`}
           >
-            <CheckIcon className={styles.checkIcon} />
+            <span className={styles.srOnly}>Крок {index + 1}: Завершено</span>
+            <CheckIcon className={styles.checkIcon} aria-hidden="true" />
           </button>
         ) : (
           <div className={indicatorClass} aria-hidden="true">
+            <span className={styles.srOnly}>
+              Крок {index + 1}: {status === 'active' ? 'Поточний' : 'Очікує'}
+            </span>
             {index + 1}
           </div>
         )}
-        <div className={connectorClass} />
+        <div className={connectorClass} aria-hidden="true" />
       </div>
 
       {/* Body */}
@@ -118,11 +187,13 @@ export default function ContributeFormStep({
         </div>
 
         {/* Completed → summary */}
-        {status === 'completed' && <p className={styles.summary}>{summary}</p>}
+        {status === 'completed' && (
+          <div className={styles.summary}>{summary}</div>
+        )}
 
         {/* Active → expanded content */}
         {status === 'active' && (
-          <div className={styles.content}>
+          <div className={styles.content} aria-live="polite">
             {def.renderContent ? (
               def.renderContent()
             ) : (
@@ -136,44 +207,7 @@ export default function ContributeFormStep({
               </>
             )}
 
-            <div className={styles.actions}>
-              {index > 0 && (
-                <button
-                  type="button"
-                  className={styles.btnSecondary}
-                  onClick={onBack}
-                >
-                  Назад
-                </button>
-              )}
-              <button
-                disabled={isSubmitting}
-                type={isLast ? 'submit' : 'button'}
-                className={styles.btnPrimary}
-                onClick={isLast ? undefined : handleContinue}
-              >
-                {isSubmitting ? 'Подається...' : null}
-                {isLast && !isSubmitting ? 'Подати' : null}
-                {!isLast && !isSubmitting ? 'Далі' : null}
-                {!isLast && (
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M6 4l4 4-4 4"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
+            {renderActions()}
           </div>
         )}
       </div>
