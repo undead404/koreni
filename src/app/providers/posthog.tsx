@@ -1,11 +1,11 @@
 'use client';
 import posthog from 'posthog-js';
 import { PostHogProvider as Provider } from 'posthog-js/react';
-import { useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 
 import environment from '@/app/environment';
 
-export function PostHogProvider({ children }: { children: React.ReactNode }) {
+export function PostHogProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (
       !environment.NEXT_PUBLIC_POSTHOG_KEY ||

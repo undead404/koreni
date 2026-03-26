@@ -1,12 +1,19 @@
 'use client';
 
 import clsx from 'clsx';
-import { useCallback, useEffect, useRef } from 'react';
+import {
+  type KeyboardEvent,
+  type MouseEvent,
+  type ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 
 import styles from './modal.module.css';
 
 interface ModalProperties {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   isOpen: boolean;
   onClose: () => void;
@@ -34,7 +41,7 @@ export default function Modal({
   }, [isOpen]);
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent) => {
+    (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }
@@ -43,7 +50,7 @@ export default function Modal({
   );
 
   const handleBackdropClick = useCallback(
-    (event: React.MouseEvent) => {
+    (event: MouseEvent) => {
       const dialog = dialogReference.current;
       if (!dialog) return;
 

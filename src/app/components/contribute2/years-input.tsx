@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { type ChangeEvent, useCallback, useState } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 import type { ContributeForm2Values } from './types';
@@ -11,7 +11,7 @@ export default function YearsInput({
 }: ControllerRenderProps<ContributeForm2Values, 'yearsRange'>) {
   const [inputValue, setInputValue] = useState(value?.join('-') || '');
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       const yearRange = event.target.value;
       try {
         const [start, end] = yearRange

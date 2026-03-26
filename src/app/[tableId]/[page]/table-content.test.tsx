@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
@@ -21,8 +22,8 @@ vi.mock('@/app/components/details', () => ({
     children,
     summary,
   }: {
-    children: React.ReactNode;
-    summary: React.ReactNode;
+    children: ReactNode;
+    summary: ReactNode;
   }) => (
     <div data-testid="details">
       {summary}

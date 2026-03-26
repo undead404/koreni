@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import posthog from 'posthog-js';
+import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('posthog-js', () => ({
@@ -10,7 +11,7 @@ vi.mock('posthog-js', () => ({
 }));
 
 vi.mock('posthog-js/react', () => ({
-  PostHogProvider: ({ children }: { children: React.ReactNode }) => (
+  PostHogProvider: ({ children }: { children: ReactNode }) => (
     <div data-testid="posthog-provider">{children}</div>
   ),
 }));

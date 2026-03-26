@@ -1,6 +1,12 @@
 import clsx from 'clsx';
 import { AlertTriangle, X } from 'lucide-react';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import {
+  type KeyboardEvent,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 import { UKR_ARCHIVE_REGEX } from '@/app/helpers/ukr-archive-regex';
@@ -41,7 +47,7 @@ export default function ArchiveItemsInput({
   );
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter' || event.key === ',') {
         event.preventDefault();
         handleAdd(tagInput);

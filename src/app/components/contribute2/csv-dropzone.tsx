@@ -5,6 +5,7 @@ import posthog from 'posthog-js';
 import {
   type ChangeEvent,
   type DragEvent,
+  type KeyboardEvent,
   useCallback,
   useRef,
   useState,
@@ -92,6 +93,7 @@ export default function CsvDropzone() {
             error: '',
             isSubmitting: false,
             prUrl: '',
+            stage: 'idle',
             title: '',
           });
         });
@@ -145,7 +147,7 @@ export default function CsvDropzone() {
   }, [state]);
 
   const handleKeyDown = useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         handleClick();

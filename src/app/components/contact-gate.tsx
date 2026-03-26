@@ -1,12 +1,12 @@
 'use client';
-import { lazy, Suspense, useState } from 'react';
+import { type FC, lazy, Suspense, useState } from 'react';
 
 import type { ContactProperties } from './contact';
 
 const Contact = lazy(() => import('./contact'));
 
 // Make user click a button to show email address via lazy loading
-export const ContactGate: React.FC<ContactProperties> = (properties) => {
+export const ContactGate: FC<ContactProperties> = (properties) => {
   const [showingEmail, setShowingEmail] = useState(false);
 
   const email = showingEmail ? (

@@ -2,7 +2,7 @@
 
 import { Database, Info, MapPin, User } from 'lucide-react';
 import posthog from 'posthog-js';
-import { useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import z from 'zod';
 
@@ -23,9 +23,9 @@ function SummaryCard({
   title,
   fields,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
-  fields: { key: string; value: React.ReactNode }[];
+  fields: { key: string; value: ReactNode }[];
 }) {
   return (
     <div className={styles.card}>

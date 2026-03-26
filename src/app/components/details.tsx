@@ -1,7 +1,7 @@
 'use client';
 
 import posthog from 'posthog-js';
-import { type ReactNode, useCallback } from 'react';
+import { type ReactNode, type SyntheticEvent, useCallback } from 'react';
 
 import styles from './details.module.css';
 
@@ -17,7 +17,7 @@ function Details({
   children: ReactNode;
 }) {
   const handleToggle = useCallback(
-    (event: React.SyntheticEvent<HTMLDetailsElement>) => {
+    (event: SyntheticEvent<HTMLDetailsElement>) => {
       const isOpen = event.currentTarget.open;
       posthog.capture('details_toggled', {
         section_name: sectionName || 'unknown',

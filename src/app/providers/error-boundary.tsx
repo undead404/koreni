@@ -1,11 +1,9 @@
 'use client';
-import React, { type ReactNode } from 'react';
+import React, { type FC, type ReactNode } from 'react';
 
 import { initBugsnag } from '../services/bugsnag';
 
-const stub: React.FC<{ children: ReactNode }> = ({ children }) => (
-  <>{children}</>
-);
+const stub: FC<{ children: ReactNode }> = ({ children }) => <>{children}</>;
 
 const getErrorBoundary = () => {
   const bugsnagClient = initBugsnag();

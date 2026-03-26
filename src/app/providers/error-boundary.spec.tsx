@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // We need to mock the module BEFORE importing the component under test
@@ -57,11 +57,9 @@ describe('ErrorBoundary', () => {
   it('should use Bugsnag ErrorBoundary when initialized correctly', async () => {
     mockIsStarted.mockReturnValue(true);
 
-    const MockBugsnagBoundary = ({
-      children,
-    }: {
-      children: React.ReactNode;
-    }) => <div data-testid="bugsnag-boundary">{children}</div>;
+    const MockBugsnagBoundary = ({ children }: { children: ReactNode }) => (
+      <div data-testid="bugsnag-boundary">{children}</div>
+    );
     mockCreateErrorBoundary.mockReturnValue(MockBugsnagBoundary);
 
     mockGetPlugin.mockReturnValue({

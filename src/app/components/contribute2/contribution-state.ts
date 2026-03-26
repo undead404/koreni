@@ -1,9 +1,17 @@
 import { create } from 'zustand';
+
+export type SubmissionStage =
+  | 'idle'
+  | 'conversion'
+  | 'verification'
+  | 'transmission';
+
 export interface ContributionState {
   error: string;
   isSubmitting: boolean;
   prUrl: string;
   title: string;
+  stage: SubmissionStage;
 }
 
 export interface ContributionStateStore {
@@ -18,6 +26,7 @@ export const useContributionStateStore = create<ContributionStateStore>(
       isSubmitting: false,
       prUrl: '',
       title: '',
+      stage: 'idle',
     },
     setState: (state: ContributionState) => set({ state }),
   }),

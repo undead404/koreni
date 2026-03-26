@@ -1,40 +1,37 @@
 'use client';
 import dynamic from 'next/dynamic';
-import posthog from 'posthog-js';
-import {
-  type SubmitEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import {
-  FormProvider,
-  type SubmitErrorHandler,
-  type SubmitHandler,
-} from 'react-hook-form';
+import { useState } from 'react';
+import { FormProvider } from 'react-hook-form';
 import Turnstile, { useTurnstile } from 'react-turnstile';
-import { toast } from 'sonner';
 
 import environment from '@/app/environment';
-import { submitErrorSchema, submitResponseSchema } from '@/app/schemas/api';
 
 import Loader from '../loader';
 
-import { useContributionStateStore } from './contribution-state';
-import convertContributeFormData from './convert-contribute-form-data';
-import getDefaultValues from './default-values';
+import {
+  type SubmissionStage,
+  useContributionStateStore,
+} from './contribution-state';
 import { KnownLocationsContext } from './known-locations-context';
-import { saveAuthorIdentity } from './local-storage';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values, ContributeFormProperties } from './types';
+import type { ContributeFormProperties } from './types';
 import useContributeForm from './use-contribute-form';
+import useSubmitContribution from './use-submit-contribution';
 
 import styles from './contribute-form.module.css';
+
 const ContributeFormStepper = dynamic(() => import('./stepper'), {
   ssr: false,
   loading: () => <Loader />,
 });
+
+const STAGE_LABELS: Record<SubmissionStage, string> = {
+  conversion: 'Обробка даних',
+  idle: 'Просторові дані',
+  transmission: 'Передача даних',
+  verification: 'Перевірка на людяність',
+};
+
 export default function ContributeForm2({
   knownLocations,
 }: ContributeFormProperties) {
@@ -44,125 +41,16 @@ export default function ContributeForm2({
 
   const [turnstileToken, setTurnstileToken] = useState('');
 
-  const contributionStartedReference = useRef(false);
-  const { state: contributionState, setState: setContributionState } =
-    useContributionStateStore();
+  const { state: contributionState } = useContributionStateStore();
 
-  useEffect(() => {
-    for (const error of Object.values(form.formState.errors)) {
-      toast.error(error.message, {
-        description: error.message,
-        duration: 5000,
-        icon: '🚨',
-      });
-    }
-  }, [form.formState.errors]);
+  const { handleFormSubmit, isSubmitting, stage } = useSubmitContribution({
+    form,
+    turnstileToken,
+    turnstile,
+    getAllColumns,
+    getTableAsObjects,
+  });
 
-  const submit: SubmitHandler<ContributeForm2Values> = useCallback(
-    async (data, event) => {
-      if (event) {
-        event.preventDefault();
-      }
-      if (contributionState.isSubmitting) {
-        return;
-      }
-      console.log(data);
-      setContributionState({
-        error: '',
-        isSubmitting: true,
-        prUrl: '',
-        title: data.title,
-      });
-      try {
-        const tableData = {
-          columns: getAllColumns(),
-          data: getTableAsObjects(),
-        };
-        console.log(tableData);
-        const adjustedFormData = convertContributeFormData(data, tableData);
-
-        console.log(adjustedFormData);
-
-        if (turnstileToken) {
-          adjustedFormData.turnstileToken = turnstileToken;
-        }
-
-        const response = await fetch(
-          new URL('/api/submit', environment.NEXT_PUBLIC_API_SITE),
-          {
-            method: 'POST',
-            body: JSON.stringify(adjustedFormData),
-          },
-        );
-
-        if (!response.ok) {
-          turnstile.reset();
-          const errorData = (await response.json()) as unknown;
-          const errorResponse = submitErrorSchema.safeParse(errorData);
-          if (errorResponse.success) {
-            throw new Error(errorResponse.data.error);
-          }
-          throw new Error(`Невідома помилка: ${JSON.stringify(errorData)}`);
-        }
-
-        const responseData = (await response.json()) as unknown;
-        const responseParsed = submitResponseSchema.parse(responseData);
-        setContributionState({
-          error: '',
-          isSubmitting: false,
-          prUrl: responseParsed.url,
-          title: data.title,
-        });
-
-        posthog.capture('contribution_success', {
-          url: responseParsed.url,
-        });
-
-        const authorIdentity = {
-          authorName: data.authorName,
-          authorEmail: data.authorEmail,
-          authorGithubUsername: data.authorGithubUsername,
-        };
-        saveAuthorIdentity(authorIdentity as Record<string, string>);
-
-        // resetContributePageState();
-        form.reset(getDefaultValues(authorIdentity));
-        contributionStartedReference.current = false;
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message : 'Сталася невідома помилка';
-        setContributionState({
-          error: message,
-          isSubmitting: false,
-          prUrl: '',
-          title: data.title,
-        });
-        posthog.capture('contribution_error', {
-          error: message,
-        });
-      }
-    },
-    [
-      contributionState.isSubmitting,
-      form,
-      getAllColumns,
-      getTableAsObjects,
-      setContributionState,
-      turnstile,
-      turnstileToken,
-    ],
-  );
-  const handleSubmitFailed: SubmitErrorHandler<ContributeForm2Values> =
-    useCallback(() => {
-      posthog.capture('contribution_submit_failed');
-    }, []);
-
-  const handleFormSubmit = useCallback(
-    (event: SubmitEvent<HTMLFormElement>) => {
-      void form.handleSubmit(submit, handleSubmitFailed)(event);
-    },
-    [form, handleSubmitFailed, submit],
-  );
   return (
     <form className={styles.container} onSubmit={handleFormSubmit}>
       <div className={styles.header}>
@@ -171,6 +59,11 @@ export default function ContributeForm2({
           Пройдіть стежкою вниз, аби завантажити, оформити та опублікувати свої
           дані.
         </p>
+        {isSubmitting && (
+          <p className={styles.stageMessage} role="status">
+            {STAGE_LABELS[stage]}
+          </p>
+        )}
       </div>
       <FormProvider {...form}>
         <KnownLocationsContext.Provider value={knownLocations}>
