@@ -3,42 +3,45 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2.5rem 1.5rem;
-  border-radius: 0.75rem;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
   border: 2px solid #16a34a;
   background-color: #f0fdf4;
+  background-image: radial-gradient(#dcfce7 1px, transparent 1px);
+  background-size: 20px 20px;
   animation: fadeUp 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.1);
 }
 
 /* ── Animated checkmark circle ── */
 .iconRing {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 9999px;
   background-color: #16a34a;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.25rem;
-  box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.12);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 0 8px rgba(22, 163, 74, 0.15);
   animation: popIn 0.35s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .checkSvg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   color: #ffffff;
 }
 
 /* ── Text ── */
 .heading {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #0f172a;
   line-height: 1.5;
-  margin: 0 0 0.25rem;
-  max-width: 28rem;
+  margin: 0 0 1.5rem;
+  max-width: 32rem;
   text-wrap: balance;
 }
 
@@ -47,64 +50,137 @@
   color: #16a34a;
 }
 
-.sub {
-  font-size: 0.8125rem;
-  color: #475569;
-  line-height: 1.6;
-  margin: 0 0 1.25rem;
-  max-width: 26rem;
+/* ── Stepper ── */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 28rem;
 }
 
-/* ── PR link chip ── */
-.prLink {
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.step[data-active='true'] {
+  color: #16a34a;
+}
+
+.stepIcon {
+  color: inherit;
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  background-color: #e2e8f0;
+  margin-bottom: 1.25rem;
+}
+
+/* ── Summary Details ── */
+.summaryDetails {
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 28rem;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.summaryTitle {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  background-color: #f8fafc;
+  user-select: none;
+}
+
+.summaryTitle:hover {
+  background-color: #f1f5f9;
+}
+
+.summaryContent {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #475569;
+  border-top: 1px solid #e2e8f0;
+}
+
+.summaryContent p {
+  margin: 0 0 0.5rem;
+}
+
+.summaryContent p:last-child {
+  margin: 0;
+}
+
+/* ── Actions ── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.baseAction {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.4375rem 0.875rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
   font-weight: 600;
   font-family: inherit;
-  color: #0f172a;
-  background-color: #ffffff;
-  border: 1.5px solid #e2e8f0;
   text-decoration: none;
   cursor: pointer;
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
-.prLink:hover {
+.primaryAction {
+  composes: baseAction;
+  color: #ffffff;
+  background-color: #16a34a;
+  border: 1px solid #16a34a;
+  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+}
+
+.primaryAction:hover {
+  background-color: #15803d;
+  border-color: #15803d;
+}
+
+.secondaryAction {
+  composes: baseAction;
+  color: #475569;
+  background-color: transparent;
+  border: 1px solid #cbd5e1;
+}
+
+.secondaryAction:hover {
   background-color: #f8fafc;
-  border-color: #cbd5e1;
+  color: #0f172a;
+  border-color: #94a3b8;
 }
 
 .prLinkIcon {
   display: flex;
   align-items: center;
-  color: #64748b;
-}
-
-.addAnotherBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.4375rem 0.875rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  font-family: inherit;
-  color: #0f172a;
-  background-color: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
-  margin-top: 0.25rem;
-  cursor: pointer;
 }
 
 /* ── Animations ── */

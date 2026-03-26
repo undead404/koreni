@@ -19,18 +19,21 @@ export interface ContributionStateStore {
   state: ContributionState;
   setState: (state: Partial<ContributionState>) => void;
   setActiveIndex: (index: number | ((previous: number) => number)) => void;
+  resetState: () => void;
 }
+
+const initialState: ContributionState = {
+  activeIndex: 0,
+  error: '',
+  isSubmitting: false,
+  prUrl: '',
+  title: '',
+  stage: 'idle',
+};
 
 export const useContributionStateStore = create<ContributionStateStore>(
   (set) => ({
-    state: {
-      activeIndex: 0,
-      error: '',
-      isSubmitting: false,
-      prUrl: '',
-      title: '',
-      stage: 'idle',
-    },
+    state: initialState,
     setState: (state) =>
       set((store) => ({
         state: {
@@ -47,6 +50,10 @@ export const useContributionStateStore = create<ContributionStateStore>(
               ? index(store.state.activeIndex)
               : index,
         },
+      })),
+    resetState: () =>
+      set(() => ({
+        state: initialState,
       })),
   }),
 );
