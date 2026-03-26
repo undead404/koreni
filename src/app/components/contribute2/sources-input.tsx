@@ -1,6 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
+import clsx from 'clsx';
 import { X } from 'lucide-react';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import type { ContributeForm2Values } from './types';
 
@@ -12,74 +13,79 @@ import styles from './sources-input.module.css';
  * @returns
  */
 export default function SourcesInput() {
-  const { control } = useFormContext<ContributeForm2Values>();
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<ContributeForm2Values>();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'sources',
+  });
+
   return (
-    <Controller
-      control={control}
-      name="sources"
-      render={({ field, formState: { errors } }) => (
-        <div className={styles.fieldGroup}>
-          <label className={styles.label} htmlFor="sources-input">
-            Вихідні дані
-          </label>
-          <p className={styles.description}>
-            Публічно доступні дані: ваша вихідна таблиця, а також скани архівної
-            справи
-          </p>
-          {field.value.map((source, index) => (
-            <div key={source.url} className={styles.arrayInputRow}>
+    <fieldset className={styles.fieldGroup}>
+      <legend className={styles.label}>Вихідні дані</legend>
+      <p className={styles.description}>
+        Публічно доступні дані: ваша вихідна таблиця, а також скани архівної
+        справи
+      </p>
+
+      {fields.map((field, index) => {
+        const error = errors.sources?.[index]?.url;
+        const errorId = `sources-error-${index}`;
+
+        return (
+          <div key={field.id}>
+            <div className={styles.arrayInputRow}>
               <input
+                id={`sources-input-${index}`}
                 type="url"
                 className={styles.input}
                 placeholder="https://example.com/source"
-                value={source.url}
-                onChange={(event) => {
-                  field.onChange([
-                    ...field.value.slice(0, index),
-                    { url: event.target.value },
-                    ...field.value.slice(index + 1),
-                  ]);
-                }}
+                aria-invalid={!!error}
+                aria-describedby={error ? errorId : undefined}
+                {...register(`sources.${index}.url` as const)}
               />
               <button
                 type="button"
                 className={styles.removeButton}
-                onClick={() => {
-                  field.onChange([
-                    ...field.value.slice(0, index),
-                    ...field.value.slice(index + 1),
-                  ]);
-                }}
-                aria-label={`Remove ${source.url}`}
+                onClick={() => remove(index)}
+                aria-label="Видалити посилання"
               >
-                <X size={10} strokeWidth={2.5} />
+                <X size={14} strokeWidth={2.5} />
               </button>
-              <ErrorMessage
-                className={styles.error}
-                errors={errors}
-                name={`sources.${index}.url` as keyof ContributeForm2Values}
-                as="p"
-              />
             </div>
-          ))}
-          <button
-            type="button"
-            className={styles.addButton}
-            onClick={() => {
-              field.onChange([...field.value, { url: '' }]);
-            }}
-          >
-            Додати посилання
-          </button>
+            <ErrorMessage
+              errors={errors}
+              name={`sources.${index}.url` as keyof ContributeForm2Values}
+              render={({ message }) => (
+                <p id={errorId} className={styles.error}>
+                  {message}
+                </p>
+              )}
+            />
+          </div>
+        );
+      })}
 
-          <ErrorMessage
-            className={styles.error}
-            errors={errors}
-            name={`sources`}
-            as="p"
-          />
-        </div>
-      )}
-    />
+      <button
+        type="button"
+        className={clsx(
+          styles.addButton,
+          fields.length === 0 && styles.addButtonPrimary,
+        )}
+        onClick={() => append({ url: '' })}
+      >
+        Додати посилання
+      </button>
+
+      <ErrorMessage
+        errors={errors}
+        name="sources"
+        render={({ message }) => <p className={styles.error}>{message}</p>}
+      />
+    </fieldset>
   );
 }
