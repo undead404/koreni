@@ -1,14 +1,20 @@
 /* ── Dropzone container ── */
 .dropzone {
+  --dz-border: #d1d5db;
+  --dz-bg: #fafbfc;
+  --dz-border-hover: #94a3b8;
+  --dz-bg-hover: #f1f5f9;
+  --dz-outline: #0f172a;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
   padding: 2.5rem 1.5rem;
-  border: 2px dashed #d1d5db;
+  border: 2px dashed var(--dz-border);
   border-radius: 0.75rem;
-  background-color: #fafbfc;
+  background-color: var(--dz-bg);
   cursor: pointer;
   transition:
     border-color 0.2s ease,
@@ -19,41 +25,37 @@
 }
 
 .dropzone:hover {
-  border-color: #94a3b8;
-  background-color: #f1f5f9;
+  border-color: var(--dz-border-hover);
+  background-color: var(--dz-bg-hover);
 }
 
 .dropzone:focus-visible {
-  outline: 2px solid #0f172a;
+  outline: 2px solid var(--dz-outline);
   outline-offset: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
   .dropzone {
-    border-color: #4b5563;
-    background-color: #1e293b;
-  }
-  .dropzone:hover {
-    border-color: #64748b;
-    background-color: #334155;
-  }
-  .dropzone:focus-visible {
-    outline-color: #e2e8f0;
+    --dz-border: #4b5563;
+    --dz-bg: #1e293b;
+    --dz-border-hover: #64748b;
+    --dz-bg-hover: #334155;
+    --dz-outline: #e2e8f0;
   }
 }
 
 /* ── Drag-over highlight state ── */
 .dropzoneDragOver {
   composes: dropzone;
-  border-color: #0f172a;
-  background-color: #f0f4ff;
+  --dz-border: #0f172a;
+  --dz-bg: #f0f4ff;
   border-style: solid;
 }
 
 @media (prefers-color-scheme: dark) {
   .dropzoneDragOver {
-    border-color: #94a3b8;
-    background-color: #1e3a8a;
+    --dz-border: #94a3b8;
+    --dz-bg: #1e3a8a;
   }
 }
 
@@ -61,29 +63,35 @@
 .dropzoneUploading {
   composes: dropzone;
   pointer-events: none;
-  border-color: #94a3b8;
-  background-color: #f8fafc;
+  --dz-border: #94a3b8;
+  --dz-bg: #f8fafc;
 }
 
 @media (prefers-color-scheme: dark) {
   .dropzoneUploading {
-    border-color: #475569;
-    background-color: #0f172a;
+    --dz-border: #475569;
+    --dz-bg: #0f172a;
   }
 }
 
 /* ── Success state ── */
 .dropzoneSuccess {
   composes: dropzone;
-  border-color: #16a34a;
-  background-color: #f0fdf4;
+  --dz-border: #16a34a;
+  --dz-bg: #f0fdf4;
+  border-style: solid;
   cursor: default;
+}
+
+.dropzoneSuccess:hover {
+  border-color: var(--dz-border);
+  background-color: var(--dz-bg);
 }
 
 @media (prefers-color-scheme: dark) {
   .dropzoneSuccess {
-    border-color: #22c55e;
-    background-color: #064e3b;
+    --dz-border: #22c55e;
+    --dz-bg: #064e3b;
   }
 }
 
@@ -223,6 +231,7 @@
   align-items: center;
   gap: 0.5rem;
   margin-top: 0.25rem;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .fileName {
@@ -315,14 +324,28 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .tableInfo {
   font-size: 0.75rem;
   margin-top: 0.25rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .error {
   color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }

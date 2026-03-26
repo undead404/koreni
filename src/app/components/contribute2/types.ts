@@ -39,7 +39,9 @@ export type DropzoneState =
   | 'drag-over'
   | 'uploading'
   | 'success'
-  | 'error';
+  | 'error-type'
+  | 'error-size'
+  | 'error-parse';
 
 export interface ParsedFile {
   name: string;

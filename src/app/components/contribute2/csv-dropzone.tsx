@@ -12,6 +12,8 @@ import {
 } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import formatBytes from '@/app/helpers/format-bytes';
+import isCsvFile from '@/app/helpers/is-csv-file';
 import parseCsvToTuples from '@/app/helpers/parse-csv-file-to-tuples';
 import { initBugsnag } from '@/app/services/bugsnag';
 
@@ -21,26 +23,7 @@ import type { DropzoneState, ParsedFile } from './types';
 
 import styles from './csv-dropzone.module.css';
 
-// export interface CsvDropzoneProperties extends StepProperties {
-//   onFileAccepted?: (file: File) => void;
-// }
-/* ────────────────────────────────────────── */
-/*  Helpers                                    */
-/* ────────────────────────────────────────── */
-
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} Б`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} КіБ`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} МіБ`;
-}
-
-function isCsvFile(file: File): boolean {
-  return file.type === 'text/csv' || file.name.toLowerCase().endsWith('.csv');
-}
-
-/* ────────────────────────────────────────── */
-/*  Component                                  */
-/* ────────────────────────────────────────── */
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
 
 export default function CsvDropzone() {
   const [state, setState] = useState<DropzoneState>('idle');
@@ -57,46 +40,44 @@ export default function CsvDropzone() {
 
   /* ── Process file ── */
   const processFile = useCallback(
-    (file: File) => {
+    async (file: File) => {
       if (!isCsvFile(file)) {
-        setState('error');
+        setState('error-type');
         return;
       }
 
-      // eslint-disable-next-line promise/catch-or-return
-      parseCsvToTuples(file)
-        .then(setTableData)
-        .catch((error: Error) => {
-          // Notify Bugsnag and Posthog
-          console.error(error);
-          posthog.capture('table_info_parse_error', {
-            error: error instanceof Error ? error.message : String(error),
-          });
-          posthog.capture('contribution_error', {
-            error: 'Не вдалося розібрати файл таблиці',
-          });
-          initBugsnag().notify(error);
-        })
-        .then(() => {
-          setParsedFile({ name: file.name, size: file.size });
-          setTableFileName(file.name);
-          setState('success');
-          // onFileAccepted?.(file);
-          return;
-        })
-        .catch((error: Error) => {
-          setState('error');
-          console.error(error);
-        })
-        .finally(() => {
-          setContributionState({
-            error: '',
-            isSubmitting: false,
-            prUrl: '',
-            stage: 'idle',
-            title: '',
-          });
+      if (file.size > MAX_FILE_SIZE) {
+        setState('error-size');
+        return;
+      }
+
+      setState('uploading');
+
+      try {
+        const data = await parseCsvToTuples(file);
+        setTableData(data);
+        setParsedFile({ name: file.name, size: file.size });
+        setTableFileName(file.name);
+        setState('success');
+      } catch (error) {
+        setState('error-parse');
+        console.error(error);
+        posthog.capture('table_info_parse_error', {
+          error: error instanceof Error ? error.message : String(error),
         });
+        posthog.capture('contribution_error', {
+          error: 'Не вдалося розібрати файл таблиці',
+        });
+        initBugsnag().notify(error as Error);
+      } finally {
+        setContributionState({
+          error: '',
+          isSubmitting: false,
+          prUrl: '',
+          stage: 'idle',
+          title: '',
+        });
+      }
     },
     [setContributionState, setTableData, setTableFileName],
   );
@@ -126,7 +107,9 @@ export default function CsvDropzone() {
       setValue('table', event.dataTransfer.files);
 
       const file = event.dataTransfer.files[0];
-      if (file) processFile(file);
+      if (file) {
+        void processFile(file);
+      }
     },
     [processFile, setValue, state],
   );
@@ -135,7 +118,9 @@ export default function CsvDropzone() {
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
-      if (file) processFile(file);
+      if (file) {
+        void processFile(file);
+      }
     },
     [processFile],
   );
@@ -195,13 +180,16 @@ export default function CsvDropzone() {
     [rhfReference],
   );
 
+  const isError = state.startsWith('error');
+
   return (
-    <div>
+    <div aria-live="polite">
       <div
         className={zoneClass}
         role="button"
         tabIndex={state === 'success' ? -1 : 0}
         aria-label="Оберіть файл CSV"
+        aria-expanded={state === 'success'}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -229,8 +217,8 @@ export default function CsvDropzone() {
           )}
         </div>
 
-        {/* Idle / drag-over */}
-        {(state === 'idle' || state === 'drag-over' || state === 'error') && (
+        {/* Idle / drag-over / error */}
+        {(state === 'idle' || state === 'drag-over' || isError) && (
           <>
             <p className={styles.mainText}>
               {state === 'drag-over' ? (
@@ -247,6 +235,15 @@ export default function CsvDropzone() {
             <p className={styles.hint}>
               Приймаються лише файли CSV &middot; До 50 МіБ
             </p>
+            {isError && (
+              <p className={styles.error}>
+                {state === 'error-type' &&
+                  'Невірний формат файлу. Будь ласка, завантажте CSV.'}
+                {state === 'error-size' &&
+                  'Файл занадто великий. Максимальний розмір 50 МіБ.'}
+                {state === 'error-parse' && 'Помилка при читанні файлу.'}
+              </p>
+            )}
             <ErrorMessage
               className={styles.error}
               errors={errors}
@@ -268,6 +265,9 @@ export default function CsvDropzone() {
         {state === 'success' && parsedFile && (
           <>
             <p className={styles.mainTextSuccess}>Файл готовий</p>
+            <p className={styles.hint}>
+              Переходьте далі та заповніть решту полів
+            </p>
             <div className={styles.fileInfo}>
               <span className={styles.fileName}>{parsedFile.name}</span>
               <span className={styles.fileDot} aria-hidden="true" />
