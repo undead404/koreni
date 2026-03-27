@@ -4,6 +4,7 @@ import type {
   SearchResponseHit,
 } from 'typesense/lib/Typesense/Documents.js';
 
+import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
 import transliterateIntoUkrainian from '../helpers/transliterate-into-ukrainian';
 
@@ -44,6 +45,13 @@ export default async function search({
 
   // 1. Initialize promises concurrently without awaiting them inline
   const searchPromises = [
+    searchInCollection(
+      client,
+      'unstructured_pl',
+      transliterateIntoPolish(normalizedQuery),
+      page,
+      perPage,
+    ),
     searchInCollection(
       client,
       'unstructured_ru',
