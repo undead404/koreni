@@ -50,7 +50,7 @@ export function GridControlBar({
 
       <div className={styles.controlGroup}>
         <label className={styles.controlLabel} htmlFor="table-locale">
-          Мова таблиці:
+          Алфавіт таблиці:
         </label>
         <select
           id="table-locale"
@@ -59,11 +59,11 @@ export function GridControlBar({
           {...register('tableLocale')}
         >
           <option value="" disabled>
-            Виберіть мову таблиці
+            Виберіть алфавіт таблиці
           </option>
-          <option value="pl">Польська</option>
-          <option value="ru">російська</option>
-          <option value="uk">Українська</option>
+          <option value="pl">Латинка (польська, латина)</option>
+          <option value="ru">російський</option>
+          <option value="uk">Український</option>
         </select>
         <ErrorMessage
           className={styles.error}

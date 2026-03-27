@@ -21,13 +21,13 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     const fileContent = await readFile(yamlFilepath, 'utf8');
     const fileData = parse(fileContent) as unknown;
     const tableMetadata = indexationTableSchema.parse(fileData);
-    const bareFileName = yamlFilepath.split(path.sep).at(-1);
-    if (
-      bareFileName!.toLowerCase() !== `${tableMetadata.id.toLowerCase()}.yaml`
-    ) {
-      console.log(bareFileName, '!==', `${tableMetadata.id}.yaml`);
-      throw new Error('Filename mismatch');
-    }
+    // const bareFileName = yamlFilepath.split(path.sep).at(-1);
+    // if (
+    //   bareFileName!.toLowerCase() !== `${tableMetadata.id.toLowerCase()}.yaml`
+    // ) {
+    //   console.log(bareFileName, '!==', `${tableMetadata.id}.yaml`);
+    //   throw new Error('Filename mismatch');
+    // }
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);

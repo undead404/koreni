@@ -22,7 +22,14 @@ interface SummaryField {
   key: string;
   value: string | string[] | number | null | undefined;
   type?: 'text' | 'tags' | 'location';
+  displayValue?: string;
 }
+
+const ALPHABET_TITLES = {
+  pl: 'Латинка',
+  ru: 'російський',
+  uk: 'Український',
+} as const;
 
 /* ────────────────────────────────────────── */
 /*  Value Renderer                             */
@@ -35,7 +42,11 @@ function ValueRenderer({
   field: SummaryField;
   locationStatus?: 'idle' | 'loading' | 'error';
 }) {
-  const { value, type } = field;
+  const { displayValue, value, type } = field;
+
+  if (displayValue) {
+    return <>{displayValue}</>;
+  }
 
   if (type === 'location' && locationStatus === 'loading') {
     return <span className={styles.pulse}>Пошук...</span>;
@@ -212,7 +223,8 @@ export default function ReviewSummary({
         type: 'text',
       },
       {
-        key: 'Мова таблиці',
+        displayValue: tableLocale ? ALPHABET_TITLES[tableLocale] : undefined,
+        key: 'Алфавіт таблиці',
         value: tableLocale,
         type: 'text',
       },

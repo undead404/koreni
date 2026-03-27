@@ -77,7 +77,7 @@ export const contributeForm2Schema = z.object({
     .enum(['pl', 'ru', 'uk', ''])
     .nullable()
     .refine((value) => value, {
-      message: 'Виберіть мову таблиці',
+      message: 'Виберіть алфавіт таблиці',
     }),
   title: z.string().min(1, {
     message: 'Введіть назву таблиці',
