@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЛО-Р3229-4-56
+  - ДАЛО-Р3229-4-164
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.coom
+date: 2026-03-27
+id: deportovani-z-polshchi-kosmiv-kosmw-hmina-kryliv-hrubeshivskyi-povit
+location:
+  - 50.7202397
+  - 24.014631
+size: 588
+sources:
+  - https://docs.google.com/spreadsheets/d/1ihrsigWBYpVBRS3qP5nS1c3dp5UW8XFXhzKXt60M4pM/edit?usp=sharing
+tableFilePath: public/csv/deportovani-z-polshchi-kosmiv-kosmw-hmina-kryliv-hrubeshivskyi-povit.csv
+tableLocale: uk
+title: Депортовані з Польщі | Космів (Kosmów) гміна Крилів Грубешівський повіт
+yearsRange:
+  - 1946
