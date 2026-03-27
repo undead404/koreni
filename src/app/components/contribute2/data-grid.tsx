@@ -1,6 +1,5 @@
 'use client';
 
-import { ErrorMessage } from '@hookform/error-message';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -48,6 +47,8 @@ export default function DataGrid() {
         skippedRowsAbove={skippedRowsAbove}
         totalFlagged={totalFlagged}
         setSkippedRowsAbove={setSkippedRowsAbove}
+        register={register}
+        errors={errors}
       />
 
       {skippedColumns.size > 0 && (
@@ -84,26 +85,6 @@ export default function DataGrid() {
         toggleRow={toggleRow}
         expandTop={expandTop}
         expandBottom={expandBottom}
-      />
-
-      <label className={styles.label} htmlFor="table-locale">
-        Мова таблиці
-      </label>
-      <select
-        id="table-locale"
-        className={styles.select}
-        {...register('tableLocale')}
-      >
-        <option disabled>Виберіть мову таблиці</option>
-        <option value="pl">Польська</option>
-        <option value="ru">російська</option>
-        <option value="uk">Українська</option>
-      </select>
-      <ErrorMessage
-        className={styles.error}
-        errors={errors}
-        name="tableLocale"
-        as="p"
       />
     </div>
   );

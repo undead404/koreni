@@ -1,3 +1,8 @@
+import { ErrorMessage } from '@hookform/error-message';
+import type { FieldErrors, UseFormRegister } from 'react-hook-form';
+
+import type { ContributeForm2Values } from './types';
+
 import styles from './data-grid.module.css';
 
 interface GridControlBarProperties {
@@ -6,6 +11,8 @@ interface GridControlBarProperties {
   skippedRowsAbove: number;
   totalFlagged: number;
   setSkippedRowsAbove: (value: number) => void;
+  register: UseFormRegister<ContributeForm2Values>;
+  errors: FieldErrors<ContributeForm2Values>;
 }
 
 export function GridControlBar({
@@ -14,6 +21,8 @@ export function GridControlBar({
   skippedRowsAbove,
   totalFlagged,
   setSkippedRowsAbove,
+  register,
+  errors,
 }: GridControlBarProperties) {
   return (
     <div className={styles.controlBar}>
@@ -38,6 +47,32 @@ export function GridControlBar({
           step={1}
         />
       </div>
+
+      <div className={styles.controlGroup}>
+        <label className={styles.controlLabel} htmlFor="table-locale">
+          Мова таблиці:
+        </label>
+        <select
+          id="table-locale"
+          className={styles.controlSelect}
+          defaultValue=""
+          {...register('tableLocale')}
+        >
+          <option value="" disabled>
+            Виберіть мову таблиці
+          </option>
+          <option value="pl">Польська</option>
+          <option value="ru">російська</option>
+          <option value="uk">Українська</option>
+        </select>
+        <ErrorMessage
+          className={styles.error}
+          errors={errors}
+          name="tableLocale"
+          as="span"
+        />
+      </div>
+
       <div className={styles.controlGroup}>
         <span className={styles.statBadge}>
           {dataRowsLength} рядів &times; {columnsCount} колонок

@@ -53,6 +53,7 @@
   border: 1px solid var(--grid-border);
   border-bottom: none;
   border-radius: 0.5rem 0.5rem 0 0;
+  flex-wrap: wrap;
 }
 
 .controlGroup {
@@ -92,6 +93,23 @@
 }
 
 .controlInput:focus {
+  border-color: var(--grid-text-muted);
+}
+
+.controlSelect {
+  padding: 0.25rem 1.5rem 0.25rem 0.375rem;
+  border: 1px solid var(--grid-border);
+  border-radius: 0.3125rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--grid-text-primary);
+  background-color: var(--grid-bg);
+  outline: none;
+  transition: border-color 0.15s ease;
+  font-family: inherit;
+}
+
+.controlSelect:focus {
   border-color: var(--grid-text-muted);
 }
 
@@ -452,4 +470,6 @@
 
 .error {
   color: #dc2626;
+  font-size: 0.6875rem;
+  font-weight: 500;
 }
