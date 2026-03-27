@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-259-28-17
+authorName: Maksym Vasyliev
+authorEmail: maksymvsl@gmail.com
+date: 2026-03-27
+id: DAKheO-259-28-17-Kozachi-Laheri-death
+location:
+  - 46.70640132935297
+  - 32.98345401556288
+size: 157
+sources:
+  - https://drive.google.com/file/d/1-1_UMaOw3BR764h85DBUwaK7aJsX6cv_/view
+tableFilePath: public/csv/DAKheO-259-28-17-Kozachi-Laheri-death.csv
+tableLocale: uk
+title: Індексація_ДАХеО ф.259, о.28 - Козачі Лагері, Дніпровський пов.,
+  Таврійська губ. | смерті (1905)
+yearsRange:
+  - 1905
