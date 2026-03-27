@@ -1,10 +1,9 @@
 archiveItems:
-  - ФОНД 487 ОПИС 1 "ГРЕКО-КАТОЛИЦЬКІ ПОВІТОВІ УПРАВЛІННЯ ТЕРНОПІЛЬСЬКОГО КРАЮ
-    ГАЛИЦЬКОГО НАМІСНИЦТВА, З 1921 РОКУ ТЕРНОПІЛЬСЬКОГО ВОЄВОДСТВА
-authorName: Орест Миишин
+  - ДАТО-487-1-2
+authorName: Орест Мищишин
 authorEmail: orest_m_j@ukr.net
 date: 2026-03-27
-id: wierbow1903clean
+id: DATO-487-1-2-1903
 location:
   - 49.534873739862185
   - 24.85092789214449
@@ -13,6 +12,6 @@ sources:
   - https://archives.te.gov.ua/ocifrovanni-spravi/f-487-opis-1-greko-katolicki-povitovi-upravlinnya/#l-f-487-opis-1-greko-katolicki-povitovi-upravlinnya
 tableFilePath: public/csv/wierbow1903clean.csv
 tableLocale: pl
-title: Wierbow_1903_clean
+title: Список народжених в селі Вербів (Нараївський) у 1903 році
 yearsRange:
   - 1903
