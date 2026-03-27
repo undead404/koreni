@@ -1,0 +1,18 @@
+archiveItems:
+  - ФОНД 487 ОПИС 1 "ГРЕКО-КАТОЛИЦЬКІ ПОВІТОВІ УПРАВЛІННЯ ТЕРНОПІЛЬСЬКОГО КРАЮ
+    ГАЛИЦЬКОГО НАМІСНИЦТВА, З 1921 РОКУ ТЕРНОПІЛЬСЬКОГО ВОЄВОДСТВА
+authorName: Орест Миишин
+authorEmail: orest_m_j@ukr.net
+date: 2026-03-27
+id: wierbow1903clean
+location:
+  - 49.534873739862185
+  - 24.85092789214449
+size: 81
+sources:
+  - https://archives.te.gov.ua/ocifrovanni-spravi/f-487-opis-1-greko-katolicki-povitovi-upravlinnya/#l-f-487-opis-1-greko-katolicki-povitovi-upravlinnya
+tableFilePath: public/csv/wierbow1903clean.csv
+tableLocale: pl
+title: Wierbow_1903_clean
+yearsRange:
+  - 1903
