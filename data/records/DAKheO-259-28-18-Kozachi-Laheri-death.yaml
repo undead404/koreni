@@ -10,8 +10,9 @@ location:
 size: 212
 sources:
   - https://drive.google.com/file/d/1Byth5NPhc6508TunYYSMrfUFimHGBwzL/view
+  - https://docs.google.com/spreadsheets/d/1toVc4UgzLN0cBDRIgcd4wawwP4sPXaKVGCymax4_TEQ/edit?gid=0#gid=0
 tableFilePath: public/csv/DAKheO-259-28-18-Kozachi-Laheri-death.csv
 tableLocale: uk
-title: Козачі Лагері | смерті (1908), ДАХеО-259-28
+title: Козачі Лагері | смерті (1908), ДАХеО-259-28-18
 yearsRange:
   - 1908

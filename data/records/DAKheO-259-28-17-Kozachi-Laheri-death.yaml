@@ -10,9 +10,9 @@ location:
 size: 157
 sources:
   - https://drive.google.com/file/d/1-1_UMaOw3BR764h85DBUwaK7aJsX6cv_/view
+  - https://docs.google.com/spreadsheets/d/1jEvqD55wpJQIxQFKbHZ_hE6sI_LpKjqrX0iKrJ2aLAU/edit?gid=0#gid=0
 tableFilePath: public/csv/DAKheO-259-28-17-Kozachi-Laheri-death.csv
 tableLocale: uk
-title: Індексація_ДАХеО ф.259, о.28 - Козачі Лагері, Дніпровський пов.,
-  Таврійська губ. | смерті (1905)
+title: Козачі Лагері | смерті (1905), ДАХеО-259-28-17
 yearsRange:
   - 1905
