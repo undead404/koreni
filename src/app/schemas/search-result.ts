@@ -34,7 +34,7 @@ const resultSchema = z.object({
       // Captures the ambiguous archival data safely
       raw: z.record(z.string(), z.unknown()).default({}),
     })
-    .passthrough(), // Prevents schema from stripping unknown adjacent keys like 'location'
+    .loose(), // Prevents schema from stripping unknown adjacent keys like 'location'
 
   highlight: highlightSchema.optional(),
   highlights: highlightsArraySchema.optional(),
