@@ -1,0 +1,20 @@
+archiveItems:
+  - ЦДІАЛ-693-1-1085
+  - ЦДІАЛ-693-1-1086
+  - ЦДІАЛ-693-1-1087
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.coom
+date: 2026-03-27
+id: TsDIAL-693-1-Prehoryle-death
+location:
+  - 50.6519718
+  - 24.0425879
+size: 81
+sources:
+  - https://docs.google.com/spreadsheets/d/1-SJtw2psfRb2SMdM7S8Ypz3LM8IeZ492FcvGCRxSpfM/edit?usp=sharing
+tableFilePath: public/csv/prehoryle-prawosl-smerti.csv
+tableLocale: uk
+title: Пригоріле (Prehoryłe prawosł.) гміна Крилів Грубешівський пов.| смерті
+yearsRange:
+  - 1928
+  - 1941
