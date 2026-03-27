@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-27
+id: DAKhmO-315-1-8563-Bila
+location:
+  - 48.252766
+  - 28.218872
+size: 831
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=670876943#gid=670876943
+tableFilePath: public/csv/DAKhmO-315-1-8563-Bila.csv
+tableLocale: ru
+title: Біла (Ямпільська) і Оксанівка 1861 – сповідний розпис (повний), ДАХмО
+  315-1-8563
+yearsRange:
+  - 1861
