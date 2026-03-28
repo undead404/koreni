@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАВоО-35-9-3253
+  - ДАВоО-35-9-3255
+  - ДАВоО-35-9-3256
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-28
+id: slipcze-prawosl-narodzhennia-1930-45
+location:
+  - 50.7486215
+  - 23.9924569
+size: 619
+sources:
+  - https://docs.google.com/spreadsheets/d/1_Y_Iy-eAgOqs0rtgYioW9Xjg8x2pIRcDR24lSs8BdOo/edit?usp=sharing
+tableFilePath: public/csv/slipcze-prawosl-narodzhennia-1930-45.csv
+tableLocale: uk
+title: Сліпче (Ślipcze prawosł.) гміна Міняни Грубешівський пов. | народження
+  (1930-45)
+yearsRange:
+  - 1930
+  - 1945
