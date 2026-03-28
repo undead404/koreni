@@ -11,12 +11,12 @@ export interface ContributeFormProperties {
   }[];
 }
 
-export type ContributeForm2Values = z.infer<typeof contributeForm2Schema>;
+export type ContributeFormValues = z.infer<typeof contributeForm2Schema>;
 
 export type StepStatus = 'completed' | 'active' | 'pending';
 
 export interface StepDefinition {
-  fields: (keyof ContributeForm2Values)[];
+  fields: (keyof ContributeFormValues)[];
   icon: ReactNode;
   label: string;
   placeholderBody: string;
@@ -26,7 +26,7 @@ export interface StepDefinition {
     | ReactNode
     | ((
         tableStore: TableStateStore,
-        formData: Partial<ContributeForm2Values>,
+        formData: Partial<ContributeFormValues>,
       ) => ReactNode);
 }
 

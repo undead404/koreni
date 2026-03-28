@@ -8,12 +8,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       allow: '/',
-      disallow: [
-        '/contribute',
-        '/contribute/',
-        '/contribute2',
-        '/contribute2/',
-      ],
+      disallow: ['/contribute', '/contribute/'],
       userAgent: '*',
     },
     sitemap: `${environment.NEXT_PUBLIC_SITE}/sitemap.xml`,

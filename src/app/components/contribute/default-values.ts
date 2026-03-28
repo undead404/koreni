@@ -1,5 +1,5 @@
 import { restoreAuthorIdentity } from './local-storage';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 function restoreContributePageState() {
   return restoreAuthorIdentity();
@@ -20,18 +20,18 @@ const BLANK_VALUES = {
 };
 
 export default function getDefaultValues(
-  otherDefaultValues: Partial<ContributeForm2Values> = {},
-): ContributeForm2Values {
+  otherDefaultValues: Partial<ContributeFormValues> = {},
+): ContributeFormValues {
   const restored = restoreContributePageState();
   if (restored) {
     return {
       ...BLANK_VALUES,
       ...restored,
       ...otherDefaultValues,
-    } as ContributeForm2Values;
+    } as ContributeFormValues;
   }
   return {
     ...BLANK_VALUES,
     ...otherDefaultValues,
-  } as ContributeForm2Values;
+  } as ContributeFormValues;
 }

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { type ChangeEvent, useCallback, useState } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './years-input.module.css';
 
@@ -34,7 +34,7 @@ function parseYearRange(input: string): [number] | [number, number] | null {
 export default function YearsInput({
   onChange,
   value,
-}: ControllerRenderProps<ContributeForm2Values, 'yearsRange'>) {
+}: ControllerRenderProps<ContributeFormValues, 'yearsRange'>) {
   const [inputValue, setInputValue] = useState(value?.join(' - ') || '');
   const [isInvalid, setIsInvalid] = useState(false);
 

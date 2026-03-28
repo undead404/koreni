@@ -6,14 +6,14 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import ArchiveItemsInput from './archive-items-input';
 import SourcesInput from './sources-input';
 import { SpatialInput } from './spatial-input';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 import { useFormAutoFill } from './use-form-auto-fill';
 import YearsInput from './years-input';
 
 import styles from './context-form.module.css';
 
 const LocationController = Controller as typeof Controller<
-  ContributeForm2Values,
+  ContributeFormValues,
   'location'
 >;
 
@@ -25,7 +25,7 @@ export default function ContextForm() {
     control,
     formState: { errors },
     register,
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   const archiveItems = useWatch({ control, name: 'archiveItems' });
   const yearsRange = useWatch({ control, name: 'yearsRange' });
@@ -119,7 +119,7 @@ export default function ContextForm() {
               key={archiveItem.item}
               className={styles.error}
               errors={errors}
-              name={`archiveItems.${index}.item` as keyof ContributeForm2Values}
+              name={`archiveItems.${index}.item` as keyof ContributeFormValues}
               as="p"
             />
           ))}
@@ -142,7 +142,7 @@ export default function ContextForm() {
               key={year}
               className={styles.error}
               errors={errors}
-              name={`yearsRange.${index}` as keyof ContributeForm2Values}
+              name={`yearsRange.${index}` as keyof ContributeFormValues}
               as="p"
             />
           )) ?? null}

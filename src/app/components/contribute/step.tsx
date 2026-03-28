@@ -7,11 +7,7 @@ import CheckIcon from '@/app/icons/check';
 
 import { useContributionStateStore } from './contribution-state';
 import { useTableStateStore } from './table-state';
-import type {
-  ContributeForm2Values,
-  StepDefinition,
-  StepStatus,
-} from './types';
+import type { ContributeFormValues, StepDefinition, StepStatus } from './types';
 
 import styles from './step.module.css';
 
@@ -63,7 +59,7 @@ export default function ContributeFormStep({
   nextConnectorStatus: 'completed' | 'active' | 'pending' | 'hidden';
 }) {
   const tableStore = useTableStateStore();
-  const { control, trigger } = useFormContext<ContributeForm2Values>();
+  const { control, trigger } = useFormContext<ContributeFormValues>();
   const allValues = useWatch({ control });
 
   const [isValidating, setIsValidating] = useState(false);
@@ -84,7 +80,7 @@ export default function ContributeFormStep({
 
   const summary =
     typeof def.summary === 'function'
-      ? def.summary(tableStore, allValues as ContributeForm2Values)
+      ? def.summary(tableStore, allValues as ContributeFormValues)
       : def.summary;
 
   const handleContinue = useCallback(() => {

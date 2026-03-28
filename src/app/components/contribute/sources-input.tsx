@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { X } from 'lucide-react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './sources-input.module.css';
 
@@ -17,7 +17,7 @@ export default function SourcesInput() {
     control,
     register,
     formState: { errors },
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -59,7 +59,7 @@ export default function SourcesInput() {
             </div>
             <ErrorMessage
               errors={errors}
-              name={`sources.${index}.url` as keyof ContributeForm2Values}
+              name={`sources.${index}.url` as keyof ContributeFormValues}
               render={({ message }) => (
                 <p id={errorId} className={styles.error}>
                   {message}

@@ -11,14 +11,14 @@ import type { ControllerRenderProps } from 'react-hook-form';
 
 import { UKR_ARCHIVE_REGEX } from '@/app/helpers/ukr-archive-regex';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './archive-items-input.module.css';
 
 export default function ArchiveItemsInput({
   value = [],
   onChange,
-}: ControllerRenderProps<ContributeForm2Values, 'archiveItems'>) {
+}: ControllerRenderProps<ContributeFormValues, 'archiveItems'>) {
   const [tagInput, setTagInput] = useState('');
   const inputReference = useRef<HTMLInputElement>(null);
 

@@ -8,7 +8,7 @@ import ContributeFormStep from './step';
 import STEPS from './steps';
 import SuccessPanel from './success-panel';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values, StepStatus } from './types';
+import type { ContributeFormValues, StepStatus } from './types';
 
 import styles from './stepper.module.css';
 
@@ -35,7 +35,7 @@ export default function ContributeFormStepper() {
   const {
     formState: { errors },
     control,
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   const { state, setActiveIndex } = useContributionStateStore();
   const { activeIndex, error, isSubmitting, prUrl, title } = state;

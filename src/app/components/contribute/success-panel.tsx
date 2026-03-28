@@ -7,7 +7,7 @@ import { useFormContext } from 'react-hook-form';
 import { useContributionStateStore } from './contribution-state';
 import getDefaultValues from './default-values';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './success-panel.module.css';
 
@@ -18,7 +18,7 @@ interface SuccessPanelProperties {
 }
 
 function useResetContribution() {
-  const { reset } = useFormContext<ContributeForm2Values>();
+  const { reset } = useFormContext<ContributeFormValues>();
   const { resetState } = useContributionStateStore();
   const { reset: resetTableState } = useTableStateStore();
 

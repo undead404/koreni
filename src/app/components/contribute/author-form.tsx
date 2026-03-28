@@ -6,14 +6,14 @@ import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './author-form.module.css';
 
 import githubIcon from '../../icons/github.svg';
 
 interface FieldConfig {
-  name: keyof ContributeForm2Values;
+  name: keyof ContributeFormValues;
   label: string;
   type: string;
   placeholder: string;
@@ -64,7 +64,7 @@ export default function AuthorForm() {
   const {
     register,
     formState: { errors },
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   return (
     <fieldset className={styles.wrapper} aria-describedby="author-form-hint">

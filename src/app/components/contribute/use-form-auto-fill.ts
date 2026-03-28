@@ -4,7 +4,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 export function useFormAutoFill() {
   const { tableFileName } = useTableStateStore();
@@ -12,7 +12,7 @@ export function useFormAutoFill() {
     control,
     formState: { touchedFields, dirtyFields },
     setValue,
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   const titleValue = useWatch({ control, name: 'title' });
 

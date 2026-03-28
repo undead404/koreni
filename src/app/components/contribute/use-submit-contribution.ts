@@ -13,10 +13,10 @@ import { useContributionStateStore } from './contribution-state';
 import convertContributeFormData from './convert-contribute-form-data';
 import getDefaultValues from './default-values';
 import { saveAuthorIdentity } from './local-storage';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 interface UseSubmitContributionProperties {
-  form: UseFormReturn<ContributeForm2Values>;
+  form: UseFormReturn<ContributeFormValues>;
   turnstileToken: string;
   turnstile: { reset: () => void };
   getAllColumns: () => string[];
@@ -33,7 +33,7 @@ export default function useSubmitContribution({
   const { state: contributionState, setState: setContributionState } =
     useContributionStateStore();
 
-  const submit: SubmitHandler<ContributeForm2Values> = useCallback(
+  const submit: SubmitHandler<ContributeFormValues> = useCallback(
     async (data, event) => {
       if (event) {
         event.preventDefault();
@@ -154,7 +154,7 @@ export default function useSubmitContribution({
     ],
   );
 
-  const handleSubmitFailed: SubmitErrorHandler<ContributeForm2Values> =
+  const handleSubmitFailed: SubmitErrorHandler<ContributeFormValues> =
     useCallback(() => {
       posthog.capture('contribution_submit_failed');
     }, []);

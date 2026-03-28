@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import type { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './data-grid.module.css';
 
@@ -11,8 +11,8 @@ interface GridControlBarProperties {
   skippedRowsAbove: number;
   totalFlagged: number;
   setSkippedRowsAbove: (value: number) => void;
-  register: UseFormRegister<ContributeForm2Values>;
-  errors: FieldErrors<ContributeForm2Values>;
+  register: UseFormRegister<ContributeFormValues>;
+  errors: FieldErrors<ContributeFormValues>;
 }
 
 export function GridControlBar({

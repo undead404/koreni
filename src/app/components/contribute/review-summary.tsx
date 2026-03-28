@@ -10,7 +10,7 @@ import { reverseGeocode } from '@/app/services/locationiq';
 
 import { coordinatesStringAsTupleSchema } from './schema';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 import styles from './review-summary.module.css';
 
@@ -144,7 +144,7 @@ export default function ReviewSummary({
     'idle' | 'loading' | 'error'
   >('idle');
 
-  const { control } = useFormContext<ContributeForm2Values>();
+  const { control } = useFormContext<ContributeFormValues>();
 
   // Specific observers to prevent full re-renders
   const locationValue = useWatch({ control, name: 'location' });

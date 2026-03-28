@@ -32,7 +32,7 @@ const STAGE_LABELS: Record<SubmissionStage, string> = {
   verification: 'Перевірка на людяність',
 };
 
-export default function ContributeForm2({
+export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
   const form = useContributeForm();

@@ -1,10 +1,10 @@
 import type { TableData } from '@/app/helpers/parse-csv-file';
 import { ImportPayload } from '@/shared/schemas/import';
 
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 
 export default function convertContributeFormData(
-  data: ContributeForm2Values,
+  data: ContributeFormValues,
   table: TableData,
 ): ImportPayload {
   if (!data.tableLocale) {

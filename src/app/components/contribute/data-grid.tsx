@@ -6,7 +6,7 @@ import { useFormContext } from 'react-hook-form';
 import { GridControlBar } from './grid-control-bar';
 import { GridTable } from './grid-table';
 import { useTableStateStore } from './table-state';
-import type { ContributeForm2Values } from './types';
+import type { ContributeFormValues } from './types';
 import { useGridPreview } from './use-grid-preview';
 
 import styles from './data-grid.module.css';
@@ -37,7 +37,7 @@ export default function DataGrid() {
   const {
     formState: { errors },
     register,
-  } = useFormContext<ContributeForm2Values>();
+  } = useFormContext<ContributeFormValues>();
 
   return (
     <div className={styles.wrapper}>
