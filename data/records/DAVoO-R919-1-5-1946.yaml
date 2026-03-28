@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВоО-Р919-1-5
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-28
+id: DAVoO-R919-1-5-1946
+location:
+  - 50.4986166
+  - 24.7600734
+size: 301
+sources:
+  - https://docs.google.com/spreadsheets/d/1k8Z1PJB-rWO2gvmfPvcNpXrxo_1cmuicpZUVDJLaEMA/edit?usp=sharing
+tableFilePath: public/csv/deportovani-z-polshchi-gorohivskyj-r-n-volynska-obl-1946.csv
+tableLocale: uk
+title: Депортовані з Польщі | Горохівський р-н, Волинська обл. (1946)
+yearsRange:
+  - 1946
