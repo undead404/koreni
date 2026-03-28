@@ -92,5 +92,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: volunteer.lastModified,
       url: volunteer.url,
     })),
+    {
+      changeFrequency: 'yearly' as const,
+      lastModified: new Date(2026, 2, 28),
+      priority: 0.5,
+      url: new URL('/contribute/', environment.NEXT_PUBLIC_SITE).toString(),
+    },
   ];
 }
