@@ -1,12 +1,13 @@
 'use client';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useState } from 'react';
 import { FormProvider } from 'react-hook-form';
 import Turnstile, { useTurnstile } from 'react-turnstile';
 
 import environment from '@/app/environment';
+import { useDataLossGuard } from '@/app/hooks/use-data-loss-guard';
 
+import { GuardedLink } from '../guarded-link';
 import Loader from '../loader';
 
 import {
@@ -37,7 +38,8 @@ export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
   const form = useContributeForm();
-  const { getAllColumns, getTableAsObjects } = useTableStateStore();
+  const { tableFileName, getAllColumns, getTableAsObjects } =
+    useTableStateStore();
   const turnstile = useTurnstile() as { reset: () => void };
 
   const [turnstileToken, setTurnstileToken] = useState('');
@@ -52,6 +54,12 @@ export default function ContributeForm({
     getTableAsObjects,
   });
 
+  const isDirty =
+    (!!tableFileName || contributionState.activeIndex > 0) &&
+    !contributionState.prUrl;
+
+  useDataLossGuard(isDirty);
+
   return (
     <form className={styles.container} onSubmit={handleFormSubmit}>
       <div className={styles.header}>
@@ -62,18 +70,27 @@ export default function ContributeForm({
         </p>
         <p className={styles.description}>
           Ваші дані будуть збережені у вигляді PR на GitHub, де їх перевірить
-          команда <Link href="/about">Коренів</Link>. А потім вони потраплять на
-          сайт і стануть доступні для пошуку.
+          команда{' '}
+          <GuardedLink href="/about" isDirty={isDirty}>
+            Коренів
+          </GuardedLink>
+          . А потім вони потраплять на сайт і стануть доступні для пошуку.
         </p>
         <p className={styles.description}>
-          <strong>Важливо!</strong> Наразі <Link href="/about">Корені</Link>{' '}
+          <strong>Важливо!</strong> Наразі{' '}
+          <GuardedLink href="/about" isDirty={isDirty}>
+            Корені
+          </GuardedLink>{' '}
           приймають лише таблиці в форматі CSV. Скористайтеся функцією експорту
           в Excel або Google Spreadsheets. <em>Зверніть увагу</em>: експорт CSV
           спрацьовує лише щодо одного аркуша Excel за раз.
         </p>
         <p className={styles.description}>
-          <strong>Важливо!</strong> <Link href="/about">Корені</Link> не
-          приймають таблиці, які проіндексував невідомо хто. Якщо не хочете
+          <strong>Важливо!</strong>{' '}
+          <GuardedLink href="/about" isDirty={isDirty}>
+            Корені
+          </GuardedLink>{' '}
+          не приймають таблиці, які проіндексував невідомо хто. Якщо не хочете
           вписувати справжнє ім&apos;я – просто вигадайте псевдонім. І – будь
           ласка, впишіть якусь адресу електронної пошти, аби з Вами можна було
           зв&apos;язатися.
