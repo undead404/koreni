@@ -38,8 +38,12 @@ describe('RootLayout', () => {
   });
 
   it('renders metadata correctly', () => {
-    expect(metadata).toEqual({
-      title: 'Корені',
+    expect(metadata).toMatchObject({
+      title: {
+        default: 'Корені',
+        template: '%s | Корені',
+      },
+
       description: 'Пошук у народних генеалогічних індексах',
     });
   });
