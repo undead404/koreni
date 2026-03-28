@@ -25,25 +25,25 @@ export default function Header() {
           />
         </Link>
         <Link
-          href="/contribute"
-          className={clsx(
-            styles.ctaButton,
-            pathname === '/contribute' && styles.active,
-          )}
-          aria-current={pathname === '/contribute' ? 'page' : undefined}
+          href="/"
+          className={clsx(styles.ctaButton, pathname === '/' && styles.active)}
+          aria-current={pathname === '/' ? 'page' : undefined}
         >
-          Поділитися даними
+          Пошук
         </Link>
       </div>
       <nav aria-label="Main navigation">
         <ul className={clsx(styles.navList, 'no-disc')}>
           <li>
             <Link
-              href="/"
-              className={clsx(styles.link, pathname === '/' && styles.active)}
-              aria-current={pathname === '/' ? 'page' : undefined}
+              href="/contribute"
+              className={clsx(
+                styles.link,
+                pathname === '/contribute' && styles.active,
+              )}
+              aria-current={pathname === '/contribute' ? 'page' : undefined}
             >
-              Пошук
+              Поділитися даними
             </Link>
           </li>
           <li>
