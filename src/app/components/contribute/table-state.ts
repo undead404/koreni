@@ -1,3 +1,4 @@
+import posthog from 'posthog-js';
 import { create } from 'zustand';
 
 import { DEFAULT_PREVIEW_SIZE } from './constants';
@@ -114,6 +115,9 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
   toggleColumn: (skippedColumnIndex: number) => {
     set((state) => {
       const { skippedColumns } = state;
+      posthog.capture('table_column_toggled', {
+        column_index: skippedColumnIndex,
+      });
       const next = new Set(skippedColumns);
       if (next.has(skippedColumnIndex)) next.delete(skippedColumnIndex);
       else next.add(skippedColumnIndex);
@@ -127,6 +131,9 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
   toggleRow: (skippedRowIndex: number) => {
     set((state) => {
       const { skippedRowsElsewhere } = state;
+      posthog.capture('table_row_toggled', {
+        row_index: skippedRowIndex,
+      });
       const next = new Set(skippedRowsElsewhere);
       if (next.has(skippedRowIndex)) next.delete(skippedRowIndex);
       else next.add(skippedRowIndex);

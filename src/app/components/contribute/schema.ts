@@ -2,7 +2,7 @@ import z from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
-export const contributeForm2Schema = z.object({
+export const contributeFormSchema = z.object({
   archiveItems: z
     .array(
       z.object({

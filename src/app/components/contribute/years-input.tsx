@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import posthog from 'posthog-js';
 import { type ChangeEvent, useCallback, useState } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 
@@ -52,6 +53,10 @@ export default function YearsInput({
 
       const parsed = parseYearRange(rawValue);
       if (parsed) {
+        posthog.capture('year_range_input', {
+          year_range: rawValue,
+          parsed: parsed.join(' — '),
+        });
         onChange(parsed);
         setIsInvalid(false);
       } else {

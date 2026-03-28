@@ -5,6 +5,7 @@ import {
   Upload,
   UserRound,
 } from 'lucide-react';
+import posthog from 'posthog-js';
 
 import AuthorForm from './author-form';
 import ContextForm from './context-form';
@@ -80,6 +81,9 @@ const STEPS: StepDefinition[] = [
     renderContent: () => (
       <ReviewSummary
         onEditSection={(section) => {
+          posthog.capture('review_summary_edited', {
+            section,
+          });
           let stepIndex = 4;
           switch (section) {
             case 'table': {

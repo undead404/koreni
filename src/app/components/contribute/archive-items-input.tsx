@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { AlertTriangle, X } from 'lucide-react';
+import posthog from 'posthog-js';
 import {
   type KeyboardEvent,
   useCallback,
@@ -25,6 +26,9 @@ export default function ArchiveItemsInput({
   const handleRemove = useCallback(
     (archiveItemCode: string) => {
       onChange(value.filter((item) => item.item !== archiveItemCode));
+      posthog.capture('archive_item_removed', {
+        archive_item: archiveItemCode,
+      });
       inputReference.current?.focus();
     },
     [onChange, value],
@@ -39,6 +43,10 @@ export default function ArchiveItemsInput({
       ) {
         return;
       }
+
+      posthog.capture('archive_item_added', {
+        archive_item: trimmed,
+      });
 
       onChange([...value, { item: trimmed }]);
       setTagInput('');

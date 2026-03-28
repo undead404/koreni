@@ -1,8 +1,9 @@
+'use client';
 import { ErrorMessage } from '@hookform/error-message';
 import clsx from 'clsx';
-import { X } from 'lucide-react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
+import SourceInput from './source-input';
 import type { ContributeFormValues } from './types';
 
 import styles from './sources-input.module.css';
@@ -15,7 +16,6 @@ import styles from './sources-input.module.css';
 export default function SourcesInput() {
   const {
     control,
-    register,
     formState: { errors },
   } = useFormContext<ContributeFormValues>();
 
@@ -33,41 +33,7 @@ export default function SourcesInput() {
       </p>
 
       {fields.map((field, index) => {
-        const error = errors.sources?.[index]?.url;
-        const errorId = `sources-error-${index}`;
-
-        return (
-          <div key={field.id}>
-            <div className={styles.arrayInputRow}>
-              <input
-                id={`sources-input-${index}`}
-                type="url"
-                className={styles.input}
-                placeholder="https://example.com/source"
-                aria-invalid={!!error}
-                aria-describedby={error ? errorId : undefined}
-                {...register(`sources.${index}.url` as const)}
-              />
-              <button
-                type="button"
-                className={styles.removeButton}
-                onClick={() => remove(index)}
-                aria-label="Видалити посилання"
-              >
-                <X size={14} strokeWidth={2.5} />
-              </button>
-            </div>
-            <ErrorMessage
-              errors={errors}
-              name={`sources.${index}.url` as keyof ContributeFormValues}
-              render={({ message }) => (
-                <p id={errorId} className={styles.error}>
-                  {message}
-                </p>
-              )}
-            />
-          </div>
-        );
+        return <SourceInput key={field.id} index={index} remove={remove} />;
       })}
 
       <button

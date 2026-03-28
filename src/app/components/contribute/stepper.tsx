@@ -1,5 +1,6 @@
 'use client';
 
+import posthog from 'posthog-js';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -40,12 +41,11 @@ export default function ContributeFormStepper() {
   const { state, setActiveIndex } = useContributionStateStore();
   const { activeIndex, error, isSubmitting, prUrl, title } = state;
 
-  console.log('activeIndex', activeIndex);
-
   // Reset to step 0 if no table file is selected
   useEffect(() => {
     if (!tableFileName) {
       console.log('No tableFileName');
+      posthog.capture('step_reset');
       setActiveIndex(0);
     }
   }, [tableFileName, setActiveIndex]);
@@ -60,12 +60,12 @@ export default function ContributeFormStepper() {
   );
 
   const handleContinue = useCallback(() => {
-    console.log('handleContinue');
+    posthog.capture('step_continue_navigation');
     setActiveIndex((previous) => Math.min(previous + 1, STEPS.length));
   }, [setActiveIndex]);
 
   const handleBack = useCallback(() => {
-    console.log('handleBack');
+    posthog.capture('step_back_navigation');
     setActiveIndex((previous) => Math.max(previous - 1, 0));
   }, [setActiveIndex]);
 
@@ -84,7 +84,9 @@ export default function ContributeFormStepper() {
     }
 
     if (firstErrorIndex !== -1 && firstErrorIndex < activeIndex) {
-      console.log('firstErrorIndex', firstErrorIndex);
+      posthog.capture('step_error_navigation', {
+        step: firstErrorIndex,
+      });
       setActiveIndex(firstErrorIndex);
     }
   }, [errors, activeIndex, setActiveIndex]);
@@ -113,7 +115,6 @@ export default function ContributeFormStepper() {
             status={status}
             isLast={index === STEPS.length - 1 && !allDone}
             onActivate={() => {
-              console.log('onActivate', index);
               setActiveIndex(index);
             }}
             onContinue={handleContinue}

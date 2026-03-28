@@ -1,6 +1,7 @@
 'use client';
 
 import type { Marker as LMarker } from 'leaflet';
+import posthog from 'posthog-js';
 import { memo, useMemo, useRef } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 
@@ -31,6 +32,9 @@ const MemoizedMarker = memo(function MemoizedMarker({
           const marker = markerReference.current;
           if (marker) {
             const newPos = marker.getLatLng();
+            posthog.capture('location_marker_dragged', {
+              coordinates: `${newPos.lat},${newPos.lng}`,
+            });
             onChange(`${newPos.lat},${newPos.lng}`);
           }
         },

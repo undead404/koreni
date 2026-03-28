@@ -1,6 +1,7 @@
 'use client';
 
 import { Loader2, MapPin, Search, X } from 'lucide-react';
+import posthog from 'posthog-js';
 import {
   KeyboardEvent,
   memo,
@@ -48,6 +49,10 @@ export const SpatialInput = memo(function SpatialInput({
 
   const handleLocationSelect = useCallback(
     (loc: Location) => {
+      posthog.capture('location_selected', {
+        location: loc.title,
+        coordinates: loc.coordinates.join(','),
+      });
       onChange(loc.coordinates.join(','));
       setQuery(loc.title);
       setShowDropdown(false);
@@ -87,6 +92,7 @@ export const SpatialInput = memo(function SpatialInput({
         searchReference.current &&
         !searchReference.current.contains(event.target as Node)
       ) {
+        posthog.capture('location_search_closed');
         setShowDropdown(false);
       }
     }

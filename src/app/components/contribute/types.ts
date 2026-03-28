@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import z from 'zod';
 
-import { contributeForm2Schema } from './schema';
+import { contributeFormSchema } from './schema';
 import type { TableStateStore } from './table-state';
 
 export interface ContributeFormProperties {
@@ -11,7 +11,7 @@ export interface ContributeFormProperties {
   }[];
 }
 
-export type ContributeFormValues = z.infer<typeof contributeForm2Schema>;
+export type ContributeFormValues = z.infer<typeof contributeFormSchema>;
 
 export type StepStatus = 'completed' | 'active' | 'pending';
 

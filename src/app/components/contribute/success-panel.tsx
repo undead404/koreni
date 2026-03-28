@@ -1,6 +1,7 @@
 'use client';
 
 import { CheckCircle2, Clock, ExternalLink, Globe } from 'lucide-react';
+import posthog from 'posthog-js';
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -26,6 +27,8 @@ function useResetContribution() {
     reset(getDefaultValues());
     resetState();
     resetTableState();
+    // Scroll to top of page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [reset, resetState, resetTableState]);
 }
 
@@ -37,6 +40,15 @@ export default function SuccessPanel({
   const handleReset = useResetContribution();
   const { getTableDimensions } = useTableStateStore();
   const { rows } = getTableDimensions();
+
+  const handlePrLinkClick = useCallback(() => {
+    posthog.capture('pr_link_clicked');
+  }, []);
+
+  const handleResetClick = useCallback(() => {
+    posthog.capture('contribution_reset');
+    handleReset();
+  }, [handleReset]);
 
   return (
     <div className={styles.wrapper} role="status" aria-live="polite">
@@ -102,13 +114,14 @@ export default function SuccessPanel({
         <button
           type="button"
           className={styles.primaryAction}
-          onClick={handleReset}
+          onClick={handleResetClick}
         >
           Додати ще одну таблицю
         </button>
 
         <a
           href={prUrl}
+          onClick={handlePrLinkClick}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.secondaryAction}

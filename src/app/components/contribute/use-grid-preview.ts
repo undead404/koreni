@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import posthog from 'posthog-js';
+import { useCallback, useMemo, useState } from 'react';
 
 import { DEFAULT_PREVIEW_SIZE, EXPAND_STEP } from './constants';
 
@@ -27,13 +28,15 @@ export function useGridPreview(dataRows: Record<string, unknown>[]) {
     };
   }, [dataRows, numberOfRowsShownAbove, numberOfRowsShownBelow]);
 
-  const expandTop = () => {
+  const expandTop = useCallback(() => {
+    posthog.capture('grid_preview_expand_top');
     setNumberOfRowsShownAbove((previous) => previous + EXPAND_STEP);
-  };
+  }, []);
 
-  const expandBottom = () => {
+  const expandBottom = useCallback(() => {
+    posthog.capture('grid_preview_expand_bottom');
     setNumberOfRowsShownBelow((previous) => previous + EXPAND_STEP);
-  };
+  }, []);
 
   return {
     topRows,

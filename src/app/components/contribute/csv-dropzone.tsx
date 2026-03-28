@@ -100,14 +100,12 @@ export default function CsvDropzone() {
   const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log('handleDragOver');
     setState((previous) => (previous === 'uploading' ? previous : 'drag-over'));
   }, []);
 
   const handleDragLeave = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    console.log('handleDragLeave');
     setState((previous) => (previous === 'drag-over' ? 'idle' : previous));
   }, []);
 
@@ -115,11 +113,13 @@ export default function CsvDropzone() {
     (event: DragEvent<HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log('handleDrop');
       if (state === 'uploading') return;
       setValue('table', event.dataTransfer.files);
 
       const file = event.dataTransfer.files[0];
+      posthog.capture('csv_file_dropped', {
+        file_name: file.name,
+      });
       if (file) {
         void processFile(file);
       }
@@ -132,6 +132,9 @@ export default function CsvDropzone() {
     (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       if (file) {
+        posthog.capture('csv_file_selected', {
+          file_name: file.name,
+        });
         void processFile(file);
       }
     },
@@ -159,6 +162,7 @@ export default function CsvDropzone() {
     setState('idle');
     setParsedFile(null);
     setValue('table', null);
+    posthog.capture('csv_file_removed');
   }, [setValue]);
 
   /* ── Style selection ── */
