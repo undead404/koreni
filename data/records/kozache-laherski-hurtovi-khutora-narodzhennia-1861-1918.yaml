@@ -1,0 +1,41 @@
+archiveItems:
+  - ДАХеО-259-39-1
+  - ДАХеО-259-39-2
+  - ДАХеО-259-39-3
+  - ДАХеО-259-39-4
+  - ДАХеО-259-39-5
+  - ДАХеО-259-39-6
+  - ДАХеО-259-39-7
+  - ДАХеО-259-39-8
+  - ДАХеО-259-39-9
+  - ДАХеО-259-39-11
+  - ДАЗпО-Р5593-2-423
+  - ДАХеО-259-39-12
+  - ДАХеО-259-39-13
+  - ДАХеО-259-39-14
+  - ДАХеО-259-39-15
+  - ДАХеО-259-39-16
+  - ДАХеО-259-39-18
+  - ДАХеО-259-39-19
+  - ДАХеО-259-39-20
+  - ДАХеО-259-39-21
+  - ДАХеО-259-39-23
+  - ДАХеО-259-39-25
+  - ДАХеО-259-39-26
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-28
+id: kozache-laherski-hurtovi-khutora-narodzhennia-1861-1918
+location:
+  - 46.64507595458053
+  - 33.14163208007813
+size: 761
+sources:
+  - https://docs.google.com/spreadsheets/d/1M3Nr2kVbTHHY5BJcVL3cfVY4cPnel5xC6XZ3xOfX3uc/edit?usp=sharing
+tableFilePath: public/csv/kozache-laherski-hurtovi-khutora-narodzhennia-1861-1918.csv
+tableLocale: uk
+title: Козаче-Лагерські (Гуртові) хутора Дніпровський пов. Таврійська губ. |
+  народження (1861-1918)
+yearsRange:
+  - 1861
+  - 1918
