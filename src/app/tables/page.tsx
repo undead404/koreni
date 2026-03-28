@@ -13,7 +13,17 @@ import JsonLdTables from './table-json-ld';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Корені | Список таблиць',
+  title: 'Список таблиць',
+  alternates: {
+    canonical: '/tables/',
+  },
+  openGraph: {
+    title: 'Список таблиць',
+    url: '/tables/',
+  },
+  twitter: {
+    title: 'Список таблиць',
+  },
 };
 
 export default async function TablesPage() {

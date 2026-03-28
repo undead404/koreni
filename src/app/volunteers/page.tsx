@@ -9,9 +9,23 @@ import { getRank } from './ranks';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Корені | Волонтери',
+  title: 'Волонтери',
   description:
     'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
+  alternates: {
+    canonical: '/volunteers/',
+  },
+  openGraph: {
+    title: 'Волонтери',
+    description:
+      'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
+    url: '/volunteers/',
+  },
+  twitter: {
+    title: 'Волонтери',
+    description:
+      'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
+  },
 };
 
 export default async function VolunteersPage() {

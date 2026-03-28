@@ -7,13 +7,52 @@ import Footer from './components/footer';
 import Header from './components/header';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
+import environment from './environment';
 
 import './globals.css';
 import styles from './layout.module.css';
 
 export const metadata: Metadata = {
-  title: 'Корені',
+  applicationName: 'Корені',
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+    {
+      name: 'Аліна Лістунова',
+      url: 'https://www.linkedin.com/in/alina-listunova/',
+    },
+  ],
+  creator: 'Віталій Перегончук',
   description: 'Пошук у народних генеалогічних індексах',
+  keywords: [
+    'Корені',
+    'генеалогія',
+    'українська генеалогія',
+    'родовід',
+    'Віталій Перегончук',
+    'проєкт',
+  ],
+  metadataBase: new URL(environment.NEXT_PUBLIC_SITE),
+  openGraph: {
+    description: 'Пошук у народних генеалогічних індексах',
+    locale: 'uk-UA',
+    siteName: 'Корені',
+    title: 'Корені',
+    type: 'website',
+    url: `/`,
+  },
+  title: {
+    default: 'Корені',
+    template: '%s | Корені',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@negativo_ua',
+    description: 'Пошук у народних генеалогічних індексах',
+    images: [`/icon.png`],
+  },
 };
 
 export default function RootLayout({

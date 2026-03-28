@@ -3,8 +3,20 @@ import type { Metadata } from 'next';
 import CookieSettingsTrigger from '../components/cookie-settings-trigger'; // Імпортуйте вашу кнопку
 
 export const metadata: Metadata = {
-  title: 'Політика конфіденційності | Корені',
+  title: 'Політика конфіденційності', // Автоматично компілюється в "Політика конфіденційності | Корені"
   description: 'Як ми збираємо, використовуємо та захищаємо ваші дані.',
+  alternates: {
+    canonical: '/privacy/',
+  },
+  openGraph: {
+    title: 'Політика конфіденційності',
+    description: 'Як ми збираємо, використовуємо та захищаємо ваші дані.',
+    url: '/privacy/',
+  },
+  twitter: {
+    title: 'Політика конфіденційності',
+    description: 'Як ми збираємо, використовуємо та захищаємо ваші дані.',
+  },
 };
 
 export default function PrivacyPage() {

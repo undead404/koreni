@@ -3,52 +3,26 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import Comments from '../components/comments/comments';
-import environment from '../environment';
 
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: `${environment.NEXT_PUBLIC_SITE}/about/`,
+    canonical: `/about/`,
   },
-  applicationName: 'Корені',
-  authors: [
-    {
-      name: 'Віталій Перегончук',
-      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
-    },
-    {
-      name: 'Аліна Лістунова',
-      url: 'https://www.linkedin.com/in/alina-listunova/',
-    },
-  ],
-  creator: 'Віталій Перегончук',
   description: 'Про проєкт "Корені", його автора та мотивацію для його появи.',
-  generator: 'Next.js',
-  keywords: [
-    'Корені',
-    'генеалогія',
-    'українська генеалогія',
-    'родовід',
-    'Віталій Перегончук',
-    'проєкт',
-  ],
   openGraph: {
     description:
       'Про проєкт "Корені", його автора та мотивацію для його появи.',
-    locale: 'uk-UA',
-    siteName: 'Корені',
-    title: 'Корені | Про проєкт',
-    type: 'website',
-    url: `${environment.NEXT_PUBLIC_SITE}/about/`,
+    title: 'Про проєкт',
+    url: `/about/`,
   },
-  title: 'Корені | Про проєкт',
+  title: 'Про проєкт',
   twitter: {
-    card: 'summary_large_image',
-    creator: '@negativo_ua',
     description:
       'Про проєкт "Корені", його автора та мотивацію для його появи.',
-    images: [`${environment.NEXT_PUBLIC_SITE}/icon.png`],
+    images: [`/icon.png`],
+    title: 'Про проєкт',
   },
 };
 

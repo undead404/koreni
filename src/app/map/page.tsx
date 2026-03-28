@@ -7,7 +7,14 @@ import environment from '../environment';
 import combinedPoints from '../services/map-points';
 
 export const metadata: Metadata = {
-  title: 'Корені | Мапа доступних даних',
+  title: 'Мапа доступних даних',
+  alternates: {
+    canonical: '/map/',
+  },
+  openGraph: { title: 'Мапа доступних даних', url: '/map/' },
+  twitter: {
+    title: 'Мапа доступних даних',
+  },
 };
 
 export default function MapPage() {
