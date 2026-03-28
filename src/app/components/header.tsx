@@ -14,19 +14,29 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
+      <div className={styles.topBar}>
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="Логотип Коренів"
+            className="filter-inverted"
+            width={44}
+            height={44}
+          />
+        </Link>
+        <Link
+          href="/contribute"
+          className={clsx(
+            styles.ctaButton,
+            pathname === '/contribute' && styles.active,
+          )}
+          aria-current={pathname === '/contribute' ? 'page' : undefined}
+        >
+          Поділитися даними
+        </Link>
+      </div>
       <nav aria-label="Main navigation">
         <ul className={clsx(styles.navList, 'no-disc')}>
-          <li>
-            <Link href="/">
-              <Image
-                src={logo}
-                alt="Логотип Коренів"
-                className="filter-inverted"
-                width={44}
-                height={44}
-              />
-            </Link>
-          </li>
           <li>
             <Link
               href="/"
@@ -46,18 +56,6 @@ export default function Header() {
               aria-current={pathname === '/about' ? 'page' : undefined}
             >
               Про проєкт
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contribute"
-              className={clsx(
-                styles.link,
-                pathname === '/contribute' && styles.active,
-              )}
-              aria-current={pathname === '/contribute' ? 'page' : undefined}
-            >
-              Поділитися даними
             </Link>
           </li>
           <li>

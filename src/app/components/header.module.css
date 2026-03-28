@@ -3,10 +3,20 @@
   top: 0;
   z-index: 1;
   display: flex;
+  flex-direction: column;
+  gap: 16px;
   align-items: center;
   padding: calc(var(--side-gap) / 2) 0;
   background-color: var(--bg-color);
   /* TODO add box-shadow ? */
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 var(--side-gap);
 }
 
 .header nav {
@@ -34,18 +44,55 @@
 }
 
 .link {
+  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) var(--side-gap);
+}
+
+.link,
+.ctaButton {
   color: var(--text-color);
   font-size: 1.2rem;
-  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) var(--side-gap);
   display: inline-block;
   text-decoration: none;
 }
 
-.link:visited {
+.link:visited,
+.ctaButton:visited {
   color: var(--text-color);
 }
 
 .active {
   text-decoration: underline;
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .topBar {
+    width: auto;
+    flex-grow: 1;
+  }
+
+  .topBar a {
+    flex-shrink: 0;
+  }
+
+  .ctaButton {
+    /* margin-left: auto; */
+    text-wrap-mode: nowrap;
+  }
+
+  .navList {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow-x: visible;
+    justify-content: flex-end;
+  }
+
+  .link {
+    padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) 0;
+  }
 }
