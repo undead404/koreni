@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-28
+id: DAKhmO-315-1-8563-Bukatynka-test
+location:
+  - 48.423271
+  - 28.026119
+size: 820
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=670876943#gid=670876943
+tableFilePath: public/csv/DAKhmO-315-1-8563-Bukatynka-test.csv
+tableLocale: ru
+title: Букатинка 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+yearsRange:
+  - 1861
