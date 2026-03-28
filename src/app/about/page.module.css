@@ -1,0 +1,25 @@
+.accent {
+  /* Big link to the Contribute page */
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+}
+
+.accent:hover {
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.accent::before {
+  content: '→';
+  margin-right: 0.5rem;
+}
+
+.accent::after {
+  content: '';
+  margin-left: 0.5rem;
+}
+
+.accentWrapper {
+  text-align: center;
+}

@@ -1,8 +1,11 @@
+/* eslint-disable react/jsx-no-target-blank */
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import Comments from '../components/comments/comments';
 import environment from '../environment';
+
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   alternates: {
@@ -78,16 +81,29 @@ export default function AboutPage() {
         </p>
         <ul>
           <li>
-            <a href="https://webdoky.org" target="_blank" rel="noreferrer">
+            <a href="https://webdoky.org" target="_blank">
               WebDoky
             </a>{' '}
             – український переклад статей MDN
           </li>
           <li>
-            <a href="https://ymh8.pages.dev" target="_blank" rel="noreferrer">
+            <a href="https://ymh8.pages.dev" target="_blank">
               You Must Hear
             </a>{' '}
-            – тут куди важче розповісти, що це таке 😂
+            – списки найкращої світової музики всіх часів, за абсолютно всіма
+            музичними напрямками.
+          </li>
+
+          <li>
+            <a href="https://pisnia-tumaniv.pages.dev" target="_blank">
+              Пісня туманів
+            </a>{' '}
+            – база знань живограю &quot;Пісня туманів&quot; настільно-рольової
+            гри &quot;Кавалерія&quot; від{' '}
+            <a href="https://m87games.com/" target="_blank">
+              видавництва M87* Games
+            </a>
+            , у якому я беру участь як гравець.
           </li>
         </ul>
 
@@ -95,7 +111,9 @@ export default function AboutPage() {
         <p>Уклінно дякую наступним особам і спільнотам:</p>
         <ul>
           <li>
-            Володимиру Цибульському – за результати довгих років індексації
+            <Link href="/volunteers/">Усім волонтерам Коренів</Link> – за
+            результати довгих вечорів індексації; а особлива подяка – Володимиру
+            Цибульському.
           </li>
           <li>
             Спільноті &quot;Генеалогічне IT&quot; – за концентрацію контексту та
@@ -178,11 +196,21 @@ export default function AboutPage() {
         </p>
 
         <h2>Як можна допомогти?</h2>
+        <p className={styles.accentWrapper}>
+          <Link className={styles.accent} href="/contribute">
+            Додати власну таблицю{' '}
+          </Link>
+        </p>
         <p>
-          Якщо маєте таблиці-індексації – присилайте мені на{' '}
-          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>. Корені
-          спроєктовані таким чином, щоб додавання нової таблиці займало не
-          більше 5 хвилин, тому додавання нових даних відбудеться швидко.
+          Якщо маєте таблиці-індексації – надсилайте їх нам через{' '}
+          <Link href="/contribute">спеціально розроблену для цього форму</Link>,
+          а якщо не виходить її заповнити – присилайте на електронну пошту{' '}
+          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>.
+        </p>
+        <p>
+          Кожна надіслана таблиця через форму таблиця стає PR на GitHub. Після
+          його перевірки таблиця додається на сайт, доступна для перегляду та
+          пошуку.
         </p>
         <p>
           Якщо ж бажаєте допомогти з кодом – приходьте на{' '}
@@ -196,9 +224,10 @@ export default function AboutPage() {
           , реєструйте проблеми, присилайте PR!
         </p>
         <p>
-          І – якщо Корені допомогли в якихось пошуках – напишіть мені на{' '}
-          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>{' '}
-          обов&apos;язково: я б дуже хотів знати, що моя праця допомогла комусь.
+          І – якщо Корені допомогли в якихось пошуках – пишіть про це в
+          коментарях нижче, або надішліть листа на{' '}
+          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>: я б дуже
+          хотів знати, що моя праця допомогла комусь.
         </p>
       </article>
       <Comments />
