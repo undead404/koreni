@@ -4,7 +4,7 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  padding: calc(var(--side-gap) / 2) var(--side-gap);
+  padding: calc(var(--side-gap) / 2) 0;
   background-color: var(--bg-color);
   /* TODO add box-shadow ? */
 }
@@ -16,21 +16,27 @@
 
 .navList {
   list-style-type: none;
-  padding: 0;
+  padding: 0 var(--side-gap);
   margin: 0;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 16px;
+  -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  mask-image: linear-gradient(to right, black 90%, transparent 100%);
 }
 
-.navList li:first-child {
-  margin-right: auto;
+.navList li {
+  flex-shrink: 0;
 }
 
 .link {
   color: var(--text-color);
   font-size: 1.2rem;
-  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2);
+  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) var(--side-gap);
   display: inline-block;
   text-decoration: none;
 }

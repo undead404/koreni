@@ -38,6 +38,42 @@ export default function Header() {
           </li>
           <li>
             <Link
+              href="/about"
+              className={clsx(
+                styles.link,
+                pathname === '/about' && styles.active,
+              )}
+              aria-current={pathname === '/about' ? 'page' : undefined}
+            >
+              Про проєкт
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contribute"
+              className={clsx(
+                styles.link,
+                pathname === '/contribute' && styles.active,
+              )}
+              aria-current={pathname === '/contribute' ? 'page' : undefined}
+            >
+              Поділитися даними
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/volunteers"
+              className={clsx(
+                styles.link,
+                pathname === '/volunteers' && styles.active,
+              )}
+              aria-current={pathname === '/volunteers' ? 'page' : undefined}
+            >
+              Волонтери
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/map"
               className={clsx(
                 styles.link,
@@ -58,42 +94,6 @@ export default function Header() {
               aria-current={pathname === '/tables' ? 'page' : undefined}
             >
               Таблиці
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/volunteers"
-              className={clsx(
-                styles.link,
-                pathname === '/volunteers' && styles.active,
-              )}
-              aria-current={pathname === '/volunteers' ? 'page' : undefined}
-            >
-              Волонтери
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contribute"
-              className={clsx(
-                styles.link,
-                pathname === '/contribute' && styles.active,
-              )}
-              aria-current={pathname === '/contribute' ? 'page' : undefined}
-            >
-              Поділитися даними
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about"
-              className={clsx(
-                styles.link,
-                pathname === '/about' && styles.active,
-              )}
-              aria-current={pathname === '/about' ? 'page' : undefined}
-            >
-              Про проєкт
             </Link>
           </li>
         </ul>
