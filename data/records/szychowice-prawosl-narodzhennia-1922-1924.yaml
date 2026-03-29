@@ -1,0 +1,24 @@
+archiveItems:
+  - USC Mircze. Szychowice praw U 1922-1923
+  - USC Mircze. Szychowice praw U 1923-1924
+  - USC Mircze. Szychowice praw U 1924
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-29
+id: szychowice-prawosl-narodzhennia-1922-1924
+location:
+  - 50.6811759
+  - 23.9807024
+size: 620
+sources:
+  - https://docs.google.com/spreadsheets/d/1KYV2RsxD0yp5-I3jg8Vbe3ieknDvGegx46y_EfBWbyc/edit?usp=sharing
+  - https://fotolubgens.lubgens.eu/index.php?/category/3563
+  - https://fotolubgens.lubgens.eu/index.php?/category/3469
+  - https://fotolubgens.lubgens.eu/index.php?/category/3486
+tableFilePath: public/csv/szychowice-prawosl-narodzhennia-1922-1924.csv
+tableLocale: uk
+title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. |
+  народження (1922-1924)
+yearsRange:
+  - 1922
+  - 1924
