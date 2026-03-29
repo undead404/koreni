@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-259-28-4
+  - ДАХеО-259-28-7
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-29
+id: kozachi-laheri-smerti-1851-1866
+location:
+  - 46.70640132935297
+  - 32.98345401556288
+size: 651
+sources:
+  - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
+tableFilePath: public/csv/kozachi-laheri-smerti-1851-1866.csv
+tableLocale: uk
+title: Козачі Лагері, Дніпровський пов. Таврійська губ. | смерті (1851-1866)
+yearsRange:
+  - 1851
+  - 1866
