@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1016-11
+authorName: "Мильченко Олександр "
+authorEmail: oleksandrmivita@gmail.com
+date: 2026-03-29
+id: tsdiak127101611rozbyshivkahadiatskyipolk
+location:
+  - 50.4511561
+  - 33.719732
+size: 804
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-5QZ3-49KH?view=explore&groupId=TH-7744-117054-1229-52&grid=on&lang=uk
+tableFilePath: public/csv/tsdiak127101611rozbyshivkahadiatskyipolk.csv
+tableLocale: uk
+title: ЦДІАК_127_1016_11,_Розбишівка,_Гадяцький_полк_
+yearsRange:
+  - 1745
