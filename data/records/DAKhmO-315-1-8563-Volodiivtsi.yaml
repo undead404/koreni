@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-03-29
+id: DAKhmO-315-1-8563-Volodiivtsi
+location:
+  - 48.573082
+  - 28.21763
+size: 1304
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=857321609#gid=857321609
+tableFilePath: public/csv/DAKhmO-315-1-8563-Volodiivtsi.csv
+tableLocale: ru
+title: Володіївці (Чернівецькі) 1861 – сповідний розпис (повний), ДАХмО-315-1-8563
+yearsRange:
+  - 1861
