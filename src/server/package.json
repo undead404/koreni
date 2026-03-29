@@ -9,7 +9,7 @@
     "dotenv": "~16.4.7",
     "hono": "^4.12.7",
     "octokit": "~5.0.5",
-    "posthog-node": "^5.24.14",
+    "posthog-node": "~5.28.8",
     "rate-limiter-flexible": "^9.1.1",
     "yaml": "~2.8.3",
     "zod": "~4.3.6"

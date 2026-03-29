@@ -412,10 +412,10 @@
     "@octokit/request-error" "^7.0.0"
     "@octokit/webhooks-methods" "^6.0.0"
 
-"@posthog/core@1.21.0":
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.21.0.tgz#f907aa9a6f4d0419585cb11eb5a7c4c27f039abb"
-  integrity sha512-0a2JUIX1vhduP2El/6/J8s5AeYAurIoufQGFgMiGnJE5ajd63o9LFocu2vFYYBnIOmy75y4ADNeW8zSl1keEQQ==
+"@posthog/core@1.24.3":
+  version "1.24.3"
+  resolved "https://registry.yarnpkg.com/@posthog/core/-/core-1.24.3.tgz#5783734d0d92167fe77aff579c61624d48faf1f2"
+  integrity sha512-nTyL1R/8V5vfdH37MbjXDYWFnUoxVijb2TnfJSNHz0+RBLtNnq0hNnBDCwWLl5yh1bzeJBYTT8UF+dV7D8y03w==
   dependencies:
     cross-spawn "^7.0.6"
 
@@ -871,12 +871,12 @@ postcss@^8.5.6:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-posthog-node@^5.24.14:
-  version "5.24.14"
-  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.24.14.tgz#7e40530b5e138de90a98915e4b24025d36775858"
-  integrity sha512-KbOQAZ66V9t4Abh/x62pL/2n504HlxQEavFZjpcyIpVwQEPmmafsoLU5ueL47m3i6m6r619Z76m4uyoxVfGqsA==
+posthog-node@~5.28.8:
+  version "5.28.8"
+  resolved "https://registry.yarnpkg.com/posthog-node/-/posthog-node-5.28.8.tgz#1010182afeb61de5b583dd888e565f595be234b3"
+  integrity sha512-UD55SdSbgUvoOb3HkvNC22ZgpdeNknDrao8+yYTB/rDnwgaibPB7pJJzgn4j7MIUw7DOTEHEmJRqza1EDtK2Zw==
   dependencies:
-    "@posthog/core" "1.21.0"
+    "@posthog/core" "1.24.3"
 
 pump@^3.0.0:
   version "3.0.3"
