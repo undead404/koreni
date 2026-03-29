@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАЛ-693-1-1083
+  - ЦДІАЛ-693-1-1084
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-29
+id: holubie-prawosl-smerti-1912-1941
+location:
+  - 50.6409791
+  - 24.0799796
+size: 47
+sources:
+  - https://docs.google.com/spreadsheets/d/1VBYcHigG8z0B3SvNhXSIdh9mWeda_QBi9Pz8dTJkuoY/edit?usp=sharing
+tableFilePath: public/csv/holubie-prawosl-smerti-1912-1941.csv
+tableLocale: uk
+title: Голуб'є (Hołubie prawosł.) Грубешівський пов. | смерті (1912, 1941)
+yearsRange:
+  - 1912
+  - 1941
