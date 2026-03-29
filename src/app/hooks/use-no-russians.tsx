@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useEffect, useState } from 'react';
 
 import { initBugsnag } from '../services/bugsnag';
@@ -21,6 +21,7 @@ const useNoRussians = () => {
       router.push('/not-welcome');
     }
   }, [router, pathname, lang]);
+  const posthog = usePostHog();
 
   useEffect(() => {
     if (preferredLangs.length === 0) {
@@ -69,7 +70,7 @@ const useNoRussians = () => {
           posthog.captureException(error);
         });
     }
-  }, [pathname, preferredLangs, router]);
+  }, [pathname, posthog, preferredLangs, router]);
 
   useEffect(() => {
     if (typeof navigator === 'undefined' || typeof document === 'undefined')

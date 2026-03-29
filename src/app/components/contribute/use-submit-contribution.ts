@@ -1,4 +1,4 @@
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { SubmitEvent, useCallback } from 'react';
 import type {
   SubmitErrorHandler,
@@ -32,6 +32,7 @@ export default function useSubmitContribution({
 }: UseSubmitContributionProperties) {
   const { state: contributionState, setState: setContributionState } =
     useContributionStateStore();
+  const posthog = usePostHog();
 
   const submit: SubmitHandler<ContributeFormValues> = useCallback(
     async (data, event) => {
@@ -148,6 +149,7 @@ export default function useSubmitContribution({
       form,
       getAllColumns,
       getTableAsObjects,
+      posthog,
       setContributionState,
       turnstile,
       turnstileToken,

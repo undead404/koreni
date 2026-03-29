@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckCircle2, Clock, ExternalLink, Globe } from 'lucide-react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -40,15 +40,16 @@ export default function SuccessPanel({
   const handleReset = useResetContribution();
   const { getTableDimensions } = useTableStateStore();
   const { rows } = getTableDimensions();
+  const posthog = usePostHog();
 
   const handlePrLinkClick = useCallback(() => {
     posthog.capture('pr_link_clicked');
-  }, []);
+  }, [posthog]);
 
   const handleResetClick = useCallback(() => {
     posthog.capture('contribution_reset');
     handleReset();
-  }, [handleReset]);
+  }, [handleReset, posthog]);
 
   return (
     <div className={styles.wrapper} role="status" aria-live="polite">

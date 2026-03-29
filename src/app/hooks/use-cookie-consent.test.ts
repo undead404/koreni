@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { ConsentState } from '../schemas/consent';
@@ -7,14 +7,17 @@ import { initBugsnag, setBugsnagConsent } from '../services/bugsnag';
 import { readCookieConsent, saveCookieConsent } from '../services/consent';
 
 import { useCookieConsent } from './use-cookie-consent';
+const mocks = vi.hoisted(() => ({
+  capture: vi.fn(),
+  opt_in_capturing: vi.fn(),
+  opt_out_capturing: vi.fn(),
+  set_config: vi.fn(),
+}));
+const posthogMock = usePostHog();
 
 // Mock dependencies
-vi.mock('posthog-js', () => ({
-  default: {
-    opt_in_capturing: vi.fn(),
-    opt_out_capturing: vi.fn(),
-    set_config: vi.fn(),
-  },
+vi.mock('posthog-js/react', () => ({
+  usePostHog: () => mocks,
 }));
 
 vi.mock('../services/bugsnag', () => ({
@@ -26,8 +29,6 @@ vi.mock('../services/consent', () => ({
   readCookieConsent: vi.fn(),
   saveCookieConsent: vi.fn(),
 }));
-
-const posthogMock = vi.mocked(posthog);
 
 describe('useCookieConsent', () => {
   beforeEach(() => {
@@ -110,8 +111,8 @@ describe('useCookieConsent', () => {
     expect(result.current.isBannerShown).toBe(false);
 
     // PostHog analytics disabled
-    expect(posthog.opt_out_capturing).toHaveBeenCalled();
-    expect(posthog.set_config).toHaveBeenCalledWith({
+    expect(posthogMock.opt_out_capturing).toHaveBeenCalled();
+    expect(posthogMock.set_config).toHaveBeenCalledWith({
       persistence: 'sessionStorage',
     });
   });

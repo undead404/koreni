@@ -1,6 +1,6 @@
 'use client';
 
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { type ReactNode, type SyntheticEvent, useCallback } from 'react';
 
 import styles from './details.module.css';
@@ -16,6 +16,7 @@ function Details({
   sectionName?: string;
   children: ReactNode;
 }) {
+  const posthog = usePostHog();
   const handleToggle = useCallback(
     (event: SyntheticEvent<HTMLDetailsElement>) => {
       const isOpen = event.currentTarget.open;
@@ -24,7 +25,7 @@ function Details({
         is_expanded: isOpen,
       });
     },
-    [sectionName],
+    [posthog, sectionName],
   );
 
   return (

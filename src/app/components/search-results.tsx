@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import type { FC } from 'react';
 
 import resultSchema from '../schemas/search-result';
@@ -25,6 +25,7 @@ const SearchResults: FC<ResultsProperties> = ({
   results,
   resultsNumber,
 }) => {
+  const posthog = usePostHog();
   // Safe parsing outside the render return prevents full-component crashes
   const validResults = results.map((result) => {
     const parsed = resultSchema.safeParse(result);

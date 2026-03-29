@@ -7,6 +7,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
+import { PostHogProvider } from './providers/posthog';
 import environment from './environment';
 
 import './globals.css';
@@ -64,14 +65,16 @@ export default function RootLayout({
     <html lang="uk">
       <body suppressHydrationWarning>
         <ErrorBoundary>
-          <NoRussians />
-          <div className={styles.page}>
-            <Header />
-            <main className={styles.main}>{children}</main>
-            <Footer />
-            <CookieBanner />
-          </div>
-          <Toaster position="bottom-right" richColors />
+          <PostHogProvider>
+            <NoRussians />
+            <div className={styles.page}>
+              <Header />
+              <main className={styles.main}>{children}</main>
+              <Footer />
+              <CookieBanner />
+            </div>
+            <Toaster position="bottom-right" richColors />
+          </PostHogProvider>
         </ErrorBoundary>
         <script
           src="https://uptime.betterstack.com/widgets/announcement.js"

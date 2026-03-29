@@ -1,7 +1,7 @@
 'use client';
 import { ErrorMessage } from '@hookform/error-message';
 import { CheckCircle2, FileSpreadsheet, Upload } from 'lucide-react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import {
   type ChangeEvent,
   type DragEvent,
@@ -49,6 +49,7 @@ export default function CsvDropzone() {
     parsedFile ? 'success' : 'idle',
   );
   const { setState: setContributionState } = useContributionStateStore();
+  const posthog = usePostHog();
 
   /* ── Process file ── */
   const processFile = useCallback(
@@ -93,7 +94,7 @@ export default function CsvDropzone() {
         });
       }
     },
-    [setContributionState, setTableData, setTableFileName],
+    [posthog, setContributionState, setTableData, setTableFileName],
   );
 
   /* ── Drag handlers ── */
@@ -124,7 +125,7 @@ export default function CsvDropzone() {
         void processFile(file);
       }
     },
-    [processFile, setValue, state],
+    [posthog, processFile, setValue, state],
   );
 
   /* ── Click / input handler ── */
@@ -138,7 +139,7 @@ export default function CsvDropzone() {
         void processFile(file);
       }
     },
-    [processFile],
+    [posthog, processFile],
   );
 
   const handleClick = useCallback(() => {
@@ -163,7 +164,7 @@ export default function CsvDropzone() {
     setParsedFile(null);
     setValue('table', null);
     posthog.capture('csv_file_removed');
-  }, [setValue]);
+  }, [posthog, setValue]);
 
   /* ── Style selection ── */
   const zoneClass =

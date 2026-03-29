@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback } from 'react';
 
 import styles from './pagination-button.module.css';
@@ -15,12 +15,13 @@ export default function PaginationButton({
   href: string;
   isCurrent?: boolean;
 }) {
+  const posthog = usePostHog();
   const handleClick = useCallback(() => {
     posthog.capture('pagination_clicked', {
       target_page: page,
       destination_url: href,
     });
-  }, [href, page]);
+  }, [href, page, posthog]);
 
   return isCurrent ? (
     <span className={styles.currentPage}>{page}</span>

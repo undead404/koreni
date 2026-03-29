@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useMemo } from 'react';
 
 import guessPageFromRowId from '../helpers/guess-page-from-row-id';
@@ -45,6 +45,7 @@ export default function SearchResultItem({
     });
   }, [document.raw]);
 
+  const posthog = usePostHog();
   const handleClick = useCallback(() => {
     posthog.capture('search_result_clicked', {
       table_id: document.tableId,
@@ -55,9 +56,10 @@ export default function SearchResultItem({
       result_position: index,
     });
   }, [
-    document.id,
+    posthog,
     document.tableId,
     document.title,
+    document.id,
     document.year,
     searchValue,
     index,

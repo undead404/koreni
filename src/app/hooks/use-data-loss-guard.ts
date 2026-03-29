@@ -1,8 +1,9 @@
 'use client';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useEffect } from 'react';
 
 export function useDataLossGuard(isDirty: boolean) {
+  const posthog = usePostHog();
   useEffect(() => {
     if (!isDirty) return;
 
@@ -13,5 +14,5 @@ export function useDataLossGuard(isDirty: boolean) {
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [isDirty]);
+  }, [isDirty, posthog]);
 }

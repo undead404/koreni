@@ -1,4 +1,4 @@
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useState } from 'react';
 
 import type { ConsentState } from '../schemas/consent';
@@ -12,32 +12,40 @@ export const useCookieConsent = () => {
     analytics: false,
     marketing: false,
   });
+  const posthog = usePostHog();
 
-  const applyConsent = useCallback((settings: ConsentState) => {
-    // Логіка для PostHog
-    if (settings.analytics) {
-      posthog.opt_in_capturing();
-      posthog.set_config({ persistence: 'localStorage+cookie' });
-    } else {
-      posthog.opt_out_capturing();
-      posthog.set_config({ persistence: 'sessionStorage' });
-    }
+  const applyConsent = useCallback(
+    (settings: ConsentState) => {
+      // Логіка для PostHog
+      if (settings.analytics) {
+        posthog.opt_in_capturing();
+        posthog.capture('$pageview');
+        posthog.set_config({ persistence: 'localStorage+cookie' });
+      } else {
+        posthog.opt_out_capturing();
+        posthog.set_config({ persistence: 'sessionStorage' });
+      }
 
-    // 2. Логіка BugSnag
-    // Ініціалізуємо його (якщо ще не запущено)
-    initBugsnag();
+      // 2. Логіка BugSnag
+      // Ініціалізуємо його (якщо ще не запущено)
+      initBugsnag();
 
-    // Встановлюємо дозвіл на відправку
-    setBugsnagConsent(settings.necessary);
-  }, []);
+      // Задаємо дозвіл на надсилання
+      setBugsnagConsent(settings.necessary);
+    },
+    [posthog],
+  );
 
   useEffect(() => {
     const consent = readCookieConsent();
 
     if (consent) {
+      console.log('Consent found, applying');
+      console.log('consent', consent); // Додано для дебагу
       setConsent(consent);
       applyConsent(consent);
     } else {
+      console.log('No consent found, showing banner');
       showBanner(true);
     }
   }, [applyConsent]);

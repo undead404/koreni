@@ -1,6 +1,6 @@
 'use client';
 
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -40,6 +40,7 @@ export default function ContributeFormStepper() {
 
   const { state, setActiveIndex } = useContributionStateStore();
   const { activeIndex, error, isSubmitting, prUrl, title } = state;
+  const posthog = usePostHog();
 
   // Reset to step 0 if no table file is selected
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function ContributeFormStepper() {
       posthog.capture('step_reset');
       setActiveIndex(0);
     }
-  }, [tableFileName, setActiveIndex]);
+  }, [tableFileName, setActiveIndex, posthog]);
 
   const statusOf = useCallback(
     (index: number): StepStatus => {
@@ -62,12 +63,12 @@ export default function ContributeFormStepper() {
   const handleContinue = useCallback(() => {
     posthog.capture('step_continue_navigation');
     setActiveIndex((previous) => Math.min(previous + 1, STEPS.length));
-  }, [setActiveIndex]);
+  }, [posthog, setActiveIndex]);
 
   const handleBack = useCallback(() => {
     posthog.capture('step_back_navigation');
     setActiveIndex((previous) => Math.max(previous - 1, 0));
-  }, [setActiveIndex]);
+  }, [posthog, setActiveIndex]);
 
   /* allDone is strictly defined by submission success */
   const allDone = useMemo(() => !!prUrl, [prUrl]);
@@ -89,7 +90,7 @@ export default function ContributeFormStepper() {
       });
       setActiveIndex(firstErrorIndex);
     }
-  }, [errors, activeIndex, setActiveIndex]);
+  }, [errors, activeIndex, setActiveIndex, posthog]);
 
   return (
     <div

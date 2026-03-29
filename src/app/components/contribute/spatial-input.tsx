@@ -1,7 +1,7 @@
 'use client';
 
 import { Loader2, MapPin, Search, X } from 'lucide-react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import {
   KeyboardEvent,
   memo,
@@ -46,6 +46,7 @@ export const SpatialInput = memo(function SpatialInput({
       setQuery('');
     }
   }, [value, query, setQuery]);
+  const posthog = usePostHog();
 
   const handleLocationSelect = useCallback(
     (loc: Location) => {
@@ -58,7 +59,7 @@ export const SpatialInput = memo(function SpatialInput({
       setShowDropdown(false);
       setFocusedIndex(-1);
     },
-    [onChange, setQuery],
+    [onChange, posthog, setQuery],
   );
 
   const clearLocation = useCallback(() => {
@@ -98,7 +99,7 @@ export const SpatialInput = memo(function SpatialInput({
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [posthog]);
 
   return (
     <div className={styles.rows}>

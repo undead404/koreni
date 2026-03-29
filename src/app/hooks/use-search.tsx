@@ -1,7 +1,7 @@
 'use client';
 
 import type { NotifiableError } from '@bugsnag/js';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useRef, useState } from 'react';
 
 import environment from '../environment';
@@ -21,59 +21,63 @@ export function useSearch() {
 
   // Tracks the active fetch sequence to prevent race conditions
   const currentRequestId = useRef(0);
+  const posthog = usePostHog();
 
-  const handleSearch = useCallback(async (value: string, page: number = 1) => {
-    // Increment ID for every new search call
-    const requestId = ++currentRequestId.current;
-    const normalizedQuery = value.trim();
+  const handleSearch = useCallback(
+    async (value: string, page: number = 1) => {
+      // Increment ID for every new search call
+      const requestId = ++currentRequestId.current;
+      const normalizedQuery = value.trim();
 
-    if (!normalizedQuery) {
-      setResults([]);
-      setResultsNumber(0);
-      setIsLoading(false);
-      setError(null);
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      posthog.capture('search_performed', {
-        query: normalizedQuery,
-        query_length: normalizedQuery.length,
-      });
-
-      const [hits, hitsNumber] = await search({
-        client,
-        page, // Pass page to API
-        perPage: 24, // Matches typical 2-col or 3-col grid layouts
-        query: normalizedQuery,
-      });
-
-      // Drop stale execution context: if a newer request fired, halt state updates
-      if (requestId !== currentRequestId.current) return;
-
-      setResults(hits);
-      setResultsNumber(hitsNumber);
-
-      posthog.capture('search_results_returned', {
-        query: normalizedQuery,
-        results_count: hitsNumber,
-      });
-    } catch (error_) {
-      if (requestId !== currentRequestId.current) return;
-
-      setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
-      console.error(error_);
-      initBugsnag().notify(error_ as NotifiableError);
-      posthog.captureException(error_ as Error);
-    } finally {
-      if (requestId === currentRequestId.current) {
+      if (!normalizedQuery) {
+        setResults([]);
+        setResultsNumber(0);
         setIsLoading(false);
+        setError(null);
+        return;
       }
-    }
-  }, []);
+
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        posthog.capture('search_performed', {
+          query: normalizedQuery,
+          query_length: normalizedQuery.length,
+        });
+
+        const [hits, hitsNumber] = await search({
+          client,
+          page, // Pass page to API
+          perPage: 24, // Matches typical 2-col or 3-col grid layouts
+          query: normalizedQuery,
+        });
+
+        // Drop stale execution context: if a newer request fired, halt state updates
+        if (requestId !== currentRequestId.current) return;
+
+        setResults(hits);
+        setResultsNumber(hitsNumber);
+
+        posthog.capture('search_results_returned', {
+          query: normalizedQuery,
+          results_count: hitsNumber,
+        });
+      } catch (error_) {
+        if (requestId !== currentRequestId.current) return;
+
+        setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
+        console.error(error_);
+        initBugsnag().notify(error_ as NotifiableError);
+        posthog.captureException(error_ as Error);
+      } finally {
+        if (requestId === currentRequestId.current) {
+          setIsLoading(false);
+        }
+      }
+    },
+    [posthog],
+  );
 
   return {
     error,

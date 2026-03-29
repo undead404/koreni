@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { type ChangeEvent, useCallback, useState } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 
@@ -38,6 +38,7 @@ export default function YearsInput({
 }: ControllerRenderProps<ContributeFormValues, 'yearsRange'>) {
   const [inputValue, setInputValue] = useState(value?.join(' - ') || '');
   const [isInvalid, setIsInvalid] = useState(false);
+  const posthog = usePostHog();
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +65,7 @@ export default function YearsInput({
         // We also don't immediately set isInvalid to true while typing to avoid flashing errors
       }
     },
-    [onChange],
+    [onChange, posthog],
   );
 
   const handleBlur = useCallback(() => {

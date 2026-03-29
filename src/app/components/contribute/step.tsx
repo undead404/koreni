@@ -1,6 +1,6 @@
 'use client';
 import { clsx } from 'clsx';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -83,6 +83,7 @@ export default function ContributeFormStep({
     typeof def.summary === 'function'
       ? def.summary(tableStore, allValues as ContributeFormValues)
       : def.summary;
+  const posthog = usePostHog();
 
   const handleContinue = useCallback(() => {
     if (def.fields.length === 0) {
@@ -108,7 +109,7 @@ export default function ContributeFormStep({
         setTimeout(() => setHasError(false), 400);
       }
     });
-  }, [def.fields, def.label, onContinue, trigger]);
+  }, [def.fields, def.label, onContinue, posthog, trigger]);
 
   const renderActions = () => (
     <div className={styles.actions}>

@@ -7,8 +7,10 @@ import type { ConsentState } from '../schemas/consent';
 import styles from './cookie-banner.module.css';
 
 export default function CookieBanner() {
-  const { isBannerShown, acceptAll, rejectAll, saveCustom } =
+  const { isBannerShown, acceptAll, consent, rejectAll, saveCustom } =
     useCookieConsent();
+  console.log('isBannerShown', isBannerShown); // Додано для дебагу
+  console.log('consent', consent); // Додано для дебагу
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const [preferences, setPreferences] = useState<ConsentState>({

@@ -1,7 +1,7 @@
 'use client';
 
 import { Database, Info, MapPin, User } from 'lucide-react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
@@ -159,6 +159,7 @@ export default function ReviewSummary({
     control,
     name: 'authorGithubUsername',
   });
+  const posthog = usePostHog();
 
   // Debounced Geocoding
   useEffect(() => {
@@ -195,7 +196,7 @@ export default function ReviewSummary({
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [locationValue]);
+  }, [locationValue, posthog]);
 
   const {
     getTableDimensions,

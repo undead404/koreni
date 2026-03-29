@@ -1,7 +1,7 @@
 'use client';
 import { ErrorMessage } from '@hookform/error-message';
 import { X } from 'lucide-react';
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -22,12 +22,13 @@ export default function SourceInput({ index, remove }: SourceInputProperties) {
   const error = errors.sources?.[index]?.url;
   const errorId = `sources-error-${index}`;
 
+  const posthog = usePostHog();
   const onRemove = useCallback(() => {
     posthog.capture('source_removed', {
       source_index: index,
     });
     remove(index);
-  }, [index, remove]);
+  }, [index, posthog, remove]);
 
   const renderError = useCallback(
     ({ message }: { message: string }) => (

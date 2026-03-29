@@ -1,6 +1,6 @@
 'use client';
 
-import posthog from 'posthog-js';
+import { usePostHog } from 'posthog-js/react';
 import { useCallback, useMemo } from 'react';
 
 const SITES_MAPPING: Record<string, string> = {
@@ -12,6 +12,7 @@ const SITES_MAPPING: Record<string, string> = {
 };
 
 export default function SourceLink({ href }: { href: string }) {
+  const posthog = usePostHog();
   const url = useMemo(() => {
     try {
       return new URL(href);
@@ -20,14 +21,14 @@ export default function SourceLink({ href }: { href: string }) {
       posthog.captureException(error as Error);
       return null;
     }
-  }, [href]);
+  }, [href, posthog]);
   const handleClick = useCallback(() => {
     posthog.capture('source_link_clicked', {
       source_url: url!.toString(),
       source_host: url!.host,
       source_name: SITES_MAPPING[url!.host] || url!.host,
     });
-  }, [url]);
+  }, [posthog, url]);
   if (!url) return href;
   return (
     <a
