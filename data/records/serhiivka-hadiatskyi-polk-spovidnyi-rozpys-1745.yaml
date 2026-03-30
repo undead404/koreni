@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1016-11
+authorName: "Мильченко Олександр "
+authorEmail: oleksandrmivita@gmail.com
+date: 2026-03-30
+id: serhiivka-hadiatskyi-polk-spovidnyi-rozpys-1745
+location:
+  - 50.40081
+  - 33.7537985
+size: 813
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-5QZ3-49KH?view=explore&groupId=TH-7744-117054-1229-52&grid=on&lang=uk
+tableFilePath: public/csv/serhiivka-hadiatskyi-polk-spovidnyi-rozpys-1745.csv
+tableLocale: uk
+title: Сергіївка, Гадяцький полк - сповідний розпис, 1745
+yearsRange:
+  - 1745
