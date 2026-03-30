@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАПО-801-1-4490
+authorName: "Мильченко Олександр "
+authorEmail: oleksandrmivita@gmail.com
+date: 2026-03-30
+id: krotypyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1843
+location:
+  - 50.3856765
+  - 32.4676564
+size: 456
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-4Q92-JHT?view=explore&groupId=TH-7721-109335-350-85&grid=on&lang=en
+tableFilePath: public/csv/krotypyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1843.csv
+tableLocale: uk
+title: Кроти, Пирятинський повіт, Полтавська губернія - сповідний розпис, 1843
+yearsRange:
+  - 1843
