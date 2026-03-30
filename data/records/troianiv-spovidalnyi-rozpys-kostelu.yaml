@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-178-3-37
+authorName: Каріна Ганношина
+authorEmail: karinahannoshyna@gmail.com
+date: 2026-03-30
+id: troianiv-spovidalnyi-rozpys-kostelu
+location:
+  - 50.1114033
+  - 28.5333286
+size: 2056
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%96%D0%9E/178/3/37
+tableFilePath: public/csv/troianiv-spovidalnyi-rozpys-kostelu.csv
+tableLocale: ru
+title: Троянів 1853 — сповідальний розпис костелу
+yearsRange:
+  - 1853
