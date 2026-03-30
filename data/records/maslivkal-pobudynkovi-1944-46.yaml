@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАХеО-Р2588-3-1
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-30
+id: maslivkal-pobudynkovi-1944-46
+location:
+  - 46.6985106
+  - 33.2337894
+size: 436
+sources:
+  - https://docs.google.com/spreadsheets/d/1jeGbdiL6AjOlhGw0rkuOf2M_2Je3PGc0d8uAV0BBRok/edit?usp=sharing
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=118256699
+tableFilePath: public/csv/maslivkal-pobudynkovi-1944-46.csv
+tableLocale: uk
+title: Маслівка, Ново-Маячківський р-н Херсонська обл. | Побудинкові книги
+  (1944-46) ч.1
+yearsRange:
+  - 1944
+  - 1946
