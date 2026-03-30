@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАЗпО-253-1-216
+  - ДАЗпО-253-1-217
+  - ДАЗпО-253-1-218
+  - ДАЗпО-253-1-219
+  - ДАЗпО-253-1-220
+  - ДАЗпО-253-1-221
+  - ДАЗпО-253-1-222
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-30
+id: DAZpO-253-1-hurtovi-khutora
+location:
+  - 46.64507595458053
+  - 33.14163208007813
+size: 8
+sources:
+  - https://docs.google.com/spreadsheets/d/1M3Nr2kVbTHHY5BJcVL3cfVY4cPnel5xC6XZ3xOfX3uc/edit?usp=sharing
+tableFilePath: public/csv/hurtovi-khutora-blanky-spetskultur.csv
+tableLocale: uk
+title: Гуртові хутора, Дніпровський пов. Таврійська губ. | Бланки спец.культур
+yearsRange:
+  - 1910
+  - 1912
