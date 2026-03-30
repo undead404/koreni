@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАЗпО-253-1-212
+  - ДАЗпО-253-1-213
+  - ДАЗпО-253-1-214
+  - ДАЗпО-253-1-215
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-30
+id: balanovi-khutora-blanky-spetskultur
+location:
+  - 46.67264541125228
+  - 32.966022741337795
+size: 6
+sources:
+  - https://docs.google.com/spreadsheets/d/1NYsg3ck66aoQ-zrfF6FGw60W--BzhLu2sNU7NQULaCM/edit?usp=sharing
+tableFilePath: public/csv/balanovi-khutora-blanky-spetskultur.csv
+tableLocale: uk
+title: Баланові хутора, Дніпровський пов. Таврійська губ. | Бланки спец.культур
+yearsRange:
+  - 1910
+  - 1912
