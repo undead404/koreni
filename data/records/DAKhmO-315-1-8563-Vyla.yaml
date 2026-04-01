@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-01
+id: DAKhmO-315-1-8563-Vyla
+location:
+  - 48.498665
+  - 28.436609
+size: 1190
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1183835502#gid=1183835502
+tableFilePath: public/csv/DAKhmO-315-1-8563-Vyla.csv
+tableLocale: ru
+title: Вила (Томашпільські) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+yearsRange:
+  - 1861
