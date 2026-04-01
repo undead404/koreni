@@ -1,0 +1,19 @@
+archiveItems:
+  - РГИА-592-32-37
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-01
+id: kozachi-laheri-hospodarstva-silskoho-tovarystva-1897
+location:
+  - 46.70640132935297
+  - 32.98345401556288
+size: 15
+sources:
+  - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
+  - https://www.flickr.com/photos/alexander_volok/albums/72177720332059904/page14
+tableFilePath: public/csv/kozachi-laheri-hospodarstva-silskoho-tovarystva-1897.csv
+tableLocale: uk
+title: Козачі Лагері, Дніпровський пов. Таврійська губ. | Поземельний банк.
+  Господарства сільського товариства
+yearsRange:
+  - 1897
