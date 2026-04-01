@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-01
+id: DAKhmO-315-1-8563-Verbova
+location:
+  - 48.505669
+  - 28.74744
+size: 714
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1183835502#gid=1183835502
+tableFilePath: public/csv/DAKhmO-315-1-8563-Verbova.csv
+tableLocale: ru
+title: Вербова (Вапнярська) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+yearsRange:
+  - 1861
