@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАЧО-931-1-1160
+  - ДАПО-706-3-58
+  - ДАЧО-931-1-1054
+  - ДАПО-706-4-316
+  - ДАЧО-5899-1-177
+  - ДАЧО-402-1-20
+authorName: Сергій Фазульянов
+authorEmail: fazulianov@gmail.com
+date: 2026-04-02
+id: helmiaziv-ekstrakty-1811-1921-rizne
+location:
+  - 49.8223009
+  - 31.836067
+size: 111
+sources: []
+tableFilePath: public/csv/helmiaziv-ekstrakty-1811-1921-rizne.csv
+tableLocale: uk
+title: Гельмязів екстракти 1811-1921 різне
+yearsRange:
+  - 1811
+  - 1921
