@@ -3,7 +3,23 @@ archiveItems:
   - ГАРО-226-19-480
   - ГАРО-226-2-6122
   - ГАРО-226-3-12753
-  - ДАДнО-455-1-1
+  - ДАДоО-455-1-1
+  - ДАДоО-271-1-1
+  - ДАДоО-271-1-2
+  - ДАДоО-271-1-3
+  - ДАДоО-271-1-4
+  - ДАДоО-271-1-5
+  - ДАДоО-271-1-6
+  - ДАДоО-271-1-7
+  - ДАДоО-271-1-8
+  - ДАДоО-272-1-4
+  - ДАДоО-272-1-6
+  - ДАДоО-272-1-8
+  - ДАДоО-297-1-9
+  - ДАДоО-297-1-17
+  - ДАДоО-297-1-18
+  - ДАДоО-297-1-22
+  - ДАДоО-297-1-23
 authorName: Сергій Фазульянов
 authorEmail: fazulianov@gmail.com
 date: 2026-04-02
@@ -12,7 +28,8 @@ location:
   - 47.93790942280703
   - 38.93717765808106
 size: 4671
-sources: []
+sources:
+  - https://docs.google.com/spreadsheets/d/1wvR7WrXBKUiQbJhCtSeOyoVOrCoET_8D/edit?usp=sharing&ouid=102761726513034960152&rtpof=true&sd=true
 tableFilePath: public/csv/dmytrivka-dmytrivska-volost-tahanrizka-okruha-ovd-ta-inshi-sela-okruhy.csv
 tableLocale: uk
 title: Дмитрівка, Дмитрівська волость, Таганрізька округа ОВД та інші села округи
