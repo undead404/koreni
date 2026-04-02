@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАКО-280-2-64
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-02
+id: DAKO-280-2-64-Viazivok
+location:
+  - 49.1734694
+  - 31.4127267
+size: 3204
+sources:
+  - https://docs.google.com/spreadsheets/d/1jsOm-paaDtzqHja1xcxkggjKLgxNixq-OrFa9tmKD_A/edit?usp=sharing
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/280/2/64
+tableFilePath: public/csv/viazivok-cherkaskyi-pov-rk-selian-1795.csv
+tableLocale: uk
+title: В'язівок, Черкаський пов. Київська губ. | Ревізькі казки поміщицьких
+  селян (1795)
+yearsRange:
+  - 1795
