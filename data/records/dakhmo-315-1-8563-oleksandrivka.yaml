@@ -6,8 +6,8 @@ date: 2026-02-23T00:00:00.000Z
 id: DAKhmO-315-1-8563-Oleksandrivka
 tableFilePath: public/csv/dakhmo-315-1-8563-oleksandrivka_transcription.csv
 location:
-  - 48.636744215866045
-  - 28.5214614632863
+  - 48.6267908
+  - 28.5150778
 size: 645
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
