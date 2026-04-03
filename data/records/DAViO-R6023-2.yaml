@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-Р6023-2-
+authorName: Андрій Каленський
+authorEmail: andreyaquarius@gmail.com
+date: 2026-04-01
+id: DAViO-R6023-2
+location:
+  - 49.2320162
+  - 28.467975
+size: 2736
+sources:
+  - https://docs.google.com/spreadsheets/d/1vtT5F3pDVaZTkRClJyTDbfecdfPFStD7/edit?gid=1121028894#gid=1121028894
+  - https://drive.google.com/drive/folders/1KBi7YrSfanESaz-Dhuyoz6sjkc_jcaH7
+tableFilePath: public/csv/shi-kolektsiia-filtratsiinykh-slidchykh-ta-nahliadovykh-sprav-davio-r-6023-opys-2.csv
+tableLocale: uk
+title: "[ШІ] Колекція фільтраційних, слідчих та наглядових справ. ДАВіО Р-6023 опис 2"
+yearsRange:
+  - 1945

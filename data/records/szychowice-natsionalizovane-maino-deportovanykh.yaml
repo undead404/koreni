@@ -1,0 +1,19 @@
+archiveItems:
+  - Lubelski Dziennik Wojewódzki. 1949, nr 23
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-01
+id: szychowice-natsionalizovane-maino-deportovanykh
+location:
+  - 50.6811759
+  - 23.9807024
+size: 227
+sources:
+  - https://docs.google.com/spreadsheets/d/1KYV2RsxD0yp5-I3jg8Vbe3ieknDvGegx46y_EfBWbyc/edit?usp=sharing
+  - https://jbc.bj.uj.edu.pl/dlibra/publication/560377/edition/533300?search=cmVzdWx0cz9hY3Rpb249QWR2YW5jZWRTZWFyY2hBY3Rpb24mdHlwZT0tMyZwPTAmcWYxPWF2YWlsYWJpbGl0eTpBdmFpbGFibGUmdmFsMT1xOkx1YmVsc2tpK0R6aWVubmlrK1dvamV3JUMzJUIzZHpraS4rMTk0OSUyQytucisyMysoMjArc2llcnBuaWEp
+tableFilePath: public/csv/szychowice-natsionalizovane-maino-deportovanykh.csv
+tableLocale: uk
+title: Шиховичі (Szychowice) гміна Крилів Грубешівський пов. | Націоналізоване
+  майно депортованих
+yearsRange:
+  - 1949

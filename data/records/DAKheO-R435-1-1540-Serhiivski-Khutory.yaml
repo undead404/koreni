@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р435-1-1540
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-03-31
+id: DAKheO-R435-1-1540-Serhiivski-Khutory
+location:
+  - 46.696648
+  - 33.373386
+size: 8
+sources:
+  - https://docs.google.com/spreadsheets/d/1gIQYq4ereyh6J-6rsdOwzosGctIypH867Vxf-ZQYhvg/edit?usp=sharing
+  - https://kherson.archives.gov.ua/wp-content/uploads/2022/12/fr435_1_1540_2.pdf
+tableFilePath: public/csv/serhiivski-khutora-hospodarstva-1927.csv
+tableLocale: uk
+title: Сергіївські хутора, Каховський р-н Херсонська округа | Картки опитування
+  окремих господарств (1927)
+yearsRange:
+  - 1927

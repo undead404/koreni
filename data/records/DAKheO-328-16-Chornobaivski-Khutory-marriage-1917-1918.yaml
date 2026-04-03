@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-328-16-1
+  - ДАХеО-328-16-2
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-02
+id: DAKheO-328-16-Chornobaivski-Khutory-marriage-1917-1918
+location:
+  - 46.6926512
+  - 32.5455178
+size: 264
+sources:
+  - https://docs.google.com/spreadsheets/d/1WpWjVM443IHPJAJ89RWZ1eQ3np-eoJZqWqA8dd0wICY/edit?usp=sharing
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-328-czerkvy-m-herson-ta-jogo-peredmist-hersonskogo-povitu-hersonskoyi-guberniyi/opys-16/
+tableFilePath: public/csv/chornobaivski-khutora-shliuby-1917-1918.csv
+tableLocale: uk
+title: Гусаково-Чорнобаївські хутора, Херсонский пов. Херсонська губ. | шлюби
+  (1917-1918)
+yearsRange:
+  - 1917
+  - 1918
