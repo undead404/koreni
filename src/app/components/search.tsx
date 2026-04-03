@@ -26,13 +26,20 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   const currentPage = Number.parseInt(searchParameters.get('page') || '1', 10);
   const totalPages = Math.ceil(rest.resultsNumber / PER_PAGE);
 
-  // 2. The URL is the single source of truth for fetching data.
-  // When the URL changes (via debounce or back/forward buttons), execute the search.
+  const activeQuery = searchParameters.get('query') || '';
+
+  // 2a. Sync local state strictly on external browser navigation (Back/Forward).
+  // Compare trimmed values to prevent erasing trailing spaces during active typing.
   useEffect(() => {
-    const activeQuery = searchParameters.get('query') || '';
-    setInputValue(activeQuery); // Sync local state in case of browser navigation
+    if (inputValue.trim() !== activeQuery) {
+      setInputValue(activeQuery);
+    }
+  }, [activeQuery, inputValue]);
+
+  // 2b. The URL is the single source of truth for fetching data.
+  useEffect(() => {
     void handleSearch(activeQuery, currentPage);
-  }, [currentPage, handleSearch, searchParameters]);
+  }, [activeQuery, currentPage, handleSearch]);
 
   // 3. Debounce the URL update. This prevents spamming Next.js router history.
   useEffect(() => {
