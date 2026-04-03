@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-04-03
+id: DAKhmO-315-1-8330-Moskalivka
+location:
+  - 49.11747845930749
+  - 28.161907196044925
+size: 723
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8330-Moskalivka.csv
+tableLocale: ru
+title: Москалівка (передмістя Браїлова) 1855 – сповідний розпис (повний), ДАХмО
+  315-1-8330
+yearsRange:
+  - 1855
