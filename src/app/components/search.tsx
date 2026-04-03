@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useSearch from '../hooks/use-search';
 
@@ -27,14 +27,15 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   const totalPages = Math.ceil(rest.resultsNumber / PER_PAGE);
 
   const activeQuery = searchParameters.get('query') || '';
+  const lastPushedQuery = useRef(activeQuery);
 
   // 2a. Sync local state strictly on external browser navigation (Back/Forward).
-  // Compare trimmed values to prevent erasing trailing spaces during active typing.
   useEffect(() => {
-    if (inputValue.trim() !== activeQuery) {
+    if (activeQuery !== lastPushedQuery.current) {
       setInputValue(activeQuery);
+      lastPushedQuery.current = activeQuery;
     }
-  }, [activeQuery, inputValue]);
+  }, [activeQuery]);
 
   // 2b. The URL is the single source of truth for fetching data.
   useEffect(() => {
@@ -44,12 +45,15 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   // 3. Debounce the URL update. This prevents spamming Next.js router history.
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      const currentUrlQuery = searchParameters.get('query') || '';
+      const trimmedInput = inputValue.trim();
 
-      if (inputValue !== currentUrlQuery) {
+      // Only push to router if the intended state differs from the URL
+      if (trimmedInput !== activeQuery) {
+        lastPushedQuery.current = trimmedInput; // Track exactly what is sent to the router
+
         const parameters = new URLSearchParams(searchParameters.toString());
-        if (inputValue.trim()) {
-          parameters.set('query', inputValue.trim());
+        if (trimmedInput) {
+          parameters.set('query', trimmedInput);
           parameters.set('page', '1'); // Reset to page 1 on new search query
         } else {
           parameters.delete('query');
@@ -64,7 +68,7 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
     }, 400); // 400ms is the standard optimal threshold for text input debouncing
 
     return () => clearTimeout(timeoutId);
-  }, [inputValue, pathname, router, searchParameters]);
+  }, [inputValue, activeQuery, pathname, router, searchParameters]);
 
   const handleInput = useCallback((event: CustomEvent<string>) => {
     setInputValue(event.detail);
