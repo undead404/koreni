@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-178-3-224
+authorName: Юрій Оксюківський
+authorEmail: axsellviv@ukr.net
+date: 2026-04-04
+id: DAZhO-178-3-224-1883
+location:
+  - 50.11074830170102
+  - 28.533185238479675
+size: 125
+sources: []
+tableFilePath: public/csv/indeksatsiia-troianiv-1883.csv
+tableLocale: uk
+title: Індексація Троянів 1883
+yearsRange:
+  - 1883
