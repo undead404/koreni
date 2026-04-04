@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЧгО-679-1-1545
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-03
+id: DAChhO-679-1-1545-Hryhorivka
+location:
+  - 51.03688407807496
+  - 32.85753250122071
+size: 42
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSMP-49XV-G?lang=en&i=963&cc=3656669
+tableFilePath: public/csv/mk-s-hryhorivka-1779.csv
+tableLocale: ru
+title: МК с. Григорівка 1779
+yearsRange:
+  - 1779
