@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЗпО-253-1-203
+  - ДАЗпО-253-1-204
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-05
+id: khutir-tsukur-blanky-spetskultur
+location:
+  - 46.703571
+  - 33.42487
+size: 3
+sources: []
+tableFilePath: public/csv/khutir-tsukur-blanky-spetskultur.csv
+tableLocale: uk
+title: Хутір Цукур, Дніпровський пов. Таврійська губ. | Бланки спец.культур
+yearsRange:
+  - 1910
