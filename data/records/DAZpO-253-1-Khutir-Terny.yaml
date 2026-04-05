@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЗпО-253-1-201
+  - ДАЗпО-253-1-202
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-05
+id: DAZpO-253-1-Khutir-Terny
+location:
+  - 46.74680100697024
+  - 33.41542942751455
+size: 2
+sources: []
+tableFilePath: public/csv/khutir-terny-blanky-spetskultur.csv
+tableLocale: uk
+title: Хутір Терни, Дніпровський пов. Таврійська губ. | Бланки спец.культур
+yearsRange:
+  - 1910
