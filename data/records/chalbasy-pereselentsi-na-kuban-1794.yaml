@@ -1,0 +1,18 @@
+archiveItems:
+  - Перший перепис козаків-переселенців на Кубань в кінці 18 ст.
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-05
+id: chalbasy-pereselentsi-na-kuban-1794
+location:
+  - 46.371922
+  - 32.939411
+size: 29
+sources:
+  - https://kabak.dp.ua/assets/files/2006_Perv_perep_kazakov_pereselenc_na_Kuban_1794.pdf
+tableFilePath: public/csv/chalbasy-pereselentsi-na-kuban-1794.csv
+tableLocale: uk
+title: Чалбаси, Дніпровський пов. Таврійська губ.  | Козаки-переселенці на
+  Кубань з Кисляківського куреня (1794)
+yearsRange:
+  - 1794
