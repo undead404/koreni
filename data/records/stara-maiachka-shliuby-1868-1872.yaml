@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-259-66-4
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-06
+id: stara-maiachka-shliuby-1868-1872
+location:
+  - 46.509228
+  - 33.181366
+size: 708
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-66/
+tableFilePath: public/csv/stara-maiachka-shliuby-1868-1872.csv
+tableLocale: uk
+title: Стара Маячка, Дніпровський пов. Таврійська губ. | шлюби (1868-1872)
+yearsRange:
+  - 1868
+  - 1872
