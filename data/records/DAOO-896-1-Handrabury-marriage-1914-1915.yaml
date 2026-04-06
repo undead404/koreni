@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАОО-896-1-38
+  - ДАОО-896-1-64
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-06
+id: DAOO-896-1-Handrabury-marriage-1914-1915
+location:
+  - 47.7117568
+  - 29.8691055
+size: 474
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHN-L7YY-YSF1-C?view=explore&groupId=TH-7732-159780-269293-89&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-97D9-FN4J?view=explore&groupId=TH-7746-145642-8393-54&grid=on&lang=uk
+tableFilePath: public/csv/handrabury-shliuby-1914-1915.csv
+tableLocale: uk
+title: Гандрабури, Ананьївський пов. Херсонська губ. | шлюби (1914-1915)
+yearsRange:
+  - 1914
+  - 1915
