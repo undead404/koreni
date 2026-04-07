@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-07
+id: DAKhmO-315-1-8563-Halzhbiivka
+location:
+  - 48.261707
+  - 28.224245
+size: 979
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=778877843#gid=778877843
+tableFilePath: public/csv/DAKhmO-315-1-8563-Halzhbiivka.csv
+tableLocale: ru
+title: Гальжбіївка і Нечуївка 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+yearsRange:
+  - 1861
