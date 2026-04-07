@@ -1,0 +1,19 @@
+archiveItems:
+  - ДААРК-142-4-109а
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-07
+id: sary-bulat-sari-bolat-yevpatoriiskyi-pov-tavriiska-hub-shliuby-1915-1916
+location:
+  - 45.8492009
+  - 33.4869885
+size: 102
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-VCRD-N?view=explore&groupId=M9MV-VCB&lang=en&grid=on
+tableFilePath: public/csv/sary-bulat-sari-bolat-yevpatoriiskyi-pov-tavriiska-hub-shliuby-1915-1916.csv
+tableLocale: uk
+title: Сари-Булат (Sari Bolat), Євпаторійський пов. Таврійська губ. | шлюби
+  (1915-1916)
+yearsRange:
+  - 1915
+  - 1916
