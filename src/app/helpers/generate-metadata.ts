@@ -39,11 +39,6 @@ function buildDescription(item: IndexationTable) {
   }${item.size > 0 ? `; записів: ${item.size}.` : '.'}`;
 }
 
-function normalizeTwitterHandle(raw?: string | null) {
-  if (!raw) return;
-  return raw.startsWith('@') ? raw : `@${raw}`;
-}
-
 /**
  * Helper: build canonical absolute URL from base + relative path.
  */
@@ -107,6 +102,14 @@ export function generateIndexationMetadata(
     alternates: {
       canonical,
     },
+    authors: authorName
+      ? [
+          {
+            name: authorName,
+            url: item.authorEmail ? `mailto:${item.authorEmail}` : undefined,
+          },
+        ]
+      : undefined,
     title: item.title,
     description,
     metadataBase: new URL(siteUrl),
@@ -130,7 +133,6 @@ export function generateIndexationMetadata(
       card: 'summary', // no image previews available for indexations
       title: item.title,
       description,
-      creator: normalizeTwitterHandle(METADATA_OPTIONS.twitterCreator),
     },
     robots: {
       index: true,
