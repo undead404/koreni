@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/privacy/',
   },
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+  ],
   openGraph: {
     title: 'Політика конфіденційності',
     description: 'Як ми збираємо, використовуємо та захищаємо ваші дані.',

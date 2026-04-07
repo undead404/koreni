@@ -9,18 +9,24 @@ import { getRank } from './ranks';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Волонтери',
-  description:
-    'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
   alternates: {
     canonical: '/volunteers/',
   },
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+  ],
+  description:
+    'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
   openGraph: {
     title: 'Волонтери',
     description:
       'Спільнота дослідників, які індексують архівні документи та відкривають їх скарби для всіх.',
     url: '/volunteers/',
   },
+  title: 'Волонтери',
   twitter: {
     title: 'Волонтери',
     description:

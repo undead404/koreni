@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/contribute/',
   },
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+  ],
   openGraph: {
     title: 'Додавання таблиці',
     description: 'Додайте до Коренів власну таблицю індексації.',

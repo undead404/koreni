@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/tables/',
   },
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+  ],
   openGraph: {
     title: 'Список таблиць',
     url: '/tables/',

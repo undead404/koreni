@@ -15,22 +15,8 @@ import styles from './layout.module.css';
 
 export const metadata: Metadata = {
   applicationName: 'Корені',
-  authors: [
-    {
-      name: 'Віталій Перегончук',
-      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
-    },
-  ],
-  creator: 'Віталій Перегончук',
+  publisher: 'Корені',
   description: 'Пошук у народних генеалогічних індексах',
-  keywords: [
-    'Корені',
-    'генеалогія',
-    'українська генеалогія',
-    'родовід',
-    'Віталій Перегончук',
-    'проєкт',
-  ],
   metadataBase: new URL(environment.NEXT_PUBLIC_SITE),
   openGraph: {
     description: 'Пошук у народних генеалогічних індексах',

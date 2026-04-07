@@ -29,14 +29,10 @@ function formatYears(years: number[] | undefined) {
 
 function buildDescription(item: IndexationTable) {
   const years = formatYears(item.yearsRange);
-  const archiveItems = item.archiveItems?.length
-    ? item.archiveItems.join(', ')
-    : undefined;
+  const recordCount = item.size > 0 ? `Індексовано ${item.size} записів.` : '';
+  const location = item.title;
 
-  // Ukrainian-only site — description always in Ukrainian
-  return `${item.title}${years ? ` — роки: ${years}` : ''}${
-    archiveItems ? `; архівні справи: ${archiveItems}` : ''
-  }${item.size > 0 ? `; записів: ${item.size}.` : '.'}`;
+  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems?.join(', ')}.`;
 }
 
 /**
@@ -83,7 +79,7 @@ export function generateIndexationMetadata(
     process.env.NEXT_PUBLIC_SITE_URL ??
     'http://localhost:3000';
   const relativePath = `/${encodeURIComponent(item.id)}/${page}/`;
-  const canonical = buildCanonical(siteUrl, relativePath);
+  const canonical = relativePath;
 
   const description = buildDescription(item);
   const authorName = item.authorName;
@@ -101,6 +97,12 @@ export function generateIndexationMetadata(
   const metadata: Metadata = {
     alternates: {
       canonical,
+      types: {
+        prev: previousPage
+          ? `/${encodeURIComponent(item.id)}/${previousPage}/`
+          : null,
+        next: nextPage ? `/${encodeURIComponent(item.id)}/${nextPage}/` : null,
+      },
     },
     authors: authorName
       ? [
@@ -137,20 +139,6 @@ export function generateIndexationMetadata(
     robots: {
       index: true,
       follow: true,
-    },
-    pagination: {
-      previous: previousPage
-        ? buildCanonical(
-            siteUrl,
-            `/${encodeURIComponent(item.id)}/${previousPage}/`,
-          )
-        : undefined,
-      next: nextPage
-        ? buildCanonical(
-            siteUrl,
-            `/${encodeURIComponent(item.id)}/${nextPage}/`,
-          )
-        : undefined,
     },
   };
 
@@ -224,15 +212,16 @@ export function generateJsonLd(item: IndexationTable): string {
             name: item.tableFilePath.split('/').pop() ?? item.tableFilePath,
           } satisfies DataDownload,
         ],
+        includedInDataCatalog: {
+          '@type': 'DataCatalog',
+          name: 'Корені – пошук у народних генеалогічних індексах',
+          url: siteUrl,
+        },
+        identifier: item.archiveItems,
         inLanguage: item.tableLocale,
         keywords,
         license: `${siteUrl}/license/`,
         name: item.title,
-        publisher: {
-          '@type': 'Organization',
-          name: 'Корені',
-          url: 'https://example.com/',
-        },
         spatialCoverage:
           item.location && item.location.length === 2
             ? ({
@@ -244,6 +233,7 @@ export function generateJsonLd(item: IndexationTable): string {
                 } satisfies GeoCoordinates,
               } satisfies Place)
             : undefined,
+        variableMeasured: `${item.size} records`,
       },
     ],
   };

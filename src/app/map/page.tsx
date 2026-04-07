@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/map/',
   },
+  authors: [
+    {
+      name: 'Віталій Перегончук',
+      url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
+    },
+  ],
   openGraph: { title: 'Мапа доступних даних', url: '/map/' },
   twitter: {
     title: 'Мапа доступних даних',
