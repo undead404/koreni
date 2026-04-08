@@ -35,6 +35,6 @@ describe('ArchiveItem', () => {
     );
     expect(link).toHaveAttribute('target', '_blank');
 
-    expect(link.children[0]).not.toBeFalsy();
+    expect(link.textContent).toBe('🦆');
   });
 });
