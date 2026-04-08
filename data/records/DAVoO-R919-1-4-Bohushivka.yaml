@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-08
+id: DAVoO-R919-1-4-Bohushivka
+location:
+  - 50.7603138
+  - 25.1947106
+size: 27
+sources: []
+tableFilePath: public/csv/bohushivka-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Богушівка, Рожищенський р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
