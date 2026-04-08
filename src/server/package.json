@@ -3,11 +3,11 @@
   "dependencies": {
     "@bugsnag/js": "~8.8.1",
     "@bugsnag/plugin-hono": "^8.8.0",
-    "@hono/node-server": "^1.19.10",
+    "@hono/node-server": "^1.19.13",
     "csv-parse": "~5.5.0",
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
-    "hono": "^4.12.7",
+    "hono": "^4.12.12",
     "octokit": "~5.0.5",
     "posthog-node": "~5.28.8",
     "rate-limiter-flexible": "^9.1.1",
