@@ -10,3 +10,11 @@
   gap: 1rem;
   padding-right: 24px;
 }
+
+.link {
+  background-color: transparent;
+  display: inline-block;
+  line-height: 1.5;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
