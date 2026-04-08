@@ -5,6 +5,8 @@ import { indexationTableSchema } from './indexation-table';
 describe('indexationTableSchema', () => {
   it('should validate a correct indexation table', () => {
     const validTable = {
+      archiveItems: ['archiveItem1', 'archiveItem2'],
+      authorName: 'Author Name',
       date: '2024-09-17',
       id: 'valid-id',
       tableFilePath: 'public/csv/valid_filename.csv',
