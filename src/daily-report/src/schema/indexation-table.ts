@@ -3,8 +3,8 @@ import { z } from 'zod';
 import { nonEmptyString } from './non-empty-string.js';
 
 export const indexationTableSchema = z.object({
-  archiveItems: z.array(nonEmptyString).optional(),
-  authorName: nonEmptyString.optional(),
+  archiveItems: z.array(nonEmptyString).min(1),
+  authorName: nonEmptyString,
   authorEmail: nonEmptyString.optional(),
   date: z
     .string()

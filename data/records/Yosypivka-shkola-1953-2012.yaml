@@ -1,3 +1,5 @@
+archiveItems:
+  - Список випускників Йосипівської школи 1952-2012
 date: 2025-03-13T00:00:00.000Z
 id: Yosypivka-shkola-1953-2012
 tableFilename: Йосипівка - 1821 спвд.xlsx - Школа 1952-2012.csv
@@ -7,6 +9,7 @@ location:
 size: 475
 sources:
   - https://docs.google.com/spreadsheets/d/1w_QUYKC58zmdHZLyD-QedY7KwgdD7VUy/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+  - https://www.slideshare.net/slideshow/ss-25462789/25462789
 title: Йосипівка - Школа 1952-2012
 tableLocale: uk
 yearsRange:

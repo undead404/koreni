@@ -1,3 +1,5 @@
+archiveItems:
+  - див. джерела
 date: 2025-03-24T00:00:00.000Z
 id: Stari-Mamaiivtsi-narodzhennia
 tableFilename: Метричні Книги. Мамаївці - С.М.Н..csv
@@ -7,6 +9,9 @@ location:
 size: 6953
 sources:
   - https://docs.google.com/spreadsheets/d/1Kzvap0MgxLvz_N5csjpBHX0gJMBlw7sm9vc2N1fgHJw/edit?usp=sharing
+  - https://www.familysearch.org/uk/search/catalog/1346037?availability=Family%20History%20Library
+  - https://www.familysearch.org/search/catalog/1345558?availability=Family%20History%20Library
+  - https://drive.google.com/drive/folders/1Rlwo9mBvKgKAFSHtvn76uHbmT4Q5ZBpb
 title: Старі Мамаївці – народження
 tableLocale: uk
 yearsRange:

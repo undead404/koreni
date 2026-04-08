@@ -4,6 +4,8 @@ import path from 'node:path';
 import _ from 'lodash';
 import { parse } from 'yaml';
 
+import environment from '@/app/environment';
+
 import {
   type IndexationTable,
   indexationTableSchema,
@@ -18,6 +20,9 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
   const yamlFilepaths = await getYamlFilepaths(METADATA_FOLDER);
   const tablesMetadata: IndexationTable[] = [];
   for (const yamlFilepath of yamlFilepaths) {
+    if (environment.NODE_ENV === 'development') {
+      console.log('Loading:', yamlFilepath);
+    }
     const fileContent = await readFile(yamlFilepath, 'utf8');
     const fileData = parse(fileContent) as unknown;
     const tableMetadata = indexationTableSchema.parse(fileData);

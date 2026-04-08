@@ -1,5 +1,7 @@
+archiveItems:
+  - ДАКО-280-2-682
 date: 2025-03-13T00:00:00.000Z
-id: Sychivka-1834
+id: DAKO-280-2-682
 tableFilename: Христинівський, Сичівка - 1834 (1).xlsx - Лист1.csv
 location:
   - 48.801477421894994
@@ -7,7 +9,7 @@ location:
 size: 107
 sources:
   - https://docs.google.com/spreadsheets/d/1IuMyJ45Lx3B9XSKiDFnjQTRxenJPEflo/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-title: Христинівський, Сичівка - 1834
+title: Сичівка (Христинівська) ревізія 1834
 tableLocale: uk
 yearsRange:
   - 1834

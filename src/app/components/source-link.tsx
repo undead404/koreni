@@ -9,6 +9,8 @@ const SITES_MAPPING: Record<string, string> = {
   'kylykyiv.pp.ua': 'Індекс мешканців містечка Киликиїв',
   'onedrive.live.com': 'OneDrive',
   'uk.wikisource.org': 'Вікіджерела',
+  'drive.google.com': 'Google Drive',
+  'www.familysearch.org': 'FamilySearch',
 };
 
 export default function SourceLink({ href }: { href: string }) {
