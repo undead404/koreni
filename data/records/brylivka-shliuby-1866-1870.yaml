@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-259-2-1
+  - ДАХеО-259-2-2
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-08
+id: brylivka-shliuby-1866-1870
+location:
+  - 46.4201722
+  - 33.1410545
+size: 456
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-2/
+tableFilePath: public/csv/brylivka-shliuby-1866-1870.csv
+tableLocale: uk
+title: Брилівка, Дніпровський пов. Таврійська губ. | шлюби (1866-1870)
+yearsRange:
+  - 1866
+  - 1870
