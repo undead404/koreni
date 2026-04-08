@@ -7,7 +7,7 @@
     "csv-parse": "~5.5.0",
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
-    "hono": "^4.12.7",
+    "hono": "^4.12.12",
     "octokit": "~5.0.5",
     "posthog-node": "~5.28.8",
     "rate-limiter-flexible": "^9.1.1",
