@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАЗпО-64-1-1
+authorName: Дмитро Палівода
+authorEmail: 14paly@gmail.com
+date: 2026-04-09
+id: DAZpO-64-1-1-Maryivka
+location:
+  - 47.690378480340065
+  - 34.993665761497766
+size: 2056
+sources:
+  - https://www.familysearch.org/uk/search/catalog/koha:2552415
+  - https://docs.google.com/spreadsheets/d/1wLa0TSqnTdHJsxoSB9ziH3s-atE74p_QGELbLAL0GmY/edit?usp=sharing
+tableFilePath: public/csv/posimeinyi-spysok-marivskoho-silskoho-tovarystva-bilenkivskoi-volosti-katerynoslavskoho-pov-i-hub-za-1912-rik-dazpo-f64-o1-s1.csv
+tableLocale: ru
+title: Посімейний список Мар’ївського сільського товариства Біленьківської
+  волості Катеринославського пов. і губ за 1912 рік. ДАЗпО Ф64 о.1 с.1
+yearsRange:
+  - 1912
