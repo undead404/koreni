@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-5
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-09
+id: oleksiivka-deportovani-z-polshchi-1946
+location:
+  - 51.6436534
+  - 24.9704566
+size: 27
+sources: []
+tableFilePath: public/csv/oleksiivka-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Олексіївка, Камінь-Каширський р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
