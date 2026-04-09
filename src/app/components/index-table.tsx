@@ -50,7 +50,7 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
               <th
                 key={key}
                 className={[
-                  key.length < 80 ? 'text-nowrap' : '',
+                  key.length < 50 ? 'text-nowrap' : '',
                   key.toLowerCase().includes('.pdf') ? 'break-word' : '',
                 ]
                   .filter(Boolean)
