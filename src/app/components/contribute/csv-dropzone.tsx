@@ -48,6 +48,7 @@ export default function CsvDropzone() {
   const [state, setState] = useState<DropzoneState>(
     parsedFile ? 'success' : 'idle',
   );
+  const [parseError, setParseError] = useState<string | null>(null);
   const { setState: setContributionState } = useContributionStateStore();
   const posthog = usePostHog();
 
@@ -65,16 +66,35 @@ export default function CsvDropzone() {
       }
 
       setState('uploading');
+      setParseError(null);
 
       try {
         const data = await parseCsvToTuples(file);
+
+        if (
+          data.length > 0 &&
+          data[0].some((header) => !header || !header.trim())
+        ) {
+          throw new Error('EMPTY_HEADER');
+        }
+
         setTableData(data);
         setParsedFile({ name: file.name, size: file.size });
         FILE_SIZES.set(file.name, file.size);
         setTableFileName(file.name);
         setState('success');
       } catch (error) {
+        setValue('table', null);
         setState('error-parse');
+
+        if (error instanceof Error && error.message === 'EMPTY_HEADER') {
+          setParseError(
+            'Таблиця містить колонки без заголовків. Будь ласка, додайте заголовки до всіх колонок.',
+          );
+          return;
+        }
+
+        setParseError('Помилка при читанні файлу.');
         console.error(error);
         posthog.capture('table_info_parse_error', {
           error: error instanceof Error ? error.message : String(error),
@@ -162,6 +182,7 @@ export default function CsvDropzone() {
   const handleRemove = useCallback(() => {
     setState('idle');
     setParsedFile(null);
+    setParseError(null);
     setValue('table', null);
     posthog.capture('csv_file_removed');
   }, [posthog, setValue]);
@@ -259,7 +280,8 @@ export default function CsvDropzone() {
                   'Невірний формат файлу. Будь ласка, завантажте CSV.'}
                 {state === 'error-size' &&
                   'Файл занадто великий. Максимальний розмір 50 МіБ.'}
-                {state === 'error-parse' && 'Помилка при читанні файлу.'}
+                {state === 'error-parse' &&
+                  (parseError || 'Помилка при читанні файлу.')}
               </p>
             )}
             <ErrorMessage
