@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАЖО-178-3-224
+  - ДАЖО-178-3-225
+  - ДАЖО-178-3-226
+authorName: Каріна Ганношина
+authorEmail: karinahannoshyna@gmail.com
+date: 2026-04-10
+id: troianiv-alfavitna-knyha-kostelu-narodzhennia-1881-1915
+location:
+  - 50.1114033
+  - 28.5333286
+size: 6030
+sources:
+  - https://drive.google.com/drive/folders/104HkGNMNJja0ZKi9MWwguiJqnKWyVtRY?usp=sharing
+tableFilePath: public/csv/troianiv-alfavitna-knyha-kostelu-narodzhennia-1881-1915.csv
+tableLocale: ru
+title: Троянів. Алфавітна книга костелу (народження), 1881-1915
+yearsRange:
+  - 1881
+  - 1915
