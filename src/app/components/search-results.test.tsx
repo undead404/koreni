@@ -46,6 +46,9 @@ const defaultProps = {
         },
       ],
       text_match: 1,
+      text_match_info: {
+        typo_prefix_score: 0,
+      },
     },
     {
       document: {
@@ -74,6 +77,9 @@ const defaultProps = {
         },
       ],
       text_match: 1,
+      text_match_info: {
+        typo_prefix_score: 1,
+      } as any,
     },
   ],
   resultsNumber: 2,
