@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-178-3-147
+authorName: Юрій Оксюківський
+authorEmail: axsellviv@ukr.net
+date: 2026-04-10
+id: DAZhO-178-3-147-1870
+location:
+  - 50.111095075147844
+  - 28.532877164346512
+size: 104
+sources: []
+tableFilePath: public/csv/troianiv-1870-mk-narodzhennia-dazho-178-3-147.csv
+tableLocale: uk
+title: Троянів 1870 МК (народження), ДАЖО 178-3-147
+yearsRange:
+  - 1870
