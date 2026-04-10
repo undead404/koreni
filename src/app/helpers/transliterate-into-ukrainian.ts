@@ -1,4 +1,4 @@
-const latinToCyrillicMap = new Map<string, string>([
+const monographsMap = new Map<string, string>([
   ['a', 'а'],
   ['b', 'б'],
   ['c', 'ц'],
@@ -51,6 +51,11 @@ const latinToCyrillicMap = new Map<string, string>([
   ['X', 'Кс'],
   ['Y', 'И'],
   ['Z', 'З'],
+  ['Ъ', ''],
+  ['ъ', ''],
+  ['э', 'е'],
+  ['Ы', 'И'],
+  ['ы', 'и'],
 ]);
 
 const digraphsMap = new Map<string, string>([
@@ -112,8 +117,5 @@ export default function transliterateIntoUkrainian(input: string): string {
   }
 
   // Transliterate remaining Latin script to Ukrainian Cyrillic script
-  return result.replaceAll(
-    /[A-Z]/gi,
-    (char) => latinToCyrillicMap.get(char) || char,
-  );
+  return [...result].map((char) => monographsMap.get(char) ?? char).join('');
 }

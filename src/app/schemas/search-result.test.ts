@@ -21,6 +21,7 @@ describe('resultSchema', () => {
       },
       text_match_info: {
         best_field_score: '2',
+        typo_prefix_score: 0,
       },
     };
 
@@ -44,6 +45,7 @@ describe('resultSchema', () => {
       },
       text_match_info: {
         best_field_score: '2',
+        typo_prefix_score: 2,
       },
     };
 
@@ -67,6 +69,7 @@ describe('resultSchema', () => {
       },
       text_match_info: {
         best_field_score: '2',
+        typo_prefix_score: 3,
       },
     };
 
@@ -84,6 +87,7 @@ describe('resultSchema', () => {
       highlight: {},
       text_match_info: {
         best_field_score: '2',
+        typo_prefix_score: 0,
       },
     };
 
@@ -109,6 +113,7 @@ describe('resultSchema', () => {
       },
       text_match_info: {
         best_field_score: '2',
+        typo_prefix_score: '3',
       },
     };
 

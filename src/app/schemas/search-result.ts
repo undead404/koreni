@@ -40,7 +40,9 @@ const resultSchema = z.object({
   highlights: highlightsArraySchema.optional(),
 
   // Relaxed validation on unused UI metadata to prevent brittle failures
-  text_match_info: z.record(z.string(), z.unknown()).optional(),
+  text_match_info: z.object({
+    typo_prefix_score: z.number().optional(),
+  }),
 });
 
 export type SearchResultRow = z.infer<typeof resultSchema>;

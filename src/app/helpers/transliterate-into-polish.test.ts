@@ -62,4 +62,11 @@ describe('transliterateIntoPolish', () => {
     const expected = 'Fjodor Dostoewskyj 1821-1881';
     expect(transliterateIntoPolish(input)).toBe(expected);
   });
+
+  it('should handle the soft sign', () => {
+    const input = 'Колінько';
+    const expected = 'Kolinko';
+    expect(transliterateIntoPolish(input)).toBe(expected);
+    expect(transliterateIntoPolish('Ольгинъ')).toBe('Olgyn');
+  });
 });

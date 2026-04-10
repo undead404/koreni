@@ -110,3 +110,18 @@
     border-color: #4b5563; /* Tailwind gray-600 */
   }
 }
+
+.fuzzyResultsNotice {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  /* Warn with yellowish color. Consider accessibility */
+  color: #f97316; /* Tailwind yellow-500 */
+  text-align: center;
+}
+
+/* Dark Theme Overrides */
+@media (prefers-color-scheme: dark) {
+  .fuzzyResultsNotice {
+    color: #d69e2e;
+  }
+}

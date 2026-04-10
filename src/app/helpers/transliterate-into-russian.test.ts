@@ -40,4 +40,11 @@ describe('transliterateIntoRussian', () => {
       'Сергей Петровичев',
     );
   });
+
+  it('should transliterate Ukrainian letters', () => {
+    // Ї, Є, І
+    expect(transliterateIntoRussian('Маївська')).toBe('Маивська');
+    expect(transliterateIntoRussian('Європа')).toBe('Европа');
+    expect(transliterateIntoRussian('Інтернет')).toBe('Интернет');
+  });
 });

@@ -1,4 +1,4 @@
-const latinToCyrillicMap = new Map<string, string>([
+const monographsMap = new Map<string, string>([
   ['a', 'а'],
   ['b', 'б'],
   ['c', 'к'],
@@ -51,6 +51,12 @@ const latinToCyrillicMap = new Map<string, string>([
   ['X', 'Кс'],
   ['Y', 'Ы'],
   ['Z', 'З'],
+  ['І', 'И'],
+  ['і', 'и'],
+  ['Ї', 'И'],
+  ['ї', 'и'],
+  ['є', 'е'],
+  ['Є', 'Е'],
 ]);
 
 const digraphsMap = new Map<string, string>([
@@ -80,11 +86,6 @@ export default function transliterateIntoRussian(input: string): string {
     return input;
   }
 
-  // Check if input is in Cyrillic script
-  if (/[\u0400-\u04FF]/.test(input)) {
-    return input;
-  }
-
   // Handle digraphs
   let result = input;
   for (const [latin, cyrillic] of digraphsMap.entries()) {
@@ -92,8 +93,5 @@ export default function transliterateIntoRussian(input: string): string {
   }
 
   // Transliterate remaining Latin script to Russian Cyrillic script
-  return result.replaceAll(
-    /[A-Z]/gi,
-    (char) => latinToCyrillicMap.get(char) || char,
-  );
+  return [...result].map((char) => monographsMap.get(char) ?? char).join('');
 }
