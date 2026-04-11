@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-2009-1-4848
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-11
+id: tsdiak-2009-1-4848
+location:
+  - 50.310185185198605
+  - 34.88957405090333
+size: 71
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:33SQ-GGY7-9D4V?view=explore&groupId=M9K4-47Z&grid=on&lang=en
+tableFilePath: public/csv/tsdiak-2009-1-4848.csv
+tableLocale: ru
+title: ЦДІАК 2009-1-4848
+yearsRange:
+  - 1770
+  - 1773
