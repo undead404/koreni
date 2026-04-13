@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-13
+id: boholiuby-deportovani-z-polshchi-1946
+location:
+  - 50.769276
+  - 25.23291
+size: 77
+sources: []
+tableFilePath: public/csv/boholiuby-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Боголюби, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
