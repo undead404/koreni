@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-13
+id: bakivtsi-deportovani-z-polshchi-1946
+location:
+  - 50.5913073
+  - 25.2634067
+size: 9
+sources: []
+tableFilePath: public/csv/bakivtsi-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Баківці, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
