@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-13
+id: DAVoO-R919-1-6-Antonivka
+location:
+  - 50.7275422
+  - 25.1732593
+size: 81
+sources: []
+tableFilePath: public/csv/antonivka-deportvani-z-polshchi-1946.csv
+tableLocale: uk
+title: Антонівка, Луцький р-н, Волинська обл. | Депортвані з Польщі (1946)
+yearsRange:
+  - 1946
