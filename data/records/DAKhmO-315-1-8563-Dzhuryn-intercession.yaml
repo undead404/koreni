@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-14
+id: DAKhmO-315-1-8563-Dzhuryn-intercession
+location:
+  - 48.681271
+  - 28.292053
+size: 846
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8563-Dzhuryn-intercession.csv
+tableLocale: ru
+title: Джурин 1861 – сповідний розпис (повний), Покровська церква, ДАХмО-315-1-8563
+yearsRange:
+  - 1861
