@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-2009-1-4851
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-12
+id: TsDIAK-2009-1-4851
+location:
+  - 49.8349315
+  - 36.68319074
+size: 86
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:33SQ-GGYD-N14?view=explore&groupId=M9K4-WXZ&grid=on&lang=en
+tableFilePath: public/csv/tsdiak-2009-1-4851.csv
+tableLocale: ru
+title: ЦДІАК 2009-1-4851
+yearsRange:
+  - 1725
+  - 1814
