@@ -5,8 +5,8 @@ authorEmail: retusher@ukr.net
 date: 2026-04-15
 id: DAZhO-1-91-Novoselytsia-death
 location:
-  - 50.069492827887004
-  - 27.51860618591309
+  - 50.069851
+  - 27.520069
 size: 1034
 sources: []
 tableFilePath: public/csv/novoselytsiasmert1839-189116.csv

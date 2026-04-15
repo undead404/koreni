@@ -5,8 +5,8 @@ authorEmail: retusher@ukr.net
 date: 2026-04-15
 id: DAZhO-1-91-Novoselytsia-birth
 location:
-  - 50.07147606704057
-  - 27.51757621765137
+  - 50.069851
+  - 27.520069
 size: 4076
 sources: []
 tableFilePath: public/csv/novoselytsianarodzhennia1839-1891.csv
