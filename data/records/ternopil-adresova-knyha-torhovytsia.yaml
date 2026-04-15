@@ -1,0 +1,18 @@
+archiveItems:
+  - Księga adresowa Małopolski
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-15
+id: ternopil-adresova-knyha-torhovytsia
+location:
+  - 49.5453863
+  - 25.5939593
+size: 28
+sources:
+  - https://polona.pl/preview/925763b2-7d09-4603-b2bd-39c1ba464803
+tableFilePath: public/csv/ternopil-adresova-knyha-torhovytsia.csv
+tableLocale: uk
+title: Тернопіль (Tarnopol) | Адресова книга, вул.Торговиця (1935-36)
+yearsRange:
+  - 1935
+  - 1936
