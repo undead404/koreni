@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-15
+id: velykyi-omelianyk-deportovani-z-polshchi-1946
+location:
+  - 50.7376082
+  - 25.2753013
+size: 1
+sources: []
+tableFilePath: public/csv/velykyi-omelianyk-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Великий Омеляник, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
