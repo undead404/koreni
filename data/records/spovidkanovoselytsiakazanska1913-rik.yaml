@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-73-506
+authorName: Ivan Hodomych
+authorEmail: retusher@ukr.net
+date: 2026-04-15
+id: spovidkanovoselytsiakazanska1913-rik
+location:
+  - 50.0707315011928
+  - 27.519850730896
+size: 2763
+sources: []
+tableFilePath: public/csv/spovidkanovoselytsiakazanska1913-rik.csv
+tableLocale: ru
+title: Сповідка_Новоселиця(Казанська)_1913 рік
+yearsRange:
+  - 1913
