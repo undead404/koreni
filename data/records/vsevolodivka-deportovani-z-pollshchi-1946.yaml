@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-15
+id: vsevolodivka-deportovani-z-pollshchi-1946
+location:
+  - 50.7492636
+  - 25.173288
+size: 54
+sources: []
+tableFilePath: public/csv/vsevolodivka-deportovani-z-pollshchi-1946.csv
+tableLocale: uk
+title: Всеволодівка, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
