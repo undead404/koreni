@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-Р919-1-6
+authorName: Савків Олена
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-15
+id: bukiv-deportovani-z-polshchi-1946
+location:
+  - 50.8275165
+  - 25.1978669
+size: 45
+sources: []
+tableFilePath: public/csv/bukiv-deportovani-z-polshchi-1946.csv
+tableLocale: uk
+title: Буків, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
+yearsRange:
+  - 1946
