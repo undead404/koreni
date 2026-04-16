@@ -1,5 +1,6 @@
 import type { Client } from 'typesense';
 import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents.js';
+import type { MultiSearchRequestSchema } from 'typesense/lib/Typesense/MultiSearch';
 
 import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
@@ -42,11 +43,12 @@ export default async function search({
     },
   ];
 
-  const commonParameters: Record<string, unknown> = {
+  const commonParameters: Partial<MultiSearchRequestSchema> = {
     page,
     per_page: perPage,
     query_by: 'values',
     sort_by: '_text_match:desc,year:desc',
+    num_typos: 2,
   };
 
   if (yearFrom && yearTo) {
