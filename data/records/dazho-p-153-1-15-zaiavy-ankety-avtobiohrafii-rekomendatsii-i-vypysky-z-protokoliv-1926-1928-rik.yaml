@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАЖО П-153-1-15
+authorName: Іванна Мельник
+authorEmail: ivanna.melnik@gmail.com
+date: 2026-04-16
+id: dazho-p-153-1-15-zaiavy-ankety-avtobiohrafii-rekomendatsii-i-vypysky-z-protokoliv-1926-1928-rik
+location:
+  - 50.9311253
+  - 27.3179789
+size: 23
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%96%D0%9E/%D0%9F-153/1/15
+tableFilePath: public/csv/dazho-p-153-1-15-zaiavy-ankety-avtobiohrafii-rekomendatsii-i-vypysky-z-protokoliv-1926-1928-rik.csv
+tableLocale: uk
+title: ДАЖО П 153-1-15 Заяви, анкети, автобіографії, рекомендації і виписки з
+  протоколів  1926-1928 рік
+yearsRange:
+  - 1926
+  - 1928
