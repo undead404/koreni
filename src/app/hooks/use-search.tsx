@@ -24,7 +24,12 @@ export function useSearch() {
   const posthog = usePostHog();
 
   const handleSearch = useCallback(
-    async (value: string, page: number = 1) => {
+    async (
+      value: string,
+      yearFrom: string,
+      yearTo: string,
+      page: number = 1,
+    ) => {
       // Increment ID for every new search call
       const requestId = ++currentRequestId.current;
       const normalizedQuery = value.trim();
@@ -44,6 +49,8 @@ export function useSearch() {
         posthog.capture('search_performed', {
           query: normalizedQuery,
           query_length: normalizedQuery.length,
+          year_from: yearFrom,
+          year_to: yearTo,
         });
 
         const [hits, hitsNumber] = await search({
@@ -51,6 +58,8 @@ export function useSearch() {
           page, // Pass page to API
           perPage: 24, // Matches typical 2-col or 3-col grid layouts
           query: normalizedQuery,
+          yearFrom,
+          yearTo,
         });
 
         // Drop stale execution context: if a newer request fired, halt state updates
@@ -62,6 +71,8 @@ export function useSearch() {
         posthog.capture('search_results_returned', {
           query: normalizedQuery,
           results_count: hitsNumber,
+          year_from: yearFrom,
+          year_to: yearTo,
         });
       } catch (error_) {
         if (requestId !== currentRequestId.current) return;

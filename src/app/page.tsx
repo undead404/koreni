@@ -7,7 +7,7 @@ import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import Comments from './components/comments/comments';
 import Loader from './components/loader';
-import Search from './components/search';
+import SearchPage from './components/search';
 import environment from './environment';
 import JsonLdHome from './index-json-ld';
 
@@ -73,7 +73,7 @@ export default async function Home() {
         у пошуковому рушії. Можливо, десь тут є і твої корені?
       </p>
       <Suspense fallback={<Loader />}>
-        <Search recordsNumber={recordsNumber} />
+        <SearchPage recordsNumber={recordsNumber} />
       </Suspense>
       <Comments />
       <JsonLdHome tablesMetadata={tablesMetadata} />

@@ -13,6 +13,8 @@ export interface SearchParameters {
   page?: number;
   perPage?: number;
   query: string;
+  yearFrom?: string;
+  yearTo?: string;
 }
 
 export type SearchResult = SearchResponseHit<Record<string, unknown>>;
@@ -25,14 +27,29 @@ function searchInCollection(
   query: string,
   page: number = 1,
   perPage: number = 24,
+  yearFrom?: string,
+  yearTo?: string,
 ): Promise<SearchResponse<Record<string, unknown>>> {
-  return client.collections(collection).documents().search({
+  const searchConfig: Record<string, unknown> = {
     q: query,
     page: page,
     per_page: perPage,
     query_by: 'values',
     sort_by: '_text_match:desc,year:desc',
-  }) as Promise<SearchResponse<Record<string, unknown>>>;
+  };
+
+  if (yearFrom && yearTo) {
+    searchConfig.filter_by = `year: [${yearFrom}..${yearTo}]`;
+  } else if (yearFrom) {
+    searchConfig.filter_by = `year: >=${yearFrom}`;
+  } else if (yearTo) {
+    searchConfig.filter_by = `year: <=${yearTo}`;
+  }
+
+  return client
+    .collections(collection)
+    .documents()
+    .search(searchConfig) as Promise<SearchResponse<Record<string, unknown>>>;
 }
 
 export default async function search({
@@ -40,6 +57,8 @@ export default async function search({
   query,
   page = 1,
   perPage = 24,
+  yearFrom,
+  yearTo,
 }: SearchParameters): Promise<SearchResults> {
   const normalizedQuery = query.toLowerCase();
 
@@ -51,6 +70,8 @@ export default async function search({
       transliterateIntoPolish(normalizedQuery),
       page,
       perPage,
+      yearFrom,
+      yearTo,
     ),
     searchInCollection(
       client,
@@ -58,6 +79,8 @@ export default async function search({
       transliterateIntoRussian(normalizedQuery),
       page,
       perPage,
+      yearFrom,
+      yearTo,
     ),
     searchInCollection(
       client,
@@ -65,6 +88,8 @@ export default async function search({
       transliterateIntoUkrainian(normalizedQuery),
       page,
       perPage,
+      yearFrom,
+      yearTo,
     ),
   ];
 

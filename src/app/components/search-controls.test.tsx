@@ -2,16 +2,16 @@ import { cleanup, fireEvent, render } from '@testing-library/react';
 // import type { Client } from 'typesense';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import SearchControls from './search-controls';
+import SearchControls, { type ControlsProperties } from './search-controls';
 
-const defaultProps = {
-  initialValue: 'Мельник',
-  areRefinementsExpanded: false,
-  // client: {} as Client,
-  onFacetChange: vi.fn(),
-  onRangeChange: vi.fn(),
-  onToggleRefinementsExpanded: vi.fn(),
-  onInput: vi.fn(),
+const defaultProps: ControlsProperties = {
+  filters: {
+    query: '',
+    yearFrom: '',
+    yearTo: '',
+  },
+  onQueryChange: vi.fn(),
+  onYearCommit: vi.fn(),
 };
 
 describe('SearchControls component', () => {
@@ -31,7 +31,7 @@ describe('SearchControls component', () => {
       <SearchControls {...defaultProps} />,
     );
     const input = getByPlaceholderText('Мельник');
-    expect(input).toHaveValue(defaultProps.initialValue);
+    expect(input).toHaveValue(defaultProps.filters.query);
   });
 
   it('should call onInput when the input value changes', () => {
@@ -41,9 +41,7 @@ describe('SearchControls component', () => {
     const input = getByPlaceholderText('Мельник');
     const newValue = 'Новий запит';
     fireEvent.change(input, { target: { value: newValue } });
-    expect(defaultProps.onInput).toHaveBeenCalledWith(
-      new CustomEvent('input', { detail: newValue }),
-    );
+    expect(defaultProps.onQueryChange).toHaveBeenCalledWith(newValue);
   });
 
   it('should apply the correct classes to the elements', () => {
@@ -53,5 +51,29 @@ describe('SearchControls component', () => {
 
     expect(form).toHaveClass('container');
     expect(input).toHaveClass('input');
+  });
+
+  it('should apply the correct year filters', () => {
+    const { container } = render(<SearchControls {...defaultProps} />);
+
+    const yearFrom = container.querySelector('.yearInput[name="year_from"]');
+    const yearTo = container.querySelector('.yearInput[name="year_to"]');
+    expect(yearFrom).toBeInTheDocument();
+    expect(yearTo).toBeInTheDocument();
+  });
+
+  it('should call onYearCommit when the year filters change', () => {
+    const { container } = render(<SearchControls {...defaultProps} />);
+    const yearFrom = container.querySelector('.yearInput[name="year_from"]')!;
+    const yearTo = container.querySelector('.yearInput[name="year_to"]')!;
+    const newYearFrom = '2020';
+    const newYearTo = '2021';
+    fireEvent.change(yearFrom, { target: { value: newYearFrom } });
+    expect(defaultProps.onYearCommit).toHaveBeenCalledWith(newYearFrom, '');
+    fireEvent.change(yearTo, { target: { value: newYearTo } });
+    expect(defaultProps.onYearCommit).toHaveBeenCalledWith(
+      newYearFrom,
+      newYearTo,
+    );
   });
 });

@@ -1,7 +1,8 @@
 import {
   type ChangeEvent,
   type FC,
-  type FormEvent,
+  type KeyboardEvent,
+  type SubmitEvent,
   useCallback,
   useEffect,
   useState,
@@ -9,49 +10,114 @@ import {
 
 import styles from './search-controls.module.css';
 
-interface ControlsProperties {
-  initialValue: string;
-  onInput: (event: CustomEvent<string>) => void;
+export interface ControlsProperties {
+  filters: { query: string; yearFrom: string; yearTo: string };
+  onQueryChange: (query: string) => void;
+  onYearCommit: (yearFrom: string, yearTo: string) => void;
 }
 
-// This input is responsible only for changing value within itself.
-// The only source of change is user input, though it can take initial value
-// from query or other source.
-const SearchControls: FC<ControlsProperties> = ({ initialValue, onInput }) => {
-  const [inputValue, setInputValue] = useState(initialValue);
+const SearchControls: FC<ControlsProperties> = ({
+  filters,
+  onQueryChange,
+  onYearCommit,
+}) => {
+  const [localYearFrom, setLocalYearFrom] = useState(filters.yearFrom);
+  const [localYearTo, setLocalYearTo] = useState(filters.yearTo);
 
   useEffect(() => {
-    setInputValue(initialValue);
-  }, [initialValue]);
+    setLocalYearFrom(filters.yearFrom);
+    setLocalYearTo(filters.yearTo);
+  }, [filters.yearFrom, filters.yearTo]);
 
-  const handleInputChange = useCallback(
+  const handleQueryChange = useCallback(
     (changeEvent: ChangeEvent<HTMLInputElement>) => {
-      const newValue = changeEvent.target.value;
-      setInputValue(newValue);
-
-      const event = new CustomEvent('input', {
-        detail: newValue,
-      });
-      onInput(event);
+      onQueryChange(changeEvent.target.value);
     },
-    [onInput],
+    [onQueryChange],
   );
 
-  const handleSubmit = useCallback((event: FormEvent) => {
+  const handleYearFromChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      setLocalYearFrom(value);
+
+      // Auto-commit if exactly 4 digits or if cleared
+      if (value.length === 4 || value === '') {
+        onYearCommit(value, localYearTo);
+      }
+    },
+    [localYearTo, onYearCommit],
+  );
+
+  const handleYearToChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      setLocalYearTo(value);
+
+      // Auto-commit if exactly 4 digits or if cleared
+      if (value.length === 4 || value === '') {
+        onYearCommit(localYearFrom, value);
+      }
+    },
+    [localYearFrom, onYearCommit],
+  );
+
+  const handleYearCommit = useCallback(() => {
+    onYearCommit(localYearFrom, localYearTo);
+  }, [localYearFrom, localYearTo, onYearCommit]);
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        handleYearCommit();
+      }
+    },
+    [handleYearCommit],
+  );
+
+  const handleSubmit = useCallback((event: SubmitEvent) => {
     event.preventDefault();
   }, []);
 
   return (
     <form className={styles.container} role="search" onSubmit={handleSubmit}>
-      <input
-        id="genealogical-indexes-search"
-        type="search"
-        value={inputValue}
-        onChange={handleInputChange}
-        className={styles.input}
-        placeholder="Мельник"
-        aria-label="Шукати в генеалогічних індексах"
-      />
+      <div className={styles.inputGroup}>
+        <input
+          id="genealogical-indexes-search"
+          type="search"
+          value={filters.query}
+          onChange={handleQueryChange}
+          className={styles.input}
+          placeholder="Мельник"
+          aria-label="Шукати в генеалогічних індексах"
+        />
+      </div>
+      <div className={styles.yearFilters}>
+        <input
+          type="number"
+          value={localYearFrom}
+          onChange={handleYearFromChange}
+          onBlur={handleYearCommit}
+          onKeyDown={handleKeyDown}
+          placeholder="Рік від"
+          aria-label="Рік від"
+          name="year_from"
+          className={styles.yearInput}
+        />
+        <span className={styles.separator}>-</span>
+        <input
+          type="number"
+          value={localYearTo}
+          onChange={handleYearToChange}
+          onBlur={handleYearCommit}
+          onKeyDown={handleKeyDown}
+          placeholder="Рік до"
+          aria-label="Рік до"
+          name="year_to"
+          className={styles.yearInput}
+        />
+      </div>
     </form>
   );
 };

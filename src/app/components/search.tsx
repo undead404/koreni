@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import useSearch from '../hooks/use-search';
 
@@ -17,46 +17,61 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   const router = useRouter();
   const { error, handleSearch, ...rest } = useSearch();
 
-  // 1. Local state only for instantaneous UI responsiveness
-  const [inputValue, setInputValue] = useState(
-    searchParameters.get('query') || '',
-  );
+  const [filters, setFilters] = useState({
+    query: searchParameters.get('query') || '',
+    yearFrom: searchParameters.get('year_from') || '',
+    yearTo: searchParameters.get('year_to') || '',
+  });
 
   // Extract current page from URL, defaulting to 1
   const currentPage = Number.parseInt(searchParameters.get('page') || '1', 10);
   const totalPages = Math.ceil(rest.resultsNumber / PER_PAGE);
 
   const activeQuery = searchParameters.get('query') || '';
-  const lastPushedQuery = useRef(activeQuery);
+  const activeYearFrom = searchParameters.get('year_from') || '';
+  const activeYearTo = searchParameters.get('year_to') || '';
 
-  // 2a. Sync local state strictly on external browser navigation (Back/Forward).
+  // The URL is the single source of truth for fetching data.
   useEffect(() => {
-    if (activeQuery !== lastPushedQuery.current) {
-      setInputValue(activeQuery);
-      lastPushedQuery.current = activeQuery;
-    }
-  }, [activeQuery]);
+    void handleSearch(activeQuery, activeYearFrom, activeYearTo, currentPage);
+  }, [activeQuery, activeYearFrom, activeYearTo, currentPage, handleSearch]);
 
-  // 2b. The URL is the single source of truth for fetching data.
-  useEffect(() => {
-    void handleSearch(activeQuery, currentPage);
-  }, [activeQuery, currentPage, handleSearch]);
-
-  // 3. Debounce the URL update. This prevents spamming Next.js router history.
+  // Debounce the URL update. This prevents spamming Next.js router history.
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      const trimmedInput = inputValue.trim();
+      const trimmedQuery = filters.query.trim();
+      const trimmedYearFrom = filters.yearFrom.trim();
+      const trimmedYearTo = filters.yearTo.trim();
 
       // Only push to router if the intended state differs from the URL
-      if (trimmedInput !== activeQuery) {
-        lastPushedQuery.current = trimmedInput; // Track exactly what is sent to the router
-
+      if (
+        trimmedQuery !== activeQuery ||
+        trimmedYearFrom !== activeYearFrom ||
+        trimmedYearTo !== activeYearTo
+      ) {
         const parameters = new URLSearchParams(searchParameters.toString());
-        if (trimmedInput) {
-          parameters.set('query', trimmedInput);
-          parameters.set('page', '1'); // Reset to page 1 on new search query
+
+        if (trimmedQuery) {
+          parameters.set('query', trimmedQuery);
         } else {
           parameters.delete('query');
+        }
+
+        if (trimmedYearFrom) {
+          parameters.set('year_from', trimmedYearFrom);
+        } else {
+          parameters.delete('year_from');
+        }
+
+        if (trimmedYearTo) {
+          parameters.set('year_to', trimmedYearTo);
+        } else {
+          parameters.delete('year_to');
+        }
+
+        parameters.set('page', '1'); // Reset to page 1 on new search query or filters
+
+        if (!trimmedQuery && !trimmedYearFrom && !trimmedYearTo) {
           parameters.delete('page');
         }
 
@@ -68,10 +83,22 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
     }, 400); // 400ms is the standard optimal threshold for text input debouncing
 
     return () => clearTimeout(timeoutId);
-  }, [inputValue, activeQuery, pathname, router, searchParameters]);
+  }, [
+    filters,
+    activeQuery,
+    activeYearFrom,
+    activeYearTo,
+    pathname,
+    router,
+    searchParameters,
+  ]);
 
-  const handleInput = useCallback((event: CustomEvent<string>) => {
-    setInputValue(event.detail);
+  const handleQueryChange = useCallback((query: string) => {
+    setFilters((previous) => ({ ...previous, query }));
+  }, []);
+
+  const handleYearCommit = useCallback((yearFrom: string, yearTo: string) => {
+    setFilters((previous) => ({ ...previous, yearFrom, yearTo }));
   }, []);
 
   const handlePageChange = useCallback(
@@ -86,7 +113,11 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
 
   return (
     <section className={styles.section} aria-label="Пошук по записах">
-      <SearchControls initialValue={inputValue} onInput={handleInput} />
+      <SearchControls
+        filters={filters}
+        onQueryChange={handleQueryChange}
+        onYearCommit={handleYearCommit}
+      />
 
       {error && (
         <div className={styles.errorMessage} role="alert" aria-live="assertive">
