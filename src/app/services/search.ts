@@ -1,8 +1,5 @@
 import type { Client } from 'typesense';
-import type {
-  SearchResponse,
-  SearchResponseHit,
-} from 'typesense/lib/Typesense/Documents.js';
+import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents.js';
 
 import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
@@ -20,38 +17,6 @@ export interface SearchParameters {
 export type SearchResult = SearchResponseHit<Record<string, unknown>>;
 export type SearchResults = [SearchResult[], number];
 
-// Returns the raw promise; does not manually fake settled states
-function searchInCollection(
-  client: Client,
-  collection: string,
-  query: string,
-  page: number = 1,
-  perPage: number = 24,
-  yearFrom?: string,
-  yearTo?: string,
-): Promise<SearchResponse<Record<string, unknown>>> {
-  const searchConfig: Record<string, unknown> = {
-    q: query,
-    page: page,
-    per_page: perPage,
-    query_by: 'values',
-    sort_by: '_text_match:desc,year:desc',
-  };
-
-  if (yearFrom && yearTo) {
-    searchConfig.filter_by = `year: [${yearFrom}..${yearTo}]`;
-  } else if (yearFrom) {
-    searchConfig.filter_by = `year: >=${yearFrom}`;
-  } else if (yearTo) {
-    searchConfig.filter_by = `year: <=${yearTo}`;
-  }
-
-  return client
-    .collections(collection)
-    .documents()
-    .search(searchConfig) as Promise<SearchResponse<Record<string, unknown>>>;
-}
-
 export default async function search({
   client,
   query,
@@ -62,78 +27,42 @@ export default async function search({
 }: SearchParameters): Promise<SearchResults> {
   const normalizedQuery = query.toLowerCase();
 
-  // 1. Initialize promises concurrently without awaiting them inline
-  const searchPromises = [
-    searchInCollection(
-      client,
-      'unstructured_pl',
-      transliterateIntoPolish(normalizedQuery),
-      page,
-      perPage,
-      yearFrom,
-      yearTo,
-    ),
-    searchInCollection(
-      client,
-      'unstructured_ru',
-      transliterateIntoRussian(normalizedQuery),
-      page,
-      perPage,
-      yearFrom,
-      yearTo,
-    ),
-    searchInCollection(
-      client,
-      'unstructured_uk',
-      transliterateIntoUkrainian(normalizedQuery),
-      page,
-      perPage,
-      yearFrom,
-      yearTo,
-    ),
+  const searches = [
+    {
+      collection: 'unstructured_pl',
+      q: transliterateIntoPolish(normalizedQuery),
+    },
+    {
+      collection: 'unstructured_ru',
+      q: transliterateIntoRussian(normalizedQuery),
+    },
+    {
+      collection: 'unstructured_uk',
+      q: transliterateIntoUkrainian(normalizedQuery),
+    },
   ];
 
-  // 2. Await all promises simultaneously natively
-  const results = await Promise.allSettled(searchPromises);
+  const commonParameters: Record<string, unknown> = {
+    page,
+    per_page: perPage,
+    query_by: 'values',
+    sort_by: '_text_match:desc,year:desc',
+  };
 
-  // 3. Centralized error handling
-  const errors = results.filter((r) => r.status === 'rejected');
-  if (errors.length > 0) {
-    throw new AggregateError(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      errors.map((error) => error.reason),
-      'Search failed in one or more languages',
-    );
+  if (yearFrom && yearTo) {
+    commonParameters.filter_by = `year: [${yearFrom}..${yearTo}]`;
+  } else if (yearFrom) {
+    commonParameters.filter_by = `year: >=${yearFrom}`;
+  } else if (yearTo) {
+    commonParameters.filter_by = `year: <=${yearTo}`;
   }
 
-  // 4. Data Extraction
-  const fulfilledResults = results.map(
-    (r) =>
-      (r as PromiseFulfilledResult<SearchResponse<Record<string, unknown>>>)
-        .value,
-  );
+  const response = await client.multiSearch.perform<
+    Record<string, unknown>[],
+    true
+  >({ searches, union: true }, commonParameters);
+  const hits = response.hits || [];
+  const totalFound = response.found || 0;
 
-  const totalFound = fulfilledResults.reduce(
-    (sum, result) => sum + result.found,
-    0,
-  );
-  const totalHits = fulfilledResults.flatMap((result) => result.hits || []);
-
-  // 5. Native numeric sorting across the merged datasets
-  totalHits.sort((a, b) => {
-    // Cast Typesense text_match explicitly to numbers to prevent lexicographical bugs
-    const matchA = Number(a.text_match || 0);
-    const matchB = Number(b.text_match || 0);
-
-    if (matchB !== matchA) {
-      return matchB - matchA; // Descending order
-    }
-
-    // Fallback sort by year descending
-    const yearA = (a.document.year as number) || 0;
-    const yearB = (b.document.year as number) || 0;
-    return yearB - yearA;
-  });
-
-  return [totalHits, totalFound];
+  return [hits as SearchResult[], totalFound];
 }

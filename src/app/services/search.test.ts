@@ -6,9 +6,9 @@ import type { SearchResultRow } from '../schemas/search-result';
 import search, { type SearchParameters } from './search';
 
 const mockClient = {
-  collections: vi.fn().mockReturnThis(),
-  documents: vi.fn().mockReturnThis(),
-  search: vi.fn(),
+  multiSearch: {
+    perform: vi.fn(),
+  },
 };
 
 const mockSearchResult = (hits: SearchResultRow[], found: number) => ({
@@ -21,7 +21,7 @@ describe('search', () => {
     vi.clearAllMocks();
   });
   it('should return combined and sorted search results from both collections', async () => {
-    const mockHitsPl: SearchResultRow[] = [
+    const mockHits: SearchResultRow[] = [
       {
         document: {
           id: '1',
@@ -31,23 +31,8 @@ describe('search', () => {
           year: 1821,
         },
         highlight: {},
-        text_match_info: { best_field_score: '1' },
+        text_match_info: { typo_prefix_score: 1 },
       },
-    ];
-    const mockHitsRu: SearchResultRow[] = [
-      {
-        document: {
-          id: '1',
-          raw: {},
-          tableId: 'valid-id',
-          title: 'Document 1',
-          year: 1821,
-        },
-        highlight: {},
-        text_match_info: { best_field_score: '1' },
-      },
-    ];
-    const mockHitsUk: SearchResultRow[] = [
       {
         document: {
           id: '2',
@@ -57,14 +42,13 @@ describe('search', () => {
           year: 1836,
         },
         highlight: {},
-        text_match_info: { best_field_score: '2' },
+        text_match_info: { typo_prefix_score: 2 },
       },
     ];
 
-    mockClient.search
-      .mockResolvedValueOnce(mockSearchResult(mockHitsPl, 1))
-      .mockResolvedValueOnce(mockSearchResult(mockHitsRu, 1))
-      .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
+    mockClient.multiSearch.perform.mockResolvedValueOnce(
+      mockSearchResult(mockHits, 2),
+    );
 
     const parameters: SearchParameters = {
       client: mockClient as unknown as Client,
@@ -73,88 +57,44 @@ describe('search', () => {
 
     const [results, total] = await search(parameters);
 
-    expect(results).toHaveLength(3);
-    expect(results[0].document.id).toBe('2'); // Sorted by best_field_score
-    expect(results[1].document.id).toBe('1');
-    expect(total).toBe(3);
+    expect(results).toHaveLength(2);
+    expect(total).toBe(2);
 
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_pl');
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_ru');
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_uk');
-    expect(mockClient.search).toHaveBeenCalledTimes(3);
-  });
-
-  it('should throw rejection from the first collection', async () => {
-    const mockHitsUk: SearchResultRow[] = [
+    expect(mockClient.multiSearch.perform).toHaveBeenCalledWith(
+      { searches: expect.any(Array), union: true },
       {
-        document: {
-          id: '2',
-          raw: {},
-          tableId: 'valid-id',
-          title: 'Document 2',
-          year: 1858,
-        },
-        highlight: {},
-        text_match_info: { best_field_score: '2' },
+        page: 1,
+        per_page: 24,
+        query_by: 'values',
+        sort_by: '_text_match:desc,year:desc',
       },
-    ];
-
-    mockClient.search
-      .mockRejectedValueOnce(new Error('Search failed'))
-      .mockResolvedValueOnce(mockSearchResult(mockHitsUk, 1));
-
-    const parameters: SearchParameters = {
-      client: mockClient as unknown as Client,
-      query: 'test',
-    };
-
-    await expect(search(parameters)).rejects.toThrow('Search failed');
-  });
-
-  it('should throw rejection from the second collection', async () => {
-    const mockHitsRu: SearchResultRow[] = [
-      {
-        document: {
-          id: '2',
-          raw: {},
-          tableId: 'valid-id',
-          title: 'Document 2',
-          year: 1858,
-        },
-        highlight: {},
-        text_match_info: { best_field_score: '2' },
-      },
-    ];
-
-    mockClient.search
-      .mockResolvedValueOnce(mockSearchResult(mockHitsRu, 1))
-      .mockRejectedValueOnce(new Error('Search failed'));
-
-    const parameters: SearchParameters = {
-      client: mockClient as unknown as Client,
-      query: 'test',
-    };
-
-    await expect(search(parameters)).rejects.toThrow('Search failed');
-  });
-
-  it('should throw an error if both collections reject', async () => {
-    mockClient.search
-      .mockRejectedValueOnce(new Error('Search failed'))
-      .mockRejectedValueOnce(new Error('Search failed'));
-
-    const parameters: SearchParameters = {
-      client: mockClient as unknown as Client,
-      query: 'test',
-    };
-
-    await expect(search(parameters)).rejects.toThrow(
-      'Search failed in one or more languages',
     );
+  });
 
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_pl');
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_ru');
-    expect(mockClient.collections).toHaveBeenCalledWith('unstructured_uk');
-    expect(mockClient.search).toHaveBeenCalledTimes(3);
+  it('should throw rejection', async () => {
+    const mockHits: SearchResultRow[] = [
+      {
+        document: {
+          id: '2',
+          raw: {},
+          tableId: 'valid-id',
+          title: 'Document 2',
+          year: 1858,
+        },
+        highlight: {},
+        text_match_info: { typo_prefix_score: 2 },
+      },
+    ];
+
+    mockClient.multiSearch.perform
+      .mockRejectedValueOnce(new Error('Search failed'))
+      .mockResolvedValueOnce(mockSearchResult(mockHits, 1));
+
+    const parameters: SearchParameters = {
+      client: mockClient as unknown as Client,
+      query: 'test',
+    };
+
+    await expect(search(parameters)).rejects.toThrow('Search failed');
   });
 });
