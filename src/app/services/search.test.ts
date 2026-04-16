@@ -61,8 +61,25 @@ describe('search', () => {
     expect(total).toBe(2);
 
     expect(mockClient.multiSearch.perform).toHaveBeenCalledWith(
-      { searches: expect.any(Array), union: true },
       {
+        searches: [
+          {
+            collection: 'unstructured_pl',
+            q: 'test',
+          },
+          {
+            collection: 'unstructured_ru',
+            q: 'тест',
+          },
+          {
+            collection: 'unstructured_uk',
+            q: 'тест',
+          },
+        ],
+        union: true,
+      },
+      {
+        num_typos: 2,
         page: 1,
         per_page: 24,
         query_by: 'values',

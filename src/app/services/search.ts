@@ -1,6 +1,9 @@
 import type { Client } from 'typesense';
 import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents.js';
-import type { MultiSearchRequestSchema } from 'typesense/lib/Typesense/MultiSearch';
+import type {
+  MultiSearchRequestSchema,
+  MultiSearchRequestsSchema,
+} from 'typesense/lib/Typesense/MultiSearch';
 
 import transliterateIntoPolish from '../helpers/transliterate-into-polish';
 import transliterateIntoRussian from '../helpers/transliterate-into-russian';
@@ -28,7 +31,7 @@ export default async function search({
 }: SearchParameters): Promise<SearchResults> {
   const normalizedQuery = query.toLowerCase();
 
-  const searches = [
+  const searches: MultiSearchRequestsSchema['searches'] = [
     {
       collection: 'unstructured_pl',
       q: transliterateIntoPolish(normalizedQuery),
