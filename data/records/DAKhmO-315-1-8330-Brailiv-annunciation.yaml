@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-17
+id: DAKhmO-315-1-8330-Brailiv-annunciation
+location:
+  - 49.1092468
+  - 28.1594997
+size: 14
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8330-Brailiv-annunciation.csv
+tableLocale: ru
+title: Браїлів 1854 – сповідний розпис, Вінницький Благовіщенський монастир,
+  ДАХмО 315-1-8330
+yearsRange:
+  - 1854
