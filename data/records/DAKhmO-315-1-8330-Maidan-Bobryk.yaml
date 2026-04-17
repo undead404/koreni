@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-04-17
+id: DAKhmO-315-1-8330-Maidan-Bobryk
+location:
+  - 49.440865
+  - 28.218729
+size: 527
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8330-Maidan-Bobryk.csv
+tableLocale: ru
+title: Бобрик (Майдан-Бобрик) 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
+yearsRange:
+  - 1855
