@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЗпО-5593-2-423
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-04-17
+id: bilotserkivka-narodzhennia-1895
+location:
+  - 46.463581
+  - 33.29475
+size: 184
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSS9-23NV-G?view=explore&groupId=M9M2-QRF&lang=uk
+tableFilePath: public/csv/bilotserkivka-narodzhennia-1895.csv
+tableLocale: uk
+title: Білоцерківка, Дніпровський пов. Таврійська губ. | народження (1895)
+yearsRange:
+  - 1895
