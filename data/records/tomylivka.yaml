@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-384-5-246
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-04-18
+id: tomylivka
+location:
+  - 49.74589223020748
+  - 30.26205474079571
+size: 74
+sources:
+  - https://drive.google.com/drive/u/0/folders/1w4iQ-2zUEZpYggoKtvVBcTRtBN0cVNsx
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/246
+tableFilePath: public/csv/tomylivka.csv
+tableLocale: uk
+title: Томилівка
+yearsRange:
+  - 1897
