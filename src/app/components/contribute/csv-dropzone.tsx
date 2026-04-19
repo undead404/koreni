@@ -94,6 +94,16 @@ export default function CsvDropzone() {
           return;
         }
 
+        if (
+          error instanceof Error &&
+          error.message.includes('Invalid byte sequence detected')
+        ) {
+          setParseError(
+            'Таблиця містить некоректне кодування символів. Будь ласка, експортуйте таблицю у форматі CSV з кодуванням UTF-8.',
+          );
+          return;
+        }
+
         setParseError('Помилка при читанні файлу.');
         console.error(error);
         posthog.capture('table_info_parse_error', {
