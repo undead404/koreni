@@ -3,7 +3,7 @@ archiveItems:
 authorName: Тетяна Михайленко
 authorEmail: tatiana.mykhailenko@yahoo.com
 date: 2026-04-23
-id: mk-sl-petrovskaia-1733
+id: TsDIAK-1993-1-8
 location:
   - 50.69591395500826
   - 35.45579910278321
@@ -12,6 +12,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-JQY1-TSSV-R?view=explore&groupId=TH-7787-133196-56363-5&grid=on&lang=en
 tableFilePath: public/csv/mk-sl-petrovskaia-1733.csv
 tableLocale: ru
-title: МК сл. Петровская 1733
+title: МК сл. Петровська 1733
 yearsRange:
   - 1733
