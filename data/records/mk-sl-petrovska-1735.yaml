@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-1993-1-8
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-25
+id: mk-sl-petrovska-1735
+location:
+  - 50.69613142751573
+  - 35.454940795898445
+size: 91
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-JQY1-TSSK-Z?view=explore&groupId=TH-7787-133196-56363-5&lang=en
+tableFilePath: public/csv/mk-sl-petrovska-1735.csv
+tableLocale: ru
+title: МК сл. Петровська 1735
+yearsRange:
+  - 1735
