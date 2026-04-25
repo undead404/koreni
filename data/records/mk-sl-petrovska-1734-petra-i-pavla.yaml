@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-1993-1-8
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-25
+id: mk-sl-petrovska-1734-petra-i-pavla
+location:
+  - 50.696240163391344
+  - 35.45459747314454
+size: 61
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-KQY1-BTB5?view=explore&groupId=TH-7787-133196-56363-5&lang=en
+tableFilePath: public/csv/mk-sl-petrovska-1734-petra-i-pavla.csv
+tableLocale: ru
+title: МК сл. Петровська 1734 (Петра і Павла)
+yearsRange:
+  - 1734
