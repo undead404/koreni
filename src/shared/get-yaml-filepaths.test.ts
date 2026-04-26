@@ -1,12 +1,13 @@
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 
-import { beforeEach,describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import getYamlFilepaths from './get-yaml-filepaths';
 
 vi.mock('node:fs/promises', () => ({
   readdir: vi.fn(),
+  default: {},
 }));
 
 describe('getYamlFilepaths', () => {
