@@ -7,6 +7,12 @@ import {
 } from './schema';
 
 describe('contributeFormSchema', () => {
+  let mockTable: unknown = null;
+  if (typeof FileList !== 'undefined') {
+    mockTable = Object.create(FileList.prototype);
+    Object.defineProperty(mockTable, 'length', { value: 1 });
+  }
+
   const validData = {
     archiveItems: [{ item: 'Item 1' }],
     authorEmail: 'test@example.com',
@@ -15,7 +21,7 @@ describe('contributeFormSchema', () => {
     id: 'valid-id-123',
     location: '50.4501,30.5234',
     sources: [{ url: 'https://example.com' }],
-    table: null, // FileList is skipped on server/test environment
+    table: mockTable, // FileList is skipped on server/test environment
     tableLocale: 'uk',
     title: 'Valid Title',
     yearsRange: [1900, 1910],

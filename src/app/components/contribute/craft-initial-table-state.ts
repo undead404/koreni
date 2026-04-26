@@ -15,7 +15,7 @@ export default function craftInitialTableState(table: string[][]) {
     columns
       .entries()
       .filter(([index]) =>
-        otherRows.every((row) => row[index] === firstRow[index]),
+        unskippedRows.length > 0 && otherRows.every((row) => row[index] === firstRow[index]),
       )
       .map(([index]) => index),
   );
