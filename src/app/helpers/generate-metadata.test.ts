@@ -32,6 +32,20 @@ const mockTable: IndexationTable = {
   location: [50.45, 30.52],
 };
 
+interface JsonLdGraphNode {
+  '@type': string;
+  name?: string;
+  creator?: { name: string; email: string };
+  spatialCoverage?: { geo: { latitude: number; longitude: number } };
+  distribution?: { name: string }[];
+  datePublished?: string;
+}
+
+interface JsonLdDocument {
+  '@context': string;
+  '@graph': JsonLdGraphNode[];
+}
+
 describe('generate-metadata', () => {
   describe('generateIndexationMetadata', () => {
     it('generates correct metadata for page 1', () => {
@@ -90,27 +104,27 @@ describe('generate-metadata', () => {
   describe('generateJsonLd', () => {
     it('generates valid JSON-LD string', () => {
       const jsonLdString = generateJsonLd(mockTable);
-      const jsonLd = JSON.parse(jsonLdString);
+      const jsonLd = JSON.parse(jsonLdString) as JsonLdDocument;
 
       expect(jsonLd['@context']).toBe('https://schema.org');
       expect(jsonLd['@graph']).toHaveLength(2);
 
       const webpage = jsonLd['@graph'].find(
-        (g: any) => g['@type'] === 'WebPage',
+        (g) => g['@type'] === 'WebPage',
       );
       expect(webpage).toBeDefined();
-      expect(webpage.name).toBe('Test Location');
+      expect(webpage?.name).toBe('Test Location');
 
       const dataset = jsonLd['@graph'].find(
-        (g: any) => g['@type'] === 'Dataset',
+        (g) => g['@type'] === 'Dataset',
       );
       expect(dataset).toBeDefined();
-      expect(dataset.name).toBe('Test Location');
-      expect(dataset.creator.name).toBe('John Doe');
-      expect(dataset.creator.email).toBe('john@example.com');
-      expect(dataset.spatialCoverage.geo.latitude).toBe(50.45);
-      expect(dataset.spatialCoverage.geo.longitude).toBe(30.52);
-      expect(dataset.distribution[0].name).toBe('test.csv');
+      expect(dataset?.name).toBe('Test Location');
+      expect(dataset?.creator?.name).toBe('John Doe');
+      expect(dataset?.creator?.email).toBe('john@example.com');
+      expect(dataset?.spatialCoverage?.geo?.latitude).toBe(50.45);
+      expect(dataset?.spatialCoverage?.geo?.longitude).toBe(30.52);
+      expect(dataset?.distribution?.[0]?.name).toBe('test.csv');
     });
 
     it('handles missing optional fields in JSON-LD', () => {
@@ -124,14 +138,14 @@ describe('generate-metadata', () => {
       };
 
       const jsonLdString = generateJsonLd(minimalTable);
-      const jsonLd = JSON.parse(jsonLdString);
+      const jsonLd = JSON.parse(jsonLdString) as JsonLdDocument;
 
       const dataset = jsonLd['@graph'].find(
-        (g: any) => g['@type'] === 'Dataset',
+        (g) => g['@type'] === 'Dataset',
       );
-      expect(dataset.creator).toBeUndefined();
-      expect(dataset.spatialCoverage).toBeUndefined();
-      expect(dataset.datePublished).toBeUndefined();
+      expect(dataset?.creator).toBeUndefined();
+      expect(dataset?.spatialCoverage).toBeUndefined();
+      expect(dataset?.datePublished).toBeUndefined();
     });
   });
 });
