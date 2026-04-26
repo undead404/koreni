@@ -1,11 +1,12 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import { beforeEach,describe, expect, it, vi } from 'vitest';
+
+import { indexationTableSchema } from './schemas/indexation-table';
 import getTablesMetadata from './get-tables-metadata';
 import getYamlFilepaths from './get-yaml-filepaths';
 import validateMetadata from './validate-metadata';
-import { indexationTableSchema } from './schemas/indexation-table';
 
 vi.mock('node:fs/promises');
 vi.mock('./get-yaml-filepaths');
