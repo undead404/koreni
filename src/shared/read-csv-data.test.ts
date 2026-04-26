@@ -5,11 +5,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import readCsv from './read-csv-data';
 
-vi.mock('node:fs', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('node:fs')>();
+vi.mock('node:fs', () => {
+  const mockCreateReadStream = vi.fn();
   return {
-    ...actual,
-    createReadStream: vi.fn(),
+    createReadStream: mockCreateReadStream,
+    default: {
+      createReadStream: mockCreateReadStream,
+    },
   };
 });
 
