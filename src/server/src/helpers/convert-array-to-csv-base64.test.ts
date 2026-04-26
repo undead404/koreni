@@ -11,7 +11,7 @@ describe('convertArrayToCsvBase64', () => {
     ];
 
     const result = await convertArrayToCsvBase64(columns, data);
-    const decoded = Buffer.from(result, 'base64').toString('utf-8');
+    const decoded = Buffer.from(result, 'base64').toString('utf8');
 
     expect(decoded).toBe('name,age\nAlice,30\nBob,25\n');
   });
@@ -21,7 +21,7 @@ describe('convertArrayToCsvBase64', () => {
     const data: Record<string, unknown>[] = [];
 
     const result = await convertArrayToCsvBase64(columns, data);
-    const decoded = Buffer.from(result, 'base64').toString('utf-8');
+    const decoded = Buffer.from(result, 'base64').toString('utf8');
 
     expect(decoded).toBe('name,age\n');
   });
@@ -35,7 +35,7 @@ describe('convertArrayToCsvBase64', () => {
     ];
 
     const result = await convertArrayToCsvBase64(columns, data);
-    const decoded = Buffer.from(result, 'base64').toString('utf-8');
+    const decoded = Buffer.from(result, 'base64').toString('utf8');
 
     expect(decoded).toBe('text\n"hello, world"\n"line1\nline2"\n"""quotes"""\n');
   });
