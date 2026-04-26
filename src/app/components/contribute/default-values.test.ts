@@ -1,4 +1,4 @@
-import { beforeEach,describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import getDefaultValues from './default-values';
 import { restoreAuthorIdentity } from './local-storage';
@@ -57,7 +57,7 @@ describe('getDefaultValues', () => {
   it('merges otherDefaultValues over restored values', () => {
     vi.mocked(restoreAuthorIdentity).mockReturnValue({
       authorName: 'John Doe',
-      title: 'Restored Title',
+      authorEmail: 'john@example.com',
     });
     const result = getDefaultValues({ title: 'Override Title' });
     expect(result).toEqual({

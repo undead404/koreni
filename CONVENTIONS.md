@@ -50,5 +50,6 @@
 
 ## Testing
 
+- Vitest used for unit tests.
 - Unit tests have `.test.ts` or `.test.tsx` extensions.
 - Always try to create unit tests for all components and services.
