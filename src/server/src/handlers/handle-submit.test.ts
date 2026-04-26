@@ -35,7 +35,7 @@ describe('handleSubmit', () => {
         json: vi.fn(),
         header: vi.fn(),
       },
-      json: vi.fn((data, status) => ({ data, status })),
+      json: vi.fn((data, status) => ({ _data: data, status })),
     };
 
     vi.mocked(getClientIdentifier).mockReturnValue('mock-client-id');
