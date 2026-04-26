@@ -5,13 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import getYamlFilepaths from './get-yaml-filepaths';
 
-vi.mock('node:fs/promises', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('node:fs/promises')>();
-  return {
-    ...actual,
-    readdir: vi.fn(),
-  };
-});
+vi.mock('node:fs/promises');
 
 describe('getYamlFilepaths', () => {
   beforeEach(() => {
