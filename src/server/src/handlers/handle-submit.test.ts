@@ -1,10 +1,11 @@
 import type { Context } from 'hono';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import handleSubmit from './handle-submit.js';
 import getClientIdentifier from '../helpers/get-client-identifier.js';
 import submitToGithub from '../services/github.js';
 import posthog from '../services/posthog.js';
+
+import handleSubmit from './handle-submit.js';
 
 // Mock dependencies
 vi.mock('../helpers/get-client-identifier.js', () => ({
@@ -48,12 +49,12 @@ describe('handleSubmit', () => {
     const response = await handleSubmit(mockContext as Context);
 
     expect(response.status).toBe(400);
-    expect(response.data).toHaveProperty('error');
+    expect(response._data).toHaveProperty('error');
     expect(posthog.capture).toHaveBeenCalledWith(
       expect.objectContaining({
         event: 'payload_validation_failed',
         distinctId: 'mock-client-id',
-      })
+      }),
     );
     expect(submitToGithub).not.toHaveBeenCalled();
   });
@@ -75,13 +76,15 @@ describe('handleSubmit', () => {
 
     mockContext.req.json.mockResolvedValue(validPayload);
     mockContext.req.header.mockReturnValue('fake-api-key');
-    
-    vi.mocked(submitToGithub).mockResolvedValue({ html_url: 'https://github.com/pr/1' } as any);
+
+    vi.mocked(submitToGithub).mockResolvedValue({
+      html_url: 'https://github.com/pr/1',
+    } as any);
 
     const response = await handleSubmit(mockContext as Context);
 
     expect(response.status).toBeUndefined(); // c.json default status is 200/undefined in mock
-    expect(response.data).toEqual({
+    expect(response._data).toEqual({
       success: true,
       message: 'PR created successfully',
       url: 'https://github.com/pr/1',
@@ -92,7 +95,7 @@ describe('handleSubmit', () => {
         event: 'pr_creation_triggered',
         distinctId: 'mock-client-id',
         properties: { authMethod: 'api_key' },
-      })
+      }),
     );
   });
 
@@ -112,14 +115,14 @@ describe('handleSubmit', () => {
     };
 
     mockContext.req.json.mockResolvedValue(validPayload);
-    
+
     const githubError = new Error('GitHub API down');
     vi.mocked(submitToGithub).mockRejectedValue(githubError);
 
     const response = await handleSubmit(mockContext as Context);
 
     expect(response.status).toBe(502);
-    expect(response.data).toHaveProperty('error');
+    expect(response._data).toHaveProperty('error');
     expect(posthog.captureException).toHaveBeenCalledWith(githubError);
   });
 
@@ -130,7 +133,7 @@ describe('handleSubmit', () => {
     const response = await handleSubmit(mockContext as Context);
 
     expect(response.status).toBe(500);
-    expect(response.data).toEqual({ error: 'Internal Server Error' });
+    expect(response._data).toEqual({ error: 'Internal Server Error' });
     expect(posthog.captureException).toHaveBeenCalledWith(parseError);
   });
 });
