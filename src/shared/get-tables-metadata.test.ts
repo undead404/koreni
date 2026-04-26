@@ -30,10 +30,11 @@ describe('getTablesMetadata', () => {
     
     vi.mocked(getYamlFilepaths).mockResolvedValue(mockPaths);
     
-    vi.mocked(readFile).mockImplementation(async (filepath) => {
-      if (filepath.toString().endsWith('B.yaml')) return 'id: B';
-      if (filepath.toString().endsWith('A.yaml')) return 'id: A';
-      return '';
+    vi.mocked(readFile).mockImplementation((filepath) => {
+      const pathStr = String(filepath);
+      if (pathStr.endsWith('B.yaml')) return Promise.resolve('id: B');
+      if (pathStr.endsWith('A.yaml')) return Promise.resolve('id: A');
+      return Promise.resolve('');
     });
     
     vi.mocked(indexationTableSchema.parse).mockImplementation((data: any) => data);
