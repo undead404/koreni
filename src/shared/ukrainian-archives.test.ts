@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import UKRAINIAN_ARCHIVES from './ukrainian-archives';
 
 describe('UKRAINIAN_ARCHIVES', () => {
