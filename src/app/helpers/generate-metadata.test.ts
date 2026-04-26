@@ -2,7 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { IndexationTable } from '@/shared/schemas/indexation-table';
 
-import { generateIndexationMetadata, generateJsonLd } from './generate-metadata';
+import {
+  generateIndexationMetadata,
+  generateJsonLd,
+} from './generate-metadata';
 
 vi.mock('../environment', () => ({
   default: {
@@ -18,9 +21,10 @@ const mockTable: IndexationTable = {
   id: 'test-table',
   title: 'Test Location',
   size: 25,
-  date: '2023-01-01',
+  date: new Date('2023-01-01'),
   authorName: 'John Doe',
   authorEmail: 'john@example.com',
+  sources: ['http://source1.com', 'http://source2.com'],
   tableLocale: 'uk',
   tableFilePath: 'data/test.csv',
   archiveItems: ['F1-O1-D1'],
@@ -32,12 +36,12 @@ describe('generate-metadata', () => {
   describe('generateIndexationMetadata', () => {
     it('generates correct metadata for page 1', () => {
       const metadata = generateIndexationMetadata(mockTable, 1);
-      
+
       expect(metadata.title).toBe('Test Location');
       expect(metadata.description).toContain('Test Location (1900–1910)');
       expect(metadata.description).toContain('Індексовано 25 записів.');
       expect(metadata.description).toContain('F1-O1-D1');
-      
+
       // @ts-expect-error - alternates is defined in our output
       expect(metadata.alternates?.canonical).toBe('/test-table/1/');
       // @ts-expect-error - alternates is defined in our output
@@ -48,19 +52,17 @@ describe('generate-metadata', () => {
 
     it('generates correct metadata for page 2', () => {
       const metadata = generateIndexationMetadata(mockTable, 2);
-      
-      // @ts-expect-error - alternates is defined in our output
+
       expect(metadata.alternates?.types?.prev).toBe('/test-table/1/');
-      // @ts-expect-error - alternates is defined in our output
+
       expect(metadata.alternates?.types?.next).toBe('/test-table/3/');
     });
 
     it('generates correct metadata for last page', () => {
       const metadata = generateIndexationMetadata(mockTable, 3);
-      
-      // @ts-expect-error - alternates is defined in our output
+
       expect(metadata.alternates?.types?.prev).toBe('/test-table/2/');
-      // @ts-expect-error - alternates is defined in our output
+
       expect(metadata.alternates?.types?.next).toBeNull();
     });
 
@@ -76,7 +78,9 @@ describe('generate-metadata', () => {
 
       const metadata = generateIndexationMetadata(minimalTable, 1);
       expect(metadata.title).toBe('Minimal Location');
-      expect(metadata.description).toBe('Minimal Location.  Таблиця сформована на основі справ: undefined.');
+      expect(metadata.description).toBe(
+        'Minimal Location.  Таблиця сформована на основі справ: undefined.',
+      );
       expect(metadata.authors).toBeUndefined();
       // @ts-expect-error - openGraph is defined in our output
       expect(metadata.openGraph?.publishedTime).toBeUndefined();
@@ -91,11 +95,15 @@ describe('generate-metadata', () => {
       expect(jsonLd['@context']).toBe('https://schema.org');
       expect(jsonLd['@graph']).toHaveLength(2);
 
-      const webpage = jsonLd['@graph'].find((g: any) => g['@type'] === 'WebPage');
+      const webpage = jsonLd['@graph'].find(
+        (g: any) => g['@type'] === 'WebPage',
+      );
       expect(webpage).toBeDefined();
       expect(webpage.name).toBe('Test Location');
 
-      const dataset = jsonLd['@graph'].find((g: any) => g['@type'] === 'Dataset');
+      const dataset = jsonLd['@graph'].find(
+        (g: any) => g['@type'] === 'Dataset',
+      );
       expect(dataset).toBeDefined();
       expect(dataset.name).toBe('Test Location');
       expect(dataset.creator.name).toBe('John Doe');
@@ -117,8 +125,10 @@ describe('generate-metadata', () => {
 
       const jsonLdString = generateJsonLd(minimalTable);
       const jsonLd = JSON.parse(jsonLdString);
-      
-      const dataset = jsonLd['@graph'].find((g: any) => g['@type'] === 'Dataset');
+
+      const dataset = jsonLd['@graph'].find(
+        (g: any) => g['@type'] === 'Dataset',
+      );
       expect(dataset.creator).toBeUndefined();
       expect(dataset.spatialCoverage).toBeUndefined();
       expect(dataset.datePublished).toBeUndefined();
