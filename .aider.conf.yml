@@ -2,6 +2,7 @@ attribute-author: false
 auto-commits: true
 editor-model: gemini/gemini-3-flash-preview
 auto-lint: true
+auto-test: true
 lint-cmd:
   - 'typescript: npx eslint --fix --no-error-on-unmatched-pattern'
   - 'typescriptreact: npx eslint --fix --no-error-on-unmatched-pattern'
