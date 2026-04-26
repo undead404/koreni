@@ -4,6 +4,7 @@
   gap: 0.75rem;
   margin-top: 1.25rem;
 }
+
 /* ── Right side: content panel ── */
 .body {
   flex: 1;
@@ -24,7 +25,7 @@
   border-radius: 0.5rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #fff;
   background-color: #0f172a;
   border: none;
   cursor: pointer;
@@ -83,11 +84,13 @@
     border-color: #64748b;
   }
 }
+
 /* ── Checkmark icon inside completed indicator ── */
 .checkIcon {
   width: 1rem;
   height: 1rem;
 }
+
 /* ── Vertical connector line ── */
 .connector {
   width: 2px;
@@ -143,7 +146,7 @@
   border-radius: 0.75rem;
   border: 2px solid #0f172a;
   background-color: #fafbfc;
-  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -215,30 +218,30 @@ button.indicator {
 .indicatorCompleted {
   composes: indicator;
   background-color: #16a34a;
-  color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgb(22 163 74 / 10%);
 }
 
 @media (prefers-color-scheme: dark) {
   .indicatorCompleted {
     background-color: #22c55e;
     color: #0f172a;
-    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    box-shadow: 0 0 0 4px rgb(34 197 94 / 20%);
   }
 }
 
 .indicatorActive {
   composes: indicator;
   background-color: #0f172a;
-  color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.08);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgb(15 23 42 / 8%);
 }
 
 @media (prefers-color-scheme: dark) {
   .indicatorActive {
     background-color: #f8fafc;
     color: #0f172a;
-    box-shadow: 0 0 0 4px rgba(248, 250, 252, 0.15);
+    box-shadow: 0 0 0 4px rgb(248 250 252 / 15%);
   }
 }
 
@@ -273,6 +276,7 @@ button.indicator {
   flex-shrink: 0;
   width: 2.5rem;
 }
+
 /* ── Individual step row ── */
 .step {
   display: flex;
@@ -293,6 +297,7 @@ button.indicator {
     color: #94a3b8;
   }
 }
+
 .title {
   background-color: inherit;
   border-style: none;
@@ -359,11 +364,12 @@ button.title {
   border-width: 0;
 }
 
-@keyframes slideDown {
+@keyframes slide-down {
   from {
     opacity: 0;
     transform: translateY(-6px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -375,6 +381,7 @@ button.title {
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -385,15 +392,18 @@ button.title {
   90% {
     transform: translate3d(-1px, 0, 0);
   }
+
   20%,
   80% {
     transform: translate3d(2px, 0, 0);
   }
+
   30%,
   50%,
   70% {
     transform: translate3d(-4px, 0, 0);
   }
+
   40%,
   60% {
     transform: translate3d(4px, 0, 0);

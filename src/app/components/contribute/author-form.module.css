@@ -70,7 +70,7 @@
   font-size: 0.8125rem;
   font-family: inherit;
   color: #0f172a;
-  background-color: #ffffff;
+  background-color: #fff;
   outline: none;
   transition:
     border-color 0.15s ease,
@@ -83,7 +83,7 @@
 
 .input:focus {
   border-color: #0f172a;
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 0 0 3px rgb(15 23 42 / 6%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -99,7 +99,7 @@
 
   .input:focus {
     border-color: #f8fafc;
-    box-shadow: 0 0 0 3px rgba(248, 250, 252, 0.1);
+    box-shadow: 0 0 0 3px rgb(248 250 252 / 10%);
   }
 }
 

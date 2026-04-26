@@ -1,5 +1,5 @@
 .wrapper {
-  --grid-bg: #ffffff;
+  --grid-bg: #fff;
   --grid-header-bg: #f8fafc;
   --grid-border: #e2e8f0;
   --grid-text-primary: #0f172a;
@@ -83,12 +83,12 @@
   outline: none;
   transition: border-color 0.15s ease;
   font-family: inherit;
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .controlInput::-webkit-inner-spin-button,
 .controlInput::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -237,13 +237,13 @@
   outline-offset: 2px;
 }
 
-.thead th:hover .colTrashBtn {
-  opacity: 1;
-}
-
 .colTrashBtn:hover {
   color: var(--grid-flagged-hover-text);
   background-color: var(--grid-flagged-hover-bg);
+}
+
+.thead th:hover .colTrashBtn {
+  opacity: 1;
 }
 
 .colTrashBtnActive {
@@ -296,6 +296,14 @@
   border-right: 1px solid var(--grid-border);
 }
 
+.rowSkipped .tdRowCtrl {
+  background-color: var(--grid-skipped-bg);
+}
+
+.rowFlagged .tdRowCtrl {
+  background-color: var(--grid-flagged-bg);
+}
+
 .tbody tr:hover .tdRowCtrl {
   background-color: var(--grid-hover-bg);
 }
@@ -327,13 +335,13 @@
   outline-offset: 2px;
 }
 
-.tbody tr:hover .rowTrashBtn {
-  opacity: 1;
-}
-
 .rowTrashBtn:hover {
   color: var(--grid-flagged-hover-text);
   background-color: var(--grid-flagged-hover-bg);
+}
+
+.tbody tr:hover .rowTrashBtn {
+  opacity: 1;
 }
 
 .rowTrashBtnActive {
@@ -351,10 +359,6 @@
   text-decoration-color: var(--grid-flagged-text);
 }
 
-.rowFlagged .tdRowCtrl {
-  background-color: var(--grid-flagged-bg);
-}
-
 /* Flagged column cells */
 .tdFlagged {
   background-color: var(--grid-flagged-bg) !important;
@@ -368,10 +372,6 @@
   background-color: var(--grid-skipped-bg);
   color: var(--grid-skipped-text);
   font-style: italic;
-}
-
-.rowSkipped .tdRowCtrl {
-  background-color: var(--grid-skipped-bg);
 }
 
 /* ── Ellipsis / expand row ── */
@@ -438,6 +438,7 @@
     border-color 0.15s ease,
     box-shadow 0.15s ease;
 }
+
 .select {
   composes: input;
   padding-left: 1.75rem;

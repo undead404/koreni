@@ -84,6 +84,7 @@
   .editButton {
     color: #60a5fa;
   }
+
   .editButton:hover {
     background-color: #1e3a8a;
   }
@@ -162,6 +163,7 @@
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -282,7 +284,7 @@
   border: none;
   border-radius: 0.5rem;
   background-color: #0f172a;
-  color: #ffffff;
+  color: #fff;
   font-size: 0.8125rem;
   font-weight: 600;
   font-family: inherit;
@@ -295,7 +297,7 @@
 @media (prefers-color-scheme: dark) {
   .cta {
     background-color: #3b82f6;
-    color: #ffffff;
+    color: #fff;
   }
 }
 

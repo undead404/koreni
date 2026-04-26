@@ -21,14 +21,14 @@
     color 150ms ease-in-out;
 }
 
-.button:hover:not(:disabled) {
-  background-color: #e5e7eb;
-}
-
 .button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background-color: #f3f4f6;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #e5e7eb;
 }
 
 .text {
@@ -44,12 +44,12 @@
     color: #f3f4f6; /* Tailwind gray-100 */
   }
 
-  .button:hover:not(:disabled) {
-    background-color: #4b5563; /* Tailwind gray-600 */
-  }
-
   .button:disabled {
     background-color: #374151;
+  }
+
+  .button:hover:not(:disabled) {
+    background-color: #4b5563; /* Tailwind gray-600 */
   }
 
   .text {

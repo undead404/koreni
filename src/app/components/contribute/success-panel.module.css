@@ -9,9 +9,9 @@
   background-color: #f0fdf4;
   background-image: radial-gradient(#dcfce7 1px, transparent 1px);
   background-size: 20px 20px;
-  animation: fadeUp 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fade-up 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   margin-top: 0.5rem;
-  box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.1);
+  box-shadow: 0 10px 25px -5px rgb(22 163 74 / 10%);
 }
 
 /* ── Animated checkmark circle ── */
@@ -24,14 +24,14 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
-  box-shadow: 0 0 0 8px rgba(22, 163, 74, 0.15);
-  animation: popIn 0.35s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  box-shadow: 0 0 0 8px rgb(22 163 74 / 15%);
+  animation: pop-in 0.35s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .checkSvg {
   width: 2rem;
   height: 2rem;
-  color: #ffffff;
+  color: #fff;
 }
 
 /* ── Text ── */
@@ -92,7 +92,7 @@
   width: 100%;
   max-width: 28rem;
   text-align: left;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -154,10 +154,10 @@
 
 .primaryAction {
   composes: baseAction;
-  color: #ffffff;
+  color: #fff;
   background-color: #16a34a;
   border: 1px solid #16a34a;
-  box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.2);
+  box-shadow: 0 4px 6px -1px rgb(22 163 74 / 20%);
 }
 
 .primaryAction:hover {
@@ -184,22 +184,24 @@
 }
 
 /* ── Animations ── */
-@keyframes fadeUp {
+@keyframes fade-up {
   from {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes popIn {
+@keyframes pop-in {
   from {
     opacity: 0;
     transform: scale(0.5);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

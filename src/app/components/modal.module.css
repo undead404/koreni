@@ -3,14 +3,14 @@
   border-radius: 8px;
   padding: 0;
   box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%);
   max-width: 90vw;
   width: 500px;
 }
 
 .dialog::backdrop {
-  background: rgb(0 0 0 / 0.5);
+  background: rgb(0 0 0 / 50%);
   backdrop-filter: blur(2px);
 }
 

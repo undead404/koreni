@@ -12,6 +12,7 @@
 }
 
 /* Реєстратор (Researcher) - Синій (Діловий/Спокійний) */
+
 /* Змінив з зеленого на синій, щоб відрізнити від "успіху" */
 .rankRegistrar {
   background-color: #dbeafe; /* Blue-100 */
@@ -20,6 +21,7 @@
 }
 
 /* Писар (Scribe) - Сланцевий/Сірий (Нейтральний, але солідний) */
+
 /* Був .rankNovice */
 .rankScribe {
   background-color: #f1f5f9;

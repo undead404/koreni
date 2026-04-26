@@ -2,7 +2,10 @@ attribute-author: false
 auto-commits: true
 editor-model: gemini/gemini-3-flash-preview
 auto-lint: true
-lint-cmd: 'yarn lint'
+lint-cmd:
+  - 'typescript: npx eslint --fix --no-error-on-unmatched-pattern'
+  - 'typescriptreact: npx eslint --fix --no-error-on-unmatched-pattern'
+  - 'css: npx stylelint --fix'
 model: gemini/gemini-3.1-pro-preview
 read:
   - ./CONVENTIONS.md

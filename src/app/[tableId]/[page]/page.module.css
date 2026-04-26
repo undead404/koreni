@@ -2,20 +2,20 @@
   word-break: break-word;
 }
 
-@media screen and (min-width: 512px) {
+@media screen and (width >= 512px) {
   .article ul.archiveItems {
     column-count: 2;
     column-gap: var(--side-gap);
   }
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (width >= 720px) {
   .article ul.archiveItems {
     column-count: 3;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .article ul.archiveItems {
     column-count: 4;
   }
@@ -26,6 +26,7 @@
   .tableContainer {
     max-width: calc(100vw - var(--side-gap) * 2);
     max-height: var(--content-full-height);
+
     /* TODO reconsider showing pagination for mobile */
     overflow: auto;
     border: var(--default-border);

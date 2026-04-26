@@ -5,7 +5,7 @@
   padding: 0.375rem 0.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
-  background-color: #ffffff;
+  background-color: #fff;
   min-height: 2.125rem;
   cursor: text;
   transition:
@@ -22,7 +22,7 @@
 
 .arrayInputRow:focus-within {
   border-color: #0f172a;
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 0 0 3px rgb(15 23 42 / 6%);
 }
 
 .error {

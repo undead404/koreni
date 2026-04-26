@@ -4,10 +4,10 @@
   gap: 12px;
   width: 100%;
   max-width: 800px; /* Expanded slightly to accommodate inline layout */
-  margin: 0 auto 24px auto;
+  margin: 0 auto 24px;
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .container {
     flex-direction: row;
     align-items: center;
@@ -30,6 +30,17 @@
   transition: border-color 0.3s ease;
 }
 
+.yearInput {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: var(--default-border);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
 .input:focus,
 .yearInput:focus {
   border-color: var(--clickable-color);
@@ -42,25 +53,14 @@
   width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .yearFilters {
     width: auto;
   }
 }
 
-.yearInput {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 1rem;
-  border: var(--default-border);
-  border-radius: 4px;
-  outline: none;
-  transition: border-color 0.3s ease;
-  text-align: center;
-}
-
 /* Constrain year inputs on larger screens */
-@media (min-width: 640px) {
+@media (width >= 640px) {
   .yearInput {
     width: 100px;
   }

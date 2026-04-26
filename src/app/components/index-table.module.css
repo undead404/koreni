@@ -10,6 +10,11 @@
   top: 0;
 }
 
+.thead th,
+.tbody td {
+  padding: 10px;
+}
+
 .table th:global(.break-word) {
   min-width: 40ch;
 }
@@ -25,11 +30,6 @@
 
 .tbody tr:hover {
   background-color: var(--table-row-hover-bg);
-}
-
-.thead th,
-.tbody td {
-  padding: 10px;
 }
 
 .thead th:not(:last-child),

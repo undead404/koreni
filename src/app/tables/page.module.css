@@ -1,4 +1,4 @@
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .list {
     column-count: 2;
     column-gap: var(--side-gap);

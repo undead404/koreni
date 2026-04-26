@@ -26,6 +26,7 @@
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -114,6 +115,7 @@
 .fuzzyResultsNotice {
   margin-top: 1rem;
   font-size: 0.875rem;
+
   /* Warn with yellowish color. Consider accessibility */
   color: #f97316; /* Tailwind yellow-500 */
   text-align: center;
