@@ -4,7 +4,9 @@ editor-model: gemini/gemini-3-flash-preview
 auto-lint: true
 auto-test: true
 lint-cmd:
+  - 'typescript: npx tsc --noEmit'
   - 'typescript: npx eslint --fix --no-error-on-unmatched-pattern'
+  - 'typescriptreact: npx tsc --noEmit'
   - 'typescriptreact: npx eslint --fix --no-error-on-unmatched-pattern'
   - 'css: npx stylelint --fix'
 model: gemini/gemini-3.1-pro-preview

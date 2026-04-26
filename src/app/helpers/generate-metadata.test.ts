@@ -56,11 +56,8 @@ describe('generate-metadata', () => {
       expect(metadata.description).toContain('Індексовано 25 записів.');
       expect(metadata.description).toContain('F1-O1-D1');
 
-      // @ts-expect-error - alternates is defined in our output
       expect(metadata.alternates?.canonical).toBe('/test-table/1/');
-      // @ts-expect-error - alternates is defined in our output
       expect(metadata.alternates?.types?.prev).toBeNull();
-      // @ts-expect-error - alternates is defined in our output
       expect(metadata.alternates?.types?.next).toBe('/test-table/2/');
     });
 
@@ -81,14 +78,14 @@ describe('generate-metadata', () => {
     });
 
     it('handles missing optional fields gracefully', () => {
-      const minimalTable: IndexationTable = {
+      const minimalTable = {
         id: 'minimal-table',
         title: 'Minimal Location',
         size: 0,
-        date: 'invalid-date',
+        date: new Date('invalid-date'),
         tableLocale: 'ru',
         tableFilePath: 'data/minimal.csv',
-      };
+      } as IndexationTable;
 
       const metadata = generateIndexationMetadata(minimalTable, 1);
       expect(metadata.title).toBe('Minimal Location');
@@ -109,15 +106,11 @@ describe('generate-metadata', () => {
       expect(jsonLd['@context']).toBe('https://schema.org');
       expect(jsonLd['@graph']).toHaveLength(2);
 
-      const webpage = jsonLd['@graph'].find(
-        (g) => g['@type'] === 'WebPage',
-      );
+      const webpage = jsonLd['@graph'].find((g) => g['@type'] === 'WebPage');
       expect(webpage).toBeDefined();
       expect(webpage?.name).toBe('Test Location');
 
-      const dataset = jsonLd['@graph'].find(
-        (g) => g['@type'] === 'Dataset',
-      );
+      const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
       expect(dataset).toBeDefined();
       expect(dataset?.name).toBe('Test Location');
       expect(dataset?.creator?.name).toBe('John Doe');
@@ -128,21 +121,19 @@ describe('generate-metadata', () => {
     });
 
     it('handles missing optional fields in JSON-LD', () => {
-      const minimalTable: IndexationTable = {
+      const minimalTable = {
         id: 'minimal-table',
         title: 'Minimal Location',
         size: 0,
-        date: 'invalid-date',
+        date: new Date('invalid-date'),
         tableLocale: 'ru',
         tableFilePath: 'data/minimal.csv',
-      };
+      } as IndexationTable;
 
       const jsonLdString = generateJsonLd(minimalTable);
       const jsonLd = JSON.parse(jsonLdString) as JsonLdDocument;
 
-      const dataset = jsonLd['@graph'].find(
-        (g) => g['@type'] === 'Dataset',
-      );
+      const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
       expect(dataset?.creator).toBeUndefined();
       expect(dataset?.spatialCoverage).toBeUndefined();
       expect(dataset?.datePublished).toBeUndefined();
