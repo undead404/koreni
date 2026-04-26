@@ -5,13 +5,13 @@ authorEmail: z.ukrainska@gmail.com
 date: 2026-04-25
 id: DAKhO-40-105-10
 location:
-  - 49.98942173425712
-  - 36.231188725746144
+  - 49.9923181
+  - 36.2310146
 size: 9999
 sources:
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%9E/40/105/10
 tableFilePath: public/csv/dakho40-105-10.csv
 tableLocale: uk
-title: "[ШІ] Метрична книга  м. Харкова, 1852 рік"
+title: '[ШІ] Метрична книга  м. Харкова, 1852 рік'
 yearsRange:
   - 1852

@@ -5,14 +5,14 @@ authorEmail: tatiana.mykhailenko@yahoo.com
 date: 2026-04-11
 id: TsDIAK-2009-1-4848
 location:
-  - 50.310185185198605
-  - 34.88957405090333
+  - 50.3115386
+  - 34.8868923
 size: 71
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:33SQ-GGY7-9D4V?view=explore&groupId=M9K4-47Z&grid=on&lang=en
 tableFilePath: public/csv/tsdiak-2009-1-4848.csv
 tableLocale: ru
-title: ЦДІАК 2009-1-4848
+title: МК і СР Білгородської єпархії (1770-1773)
 yearsRange:
   - 1770
   - 1773
