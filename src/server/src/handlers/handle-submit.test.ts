@@ -2,6 +2,7 @@ import type { Context } from 'hono';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import getClientIdentifier from '../helpers/get-client-identifier.js';
+import { importPayloadSchema } from '../schemata.js';
 import submitToGithub from '../services/github.js';
 import posthog from '../services/posthog.js';
 
@@ -10,6 +11,12 @@ import handleSubmit from './handle-submit.js';
 // Mock dependencies
 vi.mock('../helpers/get-client-identifier.js', () => ({
   default: vi.fn(),
+}));
+
+vi.mock('../schemata.js', () => ({
+  importPayloadSchema: {
+    safeParse: vi.fn(),
+  },
 }));
 
 vi.mock('../services/github.js', () => ({
@@ -46,6 +53,14 @@ describe('handleSubmit', () => {
     mockContext.req.json.mockResolvedValue({ invalid: 'data' });
     mockContext.req.header.mockReturnValue(undefined);
 
+    vi.mocked(importPayloadSchema.safeParse).mockReturnValue({
+      success: false,
+      error: {
+        issues: [{ message: 'Invalid field' }],
+        flatten: vi.fn().mockReturnValue({ fieldErrors: { invalid: ['Invalid field'] } }),
+      },
+    } as any);
+
     const response = await handleSubmit(mockContext as Context);
 
     expect(response.status).toBe(400);
@@ -76,6 +91,11 @@ describe('handleSubmit', () => {
 
     mockContext.req.json.mockResolvedValue(validPayload);
     mockContext.req.header.mockReturnValue('fake-api-key');
+
+    vi.mocked(importPayloadSchema.safeParse).mockReturnValue({
+      success: true,
+      data: validPayload,
+    } as any);
 
     vi.mocked(submitToGithub).mockResolvedValue({
       html_url: 'https://github.com/pr/1',
@@ -115,6 +135,11 @@ describe('handleSubmit', () => {
     };
 
     mockContext.req.json.mockResolvedValue(validPayload);
+
+    vi.mocked(importPayloadSchema.safeParse).mockReturnValue({
+      success: true,
+      data: validPayload,
+    } as any);
 
     const githubError = new Error('GitHub API down');
     vi.mocked(submitToGithub).mockRejectedValue(githubError);
