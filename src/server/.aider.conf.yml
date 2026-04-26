@@ -1,0 +1,14 @@
+attribute-author: false
+auto-commits: true
+editor-model: gemini/gemini-3-flash-preview
+auto-lint: true
+auto-test: true
+lint-cmd:
+  - 'typescript: npx tsc --noEmit'
+  - 'typescript: npx eslint --fix --no-error-on-unmatched-pattern'
+model: gemini/gemini-3.1-pro-preview
+read:
+  - ./CONVENTIONS.md
+  - ./README.md
+  - ./package.json
+test-cmd: 'cd src/server && nvm use && yarn test run'

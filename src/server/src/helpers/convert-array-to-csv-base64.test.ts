@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { convertArrayToCsvBase64 } from './convert-array-to-csv-base64';
+import { convertArrayToCsvBase64 } from './convert-array-to-csv-base64.js';
 
 describe('convertArrayToCsvBase64', () => {
   it('should convert an array of objects to a base64 encoded CSV string', async () => {
@@ -37,6 +37,8 @@ describe('convertArrayToCsvBase64', () => {
     const result = await convertArrayToCsvBase64(columns, data);
     const decoded = Buffer.from(result, 'base64').toString('utf8');
 
-    expect(decoded).toBe('text\n"hello, world"\n"line1\nline2"\n"""quotes"""\n');
+    expect(decoded).toBe(
+      'text\n"hello, world"\n"line1\nline2"\n"""quotes"""\n',
+    );
   });
 });

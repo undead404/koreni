@@ -17,6 +17,7 @@ This directory contains the server-side logic, distinct from the Next.js app.
 
 ## Coding Style
 
+- **Imports**: Use ".js" extensions when importing local modules.
 - **Validation**: Strict use of `zod` for validating external inputs (webhooks, API requests).
 - **Environment Variables**: Accessed via a centralized `environment` object.
 - **Async/Await**: extensive use of async functions for I/O operations.
@@ -25,3 +26,10 @@ This directory contains the server-side logic, distinct from the Next.js app.
 
 - **GitHub**: Integration for dispatching repository events (`submitToGithub`).
 - **Turnstile**: Captcha validation service (`validateTurnstile`).
+
+## Testing
+
+- Environment is Node.js 22.22.
+- Vitest used for unit tests.
+- Unit tests have `.test.ts` extension.
+- Always try to create unit tests for all components and services.
