@@ -11,4 +11,5 @@ model: gemini/gemini-3.1-pro-preview
 read:
   - ./CONVENTIONS.md
   - ./README.md
+  - ./package.json
 test-cmd: 'yarn vitest run'
