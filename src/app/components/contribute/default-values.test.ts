@@ -63,6 +63,7 @@ describe('getDefaultValues', () => {
     expect(result).toEqual({
       ...BLANK_VALUES,
       authorName: 'John Doe',
+      authorEmail: 'john@example.com',
       title: 'Override Title',
     });
   });
