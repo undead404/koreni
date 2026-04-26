@@ -1,18 +1,19 @@
 import { act } from '@testing-library/react';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { useTableStateStore } from './table-state';
 
 // Mock dependencies
-jest.mock('posthog-js', () => ({
+vi.mock('posthog-js', () => ({
   __esModule: true,
   default: {
-    capture: jest.fn(),
+    capture: vi.fn(),
   },
 }));
 
-jest.mock('./craft-initial-table-state', () => ({
+vi.mock('./craft-initial-table-state', () => ({
   __esModule: true,
-  default: jest.fn((tableData: string[][]) => ({
+  default: vi.fn((tableData: string[][]) => ({
     tableData,
     skippedRowsAbove: 0,
     skippedRowsElsewhere: new Set<number>(),
@@ -20,9 +21,9 @@ jest.mock('./craft-initial-table-state', () => ({
   })),
 }));
 
-jest.mock('./skip-from-table', () => ({
+vi.mock('./skip-from-table', () => ({
   __esModule: true,
-  default: jest.fn((tableData: string[][], { skippedRowsAbove, skippedRowsElsewhere, skippedColumns }) => {
+  default: vi.fn((tableData: string[][], { skippedRowsAbove, skippedRowsElsewhere, skippedColumns }) => {
     // A simplified mock implementation of skipFromTable for testing purposes
     const data = tableData.slice(skippedRowsAbove + 1); // +1 to skip header
     return data
@@ -45,7 +46,7 @@ describe('useTableStateStore', () => {
       useTableStateStore.getState().setTableData([]);
       useTableStateStore.getState().setTableFileName('');
     });
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('should initialize with default values', () => {
