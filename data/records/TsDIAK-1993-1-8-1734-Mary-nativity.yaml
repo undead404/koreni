@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-1993-1-8
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-04-25
+id: TsDIAK-1993-1-8-1734-Mary-nativity
+location:
+  - 50.695587744356416
+  - 35.45597076416016
+size: 22
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-JQY1-TSSK-S?view=explore&groupId=TH-7787-133196-56363-5&lang=en
+tableFilePath: public/csv/mk-sl-petrovska-1734-narodzhennia.csv
+tableLocale: ru
+title: МК сл. Петровська 1734, церква Різдва Богородиці (народження)
+yearsRange:
+  - 1734
