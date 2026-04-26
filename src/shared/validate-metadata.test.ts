@@ -3,18 +3,18 @@ import { describe, expect, it } from 'vitest';
 import type { IndexationTable } from './schemas/indexation-table';
 import validateMetadata from './validate-metadata';
 
-describe('validateMetadata', () => {
-  const createMockTable = (overrides: Partial<IndexationTable>): IndexationTable => {
-    return {
-      id: 'test-id',
-      tableFilePath: 'test-path.csv',
-      title: 'Test Title',
-      authorName: 'Test Author',
-      tableLocale: 'uk',
-      ...overrides,
-    } as IndexationTable;
-  };
+const createMockTable = (overrides: Partial<IndexationTable>): IndexationTable => {
+  return {
+    id: 'test-id',
+    tableFilePath: 'test-path.csv',
+    title: 'Test Title',
+    authorName: 'Test Author',
+    tableLocale: 'uk',
+    ...overrides,
+  } as IndexationTable;
+};
 
+describe('validateMetadata', () => {
   it('should not throw when all metadata is distinct', () => {
     const metadata = [
       createMockTable({ id: '1', tableFilePath: 'path1.csv', title: 'Title 1' }),
