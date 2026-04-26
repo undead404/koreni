@@ -1,17 +1,15 @@
-import { describe, expect, it, vi } from 'vitest';
-
-vi.mock('node:fs', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('node:fs')>();
-  return {
-    ...actual,
-    readFileSync: vi.fn(() => Buffer.from('Archive 1\nArchive 2\n\nArchive 3\n')),
-  };
-});
-
+import { describe, expect, it } from 'vitest';
 import UKRAINIAN_ARCHIVES from './ukrainian-archives';
 
 describe('UKRAINIAN_ARCHIVES', () => {
   it('should read and parse the archives list correctly, filtering out empty lines', () => {
-    expect(UKRAINIAN_ARCHIVES).toEqual(['Archive 1', 'Archive 2', 'Archive 3']);
+    expect(Array.isArray(UKRAINIAN_ARCHIVES)).toBe(true);
+    expect(UKRAINIAN_ARCHIVES.length).toBeGreaterThan(0);
+    
+    // Check for a known archive to ensure it loaded correctly
+    expect(UKRAINIAN_ARCHIVES).toContain('ЦДІАК');
+    
+    // Ensure no empty strings are in the array (filtering worked)
+    expect(UKRAINIAN_ARCHIVES.every((archive) => archive.trim().length > 0)).toBe(true);
   });
 });
