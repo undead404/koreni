@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+import { IndexationTable } from './schemas/indexation-table';
 import getTableData from './get-table-data';
 import readCsv from './read-csv-data';
-import { IndexationTable } from './schemas/indexation-table';
 
 vi.mock('./read-csv-data', () => ({
   default: vi.fn(),
