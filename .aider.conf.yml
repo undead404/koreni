@@ -1,8 +1,10 @@
 attribute-author: false
-auto-commits: false
+auto-commits: true
 editor-model: gemini/gemini-3-flash-preview
 auto-lint: true
+lint-cmd: 'yarn lint'
 model: gemini/gemini-3.1-pro-preview
 read:
   - ./CONVENTIONS.md
   - ./README.md
+test-cmd: 'yarn vitest run'
