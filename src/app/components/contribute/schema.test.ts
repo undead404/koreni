@@ -95,18 +95,18 @@ describe('authorIdentitySchema', () => {
 describe('coordinatesStringAsTupleSchema', () => {
   it('should parse valid coordinates string to tuple', () => {
     const result = coordinatesStringAsTupleSchema.safeParse('50.4501,30.5234');
-    expect(result.success).toBe(true);
-    if (result.success) {
-      expect(result.data).toEqual([50.4501, 30.5234]);
-    }
+    expect(result).toEqual({
+      success: true,
+      data: [50.4501, 30.5234],
+    });
   });
 
   it('should parse negative coordinates', () => {
     const result = coordinatesStringAsTupleSchema.safeParse('-50.4501,-30.5234');
-    expect(result.success).toBe(true);
-    if (result.success) {
-      expect(result.data).toEqual([-50.4501, -30.5234]);
-    }
+    expect(result).toEqual({
+      success: true,
+      data: [-50.4501, -30.5234],
+    });
   });
 
   it('should fail on invalid format', () => {
