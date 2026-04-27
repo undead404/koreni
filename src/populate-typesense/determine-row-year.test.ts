@@ -15,6 +15,11 @@ describe('determineRowYear', () => {
     expect(determineRowYear(row, tableWithSingleYear)).toBe(1990);
   });
 
+  it('should return the year from the "Год" field if present', () => {
+    const row = { Год: '1890' };
+    expect(determineRowYear(row, tableWithSingleYear)).toBe(1890);
+  });
+
   it('should return the year from the "рік життя" field if present', () => {
     const row = { 'рік життя': '1991' };
     expect(determineRowYear(row, tableWithSingleYear)).toBe(1991);
@@ -38,6 +43,16 @@ describe('determineRowYear', () => {
   it('should return the year from the "Дата події" field if present and formatted with slashes', () => {
     const row = { 'Дата події': '12/05/1994' };
     expect(determineRowYear(row, tableWithSingleYear)).toBe(1994);
+  });
+
+  it('should return the year from the "Дата події" field if present and formatted with dashes', () => {
+    const row = { 'Дата події': '1996-05-12' };
+    expect(determineRowYear(row, tableWithSingleYear)).toBe(1996);
+  });
+
+  it('should return the year from alternative date fields like "Начато"', () => {
+    const row = { Начато: '01.01.1850' };
+    expect(determineRowYear(row, tableWithSingleYear)).toBe(1850);
   });
 
   it('should return the year from the "Дата події" field if present and formatted as a number', () => {
@@ -67,6 +82,26 @@ describe('determineRowYear', () => {
 
   it('should return 0 and log a warning if the date format is invalid', () => {
     const row = { 'Дата події': 'invalid date' };
+    expect(determineRowYear(row, tableWithMultipleYears)).toBe(0);
+  });
+
+  it('should return 0 if the determined year is not an integer', () => {
+    const row = { Рік: '1990.5' };
+    expect(determineRowYear(row, tableWithMultipleYears)).toBe(0);
+  });
+
+  it('should return 0 if the determined year is negative', () => {
+    const row = { Рік: '-100' };
+    expect(determineRowYear(row, tableWithMultipleYears)).toBe(0);
+  });
+
+  it('should return 0 if the determined year is too large (> 9999)', () => {
+    const row = { Рік: '10000' };
+    expect(determineRowYear(row, tableWithMultipleYears)).toBe(0);
+  });
+
+  it('should return 0 if the determined year is too small (< 1500) but not 0', () => {
+    const row = { Рік: '1499' };
     expect(determineRowYear(row, tableWithMultipleYears)).toBe(0);
   });
 });
