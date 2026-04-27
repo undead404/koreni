@@ -49,21 +49,21 @@ describe('populateTypesense', () => {
       {
         id: 'id-0',
         values: [],
-        location: 'test-location',
+        location: [0, 0],
         tableId: 'table-1',
         title: 'Test Table',
       },
       {
         id: 'id-1',
         values: [],
-        location: 'test-location',
+        location: [0, 0],
         tableId: 'table-1',
         title: 'Test Table',
       },
       {
         id: 'id-2',
         values: [],
-        location: 'test-location',
+        location: [0, 0],
         tableId: 'table-1',
         title: 'Test Table',
       },
@@ -89,7 +89,6 @@ describe('populateTypesense', () => {
       location: [0, 0],
       tableId: 'table-2',
       title: 'Large Table',
-      tableId: 'test-id',
       raw: {},
     }));
 
