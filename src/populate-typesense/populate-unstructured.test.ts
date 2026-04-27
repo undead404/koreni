@@ -33,7 +33,7 @@ describe('populateTypesense', () => {
     vi.mocked(convertRow).mockImplementation((row, index) => ({
       id: `id-${index}`,
       values: [],
-      location: 'test-location',
+      location: [0, 0],
       tableId: 'table-1',
       title: 'Test Table',
     }));
@@ -72,7 +72,9 @@ describe('populateTypesense', () => {
 
   it('should chunk data if it exceeds CHUNK_SIZE', async () => {
     // Create 1500 rows to test chunking (CHUNK_SIZE is 1000)
-    const mockData = Array.from({ length: 1500 }).map((_, index) => ({ val: index }));
+    const mockData = Array.from({ length: 1500 }).map((_, index) => ({
+      val: index,
+    }));
     const mockTable: IndexationTableWithData = {
       id: 'table-2',
       title: 'Large Table',
@@ -84,9 +86,11 @@ describe('populateTypesense', () => {
     vi.mocked(convertRow).mockImplementation((row, index) => ({
       id: `id-${index}`,
       values: [],
-      location: 'test-location',
+      location: [0, 0],
       tableId: 'table-2',
       title: 'Large Table',
+      tableId: 'test-id',
+      raw: {},
     }));
 
     // First call processes 1000, second processes 500
@@ -98,7 +102,7 @@ describe('populateTypesense', () => {
 
     expect(convertRow).toHaveBeenCalledTimes(1500);
     expect(importBatch).toHaveBeenCalledTimes(2);
-    
+
     // Check first chunk size
     expect(vi.mocked(importBatch).mock.calls[0][1]).toHaveLength(1000);
     // Check second chunk size
@@ -126,7 +130,7 @@ describe('populateTypesense', () => {
     vi.mocked(importBatch).mockResolvedValue(1);
 
     await expect(populateTypesense(mockTable)).rejects.toThrow(
-      '1 of 2 records were lost somewhere.'
+      '1 of 2 records were lost somewhere.',
     );
   });
 });
