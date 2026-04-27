@@ -98,6 +98,7 @@ describe('populateTypesense', () => {
       tableId: 'table-2',
       title: 'Large Table',
       raw: {},
+      year: 2022,
     }));
 
     // First call processes 1000, second processes 500
@@ -128,9 +129,11 @@ describe('populateTypesense', () => {
     vi.mocked(convertRow).mockImplementation((row, index) => ({
       id: `id-${index}`,
       values: [],
-      location: 'test-location',
+      location: [0, 0],
       tableId: 'table-3',
       title: 'Error Table',
+      raw: {},
+      year: 2022,
     }));
 
     // Mock importBatch to return fewer processed items than expected

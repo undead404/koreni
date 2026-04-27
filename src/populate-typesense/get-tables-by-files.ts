@@ -1,5 +1,5 @@
 import getTablesMetadata from '@/shared/get-tables-metadata';
-import { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 export default async function getTablesByFiles(
   files: string[],
