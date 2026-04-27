@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+vi.hoisted(() => {
+  process.env.ADDED_MODIFIED_FILES = '';
+  process.env.DELETED_FILES = '';
+  process.env.FULL_SYNC = 'false';
+});
+
 import convertRow from './convert-row.js';
 import importBatch from './import-batch.js';
 import populateTypesense from './populate-unstructured.js';
