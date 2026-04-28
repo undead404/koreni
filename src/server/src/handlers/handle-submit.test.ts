@@ -56,7 +56,7 @@ describe('handleSubmit', () => {
     vi.mocked(importPayloadSchema.safeParse).mockReturnValue({
       success: false,
       error: {
-        issues: [{ message: 'Invalid field' }],
+        issues: [{ message: 'Invalid field', path: ['invalid'] }],
         flatten: vi.fn().mockReturnValue({ fieldErrors: { invalid: ['Invalid field'] } }),
       },
     } as any);
