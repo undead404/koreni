@@ -31,8 +31,10 @@ function buildDescription(item: IndexationTable) {
   const years = formatYears(item.yearsRange);
   const recordCount = item.size > 0 ? `Індексовано ${item.size} записів.` : '';
   const location = item.title;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const archiveItems = item.archiveItems ?? [];
 
-  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems.join(', ')}.`;
+  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${archiveItems.join(', ')}.`;
 }
 
 /**
@@ -162,11 +164,14 @@ export function generateJsonLd(item: IndexationTable): string {
     }
   })();
 
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const archiveItems = item.archiveItems ?? [];
+
   const keywords =
-    item.archiveItems.length > 0
+    archiveItems.length > 0
       ? [
           ...new Set(
-            item.archiveItems.map((archiveItem) => archiveItem.split('-')[0]),
+            archiveItems.map((archiveItem) => archiveItem.split('-')[0]),
           ),
         ]
       : undefined;
@@ -212,7 +217,7 @@ export function generateJsonLd(item: IndexationTable): string {
           name: 'Корені – пошук у народних генеалогічних індексах',
           url: siteUrl,
         },
-        identifier: item.archiveItems,
+        identifier: archiveItems,
         inLanguage: item.tableLocale,
         keywords,
         license: `${siteUrl}/license/`,
