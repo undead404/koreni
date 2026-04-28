@@ -38,7 +38,7 @@ export default [
   },
   includeIgnoreFile(gitignorePath),
   pluginJs.configs.recommended,
-  ...tsEslint.configs.recommendedTypeChecked.map((config) => ({
+  ...tsEslint.configs.strictTypeChecked.map((config) => ({
     files: ['**/*.{ts,tsx}'],
     ...config,
   })),
