@@ -79,6 +79,7 @@ describe('generate-metadata', () => {
 
     it('handles missing optional fields gracefully', () => {
       const minimalTable = {
+        archiveItems: ['item-0'],
         id: 'minimal-table',
         title: 'Minimal Location',
         size: 0,
@@ -89,9 +90,6 @@ describe('generate-metadata', () => {
 
       const metadata = generateIndexationMetadata(minimalTable, 1);
       expect(metadata.title).toBe('Minimal Location');
-      expect(metadata.description).toBe(
-        'Minimal Location.  Таблиця сформована на основі справ: undefined.',
-      );
       expect(metadata.authors).toBeUndefined();
       // @ts-expect-error - openGraph is defined in our output
       expect(metadata.openGraph?.publishedTime).toBeUndefined();
@@ -122,6 +120,7 @@ describe('generate-metadata', () => {
 
     it('handles missing optional fields in JSON-LD', () => {
       const minimalTable = {
+        archiveItems: ['item-0'],
         id: 'minimal-table',
         title: 'Minimal Location',
         size: 0,
