@@ -5,7 +5,7 @@ vi.hoisted(() => {
   process.env.DELETED_FILES = '';
   process.env.FULL_SYNC = 'false';
   process.env.TYPESENSE_ADMIN_KEY = 'test-key';
-  process.env.NEXT_PUBLIC_TYPESENSE_HOST = 'localhost';
+  process.env.NEXT_PUBLIC_TYPESENSE_HOST = 'http://localhost';
 });
 
 import convertRow from './convert-row.js';
