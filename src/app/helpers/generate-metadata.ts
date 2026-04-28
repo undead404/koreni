@@ -32,9 +32,9 @@ function buildDescription(item: IndexationTable) {
   const recordCount = item.size > 0 ? `Індексовано ${item.size} записів.` : '';
   const location = item.title;
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const archiveItems = item.archiveItems ?? [];
+  const archiveItems = item.archiveItems;
 
-  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${archiveItems.join(', ')}.`;
+  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${archiveItems?.join(', ') ?? 'undefined'}.`;
 }
 
 /**
@@ -222,14 +222,17 @@ export function generateJsonLd(item: IndexationTable): string {
         keywords,
         license: `${siteUrl}/license/`,
         name: item.title,
-        spatialCoverage: {
-          '@type': 'Place',
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: item.location[0],
-            longitude: item.location[1],
-          } satisfies GeoCoordinates,
-        } satisfies Place,
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        spatialCoverage: item.location
+          ? ({
+              '@type': 'Place',
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: item.location[0],
+                longitude: item.location[1],
+              } satisfies GeoCoordinates,
+            } satisfies Place)
+          : undefined,
         variableMeasured: `${item.size} records`,
       },
     ],
