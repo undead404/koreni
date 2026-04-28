@@ -32,7 +32,7 @@ function buildDescription(item: IndexationTable) {
   const recordCount = item.size > 0 ? `Індексовано ${item.size} записів.` : '';
   const location = item.title;
 
-  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems?.join(', ')}.`;
+  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems.join(', ')}.`;
 }
 
 /**
@@ -74,10 +74,7 @@ export function generateIndexationMetadata(
 ): Metadata {
   const previousPage = page === 1 ? undefined : page - 1;
   const nextPage = page * PER_PAGE < item.size ? page + 1 : undefined;
-  const siteUrl =
-    METADATA_OPTIONS.siteUrl ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    'http://localhost:3000';
+  const siteUrl = METADATA_OPTIONS.siteUrl;
   const relativePath = `/${encodeURIComponent(item.id)}/${page}/`;
   const canonical = relativePath;
 
@@ -146,10 +143,7 @@ export function generateIndexationMetadata(
 }
 
 export function generateJsonLd(item: IndexationTable): string {
-  const siteUrl =
-    METADATA_OPTIONS.siteUrl ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    'http://localhost:3000';
+  const siteUrl = METADATA_OPTIONS.siteUrl;
   const relativePath = `/${encodeURIComponent(item.id)}/1/`;
   const canonical = buildCanonical(siteUrl, relativePath);
 
@@ -168,13 +162,14 @@ export function generateJsonLd(item: IndexationTable): string {
     }
   })();
 
-  const keywords = item.archiveItems?.length
-    ? [
-        ...new Set(
-          item.archiveItems?.map((archiveItem) => archiveItem.split('-')[0]),
-        ),
-      ]
-    : undefined;
+  const keywords =
+    item.archiveItems.length > 0
+      ? [
+          ...new Set(
+            item.archiveItems.map((archiveItem) => archiveItem.split('-')[0]),
+          ),
+        ]
+      : undefined;
 
   // Build a JSON-LD object (Dataset-like). Prefer adding as a <script> in the page component,
   // but we include it here as a JSON string in metadata.other.ldjson for convenience.
@@ -222,17 +217,14 @@ export function generateJsonLd(item: IndexationTable): string {
         keywords,
         license: `${siteUrl}/license/`,
         name: item.title,
-        spatialCoverage:
-          item.location && item.location.length === 2
-            ? ({
-                '@type': 'Place',
-                geo: {
-                  '@type': 'GeoCoordinates',
-                  latitude: item.location[0],
-                  longitude: item.location[1],
-                } satisfies GeoCoordinates,
-              } satisfies Place)
-            : undefined,
+        spatialCoverage: {
+          '@type': 'Place',
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: item.location[0],
+            longitude: item.location[1],
+          } satisfies GeoCoordinates,
+        } satisfies Place,
         variableMeasured: `${item.size} records`,
       },
     ],
