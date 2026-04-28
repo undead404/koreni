@@ -46,7 +46,7 @@ describe('prepareDotenvBlank', () => {
       environmentPath,
     );
     expect(writeEnvironmentValues).toHaveBeenCalledWith({
-      NEXT_PUBLIC_TYPESENSE_HOST: 'http://localhost:' + TYPESENSE_PORT,
+      NEXT_PUBLIC_TYPESENSE_HOST: `http://localhost:${TYPESENSE_PORT}`,
     });
     expect(consoleLogSpy).toHaveBeenCalledWith(
       '.env file created from .env.example',

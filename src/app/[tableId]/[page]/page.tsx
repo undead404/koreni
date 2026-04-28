@@ -27,7 +27,6 @@ const parametersSchema = object({
 export async function generateMetadata({ params }: TablePageProperties) {
   const { page, tableId } = parametersSchema.parse(await params);
   const item = await getTableMetadata(tableId);
-  if (!item) return {};
   return generateIndexationMetadata(item, page);
 }
 
@@ -40,7 +39,7 @@ export default async function Table({ params }: TablePageProperties) {
     (page - 1) * PER_PAGE,
     page * PER_PAGE,
   );
-  if (tableData.length === 0 || !tableMetadata) {
+  if (tableData.length === 0) {
     throw new Error('Table not found');
   }
 
@@ -72,7 +71,7 @@ export async function generateStaticParams() {
   const result = tablesMetadata.flatMap((tableMetadata) =>
     _.times(Math.ceil(tableMetadata.size / PER_PAGE), (index) => ({
       page: `${index + 1}`,
-      tableId: `${tableMetadata.id}`,
+      tableId: tableMetadata.id,
     })),
   );
   return result;

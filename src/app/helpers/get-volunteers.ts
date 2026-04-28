@@ -9,12 +9,14 @@ export default async function getVolunteers() {
 
   for (const table of tables) {
     const authorName = table.authorName || 'undefined';
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!tablesByVolunteer[authorName]) {
       tablesByVolunteer[authorName] = [];
     }
     tablesByVolunteer[authorName].push(table);
     const authorEmail = table.authorEmail;
     if (authorEmail) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (emailsByAuthor[authorName]) {
         emailsByAuthor[authorName].add(authorEmail);
       } else {
@@ -26,7 +28,7 @@ export default async function getVolunteers() {
   const knownSlugs = new Set();
   return Object.entries(tablesByVolunteer)
     .map(([author, tables]) => {
-      const name = author ?? 'Невідомі';
+      const name = author;
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {

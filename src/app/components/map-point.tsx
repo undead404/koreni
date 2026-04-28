@@ -20,14 +20,22 @@ export default function MapPointOnMap({
   const [hasHover, setHasHover] = useState(false);
   const eventHandlers = useMemo(
     () => ({
-      click: () => setActive(point),
-      mouseover: () => setHasHover(true),
-      mouseout: () => setHasHover(false),
+      click: () => {
+        setActive(point);
+      },
+      mouseover: () => {
+        setHasHover(true);
+      },
+      mouseout: () => {
+        setHasHover(false);
+      },
     }),
     [point, setActive],
   );
   const [defaultIcon, setDefaultIcon] = useState<Icon>(() =>
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     globalThis.window !== undefined &&
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     globalThis.matchMedia &&
     globalThis.matchMedia('(prefers-color-scheme: dark)').matches
       ? whiteIcon
@@ -39,6 +47,7 @@ export default function MapPointOnMap({
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (globalThis.window === undefined || !globalThis.matchMedia) return;
     const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', handleThemeChange);

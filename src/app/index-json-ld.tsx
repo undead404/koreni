@@ -12,9 +12,9 @@ export default function JsonLdHome({
   const site = environment.NEXT_PUBLIC_SITE.replace(/\/$/, '');
 
   // знаходимо найпізнішу дату серед таблиць (для datePublished сторінки)
-  const dates = (tablesMetadata || [])
+  const dates = tablesMetadata
     .map((t) => t.date)
-    .filter((d): d is Date => !!d && !Number.isNaN(d.getTime()));
+    .filter((d): d is Date => !Number.isNaN(d.getTime()));
 
   const latestDate =
     dates.length > 0
@@ -69,7 +69,7 @@ export default function JsonLdHome({
           '@type': 'CollectionPage',
           description: `Сторінка зі списком усіх ${tablesMetadata.length} таблиць проекту Корені`,
           name: 'Корені – Список таблиць',
-          numberOfItems: Number(tablesMetadata.length || 0),
+          numberOfItems: tablesMetadata.length || 0,
           url: `${site}/tables/`,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,

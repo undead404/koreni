@@ -13,6 +13,8 @@ export function useDataLossGuard(isDirty: boolean) {
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, [isDirty, posthog]);
 }

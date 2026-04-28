@@ -34,14 +34,15 @@ const initialState: ContributionState = {
 export const useContributionStateStore = create<ContributionStateStore>(
   (set) => ({
     state: initialState,
-    setState: (state) =>
+    setState: (state) => {
       set((store) => ({
         state: {
           ...store.state,
           ...state,
         },
-      })),
-    setActiveIndex: (index) =>
+      }));
+    },
+    setActiveIndex: (index) => {
       set((store) => ({
         state: {
           ...store.state,
@@ -50,10 +51,12 @@ export const useContributionStateStore = create<ContributionStateStore>(
               ? index(store.state.activeIndex)
               : index,
         },
-      })),
-    resetState: () =>
+      }));
+    },
+    resetState: () => {
       set(() => ({
         state: initialState,
-      })),
+      }));
+    },
   }),
 );

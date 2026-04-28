@@ -18,16 +18,21 @@ export default function CookieBanner() {
   });
 
   const handleAnalyticsChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
       setPreferences((previous) => ({
         ...previous,
         analytics: event.target.checked,
-      })),
+      }));
+    },
     [],
   );
 
-  const close = useCallback(() => setIsSettingsOpen(false), []);
-  const open = useCallback(() => setIsSettingsOpen(true), []);
+  const close = useCallback(() => {
+    setIsSettingsOpen(false);
+  }, []);
+  const open = useCallback(() => {
+    setIsSettingsOpen(true);
+  }, []);
 
   // Виправлено залежність useCallback, щоб зберігалися актуальні preferences
   const save = useCallback(() => {

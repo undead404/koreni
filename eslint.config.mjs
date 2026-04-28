@@ -93,6 +93,7 @@ export default [
           },
         },
       ],
+      '@typescript-eslint/restrict-template-expressions': 'off',
     },
   },
   {
@@ -221,6 +222,7 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
       'unicorn/no-useless-undefined': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },
   {

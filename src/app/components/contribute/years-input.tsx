@@ -36,7 +36,7 @@ export default function YearsInput({
   onChange,
   value,
 }: ControllerRenderProps<ContributeFormValues, 'yearsRange'>) {
-  const [inputValue, setInputValue] = useState(value?.join(' - ') || '');
+  const [inputValue, setInputValue] = useState(value.join(' - ') || '');
   const [isInvalid, setIsInvalid] = useState(false);
   const posthog = usePostHog();
 

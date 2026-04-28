@@ -64,7 +64,7 @@ const useNoRussians = () => {
             icon: '🇺🇦',
           }),
         )
-        .catch((error) => {
+        .catch((error: unknown) => {
           console.error(error);
           initBugsnag().notify(error as Error);
           posthog.captureException(error);
@@ -96,7 +96,9 @@ const useNoRussians = () => {
       attributeFilter: ['lang'],
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 };
 

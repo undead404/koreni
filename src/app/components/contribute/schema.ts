@@ -94,6 +94,7 @@ export const contributeFormSchema = z.object({
     .max(2, {
       message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
     })
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     .refine((value) => value !== null, {
       message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
     }),

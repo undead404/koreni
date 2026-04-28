@@ -24,7 +24,9 @@ export default function parseCsvToTuples(file: File): Promise<string[][]> {
 
         resolve(data);
       },
-      error: (error) => reject(error),
+      error: (error) => {
+        reject(error);
+      },
     });
   });
 }

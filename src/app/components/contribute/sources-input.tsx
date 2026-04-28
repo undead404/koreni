@@ -42,7 +42,9 @@ export default function SourcesInput() {
           styles.addButton,
           fields.length === 0 && styles.addButtonPrimary,
         )}
-        onClick={() => append({ url: '' })}
+        onClick={() => {
+          append({ url: '' });
+        }}
       >
         Додати посилання
       </button>

@@ -68,6 +68,7 @@ const environment = {
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
     isProduction,
   ),
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   NODE_ENV: process.env.NODE_ENV || ('development' as const),
 } as const;
 

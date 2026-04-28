@@ -12,7 +12,7 @@ export const ContactGate: FC<ContactProperties> = (properties) => {
   const email = showingEmail ? (
     <Contact contact={properties.contact} />
   ) : (
-    <button type="button" onClick={() => setShowingEmail(true)}>
+    <button type="button" onClick={() => { setShowingEmail(true); }}>
       Показати
     </button>
   );

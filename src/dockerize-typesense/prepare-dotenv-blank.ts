@@ -17,7 +17,7 @@ export default function prepareDotenvBlank() {
     copyFileSync(environmentExamplePath, environmentPath);
     console.log('.env file created from .env.example');
     writeEnvironmentValues({
-      NEXT_PUBLIC_TYPESENSE_HOST: 'http://localhost:' + TYPESENSE_PORT,
+      NEXT_PUBLIC_TYPESENSE_HOST: `http://localhost:${TYPESENSE_PORT}`,
     });
   }
 }

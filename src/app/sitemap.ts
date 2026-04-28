@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const knownSlugs = new Set();
   const volunteers = _.map(
     _.groupBy(tablesMetadata, 'authorName'),
-    (tables, name = 'Невідомі') => {
+    (tables, name) => {
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {

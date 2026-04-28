@@ -81,8 +81,8 @@ export default async function VolunteerPage({
             <Link href="/volunteers" className={styles.backLink}>
               ← Всі волонтери
             </Link>
-            <span className={clsx(styles.rankBadge, rank!.className)}>
-              {rank!.title}
+            <span className={clsx(styles.rankBadge, rank?.className)}>
+              {rank?.title || 'UNKNOWN'}
             </span>
           </div>
 

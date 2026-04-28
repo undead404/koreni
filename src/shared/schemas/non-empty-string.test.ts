@@ -11,7 +11,7 @@ describe('nonEmptyString', () => {
   it('should throw an error for an empty string', () => {
     const result = nonEmptyString.safeParse('');
     expect(result.success).toBe(false);
-    expect(result.error!.issues[0].message).toBe(
+    expect(result.error?.issues[0].message).toBe(
       'Очікується хоча б один символ',
     );
   });
@@ -20,7 +20,7 @@ describe('nonEmptyString', () => {
     const result = nonEmptyString.safeParse(123);
     expect(result.success).toBe(false);
 
-    expect(result.error!.issues[0].message).toBe(
+    expect(result.error?.issues[0].message).toBe(
       'Invalid input: expected string, received number',
     );
   });

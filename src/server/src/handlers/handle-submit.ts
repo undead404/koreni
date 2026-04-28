@@ -1,4 +1,5 @@
 import type { Context } from 'hono';
+import z from 'zod';
 
 import getClientIdentifier from '../helpers/get-client-identifier.js';
 import { importPayloadSchema } from '../schemata.js';
@@ -21,7 +22,7 @@ const handleSubmit = async (c: Context) => {
           authMethod: apiKey ? 'api_key' : 'web',
         },
       });
-      return c.json({ error: parseResult.error.flatten() }, 400);
+      return c.json({ error: z.treeifyError(parseResult.error) }, 400);
     }
 
     const data = parseResult.data;

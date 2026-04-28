@@ -11,7 +11,9 @@ function createDiv() {
 describe('scrollOnce', () => {
   it('should do nothing if the element is null', () => {
     const element = null;
-    expect(() => scrollOnce(element)).not.toThrow();
+    expect(() => {
+      scrollOnce(element);
+    }).not.toThrow();
   });
 
   it('should do nothing if the element has already been scrolled', () => {

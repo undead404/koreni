@@ -69,7 +69,7 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
                 key={index}
                 data={row}
                 id={rowId}
-                isTarget={rowId === 'row-' + targetRowId}
+                isTarget={!!targetRowId && rowId === 'row-' + targetRowId}
                 matchedTokens={matchedTokens}
               ></IndexTableRow>
             );

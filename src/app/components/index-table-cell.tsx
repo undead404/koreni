@@ -20,7 +20,7 @@ export default function IndexTableCell({
 
   // 1. Compute highlights synchronously during render. No useEffect lag.
   const renderedContent = useMemo(() => {
-    if (!matchedTokens?.length || !value) return value;
+    if (matchedTokens.length === 0 || !value) return value;
 
     const regex = new RegExp(`(${matchedTokens.join('|')})`, 'gi');
     const parts = value.split(regex);

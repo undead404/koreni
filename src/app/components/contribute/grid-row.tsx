@@ -38,7 +38,9 @@ export const GridRow = memo(function GridRow({
           className={
             isRowFlagged ? styles.rowTrashBtnActive : styles.rowTrashBtn
           }
-          onClick={() => toggleRow(globalRowIndex)}
+          onClick={() => {
+            toggleRow(globalRowIndex);
+          }}
           aria-label={
             isRowFlagged
               ? `Скасувати вилучення ряду ${globalRowIndex + 1}`
@@ -61,7 +63,7 @@ export const GridRow = memo(function GridRow({
               ? styles.tdFlagged
               : undefined
           }
-          title={row[column] ? `${row[column] as string}` : ''}
+          title={row[column] ? (row[column] as string) : ''}
         >
           <UnknownValue value={row[column]} />
         </td>

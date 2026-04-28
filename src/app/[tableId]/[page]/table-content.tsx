@@ -38,7 +38,7 @@ export default function TableContent({
     </span>
   ));
 
-  const authorName = tableMetadata.authorName ?? 'невідомі';
+  const authorName = tableMetadata.authorName;
 
   const totalPages = Math.ceil(totalRecords / PER_PAGE);
 
@@ -56,7 +56,7 @@ export default function TableContent({
           </p>
           <p>Таблиці: {sourcesLinks}</p>
           <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
-          {tableMetadata.archiveItems && (
+          {
             <Details
               open={tableMetadata.archiveItems.length < 4}
               summary={<h3>Використані архівні справи</h3>}
@@ -68,7 +68,7 @@ export default function TableContent({
                 ))}
               </ul>
             </Details>
-          )}
+          }
           <Details summary={<h3>На карті</h3>} sectionName="map">
             <MapWrapper
               center={tableMetadata.location}

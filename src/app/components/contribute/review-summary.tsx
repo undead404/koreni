@@ -180,7 +180,7 @@ export default function ReviewSummary({
             setModernLocation(resultingLocation || locationValue);
             setLocationStatus('idle');
           })
-          .catch((error) => {
+          .catch((error: unknown) => {
             console.error(error);
             initBugsnag().notify(error as Error);
             posthog.capture('locationiq_reverse_geocode_error', {
@@ -195,7 +195,9 @@ export default function ReviewSummary({
       }
     }, 500);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [locationValue, posthog]);
 
   const {
@@ -242,7 +244,7 @@ export default function ReviewSummary({
 
   const contextFields: SummaryField[] = useMemo(() => {
     let yearsDisplay = null;
-    if (yearsRange && yearsRange.length > 0) {
+    if (yearsRange.length > 0) {
       yearsDisplay =
         yearsRange.length === 2
           ? `${yearsRange[0]} — ${yearsRange[1]}`
@@ -255,7 +257,7 @@ export default function ReviewSummary({
       { key: 'Місце', value: modernLocation, type: 'location' },
       {
         key: 'Архівні справи',
-        value: archiveItems?.map((item) => item.item) ?? null,
+        value: archiveItems.map((item) => item.item),
         type: 'tags',
       },
       {

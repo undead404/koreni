@@ -39,7 +39,7 @@ export default async function importBatch(
     .import(batch, { action: 'upsert' });
   let failsNumber = 0;
   for (const result of results) {
-    if (result.success === false) {
+    if (!result.success) {
       console.log(result);
       console.error(`Failed to import batch: ${result.error}`);
       failsNumber += 1;

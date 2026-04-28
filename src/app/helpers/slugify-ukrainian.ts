@@ -36,7 +36,7 @@ export default function slugifyUkrainian(text: string): string {
     // We utilize the capture group $1 to preserve the space if it existed.
     const regex = new RegExp(`(^|\\s)${char}`, 'g');
 
-    result = result.replace(regex, (match, separator) => {
+    result = result.replace(regex, (match, separator: string) => {
       // If the original char was uppercase, ideally we'd match case, but for slugs
       // everything becomes lowercase anyway. We just insert the 'start' variant.
       return separator + start;

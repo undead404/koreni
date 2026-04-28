@@ -53,7 +53,7 @@ const STEPS: StepDefinition[] = [
     label: 'Додати контекст',
     icon: <FileText size={15} strokeWidth={2.5} />,
     summary: (tableStore, formData) =>
-      `${formData.title} (${formData?.yearsRange?.join('-')})`,
+      `${formData.title} (${formData.yearsRange?.join('-')})`,
     placeholderTitle: 'Додайте контекст цієї таблиці',
     placeholderBody:
       'Provide a short description, relevant tags, and any additional notes that will help collaborators understand the purpose and scope of this dataset.',

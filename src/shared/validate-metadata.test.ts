@@ -21,7 +21,7 @@ describe('validateMetadata', () => {
       createMockTable({ id: '2', tableFilePath: 'path2.csv', title: 'Title 2' }),
     ];
 
-    expect(() => validateMetadata(metadata)).not.toThrow();
+    expect(() => { validateMetadata(metadata); }).not.toThrow();
   });
 
   it('should throw when ids are duplicated', () => {
@@ -30,7 +30,7 @@ describe('validateMetadata', () => {
       createMockTable({ id: 'duplicate-id', tableFilePath: 'path2.csv', title: 'Title 2' }),
     ];
 
-    expect(() => validateMetadata(metadata)).toThrowError('Appears more than once: duplicate-id');
+    expect(() => { validateMetadata(metadata); }).toThrowError('Appears more than once: duplicate-id');
   });
 
   it('should throw when tableFilePaths are duplicated', () => {
@@ -39,7 +39,7 @@ describe('validateMetadata', () => {
       createMockTable({ id: '2', tableFilePath: 'duplicate-path.csv', title: 'Title 2' }),
     ];
 
-    expect(() => validateMetadata(metadata)).toThrowError('Appears more than once: duplicate-path.csv');
+    expect(() => { validateMetadata(metadata); }).toThrowError('Appears more than once: duplicate-path.csv');
   });
 
   it('should throw when titles are duplicated', () => {
@@ -48,6 +48,6 @@ describe('validateMetadata', () => {
       createMockTable({ id: '2', tableFilePath: 'path2.csv', title: 'Duplicate Title' }),
     ];
 
-    expect(() => validateMetadata(metadata)).toThrowError('Appears more than once: Duplicate Title');
+    expect(() => { validateMetadata(metadata); }).toThrowError('Appears more than once: Duplicate Title');
   });
 });

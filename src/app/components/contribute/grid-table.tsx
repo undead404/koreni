@@ -95,7 +95,9 @@ export function GridTable({
                       [styles.colTrashBtnActive]: skippedColumns.has(ci),
                       [styles.colTrashBtn]: !skippedColumns.has(ci),
                     })}
-                    onClick={() => toggleColumn(ci)}
+                    onClick={() => {
+                      toggleColumn(ci);
+                    }}
                     aria-label={
                       skippedColumns.has(ci)
                         ? `Скасувати вилучення колонки "${col}"`

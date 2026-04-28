@@ -82,7 +82,7 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
       }
     }, 400); // 400ms is the standard optimal threshold for text input debouncing
 
-    return () => clearTimeout(timeoutId);
+    return () => { clearTimeout(timeoutId); };
   }, [
     filters,
     activeQuery,

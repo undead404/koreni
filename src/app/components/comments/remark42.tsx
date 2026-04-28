@@ -15,6 +15,7 @@ export default function Remark42({
   const remark42ElementReference = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const handleThemeChange = useCallback((theme: 'light' | 'dark') => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (globalThis.REMARK42) {
       globalThis.REMARK42.changeTheme(theme);
     } else {
@@ -49,6 +50,7 @@ export default function Remark42({
 
     // 2. Implementation of the Remark42 loader
     const loadRemark42 = () => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (globalThis.REMARK42) {
         // If already loaded, just hit the re-initialization
         globalThis.REMARK42.createInstance({
@@ -69,6 +71,7 @@ export default function Remark42({
 
     // 3. Cleanup: destroy instance on unmount to prevent memory leaks
     return () => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (globalThis.REMARK42) {
         globalThis.REMARK42.destroy();
       }

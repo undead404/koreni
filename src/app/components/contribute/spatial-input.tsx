@@ -98,7 +98,9 @@ export const SpatialInput = memo(function SpatialInput({
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [posthog]);
 
   return (
@@ -132,7 +134,9 @@ export const SpatialInput = memo(function SpatialInput({
                 setFocusedIndex(-1);
                 if (value) onChange('');
               }}
-              onFocus={() => setShowDropdown(true)}
+              onFocus={() => {
+                setShowDropdown(true);
+              }}
               onKeyDown={handleKeyDown}
             />
           </div>
@@ -150,7 +154,9 @@ export const SpatialInput = memo(function SpatialInput({
                   role="option"
                   aria-selected={index === focusedIndex}
                   className={styles.dropdownItem}
-                  onClick={() => handleLocationSelect(loc)}
+                  onClick={() => {
+                    handleLocationSelect(loc);
+                  }}
                   title={loc.title}
                 >
                   <span className={styles.dropdownItemIcon}>

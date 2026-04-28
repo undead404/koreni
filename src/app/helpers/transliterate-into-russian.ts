@@ -93,5 +93,11 @@ export default function transliterateIntoRussian(input: string): string {
   }
 
   // Transliterate remaining Latin script to Russian Cyrillic script
-  return [...result].map((char) => monographsMap.get(char) ?? char).join('');
+  return (
+    result
+      // eslint-disable-next-line unicorn/prefer-spread
+      .split('')
+      .map((char) => monographsMap.get(char) ?? char)
+      .join('')
+  );
 }

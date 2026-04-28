@@ -8,6 +8,7 @@ const AUTHOR_IDENTITY_KEY = 'contribute_author_identity';
 
 export function restoreAuthorIdentity(): AuthorIdentity | null {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (globalThis.window === undefined) return null;
     const savedState = localStorage.getItem(AUTHOR_IDENTITY_KEY);
     if (!savedState) return null;

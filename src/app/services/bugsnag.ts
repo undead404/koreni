@@ -21,6 +21,7 @@ export const setBugsnagConsent = (allowed: boolean) => {
 
 export const initBugsnag = () => {
   if (ActiveBugsnag.isStarted()) return ActiveBugsnag;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (globalThis.window === undefined) return ActiveBugsnag;
   if (!environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
     console.warn('Bugsnag API key is missing');
@@ -38,6 +39,7 @@ export const initBugsnag = () => {
       return true;
     },
     plugins: [new BugsnagPluginReact()],
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     releaseStage: process.env.NODE_ENV || 'development',
   });
 

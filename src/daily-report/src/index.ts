@@ -38,13 +38,13 @@ for (const file of addedFiles) {
 
     // Форматування років (один рік або діапазон)
     const years =
-      tableMetadata.yearsRange?.length > 1
+      tableMetadata.yearsRange.length > 1
         ? `${tableMetadata.yearsRange[0]}–${tableMetadata.yearsRange[1]}`
-        : tableMetadata.yearsRange?.[0] || 'Роки не вказані';
+        : tableMetadata.yearsRange[0] || 'Роки не вказані';
 
     // Форматування архівів (з обрізанням довгого списку)
     let archives = 'Не вказано';
-    if (tableMetadata.archiveItems && tableMetadata.archiveItems.length > 0) {
+    if (tableMetadata.archiveItems.length > 0) {
       const limit = 3;
       const shown = tableMetadata.archiveItems.slice(0, limit).join(', ');
       const hiddenCount = tableMetadata.archiveItems.length - limit;

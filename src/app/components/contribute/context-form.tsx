@@ -137,7 +137,7 @@ export default function ContextForm() {
             name="yearsRange"
             as="p"
           />
-          {yearsRange?.map((year, index) => (
+          {yearsRange.map((year, index) => (
             <ErrorMessage
               key={year}
               className={styles.error}
@@ -145,7 +145,7 @@ export default function ContextForm() {
               name={`yearsRange.${index}` as keyof ContributeFormValues}
               as="p"
             />
-          )) ?? null}
+          ))}
         </div>
         <div className={styles.fieldGroup}>
           <SourcesInput />

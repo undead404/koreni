@@ -17,7 +17,7 @@ import type { ContributeFormValues } from './types';
 import styles from './archive-items-input.module.css';
 
 export default function ArchiveItemsInput({
-  value = [],
+  value,
   onChange,
 }: ControllerRenderProps<ContributeFormValues, 'archiveItems'>) {
   const [tagInput, setTagInput] = useState('');
@@ -60,12 +60,11 @@ export default function ArchiveItemsInput({
       if (event.key === 'Enter' || event.key === ',') {
         event.preventDefault();
         handleAdd(tagInput);
-      } else if (
-        event.key === 'Backspace' &&
-        tagInput === '' &&
-        value.length > 0
-      ) {
-        handleRemove(value.at(-1)!.item);
+      } else if (event.key === 'Backspace' && tagInput === '') {
+        const lastItem = value.at(-1);
+        if (lastItem) {
+          handleRemove(lastItem.item);
+        }
       }
     },
     [tagInput, value, handleAdd, handleRemove],
@@ -146,7 +145,9 @@ export default function ArchiveItemsInput({
           className={styles.tagInput}
           placeholder={value.length === 0 ? 'ДАХмО-315-1-8563...' : ''}
           value={tagInput}
-          onChange={(event) => setTagInput(event.target.value)}
+          onChange={(event) => {
+            setTagInput(event.target.value);
+          }}
           onKeyDown={handleKeyDown}
           aria-invalid={!isTypingValid}
           aria-describedby="archive-item-enter-hint"

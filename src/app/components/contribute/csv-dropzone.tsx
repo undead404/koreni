@@ -151,9 +151,7 @@ export default function CsvDropzone() {
       posthog.capture('csv_file_dropped', {
         file_name: file.name,
       });
-      if (file) {
-        void processFile(file);
-      }
+      void processFile(file);
     },
     [posthog, processFile, setValue, state],
   );

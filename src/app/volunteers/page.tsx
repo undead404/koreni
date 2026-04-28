@@ -66,8 +66,8 @@ export default async function VolunteersPage() {
                   {volunteer.name === 'Невідомі' ? (
                     <div />
                   ) : (
-                    <div className={clsx(styles.rankBadge, rank!.className)}>
-                      {rank!.title}
+                    <div className={clsx(styles.rankBadge, rank?.className)}>
+                      {rank?.title || 'UNKNOWN'}
                     </div>
                   )}
                   <span className={styles.arrow}>→</span>

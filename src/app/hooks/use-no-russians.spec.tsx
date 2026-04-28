@@ -24,7 +24,6 @@ vi.mock('../services/bugsnag', () => ({
 const mockToastError = vi.fn();
 vi.mock('sonner', () => ({
   toast: {
-     
     error: (...arguments_: unknown[]) => mockToastError(...arguments_),
   },
 }));
@@ -47,7 +46,9 @@ describe('useNoRussians', () => {
   });
 
   it('should not redirect or show toast for Ukrainian users', () => {
-    renderHook(() => useNoRussians());
+    renderHook(() => {
+      useNoRussians();
+    });
 
     expect(mockPush).not.toHaveBeenCalled();
     expect(mockToastError).not.toHaveBeenCalled();
@@ -56,7 +57,9 @@ describe('useNoRussians', () => {
   it('should redirect if html lang is "ru"', async () => {
     document.documentElement.setAttribute('lang', 'ru');
 
-    renderHook(() => useNoRussians());
+    renderHook(() => {
+      useNoRussians();
+    });
 
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith('/not-welcome');
@@ -66,7 +69,9 @@ describe('useNoRussians', () => {
   it('should redirect if html lang contains "ru" (e.g. ru-RU)', async () => {
     document.documentElement.setAttribute('lang', 'ru-RU');
 
-    renderHook(() => useNoRussians());
+    renderHook(() => {
+      useNoRussians();
+    });
 
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith('/not-welcome');
@@ -79,7 +84,9 @@ describe('useNoRussians', () => {
       configurable: true,
     });
 
-    renderHook(() => useNoRussians());
+    renderHook(() => {
+      useNoRussians();
+    });
 
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith('/not-welcome');
@@ -92,7 +99,9 @@ describe('useNoRussians', () => {
       configurable: true,
     });
 
-    renderHook(() => useNoRussians());
+    renderHook(() => {
+      useNoRussians();
+    });
 
     await waitFor(() => {
       expect(mockToastError).toHaveBeenCalled();

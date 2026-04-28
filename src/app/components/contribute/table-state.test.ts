@@ -23,13 +23,30 @@ vi.mock('./craft-initial-table-state', () => ({
 
 vi.mock('./skip-from-table', () => ({
   __esModule: true,
-  default: vi.fn((tableData: string[][], { skippedRowsAbove, skippedRowsElsewhere, skippedColumns }) => {
-    // A simplified mock implementation of skipFromTable for testing purposes
-    const data = tableData.slice(skippedRowsAbove + 1); // +1 to skip header
-    return data
-      .filter((_, index) => !skippedRowsElsewhere.has(index + skippedRowsAbove + 1))
-      .map(row => row.filter((_, colIndex) => !skippedColumns.has(colIndex)));
-  }),
+  default: vi.fn(
+    (
+      tableData: string[][],
+      {
+        skippedRowsAbove,
+        skippedRowsElsewhere,
+        skippedColumns,
+      }: {
+        skippedRowsAbove: number;
+        skippedRowsElsewhere: Set<number>;
+        skippedColumns: Set<number>;
+      },
+    ) => {
+      // A simplified mock implementation of skipFromTable for testing purposes
+      const data = tableData.slice(skippedRowsAbove + 1); // +1 to skip header
+      return data
+        .filter(
+          (_, index) => !skippedRowsElsewhere.has(index + skippedRowsAbove + 1),
+        )
+        .map((row) =>
+          row.filter((_, colIndex) => !skippedColumns.has(colIndex)),
+        );
+    },
+  ),
 }));
 
 describe('useTableStateStore', () => {
@@ -95,12 +112,16 @@ describe('useTableStateStore', () => {
     act(() => {
       useTableStateStore.getState().toggleRow(2);
     });
-    expect(useTableStateStore.getState().skippedRowsElsewhere.has(2)).toBe(true);
+    expect(useTableStateStore.getState().skippedRowsElsewhere.has(2)).toBe(
+      true,
+    );
 
     act(() => {
       useTableStateStore.getState().toggleRow(2);
     });
-    expect(useTableStateStore.getState().skippedRowsElsewhere.has(2)).toBe(false);
+    expect(useTableStateStore.getState().skippedRowsElsewhere.has(2)).toBe(
+      false,
+    );
   });
 
   it('should get all columns considering skipped rows above and skipped columns', () => {
@@ -109,7 +130,9 @@ describe('useTableStateStore', () => {
       useTableStateStore.getState().toggleColumn(1); // Skip 'Header2'
     });
 
-    const columnsWithoutSkipped = useTableStateStore.getState().getAllColumns(false);
+    const columnsWithoutSkipped = useTableStateStore
+      .getState()
+      .getAllColumns(false);
     expect(columnsWithoutSkipped).toEqual(['Header1', 'Header3']);
 
     const allColumns = useTableStateStore.getState().getAllColumns(true);
@@ -123,10 +146,14 @@ describe('useTableStateStore', () => {
       useTableStateStore.getState().toggleColumn(1);
     });
 
-    const dimensionsWithoutSkipped = useTableStateStore.getState().getTableDimensions(false);
+    const dimensionsWithoutSkipped = useTableStateStore
+      .getState()
+      .getTableDimensions(false);
     expect(dimensionsWithoutSkipped).toEqual({ rows: 2, columns: 2 });
 
-    const allDimensions = useTableStateStore.getState().getTableDimensions(true);
+    const allDimensions = useTableStateStore
+      .getState()
+      .getTableDimensions(true);
     expect(allDimensions).toEqual({ rows: 3, columns: 3 });
   });
 
@@ -136,7 +163,9 @@ describe('useTableStateStore', () => {
       useTableStateStore.getState().toggleColumn(1); // Skip column 1
     });
 
-    const objectsWithoutSkipped = useTableStateStore.getState().getTableAsObjects(false);
+    const objectsWithoutSkipped = useTableStateStore
+      .getState()
+      .getTableAsObjects(false);
     expect(objectsWithoutSkipped).toEqual([
       { Header1: 'Row1Col1', Header3: 'Row1Col3' },
       { Header1: 'Row2Col1', Header3: 'Row2Col3' },

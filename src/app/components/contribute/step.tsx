@@ -106,7 +106,9 @@ export default function ContributeFormStep({
       } else {
         setHasError(true);
         // Remove shake class after animation completes so it can trigger again
-        setTimeout(() => setHasError(false), 400);
+        setTimeout(() => {
+          setHasError(false);
+        }, 400);
       }
     });
   }, [def.fields, def.label, onContinue, posthog, trigger]);

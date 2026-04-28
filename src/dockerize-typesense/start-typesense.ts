@@ -35,6 +35,6 @@ export default async function startTypesense(
   });
 
   console.log(
-    'Typesense successfully started in Docker at localhost:' + TYPESENSE_PORT,
+    `Typesense successfully started in Docker at localhost:${TYPESENSE_PORT}`,
   );
 }

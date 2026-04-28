@@ -36,6 +36,7 @@ describe('generateJsonLd', () => {
 
   it('should generate correct JSON-LD for a single table', () => {
     const table: IndexationTable = {
+      archiveItems: ['item-1', 'item-2'],
       authorName: 'Author Name',
       date: new Date('2023-01-01'),
       id: 'table-1',

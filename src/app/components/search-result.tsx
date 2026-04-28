@@ -40,7 +40,7 @@ export default function SearchResultItem({
 
   // Filter empty root-level values to optimize space
   const validDataEntries = useMemo(() => {
-    return Object.entries(document.raw || {}).filter(([, value]) => {
+    return Object.entries(document.raw).filter(([, value]) => {
       return value !== null && value !== undefined && value !== '';
     });
   }, [document.raw]);

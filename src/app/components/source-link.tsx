@@ -26,9 +26,9 @@ export default function SourceLink({ href }: { href: string }) {
   }, [href, posthog]);
   const handleClick = useCallback(() => {
     posthog.capture('source_link_clicked', {
-      source_url: url!.toString(),
-      source_host: url!.host,
-      source_name: SITES_MAPPING[url!.host] || url!.host,
+      source_url: url?.toString(),
+      source_host: url?.host,
+      source_name: url?.host ? SITES_MAPPING[url.host] || url.host : null,
     });
   }, [posthog, url]);
   if (!url) return href;

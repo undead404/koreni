@@ -20,7 +20,9 @@ export default function parseCsvToObjects(file: File): Promise<TableData> {
           data: results.data as Record<string, unknown>[],
         });
       },
-      error: (error) => reject(error),
+      error: (error) => {
+        reject(error);
+      },
     });
   });
 }

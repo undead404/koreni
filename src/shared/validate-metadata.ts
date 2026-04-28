@@ -10,6 +10,7 @@ function areDistinctBy(
     if (Array.isArray(value)) {
       for (const subValue of value) {
         if (knownValues.has(subValue)) {
+          // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
           throw new Error('Appears more than once: ' + subValue);
         }
         knownValues.add(subValue);
@@ -19,7 +20,7 @@ function areDistinctBy(
         throw new TypeError('Should not be an object');
       }
       if (knownValues.has(value)) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/restrict-plus-operands
         throw new Error('Appears more than once: ' + (value as any));
       }
       knownValues.add(value);

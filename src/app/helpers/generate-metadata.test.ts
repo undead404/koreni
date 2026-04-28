@@ -115,8 +115,8 @@ describe('generate-metadata', () => {
       expect(dataset?.name).toBe('Test Location');
       expect(dataset?.creator?.name).toBe('John Doe');
       expect(dataset?.creator?.email).toBe('john@example.com');
-      expect(dataset?.spatialCoverage?.geo?.latitude).toBe(50.45);
-      expect(dataset?.spatialCoverage?.geo?.longitude).toBe(30.52);
+      expect(dataset?.spatialCoverage?.geo.latitude).toBe(50.45);
+      expect(dataset?.spatialCoverage?.geo.longitude).toBe(30.52);
       expect(dataset?.distribution?.[0]?.name).toBe('test.csv');
     });
 

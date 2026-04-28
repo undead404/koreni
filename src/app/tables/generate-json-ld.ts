@@ -10,8 +10,8 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
   const site = environment.NEXT_PUBLIC_SITE.replace(/\/$/, '');
 
   // Для кожної таблиці сформуємо Dataset і/або ListItem
-  const items = (tablesMetadata || []).map<ListItem>((t) => {
-    const tDate = t?.date ? new Date(t.date) : null;
+  const items = tablesMetadata.map<ListItem>((t) => {
+    const tDate = new Date(t.date);
     const description = generateTableDescription(t);
     const dataset = {
       '@type': 'Dataset',
@@ -21,10 +21,10 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
       license: `${site}/license/`,
       name: t.title || t.id,
       url: `${site}/${t.id}/1/`,
-      numberOfItems: Number(t.size || 0),
-      ...(tDate && !Number.isNaN(tDate.getTime())
-        ? { datePublished: tDate.toISOString() }
-        : {}),
+      numberOfItems: t.size || 0,
+      ...(Number.isNaN(tDate.getTime())
+        ? {}
+        : { datePublished: tDate.toISOString() }),
     } as Dataset;
     const item: ListItem = {
       '@type': 'ListItem',
