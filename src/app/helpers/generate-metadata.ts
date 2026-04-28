@@ -32,7 +32,7 @@ function buildDescription(item: IndexationTable) {
   const recordCount = item.size > 0 ? `Індексовано ${item.size} записів.` : '';
   const location = item.title;
 
-  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems.join(', ')}.`;
+  return `${location}${years ? ` (${years})` : ''}. ${recordCount} Таблиця сформована на основі справ: ${item.archiveItems?.join(', ')}.`;
 }
 
 /**
@@ -163,7 +163,7 @@ export function generateJsonLd(item: IndexationTable): string {
   })();
 
   const keywords =
-    item.archiveItems.length > 0
+    item.archiveItems?.length > 0
       ? [
           ...new Set(
             item.archiveItems.map((archiveItem) => archiveItem.split('-')[0]),
