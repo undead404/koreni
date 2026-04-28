@@ -5,7 +5,7 @@ import {
   nonEmptyString,
   turnstilePayloadSchema,
   turnstileResponseSchema,
-} from './schemata';
+} from './schemata.js';
 
 describe('schemata', () => {
   describe('nonEmptyString', () => {

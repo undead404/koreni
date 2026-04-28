@@ -146,7 +146,7 @@
 }
 
 .iconWrapperUploading {
-  composes: iconwrapper;
+  composes: iconWrapper;
   background-color: #f1f5f9;
   color: #94a3b8;
 }
