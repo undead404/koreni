@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-Р2083-1-7
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-04-28
+id: DAViO-R2083-1-7
+location:
+  - 48.502517987986174
+  - 29.621718741674567
+size: 228
+sources:
+  - https://docs.google.com/spreadsheets/d/1qQUr6uh5DXzi2zYOjfJicg4mhLoW5MCX-k2gBR7KF0A/edit?usp=sharing
+  - https://photos.app.goo.gl/foy7BvrLnM5qmWwR7
+tableFilePath: public/csv/DAViO-R2083-1-7.csv
+tableLocale: ru
+title: Особові рахунки робітників і службовців Красносільського цукрозаводу, 1922
+yearsRange:
+  - 1922
