@@ -178,7 +178,7 @@ export default function AboutPage() {
         <h2>Як можна допомогти?</h2>
         <p className={styles.accentWrapper}>
           <Link className={styles.accent} href="/contribute">
-            Додати власну таблицю{' '}
+            Додати власну таблицю
           </Link>
         </p>
         <p>
