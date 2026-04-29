@@ -31,11 +31,7 @@ export async function generateMetadata({
   const { page, tableId } = parametersSchema.parse(await params);
   const item = await getTableMetadata(tableId);
 
-  if (!item) {
-    return {};
-  }
-
-  const metadata = await generateIndexationMetadata(item, page);
+  const metadata = generateIndexationMetadata(item, page);
 
   return {
     ...metadata,
@@ -48,10 +44,6 @@ export async function generateMetadata({
 export default async function Table({ params }: TablePageProperties) {
   const { page, tableId } = parametersSchema.parse(await params);
   const tableMetadata = await getTableMetadata(tableId);
-
-  if (!tableMetadata) {
-    notFound();
-  }
 
   const tableData = await getTableData(tableMetadata);
 
