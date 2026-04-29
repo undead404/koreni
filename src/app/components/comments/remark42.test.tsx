@@ -4,6 +4,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import Remark42 from './remark42';
 
+const noop = () => {};
+
 vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
 }));
@@ -100,7 +102,7 @@ describe('Remark42', () => {
       destroy: vi.fn(),
     };
 
-    let changeHandler: (event: { matches: boolean }) => void = () => {};
+    let changeHandler: (event: { matches: boolean }) => void = noop;
 
     vi.mocked(globalThis.matchMedia).mockImplementation((query: string) => ({
       addEventListener: vi.fn().mockImplementation((_, handler) => {
