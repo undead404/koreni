@@ -1,10 +1,15 @@
-import { expect, vi, describe, it, beforeEach } from 'vitest';
-import Table, { generateMetadata, generateStaticParams } from './page';
+import { notFound } from 'next/navigation';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import {
+  generateIndexationMetadata,
+  generateJsonLd,
+} from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
 import getTableData from '@/shared/get-table-data';
 import getTablesMetadata from '@/shared/get-tables-metadata';
-import { generateIndexationMetadata, generateJsonLd } from '@/app/helpers/generate-metadata';
-import { notFound } from 'next/navigation';
+
+import Table, { generateMetadata, generateStaticParams } from './page';
 import TableContent from './table-content';
 
 vi.mock('@/app/helpers/get-table-metadata');
@@ -33,7 +38,10 @@ describe('Table Page', () => {
     size: 100,
   };
 
-  const mockTableData = Array.from({ length: 50 }, (_, i) => ({ id: `${i}`, name: `Row ${i}` }));
+  const mockTableData = Array.from({ length: 50 }, (_, index) => ({
+    id: `${index}`,
+    name: `Row ${index}`,
+  }));
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -43,10 +51,12 @@ describe('Table Page', () => {
     it('renders TableContent with correct data for page 1', async () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
       vi.mocked(getTableData).mockResolvedValue(mockTableData as any);
-      vi.mocked(generateJsonLd).mockReturnValue({ '@context': 'https://schema.org' } as any);
+      vi.mocked(generateJsonLd).mockReturnValue({
+        '@context': 'https://schema.org',
+      } as any);
 
-      const params = Promise.resolve({ tableId: 'test-table', page: '1' });
-      await Table({ params });
+      const parameters = Promise.resolve({ tableId: 'test-table', page: '1' });
+      await Table({ params: parameters });
 
       expect(getTableMetadata).toHaveBeenCalledWith('test-table');
       expect(getTableData).toHaveBeenCalledWith(mockTableMetadata);
@@ -67,8 +77,8 @@ describe('Table Page', () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
       vi.mocked(getTableData).mockResolvedValue(mockTableData as any);
 
-      const params = Promise.resolve({ tableId: 'test-table', page: '2' });
-      await Table({ params });
+      const parameters = Promise.resolve({ tableId: 'test-table', page: '2' });
+      await Table({ params: parameters });
 
       expect(TableContent).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -84,8 +94,8 @@ describe('Table Page', () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
       vi.mocked(getTableData).mockResolvedValue([]);
 
-      const params = Promise.resolve({ tableId: 'test-table', page: '1' });
-      await Table({ params });
+      const parameters = Promise.resolve({ tableId: 'test-table', page: '1' });
+      await Table({ params: parameters });
 
       expect(notFound).toHaveBeenCalled();
     });
@@ -94,10 +104,12 @@ describe('Table Page', () => {
   describe('generateMetadata', () => {
     it('returns correct metadata including canonical URL', async () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
-      vi.mocked(generateIndexationMetadata).mockReturnValue({ title: 'Meta Title' } as any);
+      vi.mocked(generateIndexationMetadata).mockReturnValue({
+        title: 'Meta Title',
+      } as any);
 
-      const params = Promise.resolve({ tableId: 'test-table', page: '1' });
-      const metadata = await generateMetadata({ params });
+      const parameters = Promise.resolve({ tableId: 'test-table', page: '1' });
+      const metadata = await generateMetadata({ params: parameters });
 
       expect(generateIndexationMetadata).toHaveBeenCalledWith(mockTableMetadata, 1);
       expect(metadata).toEqual({
@@ -116,9 +128,9 @@ describe('Table Page', () => {
         { id: 'table-2', size: 10 },
       ] as any);
 
-      const params = await generateStaticParams();
+      const parameters = await generateStaticParams();
 
-      expect(params).toEqual([
+      expect(parameters).toEqual([
         { tableId: 'table-1', page: '1' },
         { tableId: 'table-1', page: '2' },
         { tableId: 'table-2', page: '1' },
