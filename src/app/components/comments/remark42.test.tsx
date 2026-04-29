@@ -32,9 +32,7 @@ describe('Remark42', () => {
     });
 
     // Clean up globals
-    // @ts-expect-error - testing purpose
     delete globalThis.REMARK42;
-    // @ts-expect-error - testing purpose
     delete globalThis.remark_config;
 
     // Clean up scripts
