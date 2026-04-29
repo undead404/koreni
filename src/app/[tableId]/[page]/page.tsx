@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import Head from 'next/head';
+import { type Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { object, string } from 'zod';
 
 import { PER_PAGE } from '@/app/constants';
@@ -24,55 +25,65 @@ const parametersSchema = object({
   tableId: nonEmptyString,
 });
 
-export async function generateMetadata({ params }: TablePageProperties) {
+export async function generateMetadata({
+  params,
+}: TablePageProperties): Promise<Metadata> {
   const { page, tableId } = parametersSchema.parse(await params);
   const item = await getTableMetadata(tableId);
-  return generateIndexationMetadata(item, page);
+
+  if (!item) {
+    return {};
+  }
+
+  const metadata = await generateIndexationMetadata(item, page);
+
+  return {
+    ...metadata,
+    alternates: {
+      canonical: `${environment.NEXT_PUBLIC_SITE}/${tableId}/${page}/`,
+    },
+  };
 }
 
 export default async function Table({ params }: TablePageProperties) {
-  const gotParameters = await params;
-  const { page, tableId } = parametersSchema.parse(gotParameters);
+  const { page, tableId } = parametersSchema.parse(await params);
   const tableMetadata = await getTableMetadata(tableId);
+
+  if (!tableMetadata) {
+    notFound();
+  }
+
   const tableData = await getTableData(tableMetadata);
+
+  if (tableData.length === 0) {
+    notFound();
+  }
+
   const tableDataToDisplay = tableData.slice(
     (page - 1) * PER_PAGE,
     page * PER_PAGE,
   );
-  if (tableData.length === 0) {
-    throw new Error('Table not found');
-  }
 
   const jsonLd = page === 1 ? generateJsonLd(tableMetadata) : null;
 
   return (
-    <>
-      <Head>
-        <link
-          rel="canonical"
-          href={`${environment.NEXT_PUBLIC_SITE}/${tableId}/${page}/`}
-          key="canonical"
-        />
-      </Head>
-      <TableContent
-        tableMetadata={tableMetadata}
-        tableData={tableDataToDisplay}
-        page={page}
-        tableId={tableId}
-        totalRecords={tableData.length}
-        jsonLd={jsonLd}
-      />
-    </>
+    <TableContent
+      tableMetadata={tableMetadata}
+      tableData={tableDataToDisplay}
+      page={page}
+      tableId={tableId}
+      totalRecords={tableData.length}
+      jsonLd={jsonLd}
+    />
   );
 }
 
 export async function generateStaticParams() {
   const tablesMetadata = await getTablesMetadata();
-  const result = tablesMetadata.flatMap((tableMetadata) =>
+  return tablesMetadata.flatMap((tableMetadata) =>
     _.times(Math.ceil(tableMetadata.size / PER_PAGE), (index) => ({
       page: `${index + 1}`,
       tableId: tableMetadata.id,
     })),
   );
-  return result;
 }
