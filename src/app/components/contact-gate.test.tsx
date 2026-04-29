@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import ContactGate from './contact-gate';
 
@@ -9,6 +9,8 @@ vi.mock('./contact', () => ({
 }));
 
 describe('ContactGate', () => {
+  afterEach(cleanup);
+
   it('renders the "Reveal" button by default', () => {
     render(<ContactGate contact="test@example.com" />);
 
