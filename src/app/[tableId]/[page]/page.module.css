@@ -1,27 +1,27 @@
 .article p {
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 @media screen and (width >= 512px) {
-  .article ul.archiveItems {
+  .article .archiveItems {
     column-count: 2;
     column-gap: var(--side-gap);
   }
 }
 
 @media screen and (width >= 720px) {
-  .article ul.archiveItems {
+  .article .archiveItems {
     column-count: 3;
   }
 }
 
 @media screen and (width >= 1024px) {
-  .article ul.archiveItems {
+  .article .archiveItems {
     column-count: 4;
   }
 }
 
-/* Using this media is for printing */
+/* Exclude these styles from printing to avoid table clipping and scrollbars */
 @media screen {
   .tableContainer {
     max-width: calc(100vw - var(--side-gap) * 2);
