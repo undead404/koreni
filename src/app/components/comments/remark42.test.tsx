@@ -94,6 +94,36 @@ describe('Remark42', () => {
     expect(mockDestroy).toHaveBeenCalled();
   });
 
+  it('re-initializes on pathname change', () => {
+    const mockCreateInstance = vi.fn();
+    const mockDestroy = vi.fn();
+    globalThis.REMARK42 = {
+      changeTheme: vi.fn(),
+      createInstance: mockCreateInstance,
+      destroy: mockDestroy,
+    };
+
+    const { rerender } = render(<Remark42 host={host} siteId={siteId} />);
+    expect(mockCreateInstance).toHaveBeenCalledTimes(1);
+
+    vi.mocked(usePathname).mockReturnValue('/new-path');
+    rerender(<Remark42 host={host} siteId={siteId} />);
+
+    expect(mockDestroy).toHaveBeenCalled();
+    expect(mockCreateInstance).toHaveBeenCalledTimes(2);
+    expect(mockCreateInstance.mock.calls[1][0].url).toContain('/new-path');
+  });
+
+  it('does not append multiple script tags on navigation', () => {
+    const { rerender } = render(<Remark42 host={host} siteId={siteId} />);
+    expect(document.head.querySelectorAll('script').length).toBe(1);
+
+    vi.mocked(usePathname).mockReturnValue('/new-path');
+    rerender(<Remark42 host={host} siteId={siteId} />);
+
+    expect(document.head.querySelectorAll('script').length).toBe(1);
+  });
+
   it('updates theme when prefers-color-scheme changes', () => {
     const changeTheme = vi.fn();
     globalThis.REMARK42 = {

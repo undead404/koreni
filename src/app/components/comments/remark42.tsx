@@ -63,11 +63,15 @@ export default function Remark42({
         ...config,
       });
     } else {
-      const script = document.createElement('script');
-      script.src = `${host}/web/embed.js`;
-      script.async = true;
-      script.defer = true;
-      document.head.append(script);
+      const scriptId = 'remark42-script';
+      if (!document.getElementById(scriptId)) {
+        const script = document.createElement('script');
+        script.id = scriptId;
+        script.src = `${host}/web/embed.js`;
+        script.async = true;
+        script.defer = true;
+        document.head.append(script);
+      }
     }
 
     return () => {
