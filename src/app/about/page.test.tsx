@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import AboutPage, { metadata } from './page';
 
@@ -8,6 +8,9 @@ vi.mock('../components/comments/comments', () => ({
 }));
 
 describe('AboutPage', () => {
+  afterEach(() => {
+    cleanup();
+  });
   it('should have correct metadata', () => {
     expect(metadata.title).toBe('Про проєкт');
     expect(metadata.description).toBe(
