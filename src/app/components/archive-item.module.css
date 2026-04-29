@@ -1,20 +1,19 @@
 .root {
   line-height: normal;
-  margin: 0 0 12px;
+  margin-block-end: 0.75rem;
 }
 
-.root .wrapper {
-  display: flex;
+.wrapper {
   align-items: center;
-  justify-content: space-between;
+  display: flex;
   gap: 1rem;
-  padding-right: 24px;
+  justify-content: space-between;
+  padding-inline-end: 1.5rem;
 }
 
 .link {
   background-color: transparent;
   display: inline-block;
   line-height: 1.5;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-inline: 0.5rem;
 }
