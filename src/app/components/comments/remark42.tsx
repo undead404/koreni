@@ -51,7 +51,7 @@ export default function Remark42({
       locale: 'ua',
       site_id: siteId,
       theme: getPreferredTheme(),
-      url: `${globalThis.location?.origin ?? ''}${pathname}`,
+      url: `${globalThis.location.origin}${pathname}`,
       components: ['embed'],
     };
 

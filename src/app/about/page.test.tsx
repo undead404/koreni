@@ -34,7 +34,10 @@ describe('AboutPage', () => {
       screen.getByRole('heading', { level: 2, name: /Подяки/i }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { level: 2, name: /Чому з'явилися Корені\?/i }),
+      screen.getByRole('heading', {
+        level: 2,
+        name: /Чому з'явилися Корені\?/i,
+      }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { level: 2, name: /Як можна допомогти\?/i }),
