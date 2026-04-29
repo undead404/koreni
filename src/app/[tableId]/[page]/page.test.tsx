@@ -56,11 +56,12 @@ describe('Table Page', () => {
       } as any);
 
       const parameters = Promise.resolve({ tableId: 'test-table', page: '1' });
-      await Table({ params: parameters });
+      const result = (await Table({ params: parameters })) as any;
 
       expect(getTableMetadata).toHaveBeenCalledWith('test-table');
       expect(getTableData).toHaveBeenCalledWith(mockTableMetadata);
-      expect(TableContent).toHaveBeenCalledWith(
+      expect(result.type).toBe(TableContent);
+      expect(result.props).toEqual(
         expect.objectContaining({
           tableMetadata: mockTableMetadata,
           tableData: mockTableData.slice(0, 20),
@@ -69,7 +70,6 @@ describe('Table Page', () => {
           totalRecords: 50,
           jsonLd: { '@context': 'https://schema.org' },
         }),
-        expect.anything()
       );
     });
 
@@ -78,15 +78,15 @@ describe('Table Page', () => {
       vi.mocked(getTableData).mockResolvedValue(mockTableData as any);
 
       const parameters = Promise.resolve({ tableId: 'test-table', page: '2' });
-      await Table({ params: parameters });
+      const result = (await Table({ params: parameters })) as any;
 
-      expect(TableContent).toHaveBeenCalledWith(
+      expect(result.type).toBe(TableContent);
+      expect(result.props).toEqual(
         expect.objectContaining({
           page: 2,
           jsonLd: null,
           tableData: mockTableData.slice(20, 40),
         }),
-        expect.anything()
       );
     });
 
