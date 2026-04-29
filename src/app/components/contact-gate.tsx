@@ -23,7 +23,7 @@ export function ContactGate({ contact }: ContactProperties) {
   }
 
   return (
-    <button type="button" onClick={() => setIsRevealed(true)}>
+    <button type="button" onClick={() => { setIsRevealed(true); }}>
       Показати
     </button>
   );
