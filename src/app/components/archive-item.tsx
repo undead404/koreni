@@ -26,9 +26,9 @@ export default function ArchiveItem({ archiveItem }: ArchiveItemProperties) {
           href={`https://inspector.duckarchive.com/search?q=${archiveItem}`}
           target="_blank"
           title={title}
-          aria-label={title}
           rel="noopener noreferrer"
         >
+          <span className={styles.srOnly}>{title}</span>
           <span aria-hidden="true">🦆</span>
         </a>
       </span>
