@@ -15,6 +15,8 @@ export default function ArchiveItem({ archiveItem }: ArchiveItemProperties) {
     return <li title="Ця справа походить з невідомого архіву">{archiveItem}</li>;
   }
 
+  const title = `Шукати справу ${archiveItem} в Качиному інспекторі`;
+
   return (
     <li className={styles.root}>
       <span className={styles.wrapper}>
@@ -23,12 +25,11 @@ export default function ArchiveItem({ archiveItem }: ArchiveItemProperties) {
           className={styles.link}
           href={`https://inspector.duckarchive.com/search?q=${archiveItem}`}
           target="_blank"
-          title={`Шукати справу ${archiveItem} в Качиному інспекторі`}
+          title={title}
+          aria-label={title}
           rel="noopener noreferrer"
         >
-          <span role="img" aria-label="Качиний інспектор">
-            🦆
-          </span>
+          <span aria-hidden="true">🦆</span>
         </a>
       </span>
     </li>
