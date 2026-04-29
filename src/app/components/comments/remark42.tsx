@@ -64,7 +64,7 @@ export default function Remark42({
       });
     } else {
       const scriptId = 'remark42-script';
-      if (!document.getElementById(scriptId)) {
+      if (!document.querySelector(`#${scriptId}`)) {
         const script = document.createElement('script');
         script.id = scriptId;
         script.src = `${host}/web/embed.js`;
