@@ -69,7 +69,7 @@ describe('AboutPage', () => {
     );
     expect(
       screen.getByRole('link', { name: /Усім волонтерам Коренів/i }),
-    ).toHaveAttribute('href', '/volunteers/');
+    ).toHaveAttribute('href', '/volunteers');
     expect(
       screen.getByRole('link', { name: /Додати власну таблицю/i }),
     ).toHaveAttribute('href', '/contribute');
