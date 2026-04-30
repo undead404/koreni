@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-Р6129-3-270
+authorName: Сергій Фазульянов
+authorEmail: fazulianov@gmail.com
+date: 2026-04-30
+id: DAViO-R6129-3-270
+location:
+  - 48.8120874
+  - 29.3893874
+size: 260
+sources:
+  - https://docs.google.com/spreadsheets/d/13pPJIriQ94OugfxdyC53DtvgtmH6K0sGonhEtzOOSAQ/edit?usp=sharing
+tableFilePath: public/csv/DAViO-R6129-3-270.csv
+tableLocale: uk
+title: Народження в Гайсині, 1933 рік
+yearsRange:
+  - 1933
