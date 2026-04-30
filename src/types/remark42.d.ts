@@ -8,8 +8,8 @@ declare global {
   }
 
   // This covers 'globalThis.remark_config'
-  var remark_config: RemarkConfig;
-  var REMARK42: Remark42Instance;
+  var remark_config: RemarkConfig | undefined;
+  var REMARK42: Remark42Instance | undefined;
 }
 
 interface RemarkConfig {

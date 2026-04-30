@@ -11,11 +11,16 @@ vi.mock('@/app/environment', () => ({
     NEXT_PUBLIC_SITE: 'https://koreni.test',
   },
 }));
+vi.mock('next/link', () => ({
+  default: ({ children, href }: { children: ReactNode; href: string }) => (
+    <a href={href}>{children}</a>
+  ),
+}));
 vi.mock('@/app/components/archive-item', () => ({
-  default: () => <div data-testid="archive-item">ArchiveItem</div>,
+  default: () => <div data-testid="archive-item" />,
 }));
 vi.mock('@/app/services/map-points', () => ({
-  default: () => [],
+  default: [],
 }));
 vi.mock('@/app/components/details', () => ({
   default: ({
@@ -32,19 +37,19 @@ vi.mock('@/app/components/details', () => ({
   ),
 }));
 vi.mock('@/app/components/index-table', () => ({
-  default: () => <div data-testid="index-table">IndexTable</div>,
+  default: () => <div data-testid="index-table" />,
 }));
 vi.mock('@/app/components/map-wrapper', () => ({
-  default: () => <div data-testid="map-wrapper">MapWrapper</div>,
+  default: () => <div data-testid="map-wrapper" />,
 }));
 vi.mock('@/app/components/pagination', () => ({
-  default: () => <div data-testid="pagination">Pagination</div>,
+  default: () => <div data-testid="pagination" />,
 }));
 vi.mock('@/app/components/source-link', () => ({
   default: ({ href }: { href: string }) => <a href={href}>{href}</a>,
 }));
-vi.mock('@/app/helpers/remove-emails', () => ({
-  default: (text: string) => text,
+vi.mock('@/app/components/comments/comments', () => ({
+  default: () => <div data-testid="comments" />,
 }));
 vi.mock('@/app/helpers/slugify-ukrainian', () => ({
   default: (text: string) => text,
@@ -87,6 +92,7 @@ describe('TableContent', () => {
     expect(screen.getByTestId('map-wrapper')).toBeInTheDocument();
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
     expect(screen.getByTestId('index-table')).toBeInTheDocument();
+    expect(screen.getByTestId('comments')).toBeInTheDocument();
   });
 
   it('renders jsonLd script when provided', () => {
