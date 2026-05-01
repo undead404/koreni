@@ -1,0 +1,34 @@
+archiveItems:
+  - ДАКО-384-5-252
+  - ДАКО-384-5-253
+  - ДАКО-384-5-254
+  - ДАКО-384-5-255
+  - ДАКО-384-5-256
+  - ДАКО-384-5-257
+  - ДАКО-384-5-258
+  - ДАКО-384-5-259
+  - ДАКО-384-5-260
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-04-30
+id: DAKO-384-5-Tembershchyna-Uzyn
+location:
+  - 49.8284745
+  - 30.4197205
+size: 584
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/252
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/253
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/254
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/255
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/256
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/257
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/258
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/259
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/260
+  - https://drive.google.com/drive/u/0/folders/1w4iQ-2zUEZpYggoKtvVBcTRtBN0cVNsx
+tableFilePath: public/csv/tembershchyna-uzyn-pershyi-vserosiiskyi-perepys-1897-roku.csv
+tableLocale: uk
+title: Темберщина (Узин) - Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
