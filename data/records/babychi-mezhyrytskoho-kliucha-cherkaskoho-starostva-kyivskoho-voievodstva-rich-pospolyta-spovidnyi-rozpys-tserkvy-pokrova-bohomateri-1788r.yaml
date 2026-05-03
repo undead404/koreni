@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАК-127-1017-37
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-05-03
+id: babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r
+location:
+  - 49.63623
+  - 31.393431
+size: 294
+sources:
+  - https://docs.google.com/spreadsheets/d/1t84_Jy4Fr9ti_VUs_-xjMzfD-IghB_Vqwc7Zce05U_M/edit?usp=sharing
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-CQ8F-578P
+tableFilePath: public/csv/babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
+tableLocale: uk
+title: Бабичі Межирицького ключа Черкаського староства Київського воєводства,
+  Річ Посполита  - сповідний  розпис церкви Покрова Богоматері 1788р
+yearsRange:
+  - 1788
