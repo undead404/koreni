@@ -3,7 +3,7 @@ archiveItems:
 authorName: Сергій Щербина
 authorEmail: sergey41053@gmail.com
 date: 2026-05-03
-id: babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r
+id: TsDIAK-127-1017-37-Babychi
 location:
   - 49.63623
   - 31.393431
@@ -13,7 +13,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-CQ8F-578P
 tableFilePath: public/csv/babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
 tableLocale: uk
-title: Бабичі Межирицького ключа Черкаського староства Київського воєводства,
-  Річ Посполита  - сповідний  розпис церкви Покрова Богоматері 1788р
+title: Бабичі (Канівські) - сповідний розпис церкви Покрова Богоматері, 1788
 yearsRange:
   - 1788
