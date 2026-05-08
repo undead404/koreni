@@ -11,6 +11,6 @@ size: 64
 sources: []
 tableFilePath: public/csv/troianiv-1892-mk-shliub-dazho-178-3-262-kostel.csv
 tableLocale: uk
-title: Троянів 1892 МК (шлюб), ДАЖО 178-3-262 (костел)
+title: Троянів 1892 шлюб, костел
 yearsRange:
   - 1892

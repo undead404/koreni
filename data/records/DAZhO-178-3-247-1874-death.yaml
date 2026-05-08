@@ -11,6 +11,6 @@ size: 77
 sources: []
 tableFilePath: public/csv/troianiv-1874-mk-smert-dazho-178-3-247-kostel.csv
 tableLocale: uk
-title: Троянів 1874 МК (смерть), ДАЖО 178-3-247 (костел)
+title: Троянів 1874 смерть, костел
 yearsRange:
   - 1874
