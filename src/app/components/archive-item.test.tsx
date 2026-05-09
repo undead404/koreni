@@ -8,7 +8,7 @@ vi.mock('@/shared/ukrainian-archives', () => ({
 }));
 
 describe('ArchiveItem', () => {
-  it('should render an item with a title when the archive item is not blacklisted', () => {
+  it('should render an item with a title when the archive item is not a known archive', () => {
     render(<ArchiveItem archiveItem="unknownArchiveItem" />);
 
     const listItem = screen.getByText('unknownArchiveItem');
@@ -19,7 +19,7 @@ describe('ArchiveItem', () => {
     );
   });
 
-  it('should render an item with a search link when the archive item is blacklisted', () => {
+  it('should render an item with a search link when the archive item is a known archive', () => {
     render(<ArchiveItem archiveItem="ua1-item" />);
 
     const listItem = screen.getByText('ua1-item');
@@ -34,7 +34,9 @@ describe('ArchiveItem', () => {
       'https://inspector.duckarchive.com/search?q=ua1-item',
     );
     expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
 
-    expect(link.textContent).toBe('🦆');
+    expect(link).toHaveTextContent('Шукати справу ua1-item в Качиному інспекторі');
+    expect(link).toHaveTextContent('🦆');
   });
 });

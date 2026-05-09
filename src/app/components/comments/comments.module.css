@@ -1,12 +1,15 @@
 .container {
-  margin-top: 2.5rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-block-start: 2.5rem;
+  padding-block-start: 2.5rem;
+  border-block-start: 1px solid #e5e7eb;
 }
 
 .title {
+  margin: 0;
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.333;
   font-weight: 700;
-  margin-bottom: 1.5rem;
 }

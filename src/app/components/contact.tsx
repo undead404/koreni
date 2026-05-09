@@ -7,20 +7,30 @@ export interface ContactProperties {
  * @example <Contact contact="vimelnyk@gmail.com, semelnyk@gmail.com" />
  */
 export const Contact = ({ contact }: ContactProperties) => {
-  if (contact.includes(',')) {
-    return (
-      <>
-        {contact.split(',').map((email, index) => (
-          <span key={email}>
-            {index > 0 && ', '}
-            <a href={`mailto:${email.trim()}`}>{email.trim()}</a>
-          </span>
-        ))}
-      </>
-    );
+  const emails = contact
+    .split(',')
+    .map((email) => email.trim())
+    .filter(Boolean);
+
+  if (emails.length === 0) {
+    return null;
   }
 
-  return <a href={`mailto:${contact}`}>{contact}</a>;
+  if (emails.length === 1) {
+    const [email] = emails;
+    return <a href={`mailto:${email}`}>{email}</a>;
+  }
+
+  return (
+    <>
+      {emails.map((email, index) => (
+        <span key={email}>
+          {index > 0 && ', '}
+          <a href={`mailto:${email}`}>{email}</a>
+        </span>
+      ))}
+    </>
+  );
 };
 
 export default Contact;

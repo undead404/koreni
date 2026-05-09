@@ -9,9 +9,11 @@ export default function Comments() {
     return null;
   }
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Обговорення та запитання</h2>
+    <section className={styles.container} aria-labelledby="comments-title">
+      <h2 id="comments-title" className={styles.title}>
+        Обговорення та запитання
+      </h2>
       <Remark42 host={environment.NEXT_PUBLIC_REMARK42_HOST} siteId="koreni" />
-    </div>
+    </section>
   );
 }

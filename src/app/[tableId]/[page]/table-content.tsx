@@ -31,21 +31,22 @@ export default function TableContent({
   totalRecords,
   jsonLd,
 }: TableContentProperties) {
-  const sourcesLinks = tableMetadata.sources.map((source, index) => (
-    <span key={source}>
-      {index > 0 && ', '}
-      <SourceLink href={source} />
-    </span>
-  ));
-
-  const authorName = tableMetadata.authorName;
+  const {
+    title,
+    authorName,
+    sources,
+    yearsRange,
+    archiveItems,
+    location,
+    tableLocale,
+  } = tableMetadata;
 
   const totalPages = Math.ceil(totalRecords / PER_PAGE);
 
   return (
     <>
       <article className={styles.article}>
-        <h1>{tableMetadata.title}</h1>
+        <h1>{title}</h1>
         <section>
           <h2>Метадані</h2>
           <p>
@@ -54,27 +55,29 @@ export default function TableContent({
               {authorName}
             </Link>
           </p>
-          <p>Таблиці: {sourcesLinks}</p>
-          <p>Охоплені роки: {tableMetadata.yearsRange.join('-')}</p>
-          {
-            <Details
-              open={tableMetadata.archiveItems.length < 4}
-              summary={<h3>Використані архівні справи</h3>}
-              sectionName="archive_items"
-            >
-              <ul className={styles.archiveItems}>
-                {tableMetadata.archiveItems.map((archiveItem) => (
-                  <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
-                ))}
-              </ul>
-            </Details>
-          }
+          <p>
+            Таблиці:{' '}
+            {sources.map((source, index) => (
+              <span key={source}>
+                {index > 0 && ', '}
+                <SourceLink href={source} />
+              </span>
+            ))}
+          </p>
+          <p>Охоплені роки: {yearsRange.join('-')}</p>
+          <Details
+            open={archiveItems.length < 4}
+            summary={<h3>Використані архівні справи</h3>}
+            sectionName="archive_items"
+          >
+            <ul className={styles.archiveItems}>
+              {archiveItems.map((archiveItem) => (
+                <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
+              ))}
+            </ul>
+          </Details>
           <Details summary={<h3>На карті</h3>} sectionName="map">
-            <MapWrapper
-              center={tableMetadata.location}
-              points={combinedPoints}
-              zoom={8}
-            />
+            <MapWrapper center={location} points={combinedPoints} zoom={8} />
           </Details>
         </section>
         <section>
@@ -91,7 +94,7 @@ export default function TableContent({
           >
             <IndexTable
               data={tableData}
-              locale={tableMetadata.tableLocale}
+              locale={tableLocale}
               page={page}
               tableId={tableId}
             />

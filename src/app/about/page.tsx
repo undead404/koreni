@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -6,9 +5,14 @@ import Comments from '../components/comments/comments';
 
 import styles from './page.module.css';
 
+const TITLE = 'Про проєкт';
+const DESCRIPTION =
+  'Про проєкт "Корені", його автора та мотивацію для його появи.';
+const CANONICAL_PATH = '/about/';
+
 export const metadata: Metadata = {
   alternates: {
-    canonical: `/about/`,
+    canonical: CANONICAL_PATH,
   },
   authors: [
     {
@@ -16,19 +20,17 @@ export const metadata: Metadata = {
       url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
     },
   ],
-  description: 'Про проєкт "Корені", його автора та мотивацію для його появи.',
+  description: DESCRIPTION,
   openGraph: {
-    description:
-      'Про проєкт "Корені", його автора та мотивацію для його появи.',
-    title: 'Про проєкт',
-    url: `/about/`,
+    description: DESCRIPTION,
+    title: TITLE,
+    url: CANONICAL_PATH,
   },
-  title: 'Про проєкт',
+  title: TITLE,
   twitter: {
-    description:
-      'Про проєкт "Корені", його автора та мотивацію для його появи.',
-    images: [`/icon.png`],
-    title: 'Про проєкт',
+    description: DESCRIPTION,
+    images: ['/icon.png'],
+    title: TITLE,
   },
 };
 
@@ -49,7 +51,7 @@ export default function AboutPage() {
           <a
             href="https://www.linkedin.com/in/vitalii-perehonchuk-10570693/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             ось мій профіль на LinkedIn
           </a>
@@ -61,13 +63,21 @@ export default function AboutPage() {
         </p>
         <ul>
           <li>
-            <a href="https://webdoky.org" target="_blank">
+            <a
+              href="https://webdoky.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               WebDoky
             </a>{' '}
             – український переклад статей MDN
           </li>
           <li>
-            <a href="https://ymh8.pages.dev" target="_blank">
+            <a
+              href="https://ymh8.pages.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               You Must Hear
             </a>{' '}
             – списки найкращої світової музики всіх часів, за абсолютно всіма
@@ -75,12 +85,20 @@ export default function AboutPage() {
           </li>
 
           <li>
-            <a href="https://pisnia-tumaniv.pages.dev" target="_blank">
+            <a
+              href="https://pisnia-tumaniv.pages.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Пісня туманів
             </a>{' '}
             – база знань живограю &quot;Пісня туманів&quot; настільно-рольової
             гри &quot;Кавалерія&quot; від{' '}
-            <a href="https://m87games.com/" target="_blank">
+            <a
+              href="https://m87games.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               видавництва M87* Games
             </a>
             , у якому я беру участь як гравець.
@@ -91,7 +109,7 @@ export default function AboutPage() {
         <p>Уклінно дякую наступним особам і спільнотам:</p>
         <ul>
           <li>
-            <Link href="/volunteers/">Усім волонтерам Коренів</Link> – за
+            <Link href="/volunteers">Усім волонтерам Коренів</Link> – за
             результати довгих вечорів індексації; а особлива подяка – Володимиру
             Цибульському.
           </li>
@@ -107,7 +125,7 @@ export default function AboutPage() {
             <a
               href="https://www.facebook.com/groups/425347154227812"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               UAGenealogy на Facebook
             </a>{' '}
@@ -115,7 +133,7 @@ export default function AboutPage() {
             <a
               href="https://ukrgenealogy.com.ua/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               УГФ – Українському Генеалогічному Форуму
             </a>{' '}
@@ -162,7 +180,7 @@ export default function AboutPage() {
           <a
             href="https://www.facebook.com/groups/1828267990648440"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             Загуляк на Facebook
           </a>
@@ -178,7 +196,7 @@ export default function AboutPage() {
         <h2>Як можна допомогти?</h2>
         <p className={styles.accentWrapper}>
           <Link className={styles.accent} href="/contribute">
-            Додати власну таблицю{' '}
+            Додати власну таблицю
           </Link>
         </p>
         <p>
@@ -197,7 +215,7 @@ export default function AboutPage() {
           <a
             href="https://github.com/undead404/koreni"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             Корені в Github
           </a>

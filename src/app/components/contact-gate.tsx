@@ -1,22 +1,32 @@
 'use client';
-import { type FC, lazy, Suspense, useState } from 'react';
+
+import { lazy, Suspense, useState } from 'react';
 
 import type { ContactProperties } from './contact';
 
 const Contact = lazy(() => import('./contact'));
 
-// Make user click a button to show email address via lazy loading
-export const ContactGate: FC<ContactProperties> = (properties) => {
-  const [showingEmail, setShowingEmail] = useState(false);
+/**
+ * Renders a gate (button) that reveals contact details when clicked.
+ * Uses lazy loading to keep contact information out of the initial bundle/DOM
+ * to mitigate simple scraping.
+ */
+export function ContactGate({ contact }: ContactProperties) {
+  const [isRevealed, setIsRevealed] = useState(false);
 
-  const email = showingEmail ? (
-    <Contact contact={properties.contact} />
-  ) : (
-    <button type="button" onClick={() => { setShowingEmail(true); }}>
+  if (isRevealed) {
+    return (
+      <Suspense fallback={<span>Зачекайте...</span>}>
+        <Contact contact={contact} />
+      </Suspense>
+    );
+  }
+
+  return (
+    <button type="button" onClick={() => { setIsRevealed(true); }}>
       Показати
     </button>
   );
-  return <Suspense fallback={<span>Зачекайте...</span>}>{email}</Suspense>;
-};
+}
 
 export default ContactGate;
