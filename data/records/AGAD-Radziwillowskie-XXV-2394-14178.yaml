@@ -1,11 +1,10 @@
 archiveItems:
   - (Archiwum Główne Akt Dawnych w Warszawie, Archiwum Radziwiłłówskie, dział
-    XXV, sygn.2394)
-  - мікрофільм 14178
+    XXV, sygn.2394), мікрофільм 14178
 authorName: Сергій Щербина
 authorEmail: sergey41053@gmail.com
 date: 2026-05-11
-id: sbabychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-inventar-zhyteliv-1733rlytsa
+id: AGAD-Radziwillowskie-XXV-2394-14178
 location:
   - 49.63623
   - 31.393431
@@ -14,7 +13,6 @@ sources:
   - https://docs.google.com/spreadsheets/d/1ySPGkBrdQdcmg7tw4PZcEsQHbuJNRA19QKDJx7yqrog/edit?gid=0#gid=0
 tableFilePath: public/csv/sbabychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-inventar-zhyteliv-1733rlytsa.csv
 tableLocale: uk
-title: с.Бабичі Межирицького ключа Черкаського староства Київського воєводства,
-  Річ Посполита - інвентар жителів 1733р.лица
+title: Бабичі (Канівські) - інвентар, 1733
 yearsRange:
   - 1733
