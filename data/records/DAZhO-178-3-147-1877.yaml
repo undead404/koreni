@@ -11,6 +11,6 @@ size: 110
 sources: []
 tableFilePath: public/csv/troianiv-1877-mk-narodzhennia-dazho-178-3-147-kostel.csv
 tableLocale: uk
-title: Троянів 1877 народження, костел (костел)
+title: Троянів 1877 народження, костел
 yearsRange:
   - 1877
