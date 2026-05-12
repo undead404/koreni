@@ -11,6 +11,6 @@ size: 158
 sources: []
 tableFilePath: public/csv/troianiv-1892-mk-narodzhennia-dazho-178-3-224-kostel.csv
 tableLocale: ru
-title: Троянів 1892 МК (народження), ДАЖО 178-3-224 (костел)
+title: Троянів 1892 народження, костел
 yearsRange:
   - 1892
