@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАХеО-141-1-1
+  - ДАХеО-141-1-2
+  - ДАХеО-141-1-3
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-11
+id: DAKheO-141-1-Oleshky-1863-1865-marriage
+location:
+  - 46.6260908
+  - 32.7220187
+size: 912
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-141-vvedenskyj-sobor-m-oleshky/
+tableFilePath: public/csv/oleshky-dniprovskyi-pov-tavriiska-hub-shliuy-1863-65.csv
+tableLocale: uk
+title: Олешки, Дніпровський пов. Таврійська губ. | шлюби (1863-65)
+yearsRange:
+  - 1863
+  - 1865
