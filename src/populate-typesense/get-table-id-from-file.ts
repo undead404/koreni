@@ -3,7 +3,7 @@ import path from 'node:path';
 const RECORDS_FOLDER = path.join('data', 'records', '');
 
 export default function getTableIdFromFile(filePath: string): string | null {
-  if (!filePath.endsWith('.csv')) {
+  if (!filePath.endsWith('.yaml')) {
     return null;
   }
   if (!filePath.includes(RECORDS_FOLDER)) {
@@ -13,9 +13,9 @@ export default function getTableIdFromFile(filePath: string): string | null {
   if (!cleanFileName) {
     throw new Error('Filename not found');
   }
-  const filenameWithoutExtension = cleanFileName.replace('.csv', '');
+  const filenameWithoutExtension = cleanFileName.replace('.yaml', '');
   if (filenameWithoutExtension === cleanFileName) {
-    throw new Error('File is not CSV');
+    throw new Error('The file is not YAML');
   }
   return filenameWithoutExtension;
 }
