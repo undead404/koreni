@@ -1,0 +1,17 @@
+archiveItems:
+  - "AGAD AR Dz. XXV 1/354/0/25/2531, мікрофільм 14367, знімок 88"
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-05-12
+id: AGAD-AR-XXV-1-354-0-25-2531-14367-88
+location:
+  - 49.63623
+  - 31.393431
+size: 30
+sources:
+  - https://docs.google.com/spreadsheets/d/1hAaTavJLY8PzzLBBJSqE42fxaY66TjSucrJqPXbKCOE/edit?hl=ru&gid=0#gid=0
+tableFilePath: public/csv/babychi-kanivski-inventar-1746-lyst1.csv
+tableLocale: uk
+title: Бабичі (Канівські) - інвентар, 1746
+yearsRange:
+  - 1746
