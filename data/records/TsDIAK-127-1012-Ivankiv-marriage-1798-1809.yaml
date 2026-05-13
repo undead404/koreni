@@ -1,0 +1,38 @@
+archiveItems:
+  - ЦДІАК-127-1012-1123а
+  - ЦДІАК-127-1012-1152
+  - ЦДІАК-127-1012-1175
+  - ЦДІАК-127-1012-1191
+  - ЦДІАК-127-1012-1207
+  - ЦДІАК-127-1012-1221а
+  - ЦДІАК-127-1012-1242
+  - ЦДІАК-127-1012-1272
+  - ЦДІАК-127-1012-1286
+  - ЦДІАК-127-1012-1299
+  - ЦДІАК-127-1012-1313а
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-13
+id: TsDIAK-127-1012-Ivankiv-marriage-1798-1809
+location:
+  - 50.93301
+  - 29.9042867
+size: 588
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-9978-L?view=explore&action=view&cc=1503045&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-PW4P-J?view=explore&groupId=M9L4-3ZL&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-L91H-Y?view=index&groupId=M9LW-R3P&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-9SQV-6?view=index&groupId=M9LH-JZR&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-R49D-G?view=index&groupId=M9LH-4T5&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-RQ3P-7?view=index&groupId=M9LF-93V&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9Y-F7DV-S?view=index&groupId=M9MK-PDZ&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-892K-L?view=explore&groupId=TH-1961-29861-43863-12&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-DY6C?view=explore&groupId=TH-1961-29862-23248-88&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-D9L8-9?view=index&lang=uk&groupId=
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-L937-DSHW-3?view=explore&groupId=TH-1961-29862-60594-9&lang=uk
+tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1798-1809.csv
+tableLocale: uk
+title: Іванків, Радомишльський пов. Київська губ.  |  шлюби (1798-1809)
+yearsRange:
+  - 1798
+  - 1809
