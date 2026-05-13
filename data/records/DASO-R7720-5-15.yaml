@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-15
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-13
+id: DASO-R7720-5-15
+location:
+  - 51.287365
+  - 33.278343
+size: 128
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-15.csv
+tableLocale: uk
+title: "[ШІ] Кузьки – народження, 1921-1922"
+yearsRange:
+  - 1921
+  - 1922
