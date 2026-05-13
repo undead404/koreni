@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАСО-Р7720-5-24
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-13
+id: DASO-R7720-5-24
+location:
+  - 51.252941
+  - 33.124119
+size: 99
+sources: []
+tableFilePath: public/csv/shi-popivka-konotopska-narodzhennia-1921-ch-2.csv
+tableLocale: uk
+title: "[ШІ] Попівка (Конотопська) – народження, 1921, ч. 2"
+yearsRange:
+  - 1921
