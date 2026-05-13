@@ -30,7 +30,7 @@ describe('deleteFromTypesense', () => {
     expect(
       typesense.collections('unstructured_uk').documents().delete,
     ).toHaveBeenCalledWith({
-      filter_by: 'table_id:1897-PZZ',
+      filter_by: 'tableId:1897-PZZ',
     });
   });
 
@@ -41,7 +41,7 @@ describe('deleteFromTypesense', () => {
     expect(
       typesense.collections('unstructured_pl').documents().delete,
     ).toHaveBeenCalledWith({
-      filter_by: 'table_id:1919-PL',
+      filter_by: 'tableId:1919-PL',
     });
   });
 });

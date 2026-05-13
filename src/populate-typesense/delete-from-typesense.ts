@@ -8,7 +8,7 @@ export default async function deleteFromTypesense(tableId: string) {
       .collections(collectionName)
       .documents()
       .delete({
-        filter_by: 'table_id:' + tableId,
+        filter_by: 'tableId:' + tableId,
       });
   }
 }
