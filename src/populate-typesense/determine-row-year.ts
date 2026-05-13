@@ -52,7 +52,13 @@ export default function determineRowYear(
       // console.log(dateInRow);
       const dateInRowAsString = toString(dateInRow);
       if (dateInRowAsString.includes('.')) {
-        result = toNumber(last(dateInRowAsString.split('.')));
+        const firstPart = first(
+          dateInRowAsString.split('.').filter((item) => item !== 'хх'),
+        );
+        result =
+          firstPart && firstPart.length === 4
+            ? toNumber(firstPart)
+            : toNumber(last(dateInRowAsString.split('.')));
       } else if (dateInRowAsString.includes('/')) {
         result = toNumber(last(dateInRowAsString.split('/')));
       } else if (dateInRowAsString.includes('-')) {
