@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-7
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-13
+id: DASO-R7720-5-7
+location:
+  - 51.2100508
+  - 33.535911
+size: 168
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-7.csv
+tableLocale: uk
+title: "[ШІ] Грузьке (Дубов'язівське) – народження, 1921, ч. 1"
+yearsRange:
+  - 1921
