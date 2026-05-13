@@ -28,8 +28,10 @@ export default function determineRowYear(
     const dateInRow =
       row['Дата події'] ||
       row['Дата события'] ||
+      row['Дата зап.'] ||
       row['Дата'] ||
       row['Дата народження'] ||
+      row['Дата нар.'] ||
       row['Дата рождения'] ||
       row['Дата одруження'] ||
       row['Дата шлюбу'] ||
