@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-31
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-14
+id: DASO-R7720-5-31
+location:
+  - 51.006771
+  - 33.395351
+size: 288
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-31.csv
+tableLocale: uk
+title: "[ШІ] Юрівка (Попівська) – народження, 1921-1924"
+yearsRange:
+  - 1921
+  - 1924
