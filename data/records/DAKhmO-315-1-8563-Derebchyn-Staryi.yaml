@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-05-14
+id: DAKhmO-315-1-8563-Derebchyn-Staryi
+location:
+  - 48.759907
+  - 28.336208
+size: 965
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8563-Derebchyn-Staryi.csv
+tableLocale: ru
+title: Старий Деребчин (Деребчин Жмеринський) і Мала Деребчинка 1861 – сповідний
+  розпис (повний), Соборо-Михайлівська церква, ДАХмО 315-1-8563
+yearsRange:
+  - 1861
