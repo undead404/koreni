@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-65
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-14
+id: DASO-R7720-5-65
+location:
+  - 51.15818
+  - 33.363071
+size: 340
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-65.csv
+tableLocale: uk
+title: "[ШІ] Сім'янівка – народження, 1922-1925"
+yearsRange:
+  - 1922
+  - 1925
