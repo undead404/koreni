@@ -15,6 +15,7 @@ const REPLACEMENTS = Object.entries({
   І: 'И',
   ѵ: 'и',
   Ѵ: 'И',
+  ξ: 'кс',
 });
 
 // 1. Find the changed YAML files in data/records, against main branch
