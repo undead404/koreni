@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-66
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-14
+id: DASO-R7720-5-66
+location:
+  - 51.222721
+  - 33.376808
+size: 89
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-66.csv
+tableLocale: uk
+title: "[ШІ] Совинка – народження, 1922-1925"
+yearsRange:
+  - 1922
+  - 1925
