@@ -1,0 +1,19 @@
+archiveItems:
+  - ЦДІАЛ-201-4а-146
+  - ЦДІАЛ-201-4а-147
+authorName: Олег Батько
+authorEmail: findancestorsinukraine@gmail.com
+date: 2026-05-14
+id: bahnuvate-1785-1797
+location:
+  - 49.061199
+  - 23.15052
+size: 83
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:33S7-9R76-NMD?wc=QVHX-32L%3A180600901%2C180866401%2C180866402%26cc%3D1910265&cc=1910265&lang=it&i=0
+tableFilePath: public/csv/bahnuvate-1785-1797.csv
+tableLocale: uk
+title: Багнувате 1785-1797
+yearsRange:
+  - 1785
+  - 1797
