@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-5-261
+  - ДАКО-384-5-262
+  - ДАКО-384-5-263
+  - ДАКО-384-5-264
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-05-14
+id: DAKO-384-5-Reimentarshchyna
+location:
+  - 49.8587
+  - 30.362089
+size: 312
+sources:
+  - https://drive.google.com/drive/u/0/folders/1w4iQ-2zUEZpYggoKtvVBcTRtBN0cVNsx
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/261
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/262
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/263
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/264
+tableFilePath: public/csv/reimentarshchyna-mala-antonivka-pershyi-vserosiiskyi-perepys-1897-roku.csv
+tableLocale: uk
+title: Рейментарщина (Мала Антонівка) - Перший Всеросійський перепис 1897 року
+yearsRange:
+  - 1897
