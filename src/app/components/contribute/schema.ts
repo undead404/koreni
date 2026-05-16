@@ -96,7 +96,7 @@ export const contributeFormSchema = z.object({
       .max(2, {
         message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
       }),
-  ),
+  ) as z.ZodType<number[], z.ZodTypeDef, any>,
 });
 
 export const authorIdentitySchema = z.object({
