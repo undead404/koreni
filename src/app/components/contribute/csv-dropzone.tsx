@@ -7,6 +7,7 @@ import {
   type DragEvent,
   type KeyboardEvent,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -145,9 +146,14 @@ export default function CsvDropzone() {
       event.preventDefault();
       event.stopPropagation();
       if (state === 'uploading') return;
-      setValue('table', event.dataTransfer.files);
+      
+      const files = event.dataTransfer.files;
+      setValue('table', files);
+      if (inputReference.current) {
+        inputReference.current.files = files;
+      }
 
-      const file = event.dataTransfer.files[0];
+      const file = files[0];
       posthog.capture('csv_file_dropped', {
         file_name: file.name,
       });
@@ -162,6 +168,9 @@ export default function CsvDropzone() {
     setParsedFile(null);
     setParseError(null);
     setValue('table', null);
+    if (inputReference.current) {
+      inputReference.current.value = '';
+    }
     posthog.capture('csv_file_removed');
   }, [posthog, setValue]);
 
@@ -196,6 +205,21 @@ export default function CsvDropzone() {
     },
     [handleClick],
   );
+
+  /* ── Cancel handler ── */
+  useEffect(() => {
+    const input = inputReference.current;
+    if (!input) return;
+
+    const handleCancel = () => {
+      handleRemove();
+    };
+
+    input.addEventListener('cancel', handleCancel);
+    return () => {
+      input.removeEventListener('cancel', handleCancel);
+    };
+  }, [handleRemove]);
 
   /* ── Style selection ── */
   const zoneClass =
