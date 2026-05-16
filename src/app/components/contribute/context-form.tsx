@@ -114,7 +114,7 @@ export default function ContextForm() {
             name="archiveItems"
             as="p"
           />
-          {archiveItems.map((archiveItem, index) => (
+          {archiveItems?.map((archiveItem, index) => (
             <ErrorMessage
               key={archiveItem.item}
               className={styles.error}
@@ -137,7 +137,7 @@ export default function ContextForm() {
             name="yearsRange"
             as="p"
           />
-          {yearsRange.map((year, index) => (
+          {yearsRange?.map((year, index) => (
             <ErrorMessage
               key={year}
               className={styles.error}
