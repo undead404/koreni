@@ -156,6 +156,15 @@ export default function CsvDropzone() {
     [posthog, processFile, setValue, state],
   );
 
+  /* ── Remove file ── */
+  const handleRemove = useCallback(() => {
+    setState('idle');
+    setParsedFile(null);
+    setParseError(null);
+    setValue('table', null);
+    posthog.capture('csv_file_removed');
+  }, [posthog, setValue]);
+
   /* ── Click / input handler ── */
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -165,9 +174,11 @@ export default function CsvDropzone() {
           file_name: file.name,
         });
         void processFile(file);
+      } else {
+        handleRemove();
       }
     },
-    [posthog, processFile],
+    [posthog, processFile, handleRemove],
   );
 
   const handleClick = useCallback(() => {
@@ -185,15 +196,6 @@ export default function CsvDropzone() {
     },
     [handleClick],
   );
-
-  /* ── Remove file ── */
-  const handleRemove = useCallback(() => {
-    setState('idle');
-    setParsedFile(null);
-    setParseError(null);
-    setValue('table', null);
-    posthog.capture('csv_file_removed');
-  }, [posthog, setValue]);
 
   /* ── Style selection ── */
   const zoneClass =
