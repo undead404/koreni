@@ -1,4 +1,4 @@
-import z from 'zod';
+import z, { type ZodArray, type ZodNumber } from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
@@ -82,8 +82,9 @@ export const contributeFormSchema = z.object({
   title: z.string().min(1, {
     message: 'Введіть назву таблиці',
   }),
-  yearsRange: z.preprocess(
-    (value) => (value === null || value === undefined ? [] : value),
+  yearsRange: z.preprocess<unknown, ZodArray<ZodNumber>, number[]>(
+    (value: unknown): unknown =>
+      value === null || value === undefined ? [] : value,
     z
       .array(
         z.number().min(1500, {
@@ -96,7 +97,7 @@ export const contributeFormSchema = z.object({
       .max(2, {
         message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
       }),
-  ) as z.ZodType<number[], z.ZodTypeDef, any>,
+  ),
 });
 
 export const authorIdentitySchema = z.object({

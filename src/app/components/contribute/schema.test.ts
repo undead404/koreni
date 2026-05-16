@@ -70,14 +70,12 @@ describe('contributeFormSchema', () => {
       yearsRange: null,
     });
     expect(result.success).toBe(false);
-    if (!result.success) {
-      const yearsRangeError = result.error.issues.find(
-        (issue) => issue.path[0] === 'yearsRange',
-      );
-      expect(yearsRangeError?.message).toBe(
-        'Введіть рік, або діапазон років – через дефіс: 1897-1921',
-      );
-    }
+    const yearsRangeError = result.error!.issues.find(
+      (issue) => issue.path[0] === 'yearsRange',
+    );
+    expect(yearsRangeError?.message).toBe(
+      'Введіть рік, або діапазон років – через дефіс: 1897-1921',
+    );
   });
 
   it('should fail if tableLocale is empty', () => {
@@ -124,7 +122,8 @@ describe('coordinatesStringAsTupleSchema', () => {
   });
 
   it('should parse negative coordinates', () => {
-    const result = coordinatesStringAsTupleSchema.safeParse('-50.4501,-30.5234');
+    const result =
+      coordinatesStringAsTupleSchema.safeParse('-50.4501,-30.5234');
     expect(result).toEqual({
       success: true,
       data: [-50.4501, -30.5234],
