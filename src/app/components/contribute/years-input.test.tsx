@@ -13,7 +13,7 @@ describe('YearsInput', () => {
   it('does not crash when value is null', () => {
     const onChange = vi.fn();
     const onBlur = vi.fn();
-    const ref = vi.fn();
+    const reference = vi.fn();
 
     render(
       <YearsInput
@@ -22,7 +22,7 @@ describe('YearsInput', () => {
         onChange={onChange}
         onBlur={onBlur}
         name="yearsRange"
-        ref={ref}
+        ref={reference}
       />,
     );
 
