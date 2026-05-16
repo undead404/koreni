@@ -114,15 +114,18 @@ export default function ContextForm() {
             name="archiveItems"
             as="p"
           />
-          {archiveItems?.map((archiveItem, index) => (
-            <ErrorMessage
-              key={archiveItem.item}
-              className={styles.error}
-              errors={errors}
-              name={`archiveItems.${index}.item` as keyof ContributeFormValues}
-              as="p"
-            />
-          ))}
+          {Array.isArray(archiveItems) &&
+            archiveItems.map((archiveItem, index) => (
+              <ErrorMessage
+                key={archiveItem.item}
+                className={styles.error}
+                errors={errors}
+                name={
+                  `archiveItems.${index}.item` as keyof ContributeFormValues
+                }
+                as="p"
+              />
+            ))}
         </div>
 
         <div className={styles.fieldGroup}>
@@ -137,15 +140,16 @@ export default function ContextForm() {
             name="yearsRange"
             as="p"
           />
-          {yearsRange?.map((year, index) => (
-            <ErrorMessage
-              key={year}
-              className={styles.error}
-              errors={errors}
-              name={`yearsRange.${index}` as keyof ContributeFormValues}
-              as="p"
-            />
-          ))}
+          {Array.isArray(yearsRange) &&
+            yearsRange.map((year, index) => (
+              <ErrorMessage
+                key={year}
+                className={styles.error}
+                errors={errors}
+                name={`yearsRange.${index}` as keyof ContributeFormValues}
+                as="p"
+              />
+            ))}
         </div>
         <div className={styles.fieldGroup}>
           <SourcesInput />
