@@ -82,22 +82,21 @@ export const contributeFormSchema = z.object({
   title: z.string().min(1, {
     message: 'Введіть назву таблиці',
   }),
-  yearsRange: z
-    .array(
-      z.number().min(1500, {
-        message: 'Ви ввели рік до 1500. Впевнені, що не помилилися?',
+  yearsRange: z.preprocess(
+    (value) => (value === null || value === undefined ? [] : value),
+    z
+      .array(
+        z.number().min(1500, {
+          message: 'Ви ввели рік до 1500. Впевнені, що не помилилися?',
+        }),
+      )
+      .min(1, {
+        message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
+      })
+      .max(2, {
+        message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
       }),
-    )
-    .min(1, {
-      message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
-    })
-    .max(2, {
-      message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
-    })
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    .refine((value) => value !== null, {
-      message: 'Введіть рік, або діапазон років – через дефіс: 1897-1921',
-    }),
+  ),
 });
 
 export const authorIdentitySchema = z.object({

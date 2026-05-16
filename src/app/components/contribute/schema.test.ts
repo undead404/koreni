@@ -64,6 +64,22 @@ describe('contributeFormSchema', () => {
     expect(result.success).toBe(false);
   });
 
+  it('should fail if yearsRange is null', () => {
+    const result = contributeFormSchema.safeParse({
+      ...validData,
+      yearsRange: null,
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      const yearsRangeError = result.error.issues.find(
+        (issue) => issue.path[0] === 'yearsRange',
+      );
+      expect(yearsRangeError?.message).toBe(
+        'Введіть рік, або діапазон років – через дефіс: 1897-1921',
+      );
+    }
+  });
+
   it('should fail if tableLocale is empty', () => {
     const result = contributeFormSchema.safeParse({
       ...validData,
