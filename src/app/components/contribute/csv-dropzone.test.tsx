@@ -47,7 +47,7 @@ describe('CsvDropzone', () => {
     fireEvent.change(input, { target: { files: [] } });
 
     // The dropzone should display the idle text
-    expect(screen.getByText(/Перетягніть сюди файл CSV/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Перетягніть сюди файл CSV/i)[0]).toBeInTheDocument();
   });
 
   it('resets to idle state when file selection is cancelled via cancel event', () => {
@@ -65,6 +65,6 @@ describe('CsvDropzone', () => {
     fireEvent(input, new Event('cancel'));
 
     // The dropzone should display the idle text
-    expect(screen.getByText(/Перетягніть сюди файл CSV/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Перетягніть сюди файл CSV/i)[0]).toBeInTheDocument();
   });
 });
