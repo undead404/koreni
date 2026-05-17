@@ -1,0 +1,24 @@
+archiveItems:
+  - ЦДІАК-127-1012-1039
+  - ЦДІАК-127-1012-1090
+  - ЦДІАК-127-1012-1123а
+  - ЦДІАК-127-1012-1152
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-16
+id: TsDIAK-127-1012-Ivankiv-birth-1796-1799
+location:
+  - 50.93301
+  - 29.9042867
+size: 219
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-XSQM-M?view=explore&groupId=M9LH-736&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-XSCG-Y?view=explore&groupId=M9L3-THJ&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-997K-P?view=explore&action=view&cc=1503045&lang=uk&groupId=M9LH-VN1
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-PW41-P?view=index&groupId=M9L4-3ZL&lang=en
+tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-narodzhennia-1796-1799.csv
+tableLocale: uk
+title: Іванків, Радомишльський пов. Київська губ. |  народження (1796-1799)
+yearsRange:
+  - 1796
+  - 1799
