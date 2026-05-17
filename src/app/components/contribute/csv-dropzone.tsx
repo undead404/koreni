@@ -125,7 +125,7 @@ export default function CsvDropzone() {
         });
       }
     },
-    [posthog, setContributionState, setTableData, setTableFileName],
+    [posthog, setContributionState, setTableData, setTableFileName, setValue],
   );
 
   /* ── Drag handlers ── */
@@ -146,7 +146,7 @@ export default function CsvDropzone() {
       event.preventDefault();
       event.stopPropagation();
       if (state === 'uploading') return;
-      
+
       const files = event.dataTransfer.files;
       setValue('table', files);
       if (inputReference.current) {
