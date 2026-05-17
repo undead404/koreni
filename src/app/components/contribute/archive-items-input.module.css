@@ -67,7 +67,7 @@
   background-color: #fef2f2;
 }
 
-.tag-input {
+.tagInput {
   flex: 1;
   min-width: 4rem;
   border: none;
@@ -81,7 +81,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .tag-input {
+  .tagInput {
     background-color: #1e293b;
     color: #cbd5e1;
   }
@@ -98,7 +98,7 @@
   }
 }
 
-.tag-input::placeholder {
+.tagInput::placeholder {
   color: #cbd5e1;
 }
 
