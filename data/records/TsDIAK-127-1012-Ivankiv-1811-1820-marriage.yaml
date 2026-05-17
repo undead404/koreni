@@ -1,0 +1,36 @@
+archiveItems:
+  - ЦДІАК-127-1012-1343
+  - ЦДІАК-127-1012-1357
+  - ЦДІАК-127-1012-1370
+  - ЦДІАК-127-1012-1383а
+  - ЦДІАК-127-1012-1397а
+  - ЦДІАК-127-1012-1410а
+  - ЦДІАК-127-1012-1382
+  - ЦДІАК-127-1012-1444а
+  - ЦДІАК-127-1012-1460а
+  - ЦДІАК-127-1012-1474а
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-16
+id: TsDIAK-127-1012-Ivankiv-1811-1820-marriage
+location:
+  - 50.93301
+  - 29.9042867
+size: 716
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QSQ-G93Q-RS4G?view=explore&groupId=TH-1961-29844-32403-96&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QSQ-G93Q-BLLC?view=index&groupId=&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3QSQ-G937-MD77?view=explore&groupId=TH-1961-29850-6581-9&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QSQ-G937-SS7K?view=index&lang=uk&groupId=
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-WH4M?view=index&groupId=&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-L937-H3Y3?view=index&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-L937-33QT?view=index&groupId=&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-9937-C9S3?view=index&lang=uk&groupId=
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSVP-8SQW-V?view=index&groupId=&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS2Y-X75S-C?view=index&groupId=&lang=en
+tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuy-1811-1820.csv
+tableLocale: uk
+title: Іванків, Радомишльський пов. Київська губ. | шлюби (1811-1820)
+yearsRange:
+  - 1811
+  - 1820
