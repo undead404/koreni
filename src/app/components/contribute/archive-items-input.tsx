@@ -70,6 +70,12 @@ export default function ArchiveItemsInput({
     [tagInput, value, handleAdd, handleRemove],
   );
 
+  const handleBlur = useCallback(() => {
+    if (tagInput.trim() !== '') {
+      handleAdd(tagInput);
+    }
+  }, [tagInput, handleAdd]);
+
   const hasSomeStandard = useMemo(
     () => value.some((code) => UKR_ARCHIVE_REGEX.test(code.item)),
     [value],
@@ -149,9 +155,27 @@ export default function ArchiveItemsInput({
             setTagInput(event.target.value);
           }}
           onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
           aria-invalid={!isTypingValid}
           aria-describedby="archive-item-enter-hint"
         />
+        {tagInput.trim() !== '' && (
+          <button
+            type="button"
+            className={styles.addButton}
+            aria-label="Додати архівну справу"
+            onMouseDown={(event) => {
+              // Prevent input from losing focus when clicking the button
+              event.preventDefault();
+            }}
+            onClick={() => {
+              handleAdd(tagInput);
+              inputReference.current?.focus();
+            }}
+          >
+            Додати
+          </button>
+        )}
       </div>
 
       {tagInput.trim() !== '' && (
