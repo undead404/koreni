@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХО-40-138-82
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-18
+id: barvinkove-iziumskyi-pov-kharkivska-hub-shliuby-1907-1908
+location:
+  - 48.9035037
+  - 37.025111
+size: 588
+sources:
+  - https://archives.kh.gov.ua/?page_id=26131
+tableFilePath: public/csv/barvinkove-iziumskyi-pov-kharkivska-hub-shliuby-1907-1908.csv
+tableLocale: uk
+title: Барвінкове, Ізюмський пов. Харківська губ. | шлюби (1907-1908)
+yearsRange:
+  - 1907
+  - 1908
