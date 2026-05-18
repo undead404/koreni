@@ -6,7 +6,6 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import CheckIcon from '@/app/icons/check';
 
-import { useContributionStateStore } from './contribution-state';
 import { useTableStateStore } from './table-state';
 import type { ContributeFormValues, StepDefinition, StepStatus } from './types';
 
@@ -60,15 +59,15 @@ export default function ContributeFormStep({
   nextConnectorStatus: 'completed' | 'active' | 'pending' | 'hidden';
 }) {
   const tableStore = useTableStateStore();
-  const { control, trigger } = useFormContext<ContributeFormValues>();
+  const {
+    control,
+    trigger,
+    formState: { isSubmitting },
+  } = useFormContext<ContributeFormValues>();
   const allValues = useWatch({ control });
 
   const [isValidating, setIsValidating] = useState(false);
   const [hasError, setHasError] = useState(false);
-
-  const {
-    state: { isSubmitting },
-  } = useContributionStateStore();
 
   /* Classes */
   const indicatorClass = clsx(
@@ -87,7 +86,7 @@ export default function ContributeFormStep({
 
   const handleContinue = useCallback(() => {
     if (def.fields.length === 0) {
-      onContinue();
+      if (!isLast) onContinue();
       return;
     }
 
@@ -102,7 +101,7 @@ export default function ContributeFormStep({
       });
       // eslint-disable-next-line promise/always-return
       if (result) {
-        onContinue();
+        if (!isLast) onContinue();
       } else {
         setHasError(true);
         // Remove shake class after animation completes so it can trigger again
@@ -111,7 +110,7 @@ export default function ContributeFormStep({
         }, 400);
       }
     });
-  }, [def.fields, def.label, onContinue, posthog, trigger]);
+  }, [def.fields, def.label, isLast, onContinue, posthog, trigger]);
 
   const renderActions = () => (
     <div className={styles.actions}>
@@ -124,7 +123,7 @@ export default function ContributeFormStep({
         disabled={isSubmitting || isValidating}
         type={isLast ? 'submit' : 'button'}
         className={styles.btnPrimary}
-        onClick={isLast ? undefined : handleContinue}
+        onClick={handleContinue}
       >
         {isSubmitting ? 'Подається...' : null}
         {isLast && !isSubmitting ? 'Подати' : null}
