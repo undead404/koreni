@@ -40,14 +40,14 @@ export default function ContributeForm({
   const form = useContributeForm();
   const { tableFileName, getAllColumns, getTableAsObjects } =
     useTableStateStore();
-  const turnstile = useTurnstile() as { reset: () => void };
+  const turnstile = useTurnstile() as { reset: () => void; execute: () => void };
 
   const turnstileResolver = useRef<((token: string) => void) | null>(null);
 
   const executeTurnstile = (): Promise<string> => {
     return new Promise((resolve) => {
       turnstileResolver.current = resolve;
-      turnstile.reset();
+      turnstile.execute();
     });
   };
 
