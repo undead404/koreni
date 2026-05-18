@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 import Turnstile, { useTurnstile } from 'react-turnstile';
 
@@ -42,14 +42,20 @@ export default function ContributeForm({
     useTableStateStore();
   const turnstile = useTurnstile() as { reset: () => void };
 
-  const [turnstileToken, setTurnstileToken] = useState('');
+  const turnstileResolver = useRef<((token: string) => void) | null>(null);
+
+  const executeTurnstile = (): Promise<string> => {
+    return new Promise((resolve) => {
+      turnstileResolver.current = resolve;
+      turnstile.reset();
+    });
+  };
 
   const { state: contributionState } = useContributionStateStore();
 
   const { handleFormSubmit, isSubmitting, stage } = useSubmitContribution({
     form,
-    turnstileToken,
-    turnstile,
+    executeTurnstile,
     getAllColumns,
     getTableAsObjects,
   });
@@ -108,8 +114,10 @@ export default function ContributeForm({
       </FormProvider>{' '}
       {!contributionState.prUrl && (
         <Turnstile
-          onVerify={setTurnstileToken}
-          refreshExpired="auto"
+          onVerify={(token) => {
+            if (turnstileResolver.current) turnstileResolver.current(token);
+          }}
+          execution="execute"
           sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
         />
       )}

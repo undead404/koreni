@@ -13,16 +13,14 @@ import type { ContributeFormValues } from './types';
 
 interface UseSubmitContributionProperties {
   form: UseFormReturn<ContributeFormValues>;
-  turnstileToken: string;
-  turnstile: { reset: () => void };
+  executeTurnstile: () => Promise<string>;
   getAllColumns: () => string[];
   getTableAsObjects: () => Record<string, unknown>[];
 }
 
 export default function useSubmitContribution({
   form,
-  turnstileToken,
-  turnstile,
+  executeTurnstile,
   getAllColumns,
   getTableAsObjects,
 }: UseSubmitContributionProperties) {
@@ -36,15 +34,21 @@ export default function useSubmitContribution({
       error: '',
       prUrl: '',
       title: data.title,
-      stage: 'conversion',
+      stage: 'verification',
     });
 
     try {
-      if (!turnstileToken) {
-        throw new Error(
-          'Будь ласка, пройдіть перевірку на людяність (Turnstile)',
-        );
+      const freshToken = await executeTurnstile();
+      if (!freshToken) {
+        throw new Error('Не вдалося отримати токен перевірки на людяність');
       }
+
+      setContributionState({
+        error: '',
+        prUrl: '',
+        title: data.title,
+        stage: 'conversion',
+      });
 
       const tableData = {
         columns: getAllColumns(),
@@ -52,7 +56,7 @@ export default function useSubmitContribution({
       };
 
       const adjustedFormData = convertContributeFormData(data, tableData);
-      adjustedFormData.turnstileToken = turnstileToken;
+      adjustedFormData.turnstileToken = freshToken;
 
       setContributionState({
         error: '',
@@ -106,11 +110,6 @@ export default function useSubmitContribution({
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Сталася невідома помилка';
-
-      // Centralized Turnstile reset
-      if (message.includes('Turnstile') || message.includes('перевірку')) {
-        turnstile.reset();
-      }
 
       setContributionState({
         error: message,
