@@ -1,4 +1,5 @@
 import { Database, Info, MapPin, User } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useTableStateStore } from './table-state';
@@ -6,7 +7,6 @@ import type { ContributeFormValues } from './types';
 import { useReverseGeocode } from './use-reverse-geocode';
 
 import styles from './review-summary.module.css';
-import type { ReactNode } from 'react';
 
 /* ────────────────────────────────────────── */
 /*  Types & Constants                          */
