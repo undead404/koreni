@@ -1,5 +1,5 @@
 import { usePostHog } from 'posthog-js/react';
-import type { FormEvent } from 'react';
+import type { SubmitEvent } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 
 import environment from '@/app/environment';
@@ -122,7 +122,7 @@ export default function useSubmitContribution({
     }
   };
 
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     // Prevent default natively, let RHF handle the promise lifecycle
     event.preventDefault();
     void form.handleSubmit(submit, () =>
