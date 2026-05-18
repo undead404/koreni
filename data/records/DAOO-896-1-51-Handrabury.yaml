@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАОО-896-1-51
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-18
+id: DAOO-896-1-51-Handrabury
+location:
+  - 47.7117568
+  - 29.8691055
+size: 408
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-57D9-HSRM-S?view=explore&groupId=TH-7746-145642-8372-83&lang=en
+tableFilePath: public/csv/handrabury-ananivskyi-pov-khersonska-hub-shliuby-1912.csv
+tableLocale: uk
+title: Гандрабури, Ананьївський пов. Херсонська губ. | шлюби (1912)
+yearsRange:
+  - 1912
