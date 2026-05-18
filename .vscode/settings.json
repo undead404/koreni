@@ -29,6 +29,7 @@
     "LICENSE.*",
     "LICENSE-*.*"
   ],
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
   "cSpell.language": "en,uk",
   "cSpell.words": [
     "ДАКО",
@@ -70,7 +71,6 @@
     "**/node_modules": true,
     "**/yarn.lock": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -79,5 +79,6 @@
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

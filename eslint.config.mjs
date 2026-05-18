@@ -10,6 +10,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginReact from 'eslint-plugin-react';
+import reactCompiler from 'eslint-plugin-react-compiler';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import * as regexpPlugin from 'eslint-plugin-regexp';
@@ -173,6 +174,7 @@ export default [
           },
         },
       ],
+      'react-compiler/react-compiler': 'error',
     },
     settings: {
       'jsx-a11y': {
@@ -188,6 +190,7 @@ export default [
       },
     },
   },
+  reactCompiler.configs.recommended,
   {
     files: ['**/page.tsx', '**/layout.tsx'],
     name: 'NextJS page file',

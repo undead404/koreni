@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .env
+source .env.production
 
 curl -H "X-TYPESENSE-API-KEY: ${TYPESENSE_ADMIN_KEY}" \
      -X DELETE \

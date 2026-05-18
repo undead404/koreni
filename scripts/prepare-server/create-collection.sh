@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .env
+source .env.production
 
 curl "$NEXT_PUBLIC_TYPESENSE_HOST/collections" \
   -X POST \
