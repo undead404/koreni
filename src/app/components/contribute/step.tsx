@@ -115,7 +115,12 @@ export default function ContributeFormStep({
   const renderActions = () => (
     <div className={styles.actions}>
       {index > 0 && (
-        <button type="button" className={styles.btnSecondary} onClick={onBack}>
+        <button
+          disabled={isSubmitting || isValidating}
+          type="button"
+          className={styles.btnSecondary}
+          onClick={onBack}
+        >
           Назад
         </button>
       )}
