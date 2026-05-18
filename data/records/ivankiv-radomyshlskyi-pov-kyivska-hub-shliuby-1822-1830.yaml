@@ -1,0 +1,34 @@
+archiveItems:
+  - ЦДІАК-127-1012-1503
+  - ЦДІАК-127-1012-1518а
+  - ЦДІАК-127-1012-1535а
+  - ЦДІАК-127-1012-1548
+  - ЦДІАК-127-1012-1568
+  - ЦДІАК-127-1012-1584
+  - ЦДІАК-127-1012-1605
+  - ЦДІАК-127-1012-1625
+  - ЦДІАК-127-1012-1642
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-18
+id: ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1822-1830
+location:
+  - 50.93301
+  - 29.9042867
+size: 663
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QS7-L937-C9LL-6?view=index&lang=uk&groupId=
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS2V-YSG1-K?view=explore&groupId=TH-909-72567-74636-16&lang=en
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1535a/#lg=1&slide=522
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1548/#lg=1&slide=594
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1568/#lg=1&slide=598
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1584/#lg=1&slide=583
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1605/#lg=1&slide=641
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1625/#lg=1&slide=596
+  - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1642/#lg=1&slide=722
+tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1822-1830.csv
+tableLocale: uk
+title: Іванків, Радомишльський пов. Київська губ. | шлюби (1822-1830)
+yearsRange:
+  - 1822
+  - 1830
