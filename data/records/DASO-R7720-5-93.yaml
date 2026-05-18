@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-93
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-18
+id: DASO-R7720-5-93
+location:
+  - 51.252941
+  - 33.124119
+size: 365
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-93.csv
+tableLocale: uk
+title: "[ШІ] Попівка (Конотопська) – народження, 1923-1924"
+yearsRange:
+  - 1923
+  - 1924
