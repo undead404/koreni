@@ -128,7 +128,7 @@ export default function ContributeFormStep({
         disabled={isSubmitting || isValidating}
         type={isLast ? 'submit' : 'button'}
         className={styles.btnPrimary}
-        onClick={handleContinue}
+        onClick={isLast ? undefined : handleContinue}
       >
         {isSubmitting ? 'Подається...' : null}
         {isLast && !isSubmitting ? 'Подати' : null}
