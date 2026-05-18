@@ -162,18 +162,15 @@ export default function ReviewSummary({
   const { location: modernLocation, status: locationStatus } =
     useReverseGeocode(locationValue);
 
-  // Compute derived state at the Zustand selector level to prevent unnecessary renders.
-  const {
-    tableDimensions,
-    tableFileName,
-    skippedRowsCount,
-    skippedColumnsCount,
-  } = useTableStateStore((state) => ({
-    tableDimensions: state.getTableDimensions(),
-    tableFileName: state.tableFileName,
-    skippedRowsCount: state.skippedRowsAbove + state.skippedRowsElsewhere.size,
-    skippedColumnsCount: state.skippedColumns.size,
-  }));
+  // Select primitive values and stable function references individually to prevent infinite re-renders
+  const getTableDimensions = useTableStateStore((state) => state.getTableDimensions);
+  const tableFileName = useTableStateStore((state) => state.tableFileName);
+  const skippedRowsCount = useTableStateStore(
+    (state) => state.skippedRowsAbove + state.skippedRowsElsewhere.size
+  );
+  const skippedColumnsCount = useTableStateStore((state) => state.skippedColumns.size);
+
+  const tableDimensions = getTableDimensions();
 
   // React 19 Compiler automatically memoizes these structural arrays.
   const dataSummaryFields: SummaryField[] = [
