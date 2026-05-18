@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 
@@ -58,12 +59,18 @@ export default function RootLayout({
             <Toaster position="bottom-right" richColors />
           </PostHogProvider>
         </ErrorBoundary>
-        <script
+        <Script
           src="https://uptime.betterstack.com/widgets/announcement.js"
           data-id="237385"
           async
           type="text/javascript"
-        ></script>
+        ></Script>
+        <Script
+          src="https://descriptor-strider-ai.vercel.app/widget.js"
+          data-partner-key="blkch_5dc94a37b758a30568da4b621f056deef5d32c40f66adf442bdbe942d26ce127"
+          data-partner-id="koreni"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
