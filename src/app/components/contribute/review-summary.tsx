@@ -188,9 +188,9 @@ export default function ReviewSummary({
   ];
 
   const yearsDisplay =
-    yearsRange?.length === 2
+    yearsRange.length === 2
       ? `${yearsRange[0]} — ${yearsRange[1]}`
-      : yearsRange?.join(', ');
+      : yearsRange.join(', ');
 
   const contextFields: SummaryField[] = [
     { key: 'Ідентифікатор', value: idValue, type: 'text' },
@@ -198,7 +198,7 @@ export default function ReviewSummary({
     { key: 'Місце', value: modernLocation, type: 'location' },
     {
       key: 'Архівні справи',
-      value: archiveItems?.map((item) => item.item),
+      value: archiveItems.map((item) => item.item),
       type: 'tags',
     },
     { key: 'Роки', value: yearsDisplay ? [yearsDisplay] : null, type: 'tags' },
