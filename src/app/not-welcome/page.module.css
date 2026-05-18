@@ -1,7 +1,3 @@
-:global(#blukach-widget-host) {
-  display: none;
-}
-
 .container {
   display: flex;
   flex-direction: column;
