@@ -1,10 +1,6 @@
 import { usePostHog } from 'posthog-js/react';
-import { SubmitEvent, useCallback } from 'react';
-import type {
-  SubmitErrorHandler,
-  SubmitHandler,
-  UseFormReturn,
-} from 'react-hook-form';
+import type { SubmitEvent } from 'react';
+import type { UseFormReturn } from 'react-hook-form';
 
 import environment from '@/app/environment';
 import { submitErrorSchema, submitResponseSchema } from '@/app/schemas/api';
@@ -34,143 +30,111 @@ export default function useSubmitContribution({
     useContributionStateStore();
   const posthog = usePostHog();
 
-  const submit: SubmitHandler<ContributeFormValues> = useCallback(
-    async (data, event) => {
-      if (event) {
-        event.preventDefault();
+  // React 19 Compiler handles memoization natively.
+  const submit = async (data: ContributeFormValues) => {
+    setContributionState({
+      error: '',
+      prUrl: '',
+      title: data.title,
+      stage: 'conversion',
+    });
+
+    try {
+      if (!turnstileToken) {
+        throw new Error(
+          'Будь ласка, пройдіть перевірку на людяність (Turnstile)',
+        );
       }
-      if (contributionState.isSubmitting) {
-        return;
-      }
+
+      const tableData = {
+        columns: getAllColumns(),
+        data: getTableAsObjects(),
+      };
+
+      const adjustedFormData = convertContributeFormData(data, tableData);
+      adjustedFormData.turnstileToken = turnstileToken;
 
       setContributionState({
         error: '',
-        isSubmitting: true,
         prUrl: '',
         title: data.title,
-        stage: 'conversion',
+        stage: 'transmission',
       });
 
-      try {
-        const tableData = {
-          columns: getAllColumns(),
-          data: getTableAsObjects(),
-        };
-
-        const adjustedFormData = convertContributeFormData(data, tableData);
-
-        setContributionState({
-          error: '',
-          isSubmitting: true,
-          prUrl: '',
-          title: data.title,
-          stage: 'verification',
-        });
-
-        if (turnstileToken) {
-          adjustedFormData.turnstileToken = turnstileToken;
-        } else {
-          throw new Error(
-            'Будь ласка, пройдіть перевірку на людяність (Turnstile)',
-          );
-        }
-
-        setContributionState({
-          error: '',
-          isSubmitting: true,
-          prUrl: '',
-          title: data.title,
-          stage: 'transmission',
-        });
-
-        const response = await fetch(
-          new URL('/api/submit', environment.NEXT_PUBLIC_API_SITE),
-          {
-            method: 'POST',
-            body: JSON.stringify(adjustedFormData),
+      // Assuming Hono root routing. Adjust to '/api/submit' only if Hono explicitly defines that route.
+      const response = await fetch(
+        new URL('/api/submit', environment.NEXT_PUBLIC_API_SITE),
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
+          body: JSON.stringify(adjustedFormData),
+        },
+      );
+
+      const responseData = (await response.json()) as unknown;
+
+      if (!response.ok) {
+        const errorResponse = submitErrorSchema.safeParse(responseData);
+        throw new Error(
+          errorResponse.success
+            ? errorResponse.data.error
+            : `Невідома помилка: ${JSON.stringify(responseData)}`,
         );
-
-        if (!response.ok) {
-          turnstile.reset();
-          const errorData = (await response.json()) as unknown;
-          const errorResponse = submitErrorSchema.safeParse(errorData);
-          if (errorResponse.success) {
-            throw new Error(errorResponse.data.error);
-          }
-          throw new Error(`Невідома помилка: ${JSON.stringify(errorData)}`);
-        }
-
-        const responseData = (await response.json()) as unknown;
-        const responseParsed = submitResponseSchema.parse(responseData);
-
-        setContributionState({
-          error: '',
-          isSubmitting: false,
-          prUrl: responseParsed.url,
-          title: data.title,
-          stage: 'idle',
-        });
-
-        posthog.capture('contribution_success', {
-          url: responseParsed.url,
-        });
-
-        const authorIdentity = {
-          authorName: data.authorName,
-          authorEmail: data.authorEmail,
-          authorGithubUsername: data.authorGithubUsername,
-        };
-        saveAuthorIdentity(authorIdentity as Record<string, string>);
-
-        form.reset(getDefaultValues(authorIdentity));
-      } catch (error) {
-        const message =
-          error instanceof Error ? error.message : 'Сталася невідома помилка';
-
-        if (message.includes('Turnstile') || message.includes('перевірку')) {
-          turnstile.reset();
-        }
-
-        setContributionState({
-          error: message,
-          isSubmitting: false,
-          prUrl: '',
-          title: data.title,
-          stage: 'idle',
-        });
-        posthog.capture('contribution_error', {
-          error: message,
-        });
       }
-    },
-    [
-      contributionState.isSubmitting,
-      form,
-      getAllColumns,
-      getTableAsObjects,
-      posthog,
-      setContributionState,
-      turnstile,
-      turnstileToken,
-    ],
-  );
 
-  const handleSubmitFailed: SubmitErrorHandler<ContributeFormValues> =
-    useCallback(() => {
-      posthog.capture('contribution_submit_failed');
-    }, []);
+      const responseParsed = submitResponseSchema.parse(responseData);
 
-  const handleFormSubmit = useCallback(
-    (event: SubmitEvent<HTMLFormElement>) => {
-      void form.handleSubmit(submit, handleSubmitFailed)(event);
-    },
-    [form, handleSubmitFailed, submit],
-  );
+      setContributionState({
+        error: '',
+        prUrl: responseParsed.url,
+        title: data.title,
+        stage: 'idle',
+      });
+
+      posthog.capture('contribution_success', { url: responseParsed.url });
+
+      const authorIdentity = {
+        authorName: data.authorName,
+        authorEmail: data.authorEmail,
+        authorGithubUsername: data.authorGithubUsername,
+      };
+
+      saveAuthorIdentity(authorIdentity as Record<string, string>);
+      form.reset(getDefaultValues(authorIdentity));
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Сталася невідома помилка';
+
+      // Centralized Turnstile reset
+      if (message.includes('Turnstile') || message.includes('перевірку')) {
+        turnstile.reset();
+      }
+
+      setContributionState({
+        error: message,
+        prUrl: '',
+        title: data.title,
+        stage: 'idle',
+      });
+
+      posthog.capture('contribution_error', { error: message });
+    }
+  };
+
+  const handleFormSubmit = (event: SubmitEvent<HTMLFormElement>) => {
+    // Prevent default natively, let RHF handle the promise lifecycle
+    event.preventDefault();
+    void form.handleSubmit(submit, () =>
+      posthog.capture('contribution_submit_failed'),
+    )(event);
+  };
 
   return {
     handleFormSubmit,
-    isSubmitting: contributionState.isSubmitting,
+    // Extracting isSubmitting from RHF ensures a single source of truth
+    isSubmitting: form.formState.isSubmitting,
     error: contributionState.error,
     stage: contributionState.stage,
   };
