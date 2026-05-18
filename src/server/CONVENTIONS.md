@@ -1,35 +1,30 @@
-# Server Conventions
+# AI Server Coding Conventions
 
-This directory contains the server-side logic, distinct from the Next.js app.
+## 1. Hono API Architecture
 
-## Technology Stack
+- **Route Handlers**: Keep route definitions thin. Extract all business logic, external API calls, and heavy processing into standalone functions within `src/services/`.
+- **Context Handling**: Extract necessary data (headers, body, query) from the Hono Context object (`c`) at the route level. Do not pass `c` into the `src/services/` layer.
 
-- **Framework**: Hono
-- **Engine**: Node.js (^22.12), Yarn
-- **Language**: TypeScript
-- **Validation**: Zod
-- **Error Handling**: Bugsnag
+## 2. Module Resolution (Strict ESM)
 
-## Structure
+- **File Extensions**: You MUST append `.js` to all relative imports for local files (e.g., `import { processWebhook } from './services/github.js'`). Omitting the extension will cause immediate runtime crashes in Node.js ESM.
+- **Directory Imports**: Do not import directories (e.g., `import { X } from './services'`). Always target the specific file.
 
-- **src/services/**: Contains business logic and external API integrations (e.g., GitHub, Cloudflare Turnstile).
-- **src/schemata.ts**: centralized Zod schemas for server-side validation.
+## 3. Validation & Schemas
 
-## Coding Style
+- **Centralized Definition**: Import all validation schemas strictly from `src/schemata.ts`. Do not define inline Zod schemas within route handlers.
+- **Strict Parsing**: All incoming webhooks, payloads, and query parameters MUST be parsed using `.parse()` or `.safeParse()`. Never bypass validation using type assertions (`as`).
 
-- **Imports**: Use ".js" extensions when importing local modules.
-- **Validation**: Strict use of `zod` for validating external inputs (webhooks, API requests).
-- **Environment Variables**: Accessed via a centralized `environment` object.
-- **Async/Await**: extensive use of async functions for I/O operations.
+## 4. Service Integrations & Error Handling
 
-## Key Services
+- **Environment State**: Access secrets and configuration strictly via the centralized `environment` object. Never use `process.env` directly.
+- **External Network Calls (GitHub, Turnstile)**:
+  - Isolate external calls in `src/services/`.
+  - Always wrap network requests in `try/catch` blocks.
+  - On failure, immediately report the error to Bugsnag using your standard error handling utility before returning an appropriate HTTP status code to the client.
 
-- **GitHub**: Integration for dispatching repository events (`submitToGithub`).
-- **Turnstile**: Captcha validation service (`validateTurnstile`).
+## 5. Testing Execution (Vitest)
 
-## Testing
-
-- Environment is Node.js 22.22.
-- Vitest used for unit tests.
-- Unit tests have `.test.ts` extension.
-- Always try to create unit tests for all components and services.
+- **Coverage Mandate**: Every new file created in `src/services/` MUST have a corresponding `.test.ts` file generated alongside it.
+- **Network Isolation**: Always mock external service modules (GitHub, Turnstile) or use network interception when writing tests. Tests must never execute live HTTP requests.
+- **Syntax**: Use standard Vitest syntax (`describe`, `it`, `expect`).
