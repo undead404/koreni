@@ -15,15 +15,19 @@
 
 .main > * {
   width: 100%;
+  max-width: var(--component-max-width, 1024px);
 }
 
-/* Using this media is for printing */
-@media screen {
-  .main > * {
-    max-width: 1024px;
+@media print {
+  .page,
+  .main {
+    display: block;
+    min-height: auto;
+    padding: 0;
   }
 
-  .main > *:global(.col-sm) {
-    max-width: 768px;
+  .main > * {
+    max-width: none !important;
+    width: 100%;
   }
 }
