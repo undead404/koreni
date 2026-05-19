@@ -56,7 +56,7 @@ export default function TableContent({
             </Link>
           </p>
           <p>
-            Таблиці:{' '}
+            Ці ж дані в іншому вигляді:{' '}
             {sources.map((source, index) => (
               <span key={source}>
                 {index > 0 && ', '}
