@@ -4,6 +4,7 @@
   border-spacing: 0;
   font-size: 1rem;
   text-align: left;
+
   /* Allows table to naturally size columns based on content (digits vs text) */
   table-layout: auto;
 }
