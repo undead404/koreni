@@ -20,13 +20,28 @@ export default function IndexTableCell({
   const cellReference = useRef<HTMLTableCellElement>(null);
   const targetMarkReference = useRef<HTMLElement>(null);
 
-  const stringValue = value == null ? '' : String(value);
+  const stringValue =
+    value == null
+      ? ''
+      : typeof value === 'string'
+        ? value
+        : typeof value === 'number' || typeof value === 'boolean'
+          ? String(value)
+          : '';
 
   // 1. Compute highlights synchronously during render. No useEffect lag.
   const renderedContent = useMemo(() => {
-    if (stringValue.startsWith('http://') || stringValue.startsWith('https://')) {
+    if (
+      stringValue.startsWith('http://') ||
+      stringValue.startsWith('https://')
+    ) {
       return (
-        <a href={stringValue} aria-label="Відкрити посилання" target="_blank" rel="noopener noreferrer">
+        <a
+          href={stringValue}
+          aria-label="Відкрити посилання"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {stringValue}
         </a>
       );
@@ -67,15 +82,14 @@ export default function IndexTableCell({
 
   if (isRowHeader) {
     return (
-      <th scope="row" ref={cellReference as React.RefObject<HTMLTableCellElement>}>
+      <th
+        scope="row"
+        ref={cellReference as React.RefObject<HTMLTableCellElement>}
+      >
         {renderedContent}
       </th>
     );
   }
 
-  return (
-    <td ref={cellReference}>
-      {renderedContent}
-    </td>
-  );
+  return <td ref={cellReference}>{renderedContent}</td>;
 }
