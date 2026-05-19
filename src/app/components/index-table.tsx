@@ -49,12 +49,7 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
             {Object.keys(data[0]).map((key) => (
               <th
                 key={key}
-                className={[
-                  key.length < 50 ? 'text-nowrap' : '',
-                  key.toLowerCase().includes('.pdf') ? 'break-word' : '',
-                ]
-                  .filter(Boolean)
-                  .join(' ')}
+                scope="col"
               >
                 {key}
               </th>

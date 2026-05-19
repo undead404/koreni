@@ -20,8 +20,8 @@ export default function IndexTableRow({
           key={index}
           isInTarget={isTarget}
           matchedTokens={matchedTokens}
-          // eslint-disable-next-line @typescript-eslint/no-base-to-string
-          value={String(value ?? '')}
+          value={value}
+          isRowHeader={index === 0}
         />
       ))}
     </tr>

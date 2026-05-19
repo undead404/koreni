@@ -46,40 +46,42 @@ export default function TableContent({
   return (
     <>
       <article className={styles.article}>
-        <h1>{title}</h1>
-        <section>
-          <h2>Метадані</h2>
-          <p>
-            Виконавець індексації:{' '}
-            <Link href={`/volunteers/${slugifyUkrainian(authorName)}/`}>
-              {authorName}
-            </Link>
-          </p>
-          <p>
-            Ці ж дані в іншому вигляді:{' '}
-            {sources.map((source, index) => (
-              <span key={source}>
-                {index > 0 && ', '}
-                <SourceLink href={source} />
-              </span>
-            ))}
-          </p>
-          <p>Охоплені роки: {yearsRange.join('-')}</p>
-          <Details
-            open={archiveItems.length < 4}
-            summary={<h3>Використані архівні справи</h3>}
-            sectionName="archive_items"
-          >
-            <ul className={styles.archiveItems}>
-              {archiveItems.map((archiveItem) => (
-                <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
+        <header>
+          <h1>{title}</h1>
+          <section aria-labelledby="metadata-heading">
+            <h2 id="metadata-heading">Метадані</h2>
+            <p>
+              Виконавець індексації:{' '}
+              <Link href={`/volunteers/${slugifyUkrainian(authorName)}/`}>
+                {authorName}
+              </Link>
+            </p>
+            <p>
+              Ці ж дані в іншому вигляді:{' '}
+              {sources.map((source, index) => (
+                <span key={source}>
+                  {index > 0 && ', '}
+                  <SourceLink href={source} />
+                </span>
               ))}
-            </ul>
-          </Details>
-          <Details summary={<h3>На карті</h3>} sectionName="map">
-            <MapWrapper center={location} points={combinedPoints} zoom={8} />
-          </Details>
-        </section>
+            </p>
+            <p>Охоплені роки: {yearsRange.join('-')}</p>
+            <Details
+              open={archiveItems.length < 4}
+              summary={<h3>Використані архівні справи</h3>}
+              sectionName="archive_items"
+            >
+              <ul className={styles.archiveItems}>
+                {archiveItems.map((archiveItem) => (
+                  <ArchiveItem archiveItem={archiveItem} key={archiveItem} />
+                ))}
+              </ul>
+            </Details>
+            <Details summary={<h3>На карті</h3>} sectionName="map">
+              <MapWrapper center={location} points={combinedPoints} zoom={8} />
+            </Details>
+          </section>
+        </header>
         <section>
           <h2 id="table-data">Дані</h2>
           <Pagination

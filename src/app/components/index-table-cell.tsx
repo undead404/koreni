@@ -10,20 +10,32 @@ export default function IndexTableCell({
   isInTarget,
   matchedTokens,
   value,
+  isRowHeader,
 }: {
   isInTarget?: boolean;
   matchedTokens: string[];
-  value: string;
+  value: unknown;
+  isRowHeader?: boolean;
 }) {
   const cellReference = useRef<HTMLTableCellElement>(null);
   const targetMarkReference = useRef<HTMLElement>(null);
 
+  const stringValue = value == null ? '' : String(value);
+
   // 1. Compute highlights synchronously during render. No useEffect lag.
   const renderedContent = useMemo(() => {
-    if (matchedTokens.length === 0 || !value) return value;
+    if (stringValue.startsWith('http://') || stringValue.startsWith('https://')) {
+      return (
+        <a href={stringValue} aria-label="Відкрити посилання" target="_blank" rel="noopener noreferrer">
+          {stringValue}
+        </a>
+      );
+    }
+
+    if (matchedTokens.length === 0 || !stringValue) return stringValue;
 
     const regex = new RegExp(`(${matchedTokens.join('|')})`, 'gi');
-    const parts = value.split(regex);
+    const parts = stringValue.split(regex);
 
     return parts.map((part, index) => {
       const isMatch = matchedTokens.some(
@@ -44,7 +56,7 @@ export default function IndexTableCell({
       }
       return part;
     });
-  }, [matchedTokens, value, isInTarget]);
+  }, [matchedTokens, stringValue, isInTarget]);
 
   // 2. Trigger scroll when the target is mounted and rendered
   useEffect(() => {
@@ -53,16 +65,16 @@ export default function IndexTableCell({
     }
   }, [isInTarget, renderedContent]);
 
-  // 3. Removed utility classes in favor of deterministic CSS module logic
-  const className = [
-    value.length < 80 ? styles.textNowrap : styles.verbose,
-    value.startsWith('http') ? styles.breakWord : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
+  if (isRowHeader) {
+    return (
+      <th scope="row" ref={cellReference as React.RefObject<HTMLTableCellElement>}>
+        {renderedContent}
+      </th>
+    );
+  }
 
   return (
-    <td ref={cellReference} className={className}>
+    <td ref={cellReference}>
       {renderedContent}
     </td>
   );
