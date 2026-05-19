@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-102
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-19
+id: DASO-R7720-5-102
+location:
+  - 51.30048
+  - 33.429016
+size: 333
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-102.csv
+tableLocale: uk
+title: "[ШІ] Бочечки – народження, 1924-1925"
+yearsRange:
+  - 1924
+  - 1925
