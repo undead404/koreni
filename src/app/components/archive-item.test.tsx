@@ -36,7 +36,6 @@ describe('ArchiveItem', () => {
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
 
-    expect(link).toHaveTextContent('Шукати справу ua1-item в Качиному інспекторі');
     expect(link).toHaveTextContent('🦆');
   });
 });

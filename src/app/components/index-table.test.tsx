@@ -44,7 +44,7 @@ describe('IndexTable component', () => {
       get: () => null,
     } as any);
     const { container } = render(<IndexTable {...defaultProps} />);
-    const headers = container.querySelectorAll('th');
+    const headers = container.querySelectorAll('thead th');
     expect(headers.length).toBe(Object.keys(mockData[0]).length);
   });
 
