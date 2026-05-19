@@ -28,16 +28,6 @@
 
   /* Base handling for long text vs single digits */
   max-width: 400px; /* Constrain massive text cells */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Permit hover to reveal truncated text without JavaScript */
-.tbody td:hover {
-  white-space: normal;
-  word-break: break-word;
-  overflow: visible;
 }
 
 /* Directional borders to prevent doubling */

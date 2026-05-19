@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <article className="col-sm">
+      <article className={styles.article}>
         <h1>Про проєкт &quot;Корені&quot;</h1>
 
         <h2>Ліцензія</h2>

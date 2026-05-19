@@ -12,7 +12,9 @@ export default function ArchiveItem({ archiveItem }: ArchiveItemProperties) {
   );
 
   if (!isKnownArchive) {
-    return <li title="Ця справа походить з невідомого архіву">{archiveItem}</li>;
+    return (
+      <li title="Ця справа походить з невідомого архіву">{archiveItem}</li>
+    );
   }
 
   const title = `Шукати справу ${archiveItem} в Качиному інспекторі`;
@@ -28,7 +30,6 @@ export default function ArchiveItem({ archiveItem }: ArchiveItemProperties) {
           title={title}
           rel="noopener noreferrer"
         >
-          <span className={styles.srOnly}>{title}</span>
           <span aria-hidden="true">🦆</span>
         </a>
       </span>

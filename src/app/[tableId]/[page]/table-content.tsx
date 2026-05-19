@@ -12,7 +12,7 @@ import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 import combinedPoints from '@/app/services/map-points';
 import { IndexationTable } from '@/shared/schemas/indexation-table';
 
-import styles from './page.module.css';
+import styles from './table-content.module.css';
 
 interface TableContentProperties {
   tableMetadata: IndexationTable;
@@ -82,18 +82,14 @@ export default function TableContent({
             </Details>
           </section>
         </header>
-        <section>
+        <section className={styles.data} aria-labelledby="table-data">
           <h2 id="table-data">Дані</h2>
           <Pagination
             currentPage={page}
             totalPages={totalPages}
             urlBuilder={(p: number) => `/${tableId}/${p}`}
           />
-          <div
-            role="region"
-            aria-labelledby="table-data"
-            className={styles.tableContainer}
-          >
+          <div role="region" className={styles.tableContainer}>
             <IndexTable
               data={tableData}
               locale={tableLocale}

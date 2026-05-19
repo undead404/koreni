@@ -10,12 +10,10 @@ export default function IndexTableCell({
   isInTarget,
   matchedTokens,
   value,
-  isRowHeader,
 }: {
   isInTarget?: boolean;
   matchedTokens: string[];
   value: unknown;
-  isRowHeader?: boolean;
 }) {
   const cellReference = useRef<HTMLTableCellElement>(null);
   const targetMarkReference = useRef<HTMLElement>(null);
@@ -29,12 +27,19 @@ export default function IndexTableCell({
           ? String(value)
           : '';
 
+  const isUrl =
+    stringValue.startsWith('http://') || stringValue.startsWith('https://');
+
   // 1. Compute highlights synchronously during render. No useEffect lag.
   const renderedContent = useMemo(() => {
-    if (
-      stringValue.startsWith('http://') ||
-      stringValue.startsWith('https://')
-    ) {
+    let text = stringValue;
+    if (isUrl) {
+      try {
+        const url = new URL(stringValue);
+        text = url.hostname;
+      } catch {
+        // Ignore invalid URLs
+      }
       return (
         <a
           href={stringValue}
@@ -42,7 +47,7 @@ export default function IndexTableCell({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {stringValue}
+          {text}
         </a>
       );
     }
@@ -71,7 +76,7 @@ export default function IndexTableCell({
       }
       return part;
     });
-  }, [matchedTokens, stringValue, isInTarget]);
+  }, [isInTarget, isUrl, matchedTokens, stringValue]);
 
   // 2. Trigger scroll when the target is mounted and rendered
   useEffect(() => {
@@ -80,16 +85,9 @@ export default function IndexTableCell({
     }
   }, [isInTarget, renderedContent]);
 
-  if (isRowHeader) {
-    return (
-      <th
-        scope="row"
-        ref={cellReference as React.RefObject<HTMLTableCellElement>}
-      >
-        {renderedContent}
-      </th>
-    );
-  }
-
-  return <td ref={cellReference}>{renderedContent}</td>;
+  return (
+    <td ref={cellReference} title={isUrl ? stringValue : undefined}>
+      {renderedContent}
+    </td>
+  );
 }

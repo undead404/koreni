@@ -21,7 +21,6 @@ export default function IndexTableRow({
           isInTarget={isTarget}
           matchedTokens={matchedTokens}
           value={value}
-          isRowHeader={index === 0}
         />
       ))}
     </tr>

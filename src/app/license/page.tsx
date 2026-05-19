@@ -5,6 +5,8 @@ import Head from 'next/head';
 import environment from '../environment';
 import renderMarkdown from '../helpers/render-markdown';
 
+import styles from './page.module.css';
+
 export default async function LicensePage() {
   const licenseMarkdownBuffer = await readFile('./LICENSE.md');
   const licenseHTML = await renderMarkdown(licenseMarkdownBuffer);
@@ -18,7 +20,7 @@ export default async function LicensePage() {
           key="canonical"
         />
       </Head>
-      <article className="col-sm">
+      <article className={styles.article}>
         <h1>Ліцензія</h1>
         <p>
           Вміст Коренів заснований на праці багатьох осіб, вказаних на сторінках

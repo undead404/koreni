@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 
-import CookieSettingsTrigger from '../components/cookie-settings-trigger'; // Імпортуйте вашу кнопку
+import CookieSettingsTrigger from '../components/cookie-settings-trigger';
+
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Політика конфіденційності', // Автоматично компілюється в "Політика конфіденційності | Корені"
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="col-sm">
+    <article className={styles.article}>
       <h1>Політика конфіденційності</h1>
       <p>Останнє оновлення: 11 лютого 2026</p>
 

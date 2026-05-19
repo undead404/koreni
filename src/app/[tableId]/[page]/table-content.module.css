@@ -1,3 +1,15 @@
+.article {
+  --component-max-width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article header {
+  max-width: 1024px;
+}
+
 .article p {
   overflow-wrap: break-word;
 }
@@ -6,6 +18,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: var(--side-gap);
+}
+
+.data {
+  max-width: 100%;
 }
 
 .tableContainer {
