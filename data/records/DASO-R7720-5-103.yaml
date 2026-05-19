@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-103
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-19
+id: DASO-R7720-5-103
+location:
+  - 51.211391
+  - 33.371658
+size: 81
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-103.csv
+tableLocale: uk
+title: "[ШІ] В'язове (Дубов'язівське) – народження, 1924"
+yearsRange:
+  - 1924
