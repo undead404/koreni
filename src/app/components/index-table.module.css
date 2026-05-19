@@ -1,42 +1,60 @@
 .table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 1rem;
   text-align: left;
+  /* Allows table to naturally size columns based on content (digits vs text) */
+  table-layout: auto;
 }
 
-.thead {
+.thead th {
   position: sticky;
   top: 0;
-}
-
-.thead th,
-.tbody td {
-  padding: 10px;
-}
-
-.table th:global(.break-word) {
-  min-width: 40ch;
-}
-
-.thead tr:first-child {
+  z-index: 10;
   background-color: var(--table-row-header-bg);
   color: var(--table-row-header-text);
+  padding: 10px;
+
+  /* Simulate collapsed top border if necessary */
+  border-top: var(--default-border);
+  border-bottom: var(--default-border);
 }
 
-.tbody tr:nth-child(even) {
+.tbody td {
+  padding: 10px;
+  border-bottom: var(--default-border);
+
+  /* Base handling for long text vs single digits */
+  max-width: 400px; /* Constrain massive text cells */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Permit hover to reveal truncated text without JavaScript */
+.tbody td:hover {
+  white-space: normal;
+  word-break: break-word;
+  overflow: visible;
+}
+
+.tbody tr:nth-child(even) td {
   background-color: var(--table-row-even-bg);
 }
 
-.tbody tr:hover {
+.tbody tr:hover td {
   background-color: var(--table-row-hover-bg);
 }
 
+/* Directional borders to prevent doubling */
 .thead th:not(:last-child),
 .tbody td:not(:last-child) {
   border-right: var(--default-border);
 }
 
-.tbody tr:not(:last-child) {
-  border-bottom: var(--default-border);
+/* Ensure the left-most edge is closed if required by design */
+.thead th:first-child,
+.tbody td:first-child {
+  border-left: var(--default-border);
 }
