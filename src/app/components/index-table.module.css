@@ -40,14 +40,6 @@
   overflow: visible;
 }
 
-.tbody tr:nth-child(even) td {
-  background-color: var(--table-row-even-bg);
-}
-
-.tbody tr:hover td {
-  background-color: var(--table-row-hover-bg);
-}
-
 /* Directional borders to prevent doubling */
 .thead th:not(:last-child),
 .tbody td:not(:last-child) {
@@ -58,4 +50,12 @@
 .thead th:first-child,
 .tbody td:first-child {
   border-left: var(--default-border);
+}
+
+.tbody tr:nth-child(even) td {
+  background-color: var(--table-row-even-bg);
+}
+
+.tbody tr:hover td {
+  background-color: var(--table-row-hover-bg);
 }
