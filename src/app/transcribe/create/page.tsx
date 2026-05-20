@@ -8,10 +8,8 @@ import { toast } from 'sonner';
 import SourcesInput from '@/app/components/contribute/sources-input';
 import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
+import environment from '@/app/environment';
 import { projectCreatePayloadSchema, type ProjectCreatePayload } from '@/server/src/schemata';
-
-// Assuming environment is exported from a central file like this based on conventions
-import environment from '@/environment';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
@@ -144,7 +142,6 @@ export default function ProjectCreatePage() {
               name="yearsRange"
               control={control}
               render={({ field }) => (
-                // @ts-expect-error - YearsInput expects ContributeFormValues but we are using ProjectCreatePayload
                 <YearsInput {...field} />
               )}
             />
