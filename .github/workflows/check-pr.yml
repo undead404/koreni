@@ -30,6 +30,12 @@ jobs:
         run: yarn --frozen-lockfile --prefer-offline
         working-directory: src/server
 
+      - name: Generate Kysely types
+        run: yarn exec kysely-codegen --dialect libsql
+        env:
+          TURSO_DATABASE_URL: vars.TURSO_DATABASE_URL
+          TURSO_DATABASE_TOKEN: secrets.TURSO_DATABASE_TOKEN
+
       - name: Lint
         run: yarn lint
 
