@@ -38,3 +38,15 @@ export const turnstileResponseSchema = z.object({
 });
 
 export type TurnstileResponse = z.infer<typeof turnstileResponseSchema>;
+
+export const authSchema = z.object({
+  credential: z.string(),
+});
+
+export const jwtSchema = z.object({
+  sub: z.string(),
+  iat: z.number(),
+  exp: z.number(),
+});
+
+export type Jwt = z.infer<typeof jwtSchema>;

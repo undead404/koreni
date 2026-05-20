@@ -4,6 +4,9 @@ import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
 import handleSubmit from './handlers/handle-submit.js';
+import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
+import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
+import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
 import { authMiddleware } from './middlewares/auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { bugsnagMiddleware } from './services/bugsnag.js';
@@ -24,7 +27,7 @@ export function createApp() {
   }
 
   // CORS configuration
-  app.use(cors({ origin: environment.NEXT_PUBLIC_SITE }));
+  app.use(cors({ credentials: true, origin: environment.NEXT_PUBLIC_SITE }));
 
   // Body parsing (limit 60kb)
   app.use(
@@ -44,8 +47,13 @@ export function createApp() {
     return c.json({ status: 'ok' });
   });
 
+  app.post('/api/auth/google', handleTranscribeGoogleAuth);
+  app.get('/api/auth/me', handleTranscribeAuthMe);
+  app.delete('/api/auth/me', handleTranscribeAuthDelete);
+
   // 404 Handler for undefined routes
   app.notFound((c) => {
+    console.log('Not Found');
     return c.json({ error: 'Not Found' }, 404);
   });
 
