@@ -1,7 +1,10 @@
+import ProjectsList from './components/projects-list';
+
 export default function TranscribePage() {
   return (
     <div>
-      <h1>Transcribe</h1>
+      <h1>Transcription projects</h1>
+      <ProjectsList />
     </div>
   );
 }

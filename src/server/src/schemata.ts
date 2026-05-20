@@ -44,9 +44,10 @@ export const authSchema = z.object({
 });
 
 export const jwtSchema = z.object({
-  sub: z.string(),
-  iat: z.number(),
   exp: z.number(),
+  iat: z.number(),
+  isAdmin: z.boolean().optional().default(false),
+  sub: z.string(),
 });
 
 export type Jwt = z.infer<typeof jwtSchema>;

@@ -7,8 +7,10 @@ import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
-import { authMiddleware } from './middlewares/auth.js';
+import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
+import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
+import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
 import { bugsnagMiddleware } from './services/bugsnag.js';
 import environment from './environment.js';
 
@@ -41,7 +43,7 @@ export function createApp() {
   app.use('/api/*', rateLimitMiddleware);
 
   // Routes
-  app.post('/api/submit', authMiddleware, handleSubmit);
+  app.post('/api/submit', apiAuthMiddleware, handleSubmit);
 
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });
@@ -49,7 +51,17 @@ export function createApp() {
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
   app.get('/api/auth/me', handleTranscribeAuthMe);
-  app.delete('/api/auth/me', handleTranscribeAuthDelete);
+  app.delete(
+    '/api/auth/me',
+    transcribeAuthMiddleware,
+    handleTranscribeAuthDelete,
+  );
+
+  app.get(
+    '/api/transcribe/projects',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectList,
+  );
 
   // 404 Handler for undefined routes
   app.notFound((c) => {

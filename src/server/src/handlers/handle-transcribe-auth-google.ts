@@ -47,6 +47,7 @@ const handleTranscribeGoogleAuth = async (c: Context) => {
       {
         sub: userId,
         iat: now,
+        isAdmin: !!user?.is_admin,
         exp: now + TOKEN_EXPIRATION_IN_SECONDS,
       } satisfies Jwt,
       environment.JWT_SECRET,
