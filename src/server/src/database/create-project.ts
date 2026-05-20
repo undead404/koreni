@@ -1,6 +1,7 @@
+import { ProjectCreatePayload } from '../schemata.js';
 import { db as database } from './index.js';
 
-export async function createProject(projectData: any) {
+export async function createProject(projectData: ProjectCreatePayload) {
   try {
     const result = await database
       .insertInto('projects')
@@ -22,8 +23,14 @@ export async function createProject(projectData: any) {
       .executeTakeFirstOrThrow();
 
     return result;
-  } catch (error: any) {
-    if (error.message?.includes('UNIQUE constraint failed') || error.code === 'SQLITE_CONSTRAINT_UNIQUE' || error.code === 'SQLITE_CONSTRAINT') {
+  } catch (error: unknown) {
+    if (
+      error instanceof Error &&
+      (error.message.includes('UNIQUE constraint failed') ||
+        ('code' in error &&
+          (error.code === 'SQLITE_CONSTRAINT_UNIQUE' ||
+            error.code === 'SQLITE_CONSTRAINT')))
+    ) {
       throw new Error('Project ID already exists');
     }
     throw error;

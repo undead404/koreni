@@ -5,11 +5,14 @@ import { projectCreatePayloadSchema } from '../schemata.js';
 
 export default async function handleTranscribeProjectCreate(c: Context) {
   try {
-    const body = await c.req.json();
+    const body = (await c.req.json()) as unknown;
     const parsed = projectCreatePayloadSchema.safeParse(body);
 
     if (!parsed.success) {
-      return c.json({ error: 'Validation failed', details: parsed.error.format() }, 400);
+      return c.json(
+        { error: 'Validation failed', details: parsed.error.flatten() },
+        400,
+      );
     }
 
     const project = await createProject(parsed.data);
@@ -23,8 +26,8 @@ export default async function handleTranscribeProjectCreate(c: Context) {
         },
       ],
     });
-  } catch (error: any) {
-    if (error.message === 'Project ID already exists') {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message === 'Project ID already exists') {
       return c.json({ error: 'Project ID already in use' }, 409);
     }
     console.error('Error creating project:', error);

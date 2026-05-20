@@ -5,7 +5,7 @@ export const importPayloadSchema = z.object({
   archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),
   authorName: nonEmptyString,
-  authorEmail: z.email(),
+  authorEmail: z.string().email(),
   // id may contain letters, numbers and dashes
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   location: z.tuple([
@@ -45,6 +45,8 @@ export const projectCreatePayloadSchema = z.object({
     z.tuple([z.number()]),
   ]),
 });
+
+export type ProjectCreatePayload = z.infer<typeof projectCreatePayloadSchema>;
 
 export const turnstilePayloadSchema = z.object({
   turnstileToken: nonEmptyString.optional(),
