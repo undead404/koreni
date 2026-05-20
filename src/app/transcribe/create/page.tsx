@@ -24,10 +24,10 @@ export default function ProjectCreatePage() {
       id: '',
       title: '',
       isHandwritten: true,
-      location: undefined,
+      location: [],
       sources: [],
       tableLocale: undefined,
-      yearsRange: undefined,
+      yearsRange: [],
     },
   });
 
