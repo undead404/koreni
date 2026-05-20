@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { createProject } from '../database/create-project.js';
 import { projectCreatePayloadSchema } from '../schemata.js';
-import { TranscribeContext } from '../types.js';
+import type { TranscribeContext } from '../types.js';
 
 export default async function handleTranscribeProjectCreate(
   c: TranscribeContext,
@@ -21,13 +21,11 @@ export default async function handleTranscribeProjectCreate(
     const project = await createProject(parsed.data, c.var.userId);
 
     return c.json({
-      projects: [
-        {
-          created_at: project.created_at,
-          id: project.id,
-          title: project.title,
-        },
-      ],
+      project: {
+        created_at: project.created_at,
+        id: project.id,
+        title: project.title,
+      },
     });
   } catch (error: unknown) {
     if (

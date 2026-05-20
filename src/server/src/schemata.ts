@@ -28,9 +28,6 @@ export const importPayloadSchema = z.object({
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
 
 export const projectCreatePayloadSchema = z.object({
-  authorEmail: z.email(),
-  authorGithubUsername: z.string().optional(),
-  authorName: nonEmptyString,
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   isHandwritten: z.boolean(),
   location: z.tuple([

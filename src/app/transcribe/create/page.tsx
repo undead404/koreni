@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
+import { SubmitEvent } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -9,7 +10,10 @@ import SourcesInput from '@/app/components/contribute/sources-input';
 import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
 import environment from '@/app/environment';
-import { type ProjectCreatePayload,projectCreatePayloadSchema } from '@/server/src/schemata';
+import {
+  type ProjectCreatePayload,
+  projectCreatePayloadSchema,
+} from '@/server/src/schemata';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
@@ -36,7 +40,10 @@ export default function ProjectCreatePage() {
 
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
-      const url = new URL('/api/transcribe/projects', environment.NEXT_PUBLIC_API_SITE);
+      const url = new URL(
+        '/api/transcribe/projects',
+        environment.NEXT_PUBLIC_API_SITE,
+      );
       const response = await fetch(url.toString(), {
         method: 'POST',
         headers: {
@@ -57,26 +64,44 @@ export default function ProjectCreatePage() {
     }
   };
 
+  const handleFormSubmit = (event: SubmitEvent) => {
+    void handleSubmit(onSubmit)(event);
+  };
+
   return (
     <main style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
       <h1>Create New Project</h1>
-      
+
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          
+        <form
+          onSubmit={handleFormSubmit}
+          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+        >
           <div>
-            <label htmlFor="title" style={{ display: 'block', marginBottom: '0.5rem' }}>Title</label>
+            <label
+              htmlFor="title"
+              style={{ display: 'block', marginBottom: '0.5rem' }}
+            >
+              Title
+            </label>
             <input
               id="title"
               type="text"
               {...register('title')}
               style={{ width: '100%', padding: '0.5rem' }}
             />
-            {errors.title && <p style={{ color: 'red' }}>{errors.title.message}</p>}
+            {errors.title && (
+              <p style={{ color: 'red' }}>{errors.title.message}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="id" style={{ display: 'block', marginBottom: '0.5rem' }}>ID (unique)</label>
+            <label
+              htmlFor="id"
+              style={{ display: 'block', marginBottom: '0.5rem' }}
+            >
+              ID (unique)
+            </label>
             <input
               id="id"
               type="text"
@@ -87,7 +112,12 @@ export default function ProjectCreatePage() {
           </div>
 
           <div>
-            <label htmlFor="isHandwritten" style={{ display: 'block', marginBottom: '0.5rem' }}>Type</label>
+            <label
+              htmlFor="isHandwritten"
+              style={{ display: 'block', marginBottom: '0.5rem' }}
+            >
+              Type
+            </label>
             <select
               id="isHandwritten"
               style={{ width: '100%', padding: '0.5rem' }}
@@ -98,11 +128,18 @@ export default function ProjectCreatePage() {
               <option value="true">Handwritten</option>
               <option value="false">Typed</option>
             </select>
-            {errors.isHandwritten && <p style={{ color: 'red' }}>{errors.isHandwritten.message}</p>}
+            {errors.isHandwritten && (
+              <p style={{ color: 'red' }}>{errors.isHandwritten.message}</p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="tableLocale" style={{ display: 'block', marginBottom: '0.5rem' }}>Table Locale</label>
+            <label
+              htmlFor="tableLocale"
+              style={{ display: 'block', marginBottom: '0.5rem' }}
+            >
+              Table Locale
+            </label>
             <select
               id="tableLocale"
               {...register('tableLocale')}
@@ -113,7 +150,9 @@ export default function ProjectCreatePage() {
               <option value="pl">Polish (pl)</option>
               <option value="ru">Russian (ru)</option>
             </select>
-            {errors.tableLocale && <p style={{ color: 'red' }}>{errors.tableLocale.message}</p>}
+            {errors.tableLocale && (
+              <p style={{ color: 'red' }}>{errors.tableLocale.message}</p>
+            )}
           </div>
 
           <div>
@@ -122,7 +161,7 @@ export default function ProjectCreatePage() {
               control={control}
               render={({ field }) => (
                 <SpatialInput
-                  value={field.value ? field.value.join(',') : ''}
+                  value={field.value.join(',') || ''}
                   onChange={(value) => {
                     if (!value) {
                       field.onChange();
@@ -134,18 +173,20 @@ export default function ProjectCreatePage() {
                 />
               )}
             />
-            {errors.location && <p style={{ color: 'red' }}>{errors.location.message}</p>}
+            {errors.location && (
+              <p style={{ color: 'red' }}>{errors.location.message}</p>
+            )}
           </div>
 
           <div>
             <Controller
               name="yearsRange"
               control={control}
-              render={({ field }) => (
-                <YearsInput {...field} />
-              )}
+              render={({ field }) => <YearsInput {...field} />}
             />
-            {errors.yearsRange && <p style={{ color: 'red' }}>{errors.yearsRange.message}</p>}
+            {errors.yearsRange && (
+              <p style={{ color: 'red' }}>{errors.yearsRange.message}</p>
+            )}
           </div>
 
           <div>

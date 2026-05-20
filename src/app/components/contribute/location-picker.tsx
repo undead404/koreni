@@ -1,5 +1,3 @@
-'use client';
-
 import type { Marker as LMarker } from 'leaflet';
 import { usePostHog } from 'posthog-js/react';
 import { memo, useMemo, useRef } from 'react';
