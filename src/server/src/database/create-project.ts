@@ -1,8 +1,8 @@
-import { db } from './index.js';
+import { db as database } from './index.js';
 
 export async function createProject(projectData: any) {
   try {
-    const result = await db
+    const result = await database
       .insertInto('projects')
       .values({
         id: projectData.id,
