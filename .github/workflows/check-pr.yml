@@ -31,7 +31,7 @@ jobs:
         working-directory: src/server
 
       - name: Generate Kysely types
-        run: yarn kysely-codegen --dialect libsql
+        run: yarn run kysely-codegen --dialect libsql
         env:
           TURSO_DATABASE_URL: vars.TURSO_DATABASE_URL
           TURSO_DATABASE_TOKEN: secrets.TURSO_DATABASE_TOKEN
