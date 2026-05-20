@@ -4,6 +4,9 @@ import { googleLogout } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 
 import environment from '@/app/environment';
+import { initBugsnag } from '@/app/services/bugsnag';
+
+import styles from './logout-button.module.css';
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -19,26 +22,19 @@ export default function LogoutButton() {
     })
       .then((response) => {
         if (!response.ok) {
-          console.error('Logout failed');
-          return;
+          throw new Error('Logout failed');
         }
         router.push('/transcribe/login');
         return;
       })
       .catch((error: unknown) => {
         console.error(error);
+        initBugsnag().notify(error as Error);
       });
-
-    // 3. Purge frontend hydration state (if using Context/Zustand, clear it here)
-
-    // 4. Force navigation to clear the DOM
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="px-4 py-2 bg-red-600 text-white rounded"
-    >
+    <button onClick={handleLogout} className={styles.root}>
       Sign Out
     </button>
   );

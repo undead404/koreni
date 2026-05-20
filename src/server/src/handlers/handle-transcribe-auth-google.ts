@@ -8,7 +8,7 @@ import findUser from '../database/find-user-by-google-id.js';
 import environment from '../environment.js';
 import generateId from '../helpers/generate-id.js';
 import { authSchema, Jwt } from '../schemata.js';
-const TOKEN_EXPIRATION_IN_SECONDS = 3600; // 1 hour
+const TOKEN_EXPIRATION_IN_SECONDS = 3600 * 24; // 1 day
 
 const client = new OAuth2Client(environment.OAUTH_CLIENT_ID);
 

@@ -3,9 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import environment from '../environment';
-
-import { type User, userResponseSchema } from './schemata';
+import environment from '../../environment';
+import { type User, userResponseSchema } from '../schemata';
 
 export default function UserView() {
   const [user, setUser] = useState<User | null>(null);
@@ -27,17 +26,9 @@ export default function UserView() {
       });
   }, [router]);
 
-  return (
-    <div>
-      <h1>User</h1>
-      {user ? (
-        <div>
-          <p>Email: {user.email}</p>
-          <p>ID: {user.id}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+  return user ? (
+    <p title={`Authenticated as: ${user.email}`}>{user.email}</p>
+  ) : (
+    <p>Loading...</p>
   );
 }
