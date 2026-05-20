@@ -9,7 +9,7 @@ import SourcesInput from '@/app/components/contribute/sources-input';
 import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
 import environment from '@/app/environment';
-import { projectCreatePayloadSchema, type ProjectCreatePayload } from '@/server/src/schemata';
+import { type ProjectCreatePayload,projectCreatePayloadSchema } from '@/server/src/schemata';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
@@ -123,12 +123,12 @@ export default function ProjectCreatePage() {
               render={({ field }) => (
                 <SpatialInput
                   value={field.value ? field.value.join(',') : ''}
-                  onChange={(val) => {
-                    if (!val) {
-                      field.onChange(undefined);
+                  onChange={(value) => {
+                    if (!value) {
+                      field.onChange();
                       return;
                     }
-                    const [lat, lng] = val.split(',').map(Number);
+                    const [lat, lng] = value.split(',').map(Number);
                     field.onChange([lat, lng]);
                   }}
                 />
