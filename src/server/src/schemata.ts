@@ -27,6 +27,25 @@ export const importPayloadSchema = z.object({
 
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
 
+export const projectCreatePayloadSchema = z.object({
+  authorEmail: z.string().email(),
+  authorGithubUsername: z.string().optional(),
+  authorName: nonEmptyString,
+  id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+  isHandwritten: z.boolean(),
+  location: z.tuple([
+    z.number().min(-90).max(90),
+    z.number().min(-180).max(180),
+  ]),
+  sources: z.array(z.string()),
+  tableLocale: z.enum(['pl', 'ru', 'uk']),
+  title: nonEmptyString,
+  yearsRange: z.union([
+    z.tuple([z.number(), z.number()]),
+    z.tuple([z.number()]),
+  ]),
+});
+
 export const turnstilePayloadSchema = z.object({
   turnstileToken: nonEmptyString.optional(),
 });
