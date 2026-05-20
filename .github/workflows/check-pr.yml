@@ -34,7 +34,7 @@ jobs:
         run: yarn exec kysely-codegen --dialect libsql
         working-directory: src/server
         env:
-          DATABASE_URL: '{{ vars.TURSO_DATABASE_URL }}?authToken=${{ secrets.TURSO_DATABASE_TOKEN }}'
+          DATABASE_URL: '${{ vars.TURSO_DATABASE_URL }}?authToken=${{ secrets.TURSO_DATABASE_TOKEN }}'
 
       - name: Lint
         run: yarn lint
