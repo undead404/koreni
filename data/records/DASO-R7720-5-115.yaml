@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-115
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-20
+id: DASO-R7720-5-115
+location:
+  - 51.04351
+  - 33.442039
+size: 155
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-115.csv
+tableLocale: uk
+title: "[ШІ] Шпотівка – народження, 1924"
+yearsRange:
+  - 1924
