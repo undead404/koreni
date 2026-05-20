@@ -5,7 +5,7 @@ export const importPayloadSchema = z.object({
   archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),
   authorName: nonEmptyString,
-  authorEmail: z.string().email(),
+  authorEmail: z.email(),
   // id may contain letters, numbers and dashes
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   location: z.tuple([
@@ -28,7 +28,7 @@ export const importPayloadSchema = z.object({
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
 
 export const projectCreatePayloadSchema = z.object({
-  authorEmail: z.string().email(),
+  authorEmail: z.email(),
   authorGithubUsername: z.string().optional(),
   authorName: nonEmptyString,
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),

@@ -1,24 +1,25 @@
-import { ProjectCreatePayload } from '../schemata.js';
+import type { ProjectCreatePayload } from '../schemata.js';
 
-import { db as database } from './index.js';
+import database from './client.js';
 
-export async function createProject(projectData: ProjectCreatePayload) {
+export async function createProject(
+  projectData: ProjectCreatePayload,
+  userId: string,
+) {
   try {
     const result = await database
       .insertInto('projects')
       .values({
         id: projectData.id,
         title: projectData.title,
-        author_email: projectData.authorEmail,
-        author_github_username: projectData.authorGithubUsername,
-        author_name: projectData.authorName,
         is_handwritten: projectData.isHandwritten ? 1 : 0,
-        location_lat: projectData.location[0],
-        location_lng: projectData.location[1],
+        latitude: projectData.location[0],
+        locale: projectData.tableLocale,
+        longitude: projectData.location[1],
         sources: JSON.stringify(projectData.sources),
-        table_locale: projectData.tableLocale,
-        years_range: JSON.stringify(projectData.yearsRange),
-        created_at: new Date().toISOString(),
+        year_start: projectData.yearsRange[0],
+        year_end: projectData.yearsRange[1] || projectData.yearsRange[0],
+        user_id: userId,
       })
       .returning(['id', 'title', 'created_at'])
       .executeTakeFirstOrThrow();
