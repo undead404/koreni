@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import ProjectsList from './components/projects-list';
 
 export default function TranscribePage() {
