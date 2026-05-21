@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8563
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-21
+id: DAKhmO-315-1-8563-Dranka
+location:
+  - 48.5823682
+  - 28.8698366
+size: 1092
+sources:
+  - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8563-Dranka.csv
+tableLocale: ru
+title: Дранка 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
+yearsRange:
+  - 1861
