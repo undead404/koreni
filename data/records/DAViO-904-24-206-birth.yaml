@@ -1,9 +1,9 @@
 archiveItems:
   - ДАВіО-904-24-206
-authorName: Кулігіна Юлія
+authorName: Юлія Кулігіна
 authorEmail: Petrochukulia@gmail.com
 date: 2026-05-21
-id: i904-24-206-narodzhennia
+id: DAViO-904-24-206-birth
 location:
   - 48.3463494
   - 28.876485
@@ -11,7 +11,7 @@ size: 298
 sources: []
 tableFilePath: public/csv/i904-24-206-narodzhennia.csv
 tableLocale: ru
-title: і904-24-206 - народження
+title: Зеленянка (Крижопільська) – народження, 1916-1923
 yearsRange:
   - 1916
   - 1923
