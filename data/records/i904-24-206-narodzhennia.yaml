@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-904-24-206
+authorName: Кулігіна Юлія
+authorEmail: Petrochukulia@gmail.com
+date: 2026-05-21
+id: i904-24-206-narodzhennia
+location:
+  - 48.3463494
+  - 28.876485
+size: 298
+sources: []
+tableFilePath: public/csv/i904-24-206-narodzhennia.csv
+tableLocale: ru
+title: і904-24-206 - народження
+yearsRange:
+  - 1916
+  - 1923
