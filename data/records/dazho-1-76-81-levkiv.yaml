@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-76-81
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-05-21
+id: dazho-1-76-81-levkiv
+location:
+  - 50.2360725808981
+  - 28.836861347530686
+size: 88
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-P7QL-X9DQ-C?view=explore&groupId=TH-7730-139112-2363-59&lang=uk
+tableFilePath: public/csv/dazho-1-76-81-levkiv.csv
+tableLocale: ru
+title: DAZhO-1-76-81-Levkiv
+yearsRange:
+  - 1845
