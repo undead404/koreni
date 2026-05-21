@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-76-89
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-05-20
+id: DAZhO-1-76-89-Levkiv
+location:
+  - 50.236791756288156
+  - 28.83184104008453
+size: 82
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-H77J-8HPX?view=explore&groupId=TH-7750-140023-2321-77&lang=uk
+tableFilePath: public/csv/dazho-1-76-89-1846-preobrazhenska-tserkva-mistechka-levkova-zhytomyrskoho-povitunarodzhennia.csv
+tableLocale: ru
+title: Левків (Глибочицький) – народження, православні, 1846
+yearsRange:
+  - 1846

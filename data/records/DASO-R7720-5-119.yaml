@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАСО-Р7720-5-119
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-20
+id: DASO-R7720-5-119
+location:
+  - 51.157791
+  - 33.106216
+size: 169
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-119.csv
+tableLocale: uk
+title: "[ШІ] Соснівка (Попівська) – народження, 1924-1925"
+yearsRange:
+  - 1924
+  - 1925
