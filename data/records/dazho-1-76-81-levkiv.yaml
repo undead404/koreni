@@ -3,15 +3,15 @@ archiveItems:
 authorName: Олена Т
 authorEmail: yurtselt@gmail.com
 date: 2026-05-21
-id: dazho-1-76-81-levkiv
+id: DAZhO-1-76-81-Levkiv
 location:
-  - 50.2360725808981
-  - 28.836861347530686
+  - 50.2370914
+  - 28.832007
 size: 88
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-P7QL-X9DQ-C?view=explore&groupId=TH-7730-139112-2363-59&lang=uk
 tableFilePath: public/csv/dazho-1-76-81-levkiv.csv
 tableLocale: ru
-title: DAZhO-1-76-81-Levkiv
+title: Левків (Глибочицький) – народження, православні, 1845
 yearsRange:
   - 1845
