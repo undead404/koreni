@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-904-24-206
+authorName: Кулігіна Юлія
+authorEmail: Petrochukulia@gmail.com
+date: 2026-05-21
+id: i904-24-206-smert
+location:
+  - 48.3463494
+  - 28.876485
+size: 358
+sources: []
+tableFilePath: public/csv/i904-24-206-smert.csv
+tableLocale: ru
+title: і904-24-206 - смерть
+yearsRange:
+  - 1916
+  - 1923
