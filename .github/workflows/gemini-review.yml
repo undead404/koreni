@@ -19,7 +19,7 @@ defaults:
 jobs:
   review:
     runs-on: 'ubuntu-latest'
-    timeout-minutes: 7
+    timeout-minutes: 20
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -40,6 +40,9 @@ jobs:
 
       - name: 'Checkout repository'
         uses: 'actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8' # ratchet:actions/checkout@v6
+
+      - name: 'Pre-pull MCP Server'
+        run: docker pull ghcr.io/github/github-mcp-server:v0.27.0
 
       - name: 'Run Gemini pull request review'
         uses: 'google-github-actions/run-gemini-cli@v0' # ratchet:exclude
