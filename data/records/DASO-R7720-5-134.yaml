@@ -5,13 +5,13 @@ authorEmail: igorstor@gmail.com
 date: 2026-05-22
 id: DASO-R7720-5-134
 location:
-  - 51.252941
-  - 33.124119
+  - 51.006771
+  - 33.395351
 size: 330
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
 tableFilePath: public/csv/DASO-R7720-5-134.csv
 tableLocale: uk
-title: "[ШІ] Попівка (Конотопська) – народження, 1925"
+title: "[ШІ] Фесівка, Хижки, Шпотівка, Юрівка – народження, 1925"
 yearsRange:
   - 1925
