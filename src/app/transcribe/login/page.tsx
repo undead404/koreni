@@ -2,8 +2,9 @@
 
 import { type CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
-import environment from '@/app/environment';
+import requestApi from '../services/api';
 
 import styles from './page.module.css';
 
@@ -13,21 +14,17 @@ export default function LoginPage() {
   const handleGoogleSuccess = async (
     credentialResponse: CredentialResponse,
   ) => {
-    const response = await fetch(
-      new URL('/api/auth/google', environment.NEXT_PUBLIC_API_SITE),
-      {
-        body: JSON.stringify({ credential: credentialResponse.credential }),
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+    try {
+      await requestApi('/api/auth/google', {
         method: 'POST',
-      },
-    );
-
-    if (response.ok) {
-      // Backend set the HttpOnly cookie. Hydrate local state and redirect.
+        body: JSON.stringify({ credential: credentialResponse.credential }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       router.push('/transcribe');
-    } else {
-      console.error('Authentication rejected by backend');
+    } catch {
+      toast.error('Failed to authenticate');
     }
   };
 

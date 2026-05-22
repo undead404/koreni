@@ -51,7 +51,7 @@ export function createApp() {
   });
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
-  app.get('/api/auth/me', handleTranscribeAuthMe);
+  app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
   app.delete(
     '/api/auth/me',
     transcribeAuthMiddleware,
@@ -72,7 +72,6 @@ export function createApp() {
 
   // 404 Handler for undefined routes
   app.notFound((c) => {
-    console.log('Not Found');
     return c.json({ error: 'Not Found' }, 404);
   });
 

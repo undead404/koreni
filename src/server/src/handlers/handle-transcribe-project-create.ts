@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { createProject } from '../database/create-project.js';
+import findUserById from '../database/find-user-by-id.js';
 import { projectCreatePayloadSchema } from '../schemata.js';
 import type { TranscribeContext } from '../types.js';
 
@@ -16,6 +17,11 @@ export default async function handleTranscribeProjectCreate(
         { error: 'Validation failed', details: z.treeifyError(parsed.error) },
         400,
       );
+    }
+
+    const user = await findUserById(c.var.userId);
+    if (!user) {
+      return c.json({ error: 'User not found' }, 401);
     }
 
     const project = await createProject(parsed.data, c.var.userId);

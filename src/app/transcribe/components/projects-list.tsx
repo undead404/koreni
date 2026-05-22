@@ -3,31 +3,21 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import environment from '@/app/environment';
-import { initBugsnag } from '@/app/services/bugsnag';
-
 import { type Project, projectResponseSchema } from '../schemata';
+import requestApi from '../services/api';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
-    fetch(
-      new URL('/api/transcribe/projects', environment.NEXT_PUBLIC_API_SITE),
-      {
-        credentials: 'include',
-      },
-    )
+    requestApi('/api/transcribe/projects')
       .then((response) => response.json())
       .then((data: unknown) => {
-        console.log(data);
         const projectsData = projectResponseSchema.parse(data);
         setProjects(projectsData.projects);
         return;
       })
-      .catch((error: unknown) => {
+      .catch(() => {
         toast.error('Error loading projects');
-        console.error(error);
-        initBugsnag().notify(error as Error);
       });
   }, []);
   return (

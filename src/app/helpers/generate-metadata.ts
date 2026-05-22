@@ -238,7 +238,7 @@ export function generateJsonLd(item: IndexationTable): string {
     ],
   };
 
-  return process.env.NODE_ENV === 'development'
+  return environment.NODE_ENV === 'development'
     ? JSON.stringify(jsonLd, null, 2)
     : JSON.stringify(jsonLd);
 }

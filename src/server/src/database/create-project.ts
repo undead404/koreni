@@ -18,7 +18,7 @@ export async function createProject(
         longitude: projectData.location[1],
         sources: JSON.stringify(projectData.sources),
         year_start: projectData.yearsRange[0],
-        year_end: projectData.yearsRange[1] || projectData.yearsRange[0],
+        year_end: projectData.yearsRange[1] ?? projectData.yearsRange[0],
         user_id: userId,
       })
       .returning(['id', 'title', 'created_at'])

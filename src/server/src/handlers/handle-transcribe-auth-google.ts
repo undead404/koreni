@@ -17,10 +17,6 @@ const handleTranscribeGoogleAuth = async (c: Context) => {
   const data = authSchema.parse(body);
   const oauthToken = data.credential;
 
-  if (!oauthToken) {
-    return c.json({ error: 'Missing credential' }, 400);
-  }
-
   try {
     const ticket = await client.verifyIdToken({
       idToken: oauthToken,

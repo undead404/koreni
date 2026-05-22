@@ -3,17 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import environment from '../../environment';
 import { type User, userResponseSchema } from '../schemata';
+import requestApi from '../services/api';
 
 export default function UserView() {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    fetch(new URL('/api/auth/me', environment.NEXT_PUBLIC_API_SITE), {
-      credentials: 'include',
-    })
+    requestApi('/api/auth/me')
       .then((response) => response.json())
       .then((data) => {
         const userData = userResponseSchema.parse(data);

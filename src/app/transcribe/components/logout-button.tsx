@@ -2,9 +2,9 @@
 
 import { googleLogout } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
-import environment from '@/app/environment';
-import { initBugsnag } from '@/app/services/bugsnag';
+import requestApi from '../services/api';
 
 import styles from './logout-button.module.css';
 
@@ -16,20 +16,15 @@ export default function LogoutButton() {
     googleLogout();
 
     // 2. Execute backend cookie destruction
-    fetch(new URL('/api/auth/me', environment.NEXT_PUBLIC_API_SITE), {
+    requestApi('/api/auth/me', {
       method: 'DELETE',
-      credentials: 'include',
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Logout failed');
-        }
+      .then(() => {
         router.push('/transcribe/login');
         return;
       })
-      .catch((error: unknown) => {
-        console.error(error);
-        initBugsnag().notify(error as Error);
+      .catch(() => {
+        toast.error('Failed to sign out');
       });
   };
 
