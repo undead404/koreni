@@ -44,12 +44,16 @@ jobs:
       - name: 'Pre-pull MCP Server'
         run: docker pull ghcr.io/github/github-mcp-server:v0.27.0
 
+      - name: 'Install Ripgrep'
+        run: sudo apt-get install -y ripgrep
+
       - name: 'Run Gemini pull request review'
         uses: 'google-github-actions/run-gemini-cli@v0' # ratchet:exclude
         id: 'gemini_pr_review'
         env:
           GEMINI_CLI_TRUST_WORKSPACE: 'true'
           GEMINI_CLI_YOLO: 'true'
+          GEMINI_CLI_ALLOW_ALL_TOOLS: 'true'
           GITHUB_TOKEN: '${{ steps.mint_identity_token.outputs.token || secrets.GITHUB_TOKEN || github.token }}'
           ISSUE_TITLE: '${{ github.event.pull_request.title || github.event.issue.title }}'
           ISSUE_BODY: '${{ github.event.pull_request.body || github.event.issue.body }}'
@@ -114,7 +118,8 @@ jobs:
                   ],
                   "env": {
                     "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-                  }
+                  },
+                  "alias": "github"
                 }
               },
               "tools": {
