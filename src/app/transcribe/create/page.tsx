@@ -9,11 +9,12 @@ import { toast } from 'sonner';
 import SourcesInput from '@/app/components/contribute/sources-input';
 import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
-import environment from '@/app/environment';
 import {
   type ProjectCreatePayload,
   projectCreatePayloadSchema,
 } from '@/server/src/schemata';
+
+import requestApi from '../services/api';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
@@ -40,26 +41,17 @@ export default function ProjectCreatePage() {
 
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
-      const url = new URL(
-        '/api/transcribe/projects',
-        environment.NEXT_PUBLIC_API_SITE,
-      );
-      const response = await fetch(url.toString(), {
-        method: 'POST',
+      await requestApi('/api/transcribe/projects', {
+        body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        method: 'POST',
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to create project');
-      }
 
       toast.success('Project created successfully');
       router.push('/transcribe');
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Failed to create project');
     }
   };
