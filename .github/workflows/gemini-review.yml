@@ -47,6 +47,13 @@ jobs:
       - name: 'Install Ripgrep'
         run: sudo apt-get install -y ripgrep
 
+      - name: 'Install Extension Non-Interactively'
+        run: |
+          # The --yes flag is required for third-party extensions in 2026 CLI versions
+          gemini extensions install https://github.com/gemini-cli-extensions/code-review --yes
+        env:
+          GEMINI_CLI_TRUST_WORKSPACE: 'true'
+
       - name: 'Run Gemini pull request review'
         uses: 'google-github-actions/run-gemini-cli@v0' # ratchet:exclude
         id: 'gemini_pr_review'
@@ -118,8 +125,7 @@ jobs:
                   ],
                   "env": {
                     "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-                  },
-                  "alias": "github"
+                  }
                 }
               },
               "tools": {
@@ -132,8 +138,4 @@ jobs:
                 ]
               }
             }
-          extensions: |
-            [
-              "https://github.com/gemini-cli-extensions/code-review"
-            ]
           prompt: '/pr-code-review'
