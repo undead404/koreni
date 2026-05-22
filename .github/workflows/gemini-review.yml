@@ -49,6 +49,7 @@ jobs:
         id: 'gemini_pr_review'
         env:
           GEMINI_CLI_TRUST_WORKSPACE: 'true'
+          GEMINI_CLI_YOLO: 'true'
           GITHUB_TOKEN: '${{ steps.mint_identity_token.outputs.token || secrets.GITHUB_TOKEN || github.token }}'
           ISSUE_TITLE: '${{ github.event.pull_request.title || github.event.issue.title }}'
           ISSUE_BODY: '${{ github.event.pull_request.body || github.event.issue.body }}'
@@ -74,13 +75,26 @@ jobs:
           github_pr_number: '${{ github.event.pull_request.number }}'
           settings: |-
             {
+              "security": {
+                "enableConseca": false,
+                "allowAllTools": true
+              },
               "model": {
-                "maxSessionTurns": 25
+                "maxSessionTurns": 50
               },
               "telemetry": {
                 "enabled": false,
                 "target": "local",
                 "outfile": ".gemini/telemetry.log"
+              },
+              "tools": {
+                "core": [
+                  "run_shell_command(cat)",
+                  "run_shell_command(echo)",
+                  "run_shell_command(grep)",
+                  "run_shell_command(head)",
+                  "run_shell_command(tail)"
+                ]
               },
               "mcpServers": {
                 "github": {
