@@ -15,6 +15,7 @@ import {
 } from '@/server/src/schemata';
 
 import requestApi from '../services/api';
+import styles from './page.module.css';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
@@ -61,58 +62,46 @@ export default function ProjectCreatePage() {
   };
 
   return (
-    <main style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+    <main className={styles.root}>
       <h1>Create New Project</h1>
 
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleFormSubmit}
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-        >
+        <form onSubmit={handleFormSubmit} className={styles.form}>
           <div>
-            <label
-              htmlFor="title"
-              style={{ display: 'block', marginBottom: '0.5rem' }}
-            >
+            <label htmlFor="title" className={styles.label}>
               Title
             </label>
             <input
               id="title"
               type="text"
               {...register('title')}
-              style={{ width: '100%', padding: '0.5rem' }}
+              className={styles.input}
             />
             {errors.title && (
-              <p style={{ color: 'red' }}>{errors.title.message}</p>
+              <p className={styles.error}>{errors.title.message}</p>
             )}
           </div>
 
           <div>
-            <label
-              htmlFor="id"
-              style={{ display: 'block', marginBottom: '0.5rem' }}
-            >
+            <label htmlFor="id" className={styles.label}>
               ID (unique)
             </label>
             <input
               id="id"
               type="text"
               {...register('id')}
-              style={{ width: '100%', padding: '0.5rem' }}
+              className={styles.input}
             />
-            {errors.id && <p style={{ color: 'red' }}>{errors.id.message}</p>}
+            {errors.id && <p className={styles.error}>{errors.id.message}</p>}
           </div>
 
           <div>
-            <label
-              htmlFor="isHandwritten"
-              style={{ display: 'block', marginBottom: '0.5rem' }}
-            >
+            <label htmlFor="isHandwritten" className={styles.label}>
               Type
             </label>
             <select
               id="isHandwritten"
-              style={{ width: '100%', padding: '0.5rem' }}
+              className={styles.input}
               {...register('isHandwritten', {
                 setValueAs: (v) => v === 'true',
               })}
@@ -121,21 +110,18 @@ export default function ProjectCreatePage() {
               <option value="false">Typed</option>
             </select>
             {errors.isHandwritten && (
-              <p style={{ color: 'red' }}>{errors.isHandwritten.message}</p>
+              <p className={styles.error}>{errors.isHandwritten.message}</p>
             )}
           </div>
 
           <div>
-            <label
-              htmlFor="tableLocale"
-              style={{ display: 'block', marginBottom: '0.5rem' }}
-            >
+            <label htmlFor="tableLocale" className={styles.label}>
               Table Locale
             </label>
             <select
               id="tableLocale"
               {...register('tableLocale')}
-              style={{ width: '100%', padding: '0.5rem' }}
+              className={styles.input}
             >
               <option value="">Select locale...</option>
               <option value="uk">Ukrainian (uk)</option>
@@ -143,7 +129,7 @@ export default function ProjectCreatePage() {
               <option value="ru">Russian (ru)</option>
             </select>
             {errors.tableLocale && (
-              <p style={{ color: 'red' }}>{errors.tableLocale.message}</p>
+              <p className={styles.error}>{errors.tableLocale.message}</p>
             )}
           </div>
 
@@ -166,7 +152,7 @@ export default function ProjectCreatePage() {
               )}
             />
             {errors.location && (
-              <p style={{ color: 'red' }}>{errors.location.message}</p>
+              <p className={styles.error}>{errors.location.message}</p>
             )}
           </div>
 
@@ -177,7 +163,7 @@ export default function ProjectCreatePage() {
               render={({ field }) => <YearsInput {...field} />}
             />
             {errors.yearsRange && (
-              <p style={{ color: 'red' }}>{errors.yearsRange.message}</p>
+              <p className={styles.error}>{errors.yearsRange.message}</p>
             )}
           </div>
 
@@ -188,14 +174,7 @@ export default function ProjectCreatePage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            style={{
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#0070f3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: isSubmitting ? 'not-allowed' : 'pointer',
-            }}
+            className={styles.submitButton}
           >
             {isSubmitting ? 'Creating...' : 'Create Project'}
           </button>
