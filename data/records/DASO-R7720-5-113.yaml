@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-113
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-20
+id: DASO-R7720-5-113
+location:
+  - 51.094933
+  - 33.056725
+size: 181
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-113.csv
+tableLocale: uk
+title: "[ШІ] Малий Самбір – народження, 1924"
+yearsRange:
+  - 1924

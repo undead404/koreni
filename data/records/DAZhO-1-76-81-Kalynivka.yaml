@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-76-81
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-05-21
+id: DAZhO-1-76-81-Kalynivka
+location:
+  - 50.260052
+  - 28.801689
+size: 56
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-P7QL-X9D4-5?view=explore&groupId=TH-7730-139112-2363-59&lang=uk
+tableFilePath: public/csv/dazho-1-76-81-kalynivka.csv
+tableLocale: ru
+title: Калинівка (Глибочицька) – народження, православні, 1845
+yearsRange:
+  - 1845
