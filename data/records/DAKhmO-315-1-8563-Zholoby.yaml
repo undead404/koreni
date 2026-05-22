@@ -11,7 +11,7 @@ size: 442
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
 tableFilePath: public/csv/DAKhmO-315-1-8563-Zholoby.csv
-tableLocale: uk
+tableLocale: ru
 title: Жолоби (Томашпільські) – сповідний розпис (повний), ДАХмО 315-1-8563
 yearsRange:
   - 1861
