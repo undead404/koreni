@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАКО-280-2-64
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-05-23
+id: babychi-kanivski
+location:
+  - 49.63623
+  - 31.393431
+size: 354
+sources:
+  - https://docs.google.com/spreadsheets/d/1-pEi2lF7BT1yg5gw0FFCeH16svakOquFF9_YVVDjSB4/edit?hl=uk&gid=0#gid=0
+  - https://upload.wikimedia.org/wikipedia/commons/d/d2/%D0%94%D0%90%D0%9A%D0%9E_280-2-64._1795._%D0%A0%D0%B5%D0%B2%D1%96%D0%B7%D1%8C%D0%BA%D1%96_%D0%BA%D0%B0%D0%B7%D0%BA%D0%B8_%D0%BF%D0%BE%D0%BC%D1%96%D1%89%D0%B8%D1%86%D1%8C%D0%BA%D0%B8%D1%85_%D1%81%D0%B5%D0%BB%D1%8F%D0%BD_%D0%A7%D0%B5%D1%80%D0%BA%D0%B0%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D0%BE%D0%B2%D1%96%D1%82%D1%83_%28%D1%87%D0%B0%D1%81%D1%82%D0%B8%D0%BD%D0%B0_2%29.pdf
+tableFilePath: public/csv/babychi-kanivski.csv
+tableLocale: ru
+title: Бабичі (Канівські)
+yearsRange:
+  - 1795
