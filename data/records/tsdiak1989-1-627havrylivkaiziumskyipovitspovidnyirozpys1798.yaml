@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-1989-1-627
+authorName: Олена Котовська
+authorEmail: elean.k@gmail.com
+date: 2026-05-24
+id: tsdiak1989-1-627havrylivkaiziumskyipovitspovidnyirozpys1798
+location:
+  - 48.8460067
+  - 36.8088298
+size: 1546
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:33S7-9GY3-9NL3?view=explore&groupId=M9S8-MVN&lang=en
+tableFilePath: public/csv/tsdiak1989-1-627havrylivkaiziumskyipovitspovidnyirozpys1798.csv
+tableLocale: ru
+title: ЦДІАК_1989-1-627_Гаврилівка_Ізюмський_повіт_Сповідний_розпис_1798
+yearsRange:
+  - 1798
