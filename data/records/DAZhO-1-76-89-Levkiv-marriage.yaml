@@ -3,15 +3,15 @@ archiveItems:
 authorName: Олена Т
 authorEmail: yurtselt@gmail.com
 date: 2026-05-23
-id: dazho-1-76-89-levkivmerriage
+id: DAZhO-1-76-89-Levkiv-marriage
 location:
-  - 50.23691802413818
-  - 28.835027539945862
+  - 50.2370914
+  - 28.832007
 size: 35
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-W77N-CSKM-F?view=explore&groupId=TH-7750-140023-2321-77&lang=uk
 tableFilePath: public/csv/dazho-1-76-89-levkivmerriage.csv
 tableLocale: ru
-title: DAZhO-1-76-89-Levkiv_merriage
+title: Левків (Глибочицький) – шлюб, православні, 1846
 yearsRange:
   - 1846
