@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-140
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-24
+id: DASO-R7720-5-140
+location:
+  - 51.2100508
+  - 33.535911
+size: 147
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-140.csv
+tableLocale: uk
+title: "[ШІ] Бондарі (Бочечківські) та Грузьке (Дубов'язівське) – народження, 1926"
+yearsRange:
+  - 1926
