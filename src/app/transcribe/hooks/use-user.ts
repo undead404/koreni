@@ -21,7 +21,7 @@ export function useUser() {
           if (!response.ok) {
             return null;
           }
-          const data = await response.json();
+          const data: unknown = await response.json();
           const userData = userResponseSchema.parse(data);
           return userData.user;
         })
