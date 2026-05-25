@@ -16,7 +16,7 @@ const mockSend = vi.fn();
 
 vi.mock('@aws-sdk/client-s3', () => {
   return {
-    S3Client: vi.fn().mockImplementation(() => {
+    S3Client: vi.fn().mockImplementation(function (this: any) {
       return {
         send: mockSend,
       };
