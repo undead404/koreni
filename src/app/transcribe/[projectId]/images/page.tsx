@@ -232,7 +232,7 @@ export default function ProjectImagesUploadPage({
         ) : (
           <button
             className={styles.button}
-            onClick={startUpload}
+            onClick={() => { void startUpload(); }}
             disabled={activeImagesCount === 0}
           >
             Start Uploading {activeImagesCount} Images
