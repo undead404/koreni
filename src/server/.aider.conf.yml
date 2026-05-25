@@ -6,7 +6,8 @@ auto-test: true
 lint-cmd:
   - 'typescript: npx tsc --noEmit'
   - 'typescript: npx eslint --fix --no-error-on-unmatched-pattern'
-model: gemini/gemini-3.1-pro-preview
+# model: gemini/gemini-3.1-pro-preview
+model: gemini/gemini-flash-latest
 read:
   - ./CONVENTIONS.md
   - ./README.md
