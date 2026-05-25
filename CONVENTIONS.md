@@ -19,6 +19,7 @@
 - **Files & Directories**: Strictly use `kebab-case` for all files and folders (e.g., `archive-item.tsx`, `get-table-metadata.ts`).
 - **Functions & Variables**: Strictly use `camelCase`.
 - **Component Exports**: Use `export default function ComponentName` for all components and pages. Avoid named exports for React components unless grouping multiple sub-components in a single file.
+- **API requests**: Never done from React components, but only from separate async service functions. Use `fetch`.
 
 ## 4. Styling & UI
 
