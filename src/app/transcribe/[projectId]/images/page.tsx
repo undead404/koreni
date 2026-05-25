@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { use, useCallback, useEffect, useRef, useState } from 'react';
 
 import requestApi from '../../services/api';
+
 import styles from './page.module.css';
 
 interface ImageFile {
@@ -24,20 +25,20 @@ export default function ProjectImagesUploadPage({
   const { projectId } = use(params);
   const [images, setImages] = useState<ImageFile[]>([]);
   const [uploadState, setUploadState] = useState<UploadState>('idle');
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const abortControllerRef = useRef<AbortController | null>(null);
+  const fileInputReference = useRef<HTMLInputElement>(null);
+  const abortControllerReference = useRef<AbortController | null>(null);
 
   // Cleanup object URLs to avoid memory leaks
   useEffect(() => {
     return () => {
-      images.forEach((img) => URL.revokeObjectURL(img.previewUrl));
+      for (const img of images) URL.revokeObjectURL(img.previewUrl);
     };
   }, [images]);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
-    const newFiles = Array.from(event.target.files)
+    const newFiles = [...event.target.files]
       .filter((file) => file.type === 'image/jpeg' || file.type === 'image/jpg')
       .map((file) => ({
         id: crypto.randomUUID(),
@@ -47,15 +48,15 @@ export default function ProjectImagesUploadPage({
         status: 'pending' as const,
       }));
 
-    setImages((prev) => [...prev, ...newFiles]);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+    setImages((previous) => [...previous, ...newFiles]);
+    if (fileInputReference.current) {
+      fileInputReference.current.value = '';
     }
   };
 
   const toggleRemove = (id: string) => {
-    setImages((prev) =>
-      prev.map((img) =>
+    setImages((previous) =>
+      previous.map((img) =>
         img.id === id ? { ...img, removed: !img.removed } : img,
       ),
     );
@@ -63,16 +64,16 @@ export default function ProjectImagesUploadPage({
 
   const startUpload = async () => {
     setUploadState('uploading');
-    abortControllerRef.current = new AbortController();
-    const signal = abortControllerRef.current.signal;
+    abortControllerReference.current = new AbortController();
+    const signal = abortControllerReference.current.signal;
 
     const filesToUpload = images.filter((img) => !img.removed);
 
     for (const image of filesToUpload) {
       if (signal.aborted) break;
 
-      setImages((prev) =>
-        prev.map((img) =>
+      setImages((previous) =>
+        previous.map((img) =>
           img.id === image.id ? { ...img, status: 'uploading' } : img,
         ),
       );
@@ -87,8 +88,8 @@ export default function ProjectImagesUploadPage({
           signal,
         });
 
-        setImages((prev) =>
-          prev.map((img) =>
+        setImages((previous) =>
+          previous.map((img) =>
             img.id === image.id ? { ...img, status: 'success' } : img,
           ),
         );
@@ -96,8 +97,8 @@ export default function ProjectImagesUploadPage({
         if (error instanceof Error && error.name === 'AbortError') {
           break;
         }
-        setImages((prev) =>
-          prev.map((img) =>
+        setImages((previous) =>
+          previous.map((img) =>
             img.id === image.id ? { ...img, status: 'error' } : img,
           ),
         );
@@ -110,11 +111,11 @@ export default function ProjectImagesUploadPage({
   };
 
   const cancelUpload = useCallback(() => {
-    if (window.confirm('Are you sure you want to cancel the upload?')) {
-      abortControllerRef.current?.abort();
+    if (globalThis.confirm('Are you sure you want to cancel the upload?')) {
+      abortControllerReference.current?.abort();
       setUploadState('idle');
-      setImages((prev) =>
-        prev.map((img) =>
+      setImages((previous) =>
+        previous.map((img) =>
           img.status === 'uploading' ? { ...img, status: 'pending' } : img,
         ),
       );
@@ -135,12 +136,12 @@ export default function ProjectImagesUploadPage({
           multiple
           accept="image/jpeg, image/jpg"
           onChange={handleFileSelect}
-          ref={fileInputRef}
+          ref={fileInputReference}
           style={{ display: 'none' }}
         />
         <button
           className={styles.button}
-          onClick={() => fileInputRef.current?.click()}
+          onClick={() => fileInputReference.current?.click()}
         >
           Select Images
         </button>
@@ -159,12 +160,12 @@ export default function ProjectImagesUploadPage({
               multiple
               accept="image/jpeg, image/jpg"
               onChange={handleFileSelect}
-              ref={fileInputRef}
+              ref={fileInputReference}
               style={{ display: 'none' }}
             />
             <button
               className={styles.button}
-              onClick={() => fileInputRef.current?.click()}
+              onClick={() => fileInputReference.current?.click()}
             >
               Select More Images
             </button>
@@ -206,7 +207,7 @@ export default function ProjectImagesUploadPage({
               <div className={styles.controls}>
                 <button
                   className={`${styles.button} ${image.removed ? styles.buttonSuccess : styles.buttonDanger}`}
-                  onClick={() => toggleRemove(image.id)}
+                  onClick={() => { toggleRemove(image.id); }}
                 >
                   {image.removed ? 'Include' : 'Remove'}
                 </button>
