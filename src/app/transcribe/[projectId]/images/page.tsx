@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { use, useCallback, useEffect, useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import requestApi from '../../services/api';
 import styles from './page.module.css';
@@ -41,7 +40,7 @@ export default function ProjectImagesUploadPage({
     const newFiles = Array.from(event.target.files)
       .filter((file) => file.type === 'image/jpeg' || file.type === 'image/jpg')
       .map((file) => ({
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         file,
         previewUrl: URL.createObjectURL(file),
         removed: false,
