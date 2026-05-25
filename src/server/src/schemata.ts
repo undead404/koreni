@@ -85,3 +85,7 @@ export const jwtSchema = z.object({
 });
 
 export type Jwt = z.infer<typeof jwtSchema>;
+
+export const r2UploadSchema = z.object({
+  projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+});

@@ -9,6 +9,7 @@ import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
+import handleR2Upload from './handlers/handle-r2-upload.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
@@ -68,6 +69,12 @@ export function createApp() {
     '/api/transcribe/projects',
     transcribeAuthMiddleware,
     handleTranscribeProjectCreate,
+  );
+
+  app.post(
+    '/api/transcribe/upload',
+    transcribeAuthMiddleware,
+    handleR2Upload,
   );
 
   // 404 Handler for undefined routes
