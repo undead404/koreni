@@ -6,6 +6,7 @@
 - **Client Components**: Add the `'use client'` directive at the very top of the file ONLY if the component requires `useState`, `useEffect`, `useSearchParams`, DOM APIs, or interactive event listeners.
 - **Data Fetching**: Execute data fetching asynchronously within Server Components (`async function Page()`). Never fetch data in Client Components unless explicitly instructed.
 - **Async Params**: In Next.js 15, `params` and `searchParams` in pages/layouts are asynchronous. Always `await` them before destructuring or reading.
+- **SSG**: All pages use SSG (Static Site Generation). Pages are generated at build time, and then served as static files. Thus, there is no way to have runtime-dynamic URL path parts.
 
 ## 2. TypeScript & Type Definitions
 

@@ -1,7 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { use, useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import z from 'zod';
+
+import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import requestApi from '../services/api';
 
@@ -17,18 +21,34 @@ interface ImageFile {
 
 type UploadState = 'idle' | 'uploading' | 'success';
 
-export default function ProjectImagesUploadPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ projectId: string }>;
-}) {
-  const { projectId } = use(searchParams);
+const imagesSearchParametersSchema = z.object({
+  projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+});
+
+export default function ProjectImagesUploadPage() {
+  const [projectId, setProjectId] = useState<string>('');
   const [images, setImages] = useState<ImageFile[]>([]);
   const [uploadState, setUploadState] = useState<UploadState>('idle');
   const fileInputReference = useRef<HTMLInputElement>(null);
   const abortControllerReference = useRef<AbortController | null>(null);
 
   // Cleanup object URLs to avoid memory leaks
+
+  const searchParameters = useSearchParams();
+  const router = useRouter();
+  useEffect(() => {
+    try {
+      const { projectId: projectIdFromSearch } =
+        imagesSearchParametersSchema.parse({
+          projectId: searchParameters.get('projectId'),
+        });
+      setProjectId(projectIdFromSearch);
+    } catch (error) {
+      console.error('Error parsing search parameters:', error);
+      router.push('/transcribe');
+    }
+  }, [router, searchParameters]);
+
   useEffect(() => {
     return () => {
       for (const img of images) URL.revokeObjectURL(img.previewUrl);
@@ -192,7 +212,7 @@ export default function ProjectImagesUploadPage({
               alt={image.file.name}
               className={styles.preview}
             />
-            
+
             {isUploading && image.status === 'uploading' && (
               <div className={styles.statusOverlay}>Uploading...</div>
             )}
@@ -207,7 +227,9 @@ export default function ProjectImagesUploadPage({
               <div className={styles.controls}>
                 <button
                   className={`${styles.button} ${image.removed ? styles.buttonSuccess : styles.buttonDanger}`}
-                  onClick={() => { toggleRemove(image.id); }}
+                  onClick={() => {
+                    toggleRemove(image.id);
+                  }}
                 >
                   {image.removed ? 'Include' : 'Remove'}
                 </button>
@@ -232,7 +254,9 @@ export default function ProjectImagesUploadPage({
         ) : (
           <button
             className={styles.button}
-            onClick={() => { void startUpload(); }}
+            onClick={() => {
+              void startUpload();
+            }}
             disabled={activeImagesCount === 0}
           >
             Start Uploading {activeImagesCount} Images
