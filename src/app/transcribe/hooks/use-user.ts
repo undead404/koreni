@@ -17,16 +17,16 @@ export function useUser() {
   useEffect(() => {
     if (!cachedUserPromise) {
       cachedUserPromise = requestApi('/api/auth/me')
-        .then((response) => {
+        .then(async (response) => {
           if (!response.ok) {
             return null;
           }
-          return response.json().then((data) => {
-            const userData = userResponseSchema.parse(data);
-            return userData.user;
-          });
+          const data = await response.json();
+          const userData = userResponseSchema.parse(data);
+          return userData.user;
         })
-        .catch((error_) => {
+        .catch((error_: unknown) => {
+          // eslint-disable-next-line no-console
           console.error(error_);
           return null;
         });
@@ -39,10 +39,12 @@ export function useUser() {
           setError(new Error('Not authenticated'));
         }
         setLoading(false);
+        return null;
       })
-      .catch((error_) => {
+      .catch((error_: unknown) => {
         setError(error_ instanceof Error ? error_ : new Error(String(error_)));
         setLoading(false);
+        return null;
       });
   }, []);
 
