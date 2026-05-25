@@ -2,6 +2,7 @@ import environment from '@/app/environment';
 import { initBugsnag } from '@/app/services/bugsnag';
 
 export const getProjectSchemas = async () => {
+  await Promise.resolve();
   return [
     {
       enabled: true,

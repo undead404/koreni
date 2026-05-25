@@ -24,11 +24,17 @@ export default function ProjectCreatePage() {
 
   useEffect(() => {
     let active = true;
-    getProjectSchemas().then((data) => {
-      if (active) {
-        setSchemas(data);
+    const loadSchemas = async () => {
+      try {
+        const data = await getProjectSchemas();
+        if (active) {
+          setSchemas(data);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    });
+    };
+    void loadSchemas();
     return () => {
       active = false;
     };
@@ -37,7 +43,7 @@ export default function ProjectCreatePage() {
   const methods = useForm<ProjectCreatePayload>({
     resolver: zodResolver(projectCreatePayloadSchema),
     defaultValues: {
-      type: '' as any,
+      type: '' as unknown as ProjectCreatePayload['type'],
       id: '',
       title: '',
       isHandwritten: true,
