@@ -20,7 +20,9 @@ import styles from './page.module.css';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
-  const [schemas, setSchemas] = useState<{ enabled: boolean; label: string; value: string }[]>([]);
+  const [schemas, setSchemas] = useState<
+    { enabled: boolean; label: string; value: string }[]
+  >([]);
 
   useEffect(() => {
     let active = true;
@@ -92,11 +94,7 @@ export default function ProjectCreatePage() {
             <label htmlFor="type" className={styles.label}>
               Project Type
             </label>
-            <select
-              id="type"
-              {...register('type')}
-              className={styles.input}
-            >
+            <select id="type" {...register('type')} className={styles.input}>
               <option value="">Select a type...</option>
               {schemas.map((schema) => (
                 <option
@@ -112,8 +110,13 @@ export default function ProjectCreatePage() {
               <p className={styles.error}>{errors.type.message}</p>
             )}
             <div className={styles.schemaLinkContainer}>
-              <span className={styles.disabledLink}>Create new project</span>
-              <span className={styles.note}> (Schema creation is not yet implemented)</span>
+              <span className={styles.disabledLink}>
+                Create new project type
+              </span>
+              <span className={styles.note}>
+                {' '}
+                (Project type creation is not yet implemented)
+              </span>
             </div>
           </div>
 
@@ -166,7 +169,7 @@ export default function ProjectCreatePage() {
 
           <div>
             <label htmlFor="tableLocale" className={styles.label}>
-              Table Locale
+              Document Locale
             </label>
             <select
               id="tableLocale"
