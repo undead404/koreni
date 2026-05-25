@@ -34,7 +34,7 @@ export default async function handleR2Upload(c: Context) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const sanitizedFileName = file.name.replaceAll(/[^\w.-]/g, '_');
 
     const result = await uploadImageToR2(
       projectId,

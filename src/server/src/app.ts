@@ -3,13 +3,13 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import handleR2Upload from './handlers/handle-r2-upload.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
-import handleR2Upload from './handlers/handle-r2-upload.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';

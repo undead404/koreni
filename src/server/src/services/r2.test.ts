@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
+
 import { uploadImageToR2 } from './r2.js';
 
 vi.mock('../environment.js', () => ({
@@ -20,7 +21,7 @@ vi.mock('@aws-sdk/client-s3', () => {
         send: mockSend,
       };
     }),
-    PutObjectCommand: vi.fn().mockImplementation((args) => args),
+    PutObjectCommand: vi.fn().mockImplementation((arguments_) => arguments_),
   };
 });
 
