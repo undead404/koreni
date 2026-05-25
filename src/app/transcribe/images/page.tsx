@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { use, useCallback, useEffect, useRef, useState } from 'react';
 
-import requestApi from '../../services/api';
+import requestApi from '../services/api';
 
 import styles from './page.module.css';
 
