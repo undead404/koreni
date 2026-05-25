@@ -4,12 +4,14 @@ import { googleLogout } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
+import { clearUserCache, useUser } from '../hooks/use-user';
 import requestApi from '../services/api';
 
 import styles from './logout-button.module.css';
 
 export default function LogoutButton() {
   const router = useRouter();
+  const { user, loading } = useUser();
 
   const handleLogout = () => {
     // 1. Sever the local Google Identity SDK state
@@ -20,6 +22,7 @@ export default function LogoutButton() {
       method: 'DELETE',
     })
       .then(() => {
+        clearUserCache();
         router.push('/transcribe/login');
         return;
       })
@@ -27,6 +30,10 @@ export default function LogoutButton() {
         toast.error('Failed to sign out');
       });
   };
+
+  if (loading || !user) {
+    return null;
+  }
 
   return (
     <button onClick={handleLogout} className={styles.root}>
