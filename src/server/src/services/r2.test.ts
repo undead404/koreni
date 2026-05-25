@@ -16,12 +16,12 @@ const mockSend = vi.fn();
 
 vi.mock('@aws-sdk/client-s3', () => {
   return {
-    S3Client: vi.fn().mockImplementation(function (this: any) {
-      return {
-        send: mockSend,
-      };
-    }),
-    PutObjectCommand: vi.fn().mockImplementation((arguments_) => arguments_),
+    S3Client: class {
+      send = mockSend;
+    },
+    PutObjectCommand: class {
+      constructor(public input: any) {}
+    },
   };
 });
 
