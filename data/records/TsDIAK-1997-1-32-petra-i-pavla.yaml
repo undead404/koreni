@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-1997-1-32
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-05-24
+id: TsDIAK-1997-1-32-petra-i-pavla
+location:
+  - 50.697063
+  - 35.451382
+size: 74
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-LQ1H-G23J?view=explore&groupId=TH-7732-134363-8218-29&grid=on&lang=en
+tableFilePath: public/csv/mk-sl-petrovska-1788-petra-i-pavla.csv
+tableLocale: ru
+title: МК сл. Петровська 1788 (Петра і Павла)
+yearsRange:
+  - 1788
