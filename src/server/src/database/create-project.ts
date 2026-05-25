@@ -12,6 +12,7 @@ export async function createProject(
       .values({
         id: projectData.id,
         title: projectData.title,
+        type: projectData.type,
         is_handwritten: projectData.isHandwritten ? 1 : 0,
         latitude: projectData.location[0],
         locale: projectData.tableLocale,
@@ -21,7 +22,7 @@ export async function createProject(
         year_end: projectData.yearsRange[1] ?? projectData.yearsRange[0],
         user_id: userId,
       })
-      .returning(['id', 'title', 'created_at'])
+      .returning(['id', 'title', 'created_at', 'type'])
       .executeTakeFirstOrThrow();
 
     return result;

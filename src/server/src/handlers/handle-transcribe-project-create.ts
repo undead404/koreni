@@ -31,7 +31,7 @@ export default async function handleTranscribeProjectCreate(
         created_at: project.created_at,
         id: project.id,
         title: project.title,
-        type: (project as Record<string, unknown>).type,
+        type: project.type,
       },
     });
   } catch (error: unknown) {
