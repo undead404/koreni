@@ -30,7 +30,7 @@ const environmentSchema = z.object({
   R2_BUCKET_NAME: nonEmptyString.optional(),
   R2_PUBLIC_URL: z.string().url().optional(),
   TURNSTILE_SECRET_KEY: nonEmptyString,
-  TURSO_DATABASE_URL: z.url(),
+  TURSO_DATABASE_URL: z.string().url(),
   TURSO_DATABASE_TOKEN: nonEmptyString,
   VALID_API_KEYS: z
     .string()
