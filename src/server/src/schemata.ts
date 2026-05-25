@@ -37,7 +37,7 @@ export const projectCreatePayloadSchema = z.object({
   sources: z.array(z.string()),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
-  type: z.enum(['table', 'text']),
+  type: z.enum(['table', 'text', 'confession-list', 'parish-register']),
   yearsRange: z.union([
     z.tuple([z.number(), z.number()]),
     z.tuple([z.number()]),

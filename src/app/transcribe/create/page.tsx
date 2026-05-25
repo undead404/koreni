@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { SubmitEvent } from 'react';
+import { SubmitEvent, useEffect, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -14,16 +14,30 @@ import {
   projectCreatePayloadSchema,
 } from '@/server/src/schemata';
 
-import requestApi from '../services/api';
+import requestApi, { getProjectSchemas } from '../services/api';
 
 import styles from './page.module.css';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
+  const [schemas, setSchemas] = useState<{ enabled: boolean; label: string; value: string }[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    getProjectSchemas().then((data) => {
+      if (active) {
+        setSchemas(data);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const methods = useForm<ProjectCreatePayload>({
     resolver: zodResolver(projectCreatePayloadSchema),
     defaultValues: {
+      type: '' as any,
       id: '',
       title: '',
       isHandwritten: true,
@@ -69,6 +83,35 @@ export default function ProjectCreatePage() {
       <FormProvider {...methods}>
         <form onSubmit={handleFormSubmit} className={styles.form}>
           <div>
+            <label htmlFor="type" className={styles.label}>
+              Project Type
+            </label>
+            <select
+              id="type"
+              {...register('type')}
+              className={styles.input}
+            >
+              <option value="">Select a type...</option>
+              {schemas.map((schema) => (
+                <option
+                  key={schema.value}
+                  value={schema.value}
+                  disabled={!schema.enabled}
+                >
+                  {schema.label}
+                </option>
+              ))}
+            </select>
+            {errors.type && (
+              <p className={styles.error}>{errors.type.message}</p>
+            )}
+            <div className={styles.schemaLinkContainer}>
+              <span className={styles.disabledLink}>Create new project</span>
+              <span className={styles.note}> (Schema creation is not yet implemented)</span>
+            </div>
+          </div>
+
+          <div>
             <label htmlFor="title" className={styles.label}>
               Title
             </label>
@@ -98,7 +141,7 @@ export default function ProjectCreatePage() {
 
           <div>
             <label htmlFor="isHandwritten" className={styles.label}>
-              Type
+              Handwritten
             </label>
             <select
               id="isHandwritten"
