@@ -7,6 +7,9 @@ import type { ContextVariables } from '../types.js';
 export const transcribeAuthMiddleware = createMiddleware<{
   Variables: ContextVariables;
 }>(async (c, next) => {
+  // if (environment.NODE_ENV === 'development') {
+  //   return next();
+  // }
   const token = getCookie(c, 'auth_session');
 
   if (!token) {

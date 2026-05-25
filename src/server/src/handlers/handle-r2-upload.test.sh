@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default API URL
-API_URL=${1:-"http://localhost:3000/api/r2-upload"}
+API_URL=${1:-"http://localhost:4000/api/transcribe/upload"}
 PROJECT_ID=${2:-"test-project-id"}
 
 echo "Using API URL: $API_URL"

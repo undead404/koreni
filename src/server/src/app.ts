@@ -42,16 +42,16 @@ export function createApp() {
   );
 
   // Rate Limiting (applied specifically to API routes)
-  app.use('/api/*', rateLimitMiddleware);
+  // app.use('/api/*', rateLimitMiddleware);
 
   // Routes
-  app.post('/api/submit', apiAuthMiddleware, handleSubmit);
+  app.post('/api/submit', rateLimitMiddleware, apiAuthMiddleware, handleSubmit);
 
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });
   });
 
-  app.post('/api/auth/google', handleTranscribeGoogleAuth);
+  app.post('/api/auth/google', rateLimitMiddleware, handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
   app.delete(
     '/api/auth/me',
@@ -71,11 +71,7 @@ export function createApp() {
     handleTranscribeProjectCreate,
   );
 
-  app.post(
-    '/api/transcribe/upload',
-    transcribeAuthMiddleware,
-    handleR2Upload,
-  );
+  app.post('/api/transcribe/upload', transcribeAuthMiddleware, handleR2Upload);
 
   // 404 Handler for undefined routes
   app.notFound((c) => {
