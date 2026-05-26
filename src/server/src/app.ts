@@ -73,17 +73,17 @@ export function createApp() {
   );
 
   app.put(
-    '/api/projects/:projectId/images/:imageId',
+    '/api/transcribe/projects/:projectId/images/:imageId',
     transcribeAuthMiddleware,
     handleProjectImage,
   );
   app.delete(
-    '/api/projects/:projectId/images/:imageId',
+    '/api/transcribe/projects/:projectId/images/:imageId',
     transcribeAuthMiddleware,
     handleProjectImage,
   );
   app.get(
-    '/api/projects/:projectId/images/:imageId',
+    '/api/transcribe/projects/:projectId/images/:imageId',
     transcribeAuthMiddleware,
     handleProjectImages,
   );

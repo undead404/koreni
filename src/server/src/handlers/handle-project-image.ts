@@ -89,7 +89,7 @@ export default async function handleProjectImage(c: Context) {
         pageSequence,
         pageName: pageName || null,
         height: dimensions.height,
-        width: String(dimensions.width),
+        width: dimensions.width,
         blurhash,
       });
 

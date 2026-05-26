@@ -21,6 +21,7 @@
 - **Functions & Variables**: Strictly use `camelCase`.
 - **Component Exports**: Use `export default function ComponentName` for all components and pages. Avoid named exports for React components unless grouping multiple sub-components in a single file.
 - **API requests**: Never done from React components, but only from separate async service functions. Use `fetch`.
+- **File Length**: Refactor & split files beyond 300 lines.
 
 ## 4. Styling & UI
 

@@ -57,7 +57,7 @@ export async function createProjectImage({
   pageSequence: number;
   projectId: string;
   storageKey: string;
-  width: string;
+  width: number;
 }) {
   await database
     .insertInto('project_images')
