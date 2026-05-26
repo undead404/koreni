@@ -41,8 +41,8 @@ describe('r2 service', () => {
       'image/jpeg',
     );
 
-    expect(result.key).toBe('temp/project-123/photo.jpg');
-    expect(result.url).toBe('https://cdn.example.com/temp/project-123/photo.jpg');
+    expect(result.key).toBe('project-123/photo.jpg');
+    expect(result.url).toBe('https://cdn.example.com/project-123/photo.jpg');
     expect(mockSend).toHaveBeenCalled();
   });
 
@@ -54,7 +54,7 @@ describe('r2 service', () => {
         'photo.jpg',
         Buffer.from('dummy data'),
         'image/jpeg',
-      )
+      ),
     ).rejects.toThrow('S3 error');
   });
 });

@@ -1,4 +1,8 @@
-import { DeleteObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+  DeleteObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 
 import environment from '../environment.js';
 
@@ -32,7 +36,7 @@ export async function uploadImageToR2(
   }
 
   const client = getS3Client();
-  const key = `temp/${projectId}/${fileName}`;
+  const key = `${projectId}/${fileName}`;
 
   const command = new PutObjectCommand({
     Bucket: R2_BUCKET_NAME,
