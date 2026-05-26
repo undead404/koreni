@@ -39,11 +39,11 @@ export function getJpegDimensions(buffer: Buffer): { width: number; height: numb
     const length = buffer.readUInt16BE(offset);
 
     if (isSOF) {
-      if (offset + 6 > buffer.length) {
+      if (offset + 7 > buffer.length) {
         throw new Error('Invalid SOF segment');
       }
-      const height = buffer.readUInt16BE(offset + 1);
-      const width = buffer.readUInt16BE(offset + 3);
+      const height = buffer.readUInt16BE(offset + 3);
+      const width = buffer.readUInt16BE(offset + 5);
       return { width, height };
     }
 
