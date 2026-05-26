@@ -18,7 +18,7 @@ export default async function handleProjectImage(c: Context) {
 
   if (method === 'PUT') {
     try {
-      const body = await c.req.parseBody();
+      const body = await c.req.parseBody() as Record<string, string | File | undefined>;
 
       const pageSequenceRaw = body.pageSequence ?? body.page_sequence;
       const pageNameRaw = body.pageName ?? body.page_name ?? null;
@@ -61,8 +61,9 @@ export default async function handleProjectImage(c: Context) {
       let dimensions;
       try {
         dimensions = getJpegDimensions(buffer);
-      } catch (error: any) {
-        return c.json({ error: 'Invalid JPEG file: ' + error.message }, 400);
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
+        return c.json({ error: `Invalid JPEG file: ${message}` }, 400);
       }
 
       const uploadResult = await uploadProjectImageToR2(
