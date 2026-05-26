@@ -89,7 +89,8 @@ export default function ProjectImagesUploadPage() {
 
     const filesToUpload = images.filter((img) => !img.removed);
 
-    for (const image of filesToUpload) {
+    for (let i = 0; i < filesToUpload.length; i++) {
+      const image = filesToUpload[i];
       if (signal.aborted) break;
 
       setImages((previous) =>
@@ -101,9 +102,11 @@ export default function ProjectImagesUploadPage() {
       try {
         const formData = new FormData();
         formData.append('file', image.file);
+        formData.append('pageSequence', String(i + 1));
+        formData.append('blurhash', ''); // Placeholder for blurhash
 
-        await requestApi(`/api/transcribe/upload?projectId=${projectId}`, {
-          method: 'POST',
+        await requestApi(`/api/projects/${projectId}/images/${image.id}`, {
+          method: 'PUT',
           body: formData,
           signal,
         });
