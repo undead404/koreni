@@ -7,8 +7,7 @@ import z from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
-import { calculateBlurhash } from '../helpers/calculate-blurhash';
-import requestApi from '../services/api';
+import saveProjectImage from '../api/save-project-image';
 
 import styles from './page.module.css';
 
@@ -100,20 +99,12 @@ export default function ProjectImagesUploadPage() {
       );
 
       try {
-        const blurhash = await calculateBlurhash(image.file);
-
-        const formData = new FormData();
-        formData.append('file', image.file);
-        formData.append('pageSequence', String(index + 1));
-        formData.append('blurhash', blurhash);
-
-        await requestApi(
-          `/api/transcribe/projects/${projectId}/images/${image.id}`,
-          {
-            method: 'PUT',
-            body: formData,
-            signal,
-          },
+        await saveProjectImage(
+          projectId,
+          image.id,
+          image.file,
+          index + 1,
+          signal,
         );
 
         setImages((previous) =>

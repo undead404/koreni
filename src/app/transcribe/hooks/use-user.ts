@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { type User, userResponseSchema } from '../schemata';
-import requestApi from '../services/api';
+import getMe from '../api/get-me';
+import { type User } from '../schemata';
 
 let cachedUserPromise: Promise<User | null> | null = null;
 
@@ -16,20 +16,7 @@ export function useUser() {
 
   useEffect(() => {
     if (!cachedUserPromise) {
-      cachedUserPromise = requestApi('/api/auth/me')
-        .then(async (response) => {
-          if (!response.ok) {
-            return null;
-          }
-          const data: unknown = await response.json();
-          const userData = userResponseSchema.parse(data);
-          return userData.user;
-        })
-        .catch((error_: unknown) => {
-          // eslint-disable-next-line no-console
-          console.error(error_);
-          return null;
-        });
+      cachedUserPromise = getMe();
     }
 
     cachedUserPromise

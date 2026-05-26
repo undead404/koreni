@@ -14,7 +14,8 @@ import {
   projectCreatePayloadSchema,
 } from '@/server/src/schemata';
 
-import requestApi, { getProjectSchemas } from '../services/api';
+import createProject from '../api/create-project';
+import getProjectSchemas from '../api/get-project-schemas';
 
 import styles from './page.module.css';
 
@@ -65,13 +66,7 @@ export default function ProjectCreatePage() {
 
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
-      await requestApi('/api/transcribe/projects', {
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-      });
+      await createProject(data);
 
       toast.success('Project created successfully');
       router.push('/transcribe');

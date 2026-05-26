@@ -3,19 +3,14 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import { type Project, projectResponseSchema } from '../schemata';
-import requestApi from '../services/api';
+import getProjects from '../api/get-projects';
+import { type Project } from '../schemata';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
-    requestApi('/api/transcribe/projects')
-      .then((response) => response.json())
-      .then((data: unknown) => {
-        const projectsData = projectResponseSchema.parse(data);
-        setProjects(projectsData.projects);
-        return;
-      })
+    getProjects()
+      .then(setProjects)
       .catch(() => {
         toast.error('Error loading projects');
       });

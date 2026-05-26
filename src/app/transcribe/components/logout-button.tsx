@@ -4,8 +4,8 @@ import { googleLogout } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
+import logout from '../api/logout';
 import { clearUserCache, useUser } from '../hooks/use-user';
-import requestApi from '../services/api';
 
 import styles from './logout-button.module.css';
 
@@ -18,9 +18,7 @@ export default function LogoutButton() {
     googleLogout();
 
     // 2. Execute backend cookie destruction
-    requestApi('/api/auth/me', {
-      method: 'DELETE',
-    })
+    logout()
       .then(() => {
         clearUserCache();
         router.push('/transcribe/login');
