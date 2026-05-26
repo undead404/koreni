@@ -1,6 +1,6 @@
 import { Context } from 'hono';
 
-import database from '../database/client.js';
+import { findProjectImage } from '../database/find-project-image.js';
 
 export default async function handleProjectImages(c: Context) {
   try {
@@ -11,12 +11,7 @@ export default async function handleProjectImages(c: Context) {
       return c.json({ error: 'Missing projectId or imageId' }, 400);
     }
 
-    const image = await database
-      .selectFrom('project_images')
-      .selectAll()
-      .where('id', '=', imageId)
-      .where('project_id', '=', projectId)
-      .executeTakeFirst();
+    const image = await findProjectImage(projectId, imageId);
 
     if (!image) {
       return c.json({ error: 'Image not found' }, 404);

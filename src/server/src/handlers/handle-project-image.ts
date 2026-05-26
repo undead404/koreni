@@ -1,11 +1,12 @@
 import { Context } from 'hono';
 import { z } from 'zod';
 
-import database from '../database/client.js';
 import { createProjectImage } from '../database/create-project.js';
+import { deleteProjectImage } from '../database/delete-project-image.js';
+import { findProjectImage } from '../database/find-project-image.js';
 import { getJpegDimensions } from '../helpers/get-jpeg-dimensions.js';
 import { nonEmptyString } from '../schemata.js';
-import { deleteImageFromR2,uploadProjectImageToR2 } from '../services/r2.js';
+import { deleteImageFromR2, uploadProjectImageToR2 } from '../services/r2.js';
 
 export default async function handleProjectImage(c: Context) {
   const method = c.req.method;
@@ -18,24 +19,32 @@ export default async function handleProjectImage(c: Context) {
 
   if (method === 'PUT') {
     try {
-      const body = await c.req.parseBody() as Record<string, string | File | undefined>;
+      const body = (await c.req.parseBody()) as Record<
+        string,
+        string | File | undefined
+      >;
 
       const pageSequenceRaw = body.pageSequence ?? body.page_sequence;
       const pageNameRaw = body.pageName ?? body.page_name ?? null;
       const blurhashRaw = body.blurhash;
 
-      const parsedFields = z.object({
-        pageSequence: z.coerce.number().int().nonnegative(),
-        pageName: z.string().nullable().optional(),
-        blurhash: nonEmptyString,
-      }).safeParse({
-        pageSequence: pageSequenceRaw,
-        pageName: pageNameRaw,
-        blurhash: blurhashRaw,
-      });
+      const parsedFields = z
+        .object({
+          pageSequence: z.coerce.number().int().nonnegative(),
+          pageName: z.string().nullable().optional(),
+          blurhash: nonEmptyString,
+        })
+        .safeParse({
+          pageSequence: pageSequenceRaw,
+          pageName: pageNameRaw,
+          blurhash: blurhashRaw,
+        });
 
       if (!parsedFields.success) {
-        return c.json({ error: 'Invalid fields: ' + parsedFields.error.message }, 400);
+        return c.json(
+          { error: 'Invalid fields: ' + parsedFields.error.message },
+          400,
+        );
       }
 
       const { pageSequence, pageName, blurhash } = parsedFields.data;
@@ -95,12 +104,7 @@ export default async function handleProjectImage(c: Context) {
     }
   } else if (method === 'DELETE') {
     try {
-      const image = await database
-        .selectFrom('project_images')
-        .select(['storage_key'])
-        .where('id', '=', imageId)
-        .where('project_id', '=', projectId)
-        .executeTakeFirst();
+      const image = await findProjectImage(projectId, imageId);
 
       if (!image) {
         return c.json({ error: 'Image record not found' }, 404);
@@ -108,11 +112,7 @@ export default async function handleProjectImage(c: Context) {
 
       await deleteImageFromR2(image.storage_key);
 
-      await database
-        .deleteFrom('project_images')
-        .where('id', '=', imageId)
-        .where('project_id', '=', projectId)
-        .execute();
+      await deleteProjectImage(projectId, imageId);
 
       return c.json({ success: true });
     } catch (error) {
