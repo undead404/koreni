@@ -1,6 +1,5 @@
 'use client';
 
-import { encode } from 'blurhash';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -8,6 +7,7 @@ import z from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
+import { calculateBlurhash } from '../helpers/calculate-blurhash';
 import requestApi from '../services/api';
 
 import styles from './page.module.css';
@@ -25,46 +25,6 @@ type UploadState = 'idle' | 'uploading' | 'success';
 const imagesSearchParametersSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
 });
-
-const calculateBlurhash = async (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const objectUrl = URL.createObjectURL(file);
-
-    img.addEventListener('load', () => {
-      URL.revokeObjectURL(objectUrl);
-      const canvas = document.createElement('canvas');
-      const width = 32;
-      const height = Math.round((img.height / img.width) * width);
-      canvas.width = width;
-      canvas.height = height;
-
-      const context = canvas.getContext('2d');
-      if (!context) {
-        reject(new Error('Could not get canvas context'));
-        return;
-      }
-
-      context.drawImage(img, 0, 0, width, height);
-      const imageData = context.getImageData(0, 0, width, height);
-      const hash = encode(
-        imageData.data,
-        imageData.width,
-        imageData.height,
-        4,
-        4,
-      );
-      resolve(hash);
-    });
-
-    img.addEventListener('error', () => {
-      URL.revokeObjectURL(objectUrl);
-      reject(new Error('Failed to load image for blurhash calculation'));
-    });
-
-    img.src = objectUrl;
-  });
-};
 
 export default function ProjectImagesUploadPage() {
   const [projectId, setProjectId] = useState<string>('');
