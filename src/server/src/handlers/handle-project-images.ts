@@ -7,6 +7,10 @@ export default async function handleProjectImages(c: Context) {
     const projectId = c.req.param('projectId');
     const imageId = c.req.param('imageId');
 
+    if (!projectId || !imageId) {
+      return c.json({ error: 'Missing projectId or imageId' }, 400);
+    }
+
     const image = await database
       .selectFrom('project_images')
       .selectAll()
