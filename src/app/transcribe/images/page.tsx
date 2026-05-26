@@ -31,7 +31,7 @@ const calculateBlurhash = async (file: File): Promise<string> => {
     const img = new Image();
     const objectUrl = URL.createObjectURL(file);
 
-    img.onload = () => {
+    img.addEventListener('load', () => {
       URL.revokeObjectURL(objectUrl);
       const canvas = document.createElement('canvas');
       const width = 32;
@@ -39,14 +39,14 @@ const calculateBlurhash = async (file: File): Promise<string> => {
       canvas.width = width;
       canvas.height = height;
 
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
+      const context = canvas.getContext('2d');
+      if (!context) {
         reject(new Error('Could not get canvas context'));
         return;
       }
 
-      ctx.drawImage(img, 0, 0, width, height);
-      const imageData = ctx.getImageData(0, 0, width, height);
+      context.drawImage(img, 0, 0, width, height);
+      const imageData = context.getImageData(0, 0, width, height);
       const hash = encode(
         imageData.data,
         imageData.width,
@@ -55,12 +55,12 @@ const calculateBlurhash = async (file: File): Promise<string> => {
         4,
       );
       resolve(hash);
-    };
+    });
 
-    img.onerror = () => {
+    img.addEventListener('error', () => {
       URL.revokeObjectURL(objectUrl);
       reject(new Error('Failed to load image for blurhash calculation'));
-    };
+    });
 
     img.src = objectUrl;
   });
