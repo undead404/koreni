@@ -3,7 +3,8 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
-import handleR2Upload from './handlers/handle-r2-upload.js';
+import handleProjectImage from './handlers/handle-project-image.js';
+import handleProjectImages from './handlers/handle-project-images.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
@@ -71,7 +72,21 @@ export function createApp() {
     handleTranscribeProjectCreate,
   );
 
-  app.post('/api/transcribe/upload', transcribeAuthMiddleware, handleR2Upload);
+  app.put(
+    '/api/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImage,
+  );
+  app.delete(
+    '/api/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImage,
+  );
+  app.get(
+    '/api/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImages,
+  );
 
   // 404 Handler for undefined routes
   app.notFound((c) => {
