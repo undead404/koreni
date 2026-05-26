@@ -1,11 +1,11 @@
 import { Context } from 'hono';
 import { z } from 'zod';
 
-import { createProjectImage } from '../database/create-project.js';
 import database from '../database/client.js';
+import { createProjectImage } from '../database/create-project.js';
 import { getJpegDimensions } from '../helpers/get-jpeg-dimensions.js';
-import { uploadProjectImageToR2, deleteImageFromR2 } from '../services/r2.js';
 import { nonEmptyString } from '../schemata.js';
+import { deleteImageFromR2,uploadProjectImageToR2 } from '../services/r2.js';
 
 export default async function handleProjectImage(c: Context) {
   const method = c.req.method;
@@ -61,8 +61,8 @@ export default async function handleProjectImage(c: Context) {
       let dimensions;
       try {
         dimensions = getJpegDimensions(buffer);
-      } catch (e: any) {
-        return c.json({ error: 'Invalid JPEG file: ' + e.message }, 400);
+      } catch (error: any) {
+        return c.json({ error: 'Invalid JPEG file: ' + error.message }, 400);
       }
 
       const uploadResult = await uploadProjectImageToR2(
