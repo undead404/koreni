@@ -17,11 +17,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          cache: 'yarn'
-          node-version-file: .nvmrc
+      - name: Set up tools via Mise
+        uses: jdx/mise-action@v4
 
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
@@ -40,11 +37,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          cache: 'yarn'
-          node-version-file: .nvmrc
+      - name: Set up tools via Mise
+        uses: jdx/mise-action@v4
 
       - name: Install dependencies
         run: yarn --frozen-lockfile --prefer-offline
