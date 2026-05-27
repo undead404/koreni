@@ -30,7 +30,7 @@
 
 ## 5. Domain-Specific Logic
 
-- **Environment Variables**: Access client-exposed variables strictly via your centralized `environment` object (e.g., `environment.NEXT_PUBLIC_SITE`). Do not use `process.env.NEXT_PUBLIC_*` directly in components.
+- **Environment Variables**: Access client-exposed variables strictly via your centralized `environment` object (e.g., `environment.NEXT_PUBLIC_SITE`), imported from `"@/app/environment"`. Do not use `process.env.NEXT_PUBLIC_*` directly in components.
 - **Localization**: Hardcode Ukrainian strings directly into components. Utilize specific helpers (`slugifyUkrainian`, `transliterateIntoPolish`) for data transformation.
 - **Regional Blocking**: Do not modify or bypass the routing logic inside `no-russians.tsx` or related middleware.
 
@@ -38,4 +38,3 @@
 
 - **Coverage**: Generate `.test.ts` or `.test.tsx` files for every new component or service utility.
 - **Syntax**: Use Vitest (`describe`, `it`, `expect`).
-- **Execution Command**: When providing terminal commands to run specific tests with dynamic route brackets, always escape the brackets with quotes (e.g., `vitest run "src/app/[tableId]/page.test.tsx"`).

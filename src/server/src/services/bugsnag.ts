@@ -20,4 +20,12 @@ const middleware = environment.BUGSNAG_API_API_KEY
   ? Bugsnag.getPlugin('hono')
   : undefined;
 
-export { middleware as bugsnagMiddleware };
+export function reportError(error: unknown) {
+  if (environment.BUGSNAG_API_API_KEY) {
+    Bugsnag.notify(error);
+  } else {
+    console.error('Bugsnag Error:', error);
+  }
+}
+
+export { Bugsnag, middleware as bugsnagMiddleware };
