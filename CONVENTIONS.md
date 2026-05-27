@@ -30,6 +30,7 @@
 - **Next.js Built-ins**: Use `next/image` (`<Image />`) for all media and `next/link` (`<Link />`) for all routing.
 - **Accessibility**: Use semantic HTML elements (`<button>`, `<nav>`, `<main>`). Ensure all interactive elements have `aria-labels` if lacking visible text.
 - **Theme**: Ensure all custom CSS accounts for both light and dark modes via media queries or standardized CSS variables.
+- **Errors and warnings**: Visualise errors to the user with `sonner` toasts, alongside important success messages.
 
 ## 5. Domain-Specific Logic
 
