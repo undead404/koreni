@@ -1,14 +1,22 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { SubmitEvent, useEffect, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import SourcesInput from '@/app/components/contribute/sources-input';
-import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
+
+const SpatialInput = dynamic(
+  () =>
+    import('@/app/components/contribute/spatial-input').then(
+      (module_) => module_.SpatialInput,
+    ),
+  { ssr: false },
+);
 import {
   type ProjectCreatePayload,
   projectCreatePayloadSchema,

@@ -12,7 +12,9 @@ import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
+import handleTranscribeProjectGet from './handlers/handle-transcribe-project-get.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
+import handleTranscribeProjectUpdate from './handlers/handle-transcribe-project-update.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
@@ -72,6 +74,18 @@ export function createApp() {
     '/api/transcribe/projects',
     transcribeAuthMiddleware,
     handleTranscribeProjectCreate,
+  );
+
+  app.get(
+    '/api/transcribe/projects/:projectId',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectGet,
+  );
+
+  app.put(
+    '/api/transcribe/projects/:projectId',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectUpdate,
   );
 
   app.put(

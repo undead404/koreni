@@ -61,7 +61,7 @@ describe('TranscribeProjectPage', () => {
     });
   });
 
-  it('redirects to /transcribe/images/?projectId=[projectId] if images list is empty', async () => {
+  it('redirects to /transcribe/project/?projectId=[projectId] if images list is empty', async () => {
     (useSearchParams as Mock).mockReturnValue({
       get: vi.fn().mockReturnValue('project-123'),
     });
@@ -75,7 +75,7 @@ describe('TranscribeProjectPage', () => {
         expect.any(AbortSignal),
       );
       expect(mockPush).toHaveBeenCalledWith(
-        '/transcribe/images/?projectId=project-123',
+        '/transcribe/project/?projectId=project-123',
       );
     });
   });
@@ -176,7 +176,7 @@ describe('TranscribeProjectPage', () => {
         screen.getByText('Готовність до транскрибування (1 зображень)'),
       ).toBeInTheDocument();
       expect(mockPush).not.toHaveBeenCalledWith(
-        '/transcribe/images/?projectId=project-old',
+        '/transcribe/project/?projectId=project-old',
       );
     });
   });

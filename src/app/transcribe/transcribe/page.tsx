@@ -62,7 +62,7 @@ function TranscribeProjectPageContent() {
         setIsLoading(false);
 
         if (data.length === 0) {
-          router.push(`/transcribe/images/?projectId=${activeProjectId}`);
+          router.push(`/transcribe/project/?projectId=${activeProjectId}`);
         }
       } catch (error_: unknown) {
         if (abortController.signal.aborted) return;
@@ -110,7 +110,7 @@ function TranscribeProjectPageContent() {
       <button
         className={styles.button}
         onClick={() => {
-          router.push(`/transcribe/images/?projectId=${projectId}`);
+          router.push(`/transcribe/project/?projectId=${projectId}`);
         }}
       >
         Завантажити ще зображення
