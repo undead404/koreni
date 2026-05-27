@@ -2,15 +2,15 @@ import { Context } from 'hono';
 
 import { findProjectImage } from '../database/find-project-image.js';
 
-export default async function handleProjectImages(c: Context) {
+export default async function handleProjectImageGet(c: Context) {
+  const projectId = c.req.param('projectId');
+  const imageId = c.req.param('imageId');
+
+  if (!projectId || !imageId) {
+    return c.json({ error: 'Missing projectId or imageId' }, 400);
+  }
+
   try {
-    const projectId = c.req.param('projectId');
-    const imageId = c.req.param('imageId');
-
-    if (!projectId || !imageId) {
-      return c.json({ error: 'Missing projectId or imageId' }, 400);
-    }
-
     const image = await findProjectImage(projectId, imageId);
 
     if (!image) {
