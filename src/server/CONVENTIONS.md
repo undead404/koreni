@@ -17,11 +17,13 @@
 
 ## 4. Service Integrations & Error Handling
 
-- **Environment State**: Access secrets and configuration strictly via the centralized `environment` object. Never use `process.env` directly.
+- **Environment State**: Access secrets and configuration strictly via the centralized `environment` object, imported from `"src/environment.js"`. Never use `process.env` directly.
 - **External Network Calls (GitHub, Turnstile)**:
   - Isolate external calls in `src/services/`.
   - Always wrap network requests in `try/catch` blocks.
   - On failure, immediately report the error to Bugsnag using your standard error handling utility before returning an appropriate HTTP status code to the client.
+  - Treat all external data as `unknown` and parse it with Zod schemas.
+  - Never use `any`, unless writing tests.
 
 ## 5. Testing Execution (Vitest)
 

@@ -35,13 +35,9 @@ jobs:
             echo "Нових файлів за добу не знайдено."
           fi
 
-      - name: Setup Node.js
+      - name: Set up tools via Mise
         if: steps.find-files.outputs.has_files == 'true'
-        uses: actions/setup-node@v6
-        with:
-          cache: 'yarn'
-          cache-dependency-path: src/daily-report/yarn.lock
-          node-version-file: src/daily-report/.nvmrc
+        uses: jdx/mise-action@v4
 
       - name: Install dependencies
         if: steps.find-files.outputs.has_files == 'true'

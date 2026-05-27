@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-147
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-24
+id: DASO-R7720-5-147
+location:
+  - 51.290699
+  - 33.50658
+size: 109
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-147.csv
+tableLocale: uk
+title: "[ШІ] Козацьке (Бочечківське) – народження, 1926, ч. 1"
+yearsRange:
+  - 1926
