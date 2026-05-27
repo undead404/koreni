@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import z from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
@@ -25,7 +25,7 @@ const imagesSearchParametersSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
 });
 
-export default function ProjectImagesUploadPage() {
+function ProjectImagesUploadPageContent() {
   const [projectId, setProjectId] = useState<string>('');
   const [images, setImages] = useState<ImageFile[]>([]);
   const [uploadState, setUploadState] = useState<UploadState>('idle');
@@ -263,5 +263,13 @@ export default function ProjectImagesUploadPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProjectImagesUploadPage() {
+  return (
+    <Suspense fallback={<div className={styles.container}>Loading...</div>}>
+      <ProjectImagesUploadPageContent />
+    </Suspense>
   );
 }
