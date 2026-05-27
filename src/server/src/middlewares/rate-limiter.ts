@@ -3,15 +3,13 @@ import type { Context, Next } from 'hono';
 import { createMiddleware } from 'hono/factory';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
-// Rate limit per IP: 10 requests per 15 minutes
 const rateLimiterIp = new RateLimiterMemory({
-  points: 10,
+  points: 20,
   duration: 60 * 60,
 });
 
-// Rate limit per API key: 10 requests per hour (much more generous)
 const rateLimiterApiKey = new RateLimiterMemory({
-  points: 10,
+  points: 20,
   duration: 60 * 60,
 });
 

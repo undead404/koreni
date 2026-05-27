@@ -19,10 +19,16 @@ export const apiAuthMiddleware = createMiddleware(
     const clientId = getClientIdentifier(c, apiKey);
     const isApiKeyAuth = isValidApiKey(apiKey);
 
-    const body = (await c.req.json()) as unknown;
-    const parseResult = turnstilePayloadSchema.parse(body);
+    const body = await c.req.raw
+      .clone()
+      .json()
+      .catch(() => ({}));
+    const parseResult = turnstilePayloadSchema.safeParse(body);
+    if (!parseResult.success) {
+      return c.json({ error: 'Invalid payload structure' }, 400);
+    }
     if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
-      const token = parseResult.turnstileToken;
+      const token = parseResult.data.turnstileToken;
 
       if (!token) {
         posthog.capture({
