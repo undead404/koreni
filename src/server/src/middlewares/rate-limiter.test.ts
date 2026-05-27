@@ -11,9 +11,11 @@ const { mockConsumeIp, mockConsumeApiKey } = vi.hoisted(() => {
 });
 
 vi.mock('rate-limiter-flexible', () => {
+  let instancesCreated = 0;
   return {
-    RateLimiterMemory: vi.fn().mockImplementation(function (options) {
-      if (options.duration === 900) {
+    RateLimiterMemory: vi.fn().mockImplementation(function () {
+      instancesCreated++;
+      if (instancesCreated === 1) {
         return {
           consume: mockConsumeIp,
         };
