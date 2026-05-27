@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -19,7 +20,12 @@ export default function ProjectsList() {
     <section>
       <h1>Projects</h1>
       {projects.map((project) => (
-        <p key={project.id}>{project.title}</p>
+        <Link
+          href={`/transcribe/transcribe/?projectId=${project.id}`}
+          key={project.id}
+        >
+          {project.title}
+        </Link>
       ))}
       {projects.length === 0 && <p>No projects</p>}
     </section>
