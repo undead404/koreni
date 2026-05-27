@@ -31,7 +31,7 @@ export const projectImageSchema = z.object({
   pageName: z.string().nullable().optional(),
   height: z.number().nullable().optional(),
   width: z.number().nullable().optional(),
-  createdAt: z.string().nullable().optional(),
+  createdAt: z.number().nullable().optional(),
   blurhash: z.string().nullable().optional(),
 });
 
