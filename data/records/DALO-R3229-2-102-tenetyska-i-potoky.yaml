@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЛО-Р3229-2-102
+authorName: "Тетяна Оленич"
+authorEmail: kykysia@gmail.com
+date: 2026-05-28
+id: DALO-R3229-2-102-tenetyska-i-potoky
+location:
+  - 50.32417614889657
+  - 23.553013801574707
+size: 1005
+sources: []
+tableFilePath: public/csv/poeshelonni-spysky-z-tenetyska-i-potoky.csv
+tableLocale: uk
+title: Поешелонні списки з Тенетиська і Потоки
+yearsRange:
+  - 1946
