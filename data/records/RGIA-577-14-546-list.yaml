@@ -1,0 +1,18 @@
+archiveItems:
+  - РГИА-577-14-546
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-05-28
+id: RGIA-577-14-546-list
+location:
+  - 48.994171
+  - 31.149473
+size: 134
+sources:
+  - https://docs.google.com/spreadsheets/d/11MZyxBpxuesqHL-y8qnRjpy3IZ1Ftb_cvZDHVpqq7jE/edit?usp=sharing
+  - https://photos.app.goo.gl/AjEwk5rUNURf8jF16
+tableFilePath: public/csv/RGIA-577-14-546-list.csv
+tableLocale: ru
+title: Стецівка (Багачевська) – подвірний список по маєтку Критського, 1865
+yearsRange:
+  - 1865
