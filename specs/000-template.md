@@ -1,38 +1,85 @@
-# Visual/Layout Bug Task
+---
+description: [Strict, imperative description of the task or state change]
+status: draft
+targets:
+  - [Explicit relative path to primary mutation file]
+context:
+  - [Explicit relative paths to interfaces, DB schemas, or Typesense configs]
+---
 
-## 1. Context & Scope
+# [Task/Bug Title]
 
-- **Target Component:** [e.g., `Navigation` in `src/components/Navigation.tsx`]
-- **Related Files:** [List explicit paths, e.g., `Navigation.tsx`, `layout.css`, `types/index.ts`]
-- **Trigger State:** [e.g., Mobile viewport < 768px, `isMenuOpen` prop is `true`]
+## 1. Architectural Boundary
 
-## 2. Current Behavior (Actual)
+- **Execution Context:** [Server (Hono) | Client (Next.js & React 19) | Shared]
+- **Data Scope:** [SQLite (Kysely) | Typesense Index | Local State | N/A]
 
-- **Structural Issue:** [e.g., The dropdown menu renders behind the main hero image.]
-- **Rendered DOM (Minimal):**
+---
 
-```html
-<!-- Insert minimal outerHTML of the broken parent node here -->
+## 2. State Transition Matrix
+
+### Fault / Current State
+
+- **Condition:** [Describe the exact trigger or race condition]
+- **Behavior:** [Describe the invalid output or synchronization failure]
+- **Log/Trace:**
+
+```ts
+// Insert minimal isolated error trace or failing DOM state
 ```
 
-- **Computed Styles:**
+### Target / Resolved State
 
-```css
-/* Insert relevant properties from DevTools: z-index, position, display, etc. */
+- **Condition:** [Describe the required execution trigger]
+- **Behavior:** [Describe the exact data mutation or React render output]
+- **Schema/Type Alteration:**
+
+```ts
+// Insert target interface, generic constraint, or expected return type
 ```
 
-## 3. Expected Behavior (Target)
+---
 
-- **Structural Goal:** [e.g., The dropdown menu must render on top of all page content and span 100% of the viewport width.]
+## 3. Execution Pipeline
 
-## 4. Constraints & Technical Requirements
+### 3.1. [Target File Path from Frontmatter]
 
-- [e.g., Use existing Tailwind utility classes; do not write custom CSS.]
-- [e.g., Do not alter the z-index of the hero component to fix this; isolate the fix to the Navigation component.]
-- [e.g., Maintain existing TypeScript interfaces.]
+1. [Precise implementation directive. E.g., "Implement useActionState for form submission."]
+2. [Data-handling directive. E.g., "Ensure local SQLite mutation triggers Typesense index update."]
 
-### Execution Strategy for Aider
+---
 
-1. **Pre-load Context:** Execute `/add [files]` using the exact files listed in Section 1 before pasting the template. If you rely on Aider to find the files, you waste tokens and increase the risk of the agent modifying the wrong component.
-2. **Atomic Prompting:** Paste the completed template as a single prompt.
-3. **Constraint Enforcement:** The "Constraints" section is critical. AI agents naturally gravitate toward the path of least resistance, which often means modifying global layouts to fix local bugs. Explicit constraints force the agent to solve the problem at the correct abstraction layer.
+## 4. Hard Constraints
+
+- **React 19:** Do not implement manual `useMemo`/`useCallback` unless explicitly bypassing the React Compiler. Maintain strict Client/Server boundaries.
+- **Backend ESM:** All relative imports in Hono/Node.js files MUST terminate with explicit `.js` extensions.
+- **Isolation:** Do not modify schemas, context files, or unrelated components not explicitly listed in the `targets` frontmatter.
+
+---
+
+## 5. Agentic Verification
+
+Execute the following commands to validate the implementation:
+
+1. **Type & Lint Pass:** Run standard formatting and type checks.
+
+```bash
+   /lint
+
+```
+
+2. **Targeted Test Execution:** Run the specific route or backend test.
+
+```bash
+   /test-route src/path/to/test.test.tsx
+   # OR
+   /test-server
+
+```
+
+3. **ESM Validation (Backend Only):**
+
+```bash
+   /verify-esm [Target File Path]
+
+```

@@ -1,0 +1,11 @@
+.git
+**/.DS_Store
+.next
+node_modules
+.env
+.env*
+!.env.example
+tsconfig.tsbuildinfo
+./typesense
+coverage
+out

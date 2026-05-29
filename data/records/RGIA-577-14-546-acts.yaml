@@ -1,0 +1,18 @@
+archiveItems:
+  - РГИА-577-14-546
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-05-29
+id: RGIA-577-14-546-acts
+location:
+  - 48.994171
+  - 31.149473
+size: 265
+sources:
+  - https://docs.google.com/spreadsheets/d/11MZyxBpxuesqHL-y8qnRjpy3IZ1Ftb_cvZDHVpqq7jE/edit?usp=sharing
+tableFilePath: public/csv/RGIA-577-14-546-acts.csv
+tableLocale: ru
+title: Стецівка (Багачевська) – акти по викупу землі маєтку Критського, 1865
+yearsRange:
+  - 1862
+  - 1865
