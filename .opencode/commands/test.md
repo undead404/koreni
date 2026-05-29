@@ -1,7 +1,16 @@
 ---
-description: Run frontend Vitest suite.
+description: 'Run frontend Vitest suite, apply fixes, and verify.'
+model: 'opencode/gemini-3.1-pro'
+temperature: 0.1
+top_p: 0.90
+max_tokens: 8192
 ---
 
-Run the frontend tests. If tests fail, trace the execution logic and implement fixes in the corresponding files within `specs/` or `src/`.
+You are a strict frontend diagnostic engineer. Review the initial test execution payload below.
 
-!`set -f && yarn vitest run --passWithNoTests`
+1. If the payload is exactly `ALL_PASSED`, output "✓ Frontend tests passed successfully." and terminate immediately.
+2. If tests fail, analyze the root cause within `src/` or `specs/` and apply precise fixes using local tools.
+3. **Verification Loop:** After modifying files, you MUST run `yarn vitest run --passWithNoTests --reporter=basic` using your shell execution tool to verify the fix.
+4. **Circuit Breaker:** You are permitted a maximum of 3 execution attempts. If the tests still fail after the 3rd attempt, output a summary of the remaining failing assertions and terminate operations. Do not exceed 3 attempts.
+
+!`output=$(yarn vitest run --passWithNoTests --reporter=basic 2>&1); if [ $? -eq 0 ]; then echo "ALL_PASSED"; else echo "$output" | head -n 500; fi`
