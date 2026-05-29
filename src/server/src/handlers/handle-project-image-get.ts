@@ -1,6 +1,7 @@
 import { Context } from 'hono';
 
 import { findProjectImage } from '../database/find-project-image.js';
+import { getPublicUrl } from '../services/r2.js';
 
 export default async function handleProjectImageGet(c: Context) {
   const projectId = c.req.param('projectId');
@@ -23,6 +24,7 @@ export default async function handleProjectImageGet(c: Context) {
         id: image.id,
         projectId: image.project_id,
         storageKey: image.storage_key,
+        url: getPublicUrl(image.storage_key),
         pageSequence: image.page_sequence,
         pageName: image.page_name,
         height: image.height,

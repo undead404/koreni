@@ -9,6 +9,10 @@ vi.mock('../database/find-project-image.js', () => ({
   findProjectImage: vi.fn(),
 }));
 
+vi.mock('../services/r2.js', () => ({
+  getPublicUrl: vi.fn((key) => `https://mock-r2.com/${key}`),
+}));
+
 describe('handleProjectImageGet', () => {
   let mockContext: any;
 
@@ -66,6 +70,7 @@ describe('handleProjectImageGet', () => {
         id: 'img-456',
         projectId: 'proj-123',
         storageKey: 'uploads/proj-123/img-456.jpg',
+        url: 'https://mock-r2.com/uploads/proj-123/img-456.jpg',
         pageSequence: 1,
         pageName: 'Page 1',
         height: 600,

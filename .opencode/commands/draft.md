@@ -11,10 +11,11 @@ Under no circumstances are you to write, modify, or execute source code.
 
 Context file: @specs/000-template.md
 
-1. Generate a formal specification in the `specs/` directory based on the user's input.
-2. Name the file descriptively using kebab-case (e.g., `specs/001-auth-state-sync.md`).
-3. The specification MUST include YAML frontmatter defining `targets`, `context`, and `status`.
-4. Include specific testing directives, edge-case coverage requirements, and data schema shapes.
-5. Write the file to disk and terminate the operation immediately. Do not attempt implementation.
+1. Examine the list of files in `specs/` directory, to correctly calculate the next spec's number.
+2. Generate a formal specification in the `specs/` directory based on the user's input.
+3. Name the file descriptively using kebab-case (e.g., `specs/${n}-auth-state-sync.md`, where `n` is the spec's number).
+4. The specification MUST include YAML frontmatter defining `targets`, `context`, and `status`.
+5. Include specific testing directives, edge-case coverage requirements, and data schema shapes.
+6. Write the file to disk and terminate the operation immediately. Do not attempt implementation.
 
 !`echo "Drafting specification..."`

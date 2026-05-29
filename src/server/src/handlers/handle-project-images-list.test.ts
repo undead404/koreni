@@ -9,6 +9,10 @@ vi.mock('../database/get-project-images.js', () => ({
   getProjectImages: vi.fn(),
 }));
 
+vi.mock('../services/r2.js', () => ({
+  getPublicUrl: vi.fn((key) => `https://mock-r2.com/${key}`),
+}));
+
 describe('handleProjectImagesList', () => {
   let mockContext: any;
 
@@ -75,7 +79,10 @@ describe('handleProjectImagesList', () => {
     expect(response.status).toBeUndefined();
     expect(response._data).toEqual({
       success: true,
-      images: mockImages,
+      images: mockImages.map((image) => ({
+        ...image,
+        url: `https://mock-r2.com/${image.storageKey}`,
+      })),
     });
 
     expect(getProjectImages).toHaveBeenCalledWith('proj-123');

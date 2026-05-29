@@ -22,6 +22,7 @@
 - **Component Exports**: Use `export default function ComponentName` for all components and pages. Avoid named exports for React components unless grouping multiple sub-components in a single file.
 - **API requests**: Never done from React components, but only from separate async service functions. Use `fetch`.
 - **File Length**: Refactor & split files beyond 300 lines.
+- **SRP**: Strictly align to the Single Responsibility Principle. If a module does more than one conceptual thing, split it.
 
 ## 4. Styling & UI
 

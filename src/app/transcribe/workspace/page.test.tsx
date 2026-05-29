@@ -84,6 +84,7 @@ describe('TranscribeProjectPage', () => {
         id: 'img-1',
         projectId: 'project-123',
         storageKey: 'key-1.jpg',
+        url: 'https://example.com/key-1.jpg',
         pageSequence: 1,
       },
     ];
@@ -93,10 +94,7 @@ describe('TranscribeProjectPage', () => {
 
     await waitFor(() => {
       // Check left panel (viewer)
-      expect(screen.getByText('key-1.jpg')).toBeInTheDocument();
-      expect(
-        screen.getByText('Зображення для транскрибування'),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/key-1.jpg/)).toBeInTheDocument();
 
       // Check right panel (table)
       expect(screen.getByText('Транскрипція')).toBeInTheDocument();
@@ -110,7 +108,13 @@ describe('TranscribeProjectPage', () => {
       get: vi.fn().mockReturnValue('project-123'),
     });
     (getProjectImages as Mock).mockResolvedValue([
-      { id: '1', storageKey: 'k' },
+      {
+        id: '1',
+        storageKey: 'k',
+        url: 'https://example.com/k',
+        projectId: 'project-123',
+        pageSequence: 1,
+      },
     ]);
 
     render(<TranscribeProjectPage />);
@@ -143,7 +147,13 @@ describe('TranscribeProjectPage', () => {
       get: vi.fn().mockReturnValue('project-123'),
     });
     (getProjectImages as Mock).mockResolvedValue([
-      { id: '1', storageKey: 'k' },
+      {
+        id: '1',
+        storageKey: 'k',
+        url: 'https://example.com/k',
+        projectId: 'project-123',
+        pageSequence: 1,
+      },
     ]);
 
     render(<TranscribeProjectPage />);
@@ -175,5 +185,87 @@ describe('TranscribeProjectPage', () => {
         screen.getByText('Failed to load project images'),
       ).toBeInTheDocument();
     });
+  });
+
+  it('updates image transform when zoom buttons are clicked', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: '1',
+        storageKey: 'k',
+        url: 'https://example.com/k',
+        projectId: 'project-123',
+        pageSequence: 1,
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.getByAltText('1')).toBeInTheDocument();
+    });
+
+    const displayImage = screen.getByAltText('1');
+    const zoomInButton = screen.getByTitle('Zoom In');
+    const zoomOutButton = screen.getByTitle('Zoom Out');
+    const resetButton = screen.getByTitle('Reset');
+
+    // Initial transform
+    expect(displayImage).toHaveStyle({
+      transform: 'translate(0px, 0px) scale(1)',
+    });
+
+    // Zoom In
+    fireEvent.click(zoomInButton);
+    expect(displayImage.style.transform).toContain('scale(1.2)');
+
+    // Zoom Out
+    fireEvent.click(zoomOutButton);
+    expect(displayImage.style.transform).toContain('scale(1)');
+
+    // Reset
+    fireEvent.click(zoomInButton);
+    fireEvent.click(resetButton);
+    expect(displayImage).toHaveStyle({
+      transform: 'translate(0px, 0px) scale(1)',
+    });
+  });
+
+  it('updates image transform when dragging', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: '1',
+        storageKey: 'k',
+        url: 'https://example.com/k',
+        projectId: 'project-123',
+        pageSequence: 1,
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.getByAltText('1')).toBeInTheDocument();
+    });
+
+    const displayImage = screen.getByAltText('1');
+    const viewer = displayImage.parentElement!;
+
+    // Initial transform
+    expect(displayImage).toHaveStyle({
+      transform: 'translate(0px, 0px) scale(1)',
+    });
+
+    // Drag
+    fireEvent.mouseDown(viewer, { clientX: 100, clientY: 100 });
+    fireEvent.mouseMove(viewer, { clientX: 150, clientY: 170 });
+    fireEvent.mouseUp(viewer);
+
+    expect(displayImage.style.transform).toContain('translate(50px, 70px)');
   });
 });

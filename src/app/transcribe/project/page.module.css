@@ -73,6 +73,19 @@
   box-shadow: none;
 }
 
+.ctaButton:visited {
+  /*
+    Source - https://stackoverflow.com/a/79741490
+    Posted by gre_gor
+    Retrieved 2026-05-29, License - CC BY-SA 4.0
+  */
+
+  color: rgb(
+    from var(--visited-clickable-color) calc(255 - r) calc(255 - g)
+      calc(255 - b)
+  );
+}
+
 .ctaButton:hover:not(:disabled) {
   opacity: 0.9;
 }

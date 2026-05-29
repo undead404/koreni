@@ -1,6 +1,7 @@
 import { Context } from 'hono';
 
 import { getProjectImages } from '../database/get-project-images.js';
+import { getPublicUrl } from '../services/r2.js';
 
 export default async function handleProjectImagesList(c: Context) {
   const projectId = c.req.param('projectId');
@@ -11,10 +12,14 @@ export default async function handleProjectImagesList(c: Context) {
 
   try {
     const images = await getProjectImages(projectId);
+    const imagesWithUrls = images.map((image) => ({
+      ...image,
+      url: getPublicUrl(image.storageKey),
+    }));
 
     return c.json({
       success: true,
-      images,
+      images: imagesWithUrls,
     });
   } catch (error) {
     console.error('Error listing project images:', error);

@@ -27,6 +27,7 @@ export const projectImageSchema = z.object({
   id: z.string(),
   projectId: z.string(),
   storageKey: z.string(),
+  url: z.string(),
   pageSequence: z.number(),
   pageName: z.string().nullable().optional(),
   height: z.number().nullable().optional(),
