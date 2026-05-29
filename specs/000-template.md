@@ -56,7 +56,7 @@ Execute the following commands to validate the implementation:
 1. **Type & Lint Pass:** Run standard formatting and type checks.
 
 ```bash
-   /lint
+   /lint src/path/to/file.ts # Both frontend and backend
 
 ```
 
@@ -73,5 +73,4 @@ Execute the following commands to validate the implementation:
 
 ```bash
    /verify-esm [Target File Path]
-
 ```
