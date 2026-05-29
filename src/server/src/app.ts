@@ -4,9 +4,9 @@ import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
 import handleSubmit from './handlers/handle-submit.js';
-import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
+import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-session-delete.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
@@ -53,7 +53,7 @@ export function createApp() {
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
   app.delete(
-    '/api/auth/me',
+    '/api/auth/session/current',
     transcribeAuthMiddleware,
     handleTranscribeAuthDelete,
   );

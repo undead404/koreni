@@ -16,7 +16,7 @@ export default function LogoutButton() {
     googleLogout();
 
     // 2. Execute backend cookie destruction
-    requestApi('/api/auth/me', {
+    requestApi('/api/auth/session/current', {
       method: 'DELETE',
     })
       .then(() => {
@@ -24,13 +24,13 @@ export default function LogoutButton() {
         return;
       })
       .catch(() => {
-        toast.error('Failed to sign out');
+        toast.error('Failed to log out');
       });
   };
 
   return (
     <button onClick={handleLogout} className={styles.root}>
-      Sign Out
+      Log Out
     </button>
   );
 }
