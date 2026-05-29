@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 
 import requestApi from '../../api/request';
 import type { ProjectImage } from '../../schemata';
+import { guessNextPageName } from '../_helpers/guess-next-page-name';
 
 import styles from '../page.module.css';
 
@@ -11,21 +12,37 @@ interface PageNameFormProperties {
   projectId: string;
   image: ProjectImage | undefined;
   onImageUpdated: (updatedImage: ProjectImage) => void;
+  images?: ProjectImage[];
 }
 
 export default function PageNameForm({
   projectId,
   image,
   onImageUpdated,
+  images = [],
 }: PageNameFormProperties) {
   const [pageNameInput, setPageNameInput] = useState('');
   const [isUpdatingPageName, setIsUpdatingPageName] = useState(false);
 
   useEffect(() => {
     if (image) {
-      setPageNameInput(image.pageName || '');
+      if (image.pageName) {
+        setPageNameInput(image.pageName);
+      } else if (images.length > 0) {
+        const currentIndex = images.findIndex((img) => img.id === image.id);
+        if (currentIndex !== -1) {
+          const guess = guessNextPageName(currentIndex, images);
+          if (guess) {
+            setPageNameInput(guess);
+          } else {
+            setPageNameInput('');
+          }
+        }
+      } else {
+        setPageNameInput('');
+      }
     }
-  }, [image]);
+  }, [image, images]);
 
   const handlePageNameSubmit = async (
     event: React.SyntheticEvent<HTMLFormElement>,

@@ -1,46 +1,48 @@
 import { useState } from 'react';
 
-export interface TranscriptionRow {
+export type ColumnExpectedType = 'string' | 'number';
+
+export interface ColumnConfig {
   id: string;
-  lastName: string;
-  firstName: string;
-  yearOrAge: string;
-  notes: string;
+  title: string;
+  hint: string;
+  expectedType: ColumnExpectedType;
 }
 
-export function useTranscriptionRows() {
-  const [rows, setRows] = useState<TranscriptionRow[]>([
-    {
-      id: crypto.randomUUID(),
-      lastName: '',
-      firstName: '',
-      yearOrAge: '',
-      notes: '',
-    },
+export interface TranscriptionRow extends Record<string, string> {
+  id: string;
+}
+
+export function useTranscriptionRows(columns: ColumnConfig[]) {
+  const createEmptyRow = (): TranscriptionRow => {
+    const row: TranscriptionRow = { id: crypto.randomUUID() };
+    for (const column of columns) {
+      row[column.id] = '';
+    }
+    return row;
+  };
+
+  const [rows, setRows] = useState<TranscriptionRow[]>(() => [
+    createEmptyRow(),
   ]);
 
-  const addRow = () => {
-    setRows((previous) => [
-      ...previous,
-      {
-        id: crypto.randomUUID(),
-        lastName: '',
-        firstName: '',
-        yearOrAge: '',
-        notes: '',
-      },
-    ]);
+  const addRow = (index?: number) => {
+    setRows((previous) => {
+      const newRow = createEmptyRow();
+      if (index === undefined) {
+        return [...previous, newRow];
+      }
+      const newRows = [...previous];
+      newRows.splice(index, 0, newRow);
+      return newRows;
+    });
   };
 
   const deleteRow = (id: string) => {
     setRows((previous) => previous.filter((row) => row.id !== id));
   };
 
-  const updateRow = (
-    id: string,
-    field: keyof TranscriptionRow,
-    value: string,
-  ) => {
+  const updateRow = (id: string, field: string, value: string) => {
     setRows((previous) =>
       previous.map((row) => (row.id === id ? { ...row, [field]: value } : row)),
     );

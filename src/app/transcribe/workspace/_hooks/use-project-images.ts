@@ -5,6 +5,7 @@ import z from 'zod';
 
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
+import getProject from '../../api/get-project';
 import getProjectImages from '../../api/get-project-images';
 import type { ProjectImage } from '../../schemata';
 
@@ -18,7 +19,9 @@ export function useProjectImages() {
 
   const [projectId, setProjectId] = useState<string | null>(null);
   const [images, setImages] = useState<ProjectImage[]>([]);
+  const [projectLocale, setProjectLocale] = useState<string | undefined>();
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+  const [hasRestoredIndex, setHasRestoredIndex] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +38,7 @@ export function useProjectImages() {
     }
   }, [router, searchParameters]);
 
-  // Fetch images once projectId is valid
+  // Fetch images and project locale once projectId is valid
   useEffect(() => {
     if (!projectId) return;
 
@@ -45,31 +48,33 @@ export function useProjectImages() {
 
     const abortController = new AbortController();
 
-    async function fetchImages() {
+    async function fetchData() {
       try {
-        const data = await getProjectImages(
-          activeProjectId,
-          abortController.signal,
-        );
+        const [imagesData, projectData] = await Promise.all([
+          getProjectImages(activeProjectId, abortController.signal),
+          getProject(activeProjectId, abortController.signal),
+        ]);
+
         if (abortController.signal.aborted) return;
 
-        setImages(data);
+        setImages(imagesData);
+        setProjectLocale(projectData.project.tableLocale);
         setIsLoading(false);
 
-        if (data.length === 0) {
+        if (imagesData.length === 0) {
           router.push(`/transcribe/project/?projectId=${activeProjectId}`);
         }
       } catch {
         if (abortController.signal.aborted) return;
 
-        const message = 'Failed to load project images';
+        const message = 'Failed to load project data';
         setError(message);
         setIsLoading(false);
         toast.error(message);
       }
     }
 
-    void fetchImages();
+    void fetchData();
 
     return () => {
       abortController.abort();
@@ -78,7 +83,7 @@ export function useProjectImages() {
 
   // Persistence for currentImageIndex
   useEffect(() => {
-    if (!projectId || images.length === 0) return;
+    if (hasRestoredIndex || !projectId || images.length === 0) return;
 
     const storageKey = `koreni_workspace_${projectId}_image_index`;
     const stored = localStorage.getItem(storageKey);
@@ -88,19 +93,21 @@ export function useProjectImages() {
         setCurrentImageIndex(index);
       }
     }
-  }, [projectId, images.length]);
+    setHasRestoredIndex(true);
+  }, [projectId, images.length, hasRestoredIndex]);
 
   useEffect(() => {
-    if (!projectId) return;
+    if (!hasRestoredIndex || !projectId) return;
 
     const storageKey = `koreni_workspace_${projectId}_image_index`;
     localStorage.setItem(storageKey, currentImageIndex.toString());
-  }, [projectId, currentImageIndex]);
+  }, [projectId, currentImageIndex, hasRestoredIndex]);
 
   return {
     projectId,
     images,
     setImages,
+    projectLocale,
     currentImageIndex,
     setCurrentImageIndex,
     isLoading,

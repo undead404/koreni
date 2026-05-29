@@ -270,8 +270,7 @@ function ProjectHeader({
   existingImagesCount,
 }: ProjectHeaderProperties) {
   const yearsDisplay = useMemo(() => {
-    if (!projectData?.yearsRange || projectData.yearsRange.length === 0)
-      return null;
+    if (!projectData?.yearsRange) return null;
     const [start, end] = projectData.yearsRange;
     if (start === end || projectData.yearsRange.length === 1) return start;
     return `${start} - ${end}`;

@@ -56,8 +56,10 @@ export default function ImageViewer({
             <ChevronLeft size={18} />
           </button>
           <span className={styles.imageInfo}>
-            {images[currentImageIndex]?.storageKey || 'Зображення'} (
-            {currentImageIndex + 1} / {images.length})
+            {images[currentImageIndex]?.pageName ||
+              images[currentImageIndex]?.pageSequence ||
+              'Зображення'}{' '}
+            ({currentImageIndex + 1} / {images.length})
           </span>
           <button
             className={styles.iconButton}

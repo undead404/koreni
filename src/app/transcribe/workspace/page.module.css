@@ -187,6 +187,23 @@
   color: var(--description-color);
 }
 
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hint {
+  display: inline-flex;
+  color: var(--description-color);
+  cursor: help;
+  opacity: 0.7;
+}
+
+.hint:hover {
+  opacity: 1;
+}
+
 .input {
   width: 100%;
   padding: 0.5rem;
@@ -244,6 +261,29 @@
 .deleteButton:hover {
   color: #ef4444;
   background-color: rgb(239 68 68 / 10%);
+}
+
+.insertRowButton {
+  padding: 0.4rem;
+  border: none;
+  background: transparent;
+  color: var(--description-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.insertRowButton:hover {
+  color: var(--clickable-color);
+  background-color: rgb(0 0 0 / 5%);
+}
+
+.insertRowButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .addButton {

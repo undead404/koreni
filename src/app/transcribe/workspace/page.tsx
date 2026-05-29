@@ -11,15 +11,39 @@ import PageNameForm from './_components/page-name-form';
 import TranscriptionTable from './_components/transcription-table';
 import { useImageTransform } from './_hooks/use-image-transform';
 import { useProjectImages } from './_hooks/use-project-images';
-import { useTranscriptionRows } from './_hooks/use-transcription-rows';
+import {
+  type ColumnConfig,
+  useTranscriptionRows,
+} from './_hooks/use-transcription-rows';
 
 import styles from './page.module.css';
+
+const POC_COLUMNS: ColumnConfig[] = [
+  {
+    id: 'HH',
+    title: '#HH',
+    hint: 'Number of household',
+    expectedType: 'number',
+  },
+  { id: 'M', title: '#M', hint: 'Number of male', expectedType: 'number' },
+  { id: 'F', title: '#F', hint: 'Number of female', expectedType: 'number' },
+  { id: 'Name', title: 'Name', hint: '', expectedType: 'string' },
+  { id: 'aM', title: 'aM', hint: 'Age of male', expectedType: 'string' },
+  { id: 'aF', title: 'aF', hint: 'Age of female', expectedType: 'string' },
+  {
+    id: 'Note',
+    title: 'Note',
+    hint: 'Anything to the right of the age',
+    expectedType: 'string',
+  },
+];
 
 function TranscribeProjectPageContent() {
   const {
     projectId,
     images,
     setImages,
+    projectLocale,
     currentImageIndex,
     setCurrentImageIndex,
     isLoading,
@@ -38,7 +62,8 @@ function TranscribeProjectPageContent() {
     handleResetTransform,
   } = useImageTransform(isLoading);
 
-  const { rows, addRow, deleteRow, updateRow } = useTranscriptionRows();
+  const { rows, addRow, deleteRow, updateRow } =
+    useTranscriptionRows(POC_COLUMNS);
 
   const handleNextImage = () => {
     setCurrentImageIndex((previous) =>
@@ -115,11 +140,14 @@ function TranscribeProjectPageContent() {
           projectId={projectId}
           image={currentImage}
           onImageUpdated={handleImageUpdated}
+          images={images}
         />
 
         <TranscriptionTable
+          columns={POC_COLUMNS}
           rows={rows}
           hasPageName={hasPageName}
+          projectLocale={projectLocale}
           onAddRow={addRow}
           onDeleteRow={deleteRow}
           onUpdateRow={updateRow}

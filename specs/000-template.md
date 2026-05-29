@@ -56,16 +56,16 @@ Execute the following commands to validate the implementation:
 1. **Type & Lint Pass:** Run standard formatting and type checks.
 
 ```bash
-   /lint src/path/to/file.ts # Both frontend and backend
+   ./scripts/opencode-check.sh src/path/to/file.ts # Both frontend and backend
 
 ```
 
 2. **Targeted Test Execution:** Run the specific route or backend test.
 
 ```bash
-   /test-route src/path/to/test.test.tsx
+   yarn test src/path/to/test.test.tsx
    # OR
-   /test-server
+   cd src/server && yarn test src/path/to/test.test.ts
 
 ```
 
