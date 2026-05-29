@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАДнО-Р6508-9-74
+authorName: Борщ
+authorEmail: v.borshch1@gmail.com
+date: 2026-05-29
+id: DADnO-R6508-9-74
+location:
+  - 47.6490555
+  - 34.649194
+size: 24
+sources:
+  - https://docs.google.com/spreadsheets/d/1KUBfCEDIGaR07RFPzGYCJ_5C8F-LLFI0Wjo-lm03NOg/edit?usp=sharing
+  - https://commons.wikimedia.org/wiki/File:%D0%94%D0%90%D0%94%D0%BD%D0%9E_%D0%A0-6508-9-74_%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0_%D1%80%D0%B5%D1%94%D1%81%D1%82%D1%80%D0%B0%D1%86%D1%96%D1%97_%D0%B0%D0%BA%D1%82%D1%96%D0%B2_%D1%86%D0%B8%D0%B2%D1%96%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE_%D1%81%D1%82%D0%B0%D0%BD%D1%83_%D0%BF%D1%80%D0%BE_%D1%88%D0%BB%D1%8E%D0%B1_(1939).pdf
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-17X3-X9RK?view=explore&groupId=TH-7796-147434-4119-59&grid=on&lang=uk
+tableFilePath: public/csv/dadnor-6508974.csv
+tableLocale: uk
+title: Марганець. Шлюби РАЦС (04.08.1939 – 02.12.1939)
+yearsRange:
+  - 1939
