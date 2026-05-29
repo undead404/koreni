@@ -48,14 +48,14 @@ describe('ProjectsList', () => {
     expect(link1.tagName).toBe('A');
     expect(link1).toHaveAttribute(
       'href',
-      '/transcribe/transcribe?projectId=proj-1',
+      '/transcribe/workspace?projectId=proj-1',
     );
 
     const link2 = getByText('Project Two');
     expect(link2.tagName).toBe('A');
     expect(link2).toHaveAttribute(
       'href',
-      '/transcribe/transcribe?projectId=proj-2',
+      '/transcribe/workspace?projectId=proj-2',
     );
   });
 

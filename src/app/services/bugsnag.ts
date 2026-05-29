@@ -24,7 +24,7 @@ export const initBugsnag = () => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (globalThis.window === undefined) return ActiveBugsnag;
   if (!environment.NEXT_PUBLIC_BUGSNAG_API_KEY) {
-    console.warn('Bugsnag API key is missing');
+    void 0; /* warn removed */
     return ActiveBugsnag;
   }
   ActiveBugsnag.start({

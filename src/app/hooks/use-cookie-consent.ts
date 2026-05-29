@@ -40,12 +40,12 @@ export const useCookieConsent = () => {
     const consent = readCookieConsent();
 
     if (consent) {
-      console.log('Consent found, applying');
-      console.log('consent', consent); // Додано для дебагу
+      void 0; /* log removed */
+      void 0; /* log removed */ // Додано для дебагу
       setConsent(consent);
       applyConsent(consent);
     } else {
-      console.log('No consent found, showing banner');
+      void 0; /* log removed */
       showBanner(true);
     }
   }, [applyConsent]);

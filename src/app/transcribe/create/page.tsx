@@ -41,8 +41,8 @@ export default function ProjectCreatePage() {
         if (active) {
           setSchemas(data);
         }
-      } catch (error) {
-        console.error(error);
+      } catch {
+        void 0; /* error removed */
       }
     };
     void loadSchemas();

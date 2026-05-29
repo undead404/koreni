@@ -29,7 +29,7 @@ export function useReverseGeocode(locationValue?: string | null) {
             return;
           })
           .catch((error: unknown) => {
-            console.error(error);
+            void 0; /* error removed */
             initBugsnag().notify(error as Error);
             posthog.capture('locationiq_reverse_geocode_error', {
               error: error instanceof Error ? error.message : String(error),

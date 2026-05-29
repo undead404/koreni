@@ -101,8 +101,7 @@ function ProjectDetailsPageContent() {
           projectId: searchParameters.get('projectId'),
         });
       setProjectId(projectIdFromSearch);
-    } catch (error) {
-      console.error('Error parsing search parameters:', error);
+    } catch {
       router.push('/transcribe');
     }
   }, [router, searchParameters]);
@@ -116,8 +115,8 @@ function ProjectDetailsPageContent() {
         if (active) {
           setSchemas(data);
         }
-      } catch (error) {
-        console.error(error);
+      } catch {
+        /* ignore */
       }
     };
     void loadSchemas();
@@ -146,8 +145,7 @@ function ProjectDetailsPageContent() {
           }
           setExistingImagesCount(imgs.length);
         }
-      } catch (error) {
-        console.error('Error loading project details or images:', error);
+      } catch {
         toast.error('Failed to load project details');
       } finally {
         if (active) {
@@ -244,8 +242,8 @@ function ProjectDetailsPageContent() {
       try {
         const imgs = await getProjectImages(projectId);
         setExistingImagesCount(imgs.length);
-      } catch (error) {
-        console.error(error);
+      } catch {
+        /* ignore */
       }
     }
   };
@@ -272,8 +270,7 @@ function ProjectDetailsPageContent() {
       );
       setProjectData(data);
       toast.success('Project details updated successfully');
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Failed to update project details');
     }
   };

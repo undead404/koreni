@@ -19,7 +19,7 @@ export default function SourceLink({ href }: { href: string }) {
     try {
       return new URL(href);
     } catch (error) {
-      console.error(error);
+      void 0; /* error removed */
       posthog.captureException(error as Error);
       return null;
     }

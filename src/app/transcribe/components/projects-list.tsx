@@ -21,7 +21,7 @@ export default function ProjectsList() {
       <h1>Projects</h1>
       {projects.map((project) => (
         <Link
-          href={`/transcribe/transcribe/?projectId=${project.id}`}
+          href={`/transcribe/workspace?projectId=${project.id}`}
           key={project.id}
         >
           {project.title}

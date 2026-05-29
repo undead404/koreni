@@ -16,7 +16,7 @@ export function restoreAuthorIdentity(): AuthorIdentity | null {
     const parsed = authorIdentitySchema.parse(parsedRaw);
     return parsed;
   } catch (error) {
-    console.error('Failed to restore author identity', error);
+    void 0; /* error removed */
     posthog.capture('author_identity_restore_failed', {
       error: error instanceof Error ? error.message : String(error),
     });
@@ -31,7 +31,7 @@ export function saveAuthorIdentity(data: Record<string, string>) {
     const serialized = JSON.stringify(data);
     localStorage.setItem(AUTHOR_IDENTITY_KEY, serialized);
   } catch (error) {
-    console.error('Failed to save author identity', error);
+    void 0; /* error removed */
     posthog.capture('author_identity_save_failed', {
       error: error instanceof Error ? error.message : String(error),
     });

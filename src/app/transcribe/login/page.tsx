@@ -29,7 +29,7 @@ export default function LoginPage() {
           void handleGoogleSuccess(credentialResponse);
         }}
         onError={() => {
-          console.error('GIS SDK Error');
+          void 0; /* error removed */
         }}
         useOneTap={true} // Automatically displays the prompt if a session exists
       />

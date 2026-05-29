@@ -65,7 +65,7 @@ const useNoRussians = () => {
           }),
         )
         .catch((error: unknown) => {
-          console.error(error);
+          void 0; /* error removed */
           initBugsnag().notify(error as Error);
           posthog.captureException(error);
         });

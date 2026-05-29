@@ -45,7 +45,7 @@ export default function ContributeFormStepper() {
   // Reset to step 0 if no table file is selected
   useEffect(() => {
     if (!tableFileName) {
-      console.log('No tableFileName');
+      void 0; /* log removed */
       posthog.capture('step_reset');
       setActiveIndex(0);
     }

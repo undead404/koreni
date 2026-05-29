@@ -1,0 +1,249 @@
+.loadingContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+.loading,
+.error {
+  font-size: 1.1rem;
+  color: var(--description-color);
+}
+
+.workspace {
+  display: flex;
+  height: calc(100vh - var(--header-height, 64px));
+  overflow: hidden;
+  background-color: var(--background);
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftPanel {
+  border-right: 1px solid var(--border);
+  padding: 1rem;
+  background-color: var(--card-background, #f9f9f9);
+}
+
+.rightPanel {
+  padding: 1rem;
+}
+
+/* Image Viewer Styles */
+.viewerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+  overflow: hidden;
+}
+
+.viewerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--card-background);
+  border-bottom: 1px solid var(--border);
+}
+
+.imageInfo {
+  font-size: 0.875rem;
+  color: var(--description-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewerControls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.imagePlaceholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: var(--description-color);
+  background-color: var(--background);
+}
+
+.placeholderIcon {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.placeholderText {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.placeholderSubtext {
+  font-size: 0.875rem;
+}
+
+/* Table Styles */
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.tableHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.tableContainer {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  background-color: var(--card-background);
+  border-bottom: 2px solid var(--border);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.indexCell {
+  text-align: center;
+  color: var(--description-color);
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background-color: var(--background);
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--clickable-color);
+  box-shadow: 0 0 0 1px var(--clickable-color);
+}
+
+.actionCell {
+  text-align: center;
+}
+
+.iconButton,
+.deleteButton,
+.addButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.iconButton {
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--text-color);
+}
+
+.iconButton:hover {
+  background: var(--card-background);
+}
+
+.deleteButton {
+  padding: 0.4rem;
+  border: none;
+  background: transparent;
+  color: var(--description-color);
+}
+
+.deleteButton:hover {
+  color: #ef4444;
+  background-color: rgb(239 68 68 / 10%);
+}
+
+.addButton {
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--clickable-color);
+  color: var(--reversed-text-color);
+  font-weight: 500;
+}
+
+.addButton:hover {
+  opacity: 0.9;
+}
+
+.emptyState {
+  padding: 2rem;
+  text-align: center;
+  color: var(--description-color);
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+@media (width <= 1024px) {
+  .workspace {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .leftPanel {
+    height: 400px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .leftPanel {
+    background-color: #1a1a1a;
+  }
+}
