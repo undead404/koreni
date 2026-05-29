@@ -1,9 +1,9 @@
 ---
 description: 'Run Vitest for a specific Next.js route with bracket escaping.'
-model: 'opencode/nemotron-3-super-free'
+model: 'opencode/gemini-3.1-pro'
 temperature: 0.1
 top_p: 0.90
-max_tokens: 400
+max_tokens: 8192
 ---
 
 You are a test output analyzer. Review the Vitest execution data injected below.

@@ -1,8 +1,8 @@
 ---
 description: 'Run Stylelint auto-fix and resolve remaining manual violations.'
 model: 'opencode/gemini-3-flash'
-temperature: 0.1
-top_p: 0.90
+temperature: 0.0
+top_p: 0.10
 max_tokens: 4096
 ---
 

@@ -1,7 +1,8 @@
 ---
 description: 'Automatically generate a frontend unit test for a given source file.'
 model: 'opencode/gemini-3-flash'
-temperature: 0.2
+temperature: 0.3
+top_p: 0.95
 max_tokens: 8192
 ---
 

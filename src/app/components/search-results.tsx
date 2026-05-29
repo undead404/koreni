@@ -25,7 +25,7 @@ function renderResult(
   searchValue: string,
 ) {
   return (
-    <li className={styles.resultCard}>
+    <li key={index} className={styles.resultCard}>
       {/* Record Header */}
       <div className={styles.cardHeader}>
         <h3>{typedResult.document.title || 'Невідомий документ'}</h3>

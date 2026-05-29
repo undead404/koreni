@@ -2,13 +2,13 @@
 description: 'Refactor a specific file for performance, architectural alignment, and readability.'
 model: 'opencode/gemini-3-flash'
 temperature: 0.1
-top_p: 0.90
+top_p: 0.95
 max_tokens: 8192
 ---
 
 You are a principal software engineer. Review the target file injected below and apply the requested refactoring structural improvements.
 
-Target File Content: @$1
+Target File Content: $1
 Refactoring Goal: $2
 
 1. Execute the refactoring strictly based on the Refactoring Goal. If no specific goal is provided, optimize the file for complexity reduction (lower cyclomatic complexity) and dead-code elimination.

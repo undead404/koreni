@@ -13,4 +13,4 @@ You are a backend diagnostic engineer. Review the test execution payload below.
 3. Apply precise fixes to the implementation or the test file using local tools. Do not bypass assertions, mock out active database connections, or use `any`/`@ts-ignore` to force a pass.
 4. Stop immediately after applying the fixes.
 
-!`cd src/server && output=$(yarn test run --reporter=minimal 2>&1); if [ $? -eq 0 ]; then echo "ALL_PASSED"; else echo "$output" | head -n 500; fi`
+!`cd src/server && output=$(yarn vitest run --reporter=minimal 2>&1); if [ $? -eq 0 ]; then echo "ALL_PASSED"; else echo "$output" | head -n 500; fi`

@@ -1,8 +1,8 @@
 ---
 description: 'Resolve complex TypeScript and ESLint violations after local auto-fixing.'
 model: 'opencode/gemini-3.1-pro'
-temperature: 0.1
-top_p: 0.90
+temperature: 0.0
+top_p: 0.10
 max_tokens: 8192
 ---
 

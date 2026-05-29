@@ -1,9 +1,9 @@
 ---
 description: 'Generate a conventional commit message and execute the commit autonomously.'
 model: 'opencode/gemini-3-flash'
-temperature: 0.1
-top_p: 0.90
-max_tokens: 500
+temperature: 0.4
+top_p: 1.0
+max_tokens: 512
 ---
 
 You are a strict version control agent. Review the staged git diff below.
