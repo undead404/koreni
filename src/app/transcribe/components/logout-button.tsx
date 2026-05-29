@@ -25,7 +25,7 @@ export default function LogoutButton() {
         return;
       })
       .catch(() => {
-        toast.error('Failed to sign out');
+        toast.error('Failed to log out');
       });
   };
 
@@ -35,7 +35,7 @@ export default function LogoutButton() {
 
   return (
     <button onClick={handleLogout} className={styles.root}>
-      Sign Out
+      Log Out
     </button>
   );
 }

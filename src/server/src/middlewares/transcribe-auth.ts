@@ -1,6 +1,7 @@
-import { getCookie } from 'hono/cookie';
+import { deleteCookie, getCookie } from 'hono/cookie';
 import { createMiddleware } from 'hono/factory';
 
+import environment from '../environment.js';
 import verifyToken from '../helpers/verify-token.js';
 import type { ContextVariables } from '../types.js';
 
@@ -22,6 +23,13 @@ export const transcribeAuthMiddleware = createMiddleware<{
     c.set('isAdmin', payload.isAdmin);
     await next();
   } catch {
+    deleteCookie(c, 'auth_session', {
+      path: '/',
+      secure: environment.NODE_ENV === 'production',
+      sameSite: 'Strict',
+    });
+
+    c.header('Cache-Control', 'no-store, max-age=0');
     return c.json({ user: null }, 401);
   }
 });

@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-168
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-05-27
+id: DASO-R7720-5-168
+location:
+  - 51.27594
+  - 33.15605
+size: 197
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-168.csv
+tableLocale: uk
+title: "[ШІ] Бондарі (Бочечківські) та Вирівка – народження, 1927"
+yearsRange:
+  - 1927

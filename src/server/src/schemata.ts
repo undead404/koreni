@@ -82,6 +82,7 @@ export const jwtSchema = z.object({
   iat: z.number(),
   isAdmin: z.boolean().optional().default(false),
   sub: z.string(),
+  v: z.number(),
 });
 
 export type Jwt = z.infer<typeof jwtSchema>;

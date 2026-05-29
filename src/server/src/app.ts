@@ -8,9 +8,9 @@ import handleProjectImageGet from './handlers/handle-project-image-get.js';
 import handleProjectImagePut from './handlers/handle-project-image-put.js';
 import handleProjectImagesList from './handlers/handle-project-images-list.js';
 import handleSubmit from './handlers/handle-submit.js';
-import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-delete.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
+import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-session-delete.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
 import handleTranscribeProjectGet from './handlers/handle-transcribe-project-get.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
@@ -59,7 +59,7 @@ export function createApp() {
   app.post('/api/auth/google', rateLimitMiddleware, handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
   app.delete(
-    '/api/auth/me',
+    '/api/auth/session/current',
     transcribeAuthMiddleware,
     handleTranscribeAuthDelete,
   );
