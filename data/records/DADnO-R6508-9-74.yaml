@@ -1,9 +1,9 @@
 archiveItems:
-  - ДАДнОР-6508-9-74
+  - ДАДнО-Р6508-9-74
 authorName: Борщ
 authorEmail: v.borshch1@gmail.com
 date: 2026-05-29
-id: dadnor-6508974
+id: DADnO-R6508-9-74
 location:
   - 47.6490555
   - 34.649194
@@ -14,6 +14,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-17X3-X9RK?view=explore&groupId=TH-7796-147434-4119-59&grid=on&lang=uk
 tableFilePath: public/csv/dadnor-6508974.csv
 tableLocale: uk
-title: Марганець. Шлюби РАЦС (04.08.1939 – 02.12.1939) ДАДнОР-6508-9-74
+title: Марганець. Шлюби РАЦС (04.08.1939 – 02.12.1939)
 yearsRange:
   - 1939
