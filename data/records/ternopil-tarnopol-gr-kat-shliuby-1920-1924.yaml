@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАТО-487-1-461
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-05-29
+id: ternopil-tarnopol-gr-kat-shliuby-1920-1924
+location:
+  - 49.5557908
+  - 25.5923753
+size: 1626
+sources:
+  - https://uk.wikipedia.org/wiki/%D0%92%D1%83%D0%BB%D0%B8%D1%86%D1%96_%D0%A2%D0%B5%D1%80%D0%BD%D0%BE%D0%BF%D0%BE%D0%BB%D1%8F
+tableFilePath: public/csv/ternopil-tarnopol-gr-kat-shliuby-1920-1924.csv
+tableLocale: uk
+title: Тернопіль (Tarnopol gr.-kat.) | шлюби (1920-1924)
+yearsRange:
+  - 1920
+  - 1924
