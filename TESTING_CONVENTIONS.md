@@ -24,3 +24,8 @@
 - **Test Runner API:** Use `describe`, `it`, and `expect` exclusively from `vitest`.
 - **Spying:** Exclusively use `vi.fn()` and `vi.spyOn()`. Jest imports are strictly forbidden.
 - **Zero-Tolerance for `any`:** The `any` type is strictly banned. Use `unknown` for ambiguous data payloads, or leverage `DeepPartial<T>` and `ReturnType<typeof fn>` to type incomplete mocked genealogical records or query responses accurately.
+
+## 7. Nested apps (Hono server)
+
+- **Scope**: `src/server` folder contains server code.
+- **Configuration**: Server code has its own Vitest configuration used by `cd src/server` to it.

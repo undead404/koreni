@@ -86,6 +86,7 @@ describe('TranscribeProjectPage', () => {
         storageKey: 'key-1.jpg',
         url: 'https://example.com/key-1.jpg',
         pageSequence: 1,
+        pageName: '12',
       },
     ];
     (getProjectImages as Mock).mockResolvedValue(mockImages);
@@ -114,6 +115,7 @@ describe('TranscribeProjectPage', () => {
         url: 'https://example.com/k',
         projectId: 'project-123',
         pageSequence: 1,
+        pageName: '12',
       },
     ]);
 
@@ -153,6 +155,7 @@ describe('TranscribeProjectPage', () => {
         url: 'https://example.com/k',
         projectId: 'project-123',
         pageSequence: 1,
+        pageName: '12',
       },
     ]);
 
@@ -198,16 +201,17 @@ describe('TranscribeProjectPage', () => {
         url: 'https://example.com/k',
         projectId: 'project-123',
         pageSequence: 1,
+        pageName: '12',
       },
     ]);
 
     render(<TranscribeProjectPage />);
 
     await waitFor(() => {
-      expect(screen.getByAltText('1')).toBeInTheDocument();
+      expect(screen.getByAltText('12')).toBeInTheDocument();
     });
 
-    const displayImage = screen.getByAltText('1');
+    const displayImage = screen.getByAltText('12');
     const zoomInButton = screen.getByTitle('Zoom In');
     const zoomOutButton = screen.getByTitle('Zoom Out');
     const resetButton = screen.getByTitle('Reset');
@@ -244,16 +248,17 @@ describe('TranscribeProjectPage', () => {
         url: 'https://example.com/k',
         projectId: 'project-123',
         pageSequence: 1,
+        pageName: '12',
       },
     ]);
 
     render(<TranscribeProjectPage />);
 
     await waitFor(() => {
-      expect(screen.getByAltText('1')).toBeInTheDocument();
+      expect(screen.getByAltText('12')).toBeInTheDocument();
     });
 
-    const displayImage = screen.getByAltText('1');
+    const displayImage = screen.getByAltText('12');
     const viewer = displayImage.parentElement!;
 
     // Initial transform
@@ -267,5 +272,33 @@ describe('TranscribeProjectPage', () => {
     fireEvent.mouseUp(viewer);
 
     expect(displayImage.style.transform).toContain('translate(50px, 70px)');
+  });
+
+  it('disables table and shows announcement when pageName is missing', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: '1',
+        storageKey: 'k',
+        url: 'https://example.com/k',
+        projectId: 'project-123',
+        pageSequence: 1,
+        pageName: null,
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Потрібна назва сторінки')).toBeInTheDocument();
+    });
+
+    const addButton = screen.getByText('Додати рядок');
+    expect(addButton).toBeDisabled();
+
+    const inputs = screen.getAllByPlaceholderText('Прізвище');
+    expect(inputs[0]).toBeDisabled();
   });
 });

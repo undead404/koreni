@@ -43,3 +43,9 @@
 
 - **Coverage**: Generate `.test.ts` or `.test.tsx` files for every new component or service utility.
 - **Syntax**: Use Vitest (`describe`, `it`, `expect`).
+
+## 7. Nested apps (Hono server)
+
+- **Scope**: `src/server` folder contains server code.
+- **Conventions**: Server code has its own conventions in `src/server/CONVENTIONS.md`
+- **Linting**: Server code is linted by the same ESLint configuration as the frontend.

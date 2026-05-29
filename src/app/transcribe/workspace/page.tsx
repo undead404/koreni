@@ -2,6 +2,7 @@
 
 import {
   ArrowLeft,
+  Check,
   ChevronLeft,
   ChevronRight,
   Image as ImageIcon,
@@ -21,6 +22,7 @@ import z from 'zod';
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import getProjectImages from '../api/get-project-images';
+import requestApi from '../api/request';
 import type { ProjectImage } from '../schemata';
 
 import styles from './page.module.css';
@@ -46,6 +48,17 @@ function TranscribeProjectPageContent() {
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Page name edit state
+  const [pageNameInput, setPageNameInput] = useState('');
+  const [isUpdatingPageName, setIsUpdatingPageName] = useState(false);
+
+  // Sync pageNameInput with current image
+  useEffect(() => {
+    if (images[currentImageIndex]) {
+      setPageNameInput(images[currentImageIndex].pageName || '');
+    }
+  }, [currentImageIndex, images]);
 
   // Image transform state
   const [transform, setTransform] = useState({ scale: 1, x: 0, y: 0 });
@@ -231,6 +244,51 @@ function TranscribeProjectPageContent() {
     );
   };
 
+  const handlePageNameSubmit = async (
+    event: React.SyntheticEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+    if (!projectId || !images[currentImageIndex]) return;
+
+    if (!/^\d/.test(pageNameInput)) {
+      toast.error('Номер сторінки повинен починатися з цифри');
+      return;
+    }
+
+    setIsUpdatingPageName(true);
+    const imageId = images[currentImageIndex].id;
+
+    try {
+      const response = await requestApi(
+        `/api/transcribe/projects/${projectId}/images/${imageId}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ pageName: pageNameInput }),
+        },
+      );
+
+      if (response.ok) {
+        const data = (await response.json()) as { image: ProjectImage };
+        const updatedImage = data.image;
+        setImages((previous) =>
+          previous.map((image) =>
+            image.id === imageId
+              ? { ...image, pageName: updatedImage.pageName }
+              : image,
+          ),
+        );
+        toast.success('Назву сторінки оновлено');
+      }
+    } catch {
+      toast.error('Не вдалося оновити назву сторінки');
+    } finally {
+      setIsUpdatingPageName(false);
+    }
+  };
+
   const nextImage = () => {
     setCurrentImageIndex((previous) =>
       Math.min(previous + 1, images.length - 1),
@@ -258,6 +316,8 @@ function TranscribeProjectPageContent() {
       </div>
     );
   }
+
+  const hasPageName = Boolean(images[currentImageIndex]?.pageName);
 
   return (
     <div className={styles.workspace}>
@@ -359,16 +419,72 @@ function TranscribeProjectPageContent() {
           <ArrowLeft size={16} />
           Назад до проекту
         </Link>
+
+        <form
+          className={styles.pageNameForm}
+          onSubmit={(event_) => {
+            void handlePageNameSubmit(event_);
+          }}
+        >
+          <div className={styles.pageNameField}>
+            <label htmlFor="pageName">
+              Назва сторінки (напр. 12, 12зв, 12а)
+            </label>
+            <input
+              id="pageName"
+              type="text"
+              className={styles.input}
+              value={pageNameInput}
+              onChange={(event_) => {
+                setPageNameInput(event_.target.value);
+              }}
+              placeholder="Введіть номер сторінки..."
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className={styles.saveButton}
+            disabled={
+              isUpdatingPageName ||
+              pageNameInput === (images[currentImageIndex]?.pageName || '')
+            }
+          >
+            <Check size={16} />
+            {isUpdatingPageName ? 'Збереження...' : 'Зберегти'}
+          </button>
+        </form>
+
+        {hasPageName ? null : (
+          <div className={styles.announcement}>
+            <div className={styles.announcementTitle}>
+              Потрібна назва сторінки
+            </div>
+            <div className={styles.announcementText}>
+              Будь ласка, вкажіть назву сторінки (наприклад, &quot;12&quot;,
+              &quot;12зв&quot;, &quot;12а&quot;, &quot;12азв&quot;), прочитавши
+              її із зображення або вивівши її логічно. Транскрибування
+              заблоковано, доки не буде введено назву сторінки.
+            </div>
+          </div>
+        )}
+
         <div className={styles.tableHeader}>
           <h2>Транскрипція</h2>
-          <button className={styles.addButton} onClick={addRow}>
+          <button
+            className={styles.addButton}
+            onClick={addRow}
+            disabled={!hasPageName}
+          >
             <Plus size={16} />
             Додати рядок
           </button>
         </div>
 
         <div className={styles.tableContainer}>
-          <table className={styles.table}>
+          <table
+            className={`${styles.table} ${hasPageName ? '' : styles.disabled}`}
+          >
             <thead>
               <tr>
                 <th style={{ width: '40px' }}>No.</th>
@@ -392,6 +508,7 @@ function TranscribeProjectPageContent() {
                         updateRow(row.id, 'lastName', event_.target.value);
                       }}
                       placeholder="Прізвище"
+                      disabled={!hasPageName}
                     />
                   </td>
                   <td>
@@ -403,6 +520,7 @@ function TranscribeProjectPageContent() {
                         updateRow(row.id, 'firstName', event_.target.value);
                       }}
                       placeholder="Ім'я"
+                      disabled={!hasPageName}
                     />
                   </td>
                   <td>
@@ -414,6 +532,7 @@ function TranscribeProjectPageContent() {
                         updateRow(row.id, 'yearOrAge', event_.target.value);
                       }}
                       placeholder="Вік"
+                      disabled={!hasPageName}
                     />
                   </td>
                   <td>
@@ -425,6 +544,7 @@ function TranscribeProjectPageContent() {
                         updateRow(row.id, 'notes', event_.target.value);
                       }}
                       placeholder="Примітки"
+                      disabled={!hasPageName}
                     />
                   </td>
                   <td className={styles.actionCell}>
@@ -434,6 +554,7 @@ function TranscribeProjectPageContent() {
                         deleteRow(row.id);
                       }}
                       title="Видалити"
+                      disabled={!hasPageName}
                     >
                       <Trash2 size={16} />
                     </button>

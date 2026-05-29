@@ -5,6 +5,7 @@ import { secureHeaders } from 'hono/secure-headers';
 
 import handleProjectImageDelete from './handlers/handle-project-image-delete.js';
 import handleProjectImageGet from './handlers/handle-project-image-get.js';
+import handleProjectImagePatch from './handlers/handle-project-image-patch.js';
 import handleProjectImagePut from './handlers/handle-project-image-put.js';
 import handleProjectImagesList from './handlers/handle-project-images-list.js';
 import handleSubmit from './handlers/handle-submit.js';
@@ -92,6 +93,11 @@ export function createApp() {
     '/api/transcribe/projects/:projectId/images/:imageId',
     transcribeAuthMiddleware,
     handleProjectImagePut,
+  );
+  app.patch(
+    '/api/transcribe/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImagePatch,
   );
   app.delete(
     '/api/transcribe/projects/:projectId/images/:imageId',
