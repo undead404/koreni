@@ -25,8 +25,8 @@ const environmentSchema = z.object({
   POSTHOG_KEY: nonEmptyString,
   POSTHOG_HOST: nonEmptyString,
   TURNSTILE_SECRET_KEY: nonEmptyString,
-  TURSO_DATABASE_URL: z.url(),
-  TURSO_DATABASE_TOKEN: nonEmptyString,
+  TURSO_DATABASE_URL: z.string().default('file:local.db'),
+  TURSO_DATABASE_TOKEN: nonEmptyString.optional(),
   VALID_API_KEYS: z
     .string()
     .optional()

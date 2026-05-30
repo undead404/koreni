@@ -20,6 +20,7 @@
     "zod": "~4.3.6"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
     "@types/uuid": "^11.0.0",
     "better-sqlite3": "^12.10.0",
     "kysely-codegen": "^0.20.0",
@@ -40,6 +41,7 @@
   },
   "scripts": {
     "build": "tsc && cp package.json ./dist && cp yarn.lock ./dist",
+    "db:init": "tsx src/database/init.ts",
     "dev": "tsx ./src/index.ts",
     "start": "node server/src/index.js",
     "test": "vitest"

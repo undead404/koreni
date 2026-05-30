@@ -25,6 +25,7 @@ yarn
 yarn docker:typesense:start
 yarn typesense:populate # This takes substantial time
 yarn dev
+cd ./src/server && yarn db:init && cd ../..
 ```
 
 ## Production setup
