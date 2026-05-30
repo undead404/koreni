@@ -24,8 +24,19 @@ The easiest way is to setup Typesense with Docker. Run this:
 yarn
 yarn docker:typesense:start
 yarn typesense:populate # This takes substantial time
-yarn dev
 cd ./src/server && yarn db:init && cd ../..
+```
+
+Then, to run the app, in different terminal tabs:
+
+```sh
+yarn dev
+```
+
+If you want to work with data contribution and-or transcription:
+
+```sh
+yarn dev:server
 ```
 
 ## Production setup

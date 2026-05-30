@@ -258,8 +258,6 @@ jobs:
             echo "NEXT_PUBLIC_SITE=${{ vars.SITE }}" >> .env
             echo "NODE_ENV=production" >> .env
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
-            echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
-            echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
 
             # Install dependencies ON THE SERVER

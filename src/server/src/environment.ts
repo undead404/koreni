@@ -7,8 +7,6 @@ dotenv.config();
 
 const environmentSchema = z.object({
   BUGSNAG_API_API_KEY: nonEmptyString.optional(),
-  GITHUB_OAUTH_CLIENT_ID: nonEmptyString.optional(),
-  GITHUB_OAUTH_CLIENT_SECRET: nonEmptyString.optional(),
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
   JWT_SECRET: z.string().check(
@@ -44,8 +42,6 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
-  GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
-  GITHUB_OAUTH_CLIENT_SECRET: process.env.GITHUB_OAUTH_CLIENT_SECRET,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   JWT_SECRET: process.env.JWT_SECRET,
