@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import { Info, Plus, Trash2 } from 'lucide-react';
 
 import type {
@@ -5,7 +6,7 @@ import type {
   TranscriptionRow,
 } from '../_hooks/use-transcription-rows';
 
-import styles from '../page.module.css';
+import styles from './transcription-table.module.css';
 
 interface TranscriptionTableProperties {
   columns: ColumnConfig[];
@@ -57,12 +58,19 @@ export default function TranscriptionTable({
 
       <div className={styles.tableContainer}>
         <table
-          className={`${styles.table} ${hasPageName ? '' : styles.disabled}`}
+          className={clsx(styles.table, { [styles.disabled]: !hasPageName })}
         >
           <thead>
             <tr>
               {columns.map((column) => (
-                <th key={column.id}>
+                <th
+                  key={column.id}
+                  className={
+                    column.isExtended
+                      ? styles.columnExtended
+                      : styles.columnDefault
+                  }
+                >
                   <div className={styles.columnHeader}>
                     {column.title}
                     {column.hint && (
@@ -80,7 +88,14 @@ export default function TranscriptionTable({
             {rows.map((row, index) => (
               <tr key={row.id}>
                 {columns.map((column) => (
-                  <td key={column.id}>
+                  <td
+                    key={column.id}
+                    className={
+                      column.isExtended
+                        ? styles.columnExtended
+                        : styles.columnDefault
+                    }
+                  >
                     <input
                       type={
                         column.expectedType === 'number' ? 'number' : 'text'

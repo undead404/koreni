@@ -7,6 +7,7 @@ export interface ColumnConfig {
   title: string;
   hint: string;
   expectedType: ColumnExpectedType;
+  isExtended?: boolean;
 }
 
 export interface TranscriptionRow extends Record<string, string> {

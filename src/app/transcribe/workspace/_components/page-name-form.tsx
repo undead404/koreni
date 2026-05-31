@@ -1,12 +1,13 @@
 import { Check } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { type SubmitEvent, useEffect, useState } from 'react';
 import { toast } from 'sonner';
+import z from 'zod';
 
 import requestApi from '../../api/request';
-import type { ProjectImage } from '../../schemata';
+import { type ProjectImage, projectImageSchema } from '../../schemata';
 import { guessNextPageName } from '../_helpers/guess-next-page-name';
 
-import styles from '../page.module.css';
+import styles from './page-name-form.module.css';
 
 interface PageNameFormProperties {
   projectId: string;
@@ -14,6 +15,10 @@ interface PageNameFormProperties {
   onImageUpdated: (updatedImage: ProjectImage) => void;
   images?: ProjectImage[];
 }
+
+const imageResponseSchema = z.object({
+  image: projectImageSchema,
+});
 
 export default function PageNameForm({
   projectId,
@@ -44,9 +49,7 @@ export default function PageNameForm({
     }
   }, [image, images]);
 
-  const handlePageNameSubmit = async (
-    event: React.SyntheticEvent<HTMLFormElement>,
-  ) => {
+  const handlePageNameSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!projectId || !image) return;
 
@@ -71,9 +74,12 @@ export default function PageNameForm({
       );
 
       if (response.ok) {
-        const data = (await response.json()) as { image: ProjectImage };
+        const rawData: unknown = await response.json();
+        const data = imageResponseSchema.parse(rawData);
         onImageUpdated(data.image);
         toast.success('Назву сторінки оновлено');
+      } else {
+        throw new Error('Не вдалося оновити назву сторінки');
       }
     } catch {
       toast.error('Не вдалося оновити назву сторінки');

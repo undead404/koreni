@@ -27,7 +27,13 @@ const POC_COLUMNS: ColumnConfig[] = [
   },
   { id: 'M', title: '#M', hint: 'Number of male', expectedType: 'number' },
   { id: 'F', title: '#F', hint: 'Number of female', expectedType: 'number' },
-  { id: 'Name', title: 'Name', hint: '', expectedType: 'string' },
+  {
+    id: 'Name',
+    title: 'Name',
+    hint: '',
+    expectedType: 'string',
+    isExtended: true,
+  },
   { id: 'aM', title: 'aM', hint: 'Age of male', expectedType: 'string' },
   { id: 'aF', title: 'aF', hint: 'Age of female', expectedType: 'string' },
   {
@@ -35,6 +41,7 @@ const POC_COLUMNS: ColumnConfig[] = [
     title: 'Note',
     hint: 'Anything to the right of the age',
     expectedType: 'string',
+    isExtended: true,
   },
 ];
 
