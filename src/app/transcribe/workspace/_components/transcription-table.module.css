@@ -66,17 +66,22 @@
 .input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background-color: var(--background);
+  border: none;
+  background: transparent;
   color: var(--text-color);
+  font-family: inherit;
   font-size: 0.875rem;
+  display: block;
+  resize: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  field-sizing: content;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--clickable-color);
-  box-shadow: 0 0 0 1px var(--clickable-color);
+  background-color: var(--card-background);
+  box-shadow: inset 0 0 0 1px var(--clickable-color);
 }
 
 .insertRowButton {
@@ -124,7 +129,7 @@
   text-align: left;
   padding: 0.5rem 0.25rem;
   background-color: var(--card-background);
-  border-bottom: 2px solid var(--border);
+  border: 1px solid var(--border);
   font-weight: 600;
   position: sticky;
   top: 0;
@@ -132,9 +137,9 @@
 }
 
 .table td {
-  padding: 0.25rem;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
+  padding: 0;
+  border: 1px solid var(--border);
+  vertical-align: top;
 }
 
 .columnDefault {

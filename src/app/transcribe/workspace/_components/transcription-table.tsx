@@ -96,22 +96,33 @@ export default function TranscriptionTable({
                         : styles.columnDefault
                     }
                   >
-                    <input
-                      type={
-                        column.expectedType === 'number' ? 'number' : 'text'
-                      }
-                      className={styles.input}
-                      value={row[column.id] || ''}
-                      onChange={(event_) => {
-                        const finalValue =
-                          projectLocale === 'ru'
-                            ? applyReplacements(event_.target.value)
-                            : event_.target.value;
-                        onUpdateRow(row.id, column.id, finalValue);
-                      }}
-                      placeholder={column.title}
-                      disabled={!hasPageName}
-                    />
+                    {column.expectedType === 'number' ? (
+                      <input
+                        type="number"
+                        className={styles.input}
+                        value={row[column.id] || ''}
+                        onChange={(event_) => {
+                          onUpdateRow(row.id, column.id, event_.target.value);
+                        }}
+                        placeholder={column.title}
+                        disabled={!hasPageName}
+                      />
+                    ) : (
+                      <textarea
+                        className={styles.input}
+                        value={row[column.id] || ''}
+                        onChange={(event_) => {
+                          const finalValue =
+                            projectLocale === 'ru'
+                              ? applyReplacements(event_.target.value)
+                              : event_.target.value;
+                          onUpdateRow(row.id, column.id, finalValue);
+                        }}
+                        placeholder={column.title}
+                        disabled={!hasPageName}
+                        rows={1}
+                      />
+                    )}
                   </td>
                 ))}
                 <td className={styles.actionCell}>
