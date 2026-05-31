@@ -5,12 +5,22 @@ export function updateProjectImage(
   imageId: string,
   data: {
     pageName?: string | null;
+    transcription?: string;
   },
 ) {
-  const updateData: Record<string, unknown> = {};
+  if (!data.pageName && !data.transcription) {
+    throw new Error('No update provided');
+  }
+  const updateData: Record<string, unknown> = {
+    updated_at: 'unixepoch()',
+  };
 
   if (data.pageName !== undefined) {
     updateData.page_name = data.pageName;
+  }
+
+  if (data.transcription !== undefined) {
+    updateData.transcription = data.transcription;
   }
 
   return database
@@ -28,6 +38,7 @@ export function updateProjectImage(
       'width',
       'created_at',
       'blurhash',
+      'transcription',
     ])
     .executeTakeFirst();
 }

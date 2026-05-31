@@ -63,6 +63,7 @@ describe('handleProjectImageDelete', () => {
       width: 800,
       created_at: 123_456_789,
       blurhash: 'U1234567890',
+      transcription: null,
     });
 
     const response = (await handleProjectImageDelete(

@@ -6,6 +6,7 @@ import { getPublicUrl } from '../services/r2.js';
 
 const patchImageSchema = z.object({
   pageName: z.string().nullable().optional(),
+  transcription: z.string().optional(),
 });
 
 export default async function handleProjectImagePatch(c: Context) {
@@ -27,10 +28,11 @@ export default async function handleProjectImagePatch(c: Context) {
       );
     }
 
-    const { pageName } = parsedFields.data;
+    const { pageName, transcription } = parsedFields.data;
 
     const updatedImage = await updateProjectImage(projectId, imageId, {
       pageName,
+      transcription,
     });
 
     if (!updatedImage) {
@@ -50,6 +52,7 @@ export default async function handleProjectImagePatch(c: Context) {
         width: updatedImage.width,
         createdAt: updatedImage.created_at,
         blurhash: updatedImage.blurhash,
+        transcription: updatedImage.transcription,
       },
     });
   } catch (error) {

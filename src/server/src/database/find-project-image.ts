@@ -13,6 +13,7 @@ export function findProjectImage(projectId: string, imageId: string) {
       'width',
       'created_at',
       'blurhash',
+      'transcription',
     ])
     .where('id', '=', imageId)
     .where('project_id', '=', projectId)

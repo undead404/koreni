@@ -13,4 +13,4 @@ You are a strict frontend diagnostic engineer. Review the initial test execution
 3. **Verification Loop:** After modifying files, you MUST run `yarn vitest run --passWithNoTests` using your shell execution tool to verify the fix.
 4. **Circuit Breaker:** You are permitted a maximum of 3 execution attempts. If the tests still fail after the 3rd attempt, output a summary of the remaining failing assertions and terminate operations. Do not exceed 3 attempts.
 
-!`output=$(yarn vitest run --passWithNoTests 2>&1); if [ $? -eq 0 ]; then echo "ALL_PASSED"; else echo "$output" | head -n 500; fi`
+!`output=$(CI=true yarn vitest run --passWithNoTests 2>&1); if [ $? -eq 0 ]; then echo "ALL_PASSED"; else echo "$output" | head -n 500; fi`
