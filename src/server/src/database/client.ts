@@ -7,7 +7,9 @@ import environment from '../environment.js';
 
 const libsql = createClient({
   url: environment.TURSO_DATABASE_URL,
-  authToken: environment.TURSO_DATABASE_TOKEN,
+  ...(environment.TURSO_DATABASE_TOKEN && {
+    authToken: environment.TURSO_DATABASE_TOKEN,
+  }),
 });
 
 const database = new Kysely<DB>({
