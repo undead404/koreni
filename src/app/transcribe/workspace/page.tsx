@@ -69,8 +69,11 @@ function TranscribeProjectPageContent() {
     handleResetTransform,
   } = useImageTransform(isLoading);
 
-  const { rows, addRow, deleteRow, updateRow } =
-    useTranscriptionRows(POC_COLUMNS);
+  const { rows, addRow, deleteRow, updateRow } = useTranscriptionRows(
+    POC_COLUMNS,
+    projectId,
+    images[currentImageIndex]?.id,
+  );
 
   const handleNextImage = () => {
     setCurrentImageIndex((previous) =>
