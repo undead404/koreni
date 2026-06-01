@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАКО-384-10-113
+  - ДАКО-384-10-114
+  - ДАКО-384-10-115
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-06-01
+id: yareshky-brovkivska-volost-skvyrskyi-povit
+location:
+  - 49.9160226
+  - 29.1963351
+size: 215
+sources:
+  - https://drive.google.com/drive/u/0/folders/1hEWq9g757Q-WOqYXJlPgwg7AE-yuGHer
+  - https://inspector.duckarchive.com/archives/%D0%94%D0%90%D0%9A%D0%9E/384/10/113
+tableFilePath: public/csv/yareshky-brovkivska-volost-skvyrskyi-povit.csv
+tableLocale: uk
+title: Ярешки Бровківська волость Сквирський повіт
+yearsRange:
+  - 1897
