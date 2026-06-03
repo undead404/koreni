@@ -4,6 +4,9 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [tsconfigPaths(), react()],
+  resolve: {
+    tsconfigPaths: true,
+  },
   test: {
     css: {
       modules: {
@@ -12,6 +15,6 @@ export default defineConfig({
     },
     environment: 'jsdom',
     setupFiles: ['vitest.setup.ts'],
-    exclude: ['node_modules', 'src/server', 'src/daily-report'],
+    exclude: ['node_modules', 'src/server', 'src/daily-report', '.opencode'],
   },
 });
