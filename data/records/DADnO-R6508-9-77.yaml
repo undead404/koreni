@@ -1,9 +1,9 @@
 archiveItems:
-  - ДАДО-6508-9-77
+  - ДАДнО-Р6508-9-77
 authorName: Борщ
 authorEmail: v.borshch1@gmail.com
 date: 2026-05-31
-id: dado-6508-9-77
+id: DADnO-R6508-9-77
 location:
   - 47.6490555
   - 34.649194
@@ -14,7 +14,7 @@ sources:
   - https://www.familysearch.org/uk/records/images/search-results?imageGroupNumbers=119543799
 tableFilePath: public/csv/dado-6508-9-77.csv
 tableLocale: uk
-title: Марганець. Народження, поновлені (02.01.1940 – 11.03.1941) [ШІ]
+title: [ШІ] Марганець. Народження, поновлені (02.01.1940 – 11.03.1941)
 yearsRange:
   - 1940
   - 1941
