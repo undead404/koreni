@@ -5,7 +5,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-06-01
-id: yareshky-brovkivska-volost-skvyrskyi-povit
+id: DAKO-384-10-Yareshky
 location:
   - 49.9160226
   - 29.1963351
@@ -15,6 +15,6 @@ sources:
   - https://inspector.duckarchive.com/archives/%D0%94%D0%90%D0%9A%D0%9E/384/10/113
 tableFilePath: public/csv/yareshky-brovkivska-volost-skvyrskyi-povit.csv
 tableLocale: uk
-title: Ярешки Бровківська волость Сквирський повіт
+title: Ярешки (Андрушівські) – перепис 1897
 yearsRange:
   - 1897
