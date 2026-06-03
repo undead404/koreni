@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-27
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: dazho-1-76-27-kalynivkabirth
+location:
+  - 50.26103434497041
+  - 28.801517223962378
+size: 21
+sources: []
+tableFilePath: public/csv/dazho-1-76-27-kalynivkabirth.csv
+tableLocale: ru
+title: DAZhO-1-76-27-Kalynivka_birth
+yearsRange:
+  - 1817
