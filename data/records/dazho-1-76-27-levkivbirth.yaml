@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-27
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: dazho-1-76-27-levkivbirth
+location:
+  - 50.23703880147736
+  - 28.841590808833594
+size: 80
+sources: []
+tableFilePath: public/csv/dazho-1-76-27-levkivbirth.csv
+tableLocale: ru
+title: DAZhO-1-76-27-Levkiv_birth
+yearsRange:
+  - 1817
