@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р4033-11-
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-04
+id: khersonska-obl-spravy-represovanykh-dakheo-fr-4033-op11
+location:
+  - 46.6401295
+  - 32.6143922
+size: 93
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4033-upravlinnya-sluzhby-bezpeky-ukrayiny-v-hersonskij-oblasti/
+  - https://drive.google.com/file/d/1zqrGGiaXAlbGnnUVUsIoHuHLUpAxt6xS/view
+tableFilePath: public/csv/khersonska-obl-spravy-represovanykh-dakheo-fr-4033-op11.csv
+tableLocale: uk
+title: Херсонська обл. | Справи репресованих, ДАХеО ф.Р-4033 оп.11
+yearsRange:
+  - 1941
+  - 1966
