@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-27
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: DAZhO-1-76-27-Levkiv-birth
+location:
+  - 50.2370914
+  - 28.832007
+size: 80
+sources: []
+tableFilePath: public/csv/dazho-1-76-27-levkivbirth.csv
+tableLocale: ru
+title: Левків (Глибочицький) – народження, 1817
+yearsRange:
+  - 1817
