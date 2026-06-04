@@ -3,14 +3,14 @@ archiveItems:
 authorName: Олена Т
 authorEmail: yurtselt@gmail.com
 date: 2026-06-03
-id: dazho-1-76-89-lukamerriage
+id: DAZhO-1-76-89-Luka-marriage
 location:
-  - 50.17548543293732
-  - 28.819133277422292
+  - 50.1760798
+  - 28.8175764
 size: 12
 sources: []
 tableFilePath: public/csv/dazho-1-76-89-lukamerriage.csv
 tableLocale: ru
-title: DAZhO-1-76-89-Luka_merriage
+title: Лука (Житомирська) – шлюб, 1846
 yearsRange:
   - 1846
