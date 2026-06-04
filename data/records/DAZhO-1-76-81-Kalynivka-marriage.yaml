@@ -3,14 +3,14 @@ archiveItems:
 authorName: Олена Т
 authorEmail: yurtselt@gmail.com
 date: 2026-06-03
-id: dazho-1-76-81-kalynivkamerriage
+id: DAZhO-1-76-81-Kalynivka-marriage
 location:
-  - 50.25975583930909
-  - 28.802393704585935
+  - 50.260052
+  - 28.801689
 size: 12
 sources: []
 tableFilePath: public/csv/dazho-1-76-81-kalynivkamerriage.csv
 tableLocale: ru
-title: DAZhO-1-76-81-Kalynivka_merriage
+title: Калинівка (Глибочицька) – шлюб, 1845
 yearsRange:
   - 1845
