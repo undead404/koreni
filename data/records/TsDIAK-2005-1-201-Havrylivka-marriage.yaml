@@ -3,7 +3,7 @@ archiveItems:
 authorName: Олена Котовська
 authorEmail: elean.k@gmail.com
 date: 2026-06-03
-id: tsdiak-2005-1-201havrylivka1798shliub
+id: TsDIAK-2005-1-201-Havrylivka-marriage
 location:
   - 48.8460067
   - 36.8088298
@@ -12,6 +12,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-57W9-DPVB?view=explore&groupId=TH-7740-140401-314632-64&lang=uk
 tableFilePath: public/csv/tsdiak-2005-1-201havrylivka1798shliub.csv
 tableLocale: ru
-title: ЦДІАК-2005-1-201_Гаврилівка_1798_шлюб
+title: Гаврилівка (Барвінківська) – шлюб, 1798
 yearsRange:
   - 1798
