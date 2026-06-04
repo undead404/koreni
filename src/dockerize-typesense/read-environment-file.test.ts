@@ -1,10 +1,17 @@
-import { readFileSync } from 'node:fs';
-
-import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import readEnvironmentFile from './read-environment-file';
 
-vi.mock('node:fs');
+const mocks = vi.hoisted(() => ({
+  readFileSync: vi.fn(),
+}));
+
+vi.mock('node:fs', () => ({
+  readFileSync: mocks.readFileSync,
+  default: {
+    readFileSync: mocks.readFileSync,
+  },
+}));
 
 describe('readEnvironmentFile', () => {
   const mockEnvironmentContent = `
@@ -18,11 +25,11 @@ describe('readEnvironmentFile', () => {
   });
 
   it('should read and parse the .env file correctly', () => {
-    (readFileSync as Mock).mockReturnValue(mockEnvironmentContent);
+    mocks.readFileSync.mockReturnValue(mockEnvironmentContent);
 
     const result = readEnvironmentFile();
 
-    expect(readFileSync).toHaveBeenCalledWith('.env');
+    expect(mocks.readFileSync).toHaveBeenCalledWith('.env');
     expect(result).toEqual({
       KEY1: 'value1',
       KEY2: 'value2',
@@ -36,7 +43,7 @@ describe('readEnvironmentFile', () => {
       INVALID_LINE
       KEY2=value2
     `;
-    (readFileSync as Mock).mockReturnValue(invalidEnvironmentContent);
+    mocks.readFileSync.mockReturnValue(invalidEnvironmentContent);
 
     expect(() => readEnvironmentFile()).toThrow('Invalid .env');
   });
@@ -49,7 +56,7 @@ describe('readEnvironmentFile', () => {
 
       KEY3=value3
     `;
-    (readFileSync as Mock).mockReturnValue(environmentContentWithEmptyLines);
+    mocks.readFileSync.mockReturnValue(environmentContentWithEmptyLines);
 
     const result = readEnvironmentFile();
 

@@ -28,7 +28,6 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     if (
       bareFileName.toLowerCase() !== `${tableMetadata.id.toLowerCase()}.yaml`
     ) {
-      console.log(bareFileName, '!==', `${tableMetadata.id}.yaml`);
       throw new Error('Filename mismatch');
     }
     tablesMetadata.push(tableMetadata);
