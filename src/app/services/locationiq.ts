@@ -52,7 +52,6 @@ async function autocompleteBounced(
     const autocompleteData = locationiqAutocompleteResponseSchema.parse(data);
     return autocompleteData;
   } catch (error) {
-    console.error(error);
     initBugsnag().notify(error as Error);
     posthog.captureException(error as Error);
     return;

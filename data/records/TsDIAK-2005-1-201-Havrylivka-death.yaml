@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-2005-1-201
+authorName: Олена Котовська
+authorEmail: elean.k@gmail.com
+date: 2026-06-03
+id: TsDIAK-2005-1-201-Havrylivka-death
+location:
+  - 48.8460067
+  - 36.8088298
+size: 37
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-57W9-DPVB?view=explore&groupId=TH-7740-140401-314632-64&lang=uk
+tableFilePath: public/csv/tsdiak-2005-1-201havrylivka1798smert.csv
+tableLocale: ru
+title: Гаврилівка (Барвінківська) – смерть, 1798
+yearsRange:
+  - 1798
