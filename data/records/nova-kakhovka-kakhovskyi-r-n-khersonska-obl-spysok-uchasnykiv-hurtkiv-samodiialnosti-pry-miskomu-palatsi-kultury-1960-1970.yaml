@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-Р3968-1-19
+  - ДАХеО-Р3968-1-83а
+  - ДАХеО-Р3968-1-95
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-04
+id: nova-kakhovka-kakhovskyi-r-n-khersonska-obl-spysok-uchasnykiv-hurtkiv-samodiialnosti-pry-miskomu-palatsi-kultury-1960-1970
+location:
+  - 46.76084435
+  - 33.35516108
+size: 242
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-3968-novokahovskyj-miskyj-palacz-kultury-novokahovskogo-miskogo-viddilu-kultury/
+tableFilePath: public/csv/nova-kakhovka-kakhovskyi-r-n-khersonska-obl-spysok-uchasnykiv-hurtkiv-samodiialnosti-pry-miskomu-palatsi-kultury-1960-1970.csv
+tableLocale: uk
+title: Нова Каховка, Каховський р-н, Херсонська обл. | Список учасників гуртків
+  самодіяльності при міському палаці культури (1960-1970)
+yearsRange:
+  - 1960
+  - 1970
