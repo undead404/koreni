@@ -1,20 +1,29 @@
-import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { beforeEach,describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { indexationTableSchema } from './schemas/indexation-table';
 import getTablesMetadata from './get-tables-metadata';
 import getYamlFilepaths from './get-yaml-filepaths';
 import validateMetadata from './validate-metadata';
 
-vi.mock('node:fs/promises');
-vi.mock('./get-yaml-filepaths');
-vi.mock('./validate-metadata');
-vi.mock('./schemas/indexation-table', () => ({
+const mocks = vi.hoisted(() => ({
+  readFile: vi.fn(),
   indexationTableSchema: {
     parse: vi.fn(),
   },
+}));
+
+vi.mock('node:fs/promises', () => ({
+  readFile: mocks.readFile,
+  default: {
+    readFile: mocks.readFile,
+  },
+}));
+
+vi.mock('./get-yaml-filepaths');
+vi.mock('./validate-metadata');
+vi.mock('./schemas/indexation-table', () => ({
+  indexationTableSchema: mocks.indexationTableSchema,
 }));
 
 describe('getTablesMetadata', () => {
@@ -27,35 +36,37 @@ describe('getTablesMetadata', () => {
       path.join('data', 'records', 'B.yaml'),
       path.join('data', 'records', 'A.yaml'),
     ];
-    
+
     vi.mocked(getYamlFilepaths).mockResolvedValue(mockPaths);
-    
-    vi.mocked(readFile).mockImplementation((filepath) => {
-      const pathString = filepath as string;
+
+    mocks.readFile.mockImplementation((filepath: string) => {
+      const pathString = filepath;
       if (pathString.endsWith('B.yaml')) return Promise.resolve('id: B');
       if (pathString.endsWith('A.yaml')) return Promise.resolve('id: A');
       return Promise.resolve('');
     });
-    
-    vi.mocked(indexationTableSchema.parse).mockImplementation((data: any) => data);
+
+    mocks.indexationTableSchema.parse.mockImplementation((data: any) => data);
 
     const result = await getTablesMetadata();
 
     expect(getYamlFilepaths).toHaveBeenCalled();
-    expect(readFile).toHaveBeenCalledTimes(2);
-    expect(indexationTableSchema.parse).toHaveBeenCalledTimes(2);
+    expect(mocks.readFile).toHaveBeenCalledTimes(2);
+    expect(mocks.indexationTableSchema.parse).toHaveBeenCalledTimes(2);
     expect(validateMetadata).toHaveBeenCalledWith([{ id: 'B' }, { id: 'A' }]);
-    
+
     // Should be sorted by id
     expect(result).toEqual([{ id: 'A' }, { id: 'B' }]);
   });
 
   it('should throw an error if filename does not match id', async () => {
     const mockPaths = [path.join('data', 'records', 'mismatch.yaml')];
-    
+
     vi.mocked(getYamlFilepaths).mockResolvedValue(mockPaths);
-    vi.mocked(readFile).mockResolvedValue('id: different_id');
-    vi.mocked(indexationTableSchema.parse).mockReturnValue({ id: 'different_id' } as any);
+    mocks.readFile.mockResolvedValue('id: different_id');
+    mocks.indexationTableSchema.parse.mockReturnValue({
+      id: 'different_id',
+    } as any);
 
     await expect(getTablesMetadata()).rejects.toThrow('Filename mismatch');
   });

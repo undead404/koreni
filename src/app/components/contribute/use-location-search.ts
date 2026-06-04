@@ -59,7 +59,6 @@ export function useLocationSearch(knownLocations: Location[]) {
         })
         .catch(() => {
           if (abortController.signal.aborted) return;
-          void 0; /* error removed */
           setResults(localLocations);
         })
         .finally(() => {

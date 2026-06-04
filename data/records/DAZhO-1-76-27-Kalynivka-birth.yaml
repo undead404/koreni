@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-27
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: DAZhO-1-76-27-Kalynivka-birth
+location:
+  - 50.260052
+  - 28.801689
+size: 21
+sources: []
+tableFilePath: public/csv/dazho-1-76-27-kalynivkabirth.csv
+tableLocale: ru
+title: Калинівка (Глибочицька) – народження, 1817
+yearsRange:
+  - 1817

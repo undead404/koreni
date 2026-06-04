@@ -82,7 +82,6 @@ const SearchResults: FC<ResultsProperties> = ({
         result_title: result.document.title,
         result_year: result.document.year,
       });
-      void 0; /* warn removed */
       return null;
     }
   }); // Replace 'any' with inferred schema type if exported

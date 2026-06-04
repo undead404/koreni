@@ -106,7 +106,6 @@ export default function CsvDropzone() {
         }
 
         setParseError('Помилка при читанні файлу.');
-        void 0; /* error removed */
         posthog.capture('table_info_parse_error', {
           error: error instanceof Error ? error.message : String(error),
         });

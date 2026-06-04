@@ -78,7 +78,6 @@ export function useSearch() {
         if (requestId !== currentRequestId.current) return;
 
         setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
-        void 0; /* error removed */
         initBugsnag().notify(error_ as NotifiableError);
         posthog.captureException(error_ as Error);
       } finally {

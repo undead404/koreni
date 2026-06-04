@@ -40,12 +40,9 @@ export const useCookieConsent = () => {
     const consent = readCookieConsent();
 
     if (consent) {
-      void 0; /* log removed */
-      void 0; /* log removed */ // Додано для дебагу
       setConsent(consent);
       applyConsent(consent);
     } else {
-      void 0; /* log removed */
       showBanner(true);
     }
   }, [applyConsent]);

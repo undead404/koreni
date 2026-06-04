@@ -15,7 +15,9 @@ describe('generateTableDescription', () => {
 
   it('generates a correct description for a single year and Ukrainian locale', () => {
     const result = generateTableDescription(baseTable);
-    expect(result).toMatch(/^150 записів українською мовою за 1897 рік, проіндексованих 24 серпня 2023/);
+    expect(result).toMatch(
+      /^150 записів українською мовою за 1897 рік, проіндексованих 24 серпня 2023/,
+    );
   });
 
   it('generates a correct description for a year range and Polish locale', () => {
@@ -24,9 +26,11 @@ describe('generateTableDescription', () => {
       tableLocale: 'pl',
       yearsRange: [1900, 1905],
     } as IndexationTable;
-    
+
     const result = generateTableDescription(table);
-    expect(result).toMatch(/^150 записів польською мовою за 1900–1905 роки, проіндексованих 24 серпня 2023/);
+    expect(result).toMatch(
+      /^150 записів польською мовою за 1900–1905 роки, проіндексованих 24 серпня 2023/,
+    );
   });
 
   it('generates a correct description for Russian locale', () => {
@@ -34,7 +38,7 @@ describe('generateTableDescription', () => {
       ...baseTable,
       tableLocale: 'ru',
     } as IndexationTable;
-    
+
     const result = generateTableDescription(table);
     expect(result).toContain('російською мовою');
   });
@@ -44,9 +48,9 @@ describe('generateTableDescription', () => {
       ...baseTable,
       tableLocale: 'en',
     } as unknown as IndexationTable;
-    
-    expect(() => generateTableDescription(table)).toThrowError(
-      'Unknown table locale for table test-table-1: en'
+
+    expect(() => generateTableDescription(table)).toThrow(
+      'Unknown table locale for table test-table-1: en',
     );
   });
 });
