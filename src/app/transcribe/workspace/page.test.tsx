@@ -35,9 +35,9 @@ vi.mock('sonner', () => ({
   },
 }));
 
-// Mock crypto.randomUUID for consistent IDs in tests
+let uuidCounter = 0;
 Object.defineProperty(globalThis.crypto, 'randomUUID', {
-  value: vi.fn(() => `test-uuid-${Math.random()}`),
+  value: vi.fn(() => `test-uuid-${++uuidCounter}`),
 });
 
 describe('TranscribeProjectPage', () => {
@@ -185,12 +185,14 @@ describe('TranscribeProjectPage', () => {
     const insertAboveButton = screen.getByTitle('Додати рядок вище');
     fireEvent.click(insertAboveButton);
 
-    const nameInputs = screen.getAllByPlaceholderText('Name');
-    expect(nameInputs.length).toBe(2);
+    await waitFor(() => {
+      const nameInputs = screen.getAllByPlaceholderText('Name');
+      expect(nameInputs.length).toBe(2);
 
-    // The new row should be at index 0, so the 'First Row' should now be at index 1
-    expect(nameInputs[0]).toHaveValue('');
-    expect(nameInputs[1]).toHaveValue('First Row');
+      // The new row should be at index 0, so the 'First Row' should now be at index 1
+      expect(nameInputs[0]).toHaveValue('');
+      expect(nameInputs[1]).toHaveValue('First Row');
+    });
   });
 
   it('updates row state when typing in inputs', async () => {
