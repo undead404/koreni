@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-Р2588-1-27
+  - ДАХеО-Р2588-3-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-04
+id: pishchane-novo-maiachkivskyi-r-n-khersonska-obl-spysok-repatrantiv-z-nimechchyny-1949
+location:
+  - 46.7105175097785
+  - 33.205542200964686
+size: 39
+sources:
+  - https://docs.google.com/spreadsheets/d/1j7Jk5wMF79_HHCvsEGOJSbrUEonQZL4zdQUCXD7geMg/edit?usp=sharing
+  - https://www.familysearch.org/ark:/61903/3:1:3QHN-17H6-2NHL?view=explore&groupId=TH-7761-142563-4136-49&grid=on&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-V7H6-MQ8K-F?view=explore&groupId=TH-7757-142559-26297-98&grid=on&lang=en
+tableFilePath: public/csv/pishchane-novo-maiachkivskyi-r-n-khersonska-obl-spysok-repatrantiv-z-nimechchyny-1949.csv
+tableLocale: uk
+title: Піщане, Ново-Маячківський р-н, Херсонська обл. | Список репатрантів з
+  Німеччини (1949)
+yearsRange:
+  - 1949
