@@ -50,6 +50,7 @@ export default [
     name: 'Custom rules for all the code',
     plugins: {
       'simple-import-sort': simpleImportSort,
+      '@typescript-eslint': tsEslint.plugin,
     },
     rules: {
       'simple-import-sort/exports': 'error',
@@ -95,6 +96,10 @@ export default [
         },
       ],
       '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
+      ],
     },
   },
   {
@@ -226,6 +231,7 @@ export default [
       '@typescript-eslint/no-unsafe-return': 'off',
       'unicorn/no-useless-undefined': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/consistent-type-assertions': 'off',
     },
   },
   {
