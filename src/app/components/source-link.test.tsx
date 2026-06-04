@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import SourceLink from './source-link';
 
@@ -31,14 +31,5 @@ describe('SourceLink', () => {
     const { getByText } = render(<SourceLink href="invalid-url" />);
     const textElement = getByText('invalid-url');
     expect(textElement).toBeInTheDocument();
-  });
-
-  it('should log an error to the console if the URL is invalid', () => {
-    const consoleErrorSpy = vi
-      .spyOn(console, 'error')
-      .mockImplementation(() => {});
-    render(<SourceLink href="invalid-url" />);
-    expect(consoleErrorSpy).toHaveBeenCalled();
-    consoleErrorSpy.mockRestore();
   });
 });

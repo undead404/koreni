@@ -1,13 +1,31 @@
-import { copyFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
-import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TYPESENSE_PORT } from './config';
 import prepareDotenvBlank from './prepare-dotenv-blank';
 import writeEnvironmentValues from './write-environment-values';
 
-vi.mock('node:fs');
+const mocks = vi.hoisted(() => ({
+  copyFileSync: vi.fn(),
+  existsSync: vi.fn(),
+  readFileSync: vi.fn(),
+  writeFileSync: vi.fn(),
+}));
+
+vi.mock('node:fs', () => ({
+  copyFileSync: mocks.copyFileSync,
+  existsSync: mocks.existsSync,
+  readFileSync: mocks.readFileSync,
+  writeFileSync: mocks.writeFileSync,
+  default: {
+    copyFileSync: mocks.copyFileSync,
+    existsSync: mocks.existsSync,
+    readFileSync: mocks.readFileSync,
+    writeFileSync: mocks.writeFileSync,
+  },
+}));
+
 vi.mock('./write-environment-values');
 
 describe('prepareDotenvBlank', () => {
@@ -19,14 +37,14 @@ describe('prepareDotenvBlank', () => {
   });
 
   it('should log that the .env file already exists if it does', () => {
-    (existsSync as Mock).mockReturnValue(true);
+    mocks.existsSync.mockReturnValue(true);
 
     const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
     prepareDotenvBlank();
 
-    expect(existsSync).toHaveBeenCalledWith(environmentPath);
-    expect(copyFileSync).not.toHaveBeenCalled();
+    expect(mocks.existsSync).toHaveBeenCalledWith(environmentPath);
+    expect(mocks.copyFileSync).not.toHaveBeenCalled();
     expect(writeEnvironmentValues).not.toHaveBeenCalled();
     expect(consoleLogSpy).toHaveBeenCalledWith('.env file already exists');
 
@@ -34,14 +52,14 @@ describe('prepareDotenvBlank', () => {
   });
 
   it('should create .env file from .env.example if .env does not exist', () => {
-    (existsSync as Mock).mockReturnValue(false);
+    mocks.existsSync.mockReturnValue(false);
 
     const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
 
     prepareDotenvBlank();
 
-    expect(existsSync).toHaveBeenCalledWith(environmentPath);
-    expect(copyFileSync).toHaveBeenCalledWith(
+    expect(mocks.existsSync).toHaveBeenCalledWith(environmentPath);
+    expect(mocks.copyFileSync).toHaveBeenCalledWith(
       environmentExamplePath,
       environmentPath,
     );

@@ -1,11 +1,19 @@
-import { writeFileSync } from 'node:fs';
-
-import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import readEnvironmentFile from './read-environment-file';
 import writeEnvironmentValues from './write-environment-values';
 
-vi.mock('node:fs');
+const mocks = vi.hoisted(() => ({
+  writeFileSync: vi.fn(),
+}));
+
+vi.mock('node:fs', () => ({
+  writeFileSync: mocks.writeFileSync,
+  default: {
+    writeFileSync: mocks.writeFileSync,
+  },
+}));
+
 vi.mock('./read-environment-file');
 
 describe('writeEnvironmentValues', () => {
@@ -26,12 +34,12 @@ describe('writeEnvironmentValues', () => {
 
     const expectedContent = 'KEY1=value1\nKEY2=new-value2\nKEY3=value3';
 
-    (readEnvironmentFile as Mock).mockReturnValue(oldEnvironment);
+    vi.mocked(readEnvironmentFile).mockReturnValue(oldEnvironment);
 
     writeEnvironmentValues(newKeys);
 
     expect(readEnvironmentFile).toHaveBeenCalled();
-    expect(writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
+    expect(mocks.writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
   });
 
   it('should handle empty existing environment file', () => {
@@ -44,12 +52,12 @@ describe('writeEnvironmentValues', () => {
 
     const expectedContent = 'KEY1=value1\nKEY2=value2';
 
-    (readEnvironmentFile as Mock).mockReturnValue(oldEnvironment);
+    vi.mocked(readEnvironmentFile).mockReturnValue(oldEnvironment);
 
     writeEnvironmentValues(newKeys);
 
     expect(readEnvironmentFile).toHaveBeenCalled();
-    expect(writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
+    expect(mocks.writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
   });
 
   it('should overwrite existing keys with new values', () => {
@@ -63,11 +71,11 @@ describe('writeEnvironmentValues', () => {
 
     const expectedContent = 'KEY1=new-value1';
 
-    (readEnvironmentFile as Mock).mockReturnValue(oldEnvironment);
+    vi.mocked(readEnvironmentFile).mockReturnValue(oldEnvironment);
 
     writeEnvironmentValues(newKeys);
 
     expect(readEnvironmentFile).toHaveBeenCalled();
-    expect(writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
+    expect(mocks.writeFileSync).toHaveBeenCalledWith('.env', expectedContent);
   });
 });

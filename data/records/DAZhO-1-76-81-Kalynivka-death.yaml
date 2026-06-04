@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-81
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: DAZhO-1-76-81-Kalynivka-death
+location:
+  - 50.260052
+  - 28.801689
+size: 50
+sources: []
+tableFilePath: public/csv/dazho-1-76-81-kalynivkadeath.csv
+tableLocale: ru
+title: Калинівка (Глибочицька) – смерть, 1845
+yearsRange:
+  - 1845

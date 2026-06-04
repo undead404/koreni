@@ -1,0 +1,16 @@
+archiveItems:
+  - ЦДІАК-2005-1-208
+authorName: Олена Котовська
+authorEmail: elean.k@gmail.com
+date: 2026-05-31
+id: TsDIAK-2005-1-208-Havrylivka
+location:
+  - 48.8460067
+  - 36.8088298
+size: 1837
+sources: []
+tableFilePath: public/csv/tsdiak2005-1-208havrylivkaiziumskyipovitsr1800.csv
+tableLocale: ru
+title: Гаврилівка (Барвінківська) – сповідний розпис, 1800
+yearsRange:
+  - 1800

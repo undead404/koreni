@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЖО-1-76-89
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-06-03
+id: DAZhO-1-76-89-Levkiv-death
+location:
+  - 50.2370914
+  - 28.832007
+size: 97
+sources: []
+tableFilePath: public/csv/dazho-1-76-89-levkivdeath.csv
+tableLocale: ru
+title: Левків (Глибочицький) – смерть, 1846
+yearsRange:
+  - 1846

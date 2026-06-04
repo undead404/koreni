@@ -82,7 +82,7 @@ const SearchResults: FC<ResultsProperties> = ({
         result_title: result.document.title,
         result_year: result.document.year,
       });
-      console.warn('Dropped invalid search result:', parsed.error);
+
       return null;
     }
   }); // Replace 'any' with inferred schema type if exported
