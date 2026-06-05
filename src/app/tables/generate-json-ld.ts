@@ -13,9 +13,10 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
   const items = tablesMetadata.map<ListItem>((t) => {
     const tDate = new Date(t.date);
     const description = generateTableDescription(t);
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const dataset = {
       '@type': 'Dataset',
-      creator: getAuthor(t),
+      creator: getAuthor(t) || undefined,
       description,
       identifier: t.id,
       license: `${site}/license/`,
