@@ -1,5 +1,8 @@
+'use client';
+
 import { clsx } from 'clsx';
 import { Info, Plus, Trash2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 import type {
   ColumnConfig,
@@ -13,7 +16,7 @@ interface TranscriptionTableProperties {
   rows: TranscriptionRow[];
   hasPageName: boolean;
   projectLocale?: string;
-  onAddRow: (index?: number) => void;
+  onAddRow: (index?: number) => string;
   onDeleteRow: (id: string) => void;
   onUpdateRow: (id: string, field: string, value: string) => void;
 }
@@ -50,6 +53,25 @@ export default function TranscriptionTable({
   onDeleteRow,
   onUpdateRow,
 }: TranscriptionTableProperties) {
+  const [pendingFocusRowId, setPendingFocusRowId] = useState<string | null>(
+    null,
+  );
+  const firstCellReferences = useRef<
+    Map<string, HTMLInputElement | HTMLTextAreaElement>
+  >(new Map());
+
+  useEffect(() => {
+    if (pendingFocusRowId === null) return;
+    const element = firstCellReferences.current.get(pendingFocusRowId);
+    if (element) {
+      element.focus();
+      element.select();
+      setPendingFocusRowId(null);
+    }
+  }, [pendingFocusRowId, rows]);
+
+  const firstColumnId = columns[0]?.id;
+
   return (
     <>
       <div className={styles.tableHeader}>
@@ -106,6 +128,20 @@ export default function TranscriptionTable({
                         }}
                         placeholder={column.title}
                         disabled={!hasPageName}
+                        ref={
+                          column.id === firstColumnId
+                            ? (element) => {
+                                if (element) {
+                                  firstCellReferences.current.set(
+                                    row.id,
+                                    element,
+                                  );
+                                } else {
+                                  firstCellReferences.current.delete(row.id);
+                                }
+                              }
+                            : undefined
+                        }
                       />
                     ) : (
                       <textarea
@@ -121,6 +157,20 @@ export default function TranscriptionTable({
                         placeholder={column.title}
                         disabled={!hasPageName}
                         rows={1}
+                        ref={
+                          column.id === firstColumnId
+                            ? (element) => {
+                                if (element) {
+                                  firstCellReferences.current.set(
+                                    row.id,
+                                    element,
+                                  );
+                                } else {
+                                  firstCellReferences.current.delete(row.id);
+                                }
+                              }
+                            : undefined
+                        }
                       />
                     )}
                   </td>
@@ -129,7 +179,8 @@ export default function TranscriptionTable({
                   <button
                     className={styles.insertRowButton}
                     onClick={() => {
-                      onAddRow(index);
+                      const newId = onAddRow(index);
+                      setPendingFocusRowId(newId);
                     }}
                     title="Додати рядок вище"
                     disabled={!hasPageName}
@@ -166,7 +217,8 @@ export default function TranscriptionTable({
           <button
             className={styles.addButton}
             onClick={() => {
-              onAddRow();
+              const newId = onAddRow();
+              setPendingFocusRowId(newId);
             }}
             disabled={!hasPageName}
           >

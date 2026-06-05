@@ -106,9 +106,9 @@ export function useTranscriptionRows(
     }
   }, [imageId, createEmptyRow]);
 
-  const addRow = (index?: number) => {
+  const addRow = (index?: number): string => {
+    const newRow = createEmptyRow();
     setRows((previous) => {
-      const newRow = createEmptyRow();
       if (index === undefined) {
         return [...previous, newRow];
       }
@@ -116,6 +116,7 @@ export function useTranscriptionRows(
       newRows.splice(index, 0, newRow);
       return newRows;
     });
+    return newRow.id;
   };
 
   const deleteRow = (id: string) => {

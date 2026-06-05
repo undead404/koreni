@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import TranscriptionTable from './transcription-table';
@@ -138,5 +139,76 @@ describe('TranscriptionTable', () => {
 
     const nameInput = screen.getByPlaceholderText('Name');
     expect(nameInput).toBeDisabled();
+  });
+
+  it('focuses the first cell of a newly appended row after "Додати рядок"', () => {
+    const newRowId = 'new-row-id';
+    const newRow = { id: newRowId, name: '', note: '' };
+    const onAddRow = vi.fn().mockReturnValue(newRowId);
+
+    const { rerender } = render(
+      <TranscriptionTable
+        columns={mockColumns}
+        rows={mockRows}
+        hasPageName={true}
+        onAddRow={onAddRow}
+        onDeleteRow={vi.fn()}
+        onUpdateRow={vi.fn()}
+      />,
+    );
+
+    act(() => {
+      fireEvent.click(screen.getByText('Додати рядок'));
+    });
+
+    rerender(
+      <TranscriptionTable
+        columns={mockColumns}
+        rows={[...mockRows, newRow]}
+        hasPageName={true}
+        onAddRow={onAddRow}
+        onDeleteRow={vi.fn()}
+        onUpdateRow={vi.fn()}
+      />,
+    );
+
+    const nameInputs = screen.getAllByPlaceholderText('Name');
+    const newRowInput = nameInputs.at(-1);
+    expect(document.activeElement).toBe(newRowInput);
+  });
+
+  it('focuses the first cell of an inserted row after "Додати рядок вище"', () => {
+    const newRowId = 'inserted-row-id';
+    const insertedRow = { id: newRowId, name: '', note: '' };
+    const onAddRow = vi.fn().mockReturnValue(newRowId);
+
+    const { rerender } = render(
+      <TranscriptionTable
+        columns={mockColumns}
+        rows={mockRows}
+        hasPageName={true}
+        onAddRow={onAddRow}
+        onDeleteRow={vi.fn()}
+        onUpdateRow={vi.fn()}
+      />,
+    );
+
+    act(() => {
+      fireEvent.click(screen.getByTitle('Додати рядок вище'));
+    });
+
+    rerender(
+      <TranscriptionTable
+        columns={mockColumns}
+        rows={[insertedRow, ...mockRows]}
+        hasPageName={true}
+        onAddRow={onAddRow}
+        onDeleteRow={vi.fn()}
+        onUpdateRow={vi.fn()}
+      />,
+    );
+
+    const nameInputs = screen.getAllByPlaceholderText('Name');
+    expect(document.activeElement).toBe(nameInputs[0]);
   });
 });
