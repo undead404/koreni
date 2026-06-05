@@ -2,7 +2,9 @@
 
 import { clsx } from 'clsx';
 import { Info, Plus, Trash2 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import Modal from '@/app/components/modal';
 
 import type {
   ColumnConfig,
@@ -56,6 +58,19 @@ export default function TranscriptionTable({
   const [pendingFocusRowId, setPendingFocusRowId] = useState<string | null>(
     null,
   );
+  const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
+
+  const handleConfirmDelete = useCallback(() => {
+    if (pendingDeleteId !== null) {
+      onDeleteRow(pendingDeleteId);
+    }
+    setPendingDeleteId(null);
+  }, [pendingDeleteId, onDeleteRow]);
+
+  const handleCancelDelete = useCallback(() => {
+    setPendingDeleteId(null);
+  }, []);
+
   const firstCellReferences = useRef<
     Map<string, HTMLInputElement | HTMLTextAreaElement>
   >(new Map());
@@ -190,7 +205,7 @@ export default function TranscriptionTable({
                   <button
                     className={styles.deleteButton}
                     onClick={() => {
-                      onDeleteRow(row.id);
+                      setPendingDeleteId(row.id);
                     }}
                     title="Видалити"
                     disabled={!hasPageName}
@@ -227,6 +242,27 @@ export default function TranscriptionTable({
           </button>
         </div>
       </div>
+      <Modal
+        isOpen={pendingDeleteId !== null}
+        onClose={handleCancelDelete}
+        title="Видалити рядок?"
+      >
+        <p className={styles.confirmMessage}>Цю дію неможливо скасувати.</p>
+        <div className={styles.confirmActions}>
+          <button
+            className={styles.confirmCancelButton}
+            onClick={handleCancelDelete}
+          >
+            Скасувати
+          </button>
+          <button
+            className={styles.confirmDeleteButton}
+            onClick={handleConfirmDelete}
+          >
+            Видалити
+          </button>
+        </div>
+      </Modal>
     </>
   );
 }
