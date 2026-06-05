@@ -11,7 +11,7 @@ size: 330
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-X77J-JLW?view=explore&groupId=TH-7701-139974-95361-47&lang=uk
 tableFilePath: public/csv/narodzhennia-tablytsia-1.csv
-tableLocale: uk
-title: Народження -Таблиця 1
+tableLocale: ru
+title: Бабушки – народження, 1875
 yearsRange:
   - 1875
