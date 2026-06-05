@@ -10,7 +10,7 @@
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
     "google-auth-library": "^10.6.2",
-    "hono": "^4.12.18",
+    "hono": "^4.12.21",
     "kysely": "^0.29.2",
     "octokit": "~5.0.5",
     "posthog-node": "~5.28.8",

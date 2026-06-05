@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАСО-Р7720-5-184
+authorName: Ігор Сторчака
+authorEmail: igorstor@gmail.com
+date: 2026-06-04
+id: DASO-R7720-5-184
+location:
+  - 51.17157
+  - 33.132359
+size: 96
+sources:
+  - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: public/csv/DASO-R7720-5-184.csv
+tableLocale: uk
+title: "[ШІ] Шаповалівка (Попівська) – народження, 1927"
+yearsRange:
+  - 1927
