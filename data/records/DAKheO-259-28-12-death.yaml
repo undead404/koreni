@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-259-28-12
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-04
+id: DAKheO-259-28-12-death
+location:
+  - 46.710781
+  - 32.99057
+size: 308
+sources:
+  - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-28/
+tableFilePath: public/csv/kozachi-laheri-dniprovskyi-pov-tavriiska-hub-smerti-1892-1893.csv
+tableLocale: uk
+title: Козачі Лагері, Дніпровський пов. Таврійська губ. | смерті (1892-1893)
+yearsRange:
+  - 1892
+  - 1893
