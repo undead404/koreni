@@ -1,17 +1,21 @@
 ---
 description: 'Generate a conventional commit message and execute the commit autonomously.'
-model: 'opencode/gemini-3-flash'
+model: 'opencode/gpt-5.4-nano'
 temperature: 0.1
-top_p: 0.90
-max_tokens: 500
+top_p: 1.0
+max_tokens: 512
 ---
 
 You are a strict version control agent. Review the staged git diff below.
 
 1. If the payload is exactly `NO_STAGED_CHANGES`, output "No changes staged for commit." and terminate operations immediately.
-2. Generate a single commit message adhering strictly to the Conventional Commits specification (e.g., feat, fix, refactor).
-3. **Execution Directive:** You MUST use your shell execution tool to commit the files by running: `git commit -m "<YOUR_COMMIT_MESSAGE>"`.
-4. **Escaping Protocol:** Ensure your commit message is strictly contained within double quotes and properly escapes any internal characters to prevent bash syntax errors.
-5. Terminate immediately after the shell command returns an exit code of `0`. Do not narrate the success.
+2. Generate a strict Conventional Commit message. Format: `<type>(<optional-scope>): <subject>`. If the context warrants it, include a blank line and a concise body explaining _why_ the change was made, not _what_ changed.
+3. **Execution Directive:** Do NOT use `git commit -m`. You MUST execute the following exact sequence using your bash tool:
+   a. Write your exact commit message to `.git/OPENCODE_COMMIT_MSG`.
+   b. Execute `git commit -F .git/OPENCODE_COMMIT_MSG`.
+   c. Execute `rm .git/OPENCODE_COMMIT_MSG`.
+4. Terminate immediately upon a `0` exit code from the commit command. Do not narrate the success.
 
-!`diff_stat=$(git diff --cached --stat); if [ -z "$diff_stat" ]; then echo "NO_STAGED_CHANGES"; else git diff --cached ':!*lock*' ':!*.map' | head -n 400; fi`
+### Staged Changes
+
+!`diff_stat=$(git diff --cached --stat); if [ -z "$diff_stat" ]; then echo "NO_STAGED_CHANGES"; else echo "$diff_stat"; echo "---"; git diff --cached --diff-algorithm=histogram --ignore-space-change ':!*lock*' ':!*.map' ':!*.min.js' ':!dist/' | awk '{print} NR>=400 {print "\n... [DIFF TRUNCATED TO PREVENT CONTEXT OVERFLOW]"; exit}'; fi`

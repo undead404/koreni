@@ -1,6 +1,6 @@
 ---
 description: 'Run frontend Vitest suite, apply fixes, and verify.'
-model: 'opencode/gemini-3.1-pro'
+model: 'opencode/claude-haiku-4.5'
 temperature: 0.1
 top_p: 0.90
 max_tokens: 8192
