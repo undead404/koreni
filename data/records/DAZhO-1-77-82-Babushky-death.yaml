@@ -3,7 +3,7 @@ archiveItems:
 authorName: Kateryna
 authorEmail: kolomytska@gmail.com
 date: 2026-06-04
-id: pomerli-tablytsia-1
+id: DAZhO-1-77-82-Babushky-death
 location:
   - 50.0021714
   - 28.1832775
@@ -12,6 +12,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-X77J-JLW?view=explore&groupId=TH-7701-139974-95361-47&lang=uk
 tableFilePath: public/csv/pomerli-tablytsia-1.csv
 tableLocale: uk
-title: Померлі-Таблиця 1
+title: Бабушки – смерть, 1875
 yearsRange:
   - 1875
