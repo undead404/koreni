@@ -31,5 +31,7 @@ CREATE TABLE `project_images` (
 	`width` integer NOT NULL,
 	`created_at` integer DEFAULT unixepoch() NOT NULL,
 	`blurhash` text NOT NULL,
+	`transcription` text,
+	`updated_at` integer DEFAULT unixepoch() NOT NULL,
 	CONSTRAINT `belongs_to_project` FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE
 );

@@ -78,10 +78,35 @@ describe('handleProjectImageGet', () => {
         width: 800,
         createdAt: 123_456_789,
         blurhash: 'U1234567890',
+        transcription: null,
       },
     });
 
     expect(findProjectImage).toHaveBeenCalledWith('proj-123', 'img-456');
+  });
+
+  it('should pass through a non-null transcription string verbatim', async () => {
+    const savedTranscription = '[{"id":"uuid-1","col1":"foo"}]';
+
+    vi.mocked(findProjectImage).mockResolvedValue({
+      id: 'img-456',
+      project_id: 'proj-123',
+      storage_key: 'uploads/proj-123/img-456.jpg',
+      page_sequence: 1,
+      page_name: 'Page 1',
+      height: 600,
+      width: 800,
+      created_at: 123_456_789,
+      blurhash: 'U1234567890',
+      transcription: savedTranscription,
+    });
+
+    const response = (await handleProjectImageGet(
+      mockContext as Context,
+    )) as any;
+
+    expect(response.status).toBeUndefined();
+    expect(response._data.image.transcription).toBe(savedTranscription);
   });
 
   it('should return 404 if image is not found', async () => {

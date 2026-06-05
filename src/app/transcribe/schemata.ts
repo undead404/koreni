@@ -34,6 +34,7 @@ export const projectImageSchema = z.object({
   width: z.number().nullable().optional(),
   createdAt: z.number().nullable().optional(),
   blurhash: z.string().nullable().optional(),
+  transcription: z.string().nullable().optional(),
 });
 
 export type ProjectImage = z.infer<typeof projectImageSchema>;
