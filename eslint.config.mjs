@@ -100,6 +100,14 @@ export default [
         'error',
         { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
       ],
+      'max-lines': [
+        'warn',
+        {
+          max: 300,
+          skipBlankLines: true,
+          skipComments: true,
+        },
+      ],
     },
   },
   {
