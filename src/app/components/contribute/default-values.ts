@@ -28,10 +28,10 @@ export default function getDefaultValues(
       ...BLANK_VALUES,
       ...restored,
       ...otherDefaultValues,
-    } as ContributeFormValues;
+    };
   }
   return {
     ...BLANK_VALUES,
     ...otherDefaultValues,
-  } as ContributeFormValues;
+  };
 }
