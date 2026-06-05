@@ -1,5 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "lsp": false,
+  "lsp": true,
   "model": "opencode/gemini-3-flash"
 }
