@@ -1,3 +1,5 @@
+import { sql } from 'kysely';
+
 import database from './client.js';
 
 export function updateProjectImage(
@@ -12,7 +14,7 @@ export function updateProjectImage(
     throw new Error('No update provided');
   }
   const updateData: Record<string, unknown> = {
-    updated_at: 'unixepoch()',
+    updated_at: sql`unixepoch()`,
   };
 
   if (data.pageName !== undefined) {
