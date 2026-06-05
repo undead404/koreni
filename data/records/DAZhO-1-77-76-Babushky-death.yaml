@@ -3,7 +3,7 @@ archiveItems:
 authorName: Kateryna
 authorEmail: kolomytska@gmail.com
 date: 2026-06-04
-id: pomerli-1874
+id: DAZhO-1-77-76-Babushky-death
 location:
   - 50.0021714
   - 28.1832775
@@ -11,7 +11,7 @@ size: 59
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/76
 tableFilePath: public/csv/pomerli-1874.csv
-tableLocale: uk
-title: Померлі-Таблиця 1
+tableLocale: ru
+title: Бабушки – смерть, 1874
 yearsRange:
   - 1874
