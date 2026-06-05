@@ -122,7 +122,12 @@ function ProjectDetailsPageContent() {
 
         {activeTab === 'assets' && <AssetsTab {...assetManager} />}
 
-        {activeTab === 'operations' && <OperationsTab />}
+        {activeTab === 'operations' && (
+          <OperationsTab
+            projectId={projectId}
+            projectType={projectData?.type ?? ''}
+          />
+        )}
       </div>
     </main>
   );

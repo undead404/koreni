@@ -1,21 +1,28 @@
+'use client';
+
+import { useCsvExport } from '../_hooks/use-csv-export';
+import type { OperationsTabProperties } from '../types';
+
 import styles from '../page.module.css';
 
-export default function OperationsTab() {
+export default function OperationsTab({
+  projectId,
+  projectType,
+}: OperationsTabProperties) {
+  const { exportCsv, isExporting } = useCsvExport(projectId, projectType);
+
   return (
     <div className={styles.operationsContainer}>
-      <h2>Data Export Options</h2>
-      <p className={styles.operationsPlaceholder}>
-        Future features will include data exports to CSV, JSON, and XML format.
-      </p>
+      <h2>Операції з даними</h2>
       <div className={styles.operationsActions}>
-        <button disabled className={styles.ctaButton}>
-          Export to CSV (Disabled)
-        </button>
-        <button disabled className={styles.ctaButton}>
-          Export to JSON (Disabled)
-        </button>
-        <button disabled className={styles.ctaButton}>
-          Export to XML (Disabled)
+        <button
+          onClick={() => {
+            void exportCsv();
+          }}
+          disabled={isExporting}
+          className={styles.ctaButton}
+        >
+          {isExporting ? 'Експортується…' : 'Експортувати CSV'}
         </button>
       </div>
     </div>

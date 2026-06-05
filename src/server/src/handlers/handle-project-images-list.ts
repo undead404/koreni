@@ -10,8 +10,10 @@ export default async function handleProjectImagesList(c: Context) {
     return c.json({ error: 'Missing projectId' }, 400);
   }
 
+  const withTranscription = c.req.query('withTranscription') === 'true';
+
   try {
-    const images = await getProjectImages(projectId);
+    const images = await getProjectImages(projectId, { withTranscription });
     const imagesWithUrls = images.map((image) => ({
       ...image,
       url: getPublicUrl(image.storageKey),

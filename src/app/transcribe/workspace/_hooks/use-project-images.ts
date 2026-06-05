@@ -51,7 +51,7 @@ export function useProjectImages() {
     async function fetchData() {
       try {
         const [imagesData, projectData] = await Promise.all([
-          getProjectImages(activeProjectId, abortController.signal),
+          getProjectImages(activeProjectId, undefined, abortController.signal),
           getProject(activeProjectId, abortController.signal),
         ]);
 

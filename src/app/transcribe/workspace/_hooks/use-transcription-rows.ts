@@ -1,29 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { z } from 'zod';
 
 import getProjectImage from '../../api/get-project-image';
 import requestApi from '../../api/request';
+import { buildRowArraySchema } from '../_helpers/build-row-array-schema';
 
-export type ColumnExpectedType = 'string' | 'number';
+export type {
+  ColumnConfig,
+  ColumnExpectedType,
+} from '../_helpers/column-config';
 
-export interface ColumnConfig {
-  id: string;
-  title: string;
-  hint: string;
-  expectedType: ColumnExpectedType;
-  isExtended?: boolean;
-}
+import type { ColumnConfig } from '../_helpers/column-config';
 
 export interface TranscriptionRow extends Record<string, string> {
   id: string;
-}
-
-function buildRowArraySchema(columns: ColumnConfig[]) {
-  const columnFields = Object.fromEntries(
-    columns.map((column) => [column.id, z.string()]),
-  );
-  const rowSchema = z.object({ id: z.uuid(), ...columnFields });
-  return z.array(rowSchema);
 }
 
 export function useTranscriptionRows(

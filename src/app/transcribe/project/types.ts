@@ -36,6 +36,11 @@ export interface MetadataTabProperties {
   isSubmitting: boolean;
 }
 
+export interface OperationsTabProperties {
+  projectId: string;
+  projectType: string;
+}
+
 export interface AssetsTabProperties {
   images: ImageFile[];
   uploadState: UploadState;
