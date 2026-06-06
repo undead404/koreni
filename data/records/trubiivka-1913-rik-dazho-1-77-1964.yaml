@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-77-1964
+authorName: Андрій Каленський
+authorEmail: andreyaquarius@gmail.com
+date: 2026-06-06
+id: trubiivka-1913-rik-dazho-1-77-1964
+location:
+  - 49.797588
+  - 29.38328
+size: 381
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%96%D0%9E/1/77/1964
+tableFilePath: public/csv/trubiivka-1913-rik-dazho-1-77-1964.csv
+tableLocale: uk
+title: Трубіївка 1913 рік ДАЖО 1-77-1964
+yearsRange:
+  - 1913
