@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАХеО-Р2588-3-2
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-08
+id: novi-laheri-novo-maiachkivskyi-r-n-khersonska-obl-pobudynkovi-knyhy-1947-1950
+location:
+  - 46.7340381
+  - 33.2173146
+size: 488
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/3/2
+  - https://docs.google.com/spreadsheets/d/1whlD431YSEo_QM15SD4LL6jvS5DhfDDAhjVo0eDaNJ8/edit?usp=sharing
+tableFilePath: public/csv/novi-laheri-novo-maiachkivskyi-r-n-khersonska-obl-pobudynkovi-knyhy-1947-1950.csv
+tableLocale: uk
+title: Нові Лагері, Ново-Маячківський р-н, Херсонська обл. | Побудинкові книги
+  (1947-1950)
+yearsRange:
+  - 1947
+  - 1950
