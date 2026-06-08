@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-Р2588-1-27
+  - ДАХеО-Р2588-3-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-08
+id: maslivka-novo-maiachkivskyi-r-n-khersonska-obl-spysok-repatrantiv-z-nimechchyny-1949
+location:
+  - 46.6985106
+  - 33.2337894
+size: 47
+sources:
+  - https://docs.google.com/spreadsheets/d/1jeGbdiL6AjOlhGw0rkuOf2M_2Je3PGc0d8uAV0BBRok/edit?usp=sharing
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/1/27
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/3/1
+tableFilePath: public/csv/maslivka-novo-maiachkivskyi-r-n-khersonska-obl-spysok-repatrantiv-z-nimechchyny-1949.csv
+tableLocale: uk
+title: Маслівка, Ново-Маячківський р-н, Херсонська обл. | Список репатрантів з
+  Німеччини (1949)
+yearsRange:
+  - 1949
