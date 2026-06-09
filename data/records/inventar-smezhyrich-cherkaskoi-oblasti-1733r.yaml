@@ -1,0 +1,19 @@
+archiveItems:
+  - (Archiwum Główne Akt Dawnych w Warszawie, Archiwum Radziwiłłówskie, dział
+    XXV, sygn.2394), мікрофільм 14178 стор.4
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-06-09
+id: inventar-smezhyrich-cherkaskoi-oblasti-1733r
+location:
+  - 49.6239037
+  - 31.4301537
+size: 29
+sources:
+  - https://docs.google.com/spreadsheets/d/1UaCxwiJveONE4VS35-79CnaFdnLrIe_vsI4C2vZKeFE/edit?hl=ru&pli=1&gid=0#gid=0
+  - https://upload.wikimedia.org/wikipedia/commons/e/ea/%D0%86%D0%BD%D0%B2%D0%B5%D0%BD%D1%82%D0%B0%D1%80_%D0%9C%D0%B5%D0%B6%D0%B8%D1%80%D1%96%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.pdf
+tableFilePath: public/csv/inventar-smezhyrich-cherkaskoi-oblasti-1733r.csv
+tableLocale: uk
+title: Інвентар с.Межиріч Черкаської області, 1733р.
+yearsRange:
+  - 1733
