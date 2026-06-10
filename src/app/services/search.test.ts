@@ -79,6 +79,7 @@ describe('search', () => {
         union: true,
       },
       {
+        drop_tokens_threshold: 0,
         num_typos: 2,
         page: 1,
         per_page: 24,
