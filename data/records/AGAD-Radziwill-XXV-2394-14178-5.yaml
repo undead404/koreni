@@ -1,0 +1,19 @@
+archiveItems:
+  - (Archiwum Główne Akt Dawnych w Warszawie, Archiwum Radziwiłłówskie, dział
+    XXV, sygn.2394), мікрофільм 14178 стор.5
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-06-09
+id: AGAD-Radziwill-XXV-2394-14178-5
+location:
+  - 49.698029
+  - 31.55102
+size: 20
+sources:
+  - https://docs.google.com/spreadsheets/d/1qVEkhLe8NdOMmX0MkLBkbpvI8sDk0nPTb_9gF0w-KH0/edit?gid=0#gid=0
+  - https://upload.wikimedia.org/wikipedia/commons/e/ea/%D0%86%D0%BD%D0%B2%D0%B5%D0%BD%D1%82%D0%B0%D1%80_%D0%9C%D0%B5%D0%B6%D0%B8%D1%80%D1%96%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BA%D0%BB%D1%8E%D1%87%D0%B0.pdf
+tableFilePath: public/csv/inventar-s.csv
+tableLocale: uk
+title: Пекарі (Канівські) – інвентар, 1733
+yearsRange:
+  - 1733
