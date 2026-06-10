@@ -90,3 +90,25 @@ export type Jwt = z.infer<typeof jwtSchema>;
 export const r2UploadSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
 });
+
+export const imageSourceCreateSchema = z.object({
+  blurhash: nonEmptyString,
+  height: z.number().int().positive(),
+  id: nonEmptyString,
+  projectId: nonEmptyString,
+  storageKey: nonEmptyString,
+  width: z.number().int().positive(),
+});
+export type ImageSourceCreate = z.infer<typeof imageSourceCreateSchema>;
+
+export const spreadSplitSchema = z.object({
+  cropX: z.number().min(0.1).max(0.9),
+  leftPageId: nonEmptyString,
+  leftPageName: z.string().nullable().optional(),
+  leftPageSequence: z.number().int().nonnegative(),
+  rightPageId: nonEmptyString,
+  rightPageName: z.string().nullable().optional(),
+  rightPageSequence: z.number().int().nonnegative(),
+  sourceId: nonEmptyString,
+});
+export type SpreadSplit = z.infer<typeof spreadSplitSchema>;

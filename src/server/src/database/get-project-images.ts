@@ -4,30 +4,57 @@ export interface GetProjectImagesOptions {
   withTranscription?: boolean;
 }
 
-export function getProjectImages(
+interface ProjectImageRow {
+  id: string;
+  projectId: string;
+  storageKey: string;
+  pageSequence: number;
+  pageName: string | null;
+  height: number;
+  width: number;
+  createdAt: number;
+  blurhash: string;
+  transcription?: string | null;
+  sourceId: string | null;
+  cropX: number | null;
+  side: string | null;
+  isActive: number;
+}
+
+export async function getProjectImages(
   projectId: string,
   options?: GetProjectImagesOptions,
-) {
-  const baseColumns = [
-    'id',
-    'project_id as projectId',
-    'storage_key as storageKey',
-    'page_sequence as pageSequence',
-    'page_name as pageName',
-    'height',
-    'width',
-    'created_at as createdAt',
-    'blurhash',
-  ] as const;
-
-  const query = database
+): Promise<ProjectImageRow[]> {
+  let query = database
     .selectFrom('project_images')
-    .where('project_id', '=', projectId)
-    .orderBy('page_sequence', 'asc');
+    .select([
+      'id',
+      'project_id as projectId',
+      'storage_key as storageKey',
+      'page_sequence as pageSequence',
+      'page_name as pageName',
+      'height',
+      'width',
+      'created_at as createdAt',
+      'blurhash',
+      'source_id as sourceId',
+      'crop_x as cropX',
+      'side',
+      'is_active as isActive',
+    ]);
 
+  // Conditionally add transcription column
   if (options?.withTranscription) {
-    return query.select([...baseColumns, 'transcription']).execute();
+    query = query.select('transcription');
   }
 
-  return query.select(baseColumns).execute();
+  const rows = await query
+    .where('project_id', '=', projectId)
+    .where((eb) =>
+      eb.or([eb('is_active', '=', 1), eb('is_active', 'is', null)]),
+    )
+    .orderBy('page_sequence', 'asc')
+    .execute();
+
+  return rows as ProjectImageRow[];
 }

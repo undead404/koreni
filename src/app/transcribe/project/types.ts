@@ -9,6 +9,9 @@ export interface ImageFile {
   previewUrl: string;
   removed: boolean;
   status: 'pending' | 'uploading' | 'success' | 'error';
+  sourceId: string;
+  isSplit: boolean;
+  splitCropX: number | null;
 }
 
 export type UploadState = 'idle' | 'uploading' | 'success';
@@ -49,4 +52,6 @@ export interface AssetsTabProperties {
   toggleRemove: (id: string) => void;
   startUpload: () => Promise<void>;
   cancelUpload: () => void;
+  onSplitConfirm: (imageId: string, cropX: number) => Promise<void>;
+  onRevertSplit: (imageId: string) => Promise<void>;
 }

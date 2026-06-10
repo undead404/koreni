@@ -116,6 +116,11 @@
   object-fit: contain;
 }
 
+.cropContainer {
+  position: relative;
+  overflow: hidden;
+}
+
 .imagePlaceholder {
   flex: 1;
   display: flex;
@@ -166,6 +171,29 @@
 .iconButton:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.splitButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--clickable-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.splitButton:hover {
+  opacity: 0.9;
+}
+
+.splitButton:active {
+  opacity: 0.8;
 }
 
 @media (width <= 1024px) {

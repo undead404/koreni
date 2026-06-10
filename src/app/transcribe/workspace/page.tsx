@@ -2,8 +2,11 @@
 
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
+import { toast } from 'sonner';
 
+import splitSpread from '../api/split-spread';
+import SpreadSplitModal from '../project/_components/spread-split-modal';
 import type { ProjectImage } from '../schemata';
 
 import ImageViewer from './_components/image-viewer';
@@ -55,7 +58,11 @@ function TranscribeProjectPageContent() {
     setCurrentImageIndex,
     isLoading,
     error,
+    refetchImages,
   } = useProjectImages();
+
+  const [isWorkspaceSplitModalOpen, setIsWorkspaceSplitModalOpen] =
+    useState<boolean>(false);
 
   const {
     transform,
@@ -97,6 +104,38 @@ function TranscribeProjectPageContent() {
     );
   };
 
+  const handleWorkspaceSplitConfirm = async (cropX: number): Promise<void> => {
+    try {
+      if (!projectId || !currentImage.sourceId) return;
+
+      const sourceImageId = currentImage.id;
+
+      await splitSpread(projectId, currentImage.sourceId, {
+        cropX,
+        leftPageId: crypto.randomUUID(),
+        rightPageId: crypto.randomUUID(),
+        leftPageSequence: currentImage.pageSequence,
+        rightPageSequence: currentImage.pageSequence + 1,
+      });
+
+      toast.success('Розворот розділено');
+
+      // Refetch images and then navigate to the left page
+      const refetchedImages = await refetchImages();
+      if (refetchedImages && refetchedImages.length > 0) {
+        const leftPageIndex = refetchedImages.findIndex(
+          (img) => img.id === sourceImageId,
+        );
+        setCurrentImageIndex(Math.max(leftPageIndex, 0));
+        handleResetTransform();
+      }
+    } catch {
+      toast.error('Не вдалося розділити розворот');
+    } finally {
+      setIsWorkspaceSplitModalOpen(false);
+    }
+  };
+
   if (!projectId || isLoading) {
     return (
       <div className={styles.loadingContainer}>
@@ -111,6 +150,10 @@ function TranscribeProjectPageContent() {
         <div className={styles.error}>{error}</div>
       </div>
     );
+  }
+
+  if (images.length === 0) {
+    return null;
   }
 
   const currentImage = images[currentImageIndex];
@@ -134,6 +177,8 @@ function TranscribeProjectPageContent() {
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
+          cropX={currentImage.cropX ?? null}
+          side={currentImage.side ?? null}
         />
       </div>
 
@@ -153,6 +198,21 @@ function TranscribeProjectPageContent() {
           images={images}
         />
 
+        {currentImage.side === null &&
+          currentImage.cropX === null &&
+          currentImage.sourceId !== null && (
+            <button
+              type="button"
+              onClick={() => {
+                setIsWorkspaceSplitModalOpen(true);
+              }}
+              aria-label="Розділити розворот"
+              className={styles.splitButton}
+            >
+              Розділити розворот
+            </button>
+          )}
+
         <TranscriptionTable
           columns={POC_COLUMNS}
           rows={rows}
@@ -163,6 +223,20 @@ function TranscribeProjectPageContent() {
           onUpdateRow={updateRow}
         />
       </div>
+
+      {isWorkspaceSplitModalOpen && (
+        <SpreadSplitModal
+          imageUrl={currentImage.url}
+          imageWidth={currentImage.width ?? 800}
+          imageHeight={currentImage.height ?? 600}
+          onConfirm={(cropX) => {
+            void handleWorkspaceSplitConfirm(cropX);
+          }}
+          onCancel={() => {
+            setIsWorkspaceSplitModalOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }

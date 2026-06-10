@@ -42,34 +42,46 @@ export async function createProject(
 
 export async function createProjectImage({
   blurhash,
+  cropX = null,
   height,
   id,
   pageName,
   pageSequence,
   projectId,
+  side = null,
+  sourceId = null,
   storageKey,
   width,
 }: {
   blurhash: string;
+  cropX?: number | null;
   height: number;
   id: string;
   pageName: string | null;
   pageSequence: number;
   projectId: string;
+  side?: 'left' | 'right' | null;
+  sourceId?: string | null;
   storageKey: string;
   width: number;
-}) {
-  await database
-    .insertInto('project_images')
-    .values({
-      blurhash,
-      height,
-      id,
-      page_name: pageName,
-      page_sequence: pageSequence,
-      project_id: projectId,
-      storage_key: storageKey,
-      width,
-    })
-    .execute();
+}): Promise<void> {
+  await database.transaction().execute(async (trx) => {
+    await trx
+      .insertInto('project_images')
+      .values({
+        blurhash,
+        crop_x: cropX,
+        height,
+        id,
+        is_active: 1,
+        page_name: pageName,
+        page_sequence: pageSequence,
+        project_id: projectId,
+        side,
+        source_id: sourceId,
+        storage_key: storageKey,
+        width,
+      })
+      .execute();
+  });
 }

@@ -120,7 +120,13 @@ function ProjectDetailsPageContent() {
           </FormProvider>
         )}
 
-        {activeTab === 'assets' && <AssetsTab {...assetManager} />}
+        {activeTab === 'assets' && (
+          <AssetsTab
+            {...assetManager}
+            onSplitConfirm={assetManager.handleSplitConfirm}
+            onRevertSplit={assetManager.handleRevertSplit}
+          />
+        )}
 
         {activeTab === 'operations' && (
           <OperationsTab

@@ -25,6 +25,7 @@ describe('handleProjectImagesList', () => {
           if (key === 'projectId') return 'proj-123';
           return undefined;
         }),
+        query: vi.fn(() => undefined),
       },
       json: vi.fn((data, status) => ({ _data: data, status })),
     };
@@ -56,6 +57,10 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_789,
         blurhash: 'U1234567890',
+        sourceId: null,
+        cropX: null,
+        side: null,
+        isActive: 1,
       },
       {
         id: 'img-2',
@@ -67,6 +72,10 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_790,
         blurhash: 'U1234567891',
+        sourceId: null,
+        cropX: null,
+        side: null,
+        isActive: 1,
       },
     ];
 
@@ -85,7 +94,9 @@ describe('handleProjectImagesList', () => {
       })),
     });
 
-    expect(getProjectImages).toHaveBeenCalledWith('proj-123');
+    expect(getProjectImages).toHaveBeenCalledWith('proj-123', {
+      withTranscription: false,
+    });
   });
 
   it('should return 200 and an empty list if no images exist', async () => {
@@ -101,7 +112,9 @@ describe('handleProjectImagesList', () => {
       images: [],
     });
 
-    expect(getProjectImages).toHaveBeenCalledWith('proj-123');
+    expect(getProjectImages).toHaveBeenCalledWith('proj-123', {
+      withTranscription: false,
+    });
   });
 
   it('should return 500 if DB lookup fails', async () => {

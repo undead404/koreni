@@ -32,6 +32,10 @@ export default async function handleProjectImageGet(c: Context) {
         createdAt: image.created_at,
         blurhash: image.blurhash,
         transcription: image.transcription,
+        sourceId: image.source_id,
+        cropX: image.crop_x,
+        side: image.side,
+        isActive: image.is_active === 1,
       },
     });
   } catch (error) {

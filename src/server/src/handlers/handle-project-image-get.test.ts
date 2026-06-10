@@ -58,6 +58,10 @@ describe('handleProjectImageGet', () => {
       created_at: 123_456_789,
       blurhash: 'U1234567890',
       transcription: null,
+      source_id: null,
+      crop_x: null,
+      side: null,
+      is_active: 1,
     });
 
     const response = (await handleProjectImageGet(
@@ -79,6 +83,10 @@ describe('handleProjectImageGet', () => {
         createdAt: 123_456_789,
         blurhash: 'U1234567890',
         transcription: null,
+        sourceId: null,
+        cropX: null,
+        side: null,
+        isActive: true,
       },
     });
 
@@ -99,6 +107,10 @@ describe('handleProjectImageGet', () => {
       created_at: 123_456_789,
       blurhash: 'U1234567890',
       transcription: savedTranscription,
+      source_id: null,
+      crop_x: null,
+      side: null,
+      is_active: 1,
     });
 
     const response = (await handleProjectImageGet(

@@ -1,5 +1,5 @@
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import z from 'zod';
 
@@ -103,6 +103,25 @@ export function useProjectImages() {
     localStorage.setItem(storageKey, currentImageIndex.toString());
   }, [projectId, currentImageIndex, hasRestoredIndex]);
 
+  const refetchImages = useCallback(async (): Promise<
+    ProjectImage[] | null
+  > => {
+    if (!projectId) return null;
+    const abortController = new AbortController();
+    try {
+      const imagesData = await getProjectImages(
+        projectId,
+        undefined,
+        abortController.signal,
+      );
+      setImages(imagesData);
+      return imagesData;
+    } catch {
+      // Silent failure — the workspace remains on the current image
+      return null;
+    }
+  }, [projectId]);
+
   return {
     projectId,
     images,
@@ -112,5 +131,6 @@ export function useProjectImages() {
     setCurrentImageIndex,
     isLoading,
     error,
+    refetchImages,
   };
 }

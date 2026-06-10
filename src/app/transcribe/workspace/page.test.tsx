@@ -26,7 +26,13 @@ vi.mock('../api/get-project', () => ({
 vi.mock('sonner', () => ({
   toast: {
     error: vi.fn(),
+    success: vi.fn(),
   },
+}));
+
+vi.mock('../api/split-spread', () => ({
+  __esModule: true,
+  default: vi.fn(),
 }));
 
 let uuidCounter = 0;
@@ -141,6 +147,81 @@ describe('TranscribeProjectPage Integration', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Потрібна назва сторінки')).toBeInTheDocument();
+    });
+  });
+
+  it('shows split button when image is unsplit', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: 'img-1',
+        projectId: 'project-123',
+        storageKey: 'key-1.jpg',
+        url: 'https://example.com/key-1.jpg',
+        pageSequence: 1,
+        pageName: '12',
+        sourceId: 'source-1',
+        cropX: null,
+        side: null,
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Розділити розворот')).toBeInTheDocument();
+    });
+  });
+
+  it('hides split button when image is already split', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: 'img-1',
+        projectId: 'project-123',
+        storageKey: 'key-1.jpg',
+        url: 'https://example.com/key-1.jpg',
+        pageSequence: 1,
+        pageName: '12',
+        sourceId: 'source-1',
+        cropX: 0.5,
+        side: 'left',
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.queryByText('Розділити розворот')).not.toBeInTheDocument();
+    });
+  });
+
+  it('hides split button when sourceId is null', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProjectImages as Mock).mockResolvedValue([
+      {
+        id: 'img-1',
+        projectId: 'project-123',
+        storageKey: 'key-1.jpg',
+        url: 'https://example.com/key-1.jpg',
+        pageSequence: 1,
+        pageName: '12',
+        sourceId: null,
+        cropX: null,
+        side: null,
+      },
+    ]);
+
+    render(<TranscribeProjectPage />);
+
+    await waitFor(() => {
+      expect(screen.queryByText('Розділити розворот')).not.toBeInTheDocument();
     });
   });
 });

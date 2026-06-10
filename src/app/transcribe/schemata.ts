@@ -35,6 +35,9 @@ export const projectImageSchema = z.object({
   createdAt: z.number().nullable().optional(),
   blurhash: z.string().nullable().optional(),
   transcription: z.string().nullable().optional(),
+  sourceId: z.string().nullable().optional(),
+  cropX: z.number().nullable().optional(),
+  side: z.enum(['left', 'right']).nullable().optional(),
 });
 
 export type ProjectImage = z.infer<typeof projectImageSchema>;
@@ -43,3 +46,21 @@ export const projectImagesResponseSchema = z.object({
   success: z.boolean(),
   images: z.array(projectImageSchema),
 });
+
+export const projectImageSourceResponseSchema = z.object({
+  success: z.boolean(),
+  sourceId: z.string(),
+  pageId: z.string(),
+  url: z.string(),
+});
+export type ProjectImageSourceResponse = z.infer<
+  typeof projectImageSourceResponseSchema
+>;
+
+export const spreadSplitResponseSchema = z.object({
+  success: z.boolean(),
+  sourceId: z.string(),
+  leftPageId: z.string(),
+  rightPageId: z.string(),
+});
+export type SpreadSplitResponse = z.infer<typeof spreadSplitResponseSchema>;

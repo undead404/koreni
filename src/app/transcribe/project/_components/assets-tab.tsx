@@ -1,6 +1,11 @@
+'use client';
+
 import { clsx } from 'clsx';
+import { useState } from 'react';
 
 import { AssetsTabProperties } from '../types';
+
+import SpreadSplitModal from './spread-split-modal';
 
 import styles from '../page.module.css';
 
@@ -12,10 +17,29 @@ export default function AssetsTab({
   toggleRemove,
   startUpload,
   cancelUpload,
+  onSplitConfirm,
+  onRevertSplit,
 }: AssetsTabProperties) {
+  const [splitModalImageId, setSplitModalImageId] = useState<string | null>(
+    null,
+  );
+
   const activeImagesCount = images.filter((img) => !img.removed).length;
   const isUploading = uploadState === 'uploading';
   const isSuccess = uploadState === 'success';
+
+  const openSplitModal = (id: string) => {
+    setSplitModalImageId(id);
+  };
+
+  const closeSplitModal = () => {
+    setSplitModalImageId(null);
+  };
+
+  const modalImage =
+    splitModalImageId === null
+      ? undefined
+      : images.find((img) => img.id === splitModalImageId);
 
   return (
     <div className={styles.assetContainer}>
@@ -88,6 +112,38 @@ export default function AssetsTab({
                   >
                     {image.removed ? 'Include' : 'Remove'}
                   </button>
+
+                  {image.status === 'success' && (
+                    <>
+                      {image.isSplit ? (
+                        <div className={styles.splitIndicator}>
+                          <span aria-hidden="true">⊟</span>
+                          <span>Розворот розділено</span>
+                          <button
+                            type="button"
+                            className={clsx(styles.ctaButton, styles.btnDanger)}
+                            onClick={() => {
+                              void onRevertSplit(image.id);
+                            }}
+                            aria-label="Скасувати розділення"
+                          >
+                            Скасувати розділення
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          className={styles.ctaButton}
+                          onClick={() => {
+                            openSplitModal(image.id);
+                          }}
+                          aria-label="Розділити розворот"
+                        >
+                          Розділити розворот
+                        </button>
+                      )}
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -122,6 +178,19 @@ export default function AssetsTab({
             </button>
           )}
         </div>
+      )}
+
+      {modalImage !== undefined && (
+        <SpreadSplitModal
+          imageUrl={modalImage.previewUrl}
+          imageWidth={800}
+          imageHeight={600}
+          onConfirm={(cropX) => {
+            void onSplitConfirm(splitModalImageId ?? '', cropX);
+            closeSplitModal();
+          }}
+          onCancel={closeSplitModal}
+        />
       )}
     </div>
   );

@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { toast } from 'sonner';
 
-import saveProjectImage from '../../api/save-project-image';
+import revertSplit from '../../api/revert-split';
+import saveImageSource from '../../api/save-image-source';
+import splitSpread from '../../api/split-spread';
 import { ImageFile, UploadState } from '../types';
 
 export function useAssetManager(
@@ -29,6 +32,9 @@ export function useAssetManager(
         previewUrl: URL.createObjectURL(file),
         removed: false,
         status: 'pending' as const,
+        sourceId: crypto.randomUUID(),
+        isSplit: false,
+        splitCropX: null,
       }));
 
     setImages((previous) => [...previous, ...newFiles]);
@@ -62,9 +68,10 @@ export function useAssetManager(
       );
 
       try {
-        await saveProjectImage(
+        await saveImageSource(
           projectId,
-          image.id,
+          image.sourceId,
+          crypto.randomUUID(),
           image.file,
           index + 1,
           signal,
@@ -105,6 +112,65 @@ export function useAssetManager(
     }
   }, []);
 
+  const handleSplitConfirm = async (
+    imageId: string,
+    cropX: number,
+  ): Promise<void> => {
+    const image = images.find((img) => img.id === imageId);
+    if (!image) return;
+
+    const leftPageId = crypto.randomUUID();
+    const rightPageId = crypto.randomUUID();
+    const imageIndex = images.indexOf(image);
+    const leftPageSequence = imageIndex + 1;
+    const rightPageSequence = leftPageSequence + 1;
+
+    try {
+      await splitSpread(projectId, image.sourceId, {
+        cropX,
+        leftPageId,
+        rightPageId,
+        leftPageSequence,
+        rightPageSequence,
+      });
+
+      setImages((previous) =>
+        previous.map((img) =>
+          img.id === imageId
+            ? { ...img, isSplit: true, splitCropX: cropX }
+            : img,
+        ),
+      );
+      toast.success('Розворот розділено');
+    } catch {
+      toast.error('Не вдалося розділити розворот');
+    }
+  };
+
+  const handleRevertSplit = async (imageId: string): Promise<void> => {
+    if (!globalThis.confirm('Скасувати розділення цього розвороту?')) {
+      return;
+    }
+
+    const image = images.find((img) => img.id === imageId);
+    if (!image) return;
+
+    try {
+      await revertSplit(projectId, image.sourceId);
+
+      setImages((previous) =>
+        previous.map((img) =>
+          img.id === imageId
+            ? { ...img, isSplit: false, splitCropX: null }
+            : img,
+        ),
+      );
+      toast.success('Розділення скасовано');
+    } catch {
+      toast.error('Не вдалося скасувати розділення');
+    }
+  };
+
   return {
     images,
     uploadState,
@@ -113,5 +179,7 @@ export function useAssetManager(
     toggleRemove,
     startUpload,
     cancelUpload,
+    handleSplitConfirm,
+    handleRevertSplit,
   };
 }

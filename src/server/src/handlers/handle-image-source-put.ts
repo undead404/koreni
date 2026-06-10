@@ -1,17 +1,25 @@
 import { Context } from 'hono';
 import { z } from 'zod';
 
+import { createImageSource } from '../database/create-image-source.js';
 import { createProjectImage } from '../database/create-project.js';
 import { getJpegDimensions } from '../helpers/get-jpeg-dimensions.js';
 import { nonEmptyString } from '../schemata.js';
 import { uploadProjectImageToR2 } from '../services/r2.js';
 
-export default async function handleProjectImagePut(c: Context) {
-  const projectId = c.req.param('projectId');
-  const imageId = c.req.param('imageId');
+const bodySchema = z.object({
+  pageSequence: z.coerce.number().int().nonnegative(),
+  pageName: z.string().nullable().optional(),
+  blurhash: nonEmptyString,
+  pageId: nonEmptyString,
+});
 
-  if (!projectId || !imageId) {
-    return c.json({ error: 'Missing projectId or imageId' }, 400);
+export default async function handleImageSourcePut(c: Context) {
+  const projectId = c.req.param('projectId');
+  const sourceId = c.req.param('sourceId');
+
+  if (!projectId || !sourceId) {
+    return c.json({ error: 'Missing projectId or sourceId' }, 400);
   }
 
   try {
@@ -20,24 +28,12 @@ export default async function handleProjectImagePut(c: Context) {
       string | File | undefined
     >;
 
-    const pageSequenceRaw = body.pageSequence ?? body.page_sequence;
-    const pageNameRaw = body.pageName ?? body.page_name ?? null;
-    const blurhashRaw = body.blurhash;
-    const sourceIdRaw = body.sourceId ?? body.source_id ?? null;
-
-    const parsedFields = z
-      .object({
-        pageSequence: z.coerce.number().int().nonnegative(),
-        pageName: z.string().nullable().optional(),
-        blurhash: nonEmptyString,
-        sourceId: z.string().nullable().optional(),
-      })
-      .safeParse({
-        pageSequence: pageSequenceRaw,
-        pageName: pageNameRaw,
-        blurhash: blurhashRaw,
-        sourceId: sourceIdRaw,
-      });
+    const parsedFields = bodySchema.safeParse({
+      pageSequence: body.pageSequence ?? body.page_sequence,
+      pageName: body.pageName ?? body.page_name ?? null,
+      blurhash: body.blurhash,
+      pageId: body.pageId ?? body.page_id,
+    });
 
     if (!parsedFields.success) {
       return c.json(
@@ -46,7 +42,7 @@ export default async function handleProjectImagePut(c: Context) {
       );
     }
 
-    const { pageSequence, pageName, blurhash, sourceId } = parsedFields.data;
+    const { pageSequence, pageName, blurhash, pageId } = parsedFields.data;
 
     const file = body.file || body.image;
     if (!file || !(file instanceof File)) {
@@ -76,30 +72,52 @@ export default async function handleProjectImagePut(c: Context) {
 
     const uploadResult = await uploadProjectImageToR2(
       projectId,
-      imageId,
+      sourceId,
       buffer,
       'image/jpeg',
     );
 
+    try {
+      await createImageSource({
+        id: sourceId,
+        projectId,
+        storageKey: uploadResult.key,
+        width: dimensions.width,
+        height: dimensions.height,
+        blurhash,
+      });
+    } catch (error: unknown) {
+      if (
+        error instanceof Error &&
+        error.message === 'Source ID already exists'
+      ) {
+        return c.json({ error: 'Source already exists' }, 409);
+      }
+      throw error;
+    }
+
     await createProjectImage({
-      id: imageId,
+      id: pageId,
       projectId,
-      sourceId: sourceId ?? null,
+      sourceId,
       storageKey: uploadResult.key,
       pageSequence,
-      pageName: pageName || null,
-      height: dimensions.height,
+      pageName: pageName ?? null,
       width: dimensions.width,
+      height: dimensions.height,
       blurhash,
+      cropX: null,
+      side: null,
     });
 
     return c.json({
       success: true,
-      key: uploadResult.key,
+      sourceId,
+      pageId,
       url: uploadResult.url,
     });
   } catch (error) {
-    console.error('Error handling project image PUT:', error);
-    return c.json({ error: 'Failed to upload image' }, 500);
+    console.error('Error handling image source PUT:', error);
+    return c.json({ error: 'Failed to upload image source' }, 500);
   }
 }

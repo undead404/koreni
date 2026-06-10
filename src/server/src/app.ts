@@ -3,11 +3,14 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import handleImageSourcePut from './handlers/handle-image-source-put.js';
 import handleProjectImageDelete from './handlers/handle-project-image-delete.js';
 import handleProjectImageGet from './handlers/handle-project-image-get.js';
 import handleProjectImagePatch from './handlers/handle-project-image-patch.js';
 import handleProjectImagePut from './handlers/handle-project-image-put.js';
 import handleProjectImagesList from './handlers/handle-project-images-list.js';
+import handleSpreadRevertDelete from './handlers/handle-spread-revert-delete.js';
+import handleSpreadSplitPost from './handlers/handle-spread-split-post.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
@@ -118,6 +121,22 @@ export function createApp() {
     '/api/transcribe/project/:projectId/images',
     transcribeAuthMiddleware,
     handleProjectImagesList,
+  );
+
+  app.put(
+    '/api/transcribe/projects/:projectId/image-sources/:sourceId',
+    transcribeAuthMiddleware,
+    handleImageSourcePut,
+  );
+  app.post(
+    '/api/transcribe/projects/:projectId/image-sources/:sourceId/split',
+    transcribeAuthMiddleware,
+    handleSpreadSplitPost,
+  );
+  app.delete(
+    '/api/transcribe/projects/:projectId/image-sources/:sourceId/split',
+    transcribeAuthMiddleware,
+    handleSpreadRevertDelete,
   );
 
   // 404 Handler for undefined routes
