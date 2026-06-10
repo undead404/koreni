@@ -15,7 +15,7 @@ export interface ImageFile {
   splitCropX: number | null;
 }
 
-export type UploadState = 'idle' | 'uploading' | 'success';
+export type UploadState = 'idle' | 'uploading' | 'success' | 'error';
 
 export type TabType = 'metadata' | 'assets' | 'operations';
 

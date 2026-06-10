@@ -95,10 +95,13 @@ describe('useAssetManager', () => {
     expect(onUploadFinished).toHaveBeenCalledOnce();
   });
 
-  it('marks image as error when upload fails', async () => {
+  it('marks image as error when upload fails and halts the batch', async () => {
     (saveImageSource as Mock).mockRejectedValue(new Error('Upload failed'));
 
-    const { result } = renderHook(() => useAssetManager('proj-1', vi.fn()));
+    const onUploadFinished = vi.fn().mockResolvedValue(undefined);
+    const { result } = renderHook(() =>
+      useAssetManager('proj-1', onUploadFinished),
+    );
 
     act(() => {
       result.current.handleFileSelect({
@@ -111,6 +114,8 @@ describe('useAssetManager', () => {
     });
 
     expect(result.current.images[0].status).toBe('error');
+    expect(result.current.uploadState).toBe('error');
+    expect(onUploadFinished).not.toHaveBeenCalled();
   });
 
   it('handleSplitConfirm updates isSplit and splitCropX on success', async () => {
@@ -198,5 +203,50 @@ describe('useAssetManager', () => {
     });
 
     expect(revertSplit).not.toHaveBeenCalled();
+  });
+
+  it('stops uploading after the first error and leaves remaining images as pending', async () => {
+    (saveImageSource as Mock)
+      .mockResolvedValueOnce({
+        success: true,
+        sourceId: 'src-1',
+        pageId: 'page-1',
+        url: 'https://cdn.example.com/img1.jpg',
+      })
+      .mockRejectedValueOnce(new Error('Upload failed for image 2'))
+      .mockResolvedValueOnce({
+        success: true,
+        sourceId: 'src-3',
+        pageId: 'page-3',
+        url: 'https://cdn.example.com/img3.jpg',
+      });
+
+    const onUploadFinished = vi.fn().mockResolvedValue(undefined);
+    const { result } = renderHook(() =>
+      useAssetManager('proj-1', onUploadFinished),
+    );
+
+    act(() => {
+      result.current.handleFileSelect({
+        target: {
+          files: [
+            makeFile('img1.jpg'),
+            makeFile('img2.jpg'),
+            makeFile('img3.jpg'),
+          ],
+        },
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
+    });
+
+    await act(async () => {
+      await result.current.startUpload();
+    });
+
+    expect(result.current.images[0].status).toBe('success');
+    expect(result.current.images[1].status).toBe('error');
+    expect(result.current.images[2].status).toBe('pending');
+    expect(result.current.uploadState).toBe('error');
+    expect(saveImageSource).toHaveBeenCalledTimes(2);
+    expect(onUploadFinished).not.toHaveBeenCalled();
   });
 });

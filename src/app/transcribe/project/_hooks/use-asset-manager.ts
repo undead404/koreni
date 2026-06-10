@@ -57,6 +57,7 @@ export function useAssetManager(
     const signal = abortControllerReference.current.signal;
 
     const filesToUpload = images.filter((img) => !img.removed);
+    let batchFailed = false;
 
     for (const [index, image] of filesToUpload.entries()) {
       if (signal.aborted) break;
@@ -91,10 +92,13 @@ export function useAssetManager(
             img.id === image.id ? { ...img, status: 'error' } : img,
           ),
         );
+        setUploadState('error');
+        batchFailed = true;
+        break;
       }
     }
 
-    if (!signal.aborted) {
+    if (!signal.aborted && !batchFailed) {
       setUploadState('success');
       await onUploadFinished();
     }
