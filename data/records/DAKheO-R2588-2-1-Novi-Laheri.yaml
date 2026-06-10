@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р2588-2-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-08
+id: DAKheO-R2588-2-1-Novi-Laheri
+location:
+  - 46.7340381
+  - 33.2173146
+size: 14
+sources:
+  - https://docs.google.com/spreadsheets/d/1whlD431YSEo_QM15SD4LL6jvS5DhfDDAhjVo0eDaNJ8/edit?usp=sharing
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/2/1
+tableFilePath: public/csv/novi-laheri-novo-maiachkivskyi-r-n-khersonska-obl-akty-kupivli-prodazhu-i-podilu-maina-1947.csv
+tableLocale: uk
+title: Нові Лагері, Ново-Маячківський р-н, Херсонська обл. | Акти
+  купівлі-продажу і поділу майна (1947)
+yearsRange:
+  - 1947
