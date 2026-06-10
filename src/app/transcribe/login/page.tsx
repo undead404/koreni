@@ -4,7 +4,7 @@ import { type CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-import requestApi from '../services/api';
+import authGoogle from '../api/auth-google';
 
 import styles from './page.module.css';
 
@@ -15,13 +15,7 @@ export default function LoginPage() {
     credentialResponse: CredentialResponse,
   ) => {
     try {
-      await requestApi('/api/auth/google', {
-        method: 'POST',
-        body: JSON.stringify({ credential: credentialResponse.credential }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      await authGoogle(credentialResponse.credential);
       router.push('/transcribe');
     } catch {
       toast.error('Failed to authenticate');

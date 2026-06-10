@@ -45,7 +45,7 @@ vi.mock('../services/validate-turnstile.js', () => ({
   default: vi.fn(),
 }));
 
-describe('authMiddleware', () => {
+describe('apiAuthMiddleware', () => {
   let app: Hono;
 
   beforeEach(() => {

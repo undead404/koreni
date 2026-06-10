@@ -1,29 +1,60 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { SubmitEvent } from 'react';
+import { SubmitEvent, useEffect, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import SourcesInput from '@/app/components/contribute/sources-input';
-import { SpatialInput } from '@/app/components/contribute/spatial-input';
 import YearsInput from '@/app/components/contribute/years-input';
+
+const SpatialInput = dynamic(
+  () =>
+    import('@/app/components/contribute/spatial-input').then(
+      (module_) => module_.SpatialInput,
+    ),
+  { ssr: false },
+);
 import {
   type ProjectCreatePayload,
   projectCreatePayloadSchema,
 } from '@/server/src/schemata';
 
-import requestApi from '../services/api';
+import createProject from '../api/create-project';
+import getProjectSchemas from '../api/get-project-schemas';
 
 import styles from './page.module.css';
 
 export default function ProjectCreatePage() {
   const router = useRouter();
+  const [schemas, setSchemas] = useState<
+    { enabled: boolean; label: string; value: string }[]
+  >([]);
+
+  useEffect(() => {
+    let active = true;
+    const loadSchemas = async () => {
+      try {
+        const data = await getProjectSchemas();
+        if (active) {
+          setSchemas(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    void loadSchemas();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const methods = useForm<ProjectCreatePayload>({
     resolver: zodResolver(projectCreatePayloadSchema),
     defaultValues: {
+      type: '' as unknown as ProjectCreatePayload['type'],
       id: '',
       title: '',
       isHandwritten: true,
@@ -43,13 +74,7 @@ export default function ProjectCreatePage() {
 
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
-      await requestApi('/api/transcribe/projects', {
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-      });
+      await createProject(data);
 
       toast.success('Project created successfully');
       router.push('/transcribe');
@@ -68,6 +93,36 @@ export default function ProjectCreatePage() {
 
       <FormProvider {...methods}>
         <form onSubmit={handleFormSubmit} className={styles.form}>
+          <div>
+            <label htmlFor="type" className={styles.label}>
+              Project Type
+            </label>
+            <select id="type" {...register('type')} className={styles.input}>
+              <option value="">Select a type...</option>
+              {schemas.map((schema) => (
+                <option
+                  key={schema.value}
+                  value={schema.value}
+                  disabled={!schema.enabled}
+                >
+                  {schema.label}
+                </option>
+              ))}
+            </select>
+            {errors.type && (
+              <p className={styles.error}>{errors.type.message}</p>
+            )}
+            <div className={styles.schemaLinkContainer}>
+              <span className={styles.disabledLink}>
+                Create new project type
+              </span>
+              <span className={styles.note}>
+                {' '}
+                (Project type creation is not yet implemented)
+              </span>
+            </div>
+          </div>
+
           <div>
             <label htmlFor="title" className={styles.label}>
               Title
@@ -98,7 +153,7 @@ export default function ProjectCreatePage() {
 
           <div>
             <label htmlFor="isHandwritten" className={styles.label}>
-              Type
+              Handwritten
             </label>
             <select
               id="isHandwritten"
@@ -117,7 +172,7 @@ export default function ProjectCreatePage() {
 
           <div>
             <label htmlFor="tableLocale" className={styles.label}>
-              Table Locale
+              Document Locale
             </label>
             <select
               id="tableLocale"

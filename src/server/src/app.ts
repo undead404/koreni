@@ -3,12 +3,18 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import handleProjectImageDelete from './handlers/handle-project-image-delete.js';
+import handleProjectImageGet from './handlers/handle-project-image-get.js';
+import handleProjectImagePut from './handlers/handle-project-image-put.js';
+import handleProjectImagesList from './handlers/handle-project-images-list.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
 import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-session-delete.js';
 import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
+import handleTranscribeProjectGet from './handlers/handle-transcribe-project-get.js';
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
+import handleTranscribeProjectUpdate from './handlers/handle-transcribe-project-update.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
@@ -41,16 +47,16 @@ export function createApp() {
   );
 
   // Rate Limiting (applied specifically to API routes)
-  app.use('/api/*', rateLimitMiddleware);
+  // app.use('/api/*', rateLimitMiddleware);
 
   // Routes
-  app.post('/api/submit', apiAuthMiddleware, handleSubmit);
+  app.post('/api/submit', rateLimitMiddleware, apiAuthMiddleware, handleSubmit);
 
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });
   });
 
-  app.post('/api/auth/google', handleTranscribeGoogleAuth);
+  app.post('/api/auth/google', rateLimitMiddleware, handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
   app.delete(
     '/api/auth/session/current',
@@ -68,6 +74,44 @@ export function createApp() {
     '/api/transcribe/projects',
     transcribeAuthMiddleware,
     handleTranscribeProjectCreate,
+  );
+
+  app.get(
+    '/api/transcribe/projects/:projectId',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectGet,
+  );
+
+  app.put(
+    '/api/transcribe/projects/:projectId',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectUpdate,
+  );
+
+  app.put(
+    '/api/transcribe/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImagePut,
+  );
+  app.delete(
+    '/api/transcribe/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImageDelete,
+  );
+  app.get(
+    '/api/transcribe/projects/:projectId/images/:imageId',
+    transcribeAuthMiddleware,
+    handleProjectImageGet,
+  );
+  app.get(
+    '/api/transcribe/projects/:projectId/images',
+    transcribeAuthMiddleware,
+    handleProjectImagesList,
+  );
+  app.get(
+    '/api/transcribe/project/:projectId/images',
+    transcribeAuthMiddleware,
+    handleProjectImagesList,
   );
 
   // 404 Handler for undefined routes

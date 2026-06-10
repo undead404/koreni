@@ -34,6 +34,8 @@ vi.mock('./environment', () => ({
   default: {
     NEXT_PUBLIC_SITE: 'https://example.com',
     PORT: 3000,
+    TURSO_DATABASE_URL: 'http://127.0.0.1:8080',
+    TURSO_DATABASE_TOKEN: 'dummy-token',
   },
 }));
 

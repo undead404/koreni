@@ -1,21 +1,17 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import { type Project, projectResponseSchema } from '../schemata';
-import requestApi from '../services/api';
+import getProjects from '../api/get-projects';
+import { type Project } from '../schemata';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
-    requestApi('/api/transcribe/projects')
-      .then((response) => response.json())
-      .then((data: unknown) => {
-        const projectsData = projectResponseSchema.parse(data);
-        setProjects(projectsData.projects);
-        return;
-      })
+    getProjects()
+      .then(setProjects)
       .catch(() => {
         toast.error('Error loading projects');
       });
@@ -24,7 +20,12 @@ export default function ProjectsList() {
     <section>
       <h1>Projects</h1>
       {projects.map((project) => (
-        <p key={project.id}>{project.title}</p>
+        <Link
+          href={`/transcribe/transcribe/?projectId=${project.id}`}
+          key={project.id}
+        >
+          {project.title}
+        </Link>
       ))}
       {projects.length === 0 && <p>No projects</p>}
     </section>

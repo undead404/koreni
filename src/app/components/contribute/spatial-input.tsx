@@ -88,12 +88,12 @@ export const SpatialInput = memo(function SpatialInput({
   };
 
   useEffect(() => {
+    if (!showDropdown) return;
     function handleClickOutside(event: MouseEvent) {
       if (
         searchReference.current &&
         !searchReference.current.contains(event.target as Node)
       ) {
-        posthog.capture('location_search_closed');
         setShowDropdown(false);
       }
     }
@@ -101,7 +101,7 @@ export const SpatialInput = memo(function SpatialInput({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [posthog]);
+  }, [posthog, showDropdown]);
 
   return (
     <div className={styles.rows}>

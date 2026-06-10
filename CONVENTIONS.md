@@ -6,6 +6,7 @@
 - **Client Components**: Add the `'use client'` directive at the very top of the file ONLY if the component requires `useState`, `useEffect`, `useSearchParams`, DOM APIs, or interactive event listeners.
 - **Data Fetching**: Execute data fetching asynchronously within Server Components (`async function Page()`). Never fetch data in Client Components unless explicitly instructed.
 - **Async Params**: In Next.js 15, `params` and `searchParams` in pages/layouts are asynchronous. Always `await` them before destructuring or reading.
+- **SSG**: All pages use SSG (Static Site Generation). Pages are generated at build time, and then served as static files. Thus, there is no way to have runtime-dynamic URL path parts.
 
 ## 2. TypeScript & Type Definitions
 
@@ -19,6 +20,8 @@
 - **Files & Directories**: Strictly use `kebab-case` for all files and folders (e.g., `archive-item.tsx`, `get-table-metadata.ts`).
 - **Functions & Variables**: Strictly use `camelCase`.
 - **Component Exports**: Use `export default function ComponentName` for all components and pages. Avoid named exports for React components unless grouping multiple sub-components in a single file.
+- **API requests**: Never done from React components, but only from separate async service functions. Use `fetch`.
+- **File Length**: Refactor & split files beyond 300 lines.
 
 ## 4. Styling & UI
 
@@ -27,6 +30,7 @@
 - **Next.js Built-ins**: Use `next/image` (`<Image />`) for all media and `next/link` (`<Link />`) for all routing.
 - **Accessibility**: Use semantic HTML elements (`<button>`, `<nav>`, `<main>`). Ensure all interactive elements have `aria-labels` if lacking visible text.
 - **Theme**: Ensure all custom CSS accounts for both light and dark modes via media queries or standardized CSS variables.
+- **Errors and warnings**: Visualise errors to the user with `sonner` toasts, alongside important success messages.
 
 ## 5. Domain-Specific Logic
 

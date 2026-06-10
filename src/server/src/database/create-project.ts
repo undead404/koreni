@@ -12,6 +12,7 @@ export async function createProject(
       .values({
         id: projectData.id,
         title: projectData.title,
+        type: projectData.type,
         is_handwritten: projectData.isHandwritten ? 1 : 0,
         latitude: projectData.location[0],
         locale: projectData.tableLocale,
@@ -21,7 +22,7 @@ export async function createProject(
         year_end: projectData.yearsRange[1] ?? projectData.yearsRange[0],
         user_id: userId,
       })
-      .returning(['id', 'title', 'created_at'])
+      .returning(['id', 'title', 'created_at', 'type'])
       .executeTakeFirstOrThrow();
 
     return result;
@@ -37,4 +38,38 @@ export async function createProject(
     }
     throw error;
   }
+}
+
+export async function createProjectImage({
+  blurhash,
+  height,
+  id,
+  pageName,
+  pageSequence,
+  projectId,
+  storageKey,
+  width,
+}: {
+  blurhash: string;
+  height: number;
+  id: string;
+  pageName: string | null;
+  pageSequence: number;
+  projectId: string;
+  storageKey: string;
+  width: number;
+}) {
+  await database
+    .insertInto('project_images')
+    .values({
+      blurhash,
+      height,
+      id,
+      page_name: pageName,
+      page_sequence: pageSequence,
+      project_id: projectId,
+      storage_key: storageKey,
+      width,
+    })
+    .execute();
 }

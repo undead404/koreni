@@ -65,12 +65,14 @@ export default function RootLayout({
           async
           type="text/javascript"
         ></Script>
-        <Script
-          src="https://descriptor-strider-ai.vercel.app/widget.js"
-          data-partner-key="blkch_5dc94a37b758a30568da4b621f056deef5d32c40f66adf442bdbe942d26ce127"
-          data-partner-id="koreni"
-          strategy="afterInteractive"
-        />
+        {environment.NODE_ENV === 'production' && (
+          <Script
+            src="https://descriptor-strider-ai.vercel.app/widget.js"
+            data-partner-key="blkch_5dc94a37b758a30568da4b621f056deef5d32c40f66adf442bdbe942d26ce127"
+            data-partner-id="koreni"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );
