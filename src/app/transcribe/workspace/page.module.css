@@ -116,11 +116,6 @@
   object-fit: contain;
 }
 
-.cropContainer {
-  position: relative;
-  overflow: hidden;
-}
-
 .imagePlaceholder {
   flex: 1;
   display: flex;

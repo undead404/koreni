@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createDerivedPages } from '../database/create-derived-pages.js';
 import { findImageSource } from '../database/find-image-source.js';
+import { reconcileSplit } from '../database/reconcile-split.js';
 
 import handleSpreadSplitPost from './handle-spread-split-post.js';
 
@@ -12,6 +13,10 @@ vi.mock('../database/find-image-source.js', () => ({
 
 vi.mock('../database/create-derived-pages.js', () => ({
   createDerivedPages: vi.fn(),
+}));
+
+vi.mock('../database/reconcile-split.js', () => ({
+  reconcileSplit: vi.fn(),
 }));
 
 const validBody = {
@@ -78,7 +83,7 @@ describe('handleSpreadSplitPost', () => {
     expect(response._data).toEqual({ error: 'Source not found' });
   });
 
-  it('returns 409 if source is already split', async () => {
+  it('returns 200 with existing IDs when source is already_complete (idempotent)', async () => {
     vi.mocked(findImageSource).mockResolvedValue({
       id: 'src-456',
       project_id: 'proj-123',
@@ -90,12 +95,132 @@ describe('handleSpreadSplitPost', () => {
       created_at: 1_700_000_000,
     });
 
+    vi.mocked(reconcileSplit).mockResolvedValue({
+      status: 'already_complete',
+      leftPageId: 'existing-left',
+      rightPageId: 'existing-right',
+      cropX: 0.5,
+    });
+
+    const response = (await handleSpreadSplitPost(
+      mockContext as Context,
+    )) as any;
+
+    expect(response.status).toBeUndefined();
+    expect(response._data).toEqual({
+      success: true,
+      sourceId: 'src-456',
+      leftPageId: 'existing-left',
+      rightPageId: 'existing-right',
+    });
+    expect(createDerivedPages).not.toHaveBeenCalled();
+  });
+
+  it('returns 409 with enriched payload on conflict', async () => {
+    vi.mocked(findImageSource).mockResolvedValue({
+      id: 'src-456',
+      project_id: 'proj-123',
+      storage_key: 'projects/proj-123/sources/src-456.jpg',
+      width: 800,
+      height: 600,
+      blurhash: 'LKO2?U%2Tw=w',
+      page_count: 2,
+      created_at: 1_700_000_000,
+    });
+
+    vi.mocked(reconcileSplit).mockResolvedValue({
+      status: 'conflict',
+      existingCropX: 0.4,
+      leftPageId: 'old-left',
+      rightPageId: 'old-right',
+    });
+
     const response = (await handleSpreadSplitPost(
       mockContext as Context,
     )) as any;
 
     expect(response.status).toBe(409);
-    expect(response._data).toEqual({ error: 'Source is already split' });
+    expect(response._data).toEqual({
+      error: 'Source is already split with a different crop',
+      existingCropX: 0.4,
+      leftPageId: 'old-left',
+      rightPageId: 'old-right',
+    });
+    expect(createDerivedPages).not.toHaveBeenCalled();
+  });
+
+  it('calls createDerivedPages after repaired reconciliation', async () => {
+    vi.mocked(findImageSource).mockResolvedValue({
+      id: 'src-456',
+      project_id: 'proj-123',
+      storage_key: 'projects/proj-123/sources/src-456.jpg',
+      width: 800,
+      height: 600,
+      blurhash: 'LKO2?U%2Tw=w',
+      page_count: 2,
+      created_at: 1_700_000_000,
+    });
+
+    vi.mocked(reconcileSplit).mockResolvedValue({ status: 'repaired' });
+    vi.mocked(createDerivedPages).mockResolvedValue(undefined);
+
+    const response = (await handleSpreadSplitPost(
+      mockContext as Context,
+    )) as any;
+
+    expect(response.status).toBeUndefined();
+    expect(response._data).toEqual({
+      success: true,
+      sourceId: 'src-456',
+      leftPageId: 'left-1',
+      rightPageId: 'right-1',
+    });
+    expect(createDerivedPages).toHaveBeenCalledWith('src-456', validBody);
+  });
+
+  it('returns 500 if reconcileSplit throws', async () => {
+    vi.mocked(findImageSource).mockResolvedValue({
+      id: 'src-456',
+      project_id: 'proj-123',
+      storage_key: 'projects/proj-123/sources/src-456.jpg',
+      width: 800,
+      height: 600,
+      blurhash: 'LKO2?U%2Tw=w',
+      page_count: 2,
+      created_at: 1_700_000_000,
+    });
+
+    vi.mocked(reconcileSplit).mockRejectedValue(new Error('DB error'));
+
+    const response = (await handleSpreadSplitPost(
+      mockContext as Context,
+    )) as any;
+
+    expect(response.status).toBe(500);
+    expect(response._data).toEqual({ error: 'Failed to split spread' });
+  });
+
+  it('returns 500 if createDerivedPages throws after repair', async () => {
+    vi.mocked(findImageSource).mockResolvedValue({
+      id: 'src-456',
+      project_id: 'proj-123',
+      storage_key: 'projects/proj-123/sources/src-456.jpg',
+      width: 800,
+      height: 600,
+      blurhash: 'LKO2?U%2Tw=w',
+      page_count: 2,
+      created_at: 1_700_000_000,
+    });
+
+    vi.mocked(reconcileSplit).mockResolvedValue({ status: 'repaired' });
+    vi.mocked(createDerivedPages).mockRejectedValue(new Error('DB error'));
+
+    const response = (await handleSpreadSplitPost(
+      mockContext as Context,
+    )) as any;
+
+    expect(response.status).toBe(500);
+    expect(response._data).toEqual({ error: 'Failed to split spread' });
   });
 
   it('returns 200 with page IDs on happy path', async () => {

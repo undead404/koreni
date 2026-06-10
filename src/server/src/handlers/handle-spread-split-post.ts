@@ -2,6 +2,7 @@ import { Context } from 'hono';
 
 import { createDerivedPages } from '../database/create-derived-pages.js';
 import { findImageSource } from '../database/find-image-source.js';
+import { reconcileSplit } from '../database/reconcile-split.js';
 import { spreadSplitSchema } from '../schemata.js';
 
 export default async function handleSpreadSplitPost(c: Context) {
@@ -25,18 +26,55 @@ export default async function handleSpreadSplitPost(c: Context) {
       return c.json({ error: 'Source not found' }, 404);
     }
 
-    if (source.page_count === 2) {
-      return c.json({ error: 'Source is already split' }, 409);
+    if (source.page_count === 1) {
+      // Happy path: source is not yet split
+      await createDerivedPages(sourceId, parsed.data);
+      return c.json({
+        success: true,
+        sourceId,
+        leftPageId: parsed.data.leftPageId,
+        rightPageId: parsed.data.rightPageId,
+      });
     }
 
-    await createDerivedPages(sourceId, parsed.data);
+    // source.page_count === 2: reconcile the split state
+    const reconcileResult = await reconcileSplit(sourceId, parsed.data.cropX);
 
-    return c.json({
-      success: true,
-      sourceId,
-      leftPageId: parsed.data.leftPageId,
-      rightPageId: parsed.data.rightPageId,
-    });
+    switch (reconcileResult.status) {
+      case 'already_complete': {
+        // Idempotent success: split already exists with same cropX
+        return c.json({
+          success: true,
+          sourceId,
+          leftPageId: reconcileResult.leftPageId,
+          rightPageId: reconcileResult.rightPageId,
+        });
+      }
+
+      case 'conflict': {
+        // Genuine conflict: split exists with different cropX
+        return c.json(
+          {
+            error: 'Source is already split with a different crop',
+            existingCropX: reconcileResult.existingCropX,
+            leftPageId: reconcileResult.leftPageId,
+            rightPageId: reconcileResult.rightPageId,
+          },
+          409,
+        );
+      }
+
+      case 'repaired': {
+        // Broken split was repaired; now proceed with the split
+        await createDerivedPages(sourceId, parsed.data);
+        return c.json({
+          success: true,
+          sourceId,
+          leftPageId: parsed.data.leftPageId,
+          rightPageId: parsed.data.rightPageId,
+        });
+      }
+    }
   } catch (error) {
     console.error('Error handling spread split POST:', error);
     return c.json({ error: 'Failed to split spread' }, 500);

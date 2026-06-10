@@ -109,55 +109,30 @@ export default function ImageViewer({
         style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
       >
         {images[currentImageIndex] ? (
-          side &&
-          cropX !== null &&
-          images[currentImageIndex].width &&
-          images[currentImageIndex].height ? (
-            <div
-              className={styles.cropContainer}
-              style={{
-                width:
-                  side === 'left' ? `${cropX * 100}%` : `${(1 - cropX) * 100}%`,
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-            >
-              <Image
-                draggable={false}
-                src={images[currentImageIndex].url}
-                alt={
-                  images[currentImageIndex].pageName ||
-                  `${images[currentImageIndex].pageSequence}`
-                }
-                fill
-                className={styles.displayImage}
-                priority
-                style={{
-                  position: 'absolute',
-                  left: side === 'right' ? `${-(cropX * 100)}%` : '0',
-                  top: '0',
-                  transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
-                  transition: isDragging ? 'none' : 'transform 0.1s ease-out',
-                }}
-              />
-            </div>
-          ) : (
-            <Image
-              draggable={false}
-              src={images[currentImageIndex].url}
-              alt={
-                images[currentImageIndex].pageName ||
-                `${images[currentImageIndex].pageSequence}`
-              }
-              fill
-              className={styles.displayImage}
-              priority
-              style={{
-                transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
-                transition: isDragging ? 'none' : 'transform 0.1s ease-out',
-              }}
-            />
-          )
+          <Image
+            draggable={false}
+            src={images[currentImageIndex].url}
+            alt={
+              images[currentImageIndex].pageName ||
+              `${images[currentImageIndex].pageSequence}`
+            }
+            fill
+            className={styles.displayImage}
+            priority
+            style={{
+              transform: `translate(${transform.x}px, ${transform.y}px) scale(${transform.scale})`,
+              transition: isDragging ? 'none' : 'transform 0.1s ease-out',
+              clipPath:
+                side &&
+                cropX !== null &&
+                images[currentImageIndex].width &&
+                images[currentImageIndex].height
+                  ? side === 'left'
+                    ? `inset(0 ${(1 - cropX) * 100}% 0 0)`
+                    : `inset(0 0 0 ${cropX * 100}%)`
+                  : undefined,
+            }}
+          />
         ) : (
           <div className={styles.imagePlaceholder}>
             <ImageIcon size={64} className={styles.placeholderIcon} />

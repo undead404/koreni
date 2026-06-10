@@ -108,12 +108,13 @@ function TranscribeProjectPageContent() {
     try {
       if (!projectId || !currentImage.sourceId) return;
 
-      const sourceImageId = currentImage.id;
+      const leftPageId = crypto.randomUUID();
+      const rightPageId = crypto.randomUUID();
 
       await splitSpread(projectId, currentImage.sourceId, {
         cropX,
-        leftPageId: crypto.randomUUID(),
-        rightPageId: crypto.randomUUID(),
+        leftPageId,
+        rightPageId,
         leftPageSequence: currentImage.pageSequence,
         rightPageSequence: currentImage.pageSequence + 1,
       });
@@ -124,7 +125,7 @@ function TranscribeProjectPageContent() {
       const refetchedImages = await refetchImages();
       if (refetchedImages && refetchedImages.length > 0) {
         const leftPageIndex = refetchedImages.findIndex(
-          (img) => img.id === sourceImageId,
+          (img) => img.id === leftPageId,
         );
         setCurrentImageIndex(Math.max(leftPageIndex, 0));
         handleResetTransform();

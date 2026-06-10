@@ -34,8 +34,14 @@ describe('createDerivedPages', () => {
   });
 
   it('throws when source is not found', async () => {
+    const mockSelectQuery = {
+      select: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      executeTakeFirst: vi.fn().mockResolvedValue(null),
+    };
+
     const mockTrx = {
-      execute: vi.fn().mockResolvedValue({ rows: [] }),
+      selectFrom: vi.fn().mockReturnValue(mockSelectQuery),
     };
 
     (database.transaction as any).mockReturnValue({
@@ -47,16 +53,39 @@ describe('createDerivedPages', () => {
     );
   });
 
-  it('executes UPDATE and two INSERTs within a transaction when source exists', async () => {
-    let callCount = 0;
+  it('executes UPDATE, two INSERTs, and deactivation UPDATE within a transaction when source exists', async () => {
+    const mockSelectQuery = {
+      select: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      executeTakeFirst: vi.fn().mockResolvedValue(mockSource),
+    };
+
+    const mockUpdateSourceQuery = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockInsertQuery = {
+      values: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockDeactivateQuery = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
     const mockTrx = {
-      execute: vi.fn().mockImplementation(() => {
-        callCount++;
-        // First call: SELECT source — return a row
-        if (callCount === 1) return Promise.resolve({ rows: [mockSource] });
-        // Subsequent calls: UPDATE + 2x INSERT
-        return Promise.resolve({ rows: [] });
+      selectFrom: vi.fn().mockReturnValue(mockSelectQuery),
+      updateTable: vi.fn().mockImplementation((table: string) => {
+        if (table === 'project_image_sources') {
+          return mockUpdateSourceQuery;
+        }
+        return mockDeactivateQuery;
       }),
+      insertInto: vi.fn().mockReturnValue(mockInsertQuery),
     };
 
     (database.transaction as any).mockReturnValue({
@@ -65,19 +94,35 @@ describe('createDerivedPages', () => {
 
     await createDerivedPages('src-1', validSplit);
 
-    // SELECT + UPDATE + INSERT left + INSERT right = 4 execute calls
-    expect(mockTrx.execute).toHaveBeenCalledTimes(4);
+    // Verify all operations were called
+    expect(mockTrx.selectFrom).toHaveBeenCalledWith('project_image_sources');
+    expect(mockTrx.updateTable).toHaveBeenCalledWith('project_image_sources');
+    expect(mockTrx.insertInto).toHaveBeenCalledWith('project_images');
+    expect(mockDeactivateQuery.execute).toHaveBeenCalled();
   });
 
   it('rolls back on INSERT failure (transaction throws)', async () => {
-    let callCount = 0;
+    const mockSelectQuery = {
+      select: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      executeTakeFirst: vi.fn().mockResolvedValue(mockSource),
+    };
+
+    const mockUpdateSourceQuery = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockInsertLeftQuery = {
+      values: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockRejectedValue(new Error('UNIQUE constraint failed')),
+    };
+
     const mockTrx = {
-      execute: vi.fn().mockImplementation(() => {
-        callCount++;
-        if (callCount === 1) return Promise.resolve({ rows: [mockSource] });
-        if (callCount === 2) return Promise.resolve({ rows: [] }); // UPDATE ok
-        throw new Error('UNIQUE constraint failed'); // INSERT fails
-      }),
+      selectFrom: vi.fn().mockReturnValue(mockSelectQuery),
+      updateTable: vi.fn().mockReturnValue(mockUpdateSourceQuery),
+      insertInto: vi.fn().mockReturnValue(mockInsertLeftQuery),
     };
 
     (database.transaction as any).mockReturnValue({
@@ -87,5 +132,56 @@ describe('createDerivedPages', () => {
     await expect(createDerivedPages('src-1', validSplit)).rejects.toThrow(
       'UNIQUE constraint failed',
     );
+  });
+
+  it('deactivates the original unsplit image row after inserting derived pages', async () => {
+    const mockSelectQuery = {
+      select: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      executeTakeFirst: vi.fn().mockResolvedValue(mockSource),
+    };
+
+    const mockUpdateSourceQuery = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockInsertQuery = {
+      values: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockDeactivateQuery = {
+      set: vi.fn().mockReturnThis(),
+      where: vi.fn().mockReturnThis(),
+      execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockTrx = {
+      selectFrom: vi.fn().mockReturnValue(mockSelectQuery),
+      updateTable: vi.fn().mockImplementation((table: string) => {
+        if (table === 'project_image_sources') {
+          return mockUpdateSourceQuery;
+        }
+        return mockDeactivateQuery;
+      }),
+      insertInto: vi.fn().mockReturnValue(mockInsertQuery),
+    };
+
+    (database.transaction as any).mockReturnValue({
+      execute: vi.fn((callback: any) => callback(mockTrx)),
+    });
+
+    await createDerivedPages('src-1', validSplit);
+
+    // Verify deactivation was called with correct parameters
+    expect(mockDeactivateQuery.set).toHaveBeenCalledWith({ is_active: 0 });
+    expect(mockDeactivateQuery.where).toHaveBeenCalledWith(
+      'source_id',
+      '=',
+      'src-1',
+    );
+    expect(mockDeactivateQuery.where).toHaveBeenCalledWith('side', 'is', null);
   });
 });

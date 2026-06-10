@@ -25,8 +25,7 @@ export async function createDerivedPages(
       .where('id', '=', sourceId)
       .execute();
 
-    // Insert left page using sql for complex column mapping
-
+    // Insert left page
     await trx
       .insertInto('project_images')
       .values({
@@ -45,6 +44,7 @@ export async function createDerivedPages(
       })
       .execute();
 
+    // Insert right page
     await trx
       .insertInto('project_images')
       .values({
@@ -61,6 +61,14 @@ export async function createDerivedPages(
         storage_key: source.storage_key,
         width: source.width,
       })
+      .execute();
+
+    // Deactivate the original unsplit image row
+    await trx
+      .updateTable('project_images')
+      .set({ is_active: 0 })
+      .where('source_id', '=', sourceId)
+      .where('side', 'is', null)
       .execute();
   });
 }

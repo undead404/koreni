@@ -41,13 +41,13 @@ CREATE TABLE `project_images` (
 	CONSTRAINT `belongs_to_source` FOREIGN KEY (`source_id`) REFERENCES `project_image_sources`(`id`)
 );
 CREATE TABLE `project_image_sources` (
-	`id` text PRIMARY KEY NOT NULL,
 	`project_id` text NOT NULL,
 	`storage_key` text NOT NULL,
-	`width` integer NOT NULL,
 	`height` integer NOT NULL,
 	`blurhash` text NOT NULL,
 	`page_count` integer DEFAULT 1 NOT NULL,
-	`created_at` integer DEFAULT unixepoch() NOT NULL,
+	`width` integer NOT NULL,
+	`id` text PRIMARY KEY,
+	`created_at` integer DEFAULT 0 NOT NULL,
 	CONSTRAINT `source_belongs_to_project` FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE
 );
