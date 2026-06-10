@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВіО-904-13-122
+authorName: Сергій Таранчук
+authorEmail: taranchuks@gmail.com
+date: 2026-06-10
+id: DAViO-904-13-122-1901
+location:
+  - 48.732819
+  - 29.151449
+size: 670
+sources: []
+tableFilePath: public/csv/davio-d904-13-122-metrychni-1901.csv
+tableLocale: uk
+title: Степашки – МК, 1901
+yearsRange:
+  - 1901
