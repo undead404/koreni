@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХМО-315-1-7070
+authorName: Сергій Таранчук
+authorEmail: taranchuks@gmail.com
+date: 2026-06-10
+id: dakhmo-315-1-7070-spovidnyi-rozpys-1820
+location:
+  - 48.732819
+  - 29.151449
+size: 942
+sources: []
+tableFilePath: public/csv/dakhmo-315-1-7070-spovidnyi-rozpys-1820.csv
+tableLocale: uk
+title: ДАХМО-315-1-7070 Сповідний розпис 1820
+yearsRange:
+  - 1820
