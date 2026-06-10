@@ -15,8 +15,13 @@ describe('createImageSource', () => {
   });
 
   it('executes an INSERT within a transaction', async () => {
-    const mockTrx = {
+    const mockInsertQuery = {
+      values: vi.fn().mockReturnThis(),
       execute: vi.fn().mockResolvedValue({ rows: [] }),
+    };
+
+    const mockTrx = {
+      insertInto: vi.fn().mockReturnValue(mockInsertQuery),
     };
 
     (database.transaction as any).mockReturnValue({
@@ -33,7 +38,9 @@ describe('createImageSource', () => {
     });
 
     expect(database.transaction).toHaveBeenCalledOnce();
-    expect(mockTrx.execute).toHaveBeenCalledOnce();
+    expect(mockTrx.insertInto).toHaveBeenCalledOnce();
+    expect(mockInsertQuery.values).toHaveBeenCalledOnce();
+    expect(mockInsertQuery.execute).toHaveBeenCalledOnce();
   });
 
   it('throws "Source ID already exists" on UNIQUE constraint violation', async () => {
@@ -41,8 +48,13 @@ describe('createImageSource', () => {
       code: 'SQLITE_CONSTRAINT_UNIQUE',
     });
 
-    const mockTrx = {
+    const mockInsertQuery = {
+      values: vi.fn().mockReturnThis(),
       execute: vi.fn().mockRejectedValue(uniqueError),
+    };
+
+    const mockTrx = {
+      insertInto: vi.fn().mockReturnValue(mockInsertQuery),
     };
 
     (database.transaction as any).mockReturnValue({
@@ -62,8 +74,13 @@ describe('createImageSource', () => {
   });
 
   it('re-throws unknown errors', async () => {
-    const mockTrx = {
+    const mockInsertQuery = {
+      values: vi.fn().mockReturnThis(),
       execute: vi.fn().mockRejectedValue(new Error('Connection lost')),
+    };
+
+    const mockTrx = {
+      insertInto: vi.fn().mockReturnValue(mockInsertQuery),
     };
 
     (database.transaction as any).mockReturnValue({
