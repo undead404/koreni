@@ -57,3 +57,53 @@ describe('buildRowArraySchema', () => {
     expect(result.success).toBe(true);
   });
 });
+
+const dateColumn = [
+  { id: 'Дата', title: 'Дата', expectedType: 'date' as const },
+];
+
+describe('buildRowArraySchema — date column', () => {
+  it('accepts a full date YYYY-MM-DD', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '1743-05-12' }]);
+    expect(result.success).toBe(true);
+  });
+
+  it('accepts a partial date YYYY-MM', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '1743-05' }]);
+    expect(result.success).toBe(true);
+  });
+
+  it('accepts a year-only date YYYY', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '1743' }]);
+    expect(result.success).toBe(true);
+  });
+
+  it('accepts an empty string (row not yet filled)', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '' }]);
+    expect(result.success).toBe(true);
+  });
+
+  it('rejects a dot-separated date', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '12.05.1743' }]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects arbitrary prose', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([
+      { id: VALID_UUID, Дата: 'arbitrary prose' },
+    ]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects an invalid month (13)', () => {
+    const schema = buildRowArraySchema(dateColumn);
+    const result = schema.safeParse([{ id: VALID_UUID, Дата: '1743-13-01' }]);
+    expect(result.success).toBe(false);
+  });
+});

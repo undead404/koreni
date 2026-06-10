@@ -27,8 +27,25 @@ const CONFESSION_LIST_COLUMNS: ColumnConfig[] = [
   },
 ];
 
+const OLD_RUTHENIAN_PARISH_REGISTER_COLUMNS: ColumnConfig[] = [
+  {
+    id: 'Дата',
+    title: 'Дата',
+    hint: 'Формат: РРРР-ММ-ДД (або частково: РРРР, РРРР-ММ)',
+    expectedType: 'date',
+  },
+  {
+    id: 'Подія',
+    title: 'Подія',
+    hint: 'Прозовий опис події з метрики',
+    expectedType: 'string',
+    isExtended: true,
+  },
+];
+
 const SCHEMA_COLUMNS: Partial<Record<string, ColumnConfig[]>> = {
   'confession-list': CONFESSION_LIST_COLUMNS,
+  'old-ruthenian-parish-register': OLD_RUTHENIAN_PARISH_REGISTER_COLUMNS,
 };
 
 export function getColumnsBySchemaValue(value: string): ColumnConfig[] {
@@ -46,6 +63,11 @@ const getProjectSchemas = async () => {
       enabled: true,
       label: 'Late russian confession list',
       value: 'confession-list',
+    },
+    {
+      enabled: true,
+      label: 'Old Ruthenian parish register',
+      value: 'old-ruthenian-parish-register',
     },
     {
       enabled: false,

@@ -11,6 +11,8 @@ import type {
   TranscriptionRow,
 } from '../_hooks/use-transcription-rows';
 
+import { renderCellInput } from './cell-input';
+
 import styles from './transcription-table.module.css';
 
 interface TranscriptionTableProperties {
@@ -21,29 +23,6 @@ interface TranscriptionTableProperties {
   onAddRow: (index?: number) => string;
   onDeleteRow: (id: string) => void;
   onUpdateRow: (id: string, field: string, value: string) => void;
-}
-
-const REPLACEMENTS: [string, string][] = [
-  ['иии', 'ы'],
-  ['ььь', 'ъ'],
-  ['еее', 'ѣ'],
-  ['Ффф', 'Ѳ'],
-  ['ФФФ', 'Ѳ'],
-  ['ффф', 'ѳ'],
-  ['ііі', 'ѵ'],
-  ['ІІІ', 'Ѵ'],
-  ['ЄЄЄ', 'Э'],
-  ['єєє', 'э'],
-  ['I', 'І'],
-  ['i', 'і'],
-];
-
-function applyReplacements(value: string): string {
-  let result = value;
-  for (const [search, replace] of REPLACEMENTS) {
-    result = result.replaceAll(search, replace);
-  }
-  return result;
 }
 
 export default function TranscriptionTable({
@@ -86,6 +65,17 @@ export default function TranscriptionTable({
   }, [pendingFocusRowId, rows]);
 
   const firstColumnId = columns[0]?.id;
+
+  const handleReferenceSet = useCallback(
+    (rowId: string, element: HTMLInputElement | HTMLTextAreaElement | null) => {
+      if (element) {
+        firstCellReferences.current.set(rowId, element);
+      } else {
+        firstCellReferences.current.delete(rowId);
+      }
+    },
+    [],
+  );
 
   return (
     <>
@@ -133,61 +123,15 @@ export default function TranscriptionTable({
                         : styles.columnDefault
                     }
                   >
-                    {column.expectedType === 'number' ? (
-                      <input
-                        type="number"
-                        className={styles.input}
-                        value={row[column.id] || ''}
-                        onChange={(event_) => {
-                          onUpdateRow(row.id, column.id, event_.target.value);
-                        }}
-                        placeholder={column.title}
-                        disabled={!hasPageName}
-                        ref={
-                          column.id === firstColumnId
-                            ? (element) => {
-                                if (element) {
-                                  firstCellReferences.current.set(
-                                    row.id,
-                                    element,
-                                  );
-                                } else {
-                                  firstCellReferences.current.delete(row.id);
-                                }
-                              }
-                            : undefined
-                        }
-                      />
-                    ) : (
-                      <textarea
-                        className={styles.input}
-                        value={row[column.id] || ''}
-                        onChange={(event_) => {
-                          const finalValue =
-                            projectLocale === 'ru'
-                              ? applyReplacements(event_.target.value)
-                              : event_.target.value;
-                          onUpdateRow(row.id, column.id, finalValue);
-                        }}
-                        placeholder={column.title}
-                        disabled={!hasPageName}
-                        rows={1}
-                        ref={
-                          column.id === firstColumnId
-                            ? (element) => {
-                                if (element) {
-                                  firstCellReferences.current.set(
-                                    row.id,
-                                    element,
-                                  );
-                                } else {
-                                  firstCellReferences.current.delete(row.id);
-                                }
-                              }
-                            : undefined
-                        }
-                      />
-                    )}
+                    {renderCellInput({
+                      column,
+                      row,
+                      hasPageName,
+                      projectLocale,
+                      isFirstColumn: column.id === firstColumnId,
+                      onUpdateRow,
+                      onReferenceSet: handleReferenceSet,
+                    })}
                   </td>
                 ))}
                 <td className={styles.actionCell}>
