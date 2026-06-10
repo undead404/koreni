@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХМО-315-1-8534
+authorName: Сергій Таранчук
+authorEmail: taranchuks@gmail.com
+date: 2026-06-10
+id: dakhmo-315-1-8534-spovidnyi-rozpys-1860
+location:
+  - 48.732819
+  - 29.151449
+size: 1504
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%BC%D0%9E/315/1/8534
+tableFilePath: public/csv/dakhmo-315-1-8534-spovidnyi-rozpys-1860.csv
+tableLocale: uk
+title: ДАХМО-315-1-8534 Сповідний розпис 1860
+yearsRange:
+  - 1860
