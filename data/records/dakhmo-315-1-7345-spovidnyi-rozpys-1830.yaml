@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХМО-315-1-7345
+authorName: Сергій Таранчук
+authorEmail: taranchuks@gmail.com
+date: 2026-06-10
+id: dakhmo-315-1-7345-spovidnyi-rozpys-1830
+location:
+  - 48.732819
+  - 29.151449
+size: 995
+sources: []
+tableFilePath: public/csv/dakhmo-315-1-7345-spovidnyi-rozpys-1830.csv
+tableLocale: uk
+title: ДАХМО-315-1-7345 Сповідний розпис 1830
+yearsRange:
+  - 1830
