@@ -47,6 +47,7 @@ export default async function search({
   ];
 
   const commonParameters: Partial<MultiSearchRequestSchema> = {
+    drop_tokens_threshold: 0,
     page,
     per_page: perPage,
     query_by: 'values',
