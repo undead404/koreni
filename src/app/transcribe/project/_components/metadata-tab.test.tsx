@@ -33,7 +33,12 @@ describe('MetadataTab', () => {
   it('renders form fields', () => {
     render(
       <Wrapper>
-        <MetadataTab schemas={[]} onSubmit={vi.fn()} isSubmitting={false} />
+        <MetadataTab
+          schemas={[]}
+          onSubmit={vi.fn()}
+          isSubmitting={false}
+          knownLocations={[]}
+        />
       </Wrapper>,
     );
     expect(screen.getByLabelText('Title')).toBeInTheDocument();

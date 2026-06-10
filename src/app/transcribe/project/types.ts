@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import type { Location } from '@/app/components/contribute/types';
 import { ProjectCreatePayload } from '@/server/src/schemata';
 import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
@@ -37,6 +38,7 @@ export interface MetadataTabProperties {
   schemas: { enabled: boolean; label: string; value: string }[];
   onSubmit: (event: React.SyntheticEvent<HTMLFormElement>) => void;
   isSubmitting: boolean;
+  knownLocations: Location[];
 }
 
 export interface OperationsTabProperties {

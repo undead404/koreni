@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { Controller, useFormContext } from 'react-hook-form';
 
+import { KnownLocationsContext } from '@/app/components/contribute/known-locations-context';
 import SourcesInput from '@/app/components/contribute/sources-input';
 import YearsInput from '@/app/components/contribute/years-input';
 import { ProjectCreatePayload } from '@/server/src/schemata';
@@ -21,6 +22,7 @@ export default function MetadataTab({
   schemas,
   onSubmit,
   isSubmitting,
+  knownLocations,
 }: MetadataTabProperties) {
   const {
     register,
@@ -114,28 +116,30 @@ export default function MetadataTab({
         )}
       </div>
 
-      <div className={styles.fieldGroup}>
-        <Controller
-          name="location"
-          control={control}
-          render={({ field }) => (
-            <SpatialInput
-              value={field.value.join(',') || ''}
-              onChange={(value) => {
-                if (!value) {
-                  field.onChange();
-                  return;
-                }
-                const [lat, lng] = value.split(',').map(Number);
-                field.onChange([lat, lng]);
-              }}
-            />
+      <KnownLocationsContext.Provider value={knownLocations}>
+        <div className={styles.fieldGroup}>
+          <Controller
+            name="location"
+            control={control}
+            render={({ field }) => (
+              <SpatialInput
+                value={field.value.join(',') || ''}
+                onChange={(value) => {
+                  if (!value) {
+                    field.onChange();
+                    return;
+                  }
+                  const [lat, lng] = value.split(',').map(Number);
+                  field.onChange([lat, lng]);
+                }}
+              />
+            )}
+          />
+          {errors.location && (
+            <p className={styles.error}>{errors.location.message}</p>
           )}
-        />
-        {errors.location && (
-          <p className={styles.error}>{errors.location.message}</p>
-        )}
-      </div>
+        </div>
+      </KnownLocationsContext.Provider>
 
       <div className={styles.fieldGroup}>
         <Controller

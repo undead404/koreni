@@ -53,7 +53,7 @@ describe('ProjectHeader', () => {
       />,
     );
     expect(screen.getByText('Test Project')).toBeInTheDocument();
-    expect(screen.getByText('table')).toBeInTheDocument();
+    expect(screen.getByText('confession-list')).toBeInTheDocument();
     expect(screen.getByText('Locale: uk')).toBeInTheDocument();
     expect(screen.getByText('Years: 1850 - 1900')).toBeInTheDocument();
   });
