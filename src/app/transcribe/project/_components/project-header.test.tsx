@@ -7,7 +7,7 @@ describe('ProjectHeader', () => {
   const mockProject = {
     id: 'project-123',
     title: 'Test Project',
-    type: 'table' as const,
+    type: 'confession-list' as const,
     isHandwritten: true,
     location: [48.9, 24.5] as [number, number],
     tableLocale: 'uk' as const,
