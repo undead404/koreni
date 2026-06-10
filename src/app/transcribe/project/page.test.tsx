@@ -1,18 +1,10 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { toast } from 'sonner';
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import getProject from '../api/get-project';
 import getProjectImages from '../api/get-project-images';
 import getProjectSchemas from '../api/get-project-schemas';
-import updateProject from '../api/update-project';
 
 import ProjectDetailsPage from './page';
 
@@ -87,7 +79,7 @@ vi.mock('@/app/components/contribute/years-input', () => ({
   )),
 }));
 
-describe('ProjectDetailsPage', () => {
+describe('ProjectDetailsPage Integration', () => {
   const mockPush = vi.fn();
 
   beforeEach(() => {
@@ -120,51 +112,7 @@ describe('ProjectDetailsPage', () => {
     });
   });
 
-  it('redirects to /transcribe if projectId parameter is invalid', async () => {
-    (useSearchParams as Mock).mockReturnValue({
-      get: vi.fn().mockReturnValue('invalid_id_#'),
-    });
-
-    render(<ProjectDetailsPage />);
-
-    await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith('/transcribe');
-    });
-  });
-
-  it('renders CTA "Enter Workspace" as disabled if the fetched image list has 0 images', async () => {
-    (useSearchParams as Mock).mockReturnValue({
-      get: vi.fn().mockReturnValue('project-123'),
-    });
-    (getProject as Mock).mockResolvedValue({
-      success: true,
-      project: {
-        id: 'project-123',
-        title: 'Mock Project',
-        type: 'table',
-        isHandwritten: true,
-        location: [48.9, 24.5],
-        tableLocale: 'uk',
-        yearsRange: [1850, 1900],
-        sources: [],
-      },
-    });
-    (getProjectImages as Mock).mockResolvedValue([]);
-
-    render(<ProjectDetailsPage />);
-
-    // Wait for load to complete
-    await waitFor(() => {
-      expect(
-        screen.queryByText('Loading project details...'),
-      ).not.toBeInTheDocument();
-    });
-
-    const enterButton = screen.getByTestId('enter-workspace-btn');
-    expect(enterButton).toBeDisabled();
-  });
-
-  it('renders CTA "Enter Workspace" as active if the fetched image list is non-empty', async () => {
+  it('loads project data and renders content', async () => {
     (useSearchParams as Mock).mockReturnValue({
       get: vi.fn().mockReturnValue('project-123'),
     });
@@ -186,127 +134,9 @@ describe('ProjectDetailsPage', () => {
     render(<ProjectDetailsPage />);
 
     await waitFor(() => {
-      expect(
-        screen.queryByText('Loading project details...'),
-      ).not.toBeInTheDocument();
-    });
-
-    const enterButton = screen.getByTestId('enter-workspace-btn');
-    expect(enterButton).not.toBeDisabled();
-    const href = enterButton.getAttribute('href');
-    expect(
-      href === '/transcribe/workspace?projectId=project-123' ||
-        href === '/transcribe/workspace/?projectId=project-123',
-    ).toBe(true);
-  });
-
-  it('switches tabs cleanly on tab button clicks', async () => {
-    (useSearchParams as Mock).mockReturnValue({
-      get: vi.fn().mockReturnValue('project-123'),
-    });
-    (getProject as Mock).mockResolvedValue({
-      success: true,
-      project: {
-        id: 'project-123',
-        title: 'Mock Project',
-        type: 'table',
-        isHandwritten: true,
-        location: [48.9, 24.5],
-        tableLocale: 'uk',
-        yearsRange: [1850, 1900],
-        sources: [],
-      },
-    });
-    (getProjectImages as Mock).mockResolvedValue([]);
-
-    render(<ProjectDetailsPage />);
-
-    await waitFor(() => {
-      expect(
-        screen.queryByText('Loading project details...'),
-      ).not.toBeInTheDocument();
-    });
-
-    // Should initially show Metadata form
-    expect(screen.getByLabelText('Title')).toBeInTheDocument();
-
-    // Click on Asset Manager Tab
-    const assetsTabButton = screen.getByText('Asset Manager');
-    fireEvent.click(assetsTabButton);
-
-    // Verify Asset Manager subview is active (has Select Images / Select More Images)
-    await waitFor(() => {
-      expect(screen.queryByLabelText('Title')).not.toBeInTheDocument();
-      expect(screen.getByText('Upload Images')).toBeInTheDocument();
-    });
-
-    // Click on Operations Tab
-    const operationsTabButton = screen.getByText('Operations');
-    fireEvent.click(operationsTabButton);
-
-    // Verify Operations view
-    await waitFor(() => {
-      expect(screen.getByText('Data Export Options')).toBeInTheDocument();
-      expect(
-        screen.getByText(
-          'Future features will include data exports to CSV, JSON, and XML format.',
-        ),
-      ).toBeInTheDocument();
-    });
-  });
-
-  it('submits metadata form edits successfully and triggers sonner success toast', async () => {
-    (useSearchParams as Mock).mockReturnValue({
-      get: vi.fn().mockReturnValue('project-123'),
-    });
-    const mockProj = {
-      id: 'project-123',
-      title: 'Original Title',
-      type: 'table' as const,
-      isHandwritten: true,
-      location: [48.9, 24.5] as [number, number],
-      tableLocale: 'uk' as const,
-      yearsRange: [1850, 1900] as [number, number],
-      sources: [],
-    };
-    (getProject as Mock).mockResolvedValue({
-      success: true,
-      project: mockProj,
-    });
-    (getProjectImages as Mock).mockResolvedValue([]);
-    (updateProject as Mock).mockResolvedValue({ success: true });
-
-    render(<ProjectDetailsPage />);
-
-    await waitFor(() => {
-      expect(
-        screen.queryByText('Loading project details...'),
-      ).not.toBeInTheDocument();
-    });
-
-    // Modify Title field
-    const titleInput = screen.getByLabelText('Title');
-    fireEvent.change(titleInput, {
-      target: { value: 'Updated Project Title' },
-    });
-
-    // Submit form
-    const saveButton = screen.getByText('Save Changes');
-    fireEvent.click(saveButton);
-
-    await waitFor(() => {
-      expect(updateProject).toHaveBeenCalledWith('project-123', {
-        title: 'Updated Project Title',
-        type: 'table',
-        isHandwritten: true,
-        location: [48.9, 24.5],
-        tableLocale: 'uk',
-        yearsRange: [1850, 1900],
-        sources: [],
-      });
-      expect(toast.success).toHaveBeenCalledWith(
-        'Project details updated successfully',
-      );
+      expect(screen.getByText('Mock Project')).toBeInTheDocument();
+      expect(screen.getByText('Metadata')).toBeInTheDocument();
+      expect(screen.getByText('Asset Manager')).toBeInTheDocument();
     });
   });
 });

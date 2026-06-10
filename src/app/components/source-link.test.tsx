@@ -1,7 +1,15 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import SourceLink from './source-link';
+
+const mockCaptureException = vi.fn();
+vi.mock('posthog-js/react', () => ({
+  usePostHog: () => ({
+    capture: vi.fn(),
+    captureException: mockCaptureException,
+  }),
+}));
 
 describe('SourceLink', () => {
   it('should render a link with the correct host name for a known site', () => {
@@ -31,5 +39,10 @@ describe('SourceLink', () => {
     const { getByText } = render(<SourceLink href="invalid-url" />);
     const textElement = getByText('invalid-url');
     expect(textElement).toBeInTheDocument();
+  });
+
+  it('should log an error to posthog if the URL is invalid', () => {
+    render(<SourceLink href="invalid-url" />);
+    expect(mockCaptureException).toHaveBeenCalled();
   });
 });

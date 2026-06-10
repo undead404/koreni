@@ -25,7 +25,7 @@ function renderResult(
   searchValue: string,
 ) {
   return (
-    <li className={styles.resultCard}>
+    <li key={index} className={styles.resultCard}>
       {/* Record Header */}
       <div className={styles.cardHeader}>
         <h3>{typedResult.document.title || 'Невідомий документ'}</h3>
@@ -82,7 +82,6 @@ const SearchResults: FC<ResultsProperties> = ({
         result_title: result.document.title,
         result_year: result.document.year,
       });
-
       return null;
     }
   }); // Replace 'any' with inferred schema type if exported

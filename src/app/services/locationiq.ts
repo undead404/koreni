@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import posthog from 'posthog-js';
 import { z } from 'zod';
 
@@ -25,7 +24,7 @@ const errorResponseSchema = z.object({
 
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 
-async function autocompleteBounced(
+export async function autocomplete(
   query: string,
   abortController: AbortController,
 ) {
@@ -57,8 +56,6 @@ async function autocompleteBounced(
     return;
   }
 }
-
-export const autocomplete = _.throttle(autocompleteBounced, 500);
 
 export async function reverseGeocode(coordinates: [number, number]) {
   try {

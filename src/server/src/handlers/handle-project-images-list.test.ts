@@ -9,6 +9,10 @@ vi.mock('../database/get-project-images.js', () => ({
   getProjectImages: vi.fn(),
 }));
 
+vi.mock('../services/r2.js', () => ({
+  getPublicUrl: vi.fn((key) => `https://mock-r2.com/${key}`),
+}));
+
 describe('handleProjectImagesList', () => {
   let mockContext: any;
 
@@ -21,6 +25,7 @@ describe('handleProjectImagesList', () => {
           if (key === 'projectId') return 'proj-123';
           return undefined;
         }),
+        query: vi.fn(() => undefined),
       },
       json: vi.fn((data, status) => ({ _data: data, status })),
     };
@@ -52,6 +57,10 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_789,
         blurhash: 'U1234567890',
+        sourceId: null,
+        cropX: null,
+        side: null,
+        isActive: 1,
       },
       {
         id: 'img-2',
@@ -63,6 +72,10 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_790,
         blurhash: 'U1234567891',
+        sourceId: null,
+        cropX: null,
+        side: null,
+        isActive: 1,
       },
     ];
 
@@ -75,10 +88,15 @@ describe('handleProjectImagesList', () => {
     expect(response.status).toBeUndefined();
     expect(response._data).toEqual({
       success: true,
-      images: mockImages,
+      images: mockImages.map((image) => ({
+        ...image,
+        url: `https://mock-r2.com/${image.storageKey}`,
+      })),
     });
 
-    expect(getProjectImages).toHaveBeenCalledWith('proj-123');
+    expect(getProjectImages).toHaveBeenCalledWith('proj-123', {
+      withTranscription: false,
+    });
   });
 
   it('should return 200 and an empty list if no images exist', async () => {
@@ -94,7 +112,9 @@ describe('handleProjectImagesList', () => {
       images: [],
     });
 
-    expect(getProjectImages).toHaveBeenCalledWith('proj-123');
+    expect(getProjectImages).toHaveBeenCalledWith('proj-123', {
+      withTranscription: false,
+    });
   });
 
   it('should return 500 if DB lookup fails', async () => {

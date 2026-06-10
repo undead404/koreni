@@ -2,7 +2,7 @@
 description: 'Refactor a specific file for performance, architectural alignment, and readability.'
 model: 'opencode/claude-opus-4-6
 temperature: 0.1
-top_p: 0.90
+top_p: 0.95
 max_tokens: 8192
 ---
 
