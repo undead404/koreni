@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-Р4069-4-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-12
+id: nova-blahovishchenka-hornostaivskyi-r-n-khersonska-okruha-smerti-1924
+location:
+  - 46.8457671
+  - 34.1718789
+size: 25
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4069-pidviddily-zapysiv-aktiv-gromadyanskogo-stanu-vykonkomiv-rajonnyh-rad-robitnychyh-selyanskyh-i-chervonoarmijskyh-deputativ-hersonshhyny/
+tableFilePath: public/csv/nova-blahovishchenka-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
+tableLocale: uk
+title: Нова Благовіщенка, Горностаївський р-н, Херсонська округа | смерті (1924)
+yearsRange:
+  - 1924
