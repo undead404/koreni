@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р426-1-2
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-12
+id: katerynivka-kakhovskyi-r-n-khersonska-okruha-spysok-chleniv-melioratornoho-tovarystva-vidrodzhennia-1922-1926
+location:
+  - 47.1106632
+  - 34.1642545
+size: 39
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-426-hersonske-agentstvo-odeskogo-gubernskogo-tovarystva-silskogospodarskogo-kredytu-silgospbank/
+tableFilePath: public/csv/katerynivka-kakhovskyi-r-n-khersonska-okruha-spysok-chleniv-melioratornoho-tovarystva-vidrodzhennia-1922-1926.csv
+tableLocale: uk
+title: Катеринівка, Каховський р-н, Херсонська округа | Список членів
+  меліораторного товариства "Відродження" (1922-1926)
+yearsRange:
+  - 1922
+  - 1926
