@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-Р4069-4-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-12
+id: hornostaivka-hornostaivskyi-r-n-khersonska-okruha-smerti-1924
+location:
+  - 47.00706
+  - 33.7317445
+size: 65
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4069-pidviddily-zapysiv-aktiv-gromadyanskogo-stanu-vykonkomiv-rajonnyh-rad-robitnychyh-selyanskyh-i-chervonoarmijskyh-deputativ-hersonshhyny/
+tableFilePath: public/csv/hornostaivka-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
+tableLocale: uk
+title: Горностаївка, Горностаївський р-н, Херсонська округа | смерті (1924)
+yearsRange:
+  - 1924
