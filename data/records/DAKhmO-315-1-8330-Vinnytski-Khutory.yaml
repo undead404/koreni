@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-06-13
+id: DAKhmO-315-1-8330-Vinnytski-Khutory
+location:
+  - 49.21025223019635
+  - 28.555183410644535
+size: 1393
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: public/csv/DAKhmO-315-1-8330-Vinnytski-Khutory.csv
+tableLocale: ru
+title: Старі хутори, Тененки, Кайдачиха, Геталка (Вінниця) 1855 – сповідний
+  розпис, ДАХмО 315-1-8330
+yearsRange:
+  - 1855
