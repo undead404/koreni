@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХО-31-141-132
+authorName: Олена Котовська
+authorEmail: elean.k@gmail.com
+date: 2026-06-13
+id: dakho-31-141-132havrylivka1811rk
+location:
+  - 48.8460067
+  - 36.8088298
+size: 450
+sources: []
+tableFilePath: public/csv/dakho-31-141-132havrylivka1811rk.csv
+tableLocale: ru
+title: ДАХО-31-141-132_Гаврилівка_1811_РК
+yearsRange:
+  - 1811
