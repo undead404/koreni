@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р2216-2-15
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-11
+id: DAKheO-R2216-2-15-Velyka-Lepetykha
+location:
+  - 47.178599
+  - 33.9428266
+size: 110
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-2216-vykonavchyj-komitet-velykolepetyskoyi-rajonnoyi-rady-narodnyh-deputativ-smt-velyka-lepetyha/
+tableFilePath: public/csv/velyka-lepetykha-velykolepetyskyi-r-n-khersonska-obl-spysok-zahyblykh-pid-chas-nimetskoi-okupatsii-1942-1944.csv
+tableLocale: uk
+title: Велика Лепетиха, Великолепетиський р-н, Херсонська обл. | Список загиблих
+  під час німецької окупації (1942-1944)
+yearsRange:
+  - 1942
+  - 1944
