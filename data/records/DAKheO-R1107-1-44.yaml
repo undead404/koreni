@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р1107-1-44
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-11
+id: DAKheO-R1107-1-44
+location:
+  - 46.8457
+  - 34.37725
+size: 48
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-r-1107-vykonavchyj-komitet-nyzhnosirogozkoyi-rajonnoyi-rady-deputativ-trudyashhyh/
+tableFilePath: public/csv/nyzhni-sirohozy-melitopolskyi-okruh-katerynoslavska-hub-zaiavy-pro-rozluchennia-1924-1925.csv
+tableLocale: uk
+title: Нижні Сірогози, Мелітопольський округ, Катеринославська губ. | Заяви про
+  розлучення (1924-1925)
+yearsRange:
+  - 1924
+  - 1925
