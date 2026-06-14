@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАХО-31-141-132
+authorName: Олена Котовська
+authorEmail: elean.k@gmail.com
+date: 2026-06-13
+id: DAKhO-31-141-132-Havrylivka
+location:
+  - 48.8460067
+  - 36.8088298
+size: 450
+sources: []
+tableFilePath: public/csv/dakho-31-141-132havrylivka1811rk.csv
+tableLocale: ru
+title: Гаврилівка (Барвінківська) – РК, 1811
+yearsRange:
+  - 1811
