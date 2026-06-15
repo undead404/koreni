@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-77-1175
+authorName: Іванна Мельник
+authorEmail: ivanna.melnik@gmail.com
+date: 2026-06-12
+id: DAZhO-1-77-1175-Lasky
+location:
+  - 51.2658445
+  - 28.9537883
+size: 125
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-M78M-YGQJ?view=explore&groupId=TH-7779-144803-429233-3&lang=en
+tableFilePath: public/csv/metrychni-knyhy-pravoslavnykh-tserkov-ovrutskoho-povitu-selo-lasky-1900-dazho-1-77-1175.csv
+tableLocale: uk
+title: Ласки – МК, 1900
+yearsRange:
+  - 1900
