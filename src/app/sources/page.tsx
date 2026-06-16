@@ -7,20 +7,24 @@ import SourcesFilter from './sources-filter';
 
 import styles from './page.module.css';
 
+const TITLE = 'Джерела';
+const DESCRIPTION =
+  'Перелік архівних справ, проіндексованих на Коренях повністю або частково.';
+
 export const metadata: Metadata = {
-  title: 'Джерела',
-  description: 'Перелік архівних справ на Коренях.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: {
     canonical: '/sources/',
   },
   openGraph: {
-    title: 'Джерела',
-    description: 'Перелік архівних справ на Коренях.',
+    title: TITLE,
+    description: DESCRIPTION,
     url: '/sources/',
   },
   twitter: {
-    title: 'Джерела',
-    description: 'Перелік архівних справ на Коренях.',
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
@@ -37,12 +41,13 @@ export default async function SourcesPage() {
   const hasOther = sources.some((s) => !s.archive);
 
   return (
-    <main className={styles.container}>
-      <h1>Джерела</h1>
-      <p className={styles.subtitle}>
-        Архівні справи, з яких походять записи в таблицях Коренів. Перевірте, чи
-        проіндексована потрібна вам справа.
-      </p>
+    <section className={styles.container} aria-labelledby="sources-title">
+      <header className={styles.header}>
+        <h1 id="sources-title" className={styles.title}>
+          {TITLE}
+        </h1>
+        <p className={styles.subtitle}>{DESCRIPTION}</p>
+      </header>
 
       <SourcesFilter
         archives={archives}
@@ -109,6 +114,6 @@ export default async function SourcesPage() {
           </table>
         </div>
       </SourcesFilter>
-    </main>
+    </section>
   );
 }
