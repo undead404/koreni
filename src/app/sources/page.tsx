@@ -9,7 +9,7 @@ import styles from './page.module.css';
 
 const TITLE = 'Джерела';
 const DESCRIPTION =
-  'Перелік архівних справ, проіндексованих на Коренях повністю або частково.';
+  'Перелік архівних справ, проіндексованих на Коренях повністю або частково';
 
 export const metadata: Metadata = {
   title: TITLE,
