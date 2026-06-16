@@ -45,9 +45,6 @@
 .table th {
   background: var(--table-row-header-bg);
   color: var(--table-row-header-text);
-  position: sticky;
-  top: 0;
-  z-index: 1;
 }
 
 .table th.centered {
@@ -94,4 +91,5 @@
 .empty {
   padding: 1rem 0;
   color: var(--description-color);
+  text-align: center;
 }

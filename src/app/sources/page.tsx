@@ -10,6 +10,7 @@ import styles from './page.module.css';
 const TITLE = 'Джерела';
 const DESCRIPTION =
   'Перелік архівних справ, проіндексованих на Коренях повністю або частково';
+const TABLES_PLURAL_RULES = new Intl.PluralRules('uk-UA');
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -33,6 +34,24 @@ function formatYears(range: readonly number[]): string {
   return `${range[0]}–${range[1]}`;
 }
 
+function formatTablesCount(count: number): string {
+  const label = (() => {
+    switch (TABLES_PLURAL_RULES.select(count)) {
+      case 'one': {
+        return 'таблиця';
+      }
+      case 'few': {
+        return 'таблиці';
+      }
+      default: {
+        return 'таблиць';
+      }
+    }
+  })();
+
+  return `${count} ${label}`;
+}
+
 export default async function SourcesPage() {
   const sources = await getArchiveSources();
   const archives = [
@@ -53,6 +72,12 @@ export default async function SourcesPage() {
         archives={archives}
         hasOther={hasOther}
         totalCount={sources.length}
+        emptyState={
+          <p className={styles.empty}>
+            Нічого не знайдено для поточних фільтрів. Спробуйте змінити умови
+            пошуку.
+          </p>
+        }
       >
         <div className={styles.tableWrapper}>
           <table className={styles.table}>
@@ -93,7 +118,9 @@ export default async function SourcesPage() {
                   <td className={styles.tablesCell}>
                     {source.tables.length >= 5 ? (
                       <details>
-                        <summary>{source.tables.length} таблиць</summary>
+                        <summary>
+                          {formatTablesCount(source.tables.length)}
+                        </summary>
                         {source.tables.map((t) => (
                           <Link key={t.id} href={`/${t.id}/1/`} title={t.title}>
                             {t.title}

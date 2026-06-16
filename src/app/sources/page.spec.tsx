@@ -92,6 +92,22 @@ describe('SourcesPage', () => {
     expect(screen.getByText('6 таблиць')).toBeDefined();
   });
 
+  it('uses the correct Ukrainian plural form for large table counts', async () => {
+    vi.mocked(getArchiveSources).mockResolvedValue([
+      buildSource({
+        tables: Array.from({ length: 21 }, (_, index) => ({
+          id: `t${index}`,
+          title: `Table ${index}`,
+        })),
+      }),
+    ]);
+
+    const jsx = await SourcesPage();
+    render(jsx);
+
+    expect(screen.getByText('21 таблиця')).toBeDefined();
+  });
+
   it('renders unparsed sources with raw text spanning the code columns', async () => {
     vi.mocked(getArchiveSources).mockResolvedValue([
       buildSource({

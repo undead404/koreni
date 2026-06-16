@@ -15,6 +15,7 @@ type Properties = {
   hasOther: boolean;
   totalCount: number;
   children: ReactNode;
+  emptyState?: ReactNode;
 };
 
 const OTHER = '__other__';
@@ -30,6 +31,7 @@ export default function SourcesFilter({
   hasOther,
   totalCount,
   children,
+  emptyState,
 }: Properties) {
   const containerReference = useRef<HTMLDivElement>(null);
   const [archive, setArchive] = useState('');
@@ -154,7 +156,8 @@ export default function SourcesFilter({
         Показано {visibleCount.toLocaleString('uk-UA')} з{' '}
         {totalCount.toLocaleString('uk-UA')}
       </div>
-      {children}
+      {visibleCount === 0 && emptyState}
+      <div hidden={visibleCount === 0}>{children}</div>
     </div>
   );
 }

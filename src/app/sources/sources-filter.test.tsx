@@ -5,6 +5,7 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import SourcesFilter from './sources-filter';
@@ -12,9 +13,19 @@ import SourcesFilter from './sources-filter';
 function renderFilter({
   archives = ['ДАКО', 'ДАЖО'],
   hasOther = true,
-}: { archives?: string[]; hasOther?: boolean } = {}) {
+  emptyState = <p>Нічого не знайдено</p>,
+}: {
+  archives?: string[];
+  hasOther?: boolean;
+  emptyState?: ReactNode;
+} = {}) {
   return render(
-    <SourcesFilter archives={archives} hasOther={hasOther} totalCount={3}>
+    <SourcesFilter
+      archives={archives}
+      hasOther={hasOther}
+      totalCount={3}
+      emptyState={emptyState}
+    >
       <table>
         <tbody>
           <tr
@@ -40,6 +51,8 @@ function renderFilter({
 const getRow = (label: string) =>
   screen.getByText(label).closest('tr') as HTMLTableRowElement;
 
+const getTable = () => screen.queryByRole('table');
+
 const waitForDisplays = (
   rowA: string,
   rowB: string,
@@ -57,6 +70,21 @@ const waitForDisplays = (
       );
     }
     return triple;
+  });
+
+const waitForTableToDisappear = (): Promise<void> =>
+  waitFor(() => {
+    if (getTable()) {
+      throw new Error('expected table to be hidden');
+    }
+  });
+
+const waitForTableToAppear = (): Promise<void> =>
+  waitFor(() => {
+    const table = getTable();
+    if (!table) {
+      throw new Error('expected table to be visible');
+    }
   });
 
 describe('SourcesFilter', () => {
@@ -134,8 +162,30 @@ describe('SourcesFilter', () => {
     fireEvent.change(screen.getByLabelText('Фонд'), {
       target: { value: '999' },
     });
+    await waitForTableToDisappear();
     fireEvent.click(screen.getByRole('button', { name: 'Скинути' }));
+    await waitForTableToAppear();
     expect(await waitForDisplays('', '', '')).toStrictEqual(['', '', '']);
+  });
+
+  it('shows empty state when no rows match the filters', async () => {
+    renderFilter();
+    fireEvent.change(screen.getByLabelText('Фонд'), {
+      target: { value: '999' },
+    });
+
+    await waitForTableToDisappear();
+    expect(screen.getByText('Нічого не знайдено')).toBeDefined();
+  });
+
+  it('hides the table header when no rows match the filters', async () => {
+    renderFilter();
+    fireEvent.change(screen.getByLabelText('Фонд'), {
+      target: { value: '999' },
+    });
+
+    await waitForTableToDisappear();
+    expect(screen.queryByRole('columnheader', { name: 'Архів' })).toBeNull();
   });
 
   it('hides "Інші джерела" option when hasOther is false', () => {
