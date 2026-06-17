@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-Р2588-1-27
+  - ДАХеО-Р2588-3-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-15
+id: DAKheO-R2588-Hurtovi-Khutory-repatrianty
+location:
+  - 46.648647940326406
+  - 33.144339585040484
+size: 12
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/1/27
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2588/3/1
+  - https://docs.google.com/spreadsheets/d/1M3Nr2kVbTHHY5BJcVL3cfVY4cPnel5xC6XZ3xOfX3uc/edit?usp=sharing
+tableFilePath: public/csv/hurtovi-khutora-novo-maiachkivskyi-r-n-khersonska-obl-spysok-repatrantiv-z-nimechchyny-1949.csv
+tableLocale: uk
+title: Гуртові хутора, Ново-Маячківський р-н, Херсонська обл. | Список
+  репатрантів з Німеччини (1949)
+yearsRange:
+  - 1949
