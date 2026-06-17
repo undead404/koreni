@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-Р2942-1-50
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-15
+id: DAKheO-R2942-1-50-Liubymivka
+location:
+  - 46.8115514
+  - 33.5646046
+size: 213
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2942/1/50
+tableFilePath: public/csv/liubymivka-kakhovskyi-r-n-khersonska-obl-oblik-trudodniv-pratsivnykiv-artili-1945.csv
+tableLocale: uk
+title: Любимівка, Каховський р-н, Херсонська обл. | Облік трудоднів працівників
+  артілі (1945)
+yearsRange:
+  - 1945
