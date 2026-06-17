@@ -3,7 +3,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-06-17
-id: sofiivka
+id: DAKO-384-5-274
 location:
   - 49.942127
   - 29.744102
@@ -13,6 +13,6 @@ sources:
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/274
 tableFilePath: public/csv/sofiivka.csv
 tableLocale: uk
-title: Софіївка
+title: Софіївка (Кожанська) – перепис, 1897
 yearsRange:
   - 1897
