@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-5-268
+  - ДАКО-384-5-269
+  - ДАКО-384-5-270
+  - ДАКО-384-5-271
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-06-16
+id: DAKO-384-5-Malopolovetske
+location:
+  - 49.916008
+  - 29.81319
+size: 250
+sources:
+  - https://drive.google.com/drive/u/0/folders/1w4iQ-2zUEZpYggoKtvVBcTRtBN0cVNsx
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/268
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/269
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/270
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/271
+tableFilePath: public/csv/malopolovetske.csv
+tableLocale: uk
+title: Малополовецьке – перепис, 1897
+yearsRange:
+  - 1897
