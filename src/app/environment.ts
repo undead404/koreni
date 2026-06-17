@@ -33,6 +33,11 @@ const environment = {
     process.env.NEXT_PUBLIC_LOCATIONIQ_KEY,
     false,
   ),
+  NEXT_PUBLIC_OAUTH_CLIENT_ID: validateEnvironment(
+    'NEXT_PUBLIC_OAUTH_CLIENT_ID',
+    process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
+    true,
+  ),
   NEXT_PUBLIC_POSTHOG_KEY: validateEnvironment(
     'NEXT_PUBLIC_POSTHOG_KEY',
     process.env.NEXT_PUBLIC_POSTHOG_KEY,

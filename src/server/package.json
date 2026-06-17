@@ -4,17 +4,26 @@
     "@bugsnag/js": "~8.8.1",
     "@bugsnag/plugin-hono": "^8.8.0",
     "@hono/node-server": "^1.19.13",
+    "@libsql/client": "0.17.3",
+    "@libsql/kysely-libsql": "0.4.1",
     "csv-parse": "~5.5.0",
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
+    "google-auth-library": "^10.6.2",
     "hono": "^4.12.21",
+    "kysely": "^0.29.2",
     "octokit": "~5.0.5",
     "posthog-node": "~5.28.8",
     "rate-limiter-flexible": "^9.1.1",
+    "uuid": "^14.0.0",
     "yaml": "~2.8.3",
     "zod": "~4.3.6"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/uuid": "^11.0.0",
+    "better-sqlite3": "^12.10.0",
+    "kysely-codegen": "^0.20.0",
     "tsx": "~4.21.0",
     "typescript": "~5.9.3",
     "vite-tsconfig-paths": "^6.1.1",
@@ -26,8 +35,13 @@
   "license": "MIT",
   "main": "server/src/index.js",
   "name": "koreni-server",
+  "resolutions": {
+    "**/@libsql/client": "0.17.3",
+    "**/@libsql/core": "0.17.3"
+  },
   "scripts": {
     "build": "tsc && cp package.json ./dist && cp yarn.lock ./dist",
+    "db:init": "tsx src/database/init.ts",
     "dev": "tsx ./src/index.ts",
     "start": "node server/src/index.js",
     "test": "vitest"

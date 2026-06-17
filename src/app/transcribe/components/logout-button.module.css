@@ -1,0 +1,17 @@
+.root {
+  display: inline-flex;
+  padding: 0.25rem 0.5rem;
+  background-color: #dc2626;
+  color: #fff;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}

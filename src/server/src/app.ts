@@ -4,8 +4,14 @@ import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
 import handleSubmit from './handlers/handle-submit.js';
-import { authMiddleware } from './middlewares/auth.js';
+import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
+import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
+import handleTranscribeAuthDelete from './handlers/handle-transcribe-auth-session-delete.js';
+import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-create.js';
+import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
+import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
+import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
 import { bugsnagMiddleware } from './services/bugsnag.js';
 import environment from './environment.js';
 
@@ -24,7 +30,7 @@ export function createApp() {
   }
 
   // CORS configuration
-  app.use(cors({ origin: environment.NEXT_PUBLIC_SITE }));
+  app.use(cors({ credentials: true, origin: environment.NEXT_PUBLIC_SITE }));
 
   // Body parsing (limit 60kb)
   app.use(
@@ -38,11 +44,31 @@ export function createApp() {
   app.use('/api/*', rateLimitMiddleware);
 
   // Routes
-  app.post('/api/submit', authMiddleware, handleSubmit);
+  app.post('/api/submit', apiAuthMiddleware, handleSubmit);
 
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });
   });
+
+  app.post('/api/auth/google', handleTranscribeGoogleAuth);
+  app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
+  app.delete(
+    '/api/auth/session/current',
+    transcribeAuthMiddleware,
+    handleTranscribeAuthDelete,
+  );
+
+  app.get(
+    '/api/transcribe/projects',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectList,
+  );
+
+  app.post(
+    '/api/transcribe/projects',
+    transcribeAuthMiddleware,
+    handleTranscribeProjectCreate,
+  );
 
   // 404 Handler for undefined routes
   app.notFound((c) => {

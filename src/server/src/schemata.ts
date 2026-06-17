@@ -27,6 +27,24 @@ export const importPayloadSchema = z.object({
 
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
 
+export const projectCreatePayloadSchema = z.object({
+  id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+  isHandwritten: z.boolean(),
+  location: z.tuple([
+    z.number().min(-90).max(90),
+    z.number().min(-180).max(180),
+  ]),
+  sources: z.array(z.string()),
+  tableLocale: z.enum(['pl', 'ru', 'uk']),
+  title: nonEmptyString,
+  yearsRange: z.union([
+    z.tuple([z.number(), z.number()]),
+    z.tuple([z.number()]),
+  ]),
+});
+
+export type ProjectCreatePayload = z.infer<typeof projectCreatePayloadSchema>;
+
 export const turnstilePayloadSchema = z.object({
   turnstileToken: nonEmptyString.optional(),
 });
@@ -38,3 +56,17 @@ export const turnstileResponseSchema = z.object({
 });
 
 export type TurnstileResponse = z.infer<typeof turnstileResponseSchema>;
+
+export const authSchema = z.object({
+  credential: z.string(),
+});
+
+export const jwtSchema = z.object({
+  exp: z.number(),
+  iat: z.number(),
+  isAdmin: z.boolean().optional().default(false),
+  sub: z.string(),
+  v: z.number(),
+});
+
+export type Jwt = z.infer<typeof jwtSchema>;

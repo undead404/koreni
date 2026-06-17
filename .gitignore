@@ -57,3 +57,5 @@ next-env.d.ts
 
 # GitHub App credentials
 gha-creds-*.json
+
+/src/server/local.db
