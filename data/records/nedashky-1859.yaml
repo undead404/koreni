@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-1-74-325
+authorName: Олександр Недашківський
+authorEmail: oleksandernedashkivskiy@gmail.com
+date: 2026-06-19
+id: nedashky-1859
+location:
+  - 50.9806335
+  - 29.2259721
+size: 404
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%96%D0%9E/1/74/325
+  - https://docs.google.com/spreadsheets/d/1fJU15w0Ig8M2RDInmGOXKQZxrMdXjVv1rZb6ce17iGU/edit?gid=0#gid=0
+tableFilePath: public/csv/nedashky-1859.csv
+tableLocale: ru
+title: Недашки 1859
+yearsRange:
+  - 1859
