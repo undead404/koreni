@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЧО-833-1-265
+authorName: Буханистий Максим
+authorEmail: vskxndpm@gmail.com
+date: 2026-06-21
+id: zapys-iz-inventaria-selian-obokh-statei-yaki-vtekly-z-sela-nova-hreblia-za-rozporiadzhenniam-tsym-selom-pana-piontkovskoho
+location:
+  - 49.14532100535495
+  - 30.382795245815803
+size: 75
+sources: []
+tableFilePath: public/csv/zapys-iz-inventaria-selian-obokh-statei-yaki-vtekly-z-sela-nova-hreblia-za-rozporiadzhenniam-tsym-selom-pana-piontkovskoho.csv
+tableLocale: uk
+title: Запис із Інвентаря селян обох статей, які втекли з села Нова Гребля, за
+  розпорядженням цим селом пана Піонтковського.
+yearsRange:
+  - 1830
+  - 1840
