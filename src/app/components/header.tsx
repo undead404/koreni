@@ -94,6 +94,18 @@ export default function Header() {
               Таблиці
             </Link>
           </li>
+          <li>
+            <Link
+              href="/sources"
+              className={clsx(
+                styles.link,
+                pathname === '/sources' && styles.active,
+              )}
+              aria-current={pathname === '/sources' ? 'page' : undefined}
+            >
+              Джерела
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>

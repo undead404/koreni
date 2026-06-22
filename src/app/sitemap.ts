@@ -59,6 +59,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: new URL('/tables/', environment.NEXT_PUBLIC_SITE).toString(),
     },
     {
+      changeFrequency: 'daily',
+      lastModified: new Date(),
+      url: new URL('/sources/', environment.NEXT_PUBLIC_SITE).toString(),
+    },
+    {
       changeFrequency: 'monthly',
       lastModified: new Date(),
       url: new URL('/about/', environment.NEXT_PUBLIC_SITE).toString(),
