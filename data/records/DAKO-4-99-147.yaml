@@ -1,12 +1,12 @@
 archiveItems:
   - ДАКО-4-99-147
-authorName: Буханистий Максим
+authorName: Максим Буханистий
 authorEmail: vskxndpm@gmail.com
 date: 2026-06-24
-id: pro-vykup-selianamy-s-nova-hreblia-umanskoho-povitu-zemelnykh-uhid-u-pomishchytsi-ioanny-piontkovskoi
+id: DAKO-4-99-147
 location:
-  - 49.14537715084387
-  - 30.38399052612285
+  - 49.1458279
+  - 30.3841587
 size: 94
 sources: []
 tableFilePath: public/csv/pro-vykup-selianamy-s-nova-hreblia-umanskoho-povitu-zemelnykh-uhid-u-pomishchytsi-ioanny-piontkovskoi.csv
