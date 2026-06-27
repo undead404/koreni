@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-Р6023-4-7525
+authorName: Яна Ілендзеєр
+authorEmail: iana.iavorska@gmail.com
+date: 2026-06-27
+id: DAViO-R6023-4-7525-v1
+location:
+  - 49.23248067144972
+  - 28.469718034602398
+size: 142
+sources:
+  - https://drive.google.com/drive/folders/1IGAVsu9BtzcGDdyd6vIr43DhfMcTpJmR
+tableFilePath: public/csv/daviofr6023op4sp7525.csv
+tableLocale: ru
+title: Справа по звинуваченню Житанського Антона Яковича та ін.
+yearsRange:
+  - 1938
