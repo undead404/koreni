@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-Р6023-4-7525
+  - Т.1
+authorName: "Яна Ілендзеєр "
+authorEmail: iana.iavorska@gmail.com
+date: 2026-06-27
+id: daviofr6023op4sp7525
+location:
+  - 49.23248067144972
+  - 28.469718034602398
+size: 142
+sources:
+  - https://drive.google.com/drive/folders/1IGAVsu9BtzcGDdyd6vIr43DhfMcTpJmR
+tableFilePath: public/csv/daviofr6023op4sp7525.csv
+tableLocale: ru
+title: davio_f_r6023_op4_sp7525
+yearsRange:
+  - 1938
