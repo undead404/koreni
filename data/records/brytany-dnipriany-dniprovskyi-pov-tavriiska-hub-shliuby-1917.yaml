@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-259-3-11
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: brytany-dnipriany-dniprovskyi-pov-tavriiska-hub-shliuby-1917
+location:
+  - 46.7491957
+  - 33.2632062
+size: 144
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-3-fond-%e2%84%96-259/
+tableFilePath: public/csv/brytany-dnipriany-dniprovskyi-pov-tavriiska-hub-shliuby-1917.csv
+tableLocale: uk
+title: Британи (Дніпряни), Дніпровський пов. Таврійська губ. | шлюби (1917)
+yearsRange:
+  - 1917
