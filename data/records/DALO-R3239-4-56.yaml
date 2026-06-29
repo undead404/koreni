@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЛО-Р3239-4-56
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: DALO-R3239-4-56
+location:
+  - 50.6477419
+  - 24.0171267
+size: 44
+sources: []
+tableFilePath: public/csv/malkiv-makw-hmina-kryliv-hrubeshivskyi-pov-deportovani-z-polshchi.csv
+tableLocale: uk
+title: Малків (Małków) гміна Крилів Грубешівський пов. | Депортовані з Польщі
+yearsRange:
+  - 1944
+  - 1946
