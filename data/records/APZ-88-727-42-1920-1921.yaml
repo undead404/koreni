@@ -1,0 +1,19 @@
+archiveItems:
+  - APZ-88-727-42
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: APZ-88-727-42-1920-1921
+location:
+  - 50.6811759
+  - 23.9807024
+size: 336
+sources:
+  - https://www.szukajwarchiwach.gov.pl/en/jednostka/-/jednostka/40196097
+tableFilePath: public/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-narodzhennia-1920-1921.csv
+tableLocale: uk
+title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. |
+  народження (1920-1921)
+yearsRange:
+  - 1920
+  - 1921
