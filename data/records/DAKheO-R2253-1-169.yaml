@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-Р2253-1-169
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: DAKheO-R2253-1-169
+location:
+  - 46.51009
+  - 33.113201
+size: 623
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2253/1/169
+tableFilePath: public/csv/podo-kalynivka-tsiurupynskyi-r-n-khersonska-obl-posimeini-spysky-pratsivnykiv-artili-1946.csv
+tableLocale: uk
+title: Подо-Калинівка, Цюрупинський р-н, Херсонська обл. | Посімейні списки
+  працівників артілі (1946)
+yearsRange:
+  - 1946
