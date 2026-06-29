@@ -3,7 +3,7 @@ archiveItems:
 authorName: Олена Савків
 authorEmail: el.dombrovan@gmail.com
 date: 2026-06-28
-id: hola-prystan-khersonska-okruha-vsesoiuznyi-perepys-naselennia-1926
+id: TsDAVO-582-1-1494-Hola-Prystan
 location:
   - 46.5320381
   - 32.5345028
@@ -12,6 +12,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-LQZS-2XP?view=explore&groupId=TH-7744-117053-1070-33&grid=on&lang=en
 tableFilePath: public/csv/hola-prystan-khersonska-okruha-vsesoiuznyi-perepys-naselennia-1926.csv
 tableLocale: uk
-title: Гола Пристань, Херсонська округа | Всесоюзний перепис населення (1926 )
+title: Гола Пристань, Херсонська округа | Всесоюзний перепис населення (1926)
 yearsRange:
   - 1926
