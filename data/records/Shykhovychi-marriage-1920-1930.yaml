@@ -1,0 +1,34 @@
+archiveItems:
+  - APZ-88-727-44
+  - APZ-88-727-45
+  - USC Mircze. Szychowice praw UMZ 1925
+  - USC Mircze. Szychowice praw UMZ 1926
+  - USC Mircze. Szychowice praw UMZ 1927
+  - USC Mircze. Szychowice praw UMZ 1928
+  - USC Mircze. Szychowice praw UMZ 1929
+  - USC Mircze. Szychowice praw UMZ 1930
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: Shykhovychi-marriage-1920-1930
+location:
+  - 50.6811759
+  - 23.9807024
+size: 743
+sources:
+  - https://www.szukajwarchiwach.gov.pl/en/jednostka/-/jednostka/40196101
+  - https://www.szukajwarchiwach.gov.pl/en/jednostka/-/jednostka/40196103
+  - https://fotolubgens.lubgens.eu/index.php?/category/3496
+  - https://fotolubgens.lubgens.eu/index.php?/category/3561
+  - https://fotolubgens.lubgens.eu/index.php?/category/3566
+  - https://fotolubgens.lubgens.eu/index.php?/category/3514
+  - https://fotolubgens.lubgens.eu/index.php?/category/3518
+  - https://fotolubgens.lubgens.eu/index.php?/category/3569
+  - https://docs.google.com/spreadsheets/d/1KYV2RsxD0yp5-I3jg8Vbe3ieknDvGegx46y_EfBWbyc/edit?usp=sharing
+tableFilePath: public/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-shliuby1920-1930.csv
+tableLocale: uk
+title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. | шлюби
+  (1920-1930)
+yearsRange:
+  - 1920
+  - 1930
