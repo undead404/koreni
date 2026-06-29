@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЛО-Р3229-4-58
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-06-28
+id: DALO-R3229-4-58
+location:
+  - 50.7284925
+  - 23.9475429
+size: 419
+sources: []
+tableFilePath: public/csv/miniany-mieniany-hrubeshivskyi-pov-deportovani-z-polshchi.csv
+tableLocale: uk
+title: Міняни (Mieniany) Грубешівський пов. | Депортовані з Польщі
+yearsRange:
+  - 1944
+  - 1946
