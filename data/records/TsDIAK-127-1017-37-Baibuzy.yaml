@@ -1,9 +1,9 @@
 archiveItems:
-  - ДЦІАК-127-1017-37 знімок 23
+  - ЦДІАК-127-1017-37
 authorName: Сергій Щербина
 authorEmail: sergey41053@gmail.com
 date: 2026-06-30
-id: sbaibuzy-cherkaskyi-r-n-cherkaskoi-oblasti-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r
+id: TsDIAK-127-1017-37-Baibuzy
 location:
   - 49.4708908
   - 31.6646192
@@ -11,7 +11,6 @@ size: 245
 sources: []
 tableFilePath: public/csv/sbaibuzy-cherkaskyi-r-n-cherkaskoi-oblasti-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
 tableLocale: uk
-title: с.Байбузи (Черкаський р-н Черкаської області) - сповідний розпис церкви
-  Покрова Богоматері, 1788р.
+title: Байбузи – сповідний розпис (1788), знімок 23
 yearsRange:
   - 1788
