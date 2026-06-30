@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1017-37 стор.11
+authorName: Сергій Щербина
+authorEmail: sergey41053@gmail.com
+date: 2026-06-30
+id: s
+location:
+  - 49.461028483416214
+  - 31.690940230697517
+size: 1107
+sources:
+  - https://docs.google.com/spreadsheets/d/1NDGbXHek3F_9jCO7o3q2hImmTgQY6SqO2c0G2Ed1fUY/edit?gid=0#gid=0
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-CQ8F-5788?view=explore&groupId=TH-7773-118374-4985-79&lang=ru
+tableFilePath: public/csv/s.csv
+tableLocale: uk
+title: с
+yearsRange:
+  - 1788
