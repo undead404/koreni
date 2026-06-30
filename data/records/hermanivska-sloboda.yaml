@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1016-525
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-06-30
+id: hermanivska-sloboda
+location:
+  - 49.99054
+  - 30.55847
+size: 198
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-TQZX-9YK?view=explore&groupId=TH-7738-117390-572-72&lang=uk
+  - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
+tableFilePath: public/csv/hermanivska-sloboda.csv
+tableLocale: uk
+title: Германівська Слобода, сповідка
+yearsRange:
+  - 1888
