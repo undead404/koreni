@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАДоО-400-1-3
+  - ДАДоО-400-1-6
+  - ДАДоО-400-1-8
+  - ДАДоО-400-1-12
+  - ДАДоО-400-1-16
+  - ДАДоО-400-1-17
+authorName: kovalyovgnlg
+authorEmail: kovalyovgnlg@gmail.com
+date: 2026-07-04
+id: DADoO-400-1-death
+location:
+  - 48.32577
+  - 37.33223
+size: 8579
+sources: []
+tableFilePath: public/csv/dadoo-f400-pomerli.csv
+tableLocale: ru
+title: Новоекономічне – померлі (1866-1918)
+yearsRange:
+  - 1866
+  - 1918
