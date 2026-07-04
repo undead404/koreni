@@ -8,7 +8,7 @@ archiveItems:
 authorName: kovalyovgnlg
 authorEmail: kovalyovgnlg@gmail.com
 date: 2026-07-04
-id: dadoo-f400-pomerli
+id: DADoO-400-1-death
 location:
   - 48.32577
   - 37.33223
@@ -16,7 +16,7 @@ size: 8579
 sources: []
 tableFilePath: public/csv/dadoo-f400-pomerli.csv
 tableLocale: ru
-title: ДАДоО Ф.400 Померлі
+title: Новоекономічне – померлі (1866-1918)
 yearsRange:
   - 1866
   - 1918
