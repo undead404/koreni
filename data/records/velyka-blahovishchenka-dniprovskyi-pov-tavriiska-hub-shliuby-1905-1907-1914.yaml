@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-259-4-2
+  - ДАХеО-259-4-3
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-07-08
+id: velyka-blahovishchenka-dniprovskyi-pov-tavriiska-hub-shliuby-1905-1907-1914
+location:
+  - 46.8661692
+  - 34.0693903
+size: 228
+sources: []
+tableFilePath: public/csv/velyka-blahovishchenka-dniprovskyi-pov-tavriiska-hub-shliuby-1905-1907-1914.csv
+tableLocale: uk
+title: Велика Благовіщенка, Дніпровський пов. Таврійська губ. | шлюби (1905,
+  1907, 1914)
+yearsRange:
+  - 1905
+  - 1914
