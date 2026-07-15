@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-5069-1-293
+authorName: Іванна Мельник
+authorEmail: ivanna.melnik@gmail.com
+date: 2026-07-15
+id: dazhor-50691293-alfavitna-knyha-na-zahalnohubernski-knyhy-pro-narodzhennia-1921r-ovrutskyi-povit
+location:
+  - 51.3259771
+  - 28.8026718
+size: 168
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%96%D0%9E/%D0%A0-5069/1/293
+tableFilePath: public/csv/dazhor-50691293-alfavitna-knyha-na-zahalnohubernski-knyhy-pro-narodzhennia-1921r-ovrutskyi-povit.csv
+tableLocale: uk
+title: ДАЖО/Р-5069/1/293 Алфавітна книга на загальногубернські книги про
+  народження  (Овруч та Овруцький повіт)
+yearsRange:
+  - 1921
