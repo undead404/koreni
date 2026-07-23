@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-77-68
+authorName: Катерина К
+authorEmail: kolomytska@gmail.com
+date: 2026-07-16
+id: DAZhO-1-77-68-Babushky-death
+location:
+  - 50.0021714
+  - 28.1832775
+size: 75
+sources:
+  - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/68
+tableFilePath: public/csv/babushky-smert-1873.csv
+tableLocale: ru
+title: Бабушки - смерть, 1873
+yearsRange:
+  - 1873
