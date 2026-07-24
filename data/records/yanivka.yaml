@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1016-525
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-07-24
+id: yanivka
+location:
+  - 49.916183
+  - 30.685455
+size: 97
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-BQZX-9BK?view=explore&groupId=TH-7738-117390-572-72&lang=uk
+  - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
+tableFilePath: public/csv/yanivka.csv
+tableLocale: uk
+title: Янівка
+yearsRange:
+  - 1888
