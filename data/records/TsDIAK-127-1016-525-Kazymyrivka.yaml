@@ -3,7 +3,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-07-24
-id: kazymyrivka
+id: TsDIAK-127-1016-525-Kazymyrivka
 location:
   - 49.94453
   - 30.70507
@@ -13,6 +13,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-BQZX-9BK?view=explore&groupId=TH-7738-117390-572-72&lang=uk
 tableFilePath: public/csv/kazymyrivka.csv
 tableLocale: uk
-title: Казимирівка
+title: Казимирівка – сповідний розпис (1888)
 yearsRange:
   - 1888
