@@ -3,7 +3,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-07-24
-id: yanivka
+id: TsDIAK-127-1016-525-Yanivka
 location:
   - 49.916183
   - 30.685455
@@ -13,6 +13,6 @@ sources:
   - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
 tableFilePath: public/csv/yanivka.csv
 tableLocale: uk
-title: Янівка
+title: Янівка – сповідний розпис (1888)
 yearsRange:
   - 1888
