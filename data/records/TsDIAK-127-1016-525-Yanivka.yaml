@@ -13,6 +13,6 @@ sources:
   - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
 tableFilePath: public/csv/yanivka.csv
 tableLocale: uk
-title: Янівка – сповідний розпис (1888)
+title: Янівка (Іванівка Миронівська) – сповідний розпис (1888)
 yearsRange:
   - 1888
