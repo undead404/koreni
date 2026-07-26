@@ -3,7 +3,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-07-24
-id: horokhuvatka1
+id: TsDIAK-127-1016-525-Horokuvatka
 location:
   - 49.913288
   - 30.694771
@@ -13,6 +13,6 @@ sources:
   - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
 tableFilePath: public/csv/horokhuvatka1.csv
 tableLocale: uk
-title: Горохуватка1
+title: Горохуватка – сповідний розпис (1888)
 yearsRange:
   - 1888
