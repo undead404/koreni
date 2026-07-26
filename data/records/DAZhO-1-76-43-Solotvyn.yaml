@@ -3,7 +3,7 @@ archiveItems:
 authorName: Валерія Кузінська
 authorEmail: lerakuzinska@gmail.com
 date: 2026-07-24
-id: indeksatsiia
+id: DAZhO-1-76-43-Solotvyn
 location:
   - 50.03787
   - 28.6903652
@@ -14,6 +14,6 @@ sources:
 tableFilePath: public/csv/indeksatsiia.csv
 tableLocale: uk
 title: "Записи про народження 1828р. Хрестовоздвиженська церква, с.Солотвин,
-  Житомирський повіт, Волинська губернія. "
+  Житомирський повіт, Волинська губернія"
 yearsRange:
   - 1828
