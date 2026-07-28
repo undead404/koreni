@@ -11,7 +11,7 @@ size: 329
 sources:
   - https://docs.google.com/spreadsheets/d/1KuluK2aD5e5pQe2WlG7PKJBZQPqEq5IHe6KUqZ81ssU/edit?gid=0#gid=0
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-Z7BQ-Q283-T?view=explore&groupId=TH-7744-160186-59825-59&lang=uk
-tableFilePath: public/csv/nedashky-1858.csv
+tableFilePath: data/csv/nedashky-1858.csv
 tableLocale: ru
 title: Недашки 1858
 yearsRange:

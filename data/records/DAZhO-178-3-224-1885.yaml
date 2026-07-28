@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 163
 sources: []
-tableFilePath: public/csv/troianiv-1885-mk-narodzhennia-dazho-178-3-224-kostel.csv
+tableFilePath: data/csv/troianiv-1885-mk-narodzhennia-dazho-178-3-224-kostel.csv
 tableLocale: uk
 title: Троянів 1885 народження, костел
 yearsRange:

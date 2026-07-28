@@ -8,7 +8,6 @@ on:
       - main
     paths:
       - 'data/**'
-      - 'public/csv/**'
       - 'src/populate-typesense/**'
       - '.github/workflows/typesense.yml'
   workflow_dispatch:
@@ -44,7 +43,7 @@ jobs:
           fail_on_initial_diff_error: true
           files: |
             data/**/*.yaml
-            public/csv/**/*.csv
+            data/csv/**/*.csv
           separator: ','
 
       - name: Populate Typesense

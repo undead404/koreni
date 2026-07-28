@@ -11,7 +11,7 @@ location:
 size: 240
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-8-fond-%e2%84%96-259/
-tableFilePath: public/csv/adaman-vtoro-oleksandrivka-dniprovskyi-pov-tavriiska-hub-shliuby-1889-1904.csv
+tableFilePath: data/csv/adaman-vtoro-oleksandrivka-dniprovskyi-pov-tavriiska-hub-shliuby-1889-1904.csv
 tableLocale: uk
 title: Адамань (Второ-Олександрівка), Дніпровський пов. Таврійська губ. | шлюби
   (1889, 1904)

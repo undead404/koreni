@@ -35,7 +35,7 @@ location:
 size: 3081
 sources:
   - https://docs.google.com/spreadsheets/d/1X0tEYKFTawxTTIrxqX1GkC5Pfwa6xyD-39YXzxN2lkY/edit?gid=768562649#gid=768562649
-tableFilePath: public/csv/novoukrainka-pomichna-pishchanyy-brid-shliub.csv
+tableFilePath: data/csv/novoukrainka-pomichna-pishchanyy-brid-shliub.csv
 tableLocale: uk
 title: Новоукраїнка, Помічна, Піщаний Брід - Шлюб
 yearsRange:

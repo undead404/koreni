@@ -10,7 +10,7 @@ location:
 size: 157
 sources:
   - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?usp=sharing
-tableFilePath: public/csv/DAKrO-R7915-1-418-Pokrovka.csv
+tableFilePath: data/csv/DAKrO-R7915-1-418-Pokrovka.csv
 tableLocale: ru
 title: Книга реєстрації актів громадянського стану про народження, село
   Покровка, 1924, ДАКрО-Р7915-1-418

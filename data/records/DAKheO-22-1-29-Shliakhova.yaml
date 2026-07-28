@@ -10,7 +10,7 @@ location:
 size: 110
 sources:
   - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
-tableFilePath: public/csv/DAKheO-22-1-29-Shliakhova-2.csv
+tableFilePath: data/csv/DAKheO-22-1-29-Shliakhova-2.csv
 tableLocale: ru
 title: Ревізька казка селян, село Шляхова, 1858, ДАХеО-22-1-29
 yearsRange:

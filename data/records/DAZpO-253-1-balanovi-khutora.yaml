@@ -13,7 +13,7 @@ location:
 size: 6
 sources:
   - https://docs.google.com/spreadsheets/d/1NYsg3ck66aoQ-zrfF6FGw60W--BzhLu2sNU7NQULaCM/edit?usp=sharing
-tableFilePath: public/csv/balanovi-khutora-blanky-spetskultur.csv
+tableFilePath: data/csv/balanovi-khutora-blanky-spetskultur.csv
 tableLocale: uk
 title: Баланові хутора, Дніпровський пов. Таврійська губ. | Бланки спец.культур
 yearsRange:

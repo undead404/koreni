@@ -30,7 +30,7 @@ location:
 size: 4671
 sources:
   - https://docs.google.com/spreadsheets/d/1wvR7WrXBKUiQbJhCtSeOyoVOrCoET_8D/edit?usp=sharing&ouid=102761726513034960152&rtpof=true&sd=true
-tableFilePath: public/csv/dmytrivka-dmytrivska-volost-tahanrizka-okruha-ovd-ta-inshi-sela-okruhy.csv
+tableFilePath: data/csv/dmytrivka-dmytrivska-volost-tahanrizka-okruha-ovd-ta-inshi-sela-okruhy.csv
 tableLocale: uk
 title: Дмитрівка, Дмитрівська волость, Таганрізька округа ОВД та інші села округи
 yearsRange:

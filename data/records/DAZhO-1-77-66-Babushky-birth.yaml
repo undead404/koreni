@@ -10,7 +10,7 @@ location:
 size: 285
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-N77J-K9R9?view=explore&groupId=TH-7754-140027-3992-22&grid=on&lang=en
-tableFilePath: public/csv/babushky-narodzhennia-1872.csv
+tableFilePath: data/csv/babushky-narodzhennia-1872.csv
 tableLocale: ru
 title: Бабушки - народження, 1872
 yearsRange:

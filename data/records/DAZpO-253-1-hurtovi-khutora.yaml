@@ -16,7 +16,7 @@ location:
 size: 8
 sources:
   - https://docs.google.com/spreadsheets/d/1M3Nr2kVbTHHY5BJcVL3cfVY4cPnel5xC6XZ3xOfX3uc/edit?usp=sharing
-tableFilePath: public/csv/hurtovi-khutora-blanky-spetskultur.csv
+tableFilePath: data/csv/hurtovi-khutora-blanky-spetskultur.csv
 tableLocale: uk
 title: Гуртові хутора, Дніпровський пов. Таврійська губ. | Бланки спец.культур
 yearsRange:

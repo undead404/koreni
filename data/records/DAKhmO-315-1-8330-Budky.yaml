@@ -10,7 +10,7 @@ location:
 size: 628
 sources:
   - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8330-Budky.csv
+tableFilePath: data/csv/DAKhmO-315-1-8330-Budky.csv
 tableLocale: ru
 title: Будьки 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
 yearsRange:

@@ -10,7 +10,7 @@ location:
 size: 1753
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8563-Borivka-john-apostle.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Borivka-john-apostle.csv
 tableLocale: ru
 title:
   Борівка (Чернівецька) і Пелинівка, Івано-Богословська церква 1861 – сповідний розпис

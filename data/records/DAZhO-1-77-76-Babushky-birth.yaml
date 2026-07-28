@@ -10,7 +10,7 @@ location:
 size: 335
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/76
-tableFilePath: public/csv/narodzhennia-1874.csv
+tableFilePath: data/csv/narodzhennia-1874.csv
 tableLocale: ru
 title: Бабушки – народження, 1874
 yearsRange:

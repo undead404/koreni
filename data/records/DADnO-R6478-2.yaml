@@ -17,4 +17,4 @@ yearsRange:
   - 1955
 authorName: Олександр Волок
 authorEmail: alexander.volok@gmail.com
-tableFilePath: public/csv/6478-2.csv
+tableFilePath: data/csv/6478-2.csv

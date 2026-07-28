@@ -10,7 +10,7 @@ location:
 size: 3113
 sources:
   - https://docs.google.com/spreadsheets/d/18U4BS3r3smISAgQBebYd75QjFix8nsHNJY-IlU8xAuw/edit?usp=sharing
-tableFilePath: public/csv/DAIFO-631-9-17.csv
+tableFilePath: data/csv/DAIFO-631-9-17.csv
 tableLocale: uk
 title: Метрична книга церкви Св. Василя Великого с. Кадобна Калуського повіту
   (частина), ДАІФО 631-9-17

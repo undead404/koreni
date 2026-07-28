@@ -9,7 +9,7 @@ location:
   - 25.2753013
 size: 1
 sources: []
-tableFilePath: public/csv/velykyi-omelianyk-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/velykyi-omelianyk-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Великий Омеляник, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

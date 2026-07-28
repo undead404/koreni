@@ -43,7 +43,7 @@ describe('generateJsonLd', () => {
       location: [50, 30],
       size: 100,
       sources: ['source-1', 'source-2'],
-      tableFilePath: 'public/csv/table-1.csv',
+      tableFilePath: 'data/csv/table-1.csv',
       tableLocale: 'uk',
       title: 'Test Table',
       yearsRange: [1900, 1910],

@@ -25,7 +25,7 @@ sources:
   - https://fotolubgens.lubgens.eu/index.php?/category/3518
   - https://fotolubgens.lubgens.eu/index.php?/category/3569
   - https://docs.google.com/spreadsheets/d/1KYV2RsxD0yp5-I3jg8Vbe3ieknDvGegx46y_EfBWbyc/edit?usp=sharing
-tableFilePath: public/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-shliuby1920-1930.csv
+tableFilePath: data/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-shliuby1920-1930.csv
 tableLocale: uk
 title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. | шлюби
   (1920-1930)

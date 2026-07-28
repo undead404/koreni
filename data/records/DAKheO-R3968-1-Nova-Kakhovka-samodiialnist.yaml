@@ -12,7 +12,7 @@ location:
 size: 242
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-3968-novokahovskyj-miskyj-palacz-kultury-novokahovskogo-miskogo-viddilu-kultury/
-tableFilePath: public/csv/nova-kakhovka-kakhovskyi-r-n-khersonska-obl-spysok-uchasnykiv-hurtkiv-samodiialnosti-pry-miskomu-palatsi-kultury-1960-1970.csv
+tableFilePath: data/csv/nova-kakhovka-kakhovskyi-r-n-khersonska-obl-spysok-uchasnykiv-hurtkiv-samodiialnosti-pry-miskomu-palatsi-kultury-1960-1970.csv
 tableLocale: uk
 title: Нова Каховка, Каховський р-н, Херсонська обл. | Список учасників гуртків
   самодіяльності при міському палаці культури (1960-1970)

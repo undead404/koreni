@@ -10,7 +10,7 @@ location:
 size: 142
 sources:
   - https://drive.google.com/drive/folders/1IGAVsu9BtzcGDdyd6vIr43DhfMcTpJmR
-tableFilePath: public/csv/daviofr6023op4sp7525.csv
+tableFilePath: data/csv/daviofr6023op4sp7525.csv
 tableLocale: ru
 title: Справа по звинуваченню Житанського Антона Яковича та ін.
 yearsRange:

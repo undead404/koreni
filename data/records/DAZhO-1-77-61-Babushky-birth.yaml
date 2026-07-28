@@ -10,7 +10,7 @@ location:
 size: 250
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-H77J-8314?view=explore&groupId=TH-7746-140019-7901-36&grid=on&lang=en
-tableFilePath: public/csv/babushky-narodzhennia-1870.csv
+tableFilePath: data/csv/babushky-narodzhennia-1870.csv
 tableLocale: ru
 title: Бабушки - народження, 1870
 yearsRange:

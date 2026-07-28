@@ -10,8 +10,8 @@ location:
 size: 248
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R720-5-131.csv
+tableFilePath: data/csv/DASO-R720-5-131.csv
 tableLocale: uk
-title: "[ШІ] Михайло-Ганнівка, Соснівка (Попівська) – народження, 1925"
+title: '[ШІ] Михайло-Ганнівка, Соснівка (Попівська) – народження, 1925'
 yearsRange:
   - 1925

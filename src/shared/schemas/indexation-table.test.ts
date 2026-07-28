@@ -9,7 +9,7 @@ describe('indexationTableSchema', () => {
       authorName: 'Author Name',
       date: '2024-09-17',
       id: 'valid-id',
-      tableFilePath: 'public/csv/valid_filename.csv',
+      tableFilePath: 'data/csv/valid_filename.csv',
       location: [50.4501, 30.5234],
       size: 100,
       sources: ['source1', 'source2'],

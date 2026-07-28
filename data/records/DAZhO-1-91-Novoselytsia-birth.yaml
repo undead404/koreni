@@ -9,7 +9,7 @@ location:
   - 27.520069
 size: 4076
 sources: []
-tableFilePath: public/csv/novoselytsianarodzhennia1839-1891.csv
+tableFilePath: data/csv/novoselytsianarodzhennia1839-1891.csv
 tableLocale: ru
 title: Новоселиця_народження_1839-1891
 yearsRange:

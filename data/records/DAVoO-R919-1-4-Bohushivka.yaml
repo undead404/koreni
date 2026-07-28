@@ -9,7 +9,7 @@ location:
   - 25.1947106
 size: 27
 sources: []
-tableFilePath: public/csv/bohushivka-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/bohushivka-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Богушівка, Рожищенський р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

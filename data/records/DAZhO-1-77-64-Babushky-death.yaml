@@ -10,7 +10,7 @@ location:
 size: 51
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/64
-tableFilePath: public/csv/babushky-smert-1871.csv
+tableFilePath: data/csv/babushky-smert-1871.csv
 tableLocale: ru
 title: Бабушки - смерть, 1871
 yearsRange:

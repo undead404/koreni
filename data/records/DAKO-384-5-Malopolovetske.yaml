@@ -17,7 +17,7 @@ sources:
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/269
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/270
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/5/271
-tableFilePath: public/csv/malopolovetske.csv
+tableFilePath: data/csv/malopolovetske.csv
 tableLocale: uk
 title: Малополовецьке – перепис, 1897
 yearsRange:

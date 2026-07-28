@@ -9,7 +9,7 @@ location:
   - 24.0171267
 size: 44
 sources: []
-tableFilePath: public/csv/malkiv-makw-hmina-kryliv-hrubeshivskyi-pov-deportovani-z-polshchi.csv
+tableFilePath: data/csv/malkiv-makw-hmina-kryliv-hrubeshivskyi-pov-deportovani-z-polshchi.csv
 tableLocale: uk
 title: Малків (Małków) гміна Крилів Грубешівський пов. | Депортовані з Польщі
 yearsRange:

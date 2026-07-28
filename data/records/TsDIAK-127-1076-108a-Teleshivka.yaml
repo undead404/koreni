@@ -15,4 +15,4 @@ yearsRange:
   - 1759
 authorName: Тетяна Базяк
 authorEmail: lakrema@gmail.com
-tableFilePath: public/csv/Новий Лист Microsoft Excel.csv
+tableFilePath: data/csv/Новий Лист Microsoft Excel.csv

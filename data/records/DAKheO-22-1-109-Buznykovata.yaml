@@ -10,7 +10,7 @@ location:
 size: 88
 sources:
   - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
-tableFilePath: public/csv/DAKheO-22-1-109-Buznykovata.csv
+tableFilePath: data/csv/DAKheO-22-1-109-Buznykovata.csv
 tableLocale: ru
 title: Ревізькі казки кріпаків Бобринецького повіту, село Бузниковата
   (Покровка), 1858, ДАХеО-22-1-109

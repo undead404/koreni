@@ -11,7 +11,7 @@ size: 308
 sources:
   - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-28/
-tableFilePath: public/csv/kozachi-laheri-dniprovskyi-pov-tavriiska-hub-smerti-1892-1893.csv
+tableFilePath: data/csv/kozachi-laheri-dniprovskyi-pov-tavriiska-hub-smerti-1892-1893.csv
 tableLocale: uk
 title: Козачі Лагері, Дніпровський пов. Таврійська губ. | смерті (1892-1893)
 yearsRange:

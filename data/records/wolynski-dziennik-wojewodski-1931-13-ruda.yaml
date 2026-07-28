@@ -11,7 +11,7 @@ size: 264
 sources:
   - https://jbc.bj.uj.edu.pl/dlibra/publication/92330
   - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?gid=145720971#gid=145720971
-tableFilePath: public/csv/wolynski-dziennik-wojewodski-1931-13-ruda.csv
+tableFilePath: data/csv/wolynski-dziennik-wojewodski-1931-13-ruda.csv
 tableLocale: uk
 title: Список землевласників, Руда, 1931
 yearsRange:

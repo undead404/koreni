@@ -9,7 +9,7 @@ location:
   - 29.151449
 size: 995
 sources: []
-tableFilePath: public/csv/dakhmo-315-1-7345-spovidnyi-rozpys-1830.csv
+tableFilePath: data/csv/dakhmo-315-1-7345-spovidnyi-rozpys-1830.csv
 tableLocale: uk
 title: Степашки – сповідний розпис, 1830
 yearsRange:

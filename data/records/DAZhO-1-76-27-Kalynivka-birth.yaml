@@ -9,7 +9,7 @@ location:
   - 28.801689
 size: 21
 sources: []
-tableFilePath: public/csv/dazho-1-76-27-kalynivkabirth.csv
+tableFilePath: data/csv/dazho-1-76-27-kalynivkabirth.csv
 tableLocale: ru
 title: Калинівка (Глибочицька) – народження, 1817
 yearsRange:

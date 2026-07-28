@@ -10,7 +10,7 @@ location:
 size: 527
 sources:
   - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8330-Maidan-Bobryk.csv
+tableFilePath: data/csv/DAKhmO-315-1-8330-Maidan-Bobryk.csv
 tableLocale: ru
 title: Бобрик (Майдан-Бобрик) 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
 yearsRange:
