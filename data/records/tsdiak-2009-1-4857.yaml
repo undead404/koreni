@@ -10,7 +10,7 @@ location:
 size: 68
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:33SQ-GGY9-FJG?view=explore&groupId=M9L4-FTY&grid=on&lang=en
-tableFilePath: public/csv/tsdiak-2009-1-4857.csv
+tableFilePath: data/csv/tsdiak-2009-1-4857.csv
 tableLocale: ru
 title: МК і СР Білгородської єпархії (1780-1806)
 yearsRange:

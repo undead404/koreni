@@ -10,7 +10,7 @@ location:
 size: 88
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-P7QL-X9DQ-C?view=explore&groupId=TH-7730-139112-2363-59&lang=uk
-tableFilePath: public/csv/dazho-1-76-81-levkiv.csv
+tableFilePath: data/csv/dazho-1-76-81-levkiv.csv
 tableLocale: ru
 title: Левків (Глибочицький) – народження, православні, 1845
 yearsRange:

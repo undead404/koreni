@@ -9,7 +9,7 @@ location:
   - 33.371658
 size: 191
 sources: []
-tableFilePath: public/csv/DASO-R7720-5-125.csv
+tableFilePath: data/csv/DASO-R7720-5-125.csv
 tableLocale: uk
 title: "[ШІ] В'язове (Дубов'язівське) – народження, 1925"
 yearsRange:

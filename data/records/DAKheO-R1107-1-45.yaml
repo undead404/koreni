@@ -10,7 +10,7 @@ location:
 size: 281
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-r-1107-vykonavchyj-komitet-nyzhnosirogozkoyi-rajonnoyi-rady-deputativ-trudyashhyh/
-tableFilePath: public/csv/nyzhni-sirohozy-melitopolskyi-okruh-katerynoslavska-hub-zaiavy-pro-shliub-1923-1924.csv
+tableFilePath: data/csv/nyzhni-sirohozy-melitopolskyi-okruh-katerynoslavska-hub-zaiavy-pro-shliub-1923-1924.csv
 tableLocale: uk
 title: Нижні Сірогози, Мелітопольський округ, Катеринославська губ. | Заяви про
   шлюб (1923-1924)

@@ -10,7 +10,7 @@ location:
 size: 714
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1183835502#gid=1183835502
-tableFilePath: public/csv/DAKhmO-315-1-8563-Verbova.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Verbova.csv
 tableLocale: ru
 title: Вербова (Вапнярська) 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
 yearsRange:

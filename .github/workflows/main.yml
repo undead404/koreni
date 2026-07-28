@@ -13,7 +13,6 @@ on:
     paths:
       - '*'
       - 'data/**'
-      - 'public/**'
       - 'src/app/**'
       - 'src/server/**'
       - 'src/shared/**'

@@ -9,7 +9,7 @@ location:
   - 33.5380219
 size: 270
 sources: []
-tableFilePath: public/csv/chaplynka-notarius-odnovolov-kupchi-1912.csv
+tableFilePath: data/csv/chaplynka-notarius-odnovolov-kupchi-1912.csv
 tableLocale: uk
 title: Чаплинка, Дніпровський пов. Таврійська губ. | Нотаріус Одноволов С.Г.,
   купчі на землю (1912)

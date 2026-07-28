@@ -32,7 +32,7 @@ location:
 size: 761
 sources:
   - https://docs.google.com/spreadsheets/d/1M3Nr2kVbTHHY5BJcVL3cfVY4cPnel5xC6XZ3xOfX3uc/edit?usp=sharing
-tableFilePath: public/csv/kozache-laherski-hurtovi-khutora-narodzhennia-1861-1918.csv
+tableFilePath: data/csv/kozache-laherski-hurtovi-khutora-narodzhennia-1861-1918.csv
 tableLocale: uk
 title: Козаче-Лагерські (Гуртові) хутора Дніпровський пов. Таврійська губ. |
   народження (1861-1918)

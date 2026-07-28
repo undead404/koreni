@@ -4,7 +4,7 @@ authorName: Спільнота Cobook
 authorEmail: juralubimuy@gmail.com
 date: 2025-09-05T00:00:00.000Z
 id: RGADA-350-2-3456
-tableFilePath: public/csv/census_1720.csv
+tableFilePath: data/csv/census_1720.csv
 location:
   - 50.90819310821742
   - 34.79856098725891

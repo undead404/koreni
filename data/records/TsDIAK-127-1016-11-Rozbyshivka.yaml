@@ -10,7 +10,7 @@ location:
 size: 804
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-5QZ3-49KH?view=explore&groupId=TH-7744-117054-1229-52&grid=on&lang=uk
-tableFilePath: public/csv/tsdiak127101611rozbyshivkahadiatskyipolk.csv
+tableFilePath: data/csv/tsdiak127101611rozbyshivkahadiatskyipolk.csv
 tableLocale: uk
 title: Розбишівка, Гадяцький полк – сповідний розпис, 1745
 yearsRange:

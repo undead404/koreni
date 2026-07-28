@@ -26,7 +26,7 @@ sources:
   - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1605/#lg=1&slide=641
   - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1625/#lg=1&slide=596
   - https://cdiak.archives.gov.ua/spysok_fondiv/0127/1012/1642/#lg=1&slide=722
-tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1822-1830.csv
+tableFilePath: data/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1822-1830.csv
 tableLocale: uk
 title: Іванків, Радомишльський пов. Київська губ. | шлюби (1822-1830)
 yearsRange:

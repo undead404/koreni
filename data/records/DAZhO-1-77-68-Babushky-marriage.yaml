@@ -10,7 +10,7 @@ location:
 size: 22
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/68
-tableFilePath: public/csv/vesillia-tablytsia-1.csv
+tableFilePath: data/csv/vesillia-tablytsia-1.csv
 tableLocale: ru
 title: Бабушки - шлюб, 1873
 yearsRange:

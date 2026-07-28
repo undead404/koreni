@@ -10,7 +10,7 @@ location:
 size: 810
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1578512712#gid=1578512712
-tableFilePath: public/csv/DAKhmO-315-1-8563-Hryshivtsi.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Hryshivtsi.csv
 tableLocale: ru
 title: Гришівці 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
 yearsRange:

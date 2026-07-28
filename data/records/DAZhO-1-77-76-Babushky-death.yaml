@@ -10,7 +10,7 @@ location:
 size: 59
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/76
-tableFilePath: public/csv/pomerli-1874.csv
+tableFilePath: data/csv/pomerli-1874.csv
 tableLocale: ru
 title: Бабушки – смерть, 1874
 yearsRange:

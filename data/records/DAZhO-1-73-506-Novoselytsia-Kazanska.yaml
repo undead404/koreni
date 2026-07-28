@@ -9,7 +9,7 @@ location:
   - 27.520069
 size: 2763
 sources: []
-tableFilePath: public/csv/spovidkanovoselytsiakazanska1913-rik.csv
+tableFilePath: data/csv/spovidkanovoselytsiakazanska1913-rik.csv
 tableLocale: ru
 title: Новоселиця (Казанська) – сповідка, 1913 рік
 yearsRange:

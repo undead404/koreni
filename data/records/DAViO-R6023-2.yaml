@@ -11,8 +11,8 @@ size: 2736
 sources:
   - https://docs.google.com/spreadsheets/d/1vtT5F3pDVaZTkRClJyTDbfecdfPFStD7/edit?gid=1121028894#gid=1121028894
   - https://drive.google.com/drive/folders/1KBi7YrSfanESaz-Dhuyoz6sjkc_jcaH7
-tableFilePath: public/csv/shi-kolektsiia-filtratsiinykh-slidchykh-ta-nahliadovykh-sprav-davio-r-6023-opys-2.csv
+tableFilePath: data/csv/shi-kolektsiia-filtratsiinykh-slidchykh-ta-nahliadovykh-sprav-davio-r-6023-opys-2.csv
 tableLocale: uk
-title: "[ШІ] Колекція фільтраційних, слідчих та наглядових справ. ДАВіО Р-6023 опис 2"
+title: '[ШІ] Колекція фільтраційних, слідчих та наглядових справ. ДАВіО Р-6023 опис 2'
 yearsRange:
   - 1945

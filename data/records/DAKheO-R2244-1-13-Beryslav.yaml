@@ -11,7 +11,7 @@ size: 96
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-r-2244-kolekcziya-lystiv-radyanskyh-gromadyan-z-nimechchyny-periodu-naczystskoyi-okupacziyi/
   - https://docs.google.com/spreadsheets/d/1yuIHxJAHtTncWFmfB-i4sTRB_9DsPrtOhg9SBKBQdok/edit?usp=sharing
-tableFilePath: public/csv/beryslav-beryslavskyi-r-n-khersonska-obl-kolektsiia-lystiv-radianskykh-hromadian-z-nimechchyny-1943.csv
+tableFilePath: data/csv/beryslav-beryslavskyi-r-n-khersonska-obl-kolektsiia-lystiv-radianskykh-hromadian-z-nimechchyny-1943.csv
 tableLocale: uk
 title: Берислав, Бериславський р-н, Херсонська обл. | Колекція листів радянських
   громадян з Німеччини (1943)

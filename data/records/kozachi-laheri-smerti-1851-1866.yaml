@@ -11,7 +11,7 @@ location:
 size: 651
 sources:
   - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
-tableFilePath: public/csv/kozachi-laheri-smerti-1851-1866.csv
+tableFilePath: data/csv/kozachi-laheri-smerti-1851-1866.csv
 tableLocale: uk
 title: Козачі Лагері, Дніпровський пов. Таврійська губ. | смерті (1851-1866)
 yearsRange:

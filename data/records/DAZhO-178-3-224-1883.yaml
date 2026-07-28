@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 125
 sources: []
-tableFilePath: public/csv/indeksatsiia-troianiv-1883.csv
+tableFilePath: data/csv/indeksatsiia-troianiv-1883.csv
 tableLocale: uk
 title: Троянів 1883 народження, костел
 yearsRange:

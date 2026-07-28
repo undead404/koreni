@@ -10,7 +10,7 @@ location:
 size: 46
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4069-pidviddily-zapysiv-aktiv-gromadyanskogo-stanu-vykonkomiv-rajonnyh-rad-robitnychyh-selyanskyh-i-chervonoarmijskyh-deputativ-hersonshhyny/
-tableFilePath: public/csv/kostiantynivska-silrada-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
+tableFilePath: data/csv/kostiantynivska-silrada-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
 tableLocale: uk
 title: Костянтинівська сільрада, Горностаївський р-н, Херсонська округа
   |  смерті (1924)

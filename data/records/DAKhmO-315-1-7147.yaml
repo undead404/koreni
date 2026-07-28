@@ -10,7 +10,7 @@ location:
 size: 9055
 sources:
   - https://docs.google.com/spreadsheets/d/1mL8Bjf5B9140b3-vIm795yUt8vt1_F7AabsLUxzn0uc/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-7147.csv
+tableFilePath: data/csv/DAKhmO-315-1-7147.csv
 tableLocale: ru
 title: Політанки 1822-1853
 yearsRange:

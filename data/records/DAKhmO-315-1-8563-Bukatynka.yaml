@@ -10,7 +10,7 @@ location:
 size: 820
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8563-Bukatynka.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Bukatynka.csv
 tableLocale: ru
 title: Букатинка 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
 yearsRange:

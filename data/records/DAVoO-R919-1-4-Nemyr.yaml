@@ -9,7 +9,7 @@ location:
   - 25.001755
 size: 13
 sources: []
-tableFilePath: public/csv/nemyr-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/nemyr-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Немир, Рожищенський р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

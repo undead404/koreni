@@ -9,7 +9,7 @@ location:
   - 30.3841587
 size: 94
 sources: []
-tableFilePath: public/csv/pro-vykup-selianamy-s-nova-hreblia-umanskoho-povitu-zemelnykh-uhid-u-pomishchytsi-ioanny-piontkovskoi.csv
+tableFilePath: data/csv/pro-vykup-selianamy-s-nova-hreblia-umanskoho-povitu-zemelnykh-uhid-u-pomishchytsi-ioanny-piontkovskoi.csv
 tableLocale: uk
 title: Про викуп селянами с. Нова Гребля Уманського повіту земельних угідь у
   поміщиці Іоанни Піонтковської

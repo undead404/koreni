@@ -132,4 +132,4 @@ tableLocale: uk
 yearsRange:
   - 1706
   - 1949
-tableFilePath: public/csv/Киликиїв - result.csv
+tableFilePath: data/csv/Киликиїв - result.csv

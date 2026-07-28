@@ -10,7 +10,7 @@ location:
 size: 56
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-P7QL-X9D4-5?view=explore&groupId=TH-7730-139112-2363-59&lang=uk
-tableFilePath: public/csv/dazho-1-76-81-kalynivka.csv
+tableFilePath: data/csv/dazho-1-76-81-kalynivka.csv
 tableLocale: ru
 title: Калинівка (Глибочицька) – народження, православні, 1845
 yearsRange:

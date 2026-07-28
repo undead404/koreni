@@ -11,7 +11,7 @@ size: 68
 sources:
   - https://docs.google.com/spreadsheets/d/10dZKfA2FfCbYNZkusHm5E7fET4Nlnruu87rNkyrpG5g/edit?usp=sharing
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-442-zemelnyj-viddil-hersonskogo-povitovogo-vykonavchogo-komitetu-rady-robitnychyh-selyanskyh-ta-chervonoarmijskyh-deputativ/
-tableFilePath: public/csv/kopani-posad-pokrovsk-khersonskyi-pov-khersonska-hub-posimeini-spysky-sluzhbovtsiv-stantsii-kopani.csv
+tableFilePath: data/csv/kopani-posad-pokrovsk-khersonskyi-pov-khersonska-hub-posimeini-spysky-sluzhbovtsiv-stantsii-kopani.csv
 tableLocale: uk
 title: Копані (Посад-Покровськ) Херсонський пов. Херсонська губ.  |  Посімейні
   списки службовців станції Копані (1919)

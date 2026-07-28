@@ -4,7 +4,7 @@ authorName: Спільнота Cobook
 authorEmail: juralubimuy@gmail.com
 date: 2025-09-05T00:00:00.000Z
 id: Keibalivka-profitability-1910s
-tableFilePath: public/csv/кейбалівка-дохідність-землі-1911-1913-рр..xlsx-оригінал.csv
+tableFilePath: data/csv/кейбалівка-дохідність-землі-1911-1913-рр..xlsx-оригінал.csv
 location:
   - 50.309401
   - 32.5026815

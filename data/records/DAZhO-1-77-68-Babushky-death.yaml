@@ -10,7 +10,7 @@ location:
 size: 75
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/68
-tableFilePath: public/csv/babushky-smert-1873.csv
+tableFilePath: data/csv/babushky-smert-1873.csv
 tableLocale: ru
 title: Бабушки - смерть, 1873
 yearsRange:

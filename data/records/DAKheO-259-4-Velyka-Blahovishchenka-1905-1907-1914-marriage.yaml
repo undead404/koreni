@@ -10,7 +10,7 @@ location:
   - 34.0693903
 size: 228
 sources: []
-tableFilePath: public/csv/velyka-blahovishchenka-dniprovskyi-pov-tavriiska-hub-shliuby-1905-1907-1914.csv
+tableFilePath: data/csv/velyka-blahovishchenka-dniprovskyi-pov-tavriiska-hub-shliuby-1905-1907-1914.csv
 tableLocale: uk
 title: Велика Благовіщенка, Дніпровський пов. Таврійська губ. | шлюби (1905,
   1907, 1914)

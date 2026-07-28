@@ -10,7 +10,7 @@ location:
 size: 236
 sources:
   - https://drive.google.com/drive/folders/1cbyTkiGaMY32tVlE4Gpre2qMMmcbJtAf
-tableFilePath: public/csv/trubiivka-1916-rik-dazho-1-77-1987.csv
+tableFilePath: data/csv/trubiivka-1916-rik-dazho-1-77-1987.csv
 tableLocale: uk
 title: Трубіївка 1916 рік ДАЖО 1-77-1987
 yearsRange:

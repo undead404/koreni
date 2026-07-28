@@ -10,7 +10,7 @@ location:
 size: 336
 sources:
   - https://www.szukajwarchiwach.gov.pl/en/jednostka/-/jednostka/40196097
-tableFilePath: public/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-narodzhennia-1920-1921.csv
+tableFilePath: data/csv/shykhovychi-szychowice-prawos-hmina-kryliv-hrubeshivskyi-pov-narodzhennia-1920-1921.csv
 tableLocale: uk
 title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. |
   народження (1920-1921)

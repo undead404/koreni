@@ -14,7 +14,7 @@ location:
   - 37.33223
 size: 8579
 sources: []
-tableFilePath: public/csv/dadoo-f400-pomerli.csv
+tableFilePath: data/csv/dadoo-f400-pomerli.csv
 tableLocale: ru
 title: Новоекономічне – померлі (1866-1918)
 yearsRange:

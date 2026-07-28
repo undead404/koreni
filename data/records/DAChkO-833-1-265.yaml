@@ -9,7 +9,7 @@ location:
   - 30.3841587
 size: 75
 sources: []
-tableFilePath: public/csv/zapys-iz-inventaria-selian-obokh-statei-yaki-vtekly-z-sela-nova-hreblia-za-rozporiadzhenniam-tsym-selom-pana-piontkovskoho.csv
+tableFilePath: data/csv/zapys-iz-inventaria-selian-obokh-statei-yaki-vtekly-z-sela-nova-hreblia-za-rozporiadzhenniam-tsym-selom-pana-piontkovskoho.csv
 tableLocale: uk
 title: Запис із Інвентаря селян обох статей, які втекли з села Нова Гребля, за
   розпорядженням цим селом пана Піонтковського

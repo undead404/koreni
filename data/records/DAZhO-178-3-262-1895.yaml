@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 60
 sources: []
-tableFilePath: public/csv/troianiv-1895-mk-shliub-dazho-178-3-262-kostel.csv
+tableFilePath: data/csv/troianiv-1895-mk-shliub-dazho-178-3-262-kostel.csv
 tableLocale: uk
 title: Троянів 1895 шлюб, костел
 yearsRange:

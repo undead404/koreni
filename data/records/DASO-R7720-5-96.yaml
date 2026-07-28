@@ -10,8 +10,8 @@ location:
 size: 67
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-96.csv
+tableFilePath: data/csv/DASO-R7720-5-96.csv
 tableLocale: uk
-title: "[ШІ] Шпотівка – народження, 1923"
+title: '[ШІ] Шпотівка – народження, 1923'
 yearsRange:
   - 1923

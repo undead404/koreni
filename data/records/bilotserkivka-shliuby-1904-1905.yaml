@@ -10,7 +10,7 @@ location:
 size: 61
 sources:
   - https://docs.google.com/spreadsheets/d/1AWqaRePwUrrwzVwY9WabH5N5wQutRf0nyb7EGczVJe8/edit?usp=sharing
-tableFilePath: public/csv/bilotserkivka-shliuby-1904-1905.csv
+tableFilePath: data/csv/bilotserkivka-shliuby-1904-1905.csv
 tableLocale: uk
 title: Білоцерківка, Дніпровський пов. Таврійська губ. | шлюби (1904-1905)
 yearsRange:

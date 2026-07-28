@@ -9,7 +9,7 @@ location:
   - 31.6646192
 size: 245
 sources: []
-tableFilePath: public/csv/sbaibuzy-cherkaskyi-r-n-cherkaskoi-oblasti-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
+tableFilePath: data/csv/sbaibuzy-cherkaskyi-r-n-cherkaskoi-oblasti-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
 tableLocale: uk
 title: Байбузи – сповідний розпис (1788), знімок 23
 yearsRange:

@@ -10,7 +10,7 @@ location:
 size: 1155
 sources:
   - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8330-Pedky.csv
+tableFilePath: data/csv/DAKhmO-315-1-8330-Pedky.csv
 tableLocale: ru
 title: Педьки і Тяжилів (Вінниця) 1855 – сповідний розпис, ДАХмО 315-1-8330
 yearsRange:

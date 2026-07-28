@@ -10,7 +10,7 @@ location:
 size: 98
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4069-pidviddily-zapysiv-aktiv-gromadyanskogo-stanu-vykonkomiv-rajonnyh-rad-robitnychyh-selyanskyh-i-chervonoarmijskyh-deputativ-hersonshhyny/
-tableFilePath: public/csv/zakhidni-kairy-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
+tableFilePath: data/csv/zakhidni-kairy-hornostaivskyi-r-n-khersonska-okruha-smerti-1924.csv
 tableLocale: uk
 title: Західні Каїри, Горностаївський р-н, Херсонська округа | смерті (1924)
 yearsRange:

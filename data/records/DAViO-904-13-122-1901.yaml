@@ -9,7 +9,7 @@ location:
   - 29.151449
 size: 670
 sources: []
-tableFilePath: public/csv/davio-d904-13-122-metrychni-1901.csv
+tableFilePath: data/csv/davio-d904-13-122-metrychni-1901.csv
 tableLocale: uk
 title: Степашки – МК, 1901
 yearsRange:

@@ -14,7 +14,7 @@ location:
   - 31.836067
 size: 111
 sources: []
-tableFilePath: public/csv/helmiaziv-ekstrakty-1811-1921-rizne.csv
+tableFilePath: data/csv/helmiaziv-ekstrakty-1811-1921-rizne.csv
 tableLocale: uk
 title: Гельмязів екстракти 1811-1921 різне
 yearsRange:

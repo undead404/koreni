@@ -10,7 +10,7 @@ location:
 size: 280
 sources:
   - https://uk.wikisource.org/wiki/Архів:ДАЖО/1/77/64
-tableFilePath: public/csv/babushky-narodzhennia-1871.csv
+tableFilePath: data/csv/babushky-narodzhennia-1871.csv
 tableLocale: ru
 title: Бабушки - народження, 1871
 yearsRange:

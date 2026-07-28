@@ -10,7 +10,7 @@ location:
 size: 110
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-2216-vykonavchyj-komitet-velykolepetyskoyi-rajonnoyi-rady-narodnyh-deputativ-smt-velyka-lepetyha/
-tableFilePath: public/csv/velyka-lepetykha-velykolepetyskyi-r-n-khersonska-obl-spysok-zahyblykh-pid-chas-nimetskoi-okupatsii-1942-1944.csv
+tableFilePath: data/csv/velyka-lepetykha-velykolepetyskyi-r-n-khersonska-obl-spysok-zahyblykh-pid-chas-nimetskoi-okupatsii-1942-1944.csv
 tableLocale: uk
 title: Велика Лепетиха, Великолепетиський р-н, Херсонська обл. | Список загиблих
   під час німецької окупації (1942-1944)

@@ -11,7 +11,7 @@ size: 205
 sources:
   - https://docs.google.com/spreadsheets/d/10dZKfA2FfCbYNZkusHm5E7fET4Nlnruu87rNkyrpG5g/edit?usp=sharing
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-442-zemelnyj-viddil-hersonskogo-povitovogo-vykonavchogo-komitetu-rady-robitnychyh-selyanskyh-ta-chervonoarmijskyh-deputativ/
-tableFilePath: public/csv/posad-pokrovsk-khersonskyi-pov-khersonska-hub-spysok-kurkuliv-ta-seredniakiv-1921.csv
+tableFilePath: data/csv/posad-pokrovsk-khersonskyi-pov-khersonska-hub-spysok-kurkuliv-ta-seredniakiv-1921.csv
 tableLocale: uk
 title: Посад-Покровськ, Херсонський пов. Херсонська губ. | Список куркулів та
   середняків (1921)

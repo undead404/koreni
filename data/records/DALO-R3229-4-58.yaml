@@ -9,7 +9,7 @@ location:
   - 23.9475429
 size: 419
 sources: []
-tableFilePath: public/csv/miniany-mieniany-hrubeshivskyi-pov-deportovani-z-polshchi.csv
+tableFilePath: data/csv/miniany-mieniany-hrubeshivskyi-pov-deportovani-z-polshchi.csv
 tableLocale: uk
 title: Міняни (Mieniany) Грубешівський пов. | Депортовані з Польщі
 yearsRange:
