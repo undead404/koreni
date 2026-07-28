@@ -11,7 +11,7 @@ size: 97
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-BQZX-9BK?view=explore&groupId=TH-7738-117390-572-72&lang=uk
   - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
-tableFilePath: public/csv/yanivka.csv
+tableFilePath: data/csv/yanivka.csv
 tableLocale: uk
 title: Янівка (Іванівка Миронівська) – сповідний розпис (1888)
 yearsRange:

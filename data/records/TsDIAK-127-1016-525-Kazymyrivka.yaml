@@ -11,7 +11,7 @@ size: 101
 sources:
   - https://drive.google.com/drive/u/0/folders/1DBlSbD4KuDi6yCbt3baGCzrfncJNIqHW
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-BQZX-9BK?view=explore&groupId=TH-7738-117390-572-72&lang=uk
-tableFilePath: public/csv/kazymyrivka.csv
+tableFilePath: data/csv/kazymyrivka.csv
 tableLocale: uk
 title: Казимирівка (Квітневе) – сповідний розпис (1888)
 yearsRange:

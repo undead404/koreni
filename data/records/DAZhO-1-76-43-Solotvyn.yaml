@@ -11,9 +11,9 @@ size: 65
 sources:
   - https://docs.google.com/spreadsheets/d/1ZOl7COkpUVMC09v96Ya_kKdwmkVH5L-4nW_kSAd3fOw/edit?usp=sharing
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-B77J-95DZ?view=explore&groupId=TH-7744-140017-6095-25&lang=uk
-tableFilePath: public/csv/indeksatsiia.csv
+tableFilePath: data/csv/indeksatsiia.csv
 tableLocale: uk
-title: "Записи про народження 1828р. Хрестовоздвиженська церква, с.Солотвин,
-  Житомирський повіт, Волинська губернія"
+title: 'Записи про народження 1828р. Хрестовоздвиженська церква, с.Солотвин,
+  Житомирський повіт, Волинська губернія'
 yearsRange:
   - 1828

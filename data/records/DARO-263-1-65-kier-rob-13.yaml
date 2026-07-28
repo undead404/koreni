@@ -10,7 +10,7 @@ location:
 size: 767
 sources:
   - https://www.familysearch.org/uk/records/images/search-results?imageGroupNumbers=125963623
-tableFilePath: public/csv/sarny-voters-86-district-kierrob13-1938.csv
+tableFilePath: data/csv/sarny-voters-86-district-kierrob13-1938.csv
 tableLocale: pl
 title: Списки виборців по виборам в сейм 86 виборчої дільниці. Гміна Сарни, м.
   Сарни (працівники Kier. Rob. Nr 13)

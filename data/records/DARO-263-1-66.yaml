@@ -10,7 +10,7 @@ location:
 size: 1522
 sources:
   - https://www.familysearch.org/uk/records/images/search-results?imageGroupNumbers=125963620
-tableFilePath: public/csv/sarny-voters-87-district-1938.csv
+tableFilePath: data/csv/sarny-voters-87-district-1938.csv
 tableLocale: pl
 title: Списки виборців по виборам в сейм 87 виборчої дільниці. Гміна Сарни, м. Сарни
 yearsRange:

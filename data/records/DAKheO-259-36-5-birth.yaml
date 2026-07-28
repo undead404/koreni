@@ -10,7 +10,7 @@ location:
 size: 1085
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-36/
-tableFilePath: public/csv/natalivka-dniprovskyi-pov-tavriiska-hub-narodzhennia-1919.csv
+tableFilePath: data/csv/natalivka-dniprovskyi-pov-tavriiska-hub-narodzhennia-1919.csv
 tableLocale: uk
 title: Наталівка, Дніпровський пов. Таврійська губ. | народження (1919)
 yearsRange:

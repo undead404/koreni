@@ -10,7 +10,7 @@ location:
 size: 1770
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9L-Q7YZ-2?i=259&cat=1807434
-tableFilePath: public/csv/127-1015-110-1795-demiantsi-pereiaslavskyi-povit.csv
+tableFilePath: data/csv/127-1015-110-1795-demiantsi-pereiaslavskyi-povit.csv
 tableLocale: uk
 title: "Дем'янці – сповідний розпис (1795)"
 yearsRange:
