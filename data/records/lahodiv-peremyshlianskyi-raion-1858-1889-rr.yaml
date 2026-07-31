@@ -12,7 +12,7 @@ sources:
   - https://docs.google.com/spreadsheets/d/1zlPIOHpL2vpSO916hWZkADoqMytv9Sf4O61TnVx0MxA/edit?usp=sharing
 tableFilePath: public/csv/lahodiv-peremyshlianskyi-raion-1858-1889-rr.csv
 tableLocale: uk
-title: Лагодів, Перемишлянський район, 1858-1889 рр
+title: Лагодів (Перемишлянський), МК 1858-1863
 yearsRange:
   - 1858
   - 1863
