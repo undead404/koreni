@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-118-14-266
+authorName: Раїса С
+authorEmail: rayisas@proton.me
+date: 2026-08-02
+id: revizkakazkachernelivky18161817indeks
+location:
+  - 49.6772895
+  - 26.8172879
+size: 774
+sources:
+  - https://uk.wikisource.org/wiki/Архів:ДАЖО/118/14/266
+tableFilePath: data/csv/revizkakazkachernelivky18161817indeks.csv
+tableLocale: ru
+title: Ревізька_казка_Чернелівки_1816_1817_індекс
+yearsRange:
+  - 1816
+  - 1817
