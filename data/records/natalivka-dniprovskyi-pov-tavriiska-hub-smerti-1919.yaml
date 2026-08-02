@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХеО-259-36-5
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-08-02
+id: natalivka-dniprovskyi-pov-tavriiska-hub-smerti-1919
+location:
+  - 46.562801
+  - 33.619541
+size: 223
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-36/
+tableFilePath: data/csv/natalivka-dniprovskyi-pov-tavriiska-hub-smerti-1919.csv
+tableLocale: uk
+title: Наталівка, Дніпровський пов. Таврійська губ.  | смерті (1919)
+yearsRange:
+  - 1919
