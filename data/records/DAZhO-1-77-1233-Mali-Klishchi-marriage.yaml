@@ -3,7 +3,7 @@ archiveItems:
 authorName: Іванна Мельник
 authorEmail: ivanna.melnik@gmail.com
 date: 2026-08-01
-id: dazho1-77-1233odruzhenniamali-klishchi
+id: DAZhO-1-77-1233-Mali-Klishchi-marriage
 location:
   - 51.1230401
   - 29.1638188
@@ -12,6 +12,6 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHJ-Y78L-QL9?view=explore&groupId=TH-7787-145446-99113-69&lang=en
 tableFilePath: data/csv/dazho1-77-1233odruzhenniamali-klishchi.csv
 tableLocale: uk
-title: ДАЖО_1-77-1233_одруження(Малі Кліщі)
+title: Малі Кліщі – одруження, 1907
 yearsRange:
   - 1907
