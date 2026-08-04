@@ -5,7 +5,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-08-03
-id: herezhenivka
+id: DAKO-384-12-Herezhenivka
 location:
   - 48.74032
   - 30.3253805
@@ -17,6 +17,6 @@ sources:
   - https://drive.google.com/drive/u/0/folders/1Xw7Te4-NnIPngUkjl6JohpWKTUlLpiN2
 tableFilePath: data/csv/herezhenivka.csv
 tableLocale: uk
-title: Гереженівка
+title: Гереженівка – перепис, 1897
 yearsRange:
   - 1897
