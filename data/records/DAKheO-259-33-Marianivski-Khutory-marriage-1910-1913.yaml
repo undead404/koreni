@@ -4,7 +4,7 @@ archiveItems:
 authorName: Олена Савків
 authorEmail: el.dombrovan@gmail.com
 date: 2026-08-02
-id: marianivski-khutory-marianivka-dniprovskyi-pov-tavriiska-hub-shliuby-1910-1913
+id: DAKheO-259-33-Marianivski-Khutory-marriage-1910-1913
 location:
   - 46.5703263
   - 33.9127739
@@ -12,8 +12,7 @@ size: 209
 sources: []
 tableFilePath: data/csv/marianivski-khutory-marianivka-dniprovskyi-pov-tavriiska-hub-shliuby-1910-1913.csv
 tableLocale: uk
-title: Мар'янівські хутори (Мар'янівка), Дніпровський пов. Таврійська губ. |
-  шлюби (1910-1913)
+title: "Мар'янівські хутори (Мар'янівка), Дніпровський пов. Таврійська губ. | шлюби (1910-1913)"
 yearsRange:
   - 1910
   - 1913
