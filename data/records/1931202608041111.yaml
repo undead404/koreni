@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАРО-Р740-6-615
+authorName: Андрій
+authorEmail: zooey2526@gmail.com
+date: 2026-08-04
+id: "1931202608041111"
+location:
+  - 51.32534896931858
+  - 26.635097265243534
+size: 765
+sources:
+  - https://rv.archives.gov.ua/upload/2026/June/dW1xVnIrQ1NmR254ekE9PQ.pdf
+  - https://docs.google.com/spreadsheets/d/13sYns8d3bM-SdkD01opkBrGJT9b6L2_w-WHzBczeHL0/
+  - https://uaroots.com.ua/open/1541
+tableFilePath: data/csv/1931202608041111.csv
+tableLocale: uk
+title: с. Сарни, с. Доротичі (Сарненський повіт) | Свято-Троїцька церква | народження
+yearsRange:
+  - 1931
