@@ -93,6 +93,7 @@
     "prepare": "husky",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
     "typesense:populate": "tsx src/populate-typesense/index.ts"
   },
   "type": "module",
