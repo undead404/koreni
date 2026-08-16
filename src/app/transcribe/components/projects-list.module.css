@@ -1,0 +1,98 @@
+.title {
+  margin-bottom: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (width >= 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.cardLink {
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.cardLink:hover,
+.cardLink:focus {
+  text-decoration: none;
+}
+
+.card {
+  height: 100%;
+  padding: 1.25rem;
+  border: var(--default-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLink:hover .card,
+.cardLink:focus .card {
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -1px rgb(0 0 0 / 6%);
+  border-color: var(--clickable-color);
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-color);
+  transition: color 0.2s;
+  overflow-wrap: break-word;
+}
+
+.cardLink:hover .cardTitle {
+  color: var(--clickable-color);
+}
+
+.cardDate {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--description-color);
+}
+
+.arrow {
+  margin-left: auto;
+  font-size: 0.875rem;
+  color: var(--description-color);
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.cardLink:hover .arrow {
+  color: var(--clickable-color);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: var(--note-bg-color);
+  border-radius: 0.5rem;
+  border: 1px dashed var(--default-border-color);
+  color: var(--description-color);
+}

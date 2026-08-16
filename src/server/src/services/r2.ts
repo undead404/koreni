@@ -95,3 +95,10 @@ export async function deleteImageFromR2(key: string) {
   });
   await client.send(command);
 }
+
+export function getPublicUrl(key: string) {
+  const { R2_BUCKET_NAME, R2_PUBLIC_URL, R2_ACCOUNT_ID } = environment;
+  return R2_PUBLIC_URL
+    ? `${R2_PUBLIC_URL.replace(/\/$/, '')}/${key}`
+    : `https://${R2_BUCKET_NAME}.${R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${key}`;
+}

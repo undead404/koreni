@@ -13,7 +13,7 @@ You operate in two mutually exclusive zones. Before writing any code, determine 
 ### ZONE A: Frontend (Next.js 15, React 19)
 
 - Trigger: File path does NOT begin with `src/server/`.
-- Ruleset: Read `@CONVENTIONS.md`.
+- Ruleset: Read `CONVENTIONS.md`.
 - Constraint: Never apply Node.js ESM strict `.js` imports. Default to React Server Components.
 
 ### ZONE B: Backend (Node.js 22, Hono)

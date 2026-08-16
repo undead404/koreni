@@ -49,31 +49,23 @@ context:
 
 ---
 
-## 4. Hard Constraints
-
-- **React 19:** Do not implement manual `useMemo`/`useCallback` unless explicitly bypassing the React Compiler. Maintain strict Client/Server boundaries.
-- **Backend ESM:** All relative imports in Hono/Node.js files MUST terminate with explicit `.js` extensions.
-- **Isolation:** Do not modify schemas, context files, or unrelated components not explicitly listed in the `targets` frontmatter.
-
----
-
-## 5. Agentic Verification
+## 4. Agentic Verification
 
 Execute the following commands to validate the implementation:
 
 1. **Type & Lint Pass:** Run standard formatting and type checks.
 
 ```bash
-   /lint
+   ./scripts/opencode-check.sh src/path/to/file.ts # Both frontend and backend
 
 ```
 
 2. **Targeted Test Execution:** Run the specific route or backend test.
 
 ```bash
-   /test-route src/path/to/test.test.tsx
+   yarn test src/path/to/test.test.tsx
    # OR
-   /test-server
+   cd src/server && yarn test src/path/to/test.test.ts
 
 ```
 
@@ -81,5 +73,4 @@ Execute the following commands to validate the implementation:
 
 ```bash
    /verify-esm [Target File Path]
-
 ```

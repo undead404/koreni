@@ -34,7 +34,13 @@ describe('IndexTableCell component', () => {
 
   it('should highlight matched tokens in the value', () => {
     const { container } = render(
-      <IndexTableCell matchedTokens={['Test']} value="Test value" />,
+      <table>
+        <tbody>
+          <tr>
+            <IndexTableCell matchedTokens={['Test']} value="Test value" />
+          </tr>
+        </tbody>
+      </table>,
     );
     const tableCell = container.querySelector('td');
     expect(tableCell?.innerHTML).toContain(
@@ -44,7 +50,16 @@ describe('IndexTableCell component', () => {
 
   it('should handle multiple matched tokens', () => {
     const { container } = render(
-      <IndexTableCell matchedTokens={['Тест', 'value']} value="Тест value" />,
+      <table>
+        <tbody>
+          <tr>
+            <IndexTableCell
+              matchedTokens={['Тест', 'value']}
+              value="Тест value"
+            />
+          </tr>
+        </tbody>
+      </table>,
     );
     const tableCell = container.querySelector('td');
     expect(tableCell?.innerHTML).toContain(
@@ -54,7 +69,17 @@ describe('IndexTableCell component', () => {
 
   it('should scroll to mark when isInTarget', () => {
     const { container } = render(
-      <IndexTableCell isInTarget matchedTokens={['Test']} value="Test value" />,
+      <table>
+        <tbody>
+          <tr>
+            <IndexTableCell
+              isInTarget
+              matchedTokens={['Test']}
+              value="Test value"
+            />
+          </tr>
+        </tbody>
+      </table>,
     );
     const mark = container.querySelector('mark');
     expect(scrollOnce).toHaveBeenCalledWith(mark);

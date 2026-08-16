@@ -2,8 +2,8 @@ import { usePostHog } from 'posthog-js/react';
 import type { SubmitEvent } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 
-import environment from '@/app/environment';
 import { submitErrorSchema, submitResponseSchema } from '@/app/schemas/api';
+import requestApi from '@/app/transcribe/api/request';
 
 import { useContributionStateStore } from './contribution-state';
 import convertContributeFormData from './convert-contribute-form-data';
@@ -66,16 +66,13 @@ export default function useSubmitContribution({
       });
 
       // Assuming Hono root routing. Adjust to '/api/submit' only if Hono explicitly defines that route.
-      const response = await fetch(
-        new URL('/api/submit', environment.NEXT_PUBLIC_API_SITE),
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(adjustedFormData),
+      const response = await requestApi('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify(adjustedFormData),
+      });
 
       const responseData = (await response.json()) as unknown;
 

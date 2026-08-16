@@ -23,17 +23,20 @@ export default async function handleProjectImagePut(c: Context) {
     const pageSequenceRaw = body.pageSequence ?? body.page_sequence;
     const pageNameRaw = body.pageName ?? body.page_name ?? null;
     const blurhashRaw = body.blurhash;
+    const sourceIdRaw = body.sourceId ?? body.source_id ?? null;
 
     const parsedFields = z
       .object({
         pageSequence: z.coerce.number().int().nonnegative(),
         pageName: z.string().nullable().optional(),
         blurhash: nonEmptyString,
+        sourceId: z.string().nullable().optional(),
       })
       .safeParse({
         pageSequence: pageSequenceRaw,
         pageName: pageNameRaw,
         blurhash: blurhashRaw,
+        sourceId: sourceIdRaw,
       });
 
     if (!parsedFields.success) {
@@ -43,7 +46,7 @@ export default async function handleProjectImagePut(c: Context) {
       );
     }
 
-    const { pageSequence, pageName, blurhash } = parsedFields.data;
+    const { pageSequence, pageName, blurhash, sourceId } = parsedFields.data;
 
     const file = body.file || body.image;
     if (!file || !(file instanceof File)) {
@@ -81,6 +84,7 @@ export default async function handleProjectImagePut(c: Context) {
     await createProjectImage({
       id: imageId,
       projectId,
+      sourceId: sourceId ?? null,
       storageKey: uploadResult.key,
       pageSequence,
       pageName: pageName || null,

@@ -93,6 +93,7 @@ describe('handleProjectImagePut', () => {
     expect(createProjectImage).toHaveBeenCalledWith({
       id: 'img-456',
       projectId: 'proj-123',
+      sourceId: null,
       storageKey: 'uploads/proj-123/img-456.jpg',
       pageSequence: 1,
       pageName: 'Page 1',

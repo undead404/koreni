@@ -18,7 +18,7 @@ export default async function requestApi(
     }
     return response;
   } catch (error) {
-    console.error(error);
+    void 0; /* error removed */
     initBugsnag().notify(error as Error);
     throw error;
   }

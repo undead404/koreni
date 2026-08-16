@@ -3,8 +3,12 @@
 import { usePostHog } from 'posthog-js/react';
 import {
   type ChangeEvent,
+  ChangeEventHandler,
   type DragEvent,
+  DragEventHandler,
   type KeyboardEvent,
+  KeyboardEventHandler,
+  RefCallback,
   useCallback,
   useEffect,
   useRef,
@@ -31,14 +35,15 @@ export interface UseCsvDropzoneResult {
     columns: number;
     rows: number;
   };
-  handleDragLeave: (event: DragEvent<HTMLDivElement>) => void;
-  handleDragOver: (event: DragEvent<HTMLDivElement>) => void;
-  handleDrop: (event: DragEvent<HTMLDivElement>) => void;
-  handleKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
+  handleChange: ChangeEventHandler;
+  handleDragLeave: DragEventHandler;
+  handleDragOver: DragEventHandler;
+  handleDrop: DragEventHandler;
+  handleKeyDown: KeyboardEventHandler;
   handleRemove: () => void;
   parseError: string | null;
   parsedFile: ParsedFile | null;
-  setReference: (reference: HTMLInputElement | null) => void;
+  setReference: RefCallback<HTMLInputElement>;
   state: DropzoneState;
   tableInputAttributes: Omit<UseFormRegisterReturn, 'ref'>;
 }
@@ -54,7 +59,6 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
   const inputReference = useRef<HTMLInputElement>(null);
   const { getTableDimensions, setTableData, setTableFileName, tableFileName } =
     useTableStateStore();
-
   const [parsedFile, setParsedFile] = useState<ParsedFile | null>(() => {
     if (tableFileName) {
       const size = FILE_SIZES.get(tableFileName);
@@ -93,8 +97,9 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
         if (
           data.length > 0 &&
           data[0].some((header) => !header || !header.trim())
-        )
+        ) {
           throw new Error('EMPTY_HEADER');
+        }
 
         setTableData(data);
         setParsedFile({ name: file.name, size: file.size });
@@ -105,19 +110,21 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
         setValue('table', null);
         setState('error-parse');
 
-        if (error instanceof Error) {
-          if (error.message === 'EMPTY_HEADER') {
-            setParseError(
-              'Таблиця містить колонки без заголовків. Будь ласка, додайте заголовки до всіх колонок.',
-            );
-            return;
-          }
-          if (error.message.includes('Invalid byte sequence detected')) {
-            setParseError(
-              'Таблиця містить некоректне кодування символів. Будь ласка, експортуйте таблицю у форматі CSV з кодуванням UTF-8.',
-            );
-            return;
-          }
+        if (error instanceof Error && error.message === 'EMPTY_HEADER') {
+          setParseError(
+            'Таблиця містить колонки без заголовків. Будь ласка, додайте заголовки до всіх колонок.',
+          );
+          return;
+        }
+
+        if (
+          error instanceof Error &&
+          error.message.includes('Invalid byte sequence detected')
+        ) {
+          setParseError(
+            'Таблиця містить некоректне кодування символів. Будь ласка, експортуйте таблицю у форматі CSV з кодуванням UTF-8.',
+          );
+          return;
         }
 
         setParseError('Помилка при читанні файлу.');
@@ -143,16 +150,6 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     [posthog, setContributionState, setTableData, setTableFileName, setValue],
   );
 
-  /* ── Remove file ── */
-  const handleRemove = useCallback(() => {
-    setState('idle');
-    setParsedFile(null);
-    setParseError(null);
-    setValue('table', null);
-    if (inputReference.current) inputReference.current.value = '';
-    posthog.capture('csv_file_removed');
-  }, [posthog, setValue]);
-
   /* ── Drag handlers ── */
   const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -171,23 +168,46 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
       event.preventDefault();
       event.stopPropagation();
       if (state === 'uploading') return;
+
       const files = event.dataTransfer.files;
       setValue('table', files);
-      if (inputReference.current) inputReference.current.files = files;
-      posthog.capture('csv_file_dropped', { file_name: files[0].name });
-      void processFile(files[0]);
+      if (inputReference.current) {
+        inputReference.current.files = files;
+      }
+
+      const file = files[0];
+      posthog.capture('csv_file_dropped', {
+        file_name: file.name,
+      });
+      void processFile(file);
     },
     [posthog, processFile, setValue, state],
   );
+
+  /* ── Remove file ── */
+  const handleRemove = useCallback(() => {
+    setState('idle');
+    setParsedFile(null);
+    setParseError(null);
+    setValue('table', null);
+    if (inputReference.current) {
+      inputReference.current.value = '';
+    }
+    posthog.capture('csv_file_removed');
+  }, [posthog, setValue]);
 
   /* ── Click / input handler ── */
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       if (file) {
-        posthog.capture('csv_file_selected', { file_name: file.name });
+        posthog.capture('csv_file_selected', {
+          file_name: file.name,
+        });
         void processFile(file);
-      } else handleRemove();
+      } else {
+        handleRemove();
+      }
     },
     [posthog, processFile, handleRemove],
   );
@@ -212,9 +232,14 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
   useEffect(() => {
     const input = inputReference.current;
     if (!input) return;
-    input.addEventListener('cancel', handleRemove);
+
+    const handleCancel = () => {
+      handleRemove();
+    };
+
+    input.addEventListener('cancel', handleCancel);
     return () => {
-      input.removeEventListener('cancel', handleRemove);
+      input.removeEventListener('cancel', handleCancel);
     };
   }, [handleRemove]);
 
@@ -234,6 +259,7 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
   return {
     errors,
     getTableDimensions,
+    handleChange,
     handleDragLeave,
     handleDragOver,
     handleDrop,
