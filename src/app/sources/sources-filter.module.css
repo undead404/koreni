@@ -1,0 +1,48 @@
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 0.8rem;
+  color: var(--description-color);
+}
+
+.field input,
+.field select {
+  padding: 6px 8px;
+  border: var(--default-border);
+  border-radius: 4px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font: inherit;
+}
+
+.summary {
+  color: var(--description-color);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.reset {
+  padding: 6px 10px;
+  border: var(--default-border);
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.reset:hover {
+  background: var(--table-row-hover-bg);
+}
