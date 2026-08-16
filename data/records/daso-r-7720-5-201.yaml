@@ -1,0 +1,16 @@
+archiveItems:
+  - sdfsdf
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-08-16
+id: daso-r-7720-5-201
+location:
+  - 48.97397442720295
+  - 30.707667444290063
+size: 199
+sources: []
+tableFilePath: data/csv/daso-r-7720-5-201.csv
+tableLocale: uk
+title: ДАСО-Р-7720-5-201
+yearsRange:
+  - 1900
