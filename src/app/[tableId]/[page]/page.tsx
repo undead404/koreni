@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { object, string } from 'zod';
@@ -73,9 +72,12 @@ export default async function Table({ params }: TablePageProperties) {
 export async function generateStaticParams() {
   const tablesMetadata = await getTablesMetadata();
   return tablesMetadata.flatMap((tableMetadata) =>
-    _.times(Math.ceil(tableMetadata.size / PER_PAGE), (index) => ({
-      page: `${index + 1}`,
-      tableId: tableMetadata.id,
-    })),
+    Array.from(
+      { length: Math.ceil(tableMetadata.size / PER_PAGE) },
+      (_, index) => ({
+        page: `${index + 1}`,
+        tableId: tableMetadata.id,
+      }),
+    ),
   );
 }

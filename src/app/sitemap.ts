@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import type { MetadataRoute } from 'next';
 
 import getTablesMetadata from '@/shared/get-tables-metadata';
@@ -12,9 +11,16 @@ export const dynamic = 'force-static';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tablesMetadata = await getTablesMetadata();
   const knownSlugs = new Set();
-  const volunteers = _.map(
-    _.groupBy(tablesMetadata, 'authorName'),
-    (tables, name) => {
+
+  // Group tables by authorName
+  const groupedByAuthor = Object.groupBy(
+    tablesMetadata,
+    (table) => table.authorName,
+  );
+
+  const volunteers = Object.entries(groupedByAuthor)
+    .map(([name, tables]) => {
+      if (!tables) return null;
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {
@@ -40,8 +46,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           environment.NEXT_PUBLIC_SITE,
         ).toString(),
       };
-    },
-  ).sort((a, b) => b.power - a.power);
+    })
+    .filter((v) => v !== null)
+    .sort((a, b) => b.power - a.power);
   return [
     {
       changeFrequency: 'yearly',

@@ -14,7 +14,6 @@ import stopTypesense from './stop-typesense';
 
 vi.mock('axios');
 vi.mock('dotenv');
-vi.mock('lodash');
 vi.mock('./create-collections');
 vi.mock('./get-typesense-admin-key');
 vi.mock('./get-typesense-bootstrap-key');
@@ -82,7 +81,7 @@ describe('main', () => {
     await main();
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(error);
-    expect(consoleLogSpy).toHaveBeenCalledWith(undefined);
+    expect(consoleLogSpy).toHaveBeenCalledWith('Error: Test error');
     expect(stopTypesense).toHaveBeenCalled();
 
     consoleErrorSpy.mockRestore();

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -57,7 +56,10 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const tablesMetadata = await getTablesMetadata();
-  const recordsNumber = _.sumBy(tablesMetadata, 'size');
+  const recordsNumber = tablesMetadata.reduce(
+    (sum, table) => sum + table.size,
+    0,
+  );
 
   return (
     <>

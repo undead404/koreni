@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { debounce } from 'es-toolkit/compat';
 import posthog from 'posthog-js';
 import { z } from 'zod';
 
@@ -58,7 +58,7 @@ async function autocompleteBounced(
   }
 }
 
-export const autocomplete = _.throttle(autocompleteBounced, 500);
+export const autocomplete = debounce(autocompleteBounced, 500);
 
 export async function reverseGeocode(coordinates: [number, number]) {
   try {
