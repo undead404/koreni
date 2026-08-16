@@ -5,8 +5,24 @@ permissions:
 on:
   pull_request:
     paths:
-      - './**'
-      - 'src/**'
+      - '.github/workflows/check-pr.yml'
+      - '.prettierrc.json'
+      - '.stylelintrc.json'
+      - 'eslint.config.mjs'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'src/server/package.json'
+      - 'src/server/tsconfig.json'
+      - 'src/server/vitest.config.mts'
+      - 'tsconfig.json'
+      - 'vitest.config.mts'
+      - 'vitest.setup.ts'
+      - 'src/app/**'
+      - 'src/server/**'
+      - 'src/shared/**'
+      - 'src/types/**'
+      - 'src/populate-typesense/**'
+      - 'src/dockerize-typesense/**'
     types: [opened, synchronize, reopened]
 
 jobs:
