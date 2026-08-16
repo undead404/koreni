@@ -6648,7 +6648,6 @@ __metadata:
     "@bugsnag/js": "npm:~8.8.1"
     "@bugsnag/plugin-hono": "npm:^8.8.0"
     "@hono/node-server": "npm:^2.0.10"
-    "@koreni/shared": "workspace:*"
     csv-parse: "npm:~5.5.0"
     csv-stringify: "npm:^6.6.0"
     hono: "npm:^4.12.34"
