@@ -336,10 +336,10 @@ jobs:
                sleep $SLEEP_INTERVAL
              done
 
-             if ! sudo systemctl is-active --quiet koreni-api; then
-               echo "ERROR: koreni-api failed to start after $((MAX_ATTEMPTS * SLEEP_INTERVAL))s."
-               echo "--- journalctl output ---"
-               sudo journalctl -u koreni-api -n 50 --no-pager
-               exit 1
-             fi
-           EOF
+              if ! sudo systemctl is-active --quiet koreni-api; then
+                echo "ERROR: koreni-api failed to start after $((MAX_ATTEMPTS * SLEEP_INTERVAL))s."
+                echo "--- journalctl output ---"
+                sudo journalctl -u koreni-api -n 50 --no-pager
+                exit 1
+              fi
+          EOF
