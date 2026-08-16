@@ -12,8 +12,8 @@ export default async function getProjectImages(
   signal?: AbortSignal,
 ) {
   const url = options?.withTranscription
-    ? `/api/transcribe/project/${projectId}/images?withTranscription=true`
-    : `/api/transcribe/project/${projectId}/images`;
+    ? `/api/transcribe/projects/${projectId}/images?withTranscription=true`
+    : `/api/transcribe/projects/${projectId}/images`;
 
   return requestApi(url, { signal })
     .then((response) => response.json())

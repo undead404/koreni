@@ -117,11 +117,6 @@ export function createApp() {
     transcribeAuthMiddleware,
     handleProjectImagesList,
   );
-  app.get(
-    '/api/transcribe/project/:projectId/images',
-    transcribeAuthMiddleware,
-    handleProjectImagesList,
-  );
 
   app.put(
     '/api/transcribe/projects/:projectId/image-sources/:sourceId',
