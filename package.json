@@ -12,7 +12,7 @@
     "lucide-react": "^0.577.0",
     "next": "16.3.1",
     "papaparse": "~5.5.2",
-    "posthog-js": "~1.364.1",
+    "posthog-js": "~1.417.1",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
     "react-hook-form": "^7.71.2",
