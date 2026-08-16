@@ -178,6 +178,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - test
+      - typecheck
 
     steps:
       - name: Checkout repository
@@ -205,22 +206,17 @@ jobs:
       - name: Install production dependencies
         run: yarn workspaces focus koreni-server --production
 
-      - name: Set up SSH for node_modules deployment
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
-
-      - name: Deploy node_modules to server
-        run: |
-          rsync -avz --no-o --no-g -e "ssh" --delete ./node_modules/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api/node_modules
-
       - name: Upload backend artifact
         uses: actions/upload-artifact@v7
         with:
           name: api-dist
           path: src/server/dist
+
+      - name: Upload backend node_modules artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: api-node-modules
+          path: node_modules
 
   deploy:
     runs-on: ubuntu-latest
@@ -274,6 +270,12 @@ jobs:
           name: api-dist
           path: api-dist
 
+      - name: Download backend node_modules
+        uses: actions/download-artifact@v8
+        with:
+          name: api-node-modules
+          path: api-node-modules
+
       # 1. Verify manifest files exist before deploying (Safety Check)
       - name: Check for package.json
         run: |
@@ -281,6 +283,10 @@ jobs:
             echo "Error: package.json missing in artifact. Ensure build script copies it to dist."
             exit 1
           fi
+
+      - name: Deploy node_modules to server
+        run: |
+          rsync -avz --no-o --no-g -e "ssh" --delete ./api-node-modules/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api/node_modules
 
       - name: Deploy Backend Source
         run: |
