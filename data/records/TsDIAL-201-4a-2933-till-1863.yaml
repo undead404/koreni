@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАЛ-201-4а-2933
+authorName: Степан Проць
+authorEmail: aminus2010@gmail.com
+date: 2026-07-28
+id: TsDIAL-201-4a-2933-till-1863
+location:
+  - 49.7292288
+  - 24.5161568
+size: 173
+sources:
+  - https://docs.google.com/spreadsheets/d/1zlPIOHpL2vpSO916hWZkADoqMytv9Sf4O61TnVx0MxA/edit?usp=sharing
+tableFilePath: public/csv/lahodiv-peremyshlianskyi-raion-1858-1889-rr.csv
+tableLocale: uk
+title: Лагодів (Перемишлянський), МК 1858-1863
+yearsRange:
+  - 1858
+  - 1863

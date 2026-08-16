@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 51
 sources: []
-tableFilePath: public/csv/troianiv-1873-mk-smert-dazho-178-3-247-kostel.csv
+tableFilePath: data/csv/troianiv-1873-mk-smert-dazho-178-3-247-kostel.csv
 tableLocale: uk
 title: Троянів 1873 смерть, костел
 yearsRange:

@@ -13,7 +13,7 @@ size: 215
 sources:
   - https://drive.google.com/drive/u/0/folders/1hEWq9g757Q-WOqYXJlPgwg7AE-yuGHer
   - https://inspector.duckarchive.com/archives/%D0%94%D0%90%D0%9A%D0%9E/384/10/113
-tableFilePath: public/csv/yareshky-brovkivska-volost-skvyrskyi-povit.csv
+tableFilePath: data/csv/yareshky-brovkivska-volost-skvyrskyi-povit.csv
 tableLocale: uk
 title: Ярешки (Андрушівські) – перепис 1897
 yearsRange:

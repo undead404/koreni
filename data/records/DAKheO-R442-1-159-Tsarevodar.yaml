@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАХеО-Р442-1-159
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-07-05
+id: DAKheO-R442-1-159-Tsarevodar
+location:
+  - 46.735466
+  - 32.20406
+size: 150
+sources:
+  - https://docs.google.com/spreadsheets/d/10dZKfA2FfCbYNZkusHm5E7fET4Nlnruu87rNkyrpG5g/edit?usp=sharing
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-442-zemelnyj-viddil-hersonskogo-povitovogo-vykonavchogo-komitetu-rady-robitnychyh-selyanskyh-ta-chervonoarmijskyh-deputativ/
+tableFilePath: data/csv/tsarevodar-pravdyne-khersonskyi-pov-khersonska-hub-spysok-kurkuliv-ta-seredniakiv-1921.csv
+tableLocale: uk
+title: Цареводар (Правдине), Херсонський пов. Херсонська губ. | Список куркулів
+  та середняків (1921)
+yearsRange:
+  - 1921

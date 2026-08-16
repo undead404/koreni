@@ -10,7 +10,7 @@ location:
 size: 588
 sources:
   - https://archives.kh.gov.ua/?page_id=26131
-tableFilePath: public/csv/barvinkove-iziumskyi-pov-kharkivska-hub-shliuby-1907-1908.csv
+tableFilePath: data/csv/barvinkove-iziumskyi-pov-kharkivska-hub-shliuby-1907-1908.csv
 tableLocale: uk
 title: Барвінкове, Ізюмський пов. Харківська губ. | шлюби (1907-1908)
 yearsRange:

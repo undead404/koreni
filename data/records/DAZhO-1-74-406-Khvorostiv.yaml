@@ -10,7 +10,7 @@ location:
 size: 913
 sources:
   - https://docs.google.com/spreadsheets/d/1wCKnRCDV8eiPDM70Hgcoa3Ofz8TRjbY9EmO_Pd33RNs/edit?gid=1571545709#gid=1571545709
-tableFilePath: public/csv/DAZhO-1-74-406-Khvorostiv.csv
+tableFilePath: data/csv/DAZhO-1-74-406-Khvorostiv.csv
 tableLocale: uk
 title: Сповідальні відомості, Хворостів, 1912
 yearsRange:

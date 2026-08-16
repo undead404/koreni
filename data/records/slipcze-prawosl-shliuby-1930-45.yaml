@@ -12,7 +12,7 @@ location:
 size: 204
 sources:
   - https://docs.google.com/spreadsheets/d/1_Y_Iy-eAgOqs0rtgYioW9Xjg8x2pIRcDR24lSs8BdOo/edit?usp=sharing
-tableFilePath: public/csv/slipcze-prawosl-shliuby-1930-45.csv
+tableFilePath: data/csv/slipcze-prawosl-shliuby-1930-45.csv
 tableLocale: uk
 title: Сліпче (Ślipcze prawosł.) гміна Міняни Грубешівський пов. | шлюби (1930-45)
 yearsRange:

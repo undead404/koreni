@@ -9,7 +9,7 @@ location:
   - 25.1732593
 size: 81
 sources: []
-tableFilePath: public/csv/antonivka-deportvani-z-polshchi-1946.csv
+tableFilePath: data/csv/antonivka-deportvani-z-polshchi-1946.csv
 tableLocale: uk
 title: Антонівка, Луцький р-н, Волинська обл. | Депортвані з Польщі (1946)
 yearsRange:

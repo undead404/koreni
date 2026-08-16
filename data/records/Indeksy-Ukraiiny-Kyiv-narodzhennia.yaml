@@ -17,4 +17,4 @@ tableLocale: ru
 yearsRange:
   - 1907
   - 1920
-tableFilePath: public/csv/Київ - Народження.csv
+tableFilePath: data/csv/Київ - Народження.csv

@@ -10,7 +10,7 @@ location:
 size: 456
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-4Q92-JHT?view=explore&groupId=TH-7721-109335-350-85&grid=on&lang=en
-tableFilePath: public/csv/krotypyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1843.csv
+tableFilePath: data/csv/krotypyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1843.csv
 tableLocale: uk
 title: Кроти, Пирятинський повіт, Полтавська губернія - сповідний розпис, 1843
 yearsRange:

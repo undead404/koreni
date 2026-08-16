@@ -15,5 +15,5 @@ yearsRange:
   - 1820
 authorName: Віталій Перегончук
 authorEmail: brute18@gmail.com
-tableFilePath: public/csv/Писарівка-Руська 1820 – сповідний розпис,
+tableFilePath: data/csv/Писарівка-Руська 1820 – сповідний розпис,
   ДАХмО-315-1-7071 - master.csv

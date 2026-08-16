@@ -11,7 +11,7 @@ location:
 size: 29
 sources:
   - https://docs.google.com/spreadsheets/d/1ySPGkBrdQdcmg7tw4PZcEsQHbuJNRA19QKDJx7yqrog/edit?gid=0#gid=0
-tableFilePath: public/csv/sbabychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-inventar-zhyteliv-1733rlytsa.csv
+tableFilePath: data/csv/sbabychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-inventar-zhyteliv-1733rlytsa.csv
 tableLocale: uk
 title: Бабичі (Канівські) - інвентар, 1733
 yearsRange:

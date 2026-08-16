@@ -14,4 +14,4 @@ tableLocale: ru
 yearsRange:
   - 1884
 authorName: Спільнота Cobook
-tableFilePath: public/csv/RGIA-577-30-1610.csv
+tableFilePath: data/csv/RGIA-577-30-1610.csv

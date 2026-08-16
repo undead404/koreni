@@ -64,7 +64,7 @@ const mockTableMetadata: IndexationTable = {
   yearsRange: [1900, 1910],
   archiveItems: ['Item 1', 'Item 2'],
   location: [50, 30] as [number, number],
-  tableFilePath: 'public/csv/table1.csv',
+  tableFilePath: 'data/csv/table1.csv',
   tableLocale: 'uk' as const,
   size: 100,
 };

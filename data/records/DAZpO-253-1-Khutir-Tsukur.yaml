@@ -10,7 +10,7 @@ location:
   - 33.42487
 size: 3
 sources: []
-tableFilePath: public/csv/khutir-tsukur-blanky-spetskultur.csv
+tableFilePath: data/csv/khutir-tsukur-blanky-spetskultur.csv
 tableLocale: uk
 title: Хутір Цукур, Дніпровський пов. Таврійська губ. | Бланки спец.культур
 yearsRange:

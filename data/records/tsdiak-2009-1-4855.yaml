@@ -11,7 +11,7 @@ size: 168
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:33SQ-GP4H-FM5?view=explore&groupId=M9K4-QXC&lang=en&grid=on
   - https://www.familysearch.org/ark:/61903/3:1:33S7-9GYM-9V5C?view=explore&groupId=M9L4-7B3&lang=en&grid=on
-tableFilePath: public/csv/tsdiak-2009-1-4855.csv
+tableFilePath: data/csv/tsdiak-2009-1-4855.csv
 tableLocale: ru
 title: МК Білгородської єпархії Харківського намісництва (1756-1817)
 yearsRange:

@@ -24,4 +24,4 @@ yearsRange:
   - 1897
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
-tableFilePath: public/csv/1897-Samhorodok.csv
+tableFilePath: data/csv/1897-Samhorodok.csv

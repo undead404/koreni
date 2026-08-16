@@ -9,8 +9,8 @@ location:
   - 33.124119
 size: 99
 sources: []
-tableFilePath: public/csv/shi-popivka-konotopska-narodzhennia-1921-ch-2.csv
+tableFilePath: data/csv/shi-popivka-konotopska-narodzhennia-1921-ch-2.csv
 tableLocale: uk
-title: "[ШІ] Попівка (Конотопська) – народження, 1921, ч. 2"
+title: '[ШІ] Попівка (Конотопська) – народження, 1921, ч. 2'
 yearsRange:
   - 1921

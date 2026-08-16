@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАРО-263-1-65
+authorName: Sa Kan
+authorEmail: sasha.testsso@gmail.com
+date: 2026-07-23
+id: DARO-263-1-65
+location:
+  - 51.3350028
+  - 26.6171275
+size: 710
+sources:
+  - https://www.familysearch.org/uk/records/images/search-results?imageGroupNumbers=125963623
+tableFilePath: data/csv/sarny-voters-86-district-1938.csv
+tableLocale: pl
+title: Списки виборців по виборам в сейм 86 виборчої дільниці. Гміна Сарни, м. Сарни
+yearsRange:
+  - 1938

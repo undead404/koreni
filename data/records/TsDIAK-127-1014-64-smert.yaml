@@ -16,4 +16,4 @@ yearsRange:
   - 1818
 authorName: Андрій Каленський
 authorEmail: andreyaquarius@gmail.com
-tableFilePath: public/csv/ЦДІАК 127-1014-64.xlsx - Смерть.csv
+tableFilePath: data/csv/ЦДІАК 127-1014-64.xlsx - Смерть.csv

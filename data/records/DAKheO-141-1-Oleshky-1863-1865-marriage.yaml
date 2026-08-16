@@ -12,7 +12,7 @@ location:
 size: 912
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-141-vvedenskyj-sobor-m-oleshky/
-tableFilePath: public/csv/oleshky-dniprovskyi-pov-tavriiska-hub-shliuy-1863-65.csv
+tableFilePath: data/csv/oleshky-dniprovskyi-pov-tavriiska-hub-shliuy-1863-65.csv
 tableLocale: uk
 title: Олешки, Дніпровський пов. Таврійська губ. | шлюби (1863-65)
 yearsRange:

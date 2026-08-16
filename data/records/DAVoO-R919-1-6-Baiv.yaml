@@ -9,7 +9,7 @@ location:
   - 25.2201316
 size: 1
 sources: []
-tableFilePath: public/csv/baiv-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/baiv-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Баїв, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

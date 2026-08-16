@@ -10,7 +10,7 @@ location:
 size: 107
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-57W9-DPVB?view=explore&groupId=TH-7740-140401-314632-64&lang=uk
-tableFilePath: public/csv/tsdiak-2005-1-201havrylivka1798narodzhennia.csv
+tableFilePath: data/csv/tsdiak-2005-1-201havrylivka1798narodzhennia.csv
 tableLocale: ru
 title: Гаврилівка (Барвінківська) – народження, 1798
 yearsRange:

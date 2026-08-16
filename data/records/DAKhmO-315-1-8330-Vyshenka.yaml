@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-07-13
+id: DAKhmO-315-1-8330-Vyshenka
+location:
+  - 49.353405
+  - 28.161331
+size: 705
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Vyshenka.csv
+tableLocale: ru
+title: Вишенька (Літинська) 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
+yearsRange:
+  - 1855

@@ -15,7 +15,7 @@ export default async function submitToGithub(data: ImportPayload) {
   const [owner, repo] = environment.GITHUB_REPO.split('/');
   const branchName = `submission/${data.id}`;
   const yamlPath = `data/records/${data.id}.yaml`;
-  const csvPath = `public/csv/${data.id}.csv`;
+  const csvPath = `data/csv/${data.id}.csv`;
   const size = data.table.data.length;
 
   const metadata = {

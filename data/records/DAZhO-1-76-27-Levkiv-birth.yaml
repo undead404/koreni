@@ -9,7 +9,7 @@ location:
   - 28.832007
 size: 80
 sources: []
-tableFilePath: public/csv/dazho-1-76-27-levkivbirth.csv
+tableFilePath: data/csv/dazho-1-76-27-levkivbirth.csv
 tableLocale: ru
 title: Левків (Глибочицький) – народження, 1817
 yearsRange:

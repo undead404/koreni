@@ -10,7 +10,7 @@ location:
 size: 830
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-SQGM-NXT?view=explore&groupId=TH-7772-127816-445-72&grid=on&lang=en
-tableFilePath: public/csv/petrivka-hadiatskyi-povit-spysok-chleniv-relihiinoho-tovarystva-1927-rik.csv
+tableFilePath: data/csv/petrivka-hadiatskyi-povit-spysok-chleniv-relihiinoho-tovarystva-1927-rik.csv
 tableLocale: uk
 title: Петрівка, Гадяцький повіт - список членів релігійного товариства 1927 рік
 yearsRange:

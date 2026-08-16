@@ -10,7 +10,7 @@ location:
 size: 1112
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1532200867#gid=1532200867
-tableFilePath: public/csv/DAKhmO-315-1-8563-Horyshkivka.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Horyshkivka.csv
 tableLocale: ru
 title: Горишківка 1861 – сповідний розпис (повний), ДАХмО 315-1-8563
 yearsRange:

@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 167
 sources: []
-tableFilePath: public/csv/troianiv-1901-narodzhennia-kostel.csv
+tableFilePath: data/csv/troianiv-1901-narodzhennia-kostel.csv
 tableLocale: uk
 title: Троянів 1901 народження, костел
 yearsRange:

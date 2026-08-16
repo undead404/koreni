@@ -10,7 +10,7 @@ location:
 size: 652
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8563-Dzhuryn-nativity.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Dzhuryn-nativity.csv
 tableLocale: ru
 title: Джурин (передмістя) 1861 – сповідний розпис (повний), Різдво-Богородична
   церква, ДАХмО-315-1-8563

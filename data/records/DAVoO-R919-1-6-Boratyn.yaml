@@ -9,7 +9,7 @@ location:
   - 25.3553319
 size: 54
 sources: []
-tableFilePath: public/csv/boratyn-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/boratyn-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Боратин, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

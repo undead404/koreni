@@ -11,7 +11,7 @@ size: 230
 sources:
   - https://docs.google.com/spreadsheets/d/1t84_Jy4Fr9ti_VUs_-xjMzfD-IghB_Vqwc7Zce05U_M/edit?usp=sharing
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-CQ8F-578P
-tableFilePath: public/csv/babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
+tableFilePath: data/csv/babychi-mezhyrytskoho-kliucha-cherkaskoho-starostva-kyivskoho-voievodstva-rich-pospolyta-spovidnyi-rozpys-tserkvy-pokrova-bohomateri-1788r.csv
 tableLocale: uk
 title: Бабичі (Канівські) - сповідний розпис церкви Покрова Богоматері, 1788
 yearsRange:

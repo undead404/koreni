@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-07-04
+id: DAKhmO-315-1-8330-Vasylivka
+location:
+  - 48.989071
+  - 28.44017
+size: 751
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Vasylivka.csv
+tableLocale: ru
+title: Василівка (Тиврівська) 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
+yearsRange:
+  - 1855

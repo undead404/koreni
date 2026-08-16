@@ -28,7 +28,7 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QS7-9937-C9S3?view=index&lang=uk&groupId=
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSVP-8SQW-V?view=index&groupId=&lang=en
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS2Y-X75S-C?view=index&groupId=&lang=en
-tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuy-1811-1820.csv
+tableFilePath: data/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuy-1811-1820.csv
 tableLocale: uk
 title: Іванків, Радомишльський пов. Київська губ. | шлюби (1811-1820)
 yearsRange:

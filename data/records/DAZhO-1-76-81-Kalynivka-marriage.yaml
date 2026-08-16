@@ -9,7 +9,7 @@ location:
   - 28.801689
 size: 12
 sources: []
-tableFilePath: public/csv/dazho-1-76-81-kalynivkamerriage.csv
+tableFilePath: data/csv/dazho-1-76-81-kalynivkamerriage.csv
 tableLocale: ru
 title: Калинівка (Глибочицька) – шлюб, 1845
 yearsRange:

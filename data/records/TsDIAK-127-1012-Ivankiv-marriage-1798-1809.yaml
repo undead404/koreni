@@ -30,7 +30,7 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-DY6C?view=explore&groupId=TH-1961-29862-23248-88&lang=en
   - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-D9L8-9?view=index&lang=uk&groupId=
   - https://www.familysearch.org/ark:/61903/3:1:3QS7-L937-DSHW-3?view=explore&groupId=TH-1961-29862-60594-9&lang=uk
-tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1798-1809.csv
+tableFilePath: data/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-shliuby-1798-1809.csv
 tableLocale: uk
 title: Іванків, Радомишльський пов. Київська губ.  |  шлюби (1798-1809)
 yearsRange:

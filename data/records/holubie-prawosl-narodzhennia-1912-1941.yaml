@@ -11,7 +11,7 @@ location:
 size: 53
 sources:
   - https://docs.google.com/spreadsheets/d/1VBYcHigG8z0B3SvNhXSIdh9mWeda_QBi9Pz8dTJkuoY/edit?usp=sharing
-tableFilePath: public/csv/holubie-prawosl-narodzhennia-1912-1941.csv
+tableFilePath: data/csv/holubie-prawosl-narodzhennia-1912-1941.csv
 tableLocale: uk
 title: Голуб'є (Hołubie prawosł.) Грубешівський пов. | народження (1912, 1941)
 yearsRange:

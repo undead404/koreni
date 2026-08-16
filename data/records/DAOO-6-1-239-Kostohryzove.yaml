@@ -10,7 +10,7 @@ location:
 size: 32
 sources:
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9E%D0%9E/6/1/239
-tableFilePath: public/csv/kostohryzove-pereselentsi-borznianskyi-pov-1808.csv
+tableFilePath: data/csv/kostohryzove-pereselentsi-borznianskyi-pov-1808.csv
 tableLocale: uk
 title: Костогризове, Дніпровський пов. Таврійська губ. | Переселенці з Загорівки
   Борзнянського пов. Чернігівської губ. (1808)
