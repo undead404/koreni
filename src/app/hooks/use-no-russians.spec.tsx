@@ -10,24 +10,6 @@ vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
 }));
 
-vi.mock('posthog-js', () => ({
-  default: {
-    captureException: vi.fn(),
-  },
-}));
-
-vi.mock('../services/bugsnag', () => ({
-  initBugsnag: vi.fn().mockReturnValue({ notify: vi.fn() }),
-}));
-
-// Mock sonner specifically to intercept toast calls
-const mockToastError = vi.fn();
-vi.mock('sonner', () => ({
-  toast: {
-    error: (...arguments_: unknown[]) => mockToastError(...arguments_),
-  },
-}));
-
 describe('useNoRussians', () => {
   const mockPush = vi.fn();
 
@@ -51,7 +33,6 @@ describe('useNoRussians', () => {
     });
 
     expect(mockPush).not.toHaveBeenCalled();
-    expect(mockToastError).not.toHaveBeenCalled();
   });
 
   it('should redirect if html lang is "ru"', async () => {
@@ -93,7 +74,7 @@ describe('useNoRussians', () => {
     });
   });
 
-  it('should show "Light Ukrainization" toast if "ru" is secondary language', async () => {
+  it('should do nothing if Russian is a secondary language', () => {
     Object.defineProperty(navigator, 'languages', {
       value: ['en', 'ru'],
       configurable: true,
@@ -101,11 +82,6 @@ describe('useNoRussians', () => {
 
     renderHook(() => {
       useNoRussians();
-    });
-
-    await waitFor(() => {
-      expect(mockToastError).toHaveBeenCalled();
-      expect(mockToastError.mock.calls[0][0]).toBe('Лагідна українізація!');
     });
 
     expect(mockPush).not.toHaveBeenCalled();
