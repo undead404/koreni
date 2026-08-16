@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
 import Header from './components/header';
+import SharhorootsPrompt from './components/sharhoroots-prompt';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
 import { PostHogProvider } from './providers/posthog';
@@ -55,6 +56,7 @@ export default function RootLayout({
               <main className={styles.main}>{children}</main>
               <Footer />
               <CookieBanner />
+              <SharhorootsPrompt />
             </div>
             <Toaster position="bottom-right" richColors />
           </PostHogProvider>
