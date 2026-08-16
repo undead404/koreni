@@ -1,13 +1,13 @@
 import { notFound } from 'next/navigation';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import getTableData from '@koreni/shared/get-table-data';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 import {
   generateIndexationMetadata,
   generateJsonLd,
 } from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
-import getTableData from '@/shared/get-table-data';
-import getTablesMetadata from '@/shared/get-tables-metadata';
 
 import Table, { generateMetadata, generateStaticParams } from './page';
 import TableContent from './table-content';
@@ -50,7 +50,7 @@ describe('Table Page', () => {
   describe('Table component', () => {
     it('renders TableContent with correct data for page 1', async () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
-      vi.mocked(getTableData).mockResolvedValue(mockTableData as any);
+      vi.mocked(getTableData).mockResolvedValue(mockTableData);
       vi.mocked(generateJsonLd).mockReturnValue({
         '@context': 'https://schema.org',
       } as any);
@@ -75,7 +75,7 @@ describe('Table Page', () => {
 
     it('renders TableContent without jsonLd for page 2', async () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
-      vi.mocked(getTableData).mockResolvedValue(mockTableData as any);
+      vi.mocked(getTableData).mockResolvedValue(mockTableData);
 
       const parameters = Promise.resolve({ tableId: 'test-table', page: '2' });
       const result = (await Table({ params: parameters })) as any;
@@ -106,12 +106,15 @@ describe('Table Page', () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
       vi.mocked(generateIndexationMetadata).mockReturnValue({
         title: 'Meta Title',
-      } as any);
+      });
 
       const parameters = Promise.resolve({ tableId: 'test-table', page: '1' });
       const metadata = await generateMetadata({ params: parameters });
 
-      expect(generateIndexationMetadata).toHaveBeenCalledWith(mockTableMetadata, 1);
+      expect(generateIndexationMetadata).toHaveBeenCalledWith(
+        mockTableMetadata,
+        1,
+      );
       expect(metadata).toEqual({
         title: 'Meta Title',
         alternates: {

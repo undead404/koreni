@@ -53,7 +53,7 @@ async function autocompleteBounced(
     return autocompleteData;
   } catch (error) {
     initBugsnag().notify(error as Error);
-    posthog.captureException(error as Error);
+    posthog.captureException(error);
     return;
   }
 }
@@ -74,7 +74,7 @@ export async function reverseGeocode(coordinates: [number, number]) {
     return geoData.display_name;
   } catch (error) {
     initBugsnag().notify(error as Error);
-    posthog.captureException(error as Error);
+    posthog.captureException(error);
     return;
   }
 }

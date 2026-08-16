@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import generateTableDescription from './generate-table-description';
 

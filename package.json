@@ -73,8 +73,8 @@
     "node": "22"
   },
   "license": "MIT",
-  "name": "koreni",
-  "packageManager": "yarn@1.22.22",
+  "name": "koreni-monorepo",
+  "packageManager": "yarn@4.0.0",
   "private": true,
   "scripts": {
     "artifacts:clean": "./scripts/clean-repo/clean-repo.sh",
@@ -94,5 +94,10 @@
     "typesense:populate": "tsx src/populate-typesense/index.ts"
   },
   "type": "module",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "workspaces": [
+    "src/server",
+    "src/shared",
+    "src/daily-report"
+  ]
 }

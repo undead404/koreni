@@ -1,7 +1,7 @@
 'use client';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
 import useSearchParametersHack from '../hooks/use-search-parameters-hack';
@@ -47,10 +47,7 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
         <thead className={styles.thead}>
           <tr>
             {Object.keys(data[0]).map((key) => (
-              <th
-                key={key}
-                scope="col"
-              >
+              <th key={key} scope="col">
                 {key}
               </th>
             ))}

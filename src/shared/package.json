@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "yaml": "~2.8.3",
+    "zod": "~4.3.6"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./get-table-data": "./get-table-data.ts",
+    "./get-tables-metadata": "./get-tables-metadata.ts",
+    "./get-yaml-filepaths": "./get-yaml-filepaths.ts",
+    "./read-csv-data": "./read-csv-data.ts",
+    "./schemas/import": "./schemas/import.ts",
+    "./schemas/indexation-table": "./schemas/indexation-table.ts",
+    "./schemas/non-empty-string": "./schemas/non-empty-string.ts",
+    "./ukrainian-archives": "./ukrainian-archives.ts",
+    "./validate-metadata": "./validate-metadata.ts"
+  },
+  "files": [
+    "*.ts",
+    "schemas"
+  ],
+  "name": "@koreni/shared",
+  "type": "module",
+  "version": "1.0.0"
+}

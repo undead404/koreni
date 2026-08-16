@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-import getTablesMetadata from '@/shared/get-tables-metadata';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import Comments from './components/comments/comments';
 import Loader from './components/loader';

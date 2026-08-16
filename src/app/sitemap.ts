@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import getTablesMetadata from '@/shared/get-tables-metadata';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import slugifyUkrainian from './helpers/slugify-ukrainian';
 import { PER_PAGE } from './constants';

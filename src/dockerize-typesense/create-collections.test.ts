@@ -130,7 +130,7 @@ describe('createCollections', () => {
     mockClient.post.mockResolvedValueOnce({ status: 201 });
 
     await expect(createCollections(mockClientAsClient, apiKey)).rejects.toThrow(
-      error as unknown as Error,
+      error,
     );
 
     expect(mockClient.post).toHaveBeenCalledWith(

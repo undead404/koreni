@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { nonEmptyString } from '@/shared/schemas/non-empty-string';
+import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
 
 // Plural 'highlights' used for safe token extraction without dangerouslySetInnerHTML
 const highlightsArraySchema = z.array(

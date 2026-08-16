@@ -25,17 +25,13 @@ jobs:
         with:
           path: |
             node_modules
-            src/server/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', 'src/server/yarn.lock') }}
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-
-      - name: Install server dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
+        run: yarn install --frozen-lockfile
 
       - name: Lint
         run: yarn lint
@@ -55,13 +51,13 @@ jobs:
         with:
           path: |
             node_modules
-            src/server/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', 'src/server/yarn.lock') }}
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: yarn install --frozen-lockfile
 
       - name: Type check
         run: yarn typecheck
@@ -81,16 +77,16 @@ jobs:
         with:
           path: |
             node_modules
-            src/server/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', 'src/server/yarn.lock') }}
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: yarn install --frozen-lockfile
 
-      - name: Run tests
-        run: yarn test
+      - name: Run frontend tests
+        run: yarn test --run
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
@@ -100,33 +96,8 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
 
-  test-api:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Set up tools via Mise
-        uses: jdx/mise-action@v4
-
-      - name: Cache yarn dependencies
-        uses: actions/cache@v5
-        with:
-          path: |
-            node_modules
-            src/server/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', 'src/server/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install API dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
-
-      - name: Run tests
-        run: yarn test
-        working-directory: src/server
+      - name: Run server tests
+        run: yarn exec vitest run --root src/server
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo

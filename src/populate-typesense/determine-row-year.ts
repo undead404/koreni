@@ -47,7 +47,10 @@ export default function determineRowYear(
         return 0;
       }
       // console.log(dateInRow);
-      const dateInRowAsString = String(dateInRow as string | number);
+      const dateInRowAsString =
+        typeof dateInRow === 'string' || typeof dateInRow === 'number'
+          ? String(dateInRow)
+          : '';
       if (dateInRowAsString.includes('.')) {
         const parts = dateInRowAsString
           .split('.')

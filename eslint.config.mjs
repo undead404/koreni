@@ -62,13 +62,15 @@ export default [
             [
               `^(${builtinModules.map((moduleName) => `node:${moduleName}`).join('|')})(/|$)`,
             ],
-            // libs.
-            [String.raw`^@?(\w|.)[^./]`],
-            // Internal libs.
-            [String.raw`^@\/(\w|.)[^./]`],
+            // External libs (excluding @koreni).
+            [
+              String.raw`^@(?!koreni)(\w|.)[^./]`,
+              String.raw`^(?!@koreni)(\w|.)[^./]`,
+            ],
+            // Internal libs: Root-alias imports (@/) and workspace packages (@koreni).
+            [String.raw`^@koreni`, String.raw`^@\/(\w|.)[^./]`],
             // Same scope imports
             [
-              String.raw`^@\/(\w|.)[^./]`, // Root-alias imports
               String.raw`^\.\.(?!/?$)`, // Parent imports. Put `..` last.
               String.raw`^\.\./?$`,
             ],

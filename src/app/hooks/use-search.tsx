@@ -80,7 +80,7 @@ export function useSearch() {
         setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
 
         initBugsnag().notify(error_ as NotifiableError);
-        posthog.captureException(error_ as Error);
+        posthog.captureException(error_);
       } finally {
         if (requestId === currentRequestId.current) {
           setIsLoading(false);

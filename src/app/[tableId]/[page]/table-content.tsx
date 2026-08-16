@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 import ArchiveItem from '@/app/components/archive-item';
 import Comments from '@/app/components/comments/comments';
 import Details from '@/app/components/details';
@@ -10,7 +11,6 @@ import SourceLink from '@/app/components/source-link';
 import { PER_PAGE } from '@/app/constants';
 import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 import combinedPoints from '@/app/services/map-points';
-import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import styles from './table-content.module.css';
 

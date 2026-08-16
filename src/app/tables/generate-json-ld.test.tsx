@@ -1,7 +1,7 @@
 import type { Dataset, ListItem } from 'schema-dts';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import generateJsonLd from './generate-json-ld';
 

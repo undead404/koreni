@@ -70,5 +70,5 @@ export default async function search({
   const hits = response.hits || [];
   const totalFound = response.found || 0;
 
-  return [hits as SearchResult[], totalFound];
+  return [hits, totalFound];
 }

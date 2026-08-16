@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { IndexationTable } from '@/shared/schemas/indexation-table';
+import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import {
   generateIndexationMetadata,

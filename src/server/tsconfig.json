@@ -7,6 +7,9 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "outDir": "./dist",
+    "paths": {
+      "@koreni/shared": ["../shared/index.ts"]
+    },
     "rootDir": "..",
     "skipLibCheck": true,
     "strict": true,
