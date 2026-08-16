@@ -28,6 +28,7 @@
     "zustand": "^5.0.11"
   },
   "resolutions": {
+    "esbuild": "^0.28.1",
     "postcss": "^8.5.23"
   },
   "devDependencies": {
