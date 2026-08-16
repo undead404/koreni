@@ -89,3 +89,89 @@ describe('AboutPage', () => {
     }
   });
 });
+
+describe('AboutPage - Меценати section', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('renders the Меценати h3 heading', () => {
+    render(<AboutPage />);
+    expect(
+      screen.getByRole('heading', { level: 3, name: /Меценати/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('renders Serhii Fazulianov name linked to Facebook profile', () => {
+    render(<AboutPage />);
+    const link = screen.getByRole('link', { name: /Сергій Фазульянов/i });
+    expect(link).toHaveAttribute(
+      'href',
+      'https://www.facebook.com/S.Fazulyanov',
+    );
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('renders the secondary Instagram link', () => {
+    render(<AboutPage />);
+    const link = screen.getByRole('link', { name: /Instagram/i });
+    expect(link).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/fazu.genealogy/',
+    );
+    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  });
+
+  it('renders the first benefactor descriptor text', () => {
+    render(<AboutPage />);
+    expect(screen.getByText(/перший меценат Коренів/i)).toBeInTheDocument();
+  });
+
+  it('renders the Учасники та спільноти h3 heading', () => {
+    render(<AboutPage />);
+    expect(
+      screen.getByRole('heading', { level: 3, name: /Учасники та спільноти/i }),
+    ).toBeInTheDocument();
+  });
+});
+
+describe('AboutPage - Як можна допомогти section', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('renders the financial support paragraph', () => {
+    render(<AboutPage />);
+    expect(
+      screen.getByText(/підтримати проєкт фінансово/i),
+    ).toBeInTheDocument();
+  });
+});
+
+describe('AboutPage - existing Подяки entries regression', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('still renders Alina Listunova entry', () => {
+    render(<AboutPage />);
+    expect(screen.getByText(/Аліні Лістуновій/i)).toBeInTheDocument();
+  });
+
+  it('still renders UAGenealogy Facebook link', () => {
+    render(<AboutPage />);
+    const link = screen.getByRole('link', { name: /UAGenealogy на Facebook/i });
+    expect(link).toHaveAttribute(
+      'href',
+      'https://www.facebook.com/groups/425347154227812',
+    );
+  });
+
+  it('still renders УГФ link', () => {
+    render(<AboutPage />);
+    const link = screen.getByRole('link', { name: /УГФ/i });
+    expect(link).toHaveAttribute('href', 'https://ukrgenealogy.com.ua/');
+  });
+});

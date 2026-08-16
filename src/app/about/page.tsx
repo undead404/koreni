@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import Comments from '../components/comments/comments';
 
+import { BENEFACTORS } from './benefactors';
+
 import styles from './page.module.css';
 
 const TITLE = 'Про проєкт';
@@ -107,6 +109,39 @@ export default function AboutPage() {
 
         <h2>Подяки</h2>
         <p>Уклінно дякую наступним особам і спільнотам:</p>
+
+        <h3>Меценати</h3>
+        <ul className={styles.benefactorList}>
+          {BENEFACTORS.map((benefactor) => (
+            <li key={benefactor.name}>
+              <a
+                href={benefactor.primaryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {benefactor.name}
+              </a>{' '}
+              – {benefactor.descriptor}
+              {benefactor.isFirst && ', перший меценат Коренів'}
+              {benefactor.secondaryUrl && (
+                <>
+                  {' '}
+                  (
+                  <a
+                    href={benefactor.secondaryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {benefactor.secondaryLabel}
+                  </a>
+                  )
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <h3>Учасники та спільноти</h3>
         <ul>
           <li>
             <Link href="/volunteers">Усім волонтерам Коренів</Link> – за
@@ -220,6 +255,10 @@ export default function AboutPage() {
             Корені в Github
           </a>
           , реєструйте проблеми, присилайте PR!
+        </p>
+        <p>
+          Якщо бажаєте підтримати проєкт фінансово – напишіть на{' '}
+          <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a>.
         </p>
         <p>
           І – якщо Корені допомогли в якихось пошуках – пишіть про це в
