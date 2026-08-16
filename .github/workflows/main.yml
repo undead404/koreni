@@ -201,7 +201,9 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build API project
-        run: yarn exec tsc --project src/server/tsconfig.json
+        run: |
+          yarn exec tsc --project src/server/tsconfig.json
+          cp src/server/package.json src/server/dist/
 
       - name: Install production dependencies
         run: yarn workspaces focus koreni-server --production
