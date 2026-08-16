@@ -206,6 +206,20 @@ jobs:
       - name: Build API project
         run: yarn exec tsc --project src/server/tsconfig.json
 
+      - name: Install production dependencies
+        run: yarn workspaces focus koreni-server --production
+
+      - name: Set up SSH for node_modules deployment
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy node_modules to server
+        run: |
+          rsync -avz --no-o --no-g -e "ssh" --delete ./node_modules/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api/node_modules
+
       - name: Upload backend artifact
         uses: actions/upload-artifact@v7
         with:
@@ -277,10 +291,10 @@ jobs:
           # Ensure target directory exists
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
 
-          # Sync files
+          # Sync compiled dist files
           rsync -avz --no-o --no-g -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
 
-      - name: Configure Environment and Install Dependencies
+      - name: Configure Environment and Restart Service
         run: |
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
             set -e
@@ -300,9 +314,6 @@ jobs:
             echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
             echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-
-            # Install dependencies ON THE SERVER
-            yarn install --frozen-lockfile --production --prefer-offline
             
             # Restart Service
             sudo systemctl restart koreni-api
