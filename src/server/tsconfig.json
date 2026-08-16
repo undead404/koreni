@@ -10,7 +10,7 @@
     "paths": {
       "@koreni/shared": ["../shared/index.ts"]
     },
-    "rootDir": "..",
+    "rootDir": ".",
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext"

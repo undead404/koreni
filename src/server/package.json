@@ -20,12 +20,12 @@
     "node": "^22.12"
   },
   "license": "MIT",
-  "main": "server/src/index.js",
+  "main": "src/index.js",
   "name": "koreni-server",
   "scripts": {
     "build": "tsc && cp package.json ./dist",
     "dev": "tsx ./src/index.ts",
-    "start": "node server/src/index.js",
+    "start": "node src/index.js",
     "test": "vitest"
   },
   "type": "module",
