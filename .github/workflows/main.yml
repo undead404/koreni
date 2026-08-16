@@ -317,8 +317,29 @@ jobs:
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
             echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
             echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
-            echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-            
-            # Restart Service
-            sudo systemctl restart koreni-api
-          EOF
+             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
+             
+             # Restart Service
+             sudo systemctl restart koreni-api
+
+             # Verify the service started successfully
+             MAX_ATTEMPTS=12
+             SLEEP_INTERVAL=5
+             attempt=0
+             while [ $attempt -lt $MAX_ATTEMPTS ]; do
+               if sudo systemctl is-active --quiet koreni-api; then
+                 echo "koreni-api is active."
+                 break
+               fi
+               attempt=$((attempt + 1))
+               echo "Waiting for koreni-api to become active... (attempt $attempt/$MAX_ATTEMPTS)"
+               sleep $SLEEP_INTERVAL
+             done
+
+             if ! sudo systemctl is-active --quiet koreni-api; then
+               echo "ERROR: koreni-api failed to start after $((MAX_ATTEMPTS * SLEEP_INTERVAL))s."
+               echo "--- journalctl output ---"
+               sudo journalctl -u koreni-api -n 50 --no-pager
+               exit 1
+             fi
+           EOF
