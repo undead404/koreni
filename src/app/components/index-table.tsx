@@ -1,5 +1,5 @@
 'use client';
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef } from 'react';
 
 import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
@@ -24,7 +24,6 @@ const escapeRegExp = (string: string) =>
 export function IndexTable({ data, locale, page, tableId }: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
   const searchParameters = useSearchParametersHack();
-  const [targetRowId, setTargetRowId] = useState<null | string>(null);
   const matchedTokens = useMemo(
     () =>
       (searchParameters.matchedTokens?.split(',') || [])
@@ -32,10 +31,10 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
         .filter(Boolean),
     [searchParameters],
   );
-  useEffect(() => {
-    const tri = searchParameters.showRow;
-    setTargetRowId(tri);
-  }, [searchParameters]);
+  const targetRowId = useMemo(
+    () => searchParameters.showRow,
+    [searchParameters],
+  );
   return (
     <>
       <table

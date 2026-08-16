@@ -1,15 +1,18 @@
 export default function UnknownValue({ value }: { value: unknown }) {
   if (typeof value === 'string') {
     if (value.startsWith('http://') || value.startsWith('https://')) {
+      let url: URL | null = null;
       try {
-        const url = new URL(value);
+        url = new URL(value);
+      } catch {
+        // Ignore
+      }
+      if (url) {
         return (
           <a href={url.toString()} target="_blank" rel="noreferrer">
             {url.hostname}
           </a>
         );
-      } catch {
-        // Ignore
       }
       return <span>{value}</span>;
     }

@@ -4,7 +4,6 @@ import {
   type KeyboardEvent,
   type SubmitEvent,
   useCallback,
-  useEffect,
   useState,
 } from 'react';
 
@@ -23,11 +22,18 @@ const SearchControls: FC<ControlsProperties> = ({
 }) => {
   const [localYearFrom, setLocalYearFrom] = useState(filters.yearFrom);
   const [localYearTo, setLocalYearTo] = useState(filters.yearTo);
+  const [previousYearFrom, setPreviousYearFrom] = useState(filters.yearFrom);
+  const [previousYearTo, setPreviousYearTo] = useState(filters.yearTo);
 
-  useEffect(() => {
+  // Sync local state when parent prop changes
+  if (filters.yearFrom !== previousYearFrom) {
+    setPreviousYearFrom(filters.yearFrom);
     setLocalYearFrom(filters.yearFrom);
+  }
+  if (filters.yearTo !== previousYearTo) {
+    setPreviousYearTo(filters.yearTo);
     setLocalYearTo(filters.yearTo);
-  }, [filters.yearFrom, filters.yearTo]);
+  }
 
   const handleQueryChange = useCallback(
     (changeEvent: ChangeEvent<HTMLInputElement>) => {
