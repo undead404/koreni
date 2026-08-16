@@ -80,6 +80,7 @@
     "artifacts:clean": "./scripts/clean-repo/clean-repo.sh",
     "build": "next build",
     "data:modernize-russian": "tsx src/modernize-russian/index.ts",
+    "data:validate": "tsx src/validate-data-contribution/index.ts",
     "dev": "next dev --turbopack",
     "dev:all": "concurrently --names 'frontend,server' --prefix '[{name}]' --colors --kill-others-on-fail 'yarn dev' 'yarn dev:server'",
     "dev:server": "cd src/server && yarn dev",

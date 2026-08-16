@@ -252,6 +252,7 @@ export default [
       'src/server/**/*.{js,mjs,cjs,ts}',
       'src/modernize-russian/**/*.ts',
       'src/daily-report/**/*.ts',
+      'src/validate-data-contribution/**/*.ts',
     ],
     rules: {
       'no-console': 'off',
