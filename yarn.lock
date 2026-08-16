@@ -4007,13 +4007,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csv-parse@npm:~5.5.0":
-  version: 5.5.6
-  resolution: "csv-parse@npm:5.5.6"
-  checksum: b4f6e9b885e4488829356455157bd009f3fed4119c5fbaadab1a879e85f0a9a1b62cd01e6de68ff77a50f820a6261722bce1b799da1ace2e2126e0b7c8d86760
-  languageName: node
-  linkType: hard
-
 "csv-stringify@npm:^6.6.0":
   version: 6.8.3
   resolution: "csv-stringify@npm:6.8.3"
@@ -6648,8 +6641,9 @@ __metadata:
     "@bugsnag/js": "npm:~8.8.1"
     "@bugsnag/plugin-hono": "npm:^8.8.0"
     "@hono/node-server": "npm:^2.0.10"
-    csv-parse: "npm:~5.5.0"
+    "@octokit/request-error": "npm:^7.1.1"
     csv-stringify: "npm:^6.6.0"
+    dotenv: "npm:~16.4.7"
     hono: "npm:^4.12.34"
     octokit: "npm:~5.0.5"
     posthog-node: "npm:~5.28.8"
@@ -6657,6 +6651,8 @@ __metadata:
     tsx: "npm:~4.21.0"
     typescript: "npm:~5.9.3"
     vitest: "npm:^4.1.0"
+    yaml: "npm:~2.8.3"
+    zod: "npm:~4.3.6"
   languageName: unknown
   linkType: soft
 
