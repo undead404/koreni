@@ -1,6 +1,6 @@
 ---
 description: 'Run backend test suite and automatically resolve failures.'
-model: 'opencode/claude-haiku-4.5'
+model: 'opencode/claude-haiku-4-5'
 temperature: 0.1
 top_p: 0.90
 max_tokens: 8192

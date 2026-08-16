@@ -5,7 +5,7 @@ model: opencode/claude-sonnet-4-6
 temperature: 0.2
 permission:
   bash: ask
-  edit:
+  write:
     '*': deny
     specs: allow
     src/server/specs: allow
