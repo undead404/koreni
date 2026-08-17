@@ -4,7 +4,7 @@ import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 import ArchiveItem from '@/app/components/archive-item';
 import Comments from '@/app/components/comments/comments';
 import Details from '@/app/components/details';
-import IndexTable from '@/app/components/index-table';
+import IndexTableWithParameters from '@/app/components/index-table-with-parameters';
 import MapWrapper from '@/app/components/map-wrapper';
 import Pagination from '@/app/components/pagination';
 import SourceLink from '@/app/components/source-link';
@@ -90,7 +90,7 @@ export default function TableContent({
             urlBuilder={(p: number) => `/${tableId}/${p}`}
           />
           <div role="region" className={styles.tableContainer}>
-            <IndexTable
+            <IndexTableWithParameters
               data={tableData}
               locale={tableLocale}
               page={page}

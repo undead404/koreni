@@ -36,7 +36,7 @@ vi.mock('@/app/components/details', () => ({
     </div>
   ),
 }));
-vi.mock('@/app/components/index-table', () => ({
+vi.mock('@/app/components/index-table-with-parameters', () => ({
   default: () => <div data-testid="index-table" />,
 }));
 vi.mock('@/app/components/map-wrapper', () => ({

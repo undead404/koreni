@@ -1,40 +1,33 @@
 'use client';
-import { Suspense, useMemo, useRef } from 'react';
+import { useRef } from 'react';
 
 import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
-import useSearchParametersHack from '../hooks/use-search-parameters-hack';
 
 import IndexTableRow from './index-table-row';
-import SearchParametersListener from './search-parameters-listener';
 
 import styles from './index-table.module.css';
 
 export interface TableProperties {
   data: Record<string, unknown>[];
   locale: IndexationTable['tableLocale'];
+  matchedTokens: string[];
   page: number;
   tableId: string;
+  targetRowId: string | null;
 }
 
-const escapeRegExp = (string: string) =>
-  string.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
-
-export function IndexTable({ data, locale, page, tableId }: TableProperties) {
+export function IndexTable({
+  data,
+  locale,
+  matchedTokens,
+  page,
+  tableId,
+  targetRowId,
+}: TableProperties) {
   const tableReference = useRef<HTMLTableElement>(null);
-  const searchParameters = useSearchParametersHack();
-  const matchedTokens = useMemo(
-    () =>
-      (searchParameters.matchedTokens?.split(',') || [])
-        .map((item) => escapeRegExp(item))
-        .filter(Boolean),
-    [searchParameters],
-  );
-  const targetRowId = useMemo(
-    () => searchParameters.showRow,
-    [searchParameters],
-  );
+
   return (
     <>
       <table
@@ -67,9 +60,6 @@ export function IndexTable({ data, locale, page, tableId }: TableProperties) {
           })}
         </tbody>
       </table>
-      <Suspense fallback={null}>
-        <SearchParametersListener />
-      </Suspense>
     </>
   );
 }
