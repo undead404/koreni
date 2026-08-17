@@ -14,7 +14,7 @@ archiveItems:
 authorName: Ірина Будь
 authorEmail: bud.iryna@gmail.com
 date: 2026-08-17
-id: zbirna-metryka-pro-shliub-czorcze-1808-1825
+id: DAVoO-382-3-Cherche-1808-1825-marriage
 location:
   - 51.738106
   - 24.875582
@@ -22,7 +22,7 @@ size: 100
 sources: []
 tableFilePath: data/csv/zbirna-metryka-pro-shliub-czorcze-1808-1825.csv
 tableLocale: pl
-title: Збірна метрика про шлюб Czorcze 1808-1825
+title: Черче – шлюб, 1808-1825
 yearsRange:
   - 1808
   - 1825
