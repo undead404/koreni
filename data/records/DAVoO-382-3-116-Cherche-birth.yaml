@@ -3,7 +3,7 @@ archiveItems:
 authorName: Ірина Будь
 authorEmail: bud.iryna@gmail.com
 date: 2026-08-17
-id: metryka-pro-narodzhennia-czorcze-1827
+id: DAVoO-382-3-116-Cherche-birth
 location:
   - 51.738106
   - 24.875582
@@ -11,6 +11,6 @@ size: 28
 sources: []
 tableFilePath: data/csv/metryka-pro-narodzhennia-czorcze-1827.csv
 tableLocale: pl
-title: Метрика про народження Czorcze 1827
+title: Черче – народження, 1827
 yearsRange:
   - 1827
