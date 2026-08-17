@@ -101,8 +101,10 @@ describe('useLocationSearch', () => {
 
     result.current.setQuery('Київ');
 
-    // Wait for the effect to run
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    // Wait for the state update to complete
+    await waitFor(() => {
+      expect(result.current.query).toBe('Київ');
+    });
 
     // Should filter to only matching locations
     const matchingLocations = knownLocations.filter((l) =>
