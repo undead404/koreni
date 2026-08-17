@@ -19,7 +19,7 @@ jobs:
         uses: jdx/mise-action@v4
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: yarn install --immutable
 
       - name: Validate data consistency
         run: yarn data:validate
