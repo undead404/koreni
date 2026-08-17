@@ -43,7 +43,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.find-files.outputs.has_files == 'true'
-        run: yarn --frozen-lockfile --prefer-offline
+        run: yarn install --immutable
         working-directory: src/daily-report
 
       - name: Run notification script
