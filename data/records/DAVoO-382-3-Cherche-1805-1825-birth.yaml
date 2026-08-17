@@ -15,7 +15,7 @@ archiveItems:
 authorName: Ірина Будь
 authorEmail: bud.iryna@gmail.com
 date: 2026-08-17
-id: zbirna-metryka-pro-narodzhennia-czorcze-1805-1825
+id: DAVoO-382-3-Cherche-1805-1825-birth
 location:
   - 51.738106
   - 24.875582
@@ -23,7 +23,7 @@ size: 332
 sources: []
 tableFilePath: data/csv/zbirna-metryka-pro-narodzhennia-czorcze-1805-1825.csv
 tableLocale: pl
-title: Збірна метрика про народження Czorcze 1805-1825
+title: Черче – народження, 1805-1825
 yearsRange:
   - 1805
   - 1825
