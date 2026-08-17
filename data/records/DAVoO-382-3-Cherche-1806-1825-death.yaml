@@ -16,7 +16,7 @@ archiveItems:
 authorName: Ірина Будь
 authorEmail: bud.iryna@gmail.com
 date: 2026-08-17
-id: zbirna-metryka-pro-smert-czorcze-1806-1825
+id: DAVoO-382-3-Cherche-1806-1825-death
 location:
   - 51.738106
   - 24.875582
@@ -24,7 +24,7 @@ size: 296
 sources: []
 tableFilePath: data/csv/zbirna-metryka-pro-smert-czorcze-1806-1825.csv
 tableLocale: pl
-title: Збірна метрика про смерть Czorcze 1806-1825
+title: Черче – смерть, 1806-1825
 yearsRange:
   - 1806
   - 1825
