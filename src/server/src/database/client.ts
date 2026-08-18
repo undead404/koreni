@@ -1,8 +1,9 @@
 import { LibsqlDialect } from '@libsql/kysely-libsql';
 import { Kysely } from 'kysely';
-import type { DB } from 'kysely-codegen';
 
 import environment from '../environment.js';
+
+import type { DB } from './generated.js';
 
 const database = new Kysely<DB>({
   dialect: new LibsqlDialect({

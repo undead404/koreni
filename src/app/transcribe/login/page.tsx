@@ -35,7 +35,7 @@ export default function LoginPage() {
           void handleGoogleSuccess(credentialResponse);
         }}
         onError={() => {
-          console.error('GIS SDK Error');
+          toast.error('Google login failed');
         }}
         useOneTap={true} // Automatically displays the prompt if a session exists
       />

@@ -18,8 +18,7 @@ export default function UserView() {
         setUser(userData.user);
         return;
       })
-      .catch((error: unknown) => {
-        console.error(error);
+      .catch(() => {
         router.push('/transcribe/login');
       });
   }, [router]);
