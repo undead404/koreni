@@ -52,6 +52,9 @@ async function autocompleteBounced(
     const autocompleteData = locationiqAutocompleteResponseSchema.parse(data);
     return autocompleteData;
   } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return;
+    }
     initBugsnag().notify(error as Error);
     posthog.captureException(error);
     return;
@@ -60,19 +63,25 @@ async function autocompleteBounced(
 
 export const autocomplete = debounce(autocompleteBounced, 500);
 
-export async function reverseGeocode(coordinates: [number, number]) {
+export async function reverseGeocode(
+  coordinates: [number, number],
+  abortController?: AbortController,
+) {
   try {
     if (!environment.NEXT_PUBLIC_LOCATIONIQ_KEY) {
       return;
     }
     const response = await fetch(
       `https://us1.locationiq.com/v1/reverse?lat=${coordinates[0]}&lon=${coordinates[1]}&format=json&zoom=14&accept-language=uk&key=${environment.NEXT_PUBLIC_LOCATIONIQ_KEY}`,
-      options,
+      { ...options, signal: abortController?.signal },
     );
     const data = (await response.json()) as unknown;
     const geoData = locationiqReverseGeocodeResponseSchema.parse(data);
     return geoData.display_name;
   } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return;
+    }
     initBugsnag().notify(error as Error);
     posthog.captureException(error);
     return;
