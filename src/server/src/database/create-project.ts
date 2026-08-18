@@ -12,6 +12,7 @@ export async function createProject(
       .values({
         id: projectData.id,
         title: projectData.title,
+        type: projectData.type ?? 'metric-books',
         is_handwritten: projectData.isHandwritten ? 1 : 0,
         latitude: projectData.location[0],
         locale: projectData.tableLocale,

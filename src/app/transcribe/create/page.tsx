@@ -30,6 +30,7 @@ export default function ProjectCreatePage() {
       location: [],
       sources: [],
       tableLocale: undefined,
+      type: 'metric-books',
       yearsRange: [],
     },
   });

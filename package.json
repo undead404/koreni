@@ -23,6 +23,7 @@
     "react-turnstile": "^1.1.5",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
+    "sonner": "^2.0.7",
     "typesense": "~2.0.3",
     "yaml": "~2.8.3",
     "zod": "~4.3.6",
@@ -97,7 +98,7 @@
     "prepare": "husky",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit --project src/server/tsconfig.json",
     "typesense:populate": "tsx src/populate-typesense/index.ts"
   },
   "type": "module",
