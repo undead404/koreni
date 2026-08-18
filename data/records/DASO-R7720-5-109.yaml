@@ -10,9 +10,9 @@ location:
 size: 250
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-109.csv
+tableFilePath: data/csv/DASO-R7720-5-109.csv
 tableLocale: uk
-title: "[ШІ] Жовтневе (Курилівка) – народження, 1924-1925"
+title: '[ШІ] Жовтневе (Курилівка) – народження, 1924-1925'
 yearsRange:
   - 1924
   - 1925

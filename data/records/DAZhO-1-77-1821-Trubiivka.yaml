@@ -10,7 +10,7 @@ location:
 size: 416
 sources:
   - https://drive.google.com/drive/folders/1AlE9kPf-dGi_fQ7-y2VerXJ2TCKsJ79k
-tableFilePath: public/csv/trubiivka-1896-rik-dazho-1-77-1821.csv
+tableFilePath: data/csv/trubiivka-1896-rik-dazho-1-77-1821.csv
 tableLocale: uk
 title: Трубіївка 1896 рік ДАЖО 1-77-1821
 yearsRange:

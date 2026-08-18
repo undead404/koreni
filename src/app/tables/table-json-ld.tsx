@@ -1,4 +1,4 @@
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import generateJsonLd from './generate-json-ld';
 

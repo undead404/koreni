@@ -9,7 +9,7 @@ location:
   - 27.520069
 size: 1034
 sources: []
-tableFilePath: public/csv/novoselytsiasmert1839-189116.csv
+tableFilePath: data/csv/novoselytsiasmert1839-189116.csv
 tableLocale: ru
 title: Новоселиця – смерть, 1839-1891 (16+)
 yearsRange:

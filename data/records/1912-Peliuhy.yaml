@@ -15,4 +15,4 @@ yearsRange:
   - 1912
 authorName: Sergi Adamchuk
 authorEmail: adamchuk@gmail.com
-tableFilePath: public/csv/Пелюги - 1912 L.csv
+tableFilePath: data/csv/Пелюги - 1912 L.csv

@@ -1,14 +1,11 @@
 {
   "author": "Vitalii Perehonchuk <brute18@gmail.com>",
   "dependencies": {
-    "dotenv": "~16.4.7",
-    "yaml": "~2.8.3",
-    "zod": "~4.3.6"
+    "@koreni/shared": "workspace:*"
   },
   "devDependencies": {
     "tsx": "~4.21.0",
     "typescript": "~5.9.3",
-    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.0"
   },
   "engines": {

@@ -10,7 +10,7 @@ location:
 size: 708
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-66/
-tableFilePath: public/csv/stara-maiachka-shliuby-1868-1872.csv
+tableFilePath: data/csv/stara-maiachka-shliuby-1868-1872.csv
 tableLocale: uk
 title: Стара Маячка, Дніпровський пов. Таврійська губ. | шлюби (1868-1872)
 yearsRange:

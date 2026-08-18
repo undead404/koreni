@@ -7,7 +7,7 @@ import type {
   Place,
 } from 'schema-dts';
 
-import { IndexationTable } from '@/shared/schemas/indexation-table';
+import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
 import environment from '../environment';

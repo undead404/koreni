@@ -1,0 +1,711 @@
+Pozycja,Nazwisko,Imię,Miejscowość,Rok ur.,Zamieszkały od,Zawód,Link
+1,Adamczyk,Feliksa,Kościuszki 2,1905,09.07.1938,pomoc domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+2,Ajzenberg,Pejsach,Jagiellońska 10,13.02.1889,1925,robot.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+3,Ajzenberg,Mirka-Rejzia,Jagiellońska 10,04.06.1890,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+4,Ajzenberg,Wolf,3-go Maja 36,1873,1904,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+5,Ajzenberg,Rywka,3-go Maja 36,1880,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+6,Ajzinman,Naftuła-Simcha,3-go Maja 1,24.04.1903,28.09.1927,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+7,Ajzinman,Sura-Leja,3-go Maja 1,16.05.1898,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+8,Aks,Jochwed,Grodzka 38,28.12.1907,1907,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+9,Aksztajn,Benjamin,Jagiellońska 3,14.07.1879,1927,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+10,Aksztajn,Bejła-Elka,Jagiellońska 3,1894,1927,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+11,Aksztajn,Mendel,Jagiellońska 3,28.03.1912,10.11.1931,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+12,Alchimenko,Konstanty,Zielona 30,1872,1904,emeryta kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+13,Alchimenko,Anna,Zielona 30,1898,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+14,Andrzan,Albin,Zielona 20,19.02.1879,1905,przed. rob. ziem.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+15,Andrzan,Zofia,Zielona 20,1889,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+16,Andrzan,Józef,Zielona 20,23.07.1909,1909,kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+17,Andrzan,Dominik,Jagiellońska 28,01.11.1874,1904,emeryt kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+18,Andrzan,Aniela,Jagiellońska 28,1884,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+19,Andrzan,Justyna,Zielona 30,1850,1904,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+20,Antosz,Magdalena,Nowa 4,24.12.1884,1906,gospod domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-4
+21,Antosz,Józef,Nowa 4,14.10.1905,1906,młynarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+22,Antosz,Jan,Nowa 4,17.08.1910,1910,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+23,Antosz,Władysław,Nowa 4,03.04.1912,1912,czeladnik śl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+24,Archipowicz,Aleksy,Piłsudskiego 110,30.01.1878,1906,właśc. domu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+25,Archipowicz,Maria,Piłsudskiego 110,01.02.1886,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+26,Archipowicz,Aleksander,Piłsudskiego 110 a,11.08.1906,1906,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+27,Arkin,Łazarz,Grodzka 24,01.07.1903,1928,pianista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+28,Arkin,Ginda,Grodzka 24,1906,1930,pianistka,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+29,Arkin,Chaja,Grodzka 24,1871,1934,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+30,Babajew,Borys,Piłsudskiego 82,01.07.1885,1922,adwokat,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+31,Babajewa,Krystyna,Piłsudskiego 82,04.01.1900,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+32,Babuch,Szmul,3-go Maja 56,03.08.1908,1937,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+33,Babuch,Leja,3-go Maja 56,14.05.1913,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+34,Bajcz,Icko,3-go Maja 52,23.04.1901,1935,piekarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+35,Bajcz,Chaja-Pesia,3-go Maja 52,1901,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+36,Bajon,Jan,Brzeska 13,21.01.1891,1925,robot. kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+37,Bajon,Helena,Brzeska 13,1887,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+38,Bakalar,Chaja,Piłsudskiego 38,1858,1900,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+39,Bakalar,Arija,Piłsudskiego 38,24.05.1900,1900,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+40,Bakalar,Nechama,Piłsudskiego 38,1911,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-H
+41,Balar,Icko,3-go Maja 26,16.07.1909,1930,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+42,Balar,Rywka-Rejza,3-go Maja 26,1910,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+43,Balar,Pinchos,3-go Maja 42,1900,1903,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+44,Balar,Szejna-Gitla,3-go Maja 42,1904,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+45,Bancewicz-Dowgielewicz,Józef,Piłsudskiego 92,07.03.1879,1935,urzędn kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+46,Baraddziejowicz,Stanisław,Piłsudskiego 64,30.01.1900,1934,konduktor kol,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+47,Baran,Stanisław,Piłsudskiego 44-a,11.12.1900,1937,woźny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+48,Baran,Marjanna,Piłsudskiego 44-a,1908,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+49,Baranowicz,Paweł,Krucza 2,27.06.1902,1937,doktor medyc.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+50,Baranowicz,Stanisława,Krucza 2,11.12.1911,1937,higjen dyplom.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+51,Barman,Judel,Zielona 10,1911,1911,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+52,Bartman,Szmul,Grodzka 47,27.07.1903,1926,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+53,Bartman,Ginendla,Grodzka 47,1900,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+54,Barzam,Józef,Piłsudskiego 6,10.06.1881,1915,formac wł. apt.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+55,Barzam,Małka-Rywka,Piłsudskiego 6,15.08.1883,1915,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+56,Barzam,Bencjon,Grodzka 37,10.05.1903,1915,prac. aptek.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+57,Barzam,Marjam,Grodzka 37,1912,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+58,Basłyk,Olga,Piłsudskiego 28,14.02.1853,1905,przy kuzyn.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+59,Bastus,Gersz,Grodzka 50,1893,1929,murarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+60,Bastus,Sura,Grodzka 50,1895,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-5
+61,Bastus,Froim,Grodzka 52,19.12.1890,1918,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+62,Bastus,Chana,Grodzka 52,1896,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+63,Bauer,Jan,Ogrodowa 7,10.01.1868,1935,kotlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+64,Bauer,Marjanna,Ogrodowa 7,30.03.1883,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+65,Bąk,Tomasz,Nowa 10,22.03.1889,1924,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+66,Bąk,Helena,Nowa 10,1887,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+67,Bednarski,Kazimierz,Grodzka 2,19.02.1894,1922,fryzjer,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+68,Bednarska,Stefania,Grodzka 2,12.07.1896,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+69,Bejgel,Rywka,Grodzka 45,1883,1909,przy dziec.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+70,Bejgel,Eliosz,Grodzka 45,22.09.1908,1909,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+71,Bejgel,Sima-Jenta,Grodzka 45,05.02.1904,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+72,Bejgel,Szejna-Złata,Grodzka 45,28.12.1910,1910,krawczyni,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+73,Beker,Hersz,3-go Maja 13,1866,1913,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+74,Beker,Ester,3-go Maja 13,1868,1913,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+75,Beker,Mojsze,3-go Maja 13,1896,1913,bez zawodu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+76,Beker,Jenta,3-go Maja 13,1899,1913,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+77,Beker,Szewa,3-go Maja 13,1899,1913,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+78,Berensztejn,Chaja,3-go Maja 50,1875,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+79,Bereźniuk,Mikołaj,3-go Maja 74,23.12.1884,1926,emeryt nauczyciel,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+80,Bereźniuk,Julia,3-go Maja 74,19.04.1887,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-T
+81,Bereźniuk,Anastazy,3-go Maja 74,16.07.1906,1927,inż. chemii,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+82,Berynsztejn,Mejer,3-go Maja 61,06.07.1897,1912,kowal,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+83,Berynsztejn,Mindia,3-go Maja 61,24.05.1896,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+84,Berynsztejn,Dwojra,3-go Maja 61,1872,1912,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+85,Beznosyj,Jojna,Grodzka 10,03.02.1883,1924,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+86,Beznosa,Rejzla,Grodzka 10,1888,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+87,Białkowska,Maria-Kazimiera,Staszica 4,02.05.1899,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+88,Biegun,Brajndla,3-go Maja 48,15.09.1913,1913,naucz. prywat.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+89,Bielecki,Bazyli,Parkowa 18,27.12.1899,1937,elektromon.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+90,Bielecka,Wiera,Parkowa 18,1907,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+91,Biełoguski,Menachim,Grodzka 27,17.03.1888,1920,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+92,Biełoguska,Henia-Sura,Grodzka 27,13.06.1891,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+93,Biełoguski,Wolf,3-go Maja 38,1895,1924,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+94,Biełoguska,Ester,3-go Maja 38,17.07.1899,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+95,Bieszczad,Ludwik-Tadeusz,Staszica,27.03.1909,1937,podof. zawod.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+96,Bilski,Stanisław,Bol. Prusa 1,27.09.1901,1935,urzęd P.K.P.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+97,Biłorus,Maria,Piłsudskiego 28,15.09.1902,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+98,Birg,Dawid,3-go Maja 14,05.11.1862,1903,właśc. sklepu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+99,Blechman,Michel,Jagiellońska 6,15.03.1890,1920,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+100,Blechman,Fejga-Małka,Jagiellońska 6,1894,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-T
+101,Błażejewski,Michał-Zygmunt,Brzeska 5,27.07.1902,16.02.1938,robot. beton.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+102,Bogdanowicz,Emil-Jan,Staszica 22,24.11.1886,1936,kontroler P.K.P.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+103,Bogdanowicz,Łucja,Staszica 22,11.12.1891,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+104,Bogdanowicz,Zbigniew,Staszica 22,05.12.1912,1936,student,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+105,Boguszewska,Jadwiga,Piłsudskiego 24,1887,1904,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+106,Boguszewski,Romuald,Piłsudskiego 24,01.01.1910,1910,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+107,Boguszewska,Halina,Piłsudskiego 24,11.03.1914,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+108,Borowiec,Antoni,Staszica 2,01.01.1880,1934,urzędn. P.K.P.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+109,Borowiec,Helena,Staszica 2,17.02.1904,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+110,Bortko,Antoni,Brzeska 11,26.12.1885,1917,masarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+111,Bortko,Helena,Brzeska 11,27.01.1902,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+112,Bortnik,Maksym,Piłsudskiego 120,02.02.1906,1908,robot. fizycz.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+113,Bortnik,Jan,Piłsudskiego 120,15.10.1909,1909,stolarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+114,Bortnik,Regina-Nina,Piłsudskiego 120,04.05.1910,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+115,Breslerman,Ester-Rejzia,3-go Maja 1,rzek. 1906,1908,właśc. nieruch.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+116,Brik,Mowsza-Jankiel,3-go Maja 4,15.02.1879,1905,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+117,Brik,Chaja,3-go Maja 4,1882,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+118,Brik,Szmul-Josif,3-go Maja 2,03.02.1909,1909,student,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+119,Bryk,Marium-Ides,3-go Maja 4,07.04.1911,1911,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+120,Brik,Abram,3-go Maja 4,1911,1911,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-R
+121,Brytwa,Szulim-Zejlik,Piłsudskiego 38,12.07.1875,1928,handel,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+122,Brytwa,Hindla-Gitla,Piłsudskiego 38,25.11.1886,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+123,Brytwa,Rywka,Piłsudskiego 38,04.06.1904,1930,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+124,Brodowski,Jan,Staszica 32,18.01.1883,1932,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+125,Brodowska,Julia,Staszica 32,1898,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+126,Bronsztejn,Jankiel,Jagiellońska 44,08.10.1893,1915,właśc. smolar,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+127,Bronsztejn,Leja-Cesia,Jagiellońska 44,1904,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+128,Bryczko,Bejła,Nowa 5,rzek. 02.02.1904,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+129,Bryczko,Fejga,Nowa 5,1888,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+130,Bryczko,Joś,3-go Maja 67,1897,1924,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+131,Bryczko,Cirla,3-go Maja 67,12.09.1903,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+132,Brzeziński,Antoni,Piłsudskiego 88,13.07.1894,03.02.1938,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+133,Brzezińska,Janina,Piłsudskiego 88,10.02.1888,14.05.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+134,Budzyński,Leonard,Parkowa 16,30.10.1900,1935,zawiad. parow.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+135,Budzyńska,Zofia,Parkowa 22,24.11.1908,16.02.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+136,Burgat,Filip,Piłsudskiego 9,29.08.1880,1906,kowal,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+137,Burgat,Ewa,Piłsudskiego 9,23.09.1879,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+138,Burgat,Kazimierz,Piłsudskiego 9,12.11.1905,1906,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+139,Burgat,Olga,Piłsudskiego 9,1908,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+140,Burgat,Antoni,Piłsudskiego 9,25.04.1910,1910,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-B
+141,Burgat,Jan,Staszica 28,25.03.1883,1921,cieśla,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+142,Burgat,Wiktoria,Staszica 28,03.11.1888,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+143,Burgat,Maria,Staszica 28,27.08.1911,1921,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+144,Burgat,Helena,Staszica 28,02.03.1913,1921,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+145,Burko,Muszka,Piłsudskiego 8,1866,1922,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+146,Burko,Menachim,Grodzka 11,19.07.1908,1914,piekarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+147,Burko,Jachna,Grodzka 11,1907,1929,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+148,Burko,Pejsach,3-go Maja 16,27.09.1868,1901,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+149,Burko,Sura-Leja,3-go Maja 16,02.01.1878,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+150,Bursztyn,Moszek,Jagiellońska 27,03.12.1908,1931,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+151,Bursztyn,Frejda,Jagiellońska 27,25.12.1911,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+152,Bursztyn,Benjamin,Jagiellońska 27,04.05.1903,1933,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+153,Bursztyn,Berek,Grodzka 39,05.02.1901,1923,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+154,Burzyńska,Eugenia,Parkowa 26,20.07.1907,1930,gospod. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+155,Cecot,Antoni,Piłsudskiego 36,05.05.1895,1932,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+156,Cejler,Wolf,Grodzka 35,15.10.1902,1923,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+157,Cejler,Sura-Leja,Grodzka 35,09.04.1894,1900,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+158,Chann,Bolesław,Parkowa 26,01.05.1907,1930,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+159,Chann,Paulina,Parkowa 12,1875,1926,przy zięciu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+160,Chanes,Lejba,Grodzka 36,05.07.1890,1920,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-1
+161,Chanes,Chaja-Ides,Grodzka 36,20.03.1896,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+162,Chatian,Zofia,Staszica 22,1882,1937,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+163,Chatian,Leonid,Staszica 22,08.05.1904,1937,doktor medyc.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+164,Chazańczuk,Mewsza,3-go Maja 41,22.05.1904,1931,kamasznik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+165,Chazańczuk,Brandla,3-go Maja 41,1904,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+166,Chazańczuk,Oszer,3-go Maja 43,23.03.1914,1931,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+167,Chazańczuk,Szloma,3-go Maja 36,1907,1936,kamasznik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+168,Chazańczuk,Ester-Liba,3-go Maja 36,1908,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+169,Chmielarz,Eugenia,Piłsudskiego 42,02.05.1909,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+170,Chmielewski,Artur,Staszica 15,04.04.1908,1932,technik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+171,Chmielewska,Zofia-Irena,Staszica 15,14.11.1912,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+172,Chodak,Chaja,Grodzka 28,1860,1921,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+173,Chodak,Elo-Icko,Grodzka 28,23.07.1894,1919,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+174,Chodak,Chawa-Sura,Grodzka 28,1897,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+175,Chomicz,Stanisław,Staszica 14,25.12.1893,1936,oficer zawod,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+176,Chomiczowa,Zofia,Staszica 14/15,08.05.1897,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+177,Chomik,Helena,Piłsudskiego 90,09.05.1893,1917,gospodyni domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+178,Chusid,Szaja,3-go Maja 31,01.01.1876,1925,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+179,Chusid,Nechama-Jenta,3-go Maja 31,23.07.1879,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+180,Ciszewski,Leon,3-go Maja 20,20.02.1892,1932,dyrek. Gimn.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-B
+181,Ciszewska,Anna,3-go Maja 20,22.01.1894,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+182,Ciszuk,Maria,Piłsudskiego 3,22.06.1875,1902,emeryt kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+183,Ciszuk,Mikołaj,Piłsudskiego 3,16.07.1906,1906,murarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+184,Ciszuk,Antonina,Piłsudskiego 3,30.01.1898,1902,przy matce,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+185,Ciszuk,Lidia,Piłsudskiego 3,01.08.1911,1911,przy matce,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+186,Ciszuk,Anatoli,Piłsudskiego 3,21.06.1914,1914,przy matce,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+187,Ciszuk,Bazyli,Piłsudskiego 112,10.04.1900,1907,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+188,Ciszuk,Eugenia,Piłsudskiego 112,17.01.1907,1907,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+189,Cudik,Ruwin,Piłsudskiego 4,1884,1907,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+190,Cudik,Mirla,Piłsudskiego 4,1888,1910,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+191,Cudik,Lejba,Piłsudskiego 4,1913,1913,handel,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+192,Cudik,Lejba,3-go Maja 20,18.11.1906,1906,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+193,Cudik,Icko,3-go Maja 20,18.05.1882,1911,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+194,Cudik,Leja,3-go Maja 20,1890,1914,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+195,Cukierman,Aleksander,Grodzka 36,23.09.1899,1934,inżynier,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+196,Cukierman,Rachela,Grodzka 36,05.08.1905,1934,nauczycielka,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+197,Cuprian,Mateusz,3-go Maja 7,09.08.1886,1921,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+198,Cuprian,Ewa,3-go Maja 7,21.09.1888,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+199,Cuprian,Olga,3-go Maja 7,15.07.1909,1909,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+200,Cuprian,Grzegorz,Jagiellońska ka 32,1886,1926,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-T
+201,Cuprian,Aleksandra,Jagiellońska 32,1880,1927,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+202,Cuprian,Jan,Jagiellońska 32,1906,1926,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+203,Cuprian,Włodzimierz,Jagiellońska 32,16.04.1912,1927,malarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+204,Cuprian,Aleksandra,Jagiellońska 32,1905,1927,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+205,Cuprian,Stanisław,Jagiellońska 32,02.03.1914,1927,fryzjer,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+206,Cuprian,Anastazja,Jagiellońska 32,02.11.1908,1927,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+207,Cybulski,Marcin,Parkowa 10,26.11.1902,1927,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+208,Cybulska,Genowefa,Parkowa 10,01.11.1907,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+209,Cybulski,Roman,Grodzka 27,22.02.1896,1935,buch. samorz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+210,Cybulska,Olga,Grodzka 27,01.09.1893,1936,naucz.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+211,Cymbalist,Maria,Piłsudskiego 114,1888,1922,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+212,Cymbalist,Bazyli,Piłsudskiego 114,23.06.1903,1908,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+213,Cymbalist,Mikołaj,Piłsudskiego 114,31.12.1910,1910,murarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+214,Cymbalist,Rozalia,Piłsudskiego 114,15.04.1909,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+215,Cymerman,Szaja,Krucza 4,01.05.1899,1920,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+216,Cymerman,Elka-Sosia,Krucza 4,21.09.1899,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+217,Cyrulnik,Moszko,Piłsudskiego 32,15.06.1902,1915,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+218,Cyrulnik,Sonia,Piłsudskiego 32,18.10.1908,1915,przy praniu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+219,Czepeluk,Budokia,Piłsudskiego 5,01.05.1868,1903,właśc. domu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+220,Czepeluk,Aleksander,Piłsudskiego 5,30.09.1896,1903,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-9
+221,Czepeluk,Olga,Piłsudskiego 5,12.11.1904,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+222,Czeredniczenko,Jakub,Piłsudskiego 11,08.05.1884,1911,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+223,Czeredniczenko,Maria,Piłsudskiego 11,09.04.1885,1911,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+224,Czeredniczenko,Włodzimierz,Piłsudskiego 11,08.06.1909,1909,kreślarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+225,Czeredniczenko,Zofia,Piłsudskiego 11,01.01.1914,28.01.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+226,Czeredniczenko,Borys,Piłsudskiego 11,10.04.1914,1914,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+227,Czerniak,Elka,3-go Maja 28,18.04.1875,1900,przy zięciu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+228,Czernij,Katarzyna,Jagiellońska 25,1878,1900,emerytka,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+229,Czernij,Borys,Jagiellońska 25,29.06.1914,1914,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+230,Czertow,Aleksander,Zielona 27,11.12.1891,1914,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+231,Czertowa,Stefania,Zielona 27,31.10.1899,1899,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+232,Czmeruk,Andrzej,Zielona 26,09.12.1882,1910,cieśla,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+233,Czmeruk,Helena,Zielona 26,01.06.1895,1911,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+234,Czemerun,Anna,Zielona 25,1905,1931,służąca,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+235,Czudler,Judel,Ogrodowa 10,29.09.1880,1903,dorożkarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+236,Czudler,Basia,Ogrodowa 10,15.12.1881,1903,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+237,Czykin,Glikieria,Piłsudskiego 106,23.05.1861,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+238,Czykin,Włodzimierz,Piłsudskiego 106,13.07.1904,1906,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+239,Czykina,Walentyna,Piłsudskiego 106,16.01.1905,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+240,Danecki,Adam-Alojzy,Jagiellońska 28,15.08.1911,1937,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-S
+241,Dąbrowski,Michał,T. Kościuszki 3,29.09.1905,1932,kancelista,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+242,Dąbrowska,Bronisława-Gen.,Kościuszki 3,24.04.1903,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+243,Denenberg,Mowsza-Boruch,Grodzka 40,1891,1934,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+244,Denenberg,Frejda,Grodzka 40,1895,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+245,Deneburg,Zoruch,3-go Maja 34,05.09.1877,1936,kupiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+246,Denenburg,Cipojra,3-go Maja 34,06.01.1878,1902,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+247,Denenburg,Awrum,3-go Maja 34,04.10.1909,1909,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+248,Denenburg,Icko,3-go Maja 34,03.09.1913,1913,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+249,Deparaszyński,Bronisław,Piłsudskiego 96,15.09.1897,1935,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+250,Dichter,Abram,3-go Maja 45,16.06.1898,1927,nauczyciel,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+251,Dichter,Sara,3-go Maja 45,05.01.1905,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+252,Dichter,Chaim,Jagiellońska 12,17.11.1898,1916,czapnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+253,Dichter,Pesia-Ruchla,Jagiellońska 12,01.01.1896,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+254,Dik,Wolf,Grodzka 23,rzek. 18.09.1878,1920,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+255,Dik,Nechama,Grodzka 23,1908,1920,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+256,Dik,Rasla,3-go Maja 26,1880,1928,gospod. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+257,Dik,Rachil,Grodzka 27,15.03.1907,1920,przy bracie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+258,Domański,Antoni,Staszica 20,24.05.1894,1924,woźny,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+259,Domańska,Prakseda,Staszica 20,24.05.1897,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+260,Domin-Dobrzański,Czesław-Onufry,Piłsudskiego 7,12.06.1898,1937,woźny,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-P
+261,Domin-Dobrzańska,Helena,Piłsudskiego 7,04.01.1909,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+262,Drach-Szister,Bencjon,Grodzka 26,23.04.1879,1907,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+263,Drach-Szister,Sura,Grodzka 26,1876,1907,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+264,Drach,Nuchim-Mendel,Grodzka 31,27.01.1904,1907,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+265,Drach,Małka,Grodzka 31,17.07.1902,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+266,Drach,Brocha,Grodzka 31,1869,1907,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+267,Drach-Szyster,Ruwin,Grodzka 54,15.07.1898,1908,kamasznik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+268,Drach-Szyster,Ginendla,Grodzka 54,1899,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+269,Drążyk,Wacław,Parkowa 10,04.07.1909,1935,tech. bud.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+270,Drozdowski,Teofil,Piłsudskiego 110-a,23.04.1893,1932,slusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+271,Drozdowska,Lidia,Piłsudskiego 110-a,16.02.1908,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+272,Dubelsztejn,Szimon,Piłsudskiego 96,06.02.1893,1920,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+273,Dubelsztejn,Hinda,Piłsudskiego 86,24.12.1898,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+274,Dudaryk,Jefim,Piłsudskiego 68,26.12.1870,1900,właśc. nieru,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+275,Dudaryk,Daria,Piłsudskiego 68,1875,1900,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+276,Dudaryk,Anastazja,Piłsudskiego 68,24.10.1904,1904,przy rodzic,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+277,Dudaryk,Nadzieja,Piłsudskiego 68,1909,1909,przy rodzic,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+278,Dudek,Bolesław,Piłsudskiego 108,23.11.1907,1931,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+279,Dudkowa,Genowefa,Piłsudskiego 108,19.11.1907,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+280,Dudowicz,Abram-Aron,3-go Maja 40,07.04.1912,1937,szewc,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-5
+281,Dudowicz,Frymet,3-go Maja 40,15.08.1912,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+282,Durmała,Fabjan,B.Prusa 4,24.01.1883,1931,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+283,Durmała,Wiktoria,B.Prusa 4,1885,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+284,Durmała,Mieczysław,B.Prusa 4,17.12.1911,1934,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+285,Dynerman,Jankiel,Jagiellońska 27,1898,1934,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+286,Dynerman,Cyrla,Jagiellońska 27,08.12.1908,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+287,Dworecki,Gersz,3-go Maja 6,10.03.1909,1909,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+288,Dworecka,Gitla,3-go Maja 6,10.07.1911,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+289,Dziatkiewicz,Herman,Kościuszki 5,15.08.1904,1932,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+290,Dziatkiewicz,Stanisława,Kościuszki 5,25.07.1910,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+291,Dziedzic,Michał,Staszica 1,09.08.1877,1924,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+292,Dziedzic,Franciszka,Staszica 1,1881,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+293,Dziedzic,Józef,Staszica 1,31.01.1903,1924,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+294,Dziedzic,Feliksa,Staszica 1,12.12.1913,1924,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+295,Ejdelsztejn,Benjamin,Grodzka 28,03.05.1893,1929,rachmistrz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+296,Ejdelsztejn,Tojba,Grodzka 28,1901,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+297,Ekiert,Stefan,Staszica 15,15.03.1903,1929,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+298,Ekiert,Cecylia,Staszica 15,22.11.1902,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+299,Engiel,Ejga,3-go Maja 9,1873,1925,przy zięciu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+300,Epel,Rejzel,3-go Maja 14,18.06.1913,1926,służąca,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-B
+301,Epsztejn,Josif,3-go Maja 18,03.05.1907,1931,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+302,Fejgel,Rochla,Rzemieślicza 3,14.09.1908,1930,przy teściu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+303,Feldman,Jankiel,Grodzka 44,13.07.1895,1904,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+304,Feldman,Simka,Grodzka 44,1900,1904,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+305,Feldman,Szmul-Joś,3-go Maja 26,18.01.1904,1908,kamasznik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+306,Feldman,Sora,3-go Maja 26,15.09.1908,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+307,Feldman,Nuta,Krucza 2,04.02.1910,1923,muzykant,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+308,Feldman,Chaim,Grodzka 46,13.06.1895,1905,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+309,Feldman,Ester,Grodzka 46,1897,1908,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+310,Feldman,Elo,Grodzka 31,06.10.1905,1926,właśc. nier.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+311,Feldman,Sosia,Grodzka 31,15.09.1906,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+312,Fijołek,Tomasz,Grodzka 20,01.11.1875,1925,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+313,Fijołek,Cecylia,Grodzka 20,11.10.1892,1925,emerytka,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+314,Finkielsztejn,Mejer,Rzemieślnicza 1,1865,1936,przy rodzinie,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+315,Finkielsztejn,Moszko,Krucza 10,10.01.1894,1918,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+316,Finkielsztejn,Rochla,Krucza 10,1895,1895,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+317,Finkielsztejn,Jankiel-Szmul,3-go Maja 16,08.10.1908,1931,brakaleśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+318,Finkielsztejn,Chaja,3-go Maja 16,16.05.1910,1910,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+319,Finkielsztejn,Wolf-Lejba,Brzeska 9,26.06.1900,1928,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+320,Finkielsztejn,Chaja,Brzeska 9,11.02.1904,1908,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-1
+321,Fiszbejn,Chaim-Michel,3-go Maja 72,26.08.1906,1935,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+322,Fiszbejn,Pesia,3-go Maja 72,1904,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+323,Fiszman,Jechil-Michel,3-go Maja 41,02.09.1899,1933,subiekt,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+324,Fiszman,Ester-Rajcla,3-go Maja 41,08.09.1901,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+325,Fiszman,Awrum-Gersz,Grodzka 11,21.07.1905,1934,rolnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+326,Fiszman,Fejga-Rywa,Grodzka 11,23.10.1907,1914,na utrz. ojca,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+327,Fiszman,Simcha,Grodzka 21,25.07.1907,1935,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+328,Fiszman,Marium-Frejda,Grodzka 21,1912,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+329,Flejszon,Józef,Piłsudskiego 16,1913,1926,przy ojczym.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+330,Flom,Awrum,3-go Maja 67,17.10.1905,1929,kowal,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+331,Flom,Chana-Genia,3-go Maja 67,1902,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+332,Frit,Hersz,Piłsudskiego 56,rzek. 05.12.1890,1922,kupiec,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+333,Frit,Chawa,Piłsudskiego 56,10.05.1898,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+334,Frykacz,Eugeniusz-Marian,Staszica 1,12.12.1899,1928,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+335,Frykacz,Stanisława,Staszica 1,31.08.1905,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+336,Frumin,Wigdor,Jagiellońska 18,05.06.1907,1932,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+337,Frumin,Drejzia,Jagiellońska 18,1899,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+338,Frumkin,Mejer,3-go Maja 35,18.05.1894,1929,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+339,Frumkin,Basia,3-go Maja 35,1894,1929,krawczyni,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+340,Gajzler,Wiktor,Nowa 8,19.04.1903,1933,robotn,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-Q
+341,Gajzler,Maria,Nowa 8,09.06.1901,1901,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+342,Gamerman,Mejer,3-go Maja 18,21.12.1906,1906,tapicer,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+343,Gamerman,Szloma,3-go Maja 18,01.06.1896,1901,rzeźnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+344,Gamerman,Pesia-Genia,3-go Maja 18,1897,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+345,Gamerman,Srul-Josif,Jagiellońska 36,01.04.1897,1915,ekspedytor,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+346,Gamerman,Ester,Jagiellońska 36,22.10.1897,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+347,Ganz-Gandz,Szyja,Grodzka 6,11.06.1908,1931,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+348,Ganz-Gandz,Liba,Grodzka 6,12.02.1901,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+349,Garcman,Berko,Piłsudskie-go 22,19.09.1873,1917,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+350,Garcman,Sura-Leja,Piłsudskie-go 22,22.01.1885,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+351,Garcman,Icko,Piłsudskie-go 22,15.08.1911,1917,bez zawodu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+352,Gawron,Marian,Piłsudskie-go 62,17.09.1912,16.06.1938,strażnik kol,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+353,Gazda,Roman,Staszica 6,24.02.1890,1936,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+354,Gazda,Bronisława,Staszica 6,07.07.1895,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+355,Gąska,Bolesław,Piłsudskie-go 110,28.02.1914,19.07.1938,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+356,Gecht,Chaim-Icko,/-go Maja 11,18.05.1878,1901,sklarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+357,Gecht,Doba-Leja,3-go Maja 11,08.05.1883,1901,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+358,Gecht,Josif,3-go Maja 11,18.12.1909,1909,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+359,Gecht,Symcha,3-go Maja 11,22.11.1911,1911,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+360,Geczyńska,Gitla,Nowa 9,02.01.1901,1937,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-7
+361,Gerszfel,Mendel,Grodzka 33,24.05.1903,1931,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+362,Gerszfel,Rywka,Grodzka 33,1902,1902,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+363,Gierckies,Mewsza,3-go Maja 60,04.03.1889,1922,brakarz leśny,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+364,Gierckies,Leja-Rejzla,3-go Maja 60,26.03.1885,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+365,Gerckes,Pinio,3-go Maja 60,1912,1922,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+366,Gildengorn,Szejna,Piłsudskiego 36,1903,1923,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+367,Gincenberg,Jankiel,Rzemieślnicza 5,01.06.1882,1915,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+368,Gincenberg,Chawa,Rzemieślnicza 5,1883,1915,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+369,Gincenberg,Icek-Wolf,3-go Maja 60,10.03.1905,1936,rzeźnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+370,Gincenberg,Chana-Rywka,3-go Maja 64,1914,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+371,Gibsztajn,Mejer,3-go Maja 67,27.09.1911,1929,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+372,Glejberman,Gitla,Jagiellońska 3,15.03.1852,1935,przy zięciu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+373,Glejberman,Lejb,Rzemieślnicza 5,24.12.1904,1921,czapnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+374,Glik,Basia,Piłsudskiego 6,1867,1904,właścicnier.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+375,Glik,Chaim-Szamszon,Piłsudskiego 6,23.12.1894,1910,kupiec,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+376,Glik,Małka-Złata,Piłsudskiego 6,20.05.1892,1919,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+377,Glizer,Aron,3-go Maja 59,16.06.1903,1932,kowal,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+378,Glizer,Fejga,3-go Maja 59,1899,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+379,Glouberman,Nuta,Piłsudskiego 38,1907,1935,rabin,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+380,Glouberman,Perla,Piłsudskiego 38,1912,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-W
+381,Globerzon,Jewel,3-go Maja 3,1866,1931,braka leśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+382,Glouberzon,Mariam,3-go Maja 3,rzek. 07.09.1878,1900,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+383,Głuszko,Michał,Piłsudskiego 11,20.11.1909,1937,tech. budow.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+384,Gojzensztejn,Jankiel,3-go Maja 17,07.05.1888,1906,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+385,Gojzensztejn,Mariam-Frejda,3-go Maja 17,05.03.1893,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+386,Goldensztejn,Icyk-Ajzyk,Nowa 9,22.03.1889,1906,młynarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+387,Goldensztejn,Roza,Nowa 9,1905,1906,przy rodz.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+388,Goldman,Brucha,Jagiellońska 44,1904,1921,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+389,Goldman,Josif,Jagiellońska 44,1912,1921,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+390,Goldman,Fajweł,3-go Maja 25,1904,1936,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+391,Goldman,Sara,3-go Maja 25,11.08.1914,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+392,Golemba,Chaja-Leja,Grodzka 40,1881,1904,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+393,Gołęba,Jankiel,Rzemieślnicza 1,1909,1909,robotn.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+394,Gołęba,Etla,Rzemieślnicza 1,1908,14.03.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+395,Golemba,Lejzor,Grodzka 40,22.12.1910,1910,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+396,Gołębiowski,Bronisław,Kościuszki 5,31.05.1888,1934,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+397,Gołębiowska,Stanisława,Kościuszki 5,05.05.1896,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+398,Gołonowicz,Jan,Targowa 2,28.08.1873,1906,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+399,Gołonowicz,Marianna,Targowa 2,27.08.1874,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+400,Gołonowicz,Stachij,Targowa 2,28.05.1907,1907,robot.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-8
+401,Gołonowicz,Józef,Targowa 2,24.04.1904,1906,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+402,Gołonowicz,Maria,Targowa 2,16.11.1908,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+403,Gołub,Jan,Piłsudskiego 13,16.04.1904,1932,fryzjer,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+404,Gołub,Helena,Piłsudskiego 13,05.05.1902,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+405,Gonik,Uszer,Piłsudskiego 50,17.12.1892,1905,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+406,Gonik,Chana-Dwojra,Piłsudskiego 50,02.01.1892,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+407,Gonik,Boruch,Grodzka 38,15.12.1869,1905,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+408,Gonik,Szifra,Grodzka 38,21.03.1909,1909,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+409,Gonik,Szloma,Grodzka 38,05.06.1913,1913,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+410,Goniprowski,Eugeniusz,Staszica 7,09.01.1894,1935,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+411,Goniprowska,Barbara,Staszica 7,04.12.1901,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+412,Gorbaczyński,Leonard,B.Prusa 2,15.11.1890,1922,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+413,Gorbaczyńska,Wanda,B.Prusa 2,02.09.1903,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+414,Gordon,Bejła,Piłsudskiego 4,1900,1923,służąca,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+415,Gordziejewski,Kazimierz,Targowa 3,04.02.1887,1926,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+416,Gordziejewska,Teresa,Targowa 3,01.03.1872,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+417,Gordziejewski,Kazimierz,Targowa 3,07.01.1911,1926,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+418,Gordziejewski,Zygmunt,Targowa 3,14.03.1913,1926,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+419,Gorodecer,Mejer,Grodzka 4,07.10.1910,1935,cukiernik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+420,Gorodecer,Chawa,Grodzka 4,18.08.1908,1927,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Q
+421,Gottwald,Stefan-Boles.,3-go Maja 85,23.11.1903,1937,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+422,Gottwaldowa,Jadwiga,3-go Maja 85,12.09.1907,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+423,Goworadło,Anastazja,Piłsudskiego 70,1863,1898,właśc. domu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+424,Goworadło,Mitrofan,Piłsudskiego 70,01.07.1893,1898,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+425,Grajwer,Icchok-Szejwech,3-go Maja 23,02.04.1897,1923,brak. leśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+426,Grajwer,Sura,3-go Maja 23,rzek. 18.05.1897,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+427,Grajwer,Srul-Iser,Jagiellońska 7,25.02.1896,1924,brak. leśny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+428,Grajwer,Chaja,Jagiellońska 7,04.04.1896,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+429,Grajwer,Fejga,Jagiellońska 7,1899,1924,przy bracie,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+430,Grajwer,Mejer,Nowa 1,1893,1934,robot.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+431,Grajwer,Brandla,Nowa 1,1899,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+432,Greczanik,Srul,3-go Maja 33,1868,1925,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+433,Greczanik,Rywka-Leja,3-go Maja 33,1876,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+434,Greczanik,Zelda,3-go Maja 33,16.07.1904,1925,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+435,Griczanik,Joś-Chaim,3-go Maja 48,22.10.1900,1925,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+436,Griczanik,Ester,3-go Maja 48,1903,1926,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+437,Grinberg,Chil-Chaim,Grodzka 41,18.09.1898,1908,szlamarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+438,Grinberg,Toba-Henio,Grodzka 41,21.04.1903,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+439,Grinberg,Srul,Rzemieślnicza 3,06.09.1913,1913,malarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+440,Grinblat,Awrum,Jagiellońska 25,09.12.1906,1928,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-7
+441,Grinblat,Szejna,Jagiellońska 25,1913,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+442,Grinblat,Rochla,Jagiellońska 25,1909,1928,krawczyni,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+443,Grober,Chana,Grodzka 30,1893,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+444,Grober,Beniamin,Ogrodowa 2,03.10.1880,1915,rzeźnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+445,Grober,Mariam,Ogrodowa 2,1892,1915,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+446,Grober,Rachil,Ogrodowa 2,01.01.1914,1915,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+447,Grojsman,Abraham,Ogrodowa 3,06.05.1882,1922,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+448,Grojsman,Małka,Ogrodowa 3,15.02.1889,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+449,Gromnicki,Włodzimierz,Piłsudskiego 108,30.01.1902,1906,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+450,Gruszko,Wolf,Grodzka 11,1885,1905,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+451,Gruszko,Ester,Grodzka 11,1893,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+452,Gruszko,Minia,Grodzka 11,05.02.1914,05.02.1914,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+453,Gruszko,Beniamin-Szyja,Piłsudskiego 30,02.02.1896,1937,młynarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+454,Gruszko,Mirla,Piłsudskiego 30,1899,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+455,Grynberg,Fejga,Grodzka 50,10.12.1872,1908,przy krewn.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+456,Grynberg,Wolf,Nowa 2,07.10.1906,1906,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+457,Grynberg,Chana,Nowa 2,25.12.1905,1911,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+458,Gukajło,Mojsze-Josif,3-go Maja 72-a,06.02.1904,1925,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+459,Gukajło,Szejna,3-go Maja 72-a,1902,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+460,Gurando,Anatol,Piłsudskiego 90,22.04.1890,1922,inż.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-W
+461,Gurando,Helena,Piłsudskiego 90,02.05.1884,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+462,Gurejew,Dymitr,3-go Maja 40,26.10.1858,1900,mularz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+463,Gurejew,Teodor,3-go Maja 40,01.06.1900,1900,bez zawodu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+464,Gurejew,Lidia,3-go Maja 40,15.10.1907,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+465,Gurfinkiel,Mowsza-Gersz,3-go Maja 24,20.07.1882,1906,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+466,Gurfinkiel,Mendel,3-go Maja 24,16.09.1912,1912,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+467,Gurfinkiel,Szloma,3-go Maja 1,rzek. 23.05.1895,1922,naucz.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+468,Gurfinkiel,Sara,3-go Maja 1,1909,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+469,Guz,Maria,Piłsudskiego 46,25.12.1873,1900,emer.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+470,Guz,Eudokia,Piłsudskiego 46,14.05.1905,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+471,Guz,Sergjusz,Piłsudskiego 46,16.09.1913,1913,"urzęd,",https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+472,Guzdź,Eugeniusz,B.Prusa 6,29.09.1911,11.08.1938,technik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+473,Hacikowski,Antoni,Złota 1,03.07.1913,1937,prac. P.K.P.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+474,Haligowska,Helena,3-go Maja 44,10.09.1914,10.09.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+475,Hańbowski,Józef,Brzeska 15,22.10.1910,1937,prac. P.K.P.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+476,Hańbowska,Helena,Brzeska 15,1913,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+477,Helbrech,Stanisław,Staszica 17,14.04.1900,1930,prac. kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+478,Helbrech,Maria,Staszica 17,02.06.1905,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+479,Helbrech,Maria,Staszica 17,26.12.1869,1937,emerytka,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+480,Hempel,Antoni,Kościuszki 2,30.05.1885,1929,zawiad.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMY-3
+481,Hempel,Franciszka,Kościuszki 2,22.09.1883,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+482,Herman,August-Edward,Piłsudskiego 28,14.12.1873,1905,właśc. cukier,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+483,Herman,Joanna,Piłsudskiego 36,11.01.1880,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+484,Hordziejewski,Antoni,Targowa 3,20.01.1912,05.06.1938,stróż,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+485,Horodniuk,Tekla,Piłsudskiego 116,24.09.1873,1904,właśc. nier.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+486,Horodniuk,Mikołaj,Piłsudskiego 116,02.03.1903,1904,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+487,Imach,Karol,Piłsudskiego 102,06.10.1867,1906,emeryt,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+488,Imach,Maria,Piłsudskiego 102,03.08.1882,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+489,Inkiedykier,Mojsze,Jagiellońska 8,30.05.1888,1933,pośrednik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+490,Jaczewski,Edward,Piłsudskiego 70,25.11.1904,1935,zwrotniczy,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+491,Jaczewska,Maria,Piłsudskiego 70,13.09.1904,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+492,Jaduszliwa,Leja,Nowa 7,20.03.1900,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+493,Jaduszliwa,Pesia,3-go Maja 68,1874,1914,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+494,Jadyszliwy,Ojszija,3-go Maja 68,14.04.1897,1914,garbarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+495,Jadyszkiwa,Szejndel,3-go Maja 68,03.10.1897,1919,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+496,Jaduszliwy,Icchok-Wolf,Grodzka 33,03.07.1885,1910,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+497,Jaduszliwa,Rywka,Grodzka 33,1887,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+498,Jaduszliwy,Beniamin,Grodzka 33,11.09.1909,1914,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+499,Jaduszliwa,Marjam-Fejga,Grodzka 33,16.04.1908,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+500,Jaduszliwa,Sosia,Grodzka 33,16.08.1912,1918,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-3
+501,Jakimowicz,Alewtina,Piłsudskiego 108,30.07.1909,1937,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+502,Jakubowicz,Antoni,Staszica 28,11.02.1881,1931,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+503,Jakubowicz,Katarzyna,Staszica 28,23.12.1887,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+504,Jakubowski,Wacław,Staszica 20,05.07.1907,1936,robot.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+505,Jamroz,Antoni,Staszica 10,15.01.1897,1935,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+506,Jamroz,Antonina,Staszica 10,01.03.1900,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+507,Jankiewicz,Jadwiga,Staszica 1,12.02.1903,1937,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+508,Jankowski,Franciszek,Prusa 1,26.03.1898,1934,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+509,Jankowska,Tekla,Prusa 1,01.08.1893,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+510,Jarosławski,Aleksander,Brzeska 13,11.12.1907,1937,fryzj.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+511,Jarosławska,Nina-Janina,Brzeska 13,1910,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+512,Jasik,Jan,Zielona 7,20.01.1879,1921,stolarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+513,Jasik,Luiza,Zielona 7,01.03.1885,1921,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+514,Jaworski,Franciszek,Staszica 26,25.12.1912,1936,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+515,Jeleniewski,Mieczysław,Kościuszki 2,10.02.1901,01.06.1938,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+516,Jeleniewska,Jadwiga,Kościuszki 2,01.10.1911,09.07.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+517,Jeromin,Feliks,Piłsudskiego 62,05.03.1902,1935,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+518,Jeromin,Zofia,Piłsudskiego 62,17.11.1899,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+519,Jerusalimski,Szmull,3-go Maja 3,15.04.1899,1930,aptekarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+520,Jerusalimska,Chaja,3-go Maja 3,19.04.1902,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-Z
+521,Jewczuk,Maria,Osadnicza 16,03.09.1897,1915,akuszerka,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+522,Jewtuszek,Sawa,Piłsudskiego 52,12.01.1872,1898,właśc. domu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+523,Jewtuszok,Anastazja,Piłsudskiego 52,1875,1898,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+524,Jewtuszok,Stefan,Piłsudskiego 52,28.11.1909,1909,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+525,Jewtuszok,Teodora,Piłsudskiego 52,1908,1908,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+526,Jewtuszok,Maria,Piłsudskiego 52,24.11.1911,1911,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+527,Jewtuszok,Piotr,Piłsudskiego 52,24.11.1911,1911,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+528,Jewtuszok,Nadzieja,Piłsudskiego 52,25.07.1914,25.07.1914,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+529,Juchniewicz,Andrzej,3-go Maja 61,28.11.1879,1934,emeryt,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+530,Juchniewicz,Zofia,3-go Maja 61,28.04.1885,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+531,Juchniewicz,Petrunela,3-go Maja 61,30.12.1909,1934,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+532,Juszczyk,Władysław,Staszica 28,14.12.1899,1929,straż. kol.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+533,Juszczyk,Janina,Staszica 28,1897,1929,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+534,Kabata,Stefan,Staszica 3,15.09.1900,1932,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+535,Kac,Rachmil,3-go Maja 30,1882,1932,przy krewn.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+536,Kac,Tauba-Rejzel,3-go Maja 30,01.09.1888,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+537,Kac,Jochonon,3-go Maja 41,1913,1913,rabin,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+538,Kac,Masza,3-go Maja 41,1913,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+539,Kaleka,Rywka-Leja,3-go Maja 65,11.08.1900,1922,przy krewn.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+540,Kalinowski,Stanisław,Parkowa 8,17.11.1888,1923,woźny,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-7
+541,Kalinowska,Marjanna,Parkowa 8,1896,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+542,Kalinowski,Władysław,Parkowa 8,19.01.1904,1923,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+543,Kameń,Benjamin,Grodzka 14,11.11.1897,1920,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+544,Kameń,Gołda,Grodzka 14,15.04.1900,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+545,Kameń,Jenta,Grodzka 14,12.07.1912,23.08.1938,przy bracie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+546,Kamińska,Ludwika,Piłsudskiego 60,25.08.1876,30.05.1938,przy córce,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+547,Kamiński,Kazimierz,Parkowa 4,23.02.1874,1924,emeryt kol.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+548,Kamiński,Władysław,Parkowa 4,12.10.1906,1924,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+549,Kamińska,Halina,Parkowa 4,11.08.1911,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+550,Kamzioł-Saśko,Roman,3-go Maja 86,29.11.1892,1892,rolnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+551,Kandyba,Matylda-Rozalia,Dębowa 1,1888,1909,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+552,Kantorowicz,Beniamin,Piłsudskiego 16,03.12.1881,1907,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+553,Kantorowicz,Cylja,Piłsudskiego 16,10.09.1879,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+554,Kapłan,Mery,Krucza 4,11.05.1891,1933,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+555,Kapłan,Rywka,Piłsudskiego 48,1907,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+556,Kapszuk,Bencjon,Jagiellońska 14,22.01.1900,1930,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+557,Kapszuk,Sura,Jagiellońska 14,1906,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+558,Kapszuk,Lejb,3-go Maja 59,02.01.1908,1937,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+559,Kapszuk,Leja,3-go Maja 49,1900,1903,przy rodzinie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+560,Karaś,Józef,Jagiellońska 13,16.11.1880,1904,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6Q6-1
+561,Karaś,Wiktoria,Jagiellońska 16,14.02.1888,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+562,Karaś,Janina,Jagiellońska 16,24.11.1912,1912,biuralist.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+563,Karasiewicz,Petronela,Grodzka 28,"40, 1",1931,służąca,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+564,Karpuk,Emilian,3-go Maja 5,05.12.1893,28.07.1938,handlarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+565,Kaszczyj,Mikołaj,Dębowa 4,18.12.1896,1921,podof. zawod.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+566,Kazimierczak,Władysław,3-go Maja 4,06.07.1885,1929,policjant,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+567,Kazimierczak,Stanisława-Gertruda,3-go Maja 4,20.08.1889,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+568,Kazimierczak,Edward-Aleksander,3-go Maja 4,11.07.1912,1933,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+569,Kempińska,Bronisława-Antonina,Kościuszki 31,09.02.1881,1932,emerytka,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+570,Kiełbieńska,Helena,Piłsudskiego 58,15.02.1902,1934,przy bracie,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+571,Kil,Stanisław,Targowa 2,08.04.1899,1928,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+572,Kil,Aleksandra,Targowa 2,24.12.1894,1903,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+573,Kirłachat,Włodzimierz,3-go Maja 74,15.03.1906,1937,stolarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+574,Kisiel,Józef,Piłsudskiego 11,1902,1937,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+575,Kisiel,Maria,Piłsudskiego 11,20.09.1910,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+576,Klejd,Pejsach,3-go Maja 46,1874,1900,młynarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+577,Klejd,Chasia-Sura,3-go Maja 46,1891,1914,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+578,Klejn,Benjamin-Lejb,3-go Maja 9,28.03.1891,1921,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+579,Klejn,Klara,3-go Maja 9,1899,1925,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+580,Klejn,Mendel,3-go Maja 12,1884,1921,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-M
+581,Klejn,Fryda,3-go Maja 12,10.03.1886,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+582,Klejn,Fajwel,3-go Maja 12-a,01.06.1910,1910,inż.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+583,Klejn,Awraam,3-go Maja 12,17.07.1912,1912,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+584,Klekiel,Mordko,Ogrodowa 7,11.09.1899,1911,dorożkarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+585,Klekiel,Dwojra,Ogrodowa 7,24.07.1895,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+586,Kloc,Fejga,3-go Maja 72,1878,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+587,Kloc,Mejer-Duwid,3-go Maja 72,01.05.1877,1918,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+588,Kloc,Gerszon,3-go Maja 72,09.07.1911,1918,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+589,Kloc,Icchok,3-go Maja 72,21.12.1913,1918,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+590,Kloc,Kiwa,Grodzka 49,28.03.1905,1918,czapnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+591,Kloc,Pesia,Grodzka 49,1906,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+592,Kloc,Awram-Chil,Grodzka 51,11.09.1897,1918,furman,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+593,Kloc,Ginesia,Grodzka 51,18.03.1896,1918,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+594,Klorman,Motel,Piłsudskiego 84,1912,1925,uczeń rabina,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+595,Kniżnik,Ajzik-Ber,Jagiellońska 27,15.09.1908,1934,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+596,Kniżnik,Chawa,Jagiellońska 27,1900,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+597,Kobryń,Konstanty,Zielona 20,12.12.1904,1926,podof. zawod.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+598,Kobryń,Janina,Zielona 20,04.05.1913,1913,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+599,Kokoszko,Franciszek,Osadnicza 8,17.07.1897,1921,garbarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+600,Kokoszko,Helena,Osadnicza 8,12.01.1901,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-9
+601,Kołkowska,Itka,Grodzka 52,1905,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+602,Kołodny,Mordko-Jankiel,Piłsudskiego 114,15.04.1874,1923,urzędnik pr,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+603,Kołodna,Małka,Piłsudskiego 14,1879,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+604,Kołodny,Ewel,Piłsudskiego 14,03.12.1907,1933,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+605,Komarowski,Władysław,B.Prusa 1,03.04.1906,1935,kancelista,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+606,Kopec,Władysław,Parkowa 12,14.09.1890,1922,kowal,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+607,Kopec,Franciszka,Parkowa 12,16.07.1893,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+608,Korcarz,Abram,3-go Maja 73,24.09.1901,1924,furman,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+609,Korcarz,Leja,3-go Maja 73,1901,1924,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+610,Koreń,Jan,Piłsudskiego 15,06.01.1881,1906,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+611,Koreń,Marfa,Piłsudskiego 15,07.11.1884,1917,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+612,Koreń,Michał,Piłsudskiego 15,20.09.1910,1910,ślusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+613,Koreń,Katarzyna,Piłsudskiego 15,05.08.1913,1913,przy ojeu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+614,Korenblum,Dawid,Jagiellońska 44,15.04.1872,1915,handl.,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+615,Korenblum,Jenta,Jagiellońska 44,1871,1915,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+616,Koroboczka,Abram-Mojsze,Piłsudskiego 54,rzek. 13.09.1884,1902,kupiec,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+617,Koroboczka,Chawa,Piłsudskiego 54,rzek. 18.05.1886,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+618,Korpal,Antoni,Grodzka 30,15.01.1899,1937,major,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+619,Korpalowa,Janina,Grodzka 30,06.09.1908,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+620,Kościołek,Heronima,Złota 2,27.09.1906,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-G71B-L6QX-S
+621,Kosiński,Antoni,Staszica 9,08.07.1905,1929,zawód wojsk.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+622,Kosińska,Władysława,Staszica 9,02.08.1911,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+623,Kosińska,Franciszka,Staszica 9,15.10.1887,1933,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+624,Koszmak,Cyprian,Piłsudskiego 78,14.10.1890,1904,masarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+625,Koszmak,Paraskiewia,Piłsudskiego 78,10.08.1901,1901,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+626,Kot,Maria,Piłsudskiego 42,01.10.1877,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+627,Kot,Borys,Piłsudskiego 42,05.04.1909,1933,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+628,Kot,Wikientij,Piłsudskiego 42,02.02.1914,1933,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+629,Kotluk,Włodzimierz,Złota 1,13.07.1889,1937,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+630,Kotluk,Amelia,Złota 1,01.01.1888,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+631,Kotwica,Ignacy,Parkowa 12,12.08.1893,1922,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+632,Kotwica,Zofia,Parkowa 12,1900,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+633,Kotwicki,Stanisław,Parkowa 12,05.07.1895,1922,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+634,Kotwicka,Józefa,Parkowa 12,10.02.1901,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+635,Kowalczyk,Wacław,Staszica 5,02.03.1895,1931,tech. kol.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+636,Kowalczyk,Eugenia,Staszica 5,28.08.1904,1931,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+637,Kowalow,Jan,Ogrodowa 1,19.01.1898,1933,mierniczy,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+638,Kowalewska,Marianna,3-go Maja 20,30.11.1862,1936,przy rodzin.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+639,Kowalewski,Józef,Piłsudskiego 1,18.03.1897,1922,woźny,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+640,Kowalewska,Anastazja,Piłsudskiego 1,1902,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-R
+641,Kowalewska,Helena,Jagiellońska 28,07.09.1913,04.06.1938,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+642,Kowalski,Jan,Staszica 2,10.10.1879,1922,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+643,Kowalska,Julia,Staszica 2,01.06.1883,1922,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+644,Kowalska,Anna,Staszica 2,17.12.1906,1922,przy rodzic,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+645,Kowalski,Władysław-Henryk,Staszica 2,18.02.1911,1922,przy rodzic,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+646,Kowalski,Jan,Staszica 8,26.10.1889,1921,maszynista,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+647,Kowalska,Kazimiera,Staszica 8,04.03.1900,1921,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+648,Kowtun,Tryfon,Osadnicza 14,1880,1906,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+649,Kowtun,Matrona,Osadnicza 14,1881,1906,żona,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+650,Kowtun,Grzegorz,Osadnicza 14,19.04.1910,1910,robotnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+651,Kowtun,Eugenia,Osadnicza 14,23.03.1912,1934,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+652,Koza,Aron,3-go Maja 73,1889,1914,kołodziej,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+653,Koza,Chasia,3-go Maja 73,1885,1914,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+654,Koza,Icko,3-go Maja 73,26.09.1908,1914,stelmach,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+655,Koza,Chaja-Gitla,3-go Maja 73,1904,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+656,Kozioł,Ruchla,Grodzka 47,1870,1906,właśc. nier.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+657,Kozioł,Szloma,Grodzka 47,12.01.1898,1906,murarz,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+658,Kozioł,Chaja-Brucha,Grodzka 47,14.07.1896,1920,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+659,Kozłowski,Szymon,Ogrodowa 6,19.05.1888,1906,ogrodnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+660,Kozłowska,Paulina,Piłsudskiego 32,02.12.1873,1906,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-R
+661,Kozłowski,Szymon,Piłsudskiego 32,01.01.1899,1906,masarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+662,Kozłowska,Apolinaria,Piłsudskiego 32,08.04.1903,1932,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+663,Kozłowski,Konstanty,Piłsudskiego 32,1908,1908,stolarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+664,Kozłowski,Michał,Piłsudskiego 32,15.02.1894,1905,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+665,Kozłowska,Militta,Piłsudskiego 36,26.09.1905,1905,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+666,Kozłowski,Jan,Jagiellońska 22,22.09.1871,1927,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+667,Kozłowska,Helena,Jagiellońska 22,14.07.1879,1923,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+668,Kozłowska,Anna,Jagiellońska 22,02.08.1904,1923,biuralistka,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+669,Kozłowska,Maria,Jagiellońska 22,03.05.1905,1923,przy rodzic.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+670,Kozłowski,Borys,Jagiellońska 22,01.11.1912,1923,introligat.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+671,Krajewski,Edmund,Parkowa 2,16.11.1898,1923,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+672,Krajewska,Krystyna,Parkowa 2,15.02.1892,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+673,Krasnowska,Waleria,Jagiellońska 30,29.08.1885,1920,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+674,Krasnowska,Leokadia,Jagiellońska 30,28.02.1910,1920,przy rodz.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+675,Krasnowska,Irena,Jagiellońska 30,22.09.1912,1920,biuralistka,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+676,Krawczyk,Janina,Dębowa 4,31.05.1899,1921,przy rodz.,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+677,Krawczyk,Piotr,3-go Maja 6,11.10.1893,1936,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+678,Krawczyk,Maria,3-go Maja 6,11.10.1901,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+679,Krawulski,Józef,Parkowa 18,10.12.1887,1930,kolejarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+680,Krawulska,Janina,Parkowa 18,20.12.1892,1930,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T63Z-Y
+681,Krekora,Jan,Staszica 6,14.01.1900,1923,zwtniczy kol.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+682,Krekora,Maria,Staszica 6,04.11.1904,1923,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+683,Królikowska,Beata-Julianna,Staszica 3,20.09.1868,1932,przy zięciu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+684,Kruk,Boruch,Brzeska 7,19.12.1901,1936,krawiec,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+685,Kruk,Jachna,Brzeska 7,20.01.1900,1937,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+686,Krumelis,Jan,Piłsudskiego 80,03.01.1878,1902,emeryt kolej.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+687,Krumelis,Eugenia,Piłsudskiego 80,05.11.1878,1903,nauczyciel,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+688,Krumelis,Wiktor,Piłsudskiego 80,24.11.1908,1908,przy ojcu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+689,Krysiak,Leon,B.Prusa 2/35,26.06.1910,1937,podof. zawod.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+690,Krzeszowiec,Edward,3-go Maja 63,18.09.1897,1935,urzędnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+691,Krzeszowiec,Maria,3-go Maja 63,14.11.1895,1935,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+692,Krzyżanowski,Tadeusz-Piotr,Piłsudskiego 116,11.08.1911,1936,kpt.,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+693,Kucyj,Wolf,Grodzka 41,1906,1912,rzeźnik,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+694,Kucyj,Czerna,Grodzka 41,1913,1936,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+695,Kuchar,Stefanida,Jagiellońska 36,1888,1937,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+696,Kucharska,Olimpia,Jagiellońska 22,20.11.1869,1932,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+697,Kuczyński,Romuald,Piłsudskiego 44,10.02.1907,1907,fryzjer,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+698,Kukles,Abram,Nowa 13,20.03.1885,1930,kier. tartak,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+699,Kukles,Gienia-Leja,Nowa 13,29.04.1890,1928,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+700,Kukles,Wolf,Nowa 13,07.07.1914,1928,student,https://www.familysearch.org/ark:/61903/3:1:3QHJ-3711-SQMT-Y
+711,Kulczycka,Maria,Kościuszki 1,29.10.1869,1935,gosp. domowa,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+702,Kulesza,Jan,Jagiellońska 21,07.01.1880,1905,slusarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+703,Kulesza,Wiktoria,Jagiellońska 21,23.12.1885,1905,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+704,Kulesza,Jerzy,Jagiellońska 21,08.01.1911,1911,uczeń,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+705,Kulesza,Antoni,Jagiellońska 21,26.06.1906,1906,biuralista,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+706,Kulesza,Maria,Jagiellońska 21,15.07.1912,1933,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+707,Kulesza,Józef,Jagiellońska 21,18.09.1908,1908,stolarz,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+708,Kulesza,Aleksandra,Jagiellońska 21,28.07.1912,1912,przy mężu,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+709,Kulewicz,Anna,Parokowa 10,29.06.1879,1900,przy synie,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M
+710,Kulewicz,Franciszek,Parkowa 10,29.10.1905,1905,urzędn,https://www.familysearch.org/ark:/61903/3:1:3QHN-Y71B-T638-M

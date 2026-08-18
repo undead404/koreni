@@ -10,7 +10,7 @@ location:
 size: 29
 sources:
   - https://kabak.dp.ua/assets/files/2006_Perv_perep_kazakov_pereselenc_na_Kuban_1794.pdf
-tableFilePath: public/csv/chalbasy-pereselentsi-na-kuban-1794.csv
+tableFilePath: data/csv/chalbasy-pereselentsi-na-kuban-1794.csv
 tableLocale: uk
 title: Чалбаси, Дніпровський пов. Таврійська губ.  | Козаки-переселенці на
   Кубань з Кисляківського куреня (1794)

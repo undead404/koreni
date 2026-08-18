@@ -10,8 +10,8 @@ location:
 size: 285
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-153.csv
+tableFilePath: data/csv/DASO-R7720-5-153.csv
 tableLocale: uk
-title: "[ШІ] Мельня, Озаричі, Хижки, Чорноплатове – народження, 1926"
+title: '[ШІ] Мельня, Озаричі, Хижки, Чорноплатове – народження, 1926'
 yearsRange:
   - 1926

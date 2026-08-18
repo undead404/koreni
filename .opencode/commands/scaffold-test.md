@@ -1,6 +1,6 @@
 ---
 description: 'Automatically generate a frontend unit test for a given source file.'
-model: 'opencode/claude-sonnet-4-6'
+model: 'opencode/gpt-5.6-luna'
 temperature: 0.1
 top_p: 0.95
 max_tokens: 8192

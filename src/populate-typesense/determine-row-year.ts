@@ -1,6 +1,3 @@
-import _ from 'lodash';
-const { first, isInteger, last, toNumber, toString } = _;
-
 import type { IndexationTable } from '@/shared/schemas/indexation-table';
 
 export default function determineRowYear(
@@ -22,7 +19,7 @@ export default function determineRowYear(
     if (yearInRow === '') {
       return 0;
     }
-    result = toNumber(yearInRow);
+    result = Number(yearInRow);
   }
   if (!result) {
     const dateInRow =
@@ -50,19 +47,25 @@ export default function determineRowYear(
         return 0;
       }
       // console.log(dateInRow);
-      const dateInRowAsString = toString(dateInRow);
+      const dateInRowAsString =
+        typeof dateInRow === 'string' || typeof dateInRow === 'number'
+          ? String(dateInRow)
+          : '';
       if (dateInRowAsString.includes('.')) {
-        const firstPart = first(
-          dateInRowAsString.split('.').filter((item) => item !== 'хх'),
-        );
+        const parts = dateInRowAsString
+          .split('.')
+          .filter((item) => item !== 'хх');
+        const firstPart = parts[0];
         result =
           firstPart && firstPart.length === 4
-            ? toNumber(firstPart)
-            : toNumber(last(dateInRowAsString.split('.')));
+            ? Number(firstPart)
+            : Number(parts.at(-1));
       } else if (dateInRowAsString.includes('/')) {
-        result = toNumber(last(dateInRowAsString.split('/')));
+        const parts = dateInRowAsString.split('/');
+        result = Number(parts.at(-1));
       } else if (dateInRowAsString.includes('-')) {
-        result = toNumber(first(dateInRowAsString.split('-')));
+        const parts = dateInRowAsString.split('-');
+        result = Number(parts[0]);
       } else {
         const dateInRowAsNumber = Number.parseInt(dateInRowAsString);
         if (Number.isNaN(dateInRowAsNumber)) {
@@ -87,7 +90,7 @@ export default function determineRowYear(
     return 0;
     // throw new Error('Failed to determine the year.');
   }
-  if (!isInteger(result)) {
+  if (!Number.isInteger(result)) {
     console.warn(`Year is not an integer: ${result} (${typeof result})`);
     return 0;
   }

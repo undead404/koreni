@@ -10,9 +10,9 @@ location:
 size: 385
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-62.csv
+tableFilePath: data/csv/DASO-R7720-5-62.csv
 tableLocale: uk
-title: "[ШІ] Підлипне – народження, 1922-1923"
+title: '[ШІ] Підлипне – народження, 1922-1923'
 yearsRange:
   - 1922
   - 1923

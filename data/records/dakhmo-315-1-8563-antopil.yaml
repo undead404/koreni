@@ -4,7 +4,7 @@ authorName: Віталій Перегончук
 authorEmail: brute18@gmail.com
 date: 2026-02-22T00:00:00.000Z
 id: DAKhmO-315-1-8563-Antopil
-tableFilePath: public/csv/dakhmo-315-1-8563-antopil_transcription-1-.csv
+tableFilePath: data/csv/dakhmo-315-1-8563-antopil_transcription-1-.csv
 location:
   - 48.46880400120386
   - 28.67926584662996

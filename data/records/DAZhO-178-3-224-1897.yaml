@@ -9,7 +9,7 @@ location:
   - 28.5333286
 size: 182
 sources: []
-tableFilePath: public/csv/troianiv-1897-narodzhennia-kostel.csv
+tableFilePath: data/csv/troianiv-1897-narodzhennia-kostel.csv
 tableLocale: uk
 title: Троянів 1897 народження, костел
 yearsRange:

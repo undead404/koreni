@@ -10,7 +10,7 @@ location:
   - 33.41542942751455
 size: 2
 sources: []
-tableFilePath: public/csv/khutir-terny-blanky-spetskultur.csv
+tableFilePath: data/csv/khutir-terny-blanky-spetskultur.csv
 tableLocale: uk
 title: Хутір Терни, Дніпровський пов. Таврійська губ. | Бланки спец.культур
 yearsRange:

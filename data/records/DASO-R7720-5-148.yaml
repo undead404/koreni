@@ -10,8 +10,8 @@ location:
 size: 296
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-148.csv
+tableFilePath: data/csv/DASO-R7720-5-148.csv
 tableLocale: uk
-title: "[ШІ] Козацьке (Бочечківське) – народження, 1926, ч. 2"
+title: '[ШІ] Козацьке (Бочечківське) – народження, 1926, ч. 2'
 yearsRange:
   - 1926

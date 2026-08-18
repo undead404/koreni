@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
-import { Toaster } from 'sonner';
 
 import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
 import Header from './components/header';
+import SharhorootsPrompt from './components/sharhoroots-prompt';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
 import { PostHogProvider } from './providers/posthog';
@@ -55,8 +55,8 @@ export default function RootLayout({
               <main className={styles.main}>{children}</main>
               <Footer />
               <CookieBanner />
+              <SharhorootsPrompt />
             </div>
-            <Toaster position="bottom-right" richColors />
           </PostHogProvider>
         </ErrorBoundary>
         <Script
@@ -65,12 +65,6 @@ export default function RootLayout({
           async
           type="text/javascript"
         ></Script>
-        <Script
-          src="https://descriptor-strider-ai.vercel.app/widget.js"
-          data-partner-key="blkch_5dc94a37b758a30568da4b621f056deef5d32c40f66adf442bdbe942d26ce127"
-          data-partner-id="koreni"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

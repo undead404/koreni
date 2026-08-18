@@ -1,6 +1,6 @@
 import type { Graph } from 'schema-dts';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import environment from './environment';
 

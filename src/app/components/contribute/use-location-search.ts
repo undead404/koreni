@@ -39,35 +39,38 @@ export function useLocationSearch(knownLocations: Location[]) {
         abortController.abort('timeout');
       }, 5000);
 
-      // eslint-disable-next-line promise/catch-or-return
-      autocomplete(query, abortController)
-        .then((data) => {
-          if (abortController.signal.aborted) return;
-          // eslint-disable-next-line promise/always-return
-          if (!data) {
-            setIsLoading(false);
-            return;
-          }
-          setResults([
-            ...localLocations,
-            ...data.map((l) => ({
-              coordinates: [l.lat, l.lon] as [number, number],
-              title: l.display_name,
-              origin: 'remote' as const,
-            })),
-          ]);
-        })
-        .catch(() => {
-          if (abortController.signal.aborted) return;
+      const result = autocomplete(query, abortController);
+      if (result) {
+        // eslint-disable-next-line promise/catch-or-return
+        result
+          .then((data) => {
+            if (abortController.signal.aborted) return;
+            // eslint-disable-next-line promise/always-return
+            if (!data) {
+              setIsLoading(false);
+              return;
+            }
+            setResults([
+              ...localLocations,
+              ...data.map((l) => ({
+                coordinates: [l.lat, l.lon] as [number, number],
+                title: l.display_name,
+                origin: 'remote' as const,
+              })),
+            ]);
+          })
+          .catch(() => {
+            if (abortController.signal.aborted) return;
 
-          setResults(localLocations);
-        })
-        .finally(() => {
-          if (!abortController.signal.aborted) {
-            setIsLoading(false);
-          }
-          clearTimeout(timeout);
-        });
+            setResults(localLocations);
+          })
+          .finally(() => {
+            if (!abortController.signal.aborted) {
+              setIsLoading(false);
+            }
+            clearTimeout(timeout);
+          });
+      }
     }, 500);
 
     return () => {

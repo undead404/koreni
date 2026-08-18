@@ -10,7 +10,7 @@ location:
 size: 184
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSS9-23NV-G?view=explore&groupId=M9M2-QRF&lang=uk
-tableFilePath: public/csv/bilotserkivka-narodzhennia-1895.csv
+tableFilePath: data/csv/bilotserkivka-narodzhennia-1895.csv
 tableLocale: uk
 title: Білоцерківка, Дніпровський пов. Таврійська губ. | народження (1895)
 yearsRange:

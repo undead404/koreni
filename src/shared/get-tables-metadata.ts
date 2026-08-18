@@ -1,7 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import _ from 'lodash';
 import { parse } from 'yaml';
 
 import {
@@ -10,8 +9,6 @@ import {
 } from './schemas/indexation-table';
 import getYamlFilepaths from './get-yaml-filepaths';
 import validateMetadata from './validate-metadata';
-
-const { sortBy } = _;
 const METADATA_FOLDER = path.join(process.cwd(), 'data/records');
 
 export default async function getTablesMetadata(): Promise<IndexationTable[]> {
@@ -33,5 +30,5 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);
-  return sortBy(tablesMetadata, 'id');
+  return [...tablesMetadata].sort((a, b) => a.id.localeCompare(b.id));
 }

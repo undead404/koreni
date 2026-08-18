@@ -10,9 +10,9 @@ location:
 size: 288
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-31.csv
+tableFilePath: data/csv/DASO-R7720-5-31.csv
 tableLocale: uk
-title: "[ШІ] Юрівка (Попівська) – народження, 1921-1924"
+title: '[ШІ] Юрівка (Попівська) – народження, 1921-1924'
 yearsRange:
   - 1921
   - 1924

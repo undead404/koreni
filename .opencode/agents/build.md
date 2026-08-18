@@ -1,7 +1,7 @@
 ---
 description: Executes specifications and enforces correctness via terminal validation
 mode: primary
-model: opencode/claude-haiku-4-5
+model: opencode/gemini-3.6-flash
 temperature: 0
 permission:
   edit: allow

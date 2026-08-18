@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import getTablesMetadata from '@/shared/get-tables-metadata';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import Comments from '../components/comments/comments';
 import environment from '../environment';

@@ -1,0 +1,30 @@
+archiveItems:
+  - ДАВоО-382-3-22
+  - ДАВоО-382-3-29
+  - ДАВоО-382-3-25
+  - ДАВоО-382-3-34
+  - ДАВоО-382-3-38
+  - ДАВоО-382-3-52
+  - ДАВоО-382-3-55
+  - ДАВоО-382-3-66
+  - ДАВоО-382-3-72
+  - ДАВоО-382-3-81
+  - ДАВоО-382-3-88
+  - ДАВоО-382-3-92
+  - ДАВоО-382-3-100
+  - ДАВоО-382-3-103
+authorName: Ірина Будь
+authorEmail: bud.iryna@gmail.com
+date: 2026-08-17
+id: DAVoO-382-3-Cherche-1806-1825-death
+location:
+  - 51.738106
+  - 24.875582
+size: 296
+sources: []
+tableFilePath: data/csv/zbirna-metryka-pro-smert-czorcze-1806-1825.csv
+tableLocale: pl
+title: Черче – смерть, 1806-1825
+yearsRange:
+  - 1806
+  - 1825

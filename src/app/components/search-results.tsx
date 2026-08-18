@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import _ from 'lodash';
+import { partition } from 'es-toolkit';
 import { usePostHog } from 'posthog-js/react';
 import type { FC } from 'react';
 
@@ -88,7 +88,7 @@ const SearchResults: FC<ResultsProperties> = ({
   }); // Replace 'any' with inferred schema type if exported
 
   // Separate search results into "strict" and "fuzzy" categories
-  const [strictResults, fuzzyResults] = _.partition(
+  const [strictResults, fuzzyResults] = partition(
     validResults,
     (result) => result?.text_match_info.typo_prefix_score === 0,
   );

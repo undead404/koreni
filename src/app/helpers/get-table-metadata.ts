@@ -3,11 +3,11 @@ import path from 'node:path';
 
 import { parse } from 'yaml';
 
-import getYamlFilepaths from '@/shared/get-yaml-filepaths';
+import getYamlFilepaths from '@koreni/shared/get-yaml-filepaths';
 import {
   type IndexationTable,
   indexationTableSchema,
-} from '@/shared/schemas/indexation-table';
+} from '@koreni/shared/schemas/indexation-table';
 const METADATA_FOLDER = path.join(process.cwd(), 'data/records');
 
 const yamlFilepaths = await getYamlFilepaths(METADATA_FOLDER);

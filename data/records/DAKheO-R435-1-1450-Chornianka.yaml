@@ -11,7 +11,7 @@ size: 35
 sources:
   - https://docs.google.com/spreadsheets/d/1k78ylXv_D1gHPC2OO-mI9K-iY16zrm76S-9g8uT90hw/edit?usp=sharing
   - https://kherson.archives.gov.ua/wp-content/uploads/2022/12/fr435_1_1540_2.pdf
-tableFilePath: public/csv/chornianka-hospodarstva-1927.csv
+tableFilePath: data/csv/chornianka-hospodarstva-1927.csv
 tableLocale: uk
 title: Чорнянка, Каховський р-н Херсонська округа | Картки опитування окремих
   господарств (1927)

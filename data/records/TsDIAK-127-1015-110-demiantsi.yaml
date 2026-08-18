@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1015-110
+authorName: Радана Кузьменко
+authorEmail: radana.genealogy@gmail.com
+date: 2026-07-27
+id: TsDIAK-127-1015-110-demiantsi
+location:
+  - 50.11235555173862
+  - 31.405299943959378
+size: 1770
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9L-Q7YZ-2?i=259&cat=1807434
+tableFilePath: data/csv/127-1015-110-1795-demiantsi-pereiaslavskyi-povit.csv
+tableLocale: uk
+title: "Дем'янці – сповідний розпис (1795)"
+yearsRange:
+  - 1795

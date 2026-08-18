@@ -15,4 +15,4 @@ yearsRange:
   - 1912
 authorName: Sergi Adamchuk
 authorEmail: adamchuk@gmail.com
-tableFilePath: public/csv/Хворостів, Індекси - Руда, 1912.csv
+tableFilePath: data/csv/Хворостів, Індекси - Руда, 1912.csv

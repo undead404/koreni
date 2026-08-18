@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { object } from 'zod';
 
+import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
 import Comments from '@/app/components/comments/comments';
 import ContactGate from '@/app/components/contact-gate';
 import environment from '@/app/environment';
 import getVolunteers from '@/app/helpers/get-volunteers';
 import JsonLdTables from '@/app/tables/table-json-ld';
-import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import { getRank } from '../ranks';
 

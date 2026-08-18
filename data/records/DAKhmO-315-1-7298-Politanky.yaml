@@ -2,17 +2,17 @@ archiveItems:
   - ДАХмО-315-1-7298
 date: 2024-09-18T00:00:00.000Z
 id: DAKhmO-315-1-7298-Politanky
-tableFilename: Політанки 1823 – сповідний розпис, ДАХмО 315-1-7195 - master.csv
+tableFilename: Політанки 1827 – сповідний розпис, ДАХмО 315-1-7298 - master.csv
 location:
   - 48.63819236264805
   - 28.131503369961344
-size: 708
+size: 741
 sources:
   - https://docs.google.com/spreadsheets/d/1wJz7JifgXYIrIBVon-EciNKrzN3XQ3Tv_AGoqGBMa88/edit?usp=sharing
-title: Політанки 1823 – сповідний розпис
+title: Політанки 1827 – сповідний розпис
 tableLocale: ru
 yearsRange:
-  - 1823
+  - 1827
 authorName: Віталій Перегончук
 authorEmail: brute18@gmail.com
-tableFilePath: public/csv/Політанки 1823 – сповідний розпис, ДАХмО 315-1-7195 - master.csv
+tableFilePath: data/csv/Політанки 1827 – сповідний розпис, ДАХмО 315-1-7298 - master.csv

@@ -13,7 +13,6 @@ on:
     paths:
       - '*'
       - 'data/**'
-      - 'public/**'
       - 'src/app/**'
       - 'src/server/**'
       - 'src/shared/**'
@@ -31,15 +30,47 @@ jobs:
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
-      - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-      - name: Install server dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
+      - name: Install dependencies
+        run: yarn install --immutable
 
       - name: Lint
         run: yarn lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up tools via Mise
+        uses: jdx/mise-action@v4
+
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Type check
+        run: yarn typecheck
 
   test:
     needs:
@@ -53,11 +84,21 @@ jobs:
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
-      - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-      - name: Run tests
-        run: yarn test
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run frontend tests
+        run: yarn test --run
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
@@ -65,25 +106,8 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
 
-  test-api:
-    needs:
-      - lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Set up tools via Mise
-        uses: jdx/mise-action@v4
-
-      - name: Install API dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
-
-      - name: Run tests
-        run: yarn test
-        working-directory: src/server
+      - name: Run server tests
+        run: yarn exec vitest run --root src/server
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
@@ -95,8 +119,8 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - lint
+      - typecheck
       - test
-      - test-api
 
     steps:
       - name: Checkout repository
@@ -104,12 +128,19 @@ jobs:
 
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
-      - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
 
       - name: Restore Next.js Build Cache
         uses: actions/cache@v5
@@ -147,7 +178,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - test
-      - test-api
+      - typecheck
 
     steps:
       - name: Checkout repository
@@ -156,22 +187,38 @@ jobs:
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
-      - name: Install frontend dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-      - name: Install API dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
+      - name: Install dependencies
+        run: yarn install --immutable
 
       - name: Build API project
-        run: yarn build
-        working-directory: src/server
+        run: |
+          yarn exec tsc --project src/server/tsconfig.json
+          cp src/server/package.json src/server/dist/
+
+      - name: Install production dependencies
+        run: yarn workspaces focus koreni-server --production
 
       - name: Upload backend artifact
         uses: actions/upload-artifact@v7
         with:
           name: api-dist
           path: src/server/dist
+
+      - name: Upload backend node_modules artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: api-node-modules
+          path: node_modules
 
   deploy:
     runs-on: ubuntu-latest
@@ -225,6 +272,12 @@ jobs:
           name: api-dist
           path: api-dist
 
+      - name: Download backend node_modules
+        uses: actions/download-artifact@v8
+        with:
+          name: api-node-modules
+          path: api-node-modules
+
       # 1. Verify manifest files exist before deploying (Safety Check)
       - name: Check for package.json
         run: |
@@ -238,10 +291,14 @@ jobs:
           # Ensure target directory exists
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
 
-          # Sync files
+          # Sync compiled dist files
           rsync -avz --no-o --no-g -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
 
-      - name: Configure Environment and Install Dependencies
+      - name: Deploy node_modules to server
+        run: |
+          rsync -avz --no-o --no-g -e "ssh" --delete ./api-node-modules/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api/node_modules
+
+      - name: Configure Environment and Restart Service
         run: |
           ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
             set -e
@@ -259,10 +316,31 @@ jobs:
             echo "NODE_ENV=production" >> .env
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-
-            # Install dependencies ON THE SERVER
-            yarn install --frozen-lockfile --production --prefer-offline
-            
+            echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
+            echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
+            echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
+             
             # Restart Service
             sudo systemctl restart koreni-api
+
+            # Verify the service started successfully
+            MAX_ATTEMPTS=12
+            SLEEP_INTERVAL=5
+            attempt=0
+            while [ $attempt -lt $MAX_ATTEMPTS ]; do
+              if sudo systemctl is-active --quiet koreni-api; then
+                echo "koreni-api is active."
+                break
+              fi
+              attempt=$((attempt + 1))
+              echo "Waiting for koreni-api to become active... (attempt $attempt/$MAX_ATTEMPTS)"
+              sleep $SLEEP_INTERVAL
+            done
+
+            if ! sudo systemctl is-active --quiet koreni-api; then
+              echo "ERROR: koreni-api failed to start after $((MAX_ATTEMPTS * SLEEP_INTERVAL))s."
+              echo "--- journalctl output ---"
+              sudo journalctl -u koreni-api -n 50 --no-pager
+              exit 1
+            fi
           EOF

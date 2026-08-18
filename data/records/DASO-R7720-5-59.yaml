@@ -10,9 +10,9 @@ location:
 size: 524
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-59.csv
+tableFilePath: data/csv/DASO-R7720-5-59.csv
 tableLocale: uk
-title: "[ШІ] Кошари (Попівські) – народження, 1922-1924"
+title: '[ШІ] Кошари (Попівські) – народження, 1922-1924'
 yearsRange:
   - 1922
   - 1924

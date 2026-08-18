@@ -1,8 +1,10 @@
-import _ from 'lodash';
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { object, string } from 'zod';
 
+import getTableData from '@koreni/shared/get-table-data';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
+import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
 import { PER_PAGE } from '@/app/constants';
 import environment from '@/app/environment';
 import {
@@ -10,9 +12,6 @@ import {
   generateJsonLd,
 } from '@/app/helpers/generate-metadata';
 import getTableMetadata from '@/app/helpers/get-table-metadata';
-import getTableData from '@/shared/get-table-data';
-import getTablesMetadata from '@/shared/get-tables-metadata';
-import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import TableContent from './table-content';
 
@@ -73,9 +72,12 @@ export default async function Table({ params }: TablePageProperties) {
 export async function generateStaticParams() {
   const tablesMetadata = await getTablesMetadata();
   return tablesMetadata.flatMap((tableMetadata) =>
-    _.times(Math.ceil(tableMetadata.size / PER_PAGE), (index) => ({
-      page: `${index + 1}`,
-      tableId: tableMetadata.id,
-    })),
+    Array.from(
+      { length: Math.ceil(tableMetadata.size / PER_PAGE) },
+      (_, index) => ({
+        page: `${index + 1}`,
+        tableId: tableMetadata.id,
+      }),
+    ),
   );
 }

@@ -44,12 +44,12 @@ const handleSubmit = async (c: Context) => {
       });
     } catch (error) {
       console.error('Error submitting to GitHub:', error);
-      posthog.captureException(error as Error);
+      posthog.captureException(error);
       return c.json({ error: `${error as Error}` }, 502);
     }
   } catch (error) {
     console.error(error);
-    posthog.captureException(error as Error);
+    posthog.captureException(error);
     return c.json({ error: 'Internal Server Error' }, 500);
   }
 };

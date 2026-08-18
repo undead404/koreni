@@ -13,7 +13,7 @@
 }
 
 .accent:hover {
-  border-bottom-color: var(--accent-color);
+  border-bottom-color: var(--clickable-color);
 }
 
 .accent::before {
@@ -23,4 +23,17 @@
 
 .accentWrapper {
   text-align: center;
+}
+
+.benefactorList {
+  border-left: 3px solid var(--clickable-color);
+  padding-inline-start: 1rem;
+  padding-left: 0;
+}
+
+.benefactorList li {
+  list-style: none;
+  margin: 6px 0;
+  font-size: 1rem;
+  line-height: 1.4em;
 }

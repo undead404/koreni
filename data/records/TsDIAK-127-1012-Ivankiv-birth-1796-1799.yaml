@@ -16,7 +16,7 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-XSCG-Y?view=explore&groupId=M9L3-THJ&lang=en
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-997K-P?view=explore&action=view&cc=1503045&lang=uk&groupId=M9LH-VN1
   - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-PW41-P?view=index&groupId=M9L4-3ZL&lang=en
-tableFilePath: public/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-narodzhennia-1796-1799.csv
+tableFilePath: data/csv/ivankiv-radomyshlskyi-pov-kyivska-hub-narodzhennia-1796-1799.csv
 tableLocale: uk
 title: Іванків, Радомишльський пов. Київська губ. |  народження (1796-1799)
 yearsRange:

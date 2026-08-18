@@ -1,7 +1,7 @@
 import type { Dataset, ListItem } from 'schema-dts';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import generateJsonLd from './generate-json-ld';
 
@@ -43,7 +43,7 @@ describe('generateJsonLd', () => {
       location: [50, 30],
       size: 100,
       sources: ['source-1', 'source-2'],
-      tableFilePath: 'public/csv/table-1.csv',
+      tableFilePath: 'data/csv/table-1.csv',
       tableLocale: 'uk',
       title: 'Test Table',
       yearsRange: [1900, 1910],

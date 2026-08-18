@@ -1,4 +1,4 @@
-import UKRAINIAN_ARCHIVES from '@/shared/ukrainian-archives';
+import UKRAINIAN_ARCHIVES from '@koreni/shared/ukrainian-archives';
 
 import styles from './archive-item.module.css';
 

@@ -9,7 +9,7 @@ location:
   - 25.173288
 size: 54
 sources: []
-tableFilePath: public/csv/vsevolodivka-deportovani-z-pollshchi-1946.csv
+tableFilePath: data/csv/vsevolodivka-deportovani-z-pollshchi-1946.csv
 tableLocale: uk
 title: Всеволодівка, Луцький р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

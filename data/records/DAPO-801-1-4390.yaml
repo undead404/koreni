@@ -10,7 +10,7 @@ location:
 size: 2015
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-QQ9K-N9HC-4?view=explore&groupId=TH-7721-109333-940-81&grid=on&lang=en
-tableFilePath: public/csv/antonivka-pyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1842.csv
+tableFilePath: data/csv/antonivka-pyriatynskyi-povit-poltavska-huberniia-spovidnyi-rozpys-1842.csv
 tableLocale: uk
 title: Антонівка, Пирятинський повіт, Полтавська губернія - сповідний розпис, 1842
 yearsRange:

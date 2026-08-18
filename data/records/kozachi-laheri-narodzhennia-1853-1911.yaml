@@ -18,7 +18,7 @@ location:
 size: 3441
 sources:
   - https://docs.google.com/spreadsheets/d/1Y3w9wMCTWJ2MjQ7TQ6owAFe5uk62w5u2N2BFl_Lbx-Y/edit?usp=sharing
-tableFilePath: public/csv/kozachi-laheri-narodzhennia-1853-1911.csv
+tableFilePath: data/csv/kozachi-laheri-narodzhennia-1853-1911.csv
 tableLocale: uk
 title: Козачі Лагері, Дніпровський пов. Таврійська губ. | народження (1853-1911)
 yearsRange:

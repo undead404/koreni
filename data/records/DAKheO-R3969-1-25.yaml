@@ -11,7 +11,7 @@ size: 15
 sources:
   - https://docs.google.com/spreadsheets/d/1j7Jk5wMF79_HHCvsEGOJSbrUEonQZL4zdQUCXD7geMg/edit?usp=sharing
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-3969-vynorobne-radyanske-gospodarstvo-vynradgosp-im-nachdyva-soloduhina-hersonskogo-trestu-vynorobnyh-radgospiv/
-tableFilePath: public/csv/pishchane-kakhovskyi-r-n-khersonska-obl-spysok-pratsivnykiv-vynradhospu-imsolodukhina-1965.csv
+tableFilePath: data/csv/pishchane-kakhovskyi-r-n-khersonska-obl-spysok-pratsivnykiv-vynradhospu-imsolodukhina-1965.csv
 tableLocale: uk
 title: Піщане, Нові Лагері, Каховський р-н, Херсонська обл. | Список працівників
   винрадгоспу ім. начдива Солодухіна (1965)

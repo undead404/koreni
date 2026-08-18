@@ -10,9 +10,9 @@ location:
 size: 202
 sources:
   - https://docs.google.com/spreadsheets/d/1cR04bHZykckY0nZZzhxtQrrds_v1bsR3/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
-tableFilePath: public/csv/DASO-R7720-5-6.csv
+tableFilePath: data/csv/DASO-R7720-5-6.csv
 tableLocale: uk
-title: "[ШІ] Вирівка – народження, 1921-1922"
+title: '[ШІ] Вирівка – народження, 1921-1922'
 yearsRange:
   - 1921
   - 1922

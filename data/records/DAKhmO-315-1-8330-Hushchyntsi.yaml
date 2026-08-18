@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-08-04
+id: DAKhmO-315-1-8330-Hushchyntsi
+location:
+  - 49.45289
+  - 28.34747
+size: 1134
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Hushchyntsi.csv
+tableLocale: ru
+title: Гущинці 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
+yearsRange:
+  - 1855

@@ -1,33 +1,37 @@
-name: Enrich Data
+name: Validate Data Contribution
 on:
   pull_request:
     paths:
       - 'data/**'
 
 jobs:
-  update:
+  validate-and-normalize:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout repository
+      - name: Checkout contribution
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+        run: yarn install --immutable
 
-      - name: Modernize Russian
+      - name: Validate data consistency
+        run: yarn data:validate
+
+      - name: Normalize pre-reform Russian orthography
         run: yarn data:modernize-russian
 
-      - name: Commit and Push Changes
+      - name: Commit normalized data
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: auto-update data size [skip ci]'
+          commit_message: 'chore: normalize contributed data [skip ci]'
           file_pattern: '.'
           commit_user_name: 'GitHub Action'
           commit_user_email: 'action@github.com'

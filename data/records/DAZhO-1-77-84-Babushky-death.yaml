@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАЖО-1-77-84
+authorName: Катерина К
+authorEmail: kolomytska@gmail.com
+date: 2026-08-06
+id: DAZhO-1-77-84-Babushky-death
+location:
+  - 50.0021714
+  - 28.1832775
+size: 25
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-S77J-7JBH?view=explore&groupId=TH-7727-140000-40506-21&grid=on&lang=en
+tableFilePath: data/csv/babushky-smert-1876.csv
+tableLocale: ru
+title: Бабушки - смерть, 1876
+yearsRange:
+  - 1876

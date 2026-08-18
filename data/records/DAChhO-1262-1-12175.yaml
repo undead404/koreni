@@ -15,4 +15,4 @@ tableLocale: ru
 yearsRange:
   - 1859
 authorName: Спільнота Cobook
-tableFilePath: public/csv/DAChhO-1262-1-12175.csv
+tableFilePath: data/csv/DAChhO-1262-1-12175.csv

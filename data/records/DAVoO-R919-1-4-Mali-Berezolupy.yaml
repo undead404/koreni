@@ -9,7 +9,7 @@ location:
   - 25.05501
 size: 96
 sources: []
-tableFilePath: public/csv/mali-berezolupy--deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/mali-berezolupy--deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Малі Березолупи, Рожищенський р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

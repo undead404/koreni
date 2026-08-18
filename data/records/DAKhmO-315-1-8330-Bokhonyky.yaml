@@ -10,7 +10,7 @@ location:
 size: 463
 sources:
   - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
-tableFilePath: public/csv/DAKhmO-315-1-8330-Bokhonyky.csv
+tableFilePath: data/csv/DAKhmO-315-1-8330-Bokhonyky.csv
 tableLocale: ru
 title: Бохоники 1855 – сповідний розпис (повний), ДАХмО 315-1-8330
 yearsRange:

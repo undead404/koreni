@@ -12,7 +12,7 @@ location:
 size: 6030
 sources:
   - https://drive.google.com/drive/folders/104HkGNMNJja0ZKi9MWwguiJqnKWyVtRY?usp=sharing
-tableFilePath: public/csv/troianiv-alfavitna-knyha-kostelu-narodzhennia-1881-1915.csv
+tableFilePath: data/csv/troianiv-alfavitna-knyha-kostelu-narodzhennia-1881-1915.csv
 tableLocale: ru
 title: Троянів. Алфавітна книга костелу (народження), 1881-1915
 yearsRange:
