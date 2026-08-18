@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВоО-382-3-116
+authorName: Ірина Будь
+authorEmail: bud.iryna@gmail.com
+date: 2026-08-17
+id: DAVoO-382-3-116-Cherche-death
+location:
+  - 51.738106
+  - 24.875582
+size: 57
+sources: []
+tableFilePath: data/csv/metryka-pro-smert-czorcze-1827.csv
+tableLocale: pl
+title: Черче – смерть, 1827
+yearsRange:
+  - 1827
