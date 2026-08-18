@@ -12,6 +12,7 @@ import getTypesenseClient from '../services/typesense';
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
+const PER_PAGE = 24;
 
 export function useSearch() {
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -56,7 +57,8 @@ export function useSearch() {
         const [hits, hitsNumber] = await search({
           client,
           page, // Pass page to API
-          perPage: 24, // Matches typical 2-col or 3-col grid layouts
+          perPage: PER_PAGE, // Matches typical 2-col or 3-col grid layouts
+          posthog,
           query: normalizedQuery,
           yearFrom,
           yearTo,
@@ -66,7 +68,15 @@ export function useSearch() {
         if (requestId !== currentRequestId.current) return;
 
         setResults(hits);
-        setResultsNumber(hitsNumber);
+
+        // Correct the pagination ceiling when a page > 1 returns empty hits
+        // but Typesense reported results exist (found > 0).
+        // This handles the Typesense union query found-count over-approximation.
+        if (page > 1 && hits.length === 0 && hitsNumber > 0) {
+          setResultsNumber((page - 1) * PER_PAGE);
+        } else {
+          setResultsNumber(hitsNumber);
+        }
 
         posthog.capture('search_results_returned', {
           query: normalizedQuery,
