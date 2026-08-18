@@ -1,0 +1,29 @@
+archiveItems:
+  - ДАВоО-382-3-19
+  - ДАВоО-382-3-28
+  - ДАВоО-382-3-32
+  - ДАВоО-382-3-38
+  - ДАВоО-382-3-52
+  - ДАВоО-382-3-55
+  - ДАВоО-382-3-66
+  - ДАВоО-382-3-72
+  - ДАВоО-382-3-81
+  - ДАВоО-382-3-88
+  - ДАВоО-382-3-92
+  - ДАВоО-382-3-100
+  - ДАВоО-382-3-103
+authorName: Ірина Будь
+authorEmail: bud.iryna@gmail.com
+date: 2026-08-17
+id: DAVoO-382-3-Cherche-1805-1825-birth
+location:
+  - 51.738106
+  - 24.875582
+size: 332
+sources: []
+tableFilePath: data/csv/zbirna-metryka-pro-narodzhennia-czorcze-1805-1825.csv
+tableLocale: pl
+title: Черче – народження, 1805-1825
+yearsRange:
+  - 1805
+  - 1825

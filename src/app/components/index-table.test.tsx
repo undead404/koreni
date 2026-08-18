@@ -1,9 +1,16 @@
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { initBugsnag } from '../services/bugsnag';
+
 import { IndexTable, type TableProperties } from './index-table';
 
 vi.mock('../hocs/with-error-boundary');
+vi.mock('../services/bugsnag', () => ({
+  initBugsnag: vi.fn(() => ({
+    notify: vi.fn(),
+  })),
+}));
 
 const mockData = [
   { name: 'John', age: 30 },
@@ -22,6 +29,7 @@ const defaultProps: TableProperties = {
 describe('IndexTable component', () => {
   afterEach(() => {
     cleanup();
+    vi.clearAllMocks();
   });
 
   it('should render the table element', () => {
@@ -88,5 +96,51 @@ describe('IndexTable component', () => {
     expect(marks.length).toBe(2);
     expect(marks[0].textContent).toBe('John');
     expect(marks[1].textContent).toBe('Jane');
+  });
+
+  it('should notify Bugsnag when targetRowId is set but no row on this page matches', () => {
+    render(
+      <IndexTable {...defaultProps} targetRowId="test-table-9999" page={1} />,
+    );
+
+    const bugsnagClient = vi.mocked(initBugsnag).mock.results[0].value;
+    expect(bugsnagClient.notify).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({
+        message: 'Scroll target row not found on this page',
+      }),
+      expect.any(Function),
+    );
+  });
+
+  it('should NOT notify Bugsnag when targetRowId is null', () => {
+    vi.clearAllMocks();
+    render(<IndexTable {...defaultProps} targetRowId={null} />);
+
+    // When targetRowId is null, no Bugsnag notification should occur
+    const bugsnagMock = vi.mocked(initBugsnag);
+    // Check that notify was never called across all initBugsnag calls
+    for (const result of bugsnagMock.mock.results) {
+      expect(result.value.notify).not.toHaveBeenCalled();
+    }
+  });
+
+  it('should NOT notify Bugsnag when targetRowId matches a row on this page', () => {
+    vi.clearAllMocks();
+    render(
+      <IndexTable
+        {...defaultProps}
+        targetRowId="test-table-1"
+        page={1}
+        matchedTokens={['John']}
+      />,
+    );
+
+    // When targetRowId matches a row on this page, FM1 should not fire
+    // When a token matches a cell in the row, FM2 should not fire
+    const bugsnagMock = vi.mocked(initBugsnag);
+    // Check that notify was never called across all initBugsnag calls
+    for (const result of bugsnagMock.mock.results) {
+      expect(result.value.notify).not.toHaveBeenCalled();
+    }
   });
 });
