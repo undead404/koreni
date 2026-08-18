@@ -172,4 +172,129 @@ describe('useSearch', () => {
     );
     expect(result.current.isLoading).toBe(false);
   });
+
+  it('monotonically reduces ceiling across consecutive empty pages', async () => {
+    mockSearch
+      .mockResolvedValueOnce([[], 480]) // page 13
+      .mockResolvedValueOnce([[], 480]); // page 12
+
+    const { result } = renderHook(() => useSearch());
+
+    await act(async () => {
+      await result.current.handleSearch('Мельник', '', '', 13);
+    });
+    expect(result.current.resultsNumber).toStrictEqual(288); // (13-1)*24
+
+    await act(async () => {
+      await result.current.handleSearch('Мельник', '', '', 12);
+    });
+    expect(result.current.resultsNumber).toStrictEqual(264); // (12-1)*24
+  });
+
+  it('prevents a later non-empty page from restoring the inflated server found count', async () => {
+    const mockHit: SearchResult = {
+      document: {
+        id: '1',
+        raw: {},
+        tableId: 't1',
+        title: 'Doc 1',
+        year: 1820,
+      },
+      highlight: {},
+      text_match: 100,
+      text_match_info: {
+        best_field_score: '100',
+        best_field_weight: 1,
+        fields_matched: 1,
+        score: '100',
+        tokens_matched: 1,
+      },
+    };
+
+    mockSearch
+      .mockResolvedValueOnce([[], 480]) // page 13 empty -> ceiling 288
+      .mockResolvedValueOnce([[mockHit], 480]); // page 10 has hits -> found 480
+
+    const { result } = renderHook(() => useSearch());
+
+    await act(async () => {
+      await result.current.handleSearch('Мельник', '', '', 13);
+    });
+    expect(result.current.resultsNumber).toStrictEqual(288);
+
+    await act(async () => {
+      await result.current.handleSearch('Мельник', '', '', 10);
+    });
+    // resultsNumber must stay capped at 288 (Math.min(480, 288))
+    expect(result.current.resultsNumber).toStrictEqual(288);
+  });
+
+  it('resets the ceiling when query or year filter changes', async () => {
+    const mockHit: SearchResult = {
+      document: {
+        id: '1',
+        raw: {},
+        tableId: 't1',
+        title: 'Doc 1',
+        year: 1820,
+      },
+      highlight: {},
+      text_match: 100,
+      text_match_info: {
+        best_field_score: '100',
+        best_field_weight: 1,
+        fields_matched: 1,
+        score: '100',
+        tokens_matched: 1,
+      },
+    };
+
+    mockSearch
+      .mockResolvedValueOnce([[], 480]) // Query "Мельник", page 13 empty -> ceiling 288
+      .mockResolvedValueOnce([[mockHit], 480]); // Query "Коваль", page 1 has hits -> found 480
+
+    const { result } = renderHook(() => useSearch());
+
+    await act(async () => {
+      await result.current.handleSearch('Мельник', '', '', 13);
+    });
+    expect(result.current.resultsNumber).toStrictEqual(288);
+
+    await act(async () => {
+      await result.current.handleSearch('Коваль', '', '', 1);
+    });
+    // New query "Коваль" resets ceiling, so 480 is allowed
+    expect(result.current.resultsNumber).toStrictEqual(480);
+  });
+
+  it('ignores stale responses from older search requests', async () => {
+    let resolveFirst!: (value: [SearchResult[], number]) => void;
+    const firstPromise = new Promise<[SearchResult[], number]>((resolve) => {
+      resolveFirst = resolve;
+    });
+
+    mockSearch
+      .mockReturnValueOnce(firstPromise)
+      .mockResolvedValueOnce([[], 100]); // Second request resolves immediately
+
+    const { result } = renderHook(() => useSearch());
+
+    let firstCall: Promise<void>;
+    act(() => {
+      firstCall = result.current.handleSearch('first', '', '', 1);
+    });
+
+    await act(async () => {
+      await result.current.handleSearch('second', '', '', 1);
+    });
+
+    expect(result.current.resultsNumber).toStrictEqual(100);
+
+    await act(async () => {
+      resolveFirst([[], 500]);
+      await firstCall;
+    });
+
+    expect(result.current.resultsNumber).toStrictEqual(100);
+  });
 });
