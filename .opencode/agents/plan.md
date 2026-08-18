@@ -1,7 +1,7 @@
 ---
 description: Translates architectural concepts into deterministic technical specifications
 mode: primary
-model: opencode/claude-sonnet-4-6
+model: opencode/gpt-5.6-luna
 temperature: 0.2
 permission:
   bash: ask

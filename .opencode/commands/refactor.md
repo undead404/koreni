@@ -1,6 +1,6 @@
 ---
 description: 'Refactor a specific file for performance, architectural alignment, and readability.'
-model: 'opencode/claude-opus-4-6
+model: 'opencode/gpt-5.6-luna'
 temperature: 0.1
 top_p: 0.90
 max_tokens: 8192

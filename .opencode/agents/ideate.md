@@ -2,7 +2,7 @@
 color: accent
 description: Generates high-leverage architectural and product concepts
 mode: primary
-model: opencode/claude-opus-4-6
+model: opencode/gpt-5.6-luna
 temperature: 0.8
 permission:
   edit: deny

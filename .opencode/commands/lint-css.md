@@ -1,6 +1,6 @@
 ---
 description: 'Run Stylelint auto-fix and resolve remaining manual violations.'
-model: 'opencode/gpt-5.4-nano'
+model: 'opencode/gemini-3.5-flash-lite'
 temperature: 0.0
 top_p: 0.10
 max_tokens: 4096
