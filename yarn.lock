@@ -2555,15 +2555,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "@types/uuid@npm:11.0.0"
-  dependencies:
-    uuid: "npm:*"
-  checksum: 6ebf1448d8fdc78d348a8a84389b74083f2f58bed75a5a6cf3be8419d33dcf757735c8b2de746b066ff8ef07f4384d02549774dc84195ffa46b24745471e9d8e
-  languageName: node
-  linkType: hard
-
 "@types/ws@npm:^8.5.4":
   version: 8.18.1
   resolution: "@types/ws@npm:8.18.1"
@@ -6889,7 +6880,6 @@ __metadata:
     "@libsql/kysely-libsql": "npm:0.4.1"
     "@octokit/request-error": "npm:^7.1.1"
     "@types/better-sqlite3": "npm:^7.6.13"
-    "@types/uuid": "npm:^11.0.0"
     better-sqlite3: "npm:^12.10.0"
     csv-parse: "npm:~5.5.0"
     csv-stringify: "npm:^6.6.0"
@@ -10814,7 +10804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:*, uuid@npm:^14.0.0":
+"uuid@npm:^14.0.0":
   version: 14.0.1
   resolution: "uuid@npm:14.0.1"
   bin:
