@@ -3,10 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { type User, userResponseSchema } from '../schemata';
-import requestApi from '../services/api';
+import requestApi from '@/app/services/api';
 
-export default function UserView() {
+import { type User, userResponseSchema } from './schemata';
+
+export default function AccountPage() {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
@@ -19,13 +20,18 @@ export default function UserView() {
         return;
       })
       .catch(() => {
-        router.push('/transcribe/login');
+        router.replace('/account/login');
       });
   }, [router]);
 
-  return user ? (
-    <p title={`Authenticated as: ${user.email}`}>{user.email}</p>
-  ) : (
-    <p>Loading...</p>
+  if (!user) {
+    return <p>Loading account...</p>;
+  }
+
+  return (
+    <main style={{ padding: '2rem' }}>
+      <h1>Account Overview</h1>
+      <p>Authenticated as: {user.email}</p>
+    </main>
   );
 }

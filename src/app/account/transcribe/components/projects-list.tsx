@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import { type Project, projectResponseSchema } from '../schemata';
-import requestApi from '../services/api';
+import requestApi from '@/app/services/api';
+
+import { type Project, projectResponseSchema } from '../../schemata';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);

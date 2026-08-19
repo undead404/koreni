@@ -4,7 +4,7 @@ import { googleLogout } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-import requestApi from '../services/api';
+import requestApi from '@/app/services/api';
 
 import styles from './logout-button.module.css';
 
@@ -20,7 +20,7 @@ export default function LogoutButton() {
       method: 'DELETE',
     })
       .then(() => {
-        router.push('/transcribe/login');
+        router.replace('/account/login');
         return;
       })
       .catch(() => {
@@ -29,7 +29,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <button onClick={handleLogout} className={styles.root}>
+    <button className={styles.root} onClick={handleLogout}>
       Log Out
     </button>
   );

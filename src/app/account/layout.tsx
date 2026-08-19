@@ -1,17 +1,26 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import type { Metadata } from 'next';
 
 import environment from '@/app/environment';
 
-import TranscribeHeader from './components/transcribe-header';
+import AccountHeader from './components/account-header';
 
-export default function TranscribeLayout({
+export const metadata: Metadata = {
+  title: 'Authentication',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export default function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <GoogleOAuthProvider clientId={environment.NEXT_PUBLIC_OAUTH_CLIENT_ID}>
-      <TranscribeHeader />
+      <AccountHeader />
       {children}
     </GoogleOAuthProvider>
   );

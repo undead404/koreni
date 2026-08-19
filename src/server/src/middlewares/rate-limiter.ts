@@ -9,7 +9,7 @@ const rateLimiterIp = new RateLimiterMemory({
 });
 
 const rateLimiterApiKey = new RateLimiterMemory({
-  points: 20,
+  points: 2000,
   duration: 60 * 60,
 });
 

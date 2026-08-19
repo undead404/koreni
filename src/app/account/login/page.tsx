@@ -4,25 +4,30 @@ import { type CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
-import requestApi from '../services/api';
+import requestApi from '@/app/services/api';
 
 import styles from './page.module.css';
 
-export default function LoginPage() {
+export default function AccountLoginPage() {
   const router = useRouter();
 
   const handleGoogleSuccess = async (
     credentialResponse: CredentialResponse,
   ) => {
+    if (!credentialResponse.credential) {
+      toast.error('Google login failed');
+      return;
+    }
+
     try {
       await requestApi('/api/auth/google', {
-        method: 'POST',
         body: JSON.stringify({ credential: credentialResponse.credential }),
         headers: {
           'Content-Type': 'application/json',
         },
+        method: 'POST',
       });
-      router.push('/transcribe');
+      router.replace('/account');
     } catch {
       toast.error('Failed to authenticate');
     }
@@ -31,13 +36,12 @@ export default function LoginPage() {
   return (
     <section className={styles.root}>
       <GoogleLogin
-        onSuccess={(credentialResponse: CredentialResponse) => {
-          void handleGoogleSuccess(credentialResponse);
-        }}
         onError={() => {
           toast.error('Google login failed');
         }}
-        useOneTap={true} // Automatically displays the prompt if a session exists
+        onSuccess={(credentialResponse: CredentialResponse) => {
+          void handleGoogleSuccess(credentialResponse);
+        }}
       />
     </section>
   );

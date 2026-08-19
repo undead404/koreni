@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 
+import NotificationProvider from './account/notification-provider';
 import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
 import Header from './components/header';
@@ -57,6 +58,7 @@ export default function RootLayout({
               <CookieBanner />
               <SharhorootsPrompt />
             </div>
+            <NotificationProvider />
           </PostHogProvider>
         </ErrorBoundary>
         <Script

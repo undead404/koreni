@@ -12,9 +12,9 @@ export const userResponseSchema = z.object({
 export type User = z.infer<typeof userSchema>;
 
 export const projectSchema = z.object({
+  created_at: z.string(),
   id: z.string(),
   title: z.string(),
-  created_at: z.string(),
 });
 
 export type Project = z.infer<typeof projectSchema>;
