@@ -22,6 +22,8 @@ export function useSearch() {
 
   // Tracks the active fetch sequence to prevent race conditions
   const currentRequestId = useRef(0);
+  const activeSearchKeyReference = useRef<string>('');
+  const effectiveCeilingReference = useRef<number | null>(null);
   const posthog = usePostHog();
 
   const handleSearch = useCallback(
@@ -34,6 +36,12 @@ export function useSearch() {
       // Increment ID for every new search call
       const requestId = ++currentRequestId.current;
       const normalizedQuery = value.trim();
+      const searchKey = `${normalizedQuery}|${yearFrom.trim()}|${yearTo.trim()}`;
+
+      if (searchKey !== activeSearchKeyReference.current) {
+        activeSearchKeyReference.current = searchKey;
+        effectiveCeilingReference.current = null;
+      }
 
       if (!normalizedQuery) {
         setResults([]);
@@ -71,11 +79,22 @@ export function useSearch() {
 
         // Correct the pagination ceiling when a page > 1 returns empty hits
         // but Typesense reported results exist (found > 0).
-        // This handles the Typesense union query found-count over-approximation.
+        // Retain the smallest upper bound discovered during the active search identity.
         if (page > 1 && hits.length === 0 && hitsNumber > 0) {
-          setResultsNumber((page - 1) * PER_PAGE);
+          const upperBound = (page - 1) * PER_PAGE;
+          if (
+            effectiveCeilingReference.current === null ||
+            upperBound < effectiveCeilingReference.current
+          ) {
+            effectiveCeilingReference.current = upperBound;
+          }
+          setResultsNumber(effectiveCeilingReference.current);
         } else {
-          setResultsNumber(hitsNumber);
+          const effectiveCount =
+            effectiveCeilingReference.current === null
+              ? hitsNumber
+              : Math.min(hitsNumber, effectiveCeilingReference.current);
+          setResultsNumber(effectiveCount);
         }
 
         posthog.capture('search_results_returned', {

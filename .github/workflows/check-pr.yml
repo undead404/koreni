@@ -11,6 +11,7 @@ on:
       - 'eslint.config.mjs'
       - 'next.config.ts'
       - 'package.json'
+      - 'yarn.lock'
       - 'src/server/package.json'
       - 'src/server/tsconfig.json'
       - 'src/server/vitest.config.mts'
