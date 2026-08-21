@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАЖО-1-74-8
+  - ДАЖО-1-74-17
+  - ДАЖО-1-74-19
+  - ДАЖО-1-74-20
+  - ДАЖО-1-74-29
+authorName: Ірина Будь
+authorEmail: bud.iryna@gmail.com
+date: 2026-08-21
+id: zbirna-metryka-pro-narodzhennia-czorcze-1834-41
+location:
+  - 51.738106
+  - 24.875582
+size: 189
+sources: []
+tableFilePath: data/csv/zbirna-metryka-pro-narodzhennia-czorcze-1834-41.csv
+tableLocale: uk
+title: Збірна метрика про народження Czorcze 1834-41
+yearsRange:
+  - 1834
+  - 1841
