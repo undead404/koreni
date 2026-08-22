@@ -3,6 +3,8 @@ import type { Context, Next } from 'hono';
 import { createMiddleware } from 'hono/factory';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 
+import { logger } from '../logger.js';
+
 const rateLimiterIp = new RateLimiterMemory({
   points: 20,
   duration: 60 * 60,
@@ -34,6 +36,11 @@ export const rateLimitMiddleware = createMiddleware(
 
       await next();
     } catch {
+      logger.warn('security.rate_limit.exceeded', {
+        method: c.req.method,
+        path: c.req.path,
+        hasApiKey: Boolean(c.req.header('x-api-key')),
+      });
       return c.json(
         { error: 'Too many requests. Please try again later.' },
         429,

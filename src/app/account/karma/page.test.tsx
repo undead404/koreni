@@ -1,0 +1,99 @@
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import requestApi from '@/app/services/api';
+
+import KarmaConnectionsPage from './page';
+
+const replace = vi.fn();
+const router = { replace };
+
+vi.mock('next/navigation', () => ({
+  useRouter: () => router,
+}));
+
+vi.mock('@/app/services/api', () => ({
+  default: vi.fn(),
+  ApiRequestError: class ApiRequestError extends Error {
+    public readonly status: number;
+
+    public constructor(status: number) {
+      super();
+      this.status = status;
+    }
+  },
+}));
+
+describe('KarmaConnectionsPage', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('shows contribution and linking form for an unlinked account', async () => {
+    vi.mocked(requestApi).mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          contribution: 123,
+          user: { email: 'user@example.com', karma_linked_at: null },
+        }),
+      ),
+    );
+
+    render(<KarmaConnectionsPage />);
+
+    expect(await screen.findByText(/Ваш внесок/)).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Код із Генеалогічного навігатора'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Прив’язати акаунт' }),
+    ).toBeDisabled();
+  });
+
+  it('submits the code and displays the linked state', async () => {
+    vi.mocked(requestApi).mockImplementation((path) => {
+      if (path === '/api/karma/link') {
+        return Promise.resolve(
+          new Response(JSON.stringify({ awarded: 12, ok: true })),
+        );
+      }
+      return Promise.resolve(
+        new Response(
+          JSON.stringify({
+            contribution: 123,
+            user: { email: 'user@example.com', karma_linked_at: null },
+          }),
+        ),
+      );
+    });
+
+    render(<KarmaConnectionsPage />);
+    const input = await screen.findByLabelText(
+      'Код із Генеалогічного навігатора',
+    );
+    fireEvent.change(input, { target: { value: 'ab12cd34ef' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Прив’язати акаунт' }));
+
+    await waitFor(() => {
+      expect(screen.getByRole('status')).toHaveTextContent(
+        "Акаунт успішно прив'язано",
+      );
+      expect(screen.getByText(/Нараховано балів: 12/)).toBeInTheDocument();
+    });
+    expect(requestApi).toHaveBeenLastCalledWith('/api/karma/link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: 'AB12CD34EF' }),
+    });
+  });
+});

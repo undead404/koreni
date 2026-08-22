@@ -2,8 +2,8 @@
 description: Specify the authenticated Koreni account-linking UI for redeeming a one-time Navigator code.
 status: draft
 targets:
-  - src/app/karma/connections/page.tsx
-  - src/app/karma/connections/page.module.css
+  - src/app/account/karma/page.tsx
+  - src/app/account/karma/page.module.css
 context:
   - karma-integration.md
   - karma-integration.md
@@ -23,12 +23,12 @@ context:
 
 ### Fault / Current State
 
-- **Condition:** Users visiting `/karma/connections` have no UI form to enter the one-time code shown on Navigator (`https://www.uagenealogy.com/karma/connections`).
+- **Condition:** Users visiting `/account/karma` have no UI form to enter the one-time code shown on Navigator (`https://www.uagenealogy.com/karma/connections`).
 - **Behavior:** No visual feedback or mechanism to trigger the account linking process.
 
 ### Target / Resolved State
 
-- **Condition:** Authenticated user opens `/karma/connections`.
+- **Condition:** Authenticated user opens `/account/karma`.
 - **Behavior:**
   - Displays user's calculated Koreni contribution points (unique character count and points earned).
   - Displays connection status:
@@ -41,14 +41,14 @@ context:
 
 ## 3. Execution Pipeline
 
-### 3.1. src/app/karma/connections/page.tsx
+### 3.1. src/app/account/karma/page.tsx
 
 1. Render current user link status and calculated contribution stats.
 2. Render client component form for entering code from Navigator.
 3. Handle submission, loading states, and error handling (`invalid_or_expired`, `already_linked`, transport failure).
 4. Prevent duplicate submissions and ignore stale responses after navigation or unmount.
 
-### 3.2. src/app/karma/connections/page.module.css
+### 3.2. src/app/account/karma/page.module.css
 
 1. Style form, input, buttons, and status badges following design tokens.
 
@@ -67,4 +67,4 @@ context:
 1. **Type & Lint Pass:**
    `yarn exec tsc --noEmit`
 2. **Targeted Test Execution:**
-   `yarn exec vitest src/app/karma/connections/page.test.tsx`
+   `yarn exec vitest src/app/account/karma/page.test.tsx`

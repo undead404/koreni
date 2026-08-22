@@ -1,3 +1,5 @@
+import { logger } from '../logger.js';
+
 import database from './client.js';
 
 export async function linkUserKarma(
@@ -9,4 +11,5 @@ export async function linkUserKarma(
     .set({ karma_linked_at: timestamp })
     .where('id', '=', userId)
     .execute();
+  logger.info('domain.karma.linked', { userId });
 }

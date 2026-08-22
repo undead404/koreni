@@ -1,4 +1,5 @@
 import { linkUserKarma } from '../database/link-user-karma.js';
+import { logger } from '../logger.js';
 
 import { getUserKarmaContribution } from './karma-calculator.js';
 import { navigatorClient } from './navigator-client.js';
@@ -28,6 +29,7 @@ export async function executeUserAccountLink({
     login: normalizedEmail,
     total: calculatedTotal,
   });
+  logger.info('domain.karma_link.completed', { userId });
 
   const timestamp = new Date().toISOString();
   await linkUserKarma(userId, timestamp);

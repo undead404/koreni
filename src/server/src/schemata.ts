@@ -165,3 +165,13 @@ export const navigatorLookupResponseSchema = z.object({
 export type NavigatorLookupResponse = z.infer<
   typeof navigatorLookupResponseSchema
 >;
+
+export const karmaStatusResponseSchema = z.object({
+  contribution: z.number().int().nonnegative(),
+  user: z.object({
+    email: z.email(),
+    karma_linked_at: z.string().nullable(),
+  }),
+});
+
+export type KarmaStatusResponse = z.infer<typeof karmaStatusResponseSchema>;

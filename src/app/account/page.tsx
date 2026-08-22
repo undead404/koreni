@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -32,6 +33,11 @@ export default function AccountPage() {
     <main style={{ padding: '2rem' }}>
       <h1>Account Overview</h1>
       <p>Authenticated as: {user.email}</p>
+      <p>
+        <Link href="/account/karma">
+          Переглянути карму та прив&apos;язати акаунт
+        </Link>
+      </p>
     </main>
   );
 }

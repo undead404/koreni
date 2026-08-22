@@ -5,6 +5,7 @@ import { secureHeaders } from 'hono/secure-headers';
 
 import handleKarmaLink from './handlers/handle-karma-link.js';
 import handleKarmaLinkedUsers from './handlers/handle-karma-linked-users.js';
+import handleKarmaStatus from './handlers/handle-karma-status.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
@@ -13,12 +14,17 @@ import handleTranscribeProjectCreate from './handlers/handle-transcribe-project-
 import handleTranscribeProjectList from './handlers/handle-transcribe-project-list.js';
 import { apiAuthMiddleware } from './middlewares/api-auth.js';
 import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
+import { requestLoggingMiddleware } from './middlewares/request-logging.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
-import { bugsnagMiddleware } from './services/bugsnag.js';
+import { bugsnagMiddleware, reportError } from './services/bugsnag.js';
 import environment from './environment.js';
+import { logger } from './logger.js';
+import type { ContextVariables } from './types.js';
 
 export function createApp() {
-  const app = new Hono();
+  const app = new Hono<{ Variables: ContextVariables }>();
+
+  app.use('*', requestLoggingMiddleware);
 
   // Security headers - should be first
   app.use(secureHeaders({ crossOriginOpenerPolicy: false }));
@@ -53,6 +59,7 @@ export function createApp() {
   });
 
   app.get('/api/karma/linked-users', handleKarmaLinkedUsers);
+  app.get('/api/karma/status', transcribeAuthMiddleware, handleKarmaStatus);
   app.post('/api/karma/link', transcribeAuthMiddleware, handleKarmaLink);
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
@@ -82,11 +89,16 @@ export function createApp() {
 
   // Global Error Handler
   app.onError((error, c) => {
+    logger.error('request.unhandled_error', { error });
+    reportError(error, {
+      requestId: c.get('requestId'),
+      method: c.req.method,
+      path: c.req.path,
+    });
     if (bugsnagMiddleware) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-return
       return bugsnagMiddleware.errorHandler(error, c);
     }
-    console.error('Unhandled error:', error);
     return c.json({ error: 'Internal Server Error' }, 500);
   });
 

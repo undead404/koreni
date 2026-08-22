@@ -4,6 +4,7 @@
 import { createRequire } from 'node:module';
 
 import environment from '../environment.js';
+import { type LogFields, sanitizeLogFields } from '../logger.js';
 
 const require = createRequire(import.meta.url);
 const Bugsnag = require('@bugsnag/js');
@@ -20,11 +21,22 @@ const middleware = environment.BUGSNAG_API_API_KEY
   ? Bugsnag.getPlugin('hono')
   : undefined;
 
-export function reportError(error: unknown) {
-  if (environment.BUGSNAG_API_API_KEY) {
-    Bugsnag.notify(error);
-  } else {
-    console.error('Bugsnag Error:', error);
+export function reportError(error: unknown, metadata: LogFields = {}) {
+  try {
+    if (environment.BUGSNAG_API_API_KEY) {
+      Bugsnag.notify(
+        error,
+        (event: {
+          addMetadata: (section: string, data: LogFields) => void;
+        }) => {
+          event.addMetadata('koreni', sanitizeLogFields(metadata));
+        },
+      );
+    } else {
+      console.error('Bugsnag Error:', error);
+    }
+  } catch {
+    // Telemetry failure must never affect the application response.
   }
 }
 

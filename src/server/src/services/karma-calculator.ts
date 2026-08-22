@@ -1,25 +1,42 @@
-import { parse as parseCsv } from 'csv-parse/sync';
-import { Octokit } from 'octokit';
-import { parse as parseYaml } from 'yaml';
-import { z } from 'zod';
+import { logger } from '../logger.js';
 
-import environment from '../environment.js';
+import * as karmaSource from './karma-source.js';
 
-const yamlMetaSchema = z.object({
-  authorEmail: z.string().optional(),
-  tableFilePath: z.string().optional(),
-  title: z.string().optional(),
-});
+export { KarmaSourceUnavailableError } from './karma-source.js';
 
-const csvRowsSchema = z.array(z.record(z.string(), z.unknown()));
+type KarmaCalculationLogContext = karmaSource.KarmaCalculationLogContext;
 
 interface ParsedTableRecord {
   authorEmail: string;
-  rows: Array<Record<string, unknown>>;
+  rows: Array<unknown[]>;
+  tableFilePath: string;
   title: string;
 }
 
-const octokit = new Octokit({ auth: environment.GITHUB_TOKEN });
+const userContributionRefreshes = new Map<string, Promise<number>>();
+
+function durationSince(start: number): number {
+  return Math.max(0, Math.round(performance.now() - start));
+}
+
+function safeErrorMessage(error: unknown): string {
+  const message = error instanceof Error ? error.message : String(error);
+  return message
+    .replaceAll(/[\w.%+-]+@[\w.-]+\.[A-Z]{2,}/gi, '[redacted-email]')
+    .slice(0, 300);
+}
+
+function logKarmaEvent(
+  event: string,
+  context: KarmaCalculationLogContext,
+  fields: Record<string, boolean | number | string>,
+): void {
+  try {
+    logger.info(`karma.${event}`, { request_id: context.requestId, ...fields });
+  } catch {
+    // Observability must never affect the calculation.
+  }
+}
 
 function stringifyCellValue(value: unknown): string {
   if (typeof value === 'object') {
@@ -35,72 +52,6 @@ function stringifyCellValue(value: unknown): string {
     return value.toString();
   }
   return '';
-}
-
-async function readGithubFile(filePath: string): Promise<string> {
-  const response = await fetch(
-    `https://raw.githubusercontent.com/${environment.GITHUB_REPO}/main/${filePath}`,
-  );
-  if (!response.ok) {
-    throw new Error(`Unable to read GitHub source file: ${filePath}`);
-  }
-  return response.text();
-}
-
-async function getRecordsMetadataAndData(): Promise<ParsedTableRecord[]> {
-  const [owner, repo] = environment.GITHUB_REPO.split('/');
-  let yamlFiles: string[];
-  try {
-    const response = await octokit.rest.repos.getContent({
-      owner,
-      path: 'data/records',
-      repo,
-      ref: 'main',
-    });
-    if (!Array.isArray(response.data)) {
-      return [];
-    }
-    yamlFiles = response.data
-      .filter(
-        (entry) =>
-          entry.type === 'file' &&
-          (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml')),
-      )
-      .map((entry) => entry.path);
-  } catch {
-    return [];
-  }
-
-  const results: ParsedTableRecord[] = [];
-
-  for (const file of yamlFiles) {
-    try {
-      const yamlContent = await readGithubFile(file);
-      const parsedYaml: unknown = parseYaml(yamlContent);
-      const meta = yamlMetaSchema.parse(parsedYaml);
-
-      if (!meta.authorEmail || !meta.tableFilePath) {
-        continue;
-      }
-
-      const csvContent = await readGithubFile(meta.tableFilePath);
-      const parsedCsv: unknown = parseCsv(csvContent, {
-        columns: true,
-        skip_empty_lines: true,
-      });
-      const rows = csvRowsSchema.parse(parsedCsv);
-
-      results.push({
-        authorEmail: meta.authorEmail.toLowerCase().trim(),
-        rows,
-        title: meta.title || '',
-      });
-    } catch {
-      // Ignore invalid files
-    }
-  }
-
-  return results;
 }
 
 function calculateRecordContribution(record: ParsedTableRecord): number {
@@ -129,22 +80,98 @@ function calculateRecordContribution(record: ParsedTableRecord): number {
   return isAi ? Math.floor(tableSum * 0.1) : tableSum;
 }
 
-export async function getUserKarmaContribution(email: string): Promise<number> {
+export function resetKarmaMetadataCache(): void {
+  karmaSource.resetKarmaMetadataCache();
+  userContributionRefreshes.clear();
+}
+
+async function calculateUserKarmaContribution(
+  normalizedEmail: string,
+  context: KarmaCalculationLogContext,
+): Promise<number> {
+  const startedAt = performance.now();
+  logKarmaEvent('calculation-started', context, {});
+  const records = await karmaSource.getCachedRecordsMetadata(context);
+  const matchingRecords = records.filter(
+    (record) => record.authorEmail === normalizedEmail,
+  );
+  logKarmaEvent('records-selected', context, {
+    duration_ms: durationSince(startedAt),
+    matching_record_count: matchingRecords.length,
+  });
+  const csvStartedAt = performance.now();
+  let total = 0;
+  for (const record of matchingRecords) {
+    total += calculateRecordContribution({
+      ...record,
+      rows: await karmaSource.readRows(record.tableFilePath, context),
+    });
+  }
+  logKarmaEvent('csv-completed', context, {
+    csv_count: matchingRecords.length,
+    duration_ms: durationSince(csvStartedAt),
+  });
+  logKarmaEvent('calculation-completed', context, {
+    csv_count: matchingRecords.length,
+    duration_ms: durationSince(startedAt),
+    matching_record_count: matchingRecords.length,
+    outcome: 'success',
+    shared_in_flight: false,
+  });
+  return total;
+}
+
+export function getUserKarmaContribution(
+  email: string,
+  context?: KarmaCalculationLogContext,
+): Promise<number> {
+  const logContext = context ?? { requestId: 'internal' };
   const normalizedEmail = email.toLowerCase().trim();
   if (!normalizedEmail) {
-    return 0;
+    return Promise.resolve(0);
   }
 
-  const records = await getRecordsMetadataAndData();
-  return records
-    .filter((record) => record.authorEmail === normalizedEmail)
-    .reduce((total, record) => total + calculateRecordContribution(record), 0);
+  const existingRefresh = userContributionRefreshes.get(normalizedEmail);
+  if (existingRefresh) {
+    logKarmaEvent('calculation-shared', logContext, { shared_in_flight: true });
+    return existingRefresh;
+  }
+
+  const refresh = calculateUserKarmaContribution(normalizedEmail, logContext)
+    .catch((error: unknown) => {
+      logKarmaEvent('calculation-failed', logContext, {
+        error_category:
+          error instanceof karmaSource.KarmaSourceUnavailableError
+            ? 'external_source_unavailable'
+            : 'internal_error',
+        error_message: safeErrorMessage(error),
+        error_name: error instanceof Error ? error.name : 'UnknownError',
+        outcome: 'failure',
+      });
+      throw error;
+    })
+    .finally(() => {
+      userContributionRefreshes.delete(normalizedEmail);
+    });
+  userContributionRefreshes.set(normalizedEmail, refresh);
+  return refresh;
 }
 
 export async function calculateKarmaContributions(): Promise<
   Map<string, number>
 > {
-  const records = await getRecordsMetadataAndData();
+  const metadata = await karmaSource.getCachedRecordsMetadata({
+    requestId: 'internal',
+  });
+  const records: ParsedTableRecord[] = [];
+  for (const record of metadata) {
+    records.push({
+      ...record,
+      rows: await karmaSource.readRows(record.tableFilePath, {
+        requestId: 'internal',
+      }),
+    });
+  }
   const result = new Map<string, number>();
   for (const record of records) {
     result.set(

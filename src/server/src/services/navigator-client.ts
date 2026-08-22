@@ -1,4 +1,5 @@
 import environment from '../environment.js';
+import { logger } from '../logger.js';
 import {
   navigatorErrorResponseSchema,
   type NavigatorIngestPayload,
@@ -26,6 +27,34 @@ export class NavigatorClientError extends Error {
   }
 }
 
+const NAVIGATOR_REQUEST_TIMEOUT_MS = 10_000;
+const INGESTION_MAX_ATTEMPTS = 3;
+
+async function fetchWithTimeout(
+  url: string,
+  init: RequestInit,
+): Promise<Response> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => {
+    controller.abort();
+  }, NAVIGATOR_REQUEST_TIMEOUT_MS);
+
+  try {
+    return await fetch(url, { ...init, signal: controller.signal });
+  } catch (error) {
+    logger.error('dependency.navigator.transport_error', { error });
+    const message =
+      error instanceof Error && error.name === 'AbortError'
+        ? 'Navigator request timed out'
+        : error instanceof Error
+          ? error.message
+          : 'Network error';
+    throw new NavigatorClientError(message, 502, 'transport_error');
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 export const navigatorClient = {
   async redeemLinkCode(
     payload: NavigatorLinkRedeemPayload,
@@ -41,17 +70,15 @@ export const navigatorClient = {
       headers.Authorization = `Bearer ${environment.KARMA_APP_TOKEN}`;
     }
 
-    let response: Response;
-    try {
-      response = await fetch(url, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(validatedPayload),
-      });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Network error';
-      throw new NavigatorClientError(message, 502, 'transport_error');
-    }
+    const response = await fetchWithTimeout(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(validatedPayload),
+    });
+    logger.info('dependency.navigator.response', {
+      operation: 'redeem_link_code',
+      status: response.status,
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -90,16 +117,42 @@ export const navigatorClient = {
       headers.Authorization = `Bearer ${environment.KARMA_APP_TOKEN}`;
     }
 
-    let response: Response;
-    try {
-      response = await fetch(url, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(validatedPayload),
+    let response: Response | undefined;
+    for (let attempt = 1; attempt <= INGESTION_MAX_ATTEMPTS; attempt += 1) {
+      try {
+        response = await fetchWithTimeout(url, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(validatedPayload),
+        });
+        logger.info('dependency.navigator.response', {
+          operation: 'push_ingest_batch',
+          attempt,
+          status: response.status,
+        });
+        if (response.status < 500 || attempt === INGESTION_MAX_ATTEMPTS) {
+          break;
+        }
+      } catch (error) {
+        if (
+          !(error instanceof NavigatorClientError) ||
+          error.errorCode !== 'transport_error' ||
+          attempt === INGESTION_MAX_ATTEMPTS
+        ) {
+          throw error;
+        }
+      }
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, 250 * attempt);
       });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Network error';
-      throw new NavigatorClientError(message, 502, 'transport_error');
+    }
+
+    if (!response) {
+      throw new NavigatorClientError(
+        'Navigator ingestion request failed',
+        502,
+        'transport_error',
+      );
     }
 
     if (response.ok) {
@@ -126,19 +179,17 @@ export const navigatorClient = {
     const baseUrl = environment.NAVIGATOR_BASE_URL.replace(/\/+$/, '');
     const url = `${baseUrl}/api/karma/lookup`;
 
-    let response: Response;
-    try {
-      response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(validatedPayload),
-      });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Network error';
-      throw new NavigatorClientError(message, 502, 'transport_error');
-    }
+    const response = await fetchWithTimeout(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(validatedPayload),
+    });
+    logger.info('dependency.navigator.response', {
+      operation: 'lookup_karma',
+      status: response.status,
+    });
 
     if (response.ok) {
       const data = await response.json();

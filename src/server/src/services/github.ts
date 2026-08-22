@@ -5,13 +5,17 @@ import YAML from 'yaml';
 import environment from '../environment.js';
 import { convertArrayToCsvBase64 } from '../helpers/convert-array-to-csv-base64.js';
 import getCurrentDate from '../helpers/get-current-date.js';
+import { logger } from '../logger.js';
 import type { ImportPayload } from '../schemata.js';
 
 const octokit = new Octokit({
   auth: environment.GITHUB_TOKEN,
 });
 
-export default async function submitToGithub(data: ImportPayload) {
+async function submitToGithubImpl(data: ImportPayload) {
+  logger.info('dependency.github.submission_started', {
+    submissionId: data.id,
+  });
   const [owner, repo] = environment.GITHUB_REPO.split('/');
   const branchName = `submission/${data.id}`;
   const yamlPath = `data/records/${data.id}.yaml`;
@@ -128,5 +132,21 @@ export default async function submitToGithub(data: ImportPayload) {
     body: `Automated PR for record submission **${data.id}**. \n- Source locale: \`${data.tableLocale}\`\n- Validated rows: ${metadata.size}\n\nAuthor: ${data.authorName}${data.authorGithubUsername ? ` (@${data.authorGithubUsername})` : ''}`,
   });
 
+  logger.info('dependency.github.submission_completed', {
+    submissionId: data.id,
+    pullRequestNumber: pr.number,
+  });
   return pr;
+}
+
+export default async function submitToGithub(data: ImportPayload) {
+  try {
+    return await submitToGithubImpl(data);
+  } catch (error) {
+    logger.error('dependency.github.submission_failed', {
+      submissionId: data.id,
+      error,
+    });
+    throw error;
+  }
 }
