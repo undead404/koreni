@@ -1,11 +1,11 @@
 ---
-description: Implement source-based contribution calculation engine reading repository YAML and CSV files, deduplicating cell values, detecting AI titles, and aggregating total scores per author.
+description: Specify deterministic raw cumulative contribution totals used by the Navigator push integration.
 status: draft
 targets:
   - src/services/karma-calculator.ts
 context:
   - karma-integration.md
-  - karma-discussion.txt
+  - karma-integration.md
   - CONVENTIONS.md
 ---
 
@@ -36,8 +36,8 @@ context:
     - Deduplicates values (`uniq()` / `Set`).
     - Calculates character weight: `.reduce((acc, val) => acc + `${val}`.length, 0)`.
     - Detects if `title.startsWith('[ШІ] ')` or `title.startsWith('[ШI] ')`. If AI, applies AI weighting factor (e.g. `0.1`).
-    - Converts character weight to Karma points: `Math.floor(weightedChars / 5000)`.
-  - Aggregates results by `authorEmail` (lowercased) and returns a map of `authorEmail -> totalKarmaPoints`.
+  - Returns raw cumulative contribution totals; it does not convert characters to Navigator karma points.
+  - Aggregates results by normalized `authorEmail` (lowercased) and returns a map of `authorEmail -> nonnegative integer total`.
 
 ---
 
@@ -46,11 +46,12 @@ context:
 ### 3.1. src/services/karma-calculator.ts
 
 1. Read all YAML files in `data/records/` using existing helper `getTablesMetadata()`.
-2. For each record, read corresponding CSV file from repository `data/`.
+2. For each record, read the corresponding CSV file from repository `data/`.
 3. Compute unique non-empty cell character sum using `Set` and `reduce`.
 4. Check title prefix for AI tag `[ШІ]`.
 5. Aggregate totals per lowercased `authorEmail`.
 6. Export `calculateKarmaContributions()` and `getUserKarmaContribution(email: string)`.
+7. Preserve integer raw totals and make repeated executions produce identical results.
 
 ---
 
@@ -58,6 +59,7 @@ context:
 
 - **Zero Database Duplication:** Calculation runs dynamically against source files in the repository checkout; contribution records are not persisted in SQLite.
 - **Stateless Recomputation:** Calculation is idempotent. Re-running the calculation over `data/` produces identical cumulative totals without requiring durable calculation state.
+- **Navigator Ownership:** Coefficients, delta comparison, rounding, and rejection of decreases belong to Navigator, not this calculator.
 
 ---
 

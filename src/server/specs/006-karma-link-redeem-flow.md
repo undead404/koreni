@@ -1,5 +1,5 @@
 ---
-description: Implement POST /api/karma/link endpoint for logged-in users to submit a Navigator one-time code and link their Koreni account.
+description: Specify POST /api/karma/link for authenticated Koreni users redeeming a Navigator one-time code.
 status: draft
 targets:
   - src/server/src/handlers/handle-karma-link.ts
@@ -30,13 +30,13 @@ context:
 - **Condition:** Logged-in user submits `{ "code": "AB12CD34EF" }` to `POST /api/karma/link`.
 - **Behavior:**
   - Authenticates user session (extracts `user.email`).
-  - Calculates initial contribution score via `getUserKarmaContribution(user.email)`.
+  - Calculates the current raw cumulative contribution total via `getUserKarmaContribution(user.email)`.
   - Calls Navigator API client `redeemLinkCode({ code: "AB12CD34EF", login: user.email, total: calculatedTotal })`.
   - On Navigator success (`{ ok: true }`):
     - Updates local `users` record setting `karma_linked_at = NOW()`.
     - Responds HTTP 200 `{ "ok": true, "awarded": awardedKarma }`.
-  - On Navigator failure (e.g. 404 `invalid_or_expired` or 409 `already_linked`):
-    - Passes status and error message through to client.
+  - On Navigator failure (404 `invalid_or_expired`, 409 `already_linked`, or transport failure):
+    - Returns a typed mapped error and never updates `karma_linked_at`.
 
 ---
 
@@ -45,7 +45,7 @@ context:
 ### 3.1. src/server/src/services/karma-link-flow.ts
 
 1. Implement `executeUserAccountLink({ userId, email, code })`.
-2. Compute initial total score from source CSV/YAML files for `email`.
+2. Compute the raw initial total from source CSV/YAML files for `email`.
 3. Call `navigatorClient.redeemLinkCode`.
 4. Update `karma_linked_at` timestamp in SQLite DB on success.
 
@@ -63,6 +63,8 @@ context:
 - **Backend ESM:** All relative imports must end with `.js`.
 - **Privacy Enforcement:** Account is only marked as linked in SQLite upon verified confirmation from Navigator.
 - **Subsequent Synchronization:** Once `karma_linked_at` is persisted, subsequent daily contribution updates are managed independently by the scheduled GitHub Actions workflow.
+- **Session Identity:** Ignore any client-supplied login; derive and normalize email exclusively from the authenticated session.
+- **One-Time Code Safety:** Do not retry redemption after a timeout unless Navigator confirms the request was not received.
 
 ---
 

@@ -1,13 +1,12 @@
 ---
-description: Define GitHub Actions daily sync workflow, repository contribution weight calculation rules, AI table detection, and Navigator ingestion contracts.
+description: Define the contract between source calculation, consented users, and Navigator cumulative-score ingestion.
 status: draft
 targets:
-  - .github/workflows/karma-daily-sync.yml
-  - src/scripts/karma-push.ts
+  - src/server/src/schemata.ts
   - src/services/karma-calculator.ts
+  - src/scripts/karma-push.ts
 context:
   - karma-integration.md
-  - karma-discussion.txt
   - CONVENTIONS.md
 ---
 
@@ -29,7 +28,7 @@ context:
 
 ### Target / Resolved State
 
-- **Condition:** Scheduled GitHub Actions workflow fetches consented users from Koreni server, computes cumulative scores from `data/` source files, and transmits batch payloads to Navigator.
+- **Condition:** Scheduled GitHub Actions workflow fetches consented users from Koreni server, computes raw cumulative scores from `data/` source files, and transmits a validated batch to Navigator.
 - **Behavior:**
   - **Table Weight Formula:**
     For each CSV table, read all cells:
@@ -40,9 +39,9 @@ context:
   - **AI Table Detection:**
     - If YAML metadata `title` starts with `"[ШІ] "` (or `"[ШI] "` using Latin 'I'), the table is flagged as AI-generated (`isAiGenerated = true`).
     - AI-generated tables receive an AI weighting factor (e.g. `0.1` or as configured).
-  - **Score Conversion:**
-    - Raw character score is aggregated per author email (`authorEmail`).
-    - Final Karma points are calculated using the ratio: `5000 characters = 1 Karma point` (or raw total passed based on Navigator config).
+  - **Score Contract:**
+    - Raw cumulative totals are aggregated per normalized author email (`authorEmail`).
+    - The raw total is sent unchanged; Navigator applies its configured coefficient and delta rules.
   - **Navigator Ingestion Zod Schemas:**
 
 ```ts
@@ -71,12 +70,12 @@ export const navigatorIngestResponseSchema = z.object({
 1. Schedule cron trigger: `cron: '0 3 * * *'` (daily at 03:00 UTC).
 2. Checkout repository code (`actions/checkout@v4`).
 3. Setup Node.js 22 & Yarn environment.
-4. Execute `yarn karma:push` passing `KARMA_APP_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `NEXT_PUBLIC_API_SITE` secrets.
+4. Execute `yarn karma:push` passing `KARMA_APP_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `KORENI_SERVER_URL` configuration.
 
 ### 3.2. src/scripts/karma-push.ts
 
-1. Fetch consented user emails from `${NEXT_PUBLIC_API_SITE}/api/karma/linked-users` authenticated with `KARMA_INTERNAL_TOKEN`.
-2. Compute cumulative scores for consented users from repository `data/` source files using `calculateKarmaContributions()`.
+1. Fetch consented user emails from `${KORENI_SERVER_URL}/api/karma/linked-users` authenticated with `KARMA_INTERNAL_TOKEN`.
+2. Compute raw cumulative scores for consented users from repository `data/` source files using `calculateKarmaContributions()`.
 3. Validate payload with `navigatorIngestPayloadSchema` and POST batch to `${NAVIGATOR_BASE_URL}/api/karma/ingest`.
 4. Parse response with `navigatorIngestResponseSchema` and output execution log.
 
@@ -87,6 +86,7 @@ export const navigatorIngestResponseSchema = z.object({
 - **Privacy Directive:** Unlinked / non-consented user emails must NEVER be included in the ingestion batch payload sent to Navigator.
 - **Source Integrity:** Contribution records are read strictly from repository CSV + YAML files in `data/`.
 - **Self-Healing Recomputation:** Synchronization is stateless. If a daily run fails or is delayed, the subsequent run recalculates cumulative totals from fresh repo sources and server consents, preventing data drift without requiring database state tracking.
+- **Navigator Semantics:** A lower total is safe to transmit; Navigator must ignore decreases and never reduce stored karma.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Implement daily GitHub Actions workflow and sync script to pull consented users from server, compute cumulative scores from repo source files, and push batch ingestion updates to Navigator.
+description: Specify the executable daily orchestration that pushes consented raw cumulative totals to Navigator.
 status: draft
 targets:
   - .github/workflows/karma-daily-sync.yml
@@ -7,7 +7,7 @@ targets:
   - package.json
 context:
   - karma-integration.md
-  - karma-discussion.txt
+  - karma-integration.md
   - CONVENTIONS.md
 ---
 
@@ -32,12 +32,12 @@ context:
 - **Condition:** Daily cron trigger in GitHub Actions executes `yarn karma:push`.
 - **Behavior:**
   - Workflow fetches list of linked user emails from Koreni server via `GET /api/karma/linked-users` using `KARMA_INTERNAL_TOKEN`.
-  - Calculates current cumulative contribution score for each linked user from repository `data/` source files using `calculateKarmaContributions()`.
+  - Calculates current raw cumulative contribution total for each linked user from repository `data/` source files using `calculateKarmaContributions()`.
   - Filters out unlinked users (guaranteeing unlinked user emails are NEVER transmitted to Navigator).
   - Constructs payload: `{ "accounts": [ { "login": "ivan@example.com", "total": 130 }, ... ] }`.
   - Transmits batch to Navigator API: `navigatorClient.pushIngestBatch({ accounts })`.
   - Logs results (`synced`, `awarded`, `unknown`).
-  - **Self-Healing Failure Recovery:** If a daily run fails or is skipped, the next execution recomputes cumulative totals from fresh repo sources and server consents, reconciling state seamlessly without manual intervention.
+  - **Self-Healing Failure Recovery:** If a daily run fails or is skipped, the next execution recomputes raw cumulative totals from fresh repo sources and server consents.
 
 ---
 
@@ -53,9 +53,9 @@ context:
 ### 3.2. src/scripts/karma-push.ts
 
 1. Fetch consented user emails from `${KORENI_SERVER_URL}/api/karma/linked-users` with `Authorization: Bearer ${KARMA_INTERNAL_TOKEN}`.
-2. Calculate total scores from local repository CSV/YAML files for linked emails.
+2. Calculate raw cumulative totals from local repository CSV/YAML files for linked emails.
 3. Transmit batch to Navigator API via `navigatorClient`.
-4. Output structured console log and exit 0 on success.
+4. Output structured console log without emails or secrets and exit 0 on success.
 
 ### 3.3. package.json
 
@@ -67,6 +67,8 @@ context:
 
 - **Privacy Directive:** Unlinked user emails must NEVER be included in the ingestion batch payload sent to Navigator.
 - **Stateless Synchronization:** The workflow must calculate scores statelessly from repository source files on each run rather than storing sync counters in the database.
+- **Idempotency:** Repeating an identical batch is safe because Navigator calculates only positive deltas.
+- **Retry Boundary:** Do not automatically retry one-time link redemption; bounded retries are permitted only for ingestion transport failures.
 - **Zone A Context:** Imports follow standard TypeScript conventions without forcing backend ESM `.js` extensions.
 
 ---

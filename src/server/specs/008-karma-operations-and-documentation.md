@@ -1,5 +1,5 @@
 ---
-description: Specify environment variables, GitHub Actions cron workflow setup, secrets management, and failure recovery guidelines for Navigator Karma integration.
+description: Specify operational configuration, secret handling, scheduled ingestion, and recovery for Navigator Karma integration.
 status: draft
 targets:
   - karma-integration.md
@@ -34,7 +34,7 @@ context:
   - `KARMA_APP_TOKEN`: Secret Bearer token obtained from Navigator administration to authenticate `/api/karma/ingest` and `/api/karma/link-redeem`.
   - `KARMA_INTERNAL_TOKEN`: Secret Bearer token used by GitHub Actions workflow to authenticate requests to Koreni server `GET /api/karma/linked-users`.
   - `NAVIGATOR_BASE_URL`: Base URL for Navigator API (default `https://www.uagenealogy.com`).
-  - `NEXT_PUBLIC_API_SITE`: Production URL for Koreni server instance accessed by GitHub Actions workflow.
+  - `KORENI_SERVER_URL`: Production URL for Koreni server instance accessed by GitHub Actions workflow.
   - Scheduled runner executes `.github/workflows/karma-daily-sync.yml` daily via GitHub Actions cron trigger.
   - **Self-Healing Recovery:** If a daily sync job fails (e.g. server HTTP error or network timeout), the subsequent run automatically syncs all current contributions statelessly, eliminating the need for manual database reconciliation.
 
@@ -44,7 +44,7 @@ context:
 
 ### 3.1. .env.example & src/server/.env.example
 
-1. Add `KARMA_APP_TOKEN=`, `KARMA_INTERNAL_TOKEN=`, `NAVIGATOR_BASE_URL=https://www.uagenealogy.com`, and `NEXT_PUBLIC_API_SITE=` to environment templates.
+1. Add `KARMA_APP_TOKEN=`, `KARMA_INTERNAL_TOKEN=`, `NAVIGATOR_BASE_URL=https://www.uagenealogy.com`, and `KORENI_SERVER_URL=` to environment templates.
 
 ### 3.2. karma-integration.md
 
@@ -58,6 +58,8 @@ context:
 
 - **Secret Safety:** Never commit `KARMA_APP_TOKEN` or `KARMA_INTERNAL_TOKEN` values to source control; configure them strictly via environment variables or GitHub Secrets.
 - **Access Restriction:** `GET /api/karma/linked-users` must reject any request without a valid `KARMA_INTERNAL_TOKEN`.
+- **No Secret Exposure:** Tokens, one-time codes, and authorization headers must be excluded from logs, client bundles, and telemetry.
+- **Recovery:** The next scheduled run recomputes all raw cumulative totals; no cursor, delta, or manual reconciliation state is required.
 
 ---
 

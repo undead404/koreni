@@ -1,12 +1,12 @@
 ---
-description: Implement user-facing account linking interface where logged-in users enter their Navigator one-time code to connect Koreni and Navigator Karma.
+description: Specify the authenticated Koreni account-linking UI for redeeming a one-time Navigator code.
 status: draft
 targets:
   - src/app/karma/connections/page.tsx
   - src/app/karma/connections/page.module.css
 context:
   - karma-integration.md
-  - karma-discussion.txt
+  - karma-integration.md
   - CONVENTIONS.md
 ---
 
@@ -15,7 +15,7 @@ context:
 ## 1. Architectural Boundary
 
 - **Execution Context:** Client (Next.js 15 & React 19) — Zone A
-- **Data Scope:** User session, input form for 10-character Navigator challenge code, link status display
+- **Data Scope:** User session, input form for a Navigator challenge code, link status display
 
 ---
 
@@ -35,6 +35,7 @@ context:
     - If `karma_linked_at` is set: shows "Акаунт успішно прив'язано до Генеалогічного навігатора" with timestamp.
     - If unlinked: renders input form for 10-character Navigator code (`AB12CD34EF`) with submit button "Прив'язати акаунт".
   - Submitting code POSTs to `/api/karma/link`. On success, updates state and shows confirmation message.
+  - The Navigator push token is never present in browser state, HTML, or client requests.
 
 ---
 
@@ -44,7 +45,8 @@ context:
 
 1. Render current user link status and calculated contribution stats.
 2. Render client component form for entering code from Navigator.
-3. Handle submission, loading states, and error handling (`invalid_or_expired`, `already_linked`).
+3. Handle submission, loading states, and error handling (`invalid_or_expired`, `already_linked`, transport failure).
+4. Prevent duplicate submissions and ignore stale responses after navigation or unmount.
 
 ### 3.2. src/app/karma/connections/page.module.css
 
@@ -56,6 +58,7 @@ context:
 
 - **React 19 & Next.js 15:** Use Client Component boundaries appropriately for interactive form handling.
 - **Localization:** Ukrainian strings for all labels and error messages.
+- **Security:** The browser submits only the user-entered code; the server derives the user's email from the session.
 
 ---
 

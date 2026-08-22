@@ -1,5 +1,5 @@
 ---
-description: Implement outgoing API client for interacting with Navigator (https://www.uagenealogy.com) endpoints using Bearer token authentication in server handlers and GitHub Actions scripts.
+description: Specify the typed, timeout-bounded Navigator client for link redemption and cumulative ingestion.
 status: draft
 targets:
   - src/server/src/services/navigator-client.ts
@@ -26,14 +26,14 @@ context:
 
 ### Target / Resolved State
 
-- **Condition:** `NavigatorClient` encapsulates all network calls to `https://www.uagenealogy.com` using `Authorization: Bearer <KARMA_APP_TOKEN>`.
+- **Condition:** `NavigatorClient` encapsulates all authenticated calls to `https://www.uagenealogy.com` using `Authorization: Bearer <KARMA_APP_TOKEN>`.
 - **Behavior:**
   - `redeemLinkCode({ code, login, total })`: POSTs to `https://www.uagenealogy.com/api/karma/link-redeem` (used by server route during initial user account linking).
     - Handles HTTP 200 `{ "ok": true, "awarded": N }`.
     - Handles HTTP 404 `{ "error": "invalid_or_expired" }` and HTTP 409 `{ "error": "already_linked" }`.
   - `pushIngestBatch({ accounts })`: POSTs to `https://www.uagenealogy.com/api/karma/ingest` (used by GitHub Actions daily synchronization script).
     - Returns parsed `{ synced, awarded, unknown }`.
-  - `lookupKarma({ service, users })`: GET/POST to `https://www.uagenealogy.com/api/karma/lookup`.
+  - `lookupKarma({ service, users })`: optional public GET/POST access to `/api/karma/lookup`; it does not use the push token.
 
 ---
 
@@ -41,9 +41,11 @@ context:
 
 ### 3.1. src/server/src/services/navigator-client.ts
 
-1. Read `KARMA_APP_TOKEN` and `NAVIGATOR_BASE_URL` (defaults to `https://www.uagenealogy.com`) from centralized environment variables.
-2. Wrap `fetch` calls in try/catch and parse responses with Zod schemas from `src/schemata.ts`.
-3. Report network/telemetry errors to Bugsnag on 500/network failure.
+1. Read `KARMA_APP_TOKEN` and `NAVIGATOR_BASE_URL` (default `https://www.uagenealogy.com`) from centralized environment variables.
+2. Use an injected transport boundary with a finite timeout; never expose tokens to callers or logs.
+3. Parse every success and documented error response with Zod schemas from `src/schemata.ts`.
+4. Map timeout, DNS, connection, and HTTP 5xx failures to typed retryable integration errors.
+5. Do not retry link redemption automatically; ingestion retries are bounded and idempotent.
 
 ---
 
@@ -51,6 +53,7 @@ context:
 
 - **Backend ESM:** All relative imports must end with `.js`.
 - **Zero Global Fetch Spying in Tests:** Unit tests for `navigator-client.ts` must use Vitest mocks or network abstraction.
+- **Cumulative Totals:** `pushIngestBatch` sends raw nonnegative cumulative totals; it never computes deltas or coefficients.
 
 ---
 

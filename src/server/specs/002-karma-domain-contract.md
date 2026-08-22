@@ -1,11 +1,10 @@
 ---
-description: Define Zod schemas and domain contracts for server-side consented-users query API and Navigator integration payloads.
+description: Define strict Zod contracts for linked-user export and all Navigator karma integration payloads.
 status: draft
 targets:
   - src/server/src/schemata.ts
 context:
   - karma-integration.md
-  - karma-discussion.txt
   - src/server/CONVENTIONS.md
 ---
 
@@ -46,6 +45,26 @@ export const navigatorLinkRedeemPayloadSchema = z.object({
   login: z.string().email(),
   total: z.number().int().nonnegative().optional(),
 });
+
+export const navigatorLinkRedeemResponseSchema = z.object({
+  ok: z.literal(true),
+  awarded: z.number().int().nonnegative(),
+});
+
+export const navigatorIngestPayloadSchema = z.object({
+  accounts: z.array(
+    z.object({
+      login: z.string().email(),
+      total: z.number().int().nonnegative(),
+    }),
+  ),
+});
+
+export const navigatorIngestResponseSchema = z.object({
+  synced: z.number().int().nonnegative(),
+  awarded: z.number().int().nonnegative(),
+  unknown: z.array(z.string()),
+});
 ```
 
 ---
@@ -54,7 +73,7 @@ export const navigatorLinkRedeemPayloadSchema = z.object({
 
 ### 3.1. src/server/src/schemata.ts
 
-1. Export `karmaLinkedUserSchema`, `karmaLinkedUsersResponseSchema`, and `navigatorLinkRedeemPayloadSchema`.
+1. Export all linked-user, link-redemption, ingestion, and documented Navigator error schemas.
 
 ---
 
