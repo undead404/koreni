@@ -1,20 +1,20 @@
 ---
-description: Implement source-based contribution calculation engine reading YAML and CSV files, deduplicating cell values, detecting AI titles, and aggregating total scores per author.
+description: Implement source-based contribution calculation engine reading repository YAML and CSV files, deduplicating cell values, detecting AI titles, and aggregating total scores per author.
 status: draft
 targets:
-  - src/server/src/services/karma-calculator.ts
+  - src/services/karma-calculator.ts
 context:
   - karma-integration.md
   - karma-discussion.txt
-  - src/server/CONVENTIONS.md
+  - CONVENTIONS.md
 ---
 
 # Karma Source Contribution Calculation Engine
 
 ## 1. Architectural Boundary
 
-- **Execution Context:** Server Utility Service
-- **Data Scope:** File system read operations on `data/records/*.yaml` and `data/csv/*.csv`
+- **Execution Context:** Zone A — GitHub Actions Runner & Root Utility Service
+- **Data Scope:** File system read operations on repository `data/records/*.yaml` and `data/csv/*.csv`
 
 ---
 
@@ -22,8 +22,8 @@ context:
 
 ### Fault / Current State
 
-- **Condition:** No service reads CSV + YAML source files to compute character-based contribution weights according to the unique non-empty cell formula.
-- **Behavior:** Cannot calculate fair cumulative totals for authors.
+- **Condition:** No utility service reads CSV + YAML source files to compute character-based contribution weights according to the unique non-empty cell formula.
+- **Behavior:** Cannot calculate fair cumulative totals for authors during account linking or daily sync execution.
 
 ### Target / Resolved State
 
@@ -43,12 +43,12 @@ context:
 
 ## 3. Execution Pipeline
 
-### 3.1. src/server/src/services/karma-calculator.ts
+### 3.1. src/services/karma-calculator.ts
 
 1. Read all YAML files in `data/records/` using existing helper `getTablesMetadata()`.
-2. For each record, read corresponding CSV file.
+2. For each record, read corresponding CSV file from repository `data/`.
 3. Compute unique non-empty cell character sum using `Set` and `reduce`.
-4. Check title prefix for AI tag `[ШІ] `.
+4. Check title prefix for AI tag `[ШІ]`.
 5. Aggregate totals per lowercased `authorEmail`.
 6. Export `calculateKarmaContributions()` and `getUserKarmaContribution(email: string)`.
 
@@ -56,8 +56,8 @@ context:
 
 ## 4. Hard Constraints
 
-- **Backend ESM:** All relative imports must end with `.js`.
-- **Zero Database Duplication:** Calculation runs dynamically against source files; contribution records are not persisted in SQLite.
+- **Zero Database Duplication:** Calculation runs dynamically against source files in the repository checkout; contribution records are not persisted in SQLite.
+- **Stateless Recomputation:** Calculation is idempotent. Re-running the calculation over `data/` produces identical cumulative totals without requiring durable calculation state.
 
 ---
 
@@ -66,4 +66,4 @@ context:
 1. **Type & Lint Pass:**
    `yarn exec tsc --noEmit`
 2. **Targeted Test Execution:**
-   `yarn exec vitest src/server/src/services/karma-calculator.test.ts`
+   `yarn exec vitest src/services/karma-calculator.test.ts`

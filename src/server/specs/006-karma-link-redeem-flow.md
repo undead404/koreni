@@ -14,7 +14,7 @@ context:
 ## 1. Architectural Boundary
 
 - **Execution Context:** Server Route Handler (Hono)
-- **Data Scope:** User session, Navigator API client, SQLite `users` table update
+- **Data Scope:** User session, Navigator API client, SQLite `users` table update (`karma_linked_at`)
 
 ---
 
@@ -30,7 +30,7 @@ context:
 - **Condition:** Logged-in user submits `{ "code": "AB12CD34EF" }` to `POST /api/karma/link`.
 - **Behavior:**
   - Authenticates user session (extracts `user.email`).
-  - Calls `getUserKarmaContribution(user.email)` to compute user's current cumulative score from `data/` source files.
+  - Calculates initial contribution score via `getUserKarmaContribution(user.email)`.
   - Calls Navigator API client `redeemLinkCode({ code: "AB12CD34EF", login: user.email, total: calculatedTotal })`.
   - On Navigator success (`{ ok: true }`):
     - Updates local `users` record setting `karma_linked_at = NOW()`.
@@ -45,7 +45,7 @@ context:
 ### 3.1. src/server/src/services/karma-link-flow.ts
 
 1. Implement `executeUserAccountLink({ userId, email, code })`.
-2. Compute total score from source CSV/YAML files for `email`.
+2. Compute initial total score from source CSV/YAML files for `email`.
 3. Call `navigatorClient.redeemLinkCode`.
 4. Update `karma_linked_at` timestamp in SQLite DB on success.
 
@@ -61,7 +61,8 @@ context:
 ## 4. Hard Constraints
 
 - **Backend ESM:** All relative imports must end with `.js`.
-- **Privacy Enforcement:** Account is only marked as linked upon verified confirmation from Navigator.
+- **Privacy Enforcement:** Account is only marked as linked in SQLite upon verified confirmation from Navigator.
+- **Subsequent Synchronization:** Once `karma_linked_at` is persisted, subsequent daily contribution updates are managed independently by the scheduled GitHub Actions workflow.
 
 ---
 

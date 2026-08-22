@@ -1,5 +1,5 @@
 ---
-description: Specify environment variables, cron scheduling setup, telemetry, and privacy compliance guidelines for Navigator Karma integration.
+description: Specify environment variables, GitHub Actions cron workflow setup, secrets management, and failure recovery guidelines for Navigator Karma integration.
 status: draft
 targets:
   - karma-integration.md
@@ -15,8 +15,8 @@ context:
 
 ## 1. Architectural Boundary
 
-- **Execution Context:** Deployment, Environment Configuration, & Operational Cron
-- **Data Scope:** Secrets, push tokens, and environment variables
+- **Execution Context:** Deployment, Environment Configuration, & GitHub Actions Operational Workflow
+- **Data Scope:** Secrets, push tokens, server authentication keys, and environment variables
 
 ---
 
@@ -24,17 +24,19 @@ context:
 
 ### Fault / Current State
 
-- **Condition:** No environment configuration or deployment documentation exists for storing `KARMA_PUSH_TOKEN`.
-- **Behavior:** Daily push jobs and link redemption requests fail due to missing push credentials.
+- **Condition:** No environment configuration or deployment documentation exists for storing `KARMA_APP_TOKEN` and `KARMA_INTERNAL_TOKEN`.
+- **Behavior:** Daily push jobs and link redemption requests fail due to missing push credentials or server access permissions.
 
 ### Target / Resolved State
 
-- **Condition:** Environment variables configured in `.env` and `src/server/.env`.
+- **Condition:** Environment variables configured in `.env`, `src/server/.env`, and GitHub repository secrets.
 - **Behavior:**
-  - `KARMA_PUSH_TOKEN`: Secret Bearer token obtained from Navigator administration.
+  - `KARMA_APP_TOKEN`: Secret Bearer token obtained from Navigator administration to authenticate `/api/karma/ingest` and `/api/karma/link-redeem`.
+  - `KARMA_INTERNAL_TOKEN`: Secret Bearer token used by GitHub Actions workflow to authenticate requests to Koreni server `GET /api/karma/linked-users`.
   - `NAVIGATOR_BASE_URL`: Base URL for Navigator API (default `https://www.uagenealogy.com`).
-  - Scheduled runner executes `yarn karma:push` daily.
-  - Automatic error notifications sent to Bugsnag on API failures or network timeouts.
+  - `NEXT_PUBLIC_API_SITE`: Production URL for Koreni server instance accessed by GitHub Actions workflow.
+  - Scheduled runner executes `.github/workflows/karma-daily-sync.yml` daily via GitHub Actions cron trigger.
+  - **Self-Healing Recovery:** If a daily sync job fails (e.g. server HTTP error or network timeout), the subsequent run automatically syncs all current contributions statelessly, eliminating the need for manual database reconciliation.
 
 ---
 
@@ -42,17 +44,20 @@ context:
 
 ### 3.1. .env.example & src/server/.env.example
 
-1. Add `KARMA_PUSH_TOKEN=` and `NAVIGATOR_BASE_URL=https://www.uagenealogy.com` to environment templates.
+1. Add `KARMA_APP_TOKEN=`, `KARMA_INTERNAL_TOKEN=`, `NAVIGATOR_BASE_URL=https://www.uagenealogy.com`, and `NEXT_PUBLIC_API_SITE=` to environment templates.
 
 ### 3.2. karma-integration.md
 
-1. Maintain documentation describing Koreni's role as a third-party service pushing scores to Navigator.
+1. Maintain documentation describing Koreni's role:
+   - Server manages user account link state (`karma_linked_at`) and exposes consented accounts via `GET /api/karma/linked-users`.
+   - GitHub Actions workflow executes daily sync, reading repo source files and pushing batch updates to Navigator.
 
 ---
 
 ## 4. Hard Constraints
 
-- **Secret Safety:** Never commit `KARMA_PUSH_TOKEN` values to source control.
+- **Secret Safety:** Never commit `KARMA_APP_TOKEN` or `KARMA_INTERNAL_TOKEN` values to source control; configure them strictly via environment variables or GitHub Secrets.
+- **Access Restriction:** `GET /api/karma/linked-users` must reject any request without a valid `KARMA_INTERNAL_TOKEN`.
 
 ---
 

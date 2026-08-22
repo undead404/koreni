@@ -1,5 +1,5 @@
 ---
-description: Implement outgoing API client for interacting with Navigator (https://www.uagenealogy.com) endpoints using Bearer token authentication.
+description: Implement outgoing API client for interacting with Navigator (https://www.uagenealogy.com) endpoints using Bearer token authentication in server handlers and GitHub Actions scripts.
 status: draft
 targets:
   - src/server/src/services/navigator-client.ts
@@ -12,7 +12,7 @@ context:
 
 ## 1. Architectural Boundary
 
-- **Execution Context:** Server Network Service
+- **Execution Context:** Shared Network Utility Service (Server Hono Handlers & GitHub Actions Scripts)
 - **Data Scope:** Outgoing HTTP calls to `https://www.uagenealogy.com` API (`/api/karma/link-redeem`, `/api/karma/ingest`, `/api/karma/lookup`)
 
 ---
@@ -21,17 +21,17 @@ context:
 
 ### Fault / Current State
 
-- **Condition:** Koreni backend has no dedicated API client to communicate with Navigator (`www.uagenealogy.com`).
+- **Condition:** Koreni codebase has no dedicated API client to communicate with Navigator (`www.uagenealogy.com`).
 - **Behavior:** Cannot redeem codes or push batch ingestion updates to Navigator.
 
 ### Target / Resolved State
 
-- **Condition:** `NavigatorClient` encapsulates all network calls to `https://www.uagenealogy.com` using `Authorization: Bearer <KARMA_PUSH_TOKEN>`.
+- **Condition:** `NavigatorClient` encapsulates all network calls to `https://www.uagenealogy.com` using `Authorization: Bearer <KARMA_APP_TOKEN>`.
 - **Behavior:**
-  - `redeemLinkCode({ code, login, total })`: POSTs to `https://www.uagenealogy.com/api/karma/link-redeem`.
+  - `redeemLinkCode({ code, login, total })`: POSTs to `https://www.uagenealogy.com/api/karma/link-redeem` (used by server route during initial user account linking).
     - Handles HTTP 200 `{ "ok": true, "awarded": N }`.
     - Handles HTTP 404 `{ "error": "invalid_or_expired" }` and HTTP 409 `{ "error": "already_linked" }`.
-  - `pushIngestBatch({ accounts })`: POSTs to `https://www.uagenealogy.com/api/karma/ingest`.
+  - `pushIngestBatch({ accounts })`: POSTs to `https://www.uagenealogy.com/api/karma/ingest` (used by GitHub Actions daily synchronization script).
     - Returns parsed `{ synced, awarded, unknown }`.
   - `lookupKarma({ service, users })`: GET/POST to `https://www.uagenealogy.com/api/karma/lookup`.
 
@@ -41,7 +41,7 @@ context:
 
 ### 3.1. src/server/src/services/navigator-client.ts
 
-1. Read `KARMA_PUSH_TOKEN` and `NAVIGATOR_BASE_URL` (defaults to `https://www.uagenealogy.com`) from centralized `environment`.
+1. Read `KARMA_APP_TOKEN` and `NAVIGATOR_BASE_URL` (defaults to `https://www.uagenealogy.com`) from centralized environment variables.
 2. Wrap `fetch` calls in try/catch and parse responses with Zod schemas from `src/schemata.ts`.
 3. Report network/telemetry errors to Bugsnag on 500/network failure.
 
