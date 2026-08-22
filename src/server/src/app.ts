@@ -3,6 +3,7 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import handleKarmaLink from './handlers/handle-karma-link.js';
 import handleKarmaLinkedUsers from './handlers/handle-karma-linked-users.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
@@ -52,6 +53,7 @@ export function createApp() {
   });
 
   app.get('/api/karma/linked-users', handleKarmaLinkedUsers);
+  app.post('/api/karma/link', transcribeAuthMiddleware, handleKarmaLink);
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
