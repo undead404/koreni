@@ -135,3 +135,33 @@ export const navigatorErrorResponseSchema = z.object({
 export type NavigatorErrorResponse = z.infer<
   typeof navigatorErrorResponseSchema
 >;
+
+export const navigatorLookupPayloadSchema = z.object({
+  service: nonEmptyString,
+  users: z.array(z.string()),
+});
+
+export type NavigatorLookupPayload = z.infer<
+  typeof navigatorLookupPayloadSchema
+>;
+
+export const navigatorLookupResultItemSchema = z.object({
+  user: z.string(),
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type NavigatorLookupResultItem = z.infer<
+  typeof navigatorLookupResultItemSchema
+>;
+
+export const navigatorLookupResponseSchema = z.object({
+  service: z.string(),
+  name: z.string(),
+  results: z.array(navigatorLookupResultItemSchema),
+});
+
+export type NavigatorLookupResponse = z.infer<
+  typeof navigatorLookupResponseSchema
+>;

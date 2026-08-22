@@ -9,6 +9,8 @@ import {
   navigatorIngestResponseSchema,
   navigatorLinkRedeemPayloadSchema,
   navigatorLinkRedeemResponseSchema,
+  navigatorLookupPayloadSchema,
+  navigatorLookupResponseSchema,
   nonEmptyString,
   turnstilePayloadSchema,
   turnstileResponseSchema,
@@ -264,6 +266,45 @@ describe('schemata', () => {
       expect(
         navigatorErrorResponseSchema.safeParse({
           error: 'already_linked',
+        }).success,
+      ).toBe(true);
+    });
+  });
+
+  describe('navigatorLookupPayloadSchema', () => {
+    it('should accept valid lookup payload', () => {
+      expect(
+        navigatorLookupPayloadSchema.safeParse({
+          service: 'inventarium',
+          users: ['user1@example.com', 'user2@example.com'],
+        }).success,
+      ).toBe(true);
+    });
+
+    it('should reject empty service', () => {
+      expect(
+        navigatorLookupPayloadSchema.safeParse({
+          service: '',
+          users: ['user1@example.com'],
+        }).success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorLookupResponseSchema', () => {
+    it('should accept valid lookup response', () => {
+      expect(
+        navigatorLookupResponseSchema.safeParse({
+          service: 'inventarium',
+          name: 'Інвентаріум',
+          results: [
+            {
+              user: 'user1@example.com',
+              found: true,
+              serviceKarma: 100,
+              totalKarma: 500,
+            },
+          ],
         }).success,
       ).toBe(true);
     });
