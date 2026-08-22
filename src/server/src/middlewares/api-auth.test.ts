@@ -5,7 +5,7 @@ import isValidApiKey from '../helpers/is-valid-api-key.js';
 import posthog from '../services/posthog.js';
 import validateTurnstile from '../services/validate-turnstile.js';
 
-import { authMiddleware } from './auth.js';
+import { apiAuthMiddleware } from './api-auth.js';
 
 const { mockEnv } = vi.hoisted(() => {
   return {
@@ -53,7 +53,7 @@ describe('authMiddleware', () => {
     mockEnv.NODE_ENV = 'production';
 
     app = new Hono();
-    app.use('*', authMiddleware);
+    app.use('*', apiAuthMiddleware);
     app.post('/test', async (c) => {
       const body = await c.req.json();
       return c.json({ success: true, body });

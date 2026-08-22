@@ -26,6 +26,10 @@ vi.mock('./middlewares/rate-limiter', () => ({
 
 vi.mock('./services/posthog');
 
+vi.mock('./database/client', () => ({
+  default: {},
+}));
+
 vi.mock('./environment', () => ({
   default: {
     NEXT_PUBLIC_SITE: 'https://example.com',

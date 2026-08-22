@@ -33,6 +33,11 @@ const environment = {
     process.env.NEXT_PUBLIC_LOCATIONIQ_KEY,
     false,
   ),
+  NEXT_PUBLIC_OAUTH_CLIENT_ID: validateEnvironment(
+    'NEXT_PUBLIC_OAUTH_CLIENT_ID',
+    process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID,
+    true,
+  ),
   NEXT_PUBLIC_POSTHOG_KEY: validateEnvironment(
     'NEXT_PUBLIC_POSTHOG_KEY',
     process.env.NEXT_PUBLIC_POSTHOG_KEY,
@@ -68,6 +73,8 @@ const environment = {
     process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
     isProduction,
   ),
+  NEXT_PUBLIC_ENABLE_TRANSCRIBE:
+    process.env.NEXT_PUBLIC_ENABLE_TRANSCRIBE === 'true',
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   NODE_ENV: process.env.NODE_ENV || ('development' as const),
 } as const;
