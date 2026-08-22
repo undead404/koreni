@@ -59,6 +59,7 @@ export interface Users {
   google_id: string | null;
   id: string;
   is_admin: Generated<number>;
+  karma_linked_at: string | null;
   token_version: Generated<number>;
 }
 

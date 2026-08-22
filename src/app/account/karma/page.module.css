@@ -1,0 +1,52 @@
+.root {
+  display: flex;
+  justify-content: center;
+  padding: 48px var(--side-gap);
+}
+
+.card {
+  width: min(100%, 560px);
+  padding: 32px;
+  border: var(--default-border);
+  border-radius: 8px;
+  background: var(--bg-color);
+}
+
+.card h1 {
+  margin-bottom: 12px;
+}
+
+.email,
+.score {
+  margin-bottom: 16px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.form input {
+  padding: 10px;
+  border: var(--default-border);
+  border-radius: 4px;
+  font: inherit;
+  letter-spacing: 0.12em;
+}
+
+.success {
+  padding: 12px;
+  color: var(--success-color);
+  background: color-mix(in srgb, var(--success-color) 12%, transparent);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+@media (width <= 480px) {
+  .card {
+    padding: 24px 16px;
+  }
+}

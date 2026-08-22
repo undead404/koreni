@@ -1,6 +1,14 @@
 import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const UKRAINIAN_ARCHIVES = readFileSync('./data/ukrainian_archives.txt')
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+const archivesPath = path.resolve(
+  currentDirectory,
+  '../../data/ukrainian_archives.txt',
+);
+
+const UKRAINIAN_ARCHIVES = readFileSync(archivesPath)
   .toString()
   .split('\n')
   .filter(Boolean);

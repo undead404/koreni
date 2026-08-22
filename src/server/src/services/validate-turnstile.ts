@@ -1,4 +1,5 @@
 import environment from '../environment.js';
+import { logger } from '../logger.js';
 import {
   type TurnstileResponse,
   turnstileResponseSchema,
@@ -26,11 +27,15 @@ export default async function validateTurnstile(
         'Content-Type': 'application/json',
       },
     });
+    logger.info('dependency.turnstile.response', { status: result.status });
 
     const outcome = await result.json();
 
     const parseResult = turnstileResponseSchema.safeParse(outcome);
     if (!parseResult.success) {
+      logger.error('dependency.turnstile.invalid_response', {
+        status: result.status,
+      });
       reportError(parseResult.error);
       return {
         success: false,
@@ -40,6 +45,7 @@ export default async function validateTurnstile(
 
     return parseResult.data;
   } catch (error) {
+    logger.error('dependency.turnstile.request_failed', { error });
     reportError(error);
     return {
       success: false,
