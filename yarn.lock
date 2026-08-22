@@ -3544,7 +3544,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.7.2":
+"axios@npm:^1.7.2, axios@npm:~1.18.0":
   version: 1.18.1
   resolution: "axios@npm:1.18.1"
   dependencies:
@@ -6806,6 +6806,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^6.0.2"
     "@vitest/coverage-v8": "npm:^4.1.0"
     "@vitest/eslint-plugin": "npm:^1.6.19"
+    axios: "npm:~1.18.0"
     baseline-browser-mapping: "npm:^2.9.19"
     clsx: "npm:^2.1.1"
     concurrently: "npm:^10.0.5"
