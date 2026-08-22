@@ -1,6 +1,7 @@
 'use client';
 
 import { Loader2, MapPin, Search, X } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { usePostHog } from 'posthog-js/react';
 import {
   KeyboardEvent,
@@ -11,10 +12,16 @@ import {
   useState,
 } from 'react';
 
+import Loader from '../loader';
+
 import { useKnownLocations } from './known-locations-context';
-import LocationPicker from './location-picker';
 import type { Location } from './types';
 import { useLocationSearch } from './use-location-search';
+
+const LocationPicker = dynamic(() => import('./location-picker'), {
+  ssr: false,
+  loading: () => <Loader />,
+});
 
 import styles from './context-form.module.css';
 
