@@ -122,3 +122,4 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          OAUTH_CLIENT_ID: oauth-client-id

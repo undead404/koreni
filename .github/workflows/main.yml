@@ -107,6 +107,7 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          NEXT_PUBLIC_OAUTH_CLIENT_ID: oauth-client-id
 
       - name: Run server tests
         run: yarn exec vitest run --root src/server
@@ -116,6 +117,7 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          OAUTH_CLIENT_ID: oauth-client-id
 
   build:
     runs-on: ubuntu-latest
