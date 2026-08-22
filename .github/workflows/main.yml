@@ -157,12 +157,14 @@ jobs:
       - name: Build Next.js project
         run: yarn build
         env:
+          NEXT_PUBLIC_API_SITE: ${{ vars.SITE }}
           NEXT_PUBLIC_BUGSNAG_API_KEY: ${{ vars.BUGSNAG_API_KEY }}
           NEXT_PUBLIC_GITHUB_REPO: ${{ github.repository }}
           NEXT_PUBLIC_LOCATIONIQ_KEY: ${{ secrets.LOCATIONIQ_KEY }}
           NEXT_PUBLIC_POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
           NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
           NEXT_PUBLIC_REMARK42_HOST: ${{ vars.REMARK42_HOST }}
+          NEXT_PUBLIC_OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
           NEXT_PUBLIC_SITE: ${{ vars.SITE }}
           NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: ${{ vars.TYPESENSE_SEARCH_KEY }}
@@ -317,9 +319,8 @@ jobs:
             echo "NODE_ENV=production" >> .env
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-            echo "GITHUB_OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
-            echo "GITHUB_OAUTH_CLIENT_SECRET=${{ secrets.OAUTH_CLIENT_SECRET }}" >> .env
-            echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
+            echo "OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}"
+            echo "NEXT_PUBLIC_API_SITE=${{ vars.SITE }}"
              
             # Restart Service
             sudo systemctl restart koreni-api
