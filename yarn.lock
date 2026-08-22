@@ -3545,17 +3545,6 @@ __metadata:
   linkType: hard
 
 "axios@npm:^1.7.2":
-  version: 1.16.0
-  resolution: "axios@npm:1.16.0"
-  dependencies:
-    follow-redirects: "npm:^1.16.0"
-    form-data: "npm:^4.0.5"
-    proxy-from-env: "npm:^2.1.0"
-  checksum: 1c91a5221b77b76072026b4cc95ecdf38f7c3e33e63423abec09a85e6e9a12279637dcc9ac2ba1fc333e0c447fb3b0f46d7965acb5d7cea02d188e9c6d425c0b
-  languageName: node
-  linkType: hard
-
-"axios@npm:~1.18.0":
   version: 1.18.1
   resolution: "axios@npm:1.18.1"
   dependencies:
@@ -6817,7 +6806,6 @@ __metadata:
     "@vitejs/plugin-react": "npm:^6.0.2"
     "@vitest/coverage-v8": "npm:^4.1.0"
     "@vitest/eslint-plugin": "npm:^1.6.19"
-    axios: "npm:~1.18.0"
     baseline-browser-mapping: "npm:^2.9.19"
     clsx: "npm:^2.1.1"
     concurrently: "npm:^10.0.5"
