@@ -73,7 +73,7 @@ export const jwtSchema = z.object({
 export type Jwt = z.infer<typeof jwtSchema>;
 
 export const karmaLinkedUserSchema = z.object({
-  email: z.string(),
+  email: z.email(),
   karma_linked_at: z.string(),
 });
 
@@ -84,4 +84,54 @@ export const karmaLinkedUsersResponseSchema = z.object({
 export type KarmaLinkedUser = z.infer<typeof karmaLinkedUserSchema>;
 export type KarmaLinkedUsersResponse = z.infer<
   typeof karmaLinkedUsersResponseSchema
+>;
+
+export const navigatorLinkRedeemPayloadSchema = z.object({
+  code: z.string().min(1),
+  login: z.email(),
+  total: z.number().int().nonnegative().optional(),
+});
+
+export type NavigatorLinkRedeemPayload = z.infer<
+  typeof navigatorLinkRedeemPayloadSchema
+>;
+
+export const navigatorLinkRedeemResponseSchema = z.object({
+  ok: z.literal(true),
+  awarded: z.number().int().nonnegative(),
+});
+
+export type NavigatorLinkRedeemResponse = z.infer<
+  typeof navigatorLinkRedeemResponseSchema
+>;
+
+export const navigatorIngestPayloadSchema = z.object({
+  accounts: z.array(
+    z.object({
+      login: z.email(),
+      total: z.number().int().nonnegative(),
+    }),
+  ),
+});
+
+export type NavigatorIngestPayload = z.infer<
+  typeof navigatorIngestPayloadSchema
+>;
+
+export const navigatorIngestResponseSchema = z.object({
+  synced: z.number().int().nonnegative(),
+  awarded: z.number().int().nonnegative(),
+  unknown: z.array(z.string()),
+});
+
+export type NavigatorIngestResponse = z.infer<
+  typeof navigatorIngestResponseSchema
+>;
+
+export const navigatorErrorResponseSchema = z.object({
+  error: z.string(),
+});
+
+export type NavigatorErrorResponse = z.infer<
+  typeof navigatorErrorResponseSchema
 >;

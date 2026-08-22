@@ -2,6 +2,13 @@ import { describe, expect, it } from 'vitest';
 
 import {
   importPayloadSchema,
+  karmaLinkedUserSchema,
+  karmaLinkedUsersResponseSchema,
+  navigatorErrorResponseSchema,
+  navigatorIngestPayloadSchema,
+  navigatorIngestResponseSchema,
+  navigatorLinkRedeemPayloadSchema,
+  navigatorLinkRedeemResponseSchema,
   nonEmptyString,
   turnstilePayloadSchema,
   turnstileResponseSchema,
@@ -81,6 +88,182 @@ describe('schemata', () => {
         turnstileResponseSchema.safeParse({
           success: false,
           'error-codes': ['invalid-input-response'],
+        }).success,
+      ).toBe(true);
+    });
+  });
+
+  describe('karmaLinkedUserSchema & karmaLinkedUsersResponseSchema', () => {
+    it('should accept valid linked user object and list response', () => {
+      const validUser = {
+        email: 'user@example.com',
+        karma_linked_at: '2026-08-22T10:00:00.000Z',
+      };
+      expect(karmaLinkedUserSchema.safeParse(validUser).success).toBe(true);
+      expect(
+        karmaLinkedUsersResponseSchema.safeParse({ users: [validUser] })
+          .success,
+      ).toBe(true);
+    });
+
+    it('should reject invalid email in linked user', () => {
+      const invalidUser = {
+        email: 'not-an-email',
+        karma_linked_at: '2026-08-22T10:00:00.000Z',
+      };
+      expect(karmaLinkedUserSchema.safeParse(invalidUser).success).toBe(false);
+      expect(
+        karmaLinkedUsersResponseSchema.safeParse({ users: [invalidUser] })
+          .success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorLinkRedeemPayloadSchema', () => {
+    it('should accept valid payload with or without total', () => {
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: 'AB12CD34EF',
+          login: 'user@example.com',
+          total: 100,
+        }).success,
+      ).toBe(true);
+
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: 'AB12CD34EF',
+          login: 'user@example.com',
+        }).success,
+      ).toBe(true);
+    });
+
+    it('should reject empty code, invalid login email, or negative total', () => {
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: '',
+          login: 'user@example.com',
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: 'CODE',
+          login: 'not-email',
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: 'CODE',
+          login: 'user@example.com',
+          total: -5,
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorLinkRedeemPayloadSchema.safeParse({
+          code: 'CODE',
+          login: 'user@example.com',
+          total: 12.34,
+        }).success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorLinkRedeemResponseSchema', () => {
+    it('should accept valid redeem response', () => {
+      expect(
+        navigatorLinkRedeemResponseSchema.safeParse({
+          ok: true,
+          awarded: 50,
+        }).success,
+      ).toBe(true);
+    });
+
+    it('should reject non-true ok or negative/non-int awarded', () => {
+      expect(
+        navigatorLinkRedeemResponseSchema.safeParse({
+          ok: false,
+          awarded: 50,
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorLinkRedeemResponseSchema.safeParse({
+          ok: true,
+          awarded: -1,
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorLinkRedeemResponseSchema.safeParse({
+          ok: true,
+          awarded: 1.5,
+        }).success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorIngestPayloadSchema', () => {
+    it('should accept valid ingest payload', () => {
+      expect(
+        navigatorIngestPayloadSchema.safeParse({
+          accounts: [
+            { login: 'ivan@example.com', total: 130 },
+            { login: 'olena@example.com', total: 0 },
+          ],
+        }).success,
+      ).toBe(true);
+    });
+
+    it('should reject accounts with invalid email or negative/non-int total', () => {
+      expect(
+        navigatorIngestPayloadSchema.safeParse({
+          accounts: [{ login: 'invalid-email', total: 100 }],
+        }).success,
+      ).toBe(false);
+
+      expect(
+        navigatorIngestPayloadSchema.safeParse({
+          accounts: [{ login: 'valid@example.com', total: -10 }],
+        }).success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorIngestResponseSchema', () => {
+    it('should accept valid ingest response', () => {
+      expect(
+        navigatorIngestResponseSchema.safeParse({
+          synced: 2,
+          awarded: 30,
+          unknown: ['olena@example.com'],
+        }).success,
+      ).toBe(true);
+    });
+
+    it('should reject invalid synced or awarded', () => {
+      expect(
+        navigatorIngestResponseSchema.safeParse({
+          synced: -1,
+          awarded: 10,
+          unknown: [],
+        }).success,
+      ).toBe(false);
+    });
+  });
+
+  describe('navigatorErrorResponseSchema', () => {
+    it('should accept documented error response objects', () => {
+      expect(
+        navigatorErrorResponseSchema.safeParse({
+          error: 'invalid_or_expired',
+        }).success,
+      ).toBe(true);
+
+      expect(
+        navigatorErrorResponseSchema.safeParse({
+          error: 'already_linked',
         }).success,
       ).toBe(true);
     });
