@@ -1,6 +1,6 @@
 ---
 description: 'Generate a conventional commit message and execute the commit autonomously.'
-model: 'opencode/gemini-3.5-flash-lite'
+model: 'opencode/gpt-5.6-luna'
 temperature: 0.1
 top_p: 1.0
 max_tokens: 512
