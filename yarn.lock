@@ -3660,12 +3660,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.12
-  resolution: "brace-expansion@npm:1.1.12"
+  version: 1.1.18
+  resolution: "brace-expansion@npm:1.1.18"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
+  checksum: 3432c18a9e2ebf94162d4effb62198bd0adea06a9f332b2c0188df5d5e30b1e51ea3c848b6608e47d0b857ebe1ea5b3888ed3326dd3c4f6f9645c94153cf9c14
   languageName: node
   linkType: hard
 
@@ -6081,9 +6081,9 @@ __metadata:
   linkType: hard
 
 "immutable@npm:^5.1.5":
-  version: 5.1.5
-  resolution: "immutable@npm:5.1.5"
-  checksum: 8017ece1578e3c5939ba3305176aee059def1b8a90c7fa2a347ef583ebbd38cbe77ce1bbd786a5fab57e2da00bbcb0493b92e4332cdc4e1fe5cfb09a4688df31
+  version: 5.1.9
+  resolution: "immutable@npm:5.1.9"
+  checksum: ae7032b60b81b682f3e7e4df13e1ec9a401a603eb81b15bb3e37331ed6666e318c71994c6936e1462eb443d32d04769396562a7e2669da22457c8ba279c03ad2
   languageName: node
   linkType: hard
 
@@ -11179,8 +11179,8 @@ __metadata:
   linkType: hard
 
 "ws@npm:^7.3.1":
-  version: 7.5.10
-  resolution: "ws@npm:7.5.10"
+  version: 7.5.13
+  resolution: "ws@npm:7.5.13"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -11189,11 +11189,11 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: bd7d5f4aaf04fae7960c23dcb6c6375d525e00f795dd20b9385902bd008c40a94d3db3ce97d878acc7573df852056ca546328b27b39f47609f80fb22a0a9b61d
+  checksum: e223726bbda5768ed58ec9252d04eda7018ef380ea122bb94e595a4d7a02b5baeb423933936576fddb8fa51b642375f7ae814bf0f6f5d9a3ce290566578a8c5a
   languageName: node
   linkType: hard
 
-"ws@npm:^8.13.0":
+"ws@npm:^8.13.0, ws@npm:^8.18.0":
   version: 8.21.3
   resolution: "ws@npm:8.21.3"
   peerDependencies:
@@ -11205,21 +11205,6 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 7b28dc2863ea0e2cece68d142a3eee90361021b73f750431e6d8076bb7dede5fdfdb75b3d29534b62f411261147b76b1bc80fb5cc63ab0aabd467280e85b22e0
-  languageName: node
-  linkType: hard
-
-"ws@npm:^8.18.0":
-  version: 8.19.0
-  resolution: "ws@npm:8.19.0"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ">=5.0.2"
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: 4741d9b9bc3f9c791880882414f96e36b8b254e34d4b503279d6400d9a4b87a033834856dbdd94ee4b637944df17ea8afc4bce0ff4a1560d2166be8855da5b04
   languageName: node
   linkType: hard
 
