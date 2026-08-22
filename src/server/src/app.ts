@@ -3,6 +3,7 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import handleKarmaLinkedUsers from './handlers/handle-karma-linked-users.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
 import handleTranscribeAuthMe from './handlers/handle-transcribe-auth-me.js';
@@ -49,6 +50,8 @@ export function createApp() {
   app.get('/api/health', (c) => {
     return c.json({ status: 'ok' });
   });
+
+  app.get('/api/karma/linked-users', handleKarmaLinkedUsers);
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);

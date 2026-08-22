@@ -14,6 +14,7 @@ const environmentSchema = z.object({
       error: 'JWT_SECRET must be at least 32 bytes of cryptographic entropy',
     }),
   ),
+  KARMA_INTERNAL_TOKEN: nonEmptyString.optional(),
   NEXT_PUBLIC_SITE: nonEmptyString,
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -45,6 +46,7 @@ const environment = environmentSchema.parse({
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   JWT_SECRET: process.env.JWT_SECRET,
+  KARMA_INTERNAL_TOKEN: process.env.KARMA_INTERNAL_TOKEN,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,
   NODE_ENV: process.env.NODE_ENV,
   OAUTH_CLIENT_ID: process.env.OAUTH_CLIENT_ID,

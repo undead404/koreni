@@ -71,3 +71,17 @@ export const jwtSchema = z.object({
 });
 
 export type Jwt = z.infer<typeof jwtSchema>;
+
+export const karmaLinkedUserSchema = z.object({
+  email: z.string(),
+  karma_linked_at: z.string(),
+});
+
+export const karmaLinkedUsersResponseSchema = z.object({
+  users: z.array(karmaLinkedUserSchema),
+});
+
+export type KarmaLinkedUser = z.infer<typeof karmaLinkedUserSchema>;
+export type KarmaLinkedUsersResponse = z.infer<
+  typeof karmaLinkedUsersResponseSchema
+>;
