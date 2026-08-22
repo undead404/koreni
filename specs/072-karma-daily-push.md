@@ -48,11 +48,11 @@ context:
 1. Configure scheduled trigger: `cron: '0 3 * * *'` (runs daily at 03:00 UTC).
 2. Checkout repository code (`actions/checkout@v4`).
 3. Setup Node.js 22 & Yarn environment.
-4. Execute `yarn karma:push` with secrets `KARMA_PUSH_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `KORENI_SERVER_URL`.
+4. Execute `yarn karma:push` with secrets `KARMA_PUSH_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `SITE`.
 
 ### 3.2. src/scripts/karma-push.ts
 
-1. Fetch consented user emails from `${KORENI_SERVER_URL}/api/karma/linked-users` with `Authorization: Bearer ${KARMA_INTERNAL_TOKEN}`.
+1. Fetch consented user emails from `${SITE}/api/karma/linked-users` with `Authorization: Bearer ${KARMA_INTERNAL_TOKEN}`.
 2. Calculate raw cumulative totals from local repository CSV/YAML files for linked emails.
 3. Transmit batch to Navigator API via `navigatorClient`.
 4. Output structured console log without emails or secrets and exit 0 on success.

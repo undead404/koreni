@@ -1,0 +1,24 @@
+name: Karma daily sync
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Set up tools via Mise
+        uses: jdx/mise-action@v4
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Push karma totals
+        run: yarn karma:push
+        env:
+          KARMA_APP_TOKEN: ${{ secrets.KARMA_APP_TOKEN }}
+          KARMA_INTERNAL_TOKEN: ${{ secrets.KARMA_INTERNAL_TOKEN }}
+          SITE: ${{ vars.SITE }}
+          NAVIGATOR_BASE_URL: https://www.uagenealogy.com

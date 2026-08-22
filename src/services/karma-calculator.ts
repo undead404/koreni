@@ -46,7 +46,7 @@ export async function calculateKarmaContributions(): Promise<
     const cellValues = new Set<string>();
     for (const row of rows) {
       for (const value of Object.values(row)) {
-        if (value === null || value === undefined) {
+        if (!value) {
           continue;
         }
 

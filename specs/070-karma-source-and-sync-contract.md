@@ -70,11 +70,11 @@ export const navigatorIngestResponseSchema = z.object({
 1. Schedule cron trigger: `cron: '0 3 * * *'` (daily at 03:00 UTC).
 2. Checkout repository code (`actions/checkout@v4`).
 3. Setup Node.js 22 & Yarn environment.
-4. Execute `yarn karma:push` passing `KARMA_APP_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `KORENI_SERVER_URL` configuration.
+4. Execute `yarn karma:push` passing `KARMA_APP_TOKEN`, `KARMA_INTERNAL_TOKEN`, and `SITE` configuration.
 
 ### 3.2. src/scripts/karma-push.ts
 
-1. Fetch consented user emails from `${KORENI_SERVER_URL}/api/karma/linked-users` authenticated with `KARMA_INTERNAL_TOKEN`.
+1. Fetch consented user emails from `${SITE}/api/karma/linked-users` authenticated with `KARMA_INTERNAL_TOKEN`.
 2. Compute raw cumulative scores for consented users from repository `data/` source files using `calculateKarmaContributions()`.
 3. Validate payload with `navigatorIngestPayloadSchema` and POST batch to `${NAVIGATOR_BASE_URL}/api/karma/ingest`.
 4. Parse response with `navigatorIngestResponseSchema` and output execution log.
