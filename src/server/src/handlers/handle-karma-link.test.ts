@@ -127,7 +127,7 @@ describe('handleKarmaLink', () => {
 
     expect(executeUserAccountLink).toHaveBeenCalledWith({
       code: 'AB12CD34EF',
-      contribution_email: 'contributor@example.com',
+      contributionEmail: 'contributor@example.com',
       email: 'test@example.com',
       userId: 'user-123',
     });
