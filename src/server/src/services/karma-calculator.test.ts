@@ -19,6 +19,7 @@ vi.mock('../environment.js', () => ({
 
 import {
   getUserKarmaContribution,
+  getUserKarmaContributionStats,
   KarmaSourceUnavailableError,
   resetKarmaMetadataCache,
 } from './karma-calculator.js';
@@ -90,9 +91,36 @@ describe('karma-calculator', () => {
       5,
     );
 
-    expect(fetchMock).toHaveBeenCalledTimes(3);
+    await expect(
+      getUserKarmaContributionStats(' USER@example.com '),
+    ).resolves.toStrictEqual({ tableCount: 1, rowCount: 2 });
+
+    expect(fetchMock).toHaveBeenCalledTimes(4);
     expect(fetchMock).not.toHaveBeenCalledWith(
       expect.stringContaining('other.csv'),
     );
+  });
+
+  it('counts only rows containing at least one letter', async () => {
+    mocks.getContent.mockResolvedValueOnce({
+      data: [{ name: 'matching.yaml', path: 'matching.yaml', type: 'file' }],
+    });
+    const fetchMock = vi.fn((url: string) => {
+      if (url.endsWith('matching.yaml')) {
+        return Promise.resolve(
+          new Response(
+            'authorEmail: user@example.com\ntableFilePath: data/csv/matching.csv\ntitle: Matching',
+          ),
+        );
+      }
+      return Promise.resolve(
+        new Response('name,number\nІван,123\n456,789\n,Київ\n,\n'),
+      );
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(
+      getUserKarmaContributionStats('user@example.com'),
+    ).resolves.toStrictEqual({ tableCount: 1, rowCount: 2 });
   });
 });

@@ -39,11 +39,12 @@ describe('KarmaConnectionsPage', () => {
     cleanup();
   });
 
-  it('shows contribution and linking form for an unlinked account', async () => {
+  it('shows contribution statistics and linking form for an unlinked account', async () => {
     vi.mocked(requestApi).mockResolvedValueOnce(
       new Response(
         JSON.stringify({
-          contribution: 123,
+          tables: 2,
+          rows: 123,
           user: { email: 'user@example.com', karma_linked_at: null },
         }),
       ),
@@ -51,7 +52,19 @@ describe('KarmaConnectionsPage', () => {
 
     render(<KarmaConnectionsPage />);
 
-    expect(await screen.findByText(/Ваш внесок/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(
+        (_, element) =>
+          element?.tagName === 'P' && element.textContent.includes('2 таблиць'),
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        (_, element) =>
+          element?.tagName === 'P' &&
+          element.textContent.includes('123 рядків'),
+      ),
+    ).toBeInTheDocument();
     expect(
       screen.getByLabelText('Код із Генеалогічного навігатора'),
     ).toBeInTheDocument();
@@ -70,7 +83,8 @@ describe('KarmaConnectionsPage', () => {
       return Promise.resolve(
         new Response(
           JSON.stringify({
-            contribution: 123,
+            tables: 2,
+            rows: 123,
             user: { email: 'user@example.com', karma_linked_at: null },
           }),
         ),
@@ -88,7 +102,9 @@ describe('KarmaConnectionsPage', () => {
       expect(screen.getByRole('status')).toHaveTextContent(
         "Акаунт успішно прив'язано",
       );
-      expect(screen.getByText(/Нараховано балів: 12/)).toBeInTheDocument();
+      expect(
+        screen.getByText("Акаунт успішно прив'язано."),
+      ).toBeInTheDocument();
     });
     expect(requestApi).toHaveBeenLastCalledWith('/api/karma/link', {
       method: 'POST',
@@ -101,7 +117,8 @@ describe('KarmaConnectionsPage', () => {
     vi.mocked(requestApi).mockResolvedValueOnce(
       new Response(
         JSON.stringify({
-          contribution: 0,
+          tables: 0,
+          rows: 0,
           user: { email: 'user@example.com', karma_linked_at: null },
         }),
       ),

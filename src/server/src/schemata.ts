@@ -167,7 +167,8 @@ export type NavigatorLookupResponse = z.infer<
 >;
 
 export const karmaStatusResponseSchema = z.object({
-  contribution: z.number().int().nonnegative(),
+  tables: z.number().int().nonnegative(),
+  rows: z.number().int().nonnegative(),
   user: z.object({
     email: z.email(),
     karma_linked_at: z.string().nullable(),

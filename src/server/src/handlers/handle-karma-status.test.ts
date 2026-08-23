@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import findUserById from '../database/find-user-by-id.js';
 import {
-  getUserKarmaContribution,
+  getUserKarmaContributionStats,
   KarmaSourceUnavailableError,
 } from '../services/karma-calculator.js';
 
@@ -10,7 +10,7 @@ import handleKarmaStatus from './handle-karma-status.js';
 
 vi.mock('../database/find-user-by-id.js', () => ({ default: vi.fn() }));
 vi.mock('../services/karma-calculator.js', () => ({
-  getUserKarmaContribution: vi.fn(),
+  getUserKarmaContributionStats: vi.fn(),
   KarmaSourceUnavailableError: class KarmaSourceUnavailableError extends Error {},
 }));
 
@@ -26,7 +26,10 @@ describe('handleKarmaStatus', () => {
       id: 'user-123',
       karma_linked_at: null,
     } as never);
-    vi.mocked(getUserKarmaContribution).mockResolvedValueOnce(0);
+    vi.mocked(getUserKarmaContributionStats).mockResolvedValueOnce({
+      tableCount: 0,
+      rowCount: 0,
+    });
     const json = vi.fn();
 
     await handleKarmaStatus({
@@ -35,10 +38,11 @@ describe('handleKarmaStatus', () => {
     } as never);
 
     expect(json).toHaveBeenCalledWith({
-      contribution: 0,
+      tables: 0,
+      rows: 0,
       user: { email: 'missing@example.com', karma_linked_at: null },
     });
-    expect(getUserKarmaContribution).toHaveBeenCalledWith(
+    expect(getUserKarmaContributionStats).toHaveBeenCalledWith(
       'missing@example.com',
       { requestId: undefined },
     );
@@ -51,7 +55,7 @@ describe('handleKarmaStatus', () => {
       id: 'user-123',
       karma_linked_at: null,
     } as never);
-    vi.mocked(getUserKarmaContribution).mockRejectedValueOnce(
+    vi.mocked(getUserKarmaContributionStats).mockRejectedValueOnce(
       new KarmaSourceUnavailableError(),
     );
     const json = vi.fn();

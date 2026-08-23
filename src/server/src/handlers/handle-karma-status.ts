@@ -1,7 +1,7 @@
 import findUserById from '../database/find-user-by-id.js';
 import { karmaStatusResponseSchema } from '../schemata.js';
 import {
-  getUserKarmaContribution,
+  getUserKarmaContributionStats,
   KarmaSourceUnavailableError,
 } from '../services/karma-calculator.js';
 import type { TranscribeContext } from '../types.js';
@@ -13,7 +13,7 @@ export default async function handleKarmaStatus(c: TranscribeContext) {
       return c.json({ user: null }, 401);
     }
 
-    const contribution = await getUserKarmaContribution(
+    const stats = await getUserKarmaContributionStats(
       user.contribution_email ?? user.email,
       {
         requestId: c.var.requestId,
@@ -21,7 +21,8 @@ export default async function handleKarmaStatus(c: TranscribeContext) {
     );
     return c.json(
       karmaStatusResponseSchema.parse({
-        contribution,
+        tables: stats.tableCount,
+        rows: stats.rowCount,
         user: {
           email: user.email,
           karma_linked_at: user.karma_linked_at,

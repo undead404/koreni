@@ -75,16 +75,14 @@ export default function KarmaConnectionsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
       });
-      const result = karmaLinkResponseSchema.parse(await response.json());
+      karmaLinkResponseSchema.parse(await response.json());
       if (generation !== requestGeneration.current) return;
       if (!status) return;
       setStatus({
         ...status,
         user: { ...status.user, karma_linked_at: new Date().toISOString() },
       });
-      setMessage(
-        `Акаунт успішно прив'язано. Нараховано балів: ${String(result.awarded)}`,
-      );
+      setMessage("Акаунт успішно прив'язано.");
       setCode('');
       setViewState('ready');
     } catch (error) {
@@ -134,9 +132,11 @@ export default function KarmaConnectionsPage() {
         <h1 id="karma-title">Карма</h1>
         <p className={styles.email}>{status.user.email}</p>
         <p className={styles.score}>
-          Ваш внесок: <strong>{status.contribution}</strong> балів
+          Ви долучилися до <strong>{status.tables}</strong>{' '}
+          {status.tables === 1 ? 'таблиці' : 'таблиць'}, що містять{' '}
+          <strong>{status.rows}</strong> рядків даних.
         </p>
-        {status.contribution === 0 && (
+        {status.tables === 0 && (
           <p role="status">
             Таблиць за цією електронною адресою не знайдено. Якщо Ви є в розділі{' '}
             <Link href="/volunteers">Волонтерів</Link>, напишіть нам на{' '}

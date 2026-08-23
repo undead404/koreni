@@ -13,7 +13,16 @@ interface ParsedTableRecord {
   title: string;
 }
 
-const userContributionRefreshes = new Map<string, Promise<number>>();
+export interface KarmaContributionStats {
+  tableCount: number;
+  rowCount: number;
+}
+
+interface UserKarmaSummary extends KarmaContributionStats {
+  contribution: number;
+}
+
+const userContributionRefreshes = new Map<string, Promise<UserKarmaSummary>>();
 
 function durationSince(start: number): number {
   return Math.max(0, Math.round(performance.now() - start));
@@ -80,15 +89,21 @@ function calculateRecordContribution(record: ParsedTableRecord): number {
   return isAi ? Math.floor(tableSum * 0.1) : tableSum;
 }
 
+function countRowsContainingLetters(rows: Array<unknown[]>): number {
+  return rows.filter((row) =>
+    row.some((value) => /\p{L}/u.test(stringifyCellValue(value))),
+  ).length;
+}
+
 export function resetKarmaMetadataCache(): void {
   karmaSource.resetKarmaMetadataCache();
   userContributionRefreshes.clear();
 }
 
-async function calculateUserKarmaContribution(
+async function calculateUserKarmaSummary(
   normalizedEmail: string,
   context: KarmaCalculationLogContext,
-): Promise<number> {
+): Promise<UserKarmaSummary> {
   const startedAt = performance.now();
   logKarmaEvent('calculation-started', context, {});
   const records = await karmaSource.getCachedRecordsMetadata(context);
@@ -101,11 +116,14 @@ async function calculateUserKarmaContribution(
   });
   const csvStartedAt = performance.now();
   let total = 0;
+  let rowCount = 0;
   for (const record of matchingRecords) {
+    const rows = await karmaSource.readRows(record.tableFilePath, context);
     total += calculateRecordContribution({
       ...record,
-      rows: await karmaSource.readRows(record.tableFilePath, context),
+      rows,
     });
+    rowCount += countRowsContainingLetters(rows);
   }
   logKarmaEvent('csv-completed', context, {
     csv_count: matchingRecords.length,
@@ -118,7 +136,11 @@ async function calculateUserKarmaContribution(
     outcome: 'success',
     shared_in_flight: false,
   });
-  return total;
+  return {
+    contribution: total,
+    rowCount,
+    tableCount: matchingRecords.length,
+  };
 }
 
 export function getUserKarmaContribution(
@@ -134,10 +156,10 @@ export function getUserKarmaContribution(
   const existingRefresh = userContributionRefreshes.get(normalizedEmail);
   if (existingRefresh) {
     logKarmaEvent('calculation-shared', logContext, { shared_in_flight: true });
-    return existingRefresh;
+    return existingRefresh.then(({ contribution }) => contribution);
   }
 
-  const refresh = calculateUserKarmaContribution(normalizedEmail, logContext)
+  const refresh = calculateUserKarmaSummary(normalizedEmail, logContext)
     .catch((error: unknown) => {
       logKarmaEvent('calculation-failed', logContext, {
         error_category:
@@ -154,7 +176,45 @@ export function getUserKarmaContribution(
       userContributionRefreshes.delete(normalizedEmail);
     });
   userContributionRefreshes.set(normalizedEmail, refresh);
-  return refresh;
+  return refresh.then(({ contribution }) => contribution);
+}
+
+export function getUserKarmaContributionStats(
+  email: string,
+  context?: KarmaCalculationLogContext,
+): Promise<KarmaContributionStats> {
+  const logContext = context ?? { requestId: 'internal' };
+  const normalizedEmail = email.toLowerCase().trim();
+  if (!normalizedEmail) {
+    return Promise.resolve({ rowCount: 0, tableCount: 0 });
+  }
+
+  const existingRefresh = userContributionRefreshes.get(normalizedEmail);
+  if (existingRefresh) {
+    return existingRefresh.then(({ rowCount, tableCount }) => ({
+      rowCount,
+      tableCount,
+    }));
+  }
+
+  const refresh = calculateUserKarmaSummary(normalizedEmail, logContext)
+    .catch((error: unknown) => {
+      logKarmaEvent('calculation-failed', logContext, {
+        error_category:
+          error instanceof karmaSource.KarmaSourceUnavailableError
+            ? 'external_source_unavailable'
+            : 'internal_error',
+        error_message: safeErrorMessage(error),
+        error_name: error instanceof Error ? error.name : 'UnknownError',
+        outcome: 'failure',
+      });
+      throw error;
+    })
+    .finally(() => {
+      userContributionRefreshes.delete(normalizedEmail);
+    });
+  userContributionRefreshes.set(normalizedEmail, refresh);
+  return refresh.then(({ rowCount, tableCount }) => ({ rowCount, tableCount }));
 }
 
 export async function calculateKarmaContributions(): Promise<
