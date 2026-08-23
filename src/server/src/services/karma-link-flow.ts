@@ -6,6 +6,7 @@ import { navigatorClient } from './navigator-client.js';
 
 export interface ExecuteUserAccountLinkParameters {
   code: string;
+  contributionEmail: string | null;
   email: string;
   userId: string;
 }
@@ -17,10 +18,11 @@ export interface ExecuteUserAccountLinkResult {
 
 export async function executeUserAccountLink({
   code,
+  contributionEmail,
   email,
   userId,
 }: ExecuteUserAccountLinkParameters): Promise<ExecuteUserAccountLinkResult> {
-  const normalizedEmail = email.toLowerCase().trim();
+  const normalizedEmail = (contributionEmail ?? email).toLowerCase().trim();
 
   const calculatedTotal = await getUserKarmaContribution(normalizedEmail);
 

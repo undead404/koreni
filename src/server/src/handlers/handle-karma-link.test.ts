@@ -105,6 +105,7 @@ describe('handleKarmaLink', () => {
 
   it('invokes executeUserAccountLink and returns 200 on success', async () => {
     vi.mocked(findUserById).mockResolvedValueOnce({
+      contribution_email: 'contributor@example.com',
       email: 'test@example.com',
       id: 'user-123',
     } as never);
@@ -126,6 +127,7 @@ describe('handleKarmaLink', () => {
 
     expect(executeUserAccountLink).toHaveBeenCalledWith({
       code: 'AB12CD34EF',
+      contribution_email: 'contributor@example.com',
       email: 'test@example.com',
       userId: 'user-123',
     });

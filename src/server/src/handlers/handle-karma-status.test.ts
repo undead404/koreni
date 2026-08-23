@@ -22,6 +22,7 @@ describe('handleKarmaStatus', () => {
   it('returns zero for a successfully calculated empty contribution', async () => {
     vi.mocked(findUserById).mockResolvedValueOnce({
       email: 'missing@example.com',
+      contribution_email: null,
       id: 'user-123',
       karma_linked_at: null,
     } as never);
@@ -37,11 +38,16 @@ describe('handleKarmaStatus', () => {
       contribution: 0,
       user: { email: 'missing@example.com', karma_linked_at: null },
     });
+    expect(getUserKarmaContribution).toHaveBeenCalledWith(
+      'missing@example.com',
+      { requestId: undefined },
+    );
   });
 
   it('returns 502 when the karma source is unavailable', async () => {
     vi.mocked(findUserById).mockResolvedValueOnce({
       email: 'brute18@gmail.com',
+      contributionEmail: null,
       id: 'user-123',
       karma_linked_at: null,
     } as never);

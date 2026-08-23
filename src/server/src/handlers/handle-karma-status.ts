@@ -13,9 +13,12 @@ export default async function handleKarmaStatus(c: TranscribeContext) {
       return c.json({ user: null }, 401);
     }
 
-    const contribution = await getUserKarmaContribution(user.email, {
-      requestId: c.var.requestId,
-    });
+    const contribution = await getUserKarmaContribution(
+      user.contribution_email ?? user.email,
+      {
+        requestId: c.var.requestId,
+      },
+    );
     return c.json(
       karmaStatusResponseSchema.parse({
         contribution,

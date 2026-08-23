@@ -3,9 +3,12 @@ import database from './client.js';
 export default async function getKarmaLinkedUsers() {
   const users = await database
     .selectFrom('users')
-    .select(['email', 'karma_linked_at'])
+    .select(['email', 'contribution_email', 'karma_linked_at'])
     .where('karma_linked_at', 'is not', null)
     .execute();
 
-  return users as Array<{ email: string; karma_linked_at: string }>;
+  return users.map(({ contribution_email, email, karma_linked_at }) => ({
+    email: (contribution_email ?? email).trim().toLowerCase(),
+    karma_linked_at,
+  }));
 }

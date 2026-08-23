@@ -96,4 +96,26 @@ describe('KarmaConnectionsPage', () => {
       body: JSON.stringify({ code: 'AB12CD34EF' }),
     });
   });
+
+  it('shows contact instructions when no contribution is found', async () => {
+    vi.mocked(requestApi).mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          contribution: 0,
+          user: { email: 'user@example.com', karma_linked_at: null },
+        }),
+      ),
+    );
+
+    render(<KarmaConnectionsPage />);
+
+    expect(
+      await screen.findByText(
+        /Таблиць за цією електронною адресою не знайдено/,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'admin@koreni.org.ua' }),
+    ).toHaveAttribute('href', 'mailto:admin@koreni.org.ua');
+  });
 });

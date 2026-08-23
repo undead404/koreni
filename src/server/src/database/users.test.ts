@@ -30,6 +30,7 @@ describe('getKarmaLinkedUsers', () => {
     const mockLinkedUsers = [
       {
         email: 'opted_in@example.com',
+        contribution_email: null,
         karma_linked_at: '2026-08-22T10:00:00Z',
       },
     ];
@@ -39,6 +40,31 @@ describe('getKarmaLinkedUsers', () => {
 
     expect(mockSelectFrom).toHaveBeenCalledWith('users');
     expect(mockWhere).toHaveBeenCalledWith('karma_linked_at', 'is not', null);
-    expect(result).toEqual(mockLinkedUsers);
+    expect(result).toStrictEqual([
+      {
+        email: 'opted_in@example.com',
+        karma_linked_at: '2026-08-22T10:00:00Z',
+      },
+    ]);
+  });
+
+  it('uses the contribution email for linked users when available', async () => {
+    const { mockExecute } = (await import('./client.js')) as unknown as {
+      mockExecute: ReturnType<typeof vi.fn>;
+    };
+    mockExecute.mockResolvedValueOnce([
+      {
+        email: 'google@example.com',
+        contribution_email: '  Contributor@Example.com ',
+        karma_linked_at: '2026-08-22T10:00:00Z',
+      },
+    ]);
+
+    await expect(getKarmaLinkedUsers()).resolves.toStrictEqual([
+      {
+        email: 'contributor@example.com',
+        karma_linked_at: '2026-08-22T10:00:00Z',
+      },
+    ]);
   });
 });

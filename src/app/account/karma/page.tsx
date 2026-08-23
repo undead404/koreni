@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type SyntheticEvent, useEffect, useRef, useState } from 'react';
 
@@ -135,6 +136,15 @@ export default function KarmaConnectionsPage() {
         <p className={styles.score}>
           Ваш внесок: <strong>{status.contribution}</strong> балів
         </p>
+        {status.contribution === 0 && (
+          <p role="status">
+            Таблиць за цією електронною адресою не знайдено. Якщо Ви є в розділі{' '}
+            <Link href="/volunteers">Волонтерів</Link>, напишіть нам на{' '}
+            <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a> з
+            <strong>тієї самої</strong> електронної адреси, яку вказували під
+            час подання таблиць. Швиденько все виправимо.
+          </p>
+        )}
         {status.user.karma_linked_at ? (
           <>
             <p className={styles.success} role="status">

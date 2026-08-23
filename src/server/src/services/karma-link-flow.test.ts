@@ -49,16 +49,17 @@ describe('executeUserAccountLink', () => {
 
     const result = await executeUserAccountLink({
       userId: 'user-123',
+      contributionEmail: '  Contribution.User@Example.com  ',
       email: '  Test.User@Example.com  ',
       code: 'AB12CD34EF',
     });
 
     expect(getUserKarmaContribution).toHaveBeenCalledWith(
-      'test.user@example.com',
+      'contribution.user@example.com',
     );
     expect(navigatorClient.redeemLinkCode).toHaveBeenCalledWith({
       code: 'AB12CD34EF',
-      login: 'test.user@example.com',
+      login: 'contribution.user@example.com',
       total: 150,
     });
     expect(linkUserKarma).toHaveBeenCalledWith('user-123', expect.any(String));
@@ -74,6 +75,7 @@ describe('executeUserAccountLink', () => {
     await expect(
       executeUserAccountLink({
         userId: 'user-123',
+        contributionEmail: null,
         email: 'user@example.com',
         code: 'EXPIRED_CODE',
       }),
@@ -91,6 +93,7 @@ describe('executeUserAccountLink', () => {
     await expect(
       executeUserAccountLink({
         userId: 'user-123',
+        contributionEmail: null,
         email: 'user@example.com',
         code: 'LINKED_CODE',
       }),

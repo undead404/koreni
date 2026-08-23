@@ -37,6 +37,7 @@ export default async function handleKarmaLink(c: TranscribeContext) {
   try {
     const result = await executeUserAccountLink({
       code,
+      contributionEmail: user.contribution_email,
       email: user.email,
       userId: user.id,
     });

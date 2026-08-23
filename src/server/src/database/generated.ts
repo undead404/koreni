@@ -55,6 +55,7 @@ export interface Projects {
 }
 
 export interface Users {
+  contribution_email: string | null;
   email: string;
   google_id: string | null;
   id: string;
