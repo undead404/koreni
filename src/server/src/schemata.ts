@@ -176,3 +176,11 @@ export const karmaStatusResponseSchema = z.object({
 });
 
 export type KarmaStatusResponse = z.infer<typeof karmaStatusResponseSchema>;
+
+export const karmaLookupResponseSchema = z.object({
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type KarmaLookupResponse = z.infer<typeof karmaLookupResponseSchema>;

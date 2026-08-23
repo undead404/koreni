@@ -112,6 +112,9 @@ jobs:
       - name: Run server tests
         run: yarn exec vitest run --root src/server
         env:
+          KARMA_APP_SLUG: koreni
+          KARMA_APP_TOKEN: test-karma-app-token
+          NAVIGATOR_BASE_URL: https://www.uagenealogy.com
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
@@ -326,6 +329,9 @@ jobs:
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
             echo "TURSO_DATABASE_URL=${{ vars.TURSO_DATABASE_URL }}" >> .env
             echo "TURSO_DATABASE_TOKEN=${{ secrets.TURSO_DATABASE_TOKEN }}" >> .env
+            echo "KARMA_APP_TOKEN=${{ secrets.KARMA_APP_TOKEN }}" >> .env
+            echo "KARMA_APP_SLUG=koreni" >> .env
+            echo "NAVIGATOR_BASE_URL=https://www.uagenealogy.com" >> .env
              
             # Restart Service
             sudo systemctl restart koreni-api

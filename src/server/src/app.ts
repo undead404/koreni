@@ -5,6 +5,7 @@ import { secureHeaders } from 'hono/secure-headers';
 
 import handleKarmaLink from './handlers/handle-karma-link.js';
 import handleKarmaLinkedUsers from './handlers/handle-karma-linked-users.js';
+import handleKarmaLookup from './handlers/handle-karma-lookup.js';
 import handleKarmaStatus from './handlers/handle-karma-status.js';
 import handleSubmit from './handlers/handle-submit.js';
 import handleTranscribeGoogleAuth from './handlers/handle-transcribe-auth-google.js';
@@ -59,6 +60,7 @@ export function createApp() {
   });
 
   app.get('/api/karma/linked-users', handleKarmaLinkedUsers);
+  app.get('/api/karma/lookup', transcribeAuthMiddleware, handleKarmaLookup);
   app.get('/api/karma/status', transcribeAuthMiddleware, handleKarmaStatus);
   app.post('/api/karma/link', transcribeAuthMiddleware, handleKarmaLink);
 

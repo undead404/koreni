@@ -41,6 +41,32 @@
   background: color-mix(in srgb, var(--success-color) 12%, transparent);
 }
 
+.karmaSummary {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+}
+
+.karmaSummary div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
+  border: var(--default-border);
+  border-radius: 4px;
+}
+
+.karmaSummary dt {
+  font-weight: 600;
+}
+
+.karmaSummary dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
 .error {
   color: var(--error-color);
 }

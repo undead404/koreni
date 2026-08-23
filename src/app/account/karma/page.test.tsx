@@ -80,6 +80,17 @@ describe('KarmaConnectionsPage', () => {
           new Response(JSON.stringify({ awarded: 12, ok: true })),
         );
       }
+      if (path === '/api/karma/lookup') {
+        return Promise.resolve(
+          new Response(
+            JSON.stringify({
+              found: true,
+              serviceKarma: 12,
+              totalKarma: 42,
+            }),
+          ),
+        );
+      }
       return Promise.resolve(
         new Response(
           JSON.stringify({
@@ -99,18 +110,60 @@ describe('KarmaConnectionsPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Прив’язати акаунт' }));
 
     await waitFor(() => {
-      expect(screen.getByRole('status')).toHaveTextContent(
-        "Акаунт успішно прив'язано",
-      );
+      expect(
+        screen.getByText("Акаунт успішно прив'язано.", { exact: true }),
+      ).toBeInTheDocument();
       expect(
         screen.getByText("Акаунт успішно прив'язано."),
       ).toBeInTheDocument();
     });
-    expect(requestApi).toHaveBeenLastCalledWith('/api/karma/link', {
+    expect(requestApi).toHaveBeenCalledWith('/api/karma/link', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code: 'AB12CD34EF' }),
     });
+    expect(requestApi).toHaveBeenCalledWith('/api/karma/lookup', {
+      signal: expect.any(AbortSignal),
+    });
+    expect(await screen.findByText('Карма від Koreni')).toBeInTheDocument();
+    expect(screen.getByText('12', { selector: 'dd' })).toBeInTheDocument();
+    expect(
+      screen.getByText("Під час прив'язки нараховано 12 балів карми."),
+    ).toBeInTheDocument();
+  });
+
+  it('shows Navigator karma for a linked account', async () => {
+    vi.mocked(requestApi).mockImplementation((path) => {
+      if (path === '/api/karma/lookup') {
+        return Promise.resolve(
+          new Response(
+            JSON.stringify({
+              found: true,
+              serviceKarma: 381,
+              totalKarma: 2487,
+            }),
+          ),
+        );
+      }
+      return Promise.resolve(
+        new Response(
+          JSON.stringify({
+            tables: 2,
+            rows: 123,
+            user: {
+              email: 'user@example.com',
+              karma_linked_at: '2026-08-23T12:00:00.000Z',
+            },
+          }),
+        ),
+      );
+    });
+
+    render(<KarmaConnectionsPage />);
+
+    expect(await screen.findByText('Карма від Koreni')).toBeInTheDocument();
+    expect(screen.getByText('381', { selector: 'dd' })).toBeInTheDocument();
+    expect(screen.getByText('2487', { selector: 'dd' })).toBeInTheDocument();
   });
 
   it('shows contact instructions when no contribution is found', async () => {

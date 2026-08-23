@@ -15,3 +15,11 @@ export const karmaLinkResponseSchema = z.object({
   awarded: z.number().int().nonnegative(),
   ok: z.literal(true),
 });
+
+export const karmaLookupResponseSchema = z.object({
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type KarmaLookup = z.infer<typeof karmaLookupResponseSchema>;

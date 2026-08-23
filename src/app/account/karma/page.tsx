@@ -8,6 +8,8 @@ import requestApi, { ApiRequestError } from '@/app/services/api';
 
 import {
   karmaLinkResponseSchema,
+  type KarmaLookup,
+  karmaLookupResponseSchema,
   type KarmaStatus,
   karmaStatusResponseSchema,
 } from './schemata';
@@ -15,14 +17,20 @@ import {
 import styles from './page.module.css';
 
 type ViewState = 'loading' | 'ready' | 'submitting' | 'error';
+type LookupState = 'idle' | 'loading' | 'ready' | 'error';
 
 export default function KarmaConnectionsPage() {
   const [status, setStatus] = useState<KarmaStatus | null>(null);
   const [code, setCode] = useState('');
   const [viewState, setViewState] = useState<ViewState>('loading');
   const [message, setMessage] = useState<string | null>(null);
+  const [linkAwarded, setLinkAwarded] = useState<number | null>(null);
+  const [lookup, setLookup] = useState<KarmaLookup | null>(null);
+  const [lookupState, setLookupState] = useState<LookupState>('idle');
+  const [lookupRetryNonce, setLookupRetryNonce] = useState(0);
   const [retryNonce, setRetryNonce] = useState(0);
   const requestGeneration = useRef(0);
+  const lookupGeneration = useRef(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -61,6 +69,40 @@ export default function KarmaConnectionsPage() {
     };
   }, [retryNonce, router]);
 
+  useEffect(() => {
+    if (!status?.user.karma_linked_at) {
+      return;
+    }
+
+    const generation = ++lookupGeneration.current;
+    let mounted = true;
+    const controller = new AbortController();
+
+    const loadLookup = async () => {
+      try {
+        const response = await requestApi('/api/karma/lookup', {
+          signal: controller.signal,
+        });
+        const data = karmaLookupResponseSchema.parse(await response.json());
+        if (!mounted || generation !== lookupGeneration.current) return;
+        setLookup(data);
+        setLookupState('ready');
+      } catch {
+        if (controller.signal.aborted) return;
+        if (!mounted || generation !== lookupGeneration.current) return;
+        setLookupState('error');
+      }
+    };
+
+    void loadLookup();
+
+    return () => {
+      mounted = false;
+      controller.abort();
+      lookupGeneration.current += 1;
+    };
+  }, [lookupRetryNonce, status?.user.karma_linked_at]);
+
   const submit = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (viewState === 'submitting' || code.length !== 10) return;
@@ -75,13 +117,14 @@ export default function KarmaConnectionsPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code }),
       });
-      karmaLinkResponseSchema.parse(await response.json());
+      const data = karmaLinkResponseSchema.parse(await response.json());
       if (generation !== requestGeneration.current) return;
       if (!status) return;
       setStatus({
         ...status,
         user: { ...status.user, karma_linked_at: new Date().toISOString() },
       });
+      setLinkAwarded(data.awarded);
       setMessage("Акаунт успішно прив'язано.");
       setCode('');
       setViewState('ready');
@@ -152,6 +195,49 @@ export default function KarmaConnectionsPage() {
               {new Date(status.user.karma_linked_at).toLocaleString('uk-UA')}).
             </p>
             {message && <p className={styles.success}>{message}</p>}
+            {linkAwarded !== null && (
+              <p className={styles.success} role="status">
+                Під час прив&apos;язки нараховано {linkAwarded} балів карми.
+              </p>
+            )}
+            {(lookupState === 'loading' || lookupState === 'idle') && (
+              <p role="status">Оновлюємо дані про карму...</p>
+            )}
+            {lookupState === 'error' && (
+              <div>
+                <p className={styles.error} role="alert">
+                  Не вдалося оновити дані про карму. Спробуйте ще раз.
+                </p>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={() => {
+                    setLookupState('loading');
+                    setLookupRetryNonce((value) => value + 1);
+                  }}
+                >
+                  Оновити дані
+                </button>
+              </div>
+            )}
+            {lookupState === 'ready' && lookup?.found && (
+              <dl className={styles.karmaSummary}>
+                <div>
+                  <dt>Карма від Koreni</dt>
+                  <dd>{lookup.serviceKarma}</dd>
+                </div>
+                <div>
+                  <dt>Загальна карма</dt>
+                  <dd>{lookup.totalKarma}</dd>
+                </div>
+              </dl>
+            )}
+            {lookupState === 'ready' && lookup && !lookup.found && (
+              <p className={styles.error} role="alert">
+                Не вдалося знайти прив&apos;язку в Навігаторі. Спробуйте оновити
+                сторінку або зверніться до нас.
+              </p>
+            )}
           </>
         ) : (
           <form

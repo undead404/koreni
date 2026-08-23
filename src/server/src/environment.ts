@@ -15,6 +15,7 @@ const environmentSchema = z.object({
     }),
   ),
   KARMA_APP_TOKEN: nonEmptyString.optional(),
+  KARMA_APP_SLUG: nonEmptyString.optional(),
   KARMA_INTERNAL_TOKEN: nonEmptyString.optional(),
   NAVIGATOR_BASE_URL: nonEmptyString
     .optional()
@@ -51,6 +52,7 @@ const environment = environmentSchema.parse({
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   JWT_SECRET: process.env.JWT_SECRET,
   KARMA_APP_TOKEN: process.env.KARMA_APP_TOKEN,
+  KARMA_APP_SLUG: process.env.KARMA_APP_SLUG,
   KARMA_INTERNAL_TOKEN: process.env.KARMA_INTERNAL_TOKEN,
   NAVIGATOR_BASE_URL: process.env.NAVIGATOR_BASE_URL,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,
