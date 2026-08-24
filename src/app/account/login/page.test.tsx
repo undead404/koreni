@@ -16,11 +16,13 @@ import AccountLoginPage from './page';
 
 const mockReplace = vi.fn();
 const mockGoogleLogin = vi.fn();
+const mockSearchParameters = new URLSearchParams();
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
     replace: mockReplace,
   }),
+  useSearchParams: () => mockSearchParameters,
 }));
 
 vi.mock('@/app/services/api');
@@ -75,6 +77,7 @@ describe('AccountLoginPage', () => {
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    mockSearchParameters.delete('returnTo');
   });
 
   it('renders exactly one Google login control and does not enable One Tap', () => {
@@ -119,6 +122,34 @@ describe('AccountLoginPage', () => {
 
     expect(requestApi).not.toHaveBeenCalled();
     expect(toast.error).toHaveBeenCalledWith('Google login failed');
+  });
+
+  it('navigates to the originally requested route after login', async () => {
+    mockSearchParameters.set('returnTo', '/account/karma');
+    vi.mocked(requestApi).mockResolvedValue(
+      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+    );
+
+    render(<AccountLoginPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Simulate Success/i }));
+
+    await waitFor(() => {
+      expect(mockReplace).toHaveBeenCalledWith('/account/karma');
+    });
+  });
+
+  it('falls back to the account page for an unsafe requested route', async () => {
+    mockSearchParameters.set('returnTo', 'https://example.com');
+    vi.mocked(requestApi).mockResolvedValue(
+      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+    );
+
+    render(<AccountLoginPage />);
+    fireEvent.click(screen.getByRole('button', { name: /Simulate Success/i }));
+
+    await waitFor(() => {
+      expect(mockReplace).toHaveBeenCalledWith('/account');
+    });
   });
 
   it('handles Google SDK login failure notification', () => {

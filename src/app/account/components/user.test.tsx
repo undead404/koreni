@@ -6,11 +6,14 @@ import requestApi from '@/app/services/api';
 import UserView from './user';
 
 const mockReplace = vi.fn();
+const mockSearchParameters = new URLSearchParams();
 
 vi.mock('next/navigation', () => ({
+  usePathname: () => '/account/karma',
   useRouter: () => ({
     replace: mockReplace,
   }),
+  useSearchParams: () => mockSearchParameters,
 }));
 
 vi.mock('@/app/services/api', () => ({
@@ -62,7 +65,9 @@ describe('UserView', () => {
     render(<UserView />);
 
     await waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/account/login');
+      expect(mockReplace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma',
+      );
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
@@ -77,7 +82,9 @@ describe('UserView', () => {
     render(<UserView />);
 
     await waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/account/login');
+      expect(mockReplace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma',
+      );
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
@@ -95,7 +102,9 @@ describe('UserView', () => {
     render(<UserView />);
 
     await waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/account/login');
+      expect(mockReplace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma',
+      );
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
@@ -113,7 +122,9 @@ describe('UserView', () => {
     render(<UserView />);
 
     await waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/account/login');
+      expect(mockReplace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma',
+      );
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();

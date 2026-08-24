@@ -1,13 +1,16 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import requestApi from '@/app/services/api';
 
 import { type User, userResponseSchema } from '../schemata';
 
-import { RequestGenerationTracker } from './account-auth-state';
+import {
+  getLoginRedirectPath,
+  RequestGenerationTracker,
+} from './account-auth-state';
 import LogoutButton from './logout-button';
 
 export type AuthState =
@@ -18,6 +21,8 @@ export type AuthState =
 export default function UserView() {
   const [authState, setAuthState] = useState<AuthState>({ status: 'loading' });
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParameters = useSearchParams();
   const trackerReference = useRef(new RequestGenerationTracker());
 
   useEffect(() => {
@@ -37,7 +42,7 @@ export default function UserView() {
         if (!isMounted || !tracker.isCurrent(generation)) return;
 
         setAuthState({ status: 'unauthenticated' });
-        router.replace('/account/login');
+        router.replace(getLoginRedirectPath(pathname, searchParameters));
       }
     };
 
@@ -47,7 +52,7 @@ export default function UserView() {
       isMounted = false;
       tracker.invalidate();
     };
-  }, [router]);
+  }, [pathname, router, searchParameters]);
 
   if (authState.status === 'loading') {
     return <p>Loading...</p>;

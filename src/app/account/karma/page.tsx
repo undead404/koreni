@@ -1,10 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { type SyntheticEvent, useEffect, useRef, useState } from 'react';
 
 import requestApi, { ApiRequestError } from '@/app/services/api';
+
+import { getLoginRedirectPath } from '../components/account-auth-state';
 
 import {
   karmaLinkResponseSchema,
@@ -32,6 +34,8 @@ export default function KarmaConnectionsPage() {
   const requestGeneration = useRef(0);
   const lookupGeneration = useRef(0);
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParameters = useSearchParams();
 
   useEffect(() => {
     const generation = ++requestGeneration.current;
@@ -52,7 +56,7 @@ export default function KarmaConnectionsPage() {
         if (!mounted || generation !== requestGeneration.current) return;
         if (error instanceof ApiRequestError && error.status === 401) {
           setViewState('error');
-          router.replace('/account/login');
+          router.replace(getLoginRedirectPath(pathname, searchParameters));
           return;
         }
         setMessage('Не вдалося розрахувати внесок. Спробуйте ще раз.');
@@ -67,7 +71,7 @@ export default function KarmaConnectionsPage() {
       controller.abort();
       requestGeneration.current += 1;
     };
-  }, [retryNonce, router]);
+  }, [pathname, retryNonce, router, searchParameters]);
 
   useEffect(() => {
     if (!status?.user.karma_linked_at) {

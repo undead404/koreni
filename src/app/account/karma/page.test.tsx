@@ -13,9 +13,12 @@ import KarmaConnectionsPage from './page';
 
 const replace = vi.fn();
 const router = { replace };
+const searchParameters = new URLSearchParams();
 
 vi.mock('next/navigation', () => ({
+  usePathname: () => '/account/karma',
   useRouter: () => router,
+  useSearchParams: () => searchParameters,
 }));
 
 vi.mock('@/app/services/api', () => ({
@@ -37,6 +40,34 @@ describe('KarmaConnectionsPage', () => {
 
   afterEach(() => {
     cleanup();
+    searchParameters.delete('tab');
+  });
+
+  it('preserves the requested route when redirecting an unauthenticated user', async () => {
+    const { ApiRequestError } = await import('@/app/services/api');
+    vi.mocked(requestApi).mockRejectedValueOnce(new ApiRequestError(401));
+
+    render(<KarmaConnectionsPage />);
+
+    await waitFor(() => {
+      expect(replace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma',
+      );
+    });
+  });
+
+  it('preserves the requested route query string when redirecting', async () => {
+    searchParameters.set('tab', 'summary');
+    const { ApiRequestError } = await import('@/app/services/api');
+    vi.mocked(requestApi).mockRejectedValueOnce(new ApiRequestError(401));
+
+    render(<KarmaConnectionsPage />);
+
+    await waitFor(() => {
+      expect(replace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount%2Fkarma%3Ftab%3Dsummary',
+      );
+    });
   });
 
   it('shows contribution statistics and linking form for an unlinked account', async () => {

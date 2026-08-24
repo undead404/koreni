@@ -1,15 +1,19 @@
 'use client';
 
 import { type CredentialResponse, GoogleLogin } from '@react-oauth/google';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
 import requestApi from '@/app/services/api';
+
+import { getSafeReturnPath } from '../components/account-auth-state';
 
 import styles from './page.module.css';
 
 export default function AccountLoginPage() {
   const router = useRouter();
+  const searchParameters = useSearchParams();
+  const returnTo = getSafeReturnPath(searchParameters.get('returnTo'));
 
   const handleGoogleSuccess = async (
     credentialResponse: CredentialResponse,
@@ -27,7 +31,7 @@ export default function AccountLoginPage() {
         },
         method: 'POST',
       });
-      router.replace('/account');
+      router.replace(returnTo);
     } catch {
       toast.error('Failed to authenticate');
     }
