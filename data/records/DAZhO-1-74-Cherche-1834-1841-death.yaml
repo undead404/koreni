@@ -7,7 +7,7 @@ archiveItems:
 authorName: Ірина Будь
 authorEmail: bud.iryna@gmail.com
 date: 2026-08-21
-id: zbirna-metryka-pro-smert-czorcze-1834-1841
+id: DAZhO-1-74-Cherche-1834-1841-death
 location:
   - 51.738106
   - 24.875582
@@ -15,7 +15,7 @@ size: 142
 sources: []
 tableFilePath: data/csv/zbirna-metryka-pro-smert-czorcze-1834-1841.csv
 tableLocale: uk
-title: Збірна метрика про смерть Czorcze 1834-1841
+title: Черче – смерть, 1834-1841
 yearsRange:
   - 1834
   - 1841
