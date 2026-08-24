@@ -93,6 +93,8 @@
   right: var(--side-gap);
   z-index: 2;
   max-width: calc(100vw - 2 * var(--side-gap));
+  max-height: calc(100svh - 4rem);
+  overflow-y: auto;
   background-color: var(--bg-color);
   border: var(--default-border);
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
@@ -156,5 +158,11 @@
 
   .menuList > li {
     flex: 0 0 auto;
+  }
+}
+
+@media (orientation: landscape) and (width <= 767px) {
+  .menuList {
+    grid-template-columns: repeat(3, max-content);
   }
 }
