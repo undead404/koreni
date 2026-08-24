@@ -18,6 +18,7 @@ import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { requestLoggingMiddleware } from './middlewares/request-logging.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
 import { bugsnagMiddleware, reportError } from './services/bugsnag.js';
+import { getKarmaStatsMetadata } from './services/karma-source.js';
 import environment from './environment.js';
 import { logger } from './logger.js';
 import type { ContextVariables } from './types.js';
@@ -55,8 +56,18 @@ export function createApp() {
   // Routes
   app.post('/api/submit', apiAuthMiddleware, handleSubmit);
 
-  app.get('/api/health', (c) => {
-    return c.json({ status: 'ok' });
+  app.get('/api/health', async (c) => {
+    const statsMetadata = await getKarmaStatsMetadata();
+    if (!environment.BUILD_REVISION) {
+      return c.json({ status: 'ok' });
+    }
+    return c.json({
+      build_revision: environment.BUILD_REVISION,
+      generated_at: statsMetadata.generatedAt,
+      index_revision: statsMetadata.revision,
+      index_version: statsMetadata.version,
+      status: 'ok',
+    });
   });
 
   app.get('/api/karma/linked-users', handleKarmaLinkedUsers);

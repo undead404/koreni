@@ -219,6 +219,7 @@ jobs:
       - name: Build API project
         run: |
           yarn exec tsc --project src/server/tsconfig.json
+          yarn exec tsx src/server/src/scripts/generate-karma-stats.ts data src/server/dist/src/generated/karma-stats.json "${GITHUB_SHA}"
           cp src/server/package.json src/server/dist/
 
       - name: Install production dependencies

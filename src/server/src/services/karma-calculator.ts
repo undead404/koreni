@@ -6,13 +6,6 @@ export { KarmaSourceUnavailableError } from './karma-source.js';
 
 type KarmaCalculationLogContext = karmaSource.KarmaCalculationLogContext;
 
-interface ParsedTableRecord {
-  authorEmail: string;
-  rows: Array<unknown[]>;
-  tableFilePath: string;
-  title: string;
-}
-
 export interface KarmaContributionStats {
   tableCount: number;
   rowCount: number;
@@ -47,54 +40,6 @@ function logKarmaEvent(
   }
 }
 
-function stringifyCellValue(value: unknown): string {
-  if (typeof value === 'object') {
-    return JSON.stringify(value);
-  }
-  if (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    typeof value === 'boolean' ||
-    typeof value === 'bigint' ||
-    typeof value === 'symbol'
-  ) {
-    return value.toString();
-  }
-  return '';
-}
-
-function calculateRecordContribution(record: ParsedTableRecord): number {
-  const cellValues = new Set<string>();
-  for (const row of record.rows) {
-    for (const value of Object.values(row)) {
-      if (!value) {
-        continue;
-      }
-
-      const stringValue = stringifyCellValue(value);
-      const trimmedValue = stringValue.trim();
-      if (trimmedValue.length > 0) {
-        cellValues.add(trimmedValue);
-      }
-    }
-  }
-
-  const tableSum = [...cellValues].reduce(
-    (sum, value) => sum + value.length,
-    0,
-  );
-  const isAi =
-    record.title.startsWith('[ШІ] ') || record.title.startsWith('[ШI] ');
-
-  return isAi ? Math.floor(tableSum * 0.1) : tableSum;
-}
-
-function countRowsContainingLetters(rows: Array<unknown[]>): number {
-  return rows.filter((row) =>
-    row.some((value) => /\p{L}/u.test(stringifyCellValue(value))),
-  ).length;
-}
-
 export function resetKarmaMetadataCache(): void {
   karmaSource.resetKarmaMetadataCache();
   userContributionRefreshes.clear();
@@ -106,40 +51,22 @@ async function calculateUserKarmaSummary(
 ): Promise<UserKarmaSummary> {
   const startedAt = performance.now();
   logKarmaEvent('calculation-started', context, {});
-  const records = await karmaSource.getCachedRecordsMetadata(context);
-  const matchingRecords = records.filter(
-    (record) => record.authorEmail === normalizedEmail,
-  );
+  const stats = await karmaSource.getUserKarmaStats(normalizedEmail, context);
   logKarmaEvent('records-selected', context, {
     duration_ms: durationSince(startedAt),
-    matching_record_count: matchingRecords.length,
-  });
-  const csvStartedAt = performance.now();
-  let total = 0;
-  let rowCount = 0;
-  for (const record of matchingRecords) {
-    const rows = await karmaSource.readRows(record.tableFilePath, context);
-    total += calculateRecordContribution({
-      ...record,
-      rows,
-    });
-    rowCount += countRowsContainingLetters(rows);
-  }
-  logKarmaEvent('csv-completed', context, {
-    csv_count: matchingRecords.length,
-    duration_ms: durationSince(csvStartedAt),
+    matching_record_count: stats.tableCount,
   });
   logKarmaEvent('calculation-completed', context, {
-    csv_count: matchingRecords.length,
+    csv_count: stats.tableCount,
     duration_ms: durationSince(startedAt),
-    matching_record_count: matchingRecords.length,
+    matching_record_count: stats.tableCount,
     outcome: 'success',
     shared_in_flight: false,
   });
   return {
-    contribution: total,
-    rowCount,
-    tableCount: matchingRecords.length,
+    contribution: stats.contribution,
+    rowCount: stats.rowCount,
+    tableCount: stats.tableCount,
   };
 }
 
@@ -220,25 +147,10 @@ export function getUserKarmaContributionStats(
 export async function calculateKarmaContributions(): Promise<
   Map<string, number>
 > {
-  const metadata = await karmaSource.getCachedRecordsMetadata({
-    requestId: 'internal',
-  });
-  const records: ParsedTableRecord[] = [];
-  for (const record of metadata) {
-    records.push({
-      ...record,
-      rows: await karmaSource.readRows(record.tableFilePath, {
-        requestId: 'internal',
-      }),
-    });
-  }
+  const index = await karmaSource.getAllKarmaStats();
   const result = new Map<string, number>();
-  for (const record of records) {
-    result.set(
-      record.authorEmail,
-      (result.get(record.authorEmail) ?? 0) +
-        calculateRecordContribution(record),
-    );
+  for (const [email, stats] of Object.entries(index.users)) {
+    result.set(email, stats.contribution);
   }
   return result;
 }
