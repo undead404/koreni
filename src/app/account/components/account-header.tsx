@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 import environment from '@/app/environment';
 
@@ -75,7 +76,11 @@ export default function AccountHeader() {
           })}
         </ol>
       </nav>
-      {!isLoginPage && <UserView />}
+      {!isLoginPage && (
+        <Suspense fallback={null}>
+          <UserView />
+        </Suspense>
+      )}
     </div>
   );
 }
