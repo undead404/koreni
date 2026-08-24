@@ -27,5 +27,5 @@ You operate in two mutually exclusive zones. Before writing any code, determine 
 - Never read or modify lockfiles (`yarn.lock`).
 - Frontend Markdown specs are strictly located in `specs/`.
 - Backend Markdown specs are strictly located in `src/server/specs/`.
-- Do not commit code autonomously. Plan the architecture, execute, and await user approval before running `git commit`.
+- Do not commit code autonomously. Plan the architecture, execute, and await user approval before running `git commit`. The only exception is an explicit user invocation of `/commit` while operating under the `execute` or `build` agent.
 - When updating search inputs or URLs in React, explicitly handle debouncing and routing race conditions.

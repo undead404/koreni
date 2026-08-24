@@ -37,7 +37,7 @@ If an undeclared file must change, a required contract is ambiguous, or verifica
 
 ### Commit boundary
 
-Do not commit or push as part of implementation. The dedicated commit command is an explicit user-invoked exception and may perform its autonomous commit operation on demand.
+Do not commit or push as part of implementation. The dedicated `/commit` command may commit only when explicitly invoked by the user while this `build` agent is active.
 
 ### Final output
 
