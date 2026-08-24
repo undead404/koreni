@@ -13,12 +13,18 @@ import AccountHeader from './account-header';
 
 const mockUsePathname = vi.fn().mockReturnValue('/account');
 const mockReplace = vi.fn();
+const mockEnvironment = vi.hoisted(() => ({
+  NEXT_PUBLIC_ENABLE_TRANSCRIBE: true,
+}));
+
+vi.mock('@/app/environment', () => ({ default: mockEnvironment }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => mockUsePathname(),
   useRouter: () => ({
     replace: mockReplace,
   }),
+  useSearchParams: () => new URLSearchParams(),
 }));
 
 vi.mock('@/app/services/api', () => ({
@@ -62,6 +68,7 @@ describe('AccountHeader', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = true;
   });
 
   afterEach(() => {
@@ -90,7 +97,9 @@ describe('AccountHeader', () => {
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
 
     await waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/account/login');
+      expect(mockReplace).toHaveBeenCalledWith(
+        '/account/login?returnTo=%2Faccount',
+      );
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
@@ -186,5 +195,15 @@ describe('AccountHeader', () => {
       'href',
       '/account/transcribe',
     );
+  });
+
+  it('hides transcription breadcrumbs when the feature is disabled', () => {
+    mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = false;
+    mockUsePathname.mockReturnValue('/account/transcribe');
+
+    render(<AccountHeader />);
+
+    expect(screen.queryByText('Транскрипція')).not.toBeInTheDocument();
+    expect(screen.getByText('Кабінет')).toBeInTheDocument();
   });
 });

@@ -33,9 +33,30 @@ describe('AccountPage', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(/Authenticated as: user@example.com/i),
+        screen.getByText(/Ви увійшли як user@example.com/i),
       ).toBeInTheDocument();
     });
+  });
+
+  it('does not present contribution history on the account overview', async () => {
+    vi.mocked(requestApi).mockResolvedValue(
+      new Response(
+        JSON.stringify({ user: { email: 'user@example.com', id: '1' } }),
+        { status: 200 },
+      ),
+    );
+
+    render(<AccountPage />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { name: 'Ваш кабінет' }),
+      ).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/Мої внески/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /Переглянути карму/i }),
+    ).toBeInTheDocument();
   });
 
   it('redirects to /account/login when unauthenticated', async () => {

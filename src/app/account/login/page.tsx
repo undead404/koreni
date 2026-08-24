@@ -19,7 +19,7 @@ export default function AccountLoginPage() {
     credentialResponse: CredentialResponse,
   ) => {
     if (!credentialResponse.credential) {
-      toast.error('Google login failed');
+      toast.error('Не вдалося увійти через Google');
       return;
     }
 
@@ -33,20 +33,29 @@ export default function AccountLoginPage() {
       });
       router.replace(returnTo);
     } catch {
-      toast.error('Failed to authenticate');
+      toast.error('Не вдалося автентифікуватися');
     }
   };
 
   return (
-    <section className={styles.root}>
-      <GoogleLogin
-        onError={() => {
-          toast.error('Google login failed');
-        }}
-        onSuccess={(credentialResponse: CredentialResponse) => {
-          void handleGoogleSuccess(credentialResponse);
-        }}
-      />
-    </section>
+    <main className={styles.root}>
+      <section className={styles.card} aria-labelledby="login-title">
+        <h1 id="login-title">Вхід до кабінету</h1>
+        <p className={styles.description}>
+          Увійдіть, щоб керувати акаунтом і прив&apos;язати його до
+          Генеалогічного навігатора.
+        </p>
+        <div className={styles.googleControl}>
+          <GoogleLogin
+            onError={() => {
+              toast.error('Не вдалося увійти через Google');
+            }}
+            onSuccess={(credentialResponse: CredentialResponse) => {
+              void handleGoogleSuccess(credentialResponse);
+            }}
+          />
+        </div>
+      </section>
+    </main>
   );
 }

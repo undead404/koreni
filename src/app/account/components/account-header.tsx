@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import environment from '@/app/environment';
+
 import { isLoginRoute, normalizePathname } from './account-auth-state';
 import UserView from './user';
 
@@ -28,9 +30,11 @@ function getBreadcrumbItems(pathname: string | null): BreadcrumbItem[] {
       return [...accountItems, { label: 'Карма' }];
     }
     case '/account/transcribe': {
+      if (!environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE) return accountItems;
       return [...accountItems, { label: 'Транскрипція' }];
     }
     case '/account/transcribe/create': {
+      if (!environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE) return accountItems;
       return [
         ...accountItems,
         { href: '/account/transcribe', label: 'Транскрипція' },

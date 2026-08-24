@@ -16,6 +16,11 @@
   margin-bottom: 12px;
 }
 
+.intro {
+  margin-bottom: 24px;
+  color: var(--description-color);
+}
+
 .email,
 .score {
   margin-bottom: 16px;

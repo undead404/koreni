@@ -6,7 +6,7 @@ import environment from '@/app/environment';
 import AccountHeader from './components/account-header';
 
 export const metadata: Metadata = {
-  title: 'Authentication',
+  title: 'Кабінет',
   robots: {
     index: false,
     follow: false,

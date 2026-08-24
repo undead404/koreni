@@ -9,6 +9,15 @@
   border-bottom: var(--default-border);
 }
 
+@media (width <= 600px) {
+  .root {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 var(--side-gap);
+  }
+}
+
 .navigation {
   min-width: 0;
 }

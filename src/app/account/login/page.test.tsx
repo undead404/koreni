@@ -121,7 +121,7 @@ describe('AccountLoginPage', () => {
     );
 
     expect(requestApi).not.toHaveBeenCalled();
-    expect(toast.error).toHaveBeenCalledWith('Google login failed');
+    expect(toast.error).toHaveBeenCalledWith('Не вдалося увійти через Google');
   });
 
   it('navigates to the originally requested route after login', async () => {
@@ -157,7 +157,7 @@ describe('AccountLoginPage', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /Simulate Error/i }));
 
-    expect(toast.error).toHaveBeenCalledWith('Google login failed');
+    expect(toast.error).toHaveBeenCalledWith('Не вдалося увійти через Google');
   });
 
   it('handles API failure notification without navigating', async () => {
@@ -168,7 +168,7 @@ describe('AccountLoginPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /Simulate Success/i }));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Failed to authenticate');
+      expect(toast.error).toHaveBeenCalledWith('Не вдалося автентифікуватися');
       expect(mockReplace).not.toHaveBeenCalled();
     });
   });
@@ -215,7 +215,7 @@ describe('AccountLoginPage', () => {
     fireEvent.click(screen.getByRole('button', { name: /Simulate Success/i }));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('Failed to authenticate');
+      expect(toast.error).toHaveBeenCalledWith('Не вдалося автентифікуватися');
     });
 
     expect(screen.getByTestId('sonner-toaster')).toBeInTheDocument();

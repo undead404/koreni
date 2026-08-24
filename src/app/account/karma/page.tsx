@@ -177,9 +177,13 @@ export default function KarmaConnectionsPage() {
     <main className={styles.root}>
       <section className={styles.card} aria-labelledby="karma-title">
         <h1 id="karma-title">Карма</h1>
+        <p className={styles.intro}>
+          Тут відображається розрахунок внеску Koreni та його зв&apos;язок із
+          Генеалогічним навігатором.
+        </p>
         <p className={styles.email}>{status.user.email}</p>
         <p className={styles.score}>
-          Ви долучилися до <strong>{status.tables}</strong>{' '}
+          Ви доклалися до <strong>{status.tables}</strong>{' '}
           {status.tables === 1 ? 'таблиці' : 'таблиць'}, що містять{' '}
           <strong>{status.rows}</strong> рядків даних.
         </p>
@@ -187,7 +191,7 @@ export default function KarmaConnectionsPage() {
           <p role="status">
             Таблиць за цією електронною адресою не знайдено. Якщо Ви є в розділі{' '}
             <Link href="/volunteers">Волонтерів</Link>, напишіть нам на{' '}
-            <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a> з
+            <a href="mailto:admin@koreni.org.ua">admin@koreni.org.ua</a> з{' '}
             <strong>тієї самої</strong> електронної адреси, яку вказували під
             час подання таблиць. Швиденько все виправимо.
           </p>
