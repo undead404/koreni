@@ -1,4 +1,10 @@
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import {
+  cleanup,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import requestApi from '@/app/services/api';
@@ -24,6 +30,36 @@ vi.mock('./logout-button', () => ({
 }));
 
 describe('AccountHeader', () => {
+  interface BreadcrumbTestCase {
+    hrefs: string[];
+    labels: string[];
+    pathname: string;
+  }
+
+  const breadcrumbTestCases: BreadcrumbTestCase[] = [
+    { pathname: '/account', labels: ['Головна', 'Кабінет'], hrefs: ['/'] },
+    {
+      pathname: '/account/login',
+      labels: ['Головна', 'Кабінет', 'Вхід'],
+      hrefs: ['/', '/account'],
+    },
+    {
+      pathname: '/account/karma',
+      labels: ['Головна', 'Кабінет', 'Карма'],
+      hrefs: ['/', '/account'],
+    },
+    {
+      pathname: '/account/transcribe',
+      labels: ['Головна', 'Кабінет', 'Транскрипція'],
+      hrefs: ['/', '/account'],
+    },
+    {
+      pathname: '/account/transcribe/create',
+      labels: ['Головна', 'Кабінет', 'Транскрипція', 'Створення проєкту'],
+      hrefs: ['/', '/account', '/account/transcribe'],
+    },
+  ];
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -38,7 +74,7 @@ describe('AccountHeader', () => {
 
     render(<AccountHeader />);
 
-    expect(screen.getByText('Authentication')).toBeInTheDocument();
+    expect(screen.getByText('Кабінет')).toBeInTheDocument();
     expect(screen.getByText('Loading...')).toBeInTheDocument();
     expect(
       screen.queryByRole('button', { name: 'Log Out' }),
@@ -51,7 +87,7 @@ describe('AccountHeader', () => {
 
     render(<AccountHeader />);
 
-    expect(screen.getByText('Authentication')).toBeInTheDocument();
+    expect(screen.getByText('Кабінет')).toBeInTheDocument();
 
     await waitFor(() => {
       expect(mockReplace).toHaveBeenCalledWith('/account/login');
@@ -73,7 +109,7 @@ describe('AccountHeader', () => {
 
     render(<AccountHeader />);
 
-    expect(screen.getByText('Authentication')).toBeInTheDocument();
+    expect(screen.getByText('Кабінет')).toBeInTheDocument();
     expect(await screen.findByText('user@example.com')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Log Out' })).toBeInTheDocument();
   });
@@ -84,7 +120,7 @@ describe('AccountHeader', () => {
 
       const { unmount } = render(<AccountHeader />);
 
-      expect(screen.getByText('Authentication')).toBeInTheDocument();
+      expect(screen.getByText('Вхід')).toBeInTheDocument();
       expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
       expect(
         screen.queryByRole('button', { name: 'Log Out' }),
@@ -93,5 +129,62 @@ describe('AccountHeader', () => {
 
       unmount();
     }
+  });
+
+  it.each(breadcrumbTestCases)(
+    'renders breadcrumbs for $pathname',
+    ({ pathname, labels, hrefs }) => {
+      mockUsePathname.mockReturnValue(pathname);
+
+      render(<AccountHeader />);
+
+      const navigation = screen.getByRole('navigation', {
+        name: 'Навігація кабінету',
+      });
+      const breadcrumbItems = within(navigation).getAllByRole('listitem');
+
+      expect(breadcrumbItems.map((item) => item.textContent)).toStrictEqual(
+        labels,
+      );
+      expect(
+        within(navigation)
+          .getAllByRole('link')
+          .map((link) => link.getAttribute('href')),
+      ).toStrictEqual(hrefs);
+
+      const currentItem = breadcrumbItems.at(-1);
+      if (!currentItem) throw new Error('Expected a current breadcrumb');
+      expect(
+        within(currentItem).getByText(labels.at(-1) ?? ''),
+      ).toHaveAttribute('aria-current', 'page');
+      expect(within(currentItem).queryByRole('link')).not.toBeInTheDocument();
+    },
+  );
+
+  it('uses a safe fallback for unsupported account routes', () => {
+    mockUsePathname.mockReturnValue('/account/unknown');
+
+    render(<AccountHeader />);
+
+    const navigation = screen.getByRole('navigation', {
+      name: 'Навігація кабінету',
+    });
+    expect(
+      within(navigation)
+        .getAllByRole('listitem')
+        .map((item) => item.textContent),
+    ).toStrictEqual(['Головна', 'Кабінет']);
+  });
+
+  it('treats trailing slashes as equivalent route paths', () => {
+    mockUsePathname.mockReturnValue('/account/transcribe/create/');
+
+    render(<AccountHeader />);
+
+    expect(screen.getByText('Створення проєкту')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Транскрипція' })).toHaveAttribute(
+      'href',
+      '/account/transcribe',
+    );
   });
 });

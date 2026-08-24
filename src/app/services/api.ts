@@ -1,6 +1,16 @@
 import environment from '@/app/environment';
 import { initBugsnag } from '@/app/services/bugsnag';
 
+export class ApiRequestError extends Error {
+  public readonly status: number;
+
+  public constructor(status: number) {
+    super(`Request failed with HTTP ${status}`);
+    this.name = 'ApiRequestError';
+    this.status = status;
+  }
+}
+
 export default async function requestApi(
   path: string,
   parameters?: RequestInit,
@@ -14,7 +24,7 @@ export default async function requestApi(
       },
     );
     if (!response.ok) {
-      throw new Error('Request failed');
+      throw new ApiRequestError(response.status);
     }
     return response;
   } catch (error) {
