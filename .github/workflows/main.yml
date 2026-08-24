@@ -112,12 +112,18 @@ jobs:
       - name: Run server tests
         run: yarn exec vitest run --root src/server
         env:
+          GITHUB_REPO: owner/repo
+          GITHUB_TOKEN: test-github-token
+          JWT_SECRET: test-jwt-secret-with-at-least-32-characters
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
           OAUTH_CLIENT_ID: oauth-client-id
+          POSTHOG_HOST: https://app.posthog.com
+          POSTHOG_KEY: test-posthog-key
+          TURNSTILE_SECRET_KEY: test-turnstile-secret-key
 
   build:
     runs-on: ubuntu-latest
