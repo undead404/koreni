@@ -71,7 +71,7 @@
     "stylelint-config-standard": "^36.0.0",
     "tsx": "^4.19.3",
     "typescript": "^5",
-    "typescript-eslint": "^8.26.0",
+    "typescript-eslint": "^8.67.0",
     "typescript-plugin-css-modules": "^5.2.0",
     "vitest": "^4.1.0"
   },
