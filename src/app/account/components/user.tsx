@@ -61,7 +61,7 @@ export default function UserView() {
   if (authState.status === 'authenticated') {
     return (
       <>
-        <p title={`Authenticated as: ${authState.user.email}`}>
+        <p title={`Автентифіковані як: ${authState.user.email}`}>
           {authState.user.email}
         </p>
         <LogoutButton />

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
@@ -10,6 +11,8 @@ import { isLoginRoute, normalizePathname } from './account-auth-state';
 import UserView from './user';
 
 import styles from './account-header.module.css';
+
+import logo from '../../assets/logo.png';
 
 interface BreadcrumbItem {
   href?: string;
@@ -54,7 +57,21 @@ export default function AccountHeader() {
   const breadcrumbItems = getBreadcrumbItems(pathname);
 
   return (
-    <div className={styles.root}>
+    <header className={styles.root}>
+      <div className={styles.brandGroup}>
+        <Link href="/" className={styles.logoLink}>
+          <Image
+            src={logo}
+            alt="Логотип Коренів"
+            className="filter-inverted"
+            width={44}
+            height={44}
+          />
+        </Link>
+        <Link href="/" className={styles.searchLink}>
+          Пошук
+        </Link>
+      </div>
       <nav aria-label="Навігація кабінету" className={styles.navigation}>
         <ol className={styles.breadcrumbs}>
           {breadcrumbItems.map((item, index) => {
@@ -77,10 +94,12 @@ export default function AccountHeader() {
         </ol>
       </nav>
       {!isLoginPage && (
-        <Suspense fallback={null}>
-          <UserView />
-        </Suspense>
+        <div className={styles.userControls}>
+          <Suspense fallback={null}>
+            <UserView />
+          </Suspense>
+        </div>
       )}
-    </div>
+    </header>
   );
 }

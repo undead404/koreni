@@ -119,7 +119,9 @@ describe('AccountHeader', () => {
     render(<AccountHeader />);
 
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
-    expect(await screen.findByText('user@example.com')).toBeInTheDocument();
+    const userIdentity = await screen.findByText('user@example.com');
+    expect(userIdentity).toBeInTheDocument();
+    expect(userIdentity.parentElement).toHaveClass('userControls');
     expect(screen.getByRole('button', { name: 'Log Out' })).toBeInTheDocument();
   });
 

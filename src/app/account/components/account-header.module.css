@@ -1,20 +1,42 @@
 .root {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
+  padding: calc(var(--side-gap) / 2) var(--side-gap);
   color: var(--text-color);
   background-color: var(--bg-color);
   border-bottom: var(--default-border);
 }
 
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logoLink,
+.searchLink {
+  flex-shrink: 0;
+}
+
+.searchLink {
+  color: inherit;
+}
+
 @media (width <= 600px) {
   .root {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0;
-    padding: 0 var(--side-gap);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem 1rem;
+  }
+
+  .brandGroup {
+    grid-column: 1;
+  }
+
+  .navigation {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
 
@@ -22,12 +44,40 @@
   min-width: 0;
 }
 
+.userControls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.userControls p {
+  max-width: min(30vw, 20rem);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (width <= 600px) {
+  .userControls {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .userControls p {
+    max-width: 40vw;
+  }
+}
+
 .breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 0.5rem;
   margin: 0;
-  padding: 0.75rem 0;
+  padding: 0.5rem 0;
   list-style: none;
 }
 
