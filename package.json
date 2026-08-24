@@ -95,6 +95,7 @@
     "docker:typesense:stop": "docker stop typesense-server",
     "lint": "eslint .",
     "lint:css": "stylelint \"**/*.css\"",
+    "karma:push": "tsx src/scripts/karma-push.ts",
     "prepare": "husky",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",

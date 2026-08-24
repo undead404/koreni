@@ -1,3 +1,4 @@
+import { logger } from '../logger.js';
 import type { ProjectCreatePayload } from '../schemata.js';
 
 import database from './client.js';
@@ -25,6 +26,11 @@ export async function createProject(
       .returning(['id', 'title', 'created_at'])
       .executeTakeFirstOrThrow();
 
+    logger.info('domain.project.created', {
+      projectId: projectData.id,
+      userId,
+    });
+
     return result;
   } catch (error: unknown) {
     if (
@@ -34,6 +40,7 @@ export async function createProject(
           (error.code === 'SQLITE_CONSTRAINT_UNIQUE' ||
             error.code === 'SQLITE_CONSTRAINT')))
     ) {
+      logger.warn('domain.project.duplicate', { projectId: projectData.id });
       throw new Error('Project ID already exists');
     }
     throw error;

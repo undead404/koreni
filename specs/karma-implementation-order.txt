@@ -1,0 +1,12 @@
+1. Confirm the persistence model and linked-user state in `src/server/specs/003-karma-persistence.md`.
+2. Define shared validation schemas and inferred types in `src/server/specs/002-karma-domain-contract.md`.
+3. Define the typed Navigator transport, authentication, timeout, and retry boundary in `src/server/specs/005-karma-navigator-client.md`.
+4. Define authenticated account-link redemption and post-success persistence in `src/server/specs/006-karma-link-redeem-flow.md`.
+5. Define deterministic raw contribution calculation in `specs/071-karma-calculation-engine.md`.
+6. Define the consent-filtered source-to-Navigator contract in `specs/070-karma-source-and-sync-contract.md`.
+7. Define the scheduled daily push command and idempotent cumulative ingestion in `specs/072-karma-daily-push.md`.
+8. Define environment variables, GitHub Actions secrets, scheduling, and recovery in `src/server/specs/008-karma-operations-and-documentation.md`.
+9. Implement and verify the authenticated connections UI according to `specs/069-karma-connections-ui.md`.
+10. Run backend schema, persistence, client, link-flow, route, error, and transport tests specified by the referenced server specs.
+11. Run calculator, daily-push, workflow, and privacy-boundary tests specified by `specs/070-karma-source-and-sync-contract.md`, `specs/071-karma-calculation-engine.md`, and `specs/072-karma-daily-push.md`.
+12. Run frontend UI tests, project type checks, linting, and backend ESM validation for every modified server file.
