@@ -57,17 +57,39 @@ export function createApp() {
   app.post('/api/submit', apiAuthMiddleware, handleSubmit);
 
   app.get('/api/health', async (c) => {
-    const statsMetadata = await getKarmaStatsMetadata();
     if (!environment.BUILD_REVISION) {
-      return c.json({ status: 'ok' });
+      return c.json({
+        build_revision: null,
+        generated_at: null,
+        index_revision: null,
+        index_version: null,
+        status: 'ok',
+      });
     }
-    return c.json({
-      build_revision: environment.BUILD_REVISION,
-      generated_at: statsMetadata.generatedAt,
-      index_revision: statsMetadata.revision,
-      index_version: statsMetadata.version,
-      status: 'ok',
-    });
+
+    try {
+      const statsMetadata = await getKarmaStatsMetadata();
+      return c.json({
+        build_revision: environment.BUILD_REVISION,
+        generated_at: statsMetadata.generatedAt,
+        index_revision: statsMetadata.revision,
+        index_version: statsMetadata.version,
+        status: 'ok',
+      });
+    } catch (error) {
+      reportError(error, {
+        requestId: c.get('requestId'),
+        method: c.req.method,
+        path: c.req.path,
+      });
+      return c.json({
+        build_revision: environment.BUILD_REVISION,
+        generated_at: null,
+        index_revision: null,
+        index_version: null,
+        status: 'ok',
+      });
+    }
   });
 
   app.get('/api/karma/linked-users', handleKarmaLinkedUsers);
