@@ -27,16 +27,23 @@ const mockTable: IndexationTable = {
   sources: ['http://source1.com', 'http://source2.com'],
   tableLocale: 'uk',
   tableFilePath: 'data/test.csv',
-  archiveItems: ['F1-O1-D1'],
+  archiveItems: ['DAKO-384-10-81'],
   yearsRange: [1900, 1910],
   location: [50.45, 30.52],
 };
 
 interface JsonLdGraphNode {
   '@type': string;
+  identifier?: string | string[];
   name?: string;
   creator?: { name: string; email?: string };
+  isAccessibleForFree?: boolean;
+  isBasedOn?: {
+    identifier?: { value?: string };
+    name?: string;
+  }[];
   spatialCoverage?: { geo: { latitude: number; longitude: number } };
+  temporalCoverage?: string;
   distribution?: { name: string }[];
   datePublished?: string;
 }
@@ -54,7 +61,7 @@ describe('generate-metadata', () => {
       expect(metadata.title).toBe('Test Location');
       expect(metadata.description).toContain('Test Location (1900–1910)');
       expect(metadata.description).toContain('Індексовано 25 записів.');
-      expect(metadata.description).toContain('F1-O1-D1');
+      expect(metadata.description).toContain('DAKO-384-10-81');
 
       expect(metadata.alternates?.canonical).toBe('/test-table/1/');
       expect(metadata.alternates?.types?.prev).toBeNull();
@@ -118,6 +125,19 @@ describe('generate-metadata', () => {
       expect(jsonLdString).not.toContain('mailto:');
       expect(dataset?.spatialCoverage?.geo.latitude).toBe(50.45);
       expect(dataset?.spatialCoverage?.geo.longitude).toBe(30.52);
+      expect(dataset?.temporalCoverage).toBe('1900/1910');
+      expect(dataset?.isAccessibleForFree).toBe(true);
+      expect(dataset?.isBasedOn).toStrictEqual([
+        {
+          '@type': 'CreativeWork',
+          identifier: {
+            '@type': 'PropertyValue',
+            propertyID: 'Archive-Fonds-Opus-File',
+            value: 'DAKO-384-10-81',
+          },
+          name: 'DAKO, фонд 384, опис 10, справа 81',
+        },
+      ]);
       expect(dataset?.distribution?.[0]?.name).toBe('test.csv');
     });
 
@@ -139,6 +159,22 @@ describe('generate-metadata', () => {
       expect(dataset?.creator).toBeUndefined();
       expect(dataset?.spatialCoverage).toBeUndefined();
       expect(dataset?.datePublished).toBeUndefined();
+      expect(dataset?.temporalCoverage).toBeUndefined();
+      expect(dataset?.isBasedOn).toBeUndefined();
+    });
+
+    it('formats a single year and ignores malformed archive items', () => {
+      const table = {
+        ...mockTable,
+        archiveItems: ['not-an-archive'],
+        yearsRange: [1897],
+      };
+
+      const jsonLd = JSON.parse(generateJsonLd(table)) as JsonLdDocument;
+      const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
+
+      expect(dataset?.temporalCoverage).toBe('1897');
+      expect(dataset?.isBasedOn).toBeUndefined();
     });
   });
 });

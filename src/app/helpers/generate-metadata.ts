@@ -12,6 +12,11 @@ import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 import { PER_PAGE } from '../constants';
 import environment from '../environment';
 
+import {
+  createArchivalProvenanceList,
+  formatTemporalCoverage,
+} from './format-json-ld-metadata';
+
 const METADATA_OPTIONS = {
   siteUrl: environment.NEXT_PUBLIC_SITE,
   siteName: 'Корені',
@@ -219,6 +224,8 @@ export function generateJsonLd(item: IndexationTable): string {
         keywords,
         license: `${siteUrl}/license/`,
         name: item.title,
+        isAccessibleForFree: true,
+        isBasedOn: createArchivalProvenanceList(item.archiveItems),
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         spatialCoverage: item.location
           ? ({
@@ -230,6 +237,7 @@ export function generateJsonLd(item: IndexationTable): string {
               } satisfies GeoCoordinates,
             } satisfies Place)
           : undefined,
+        temporalCoverage: formatTemporalCoverage(item.yearsRange),
         variableMeasured: `${item.size} records`,
       },
     ],
