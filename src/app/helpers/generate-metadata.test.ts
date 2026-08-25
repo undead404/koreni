@@ -35,7 +35,7 @@ const mockTable: IndexationTable = {
 interface JsonLdGraphNode {
   '@type': string;
   name?: string;
-  creator?: { name: string; email: string };
+  creator?: { name: string; email?: string };
   spatialCoverage?: { geo: { latitude: number; longitude: number } };
   distribution?: { name: string }[];
   datePublished?: string;
@@ -59,6 +59,7 @@ describe('generate-metadata', () => {
       expect(metadata.alternates?.canonical).toBe('/test-table/1/');
       expect(metadata.alternates?.types?.prev).toBeNull();
       expect(metadata.alternates?.types?.next).toBe('/test-table/2/');
+      expect(metadata.authors).toStrictEqual([{ name: 'John Doe' }]);
     });
 
     it('generates correct metadata for page 2', () => {
@@ -112,7 +113,9 @@ describe('generate-metadata', () => {
       expect(dataset).toBeDefined();
       expect(dataset?.name).toBe('Test Location');
       expect(dataset?.creator?.name).toBe('John Doe');
-      expect(dataset?.creator?.email).toBe('john@example.com');
+      expect(dataset?.creator?.email).toBeUndefined();
+      expect(jsonLdString).not.toContain('john@example.com');
+      expect(jsonLdString).not.toContain('mailto:');
       expect(dataset?.spatialCoverage?.geo.latitude).toBe(50.45);
       expect(dataset?.spatialCoverage?.geo.longitude).toBe(30.52);
       expect(dataset?.distribution?.[0]?.name).toBe('test.csv');

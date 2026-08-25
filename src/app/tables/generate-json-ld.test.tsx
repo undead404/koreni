@@ -61,6 +61,8 @@ describe('generateJsonLd', () => {
     expect(dataset.identifier).toBe('table-1');
     expect(dataset.datePublished).toBe(new Date('2023-01-01').toISOString());
     expect(dataset.creator).toEqual({ name: 'Author Name', '@type': 'Person' });
+    expect(JSON.stringify(dataset)).not.toContain('author@example.com');
+    expect(JSON.stringify(dataset)).not.toContain('mailto:');
     expect(item.position).toBe(1);
     expect(item.url).toBe('https://koreni.test/table-1/1/');
   });

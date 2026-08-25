@@ -107,7 +107,6 @@ export function generateIndexationMetadata(
       ? [
           {
             name: authorName,
-            url: item.authorEmail ? `mailto:${item.authorEmail}` : undefined,
           },
         ]
       : undefined,
@@ -152,7 +151,6 @@ export function generateJsonLd(item: IndexationTable): string {
   const description = buildDescription(item);
 
   const authorName = item.authorName;
-  const authorEmail = item.authorEmail ?? null;
 
   const publishedISO = (() => {
     try {
@@ -198,7 +196,6 @@ export function generateJsonLd(item: IndexationTable): string {
         creator: authorName
           ? ({
               '@type': 'Person',
-              email: authorEmail || undefined,
               name: authorName,
             } satisfies Person)
           : undefined,
