@@ -340,6 +340,7 @@ jobs:
             echo "TURSO_DATABASE_URL=${{ vars.TURSO_DATABASE_URL }}" >> .env
             echo "TURSO_DATABASE_TOKEN=${{ secrets.TURSO_DATABASE_TOKEN }}" >> .env
             echo "KARMA_APP_TOKEN=${{ secrets.KARMA_APP_TOKEN }}" >> .env
+            echo "KARMA_INTERNAL_TOKEN=${{ secrets.KARMA_INTERNAL_TOKEN }}" >> .env
             echo "KARMA_APP_SLUG=koreni" >> .env
             echo "NAVIGATOR_BASE_URL=https://www.uagenealogy.com" >> .env
              
