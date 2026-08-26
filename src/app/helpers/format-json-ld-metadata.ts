@@ -47,7 +47,7 @@ export function createArchivalProvenance(
         '@type': 'ArchiveOrganization',
         name: archiveMetadata.title,
         sameAs: [
-          archiveMetadata.website,
+          ...(archiveMetadata.website ? [archiveMetadata.website] : []),
           `https://www.wikidata.org/wiki/${archiveMetadata.wikidataId}`,
         ],
       }

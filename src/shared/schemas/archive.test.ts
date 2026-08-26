@@ -29,4 +29,34 @@ describe('archiveSchema', () => {
       }),
     ).toThrow();
   });
+
+  it('accepts archive metadata with a blank website', () => {
+    expect(
+      archiveSchema.parse({
+        shortTitle: 'ДААРК',
+        title: 'Державний архів в Автономній республіці Крим',
+        website: null,
+        wikidataId: 'Q12100416',
+      }),
+    ).toStrictEqual({
+      shortTitle: 'ДААРК',
+      title: 'Державний архів в Автономній республіці Крим',
+      website: null,
+      wikidataId: 'Q12100416',
+    });
+  });
+
+  it('accepts archive metadata with no website property', () => {
+    expect(
+      archiveSchema.parse({
+        shortTitle: 'ДААРК',
+        title: 'Державний архів в Автономній республіці Крим',
+        wikidataId: 'Q12100416',
+      }),
+    ).toStrictEqual({
+      shortTitle: 'ДААРК',
+      title: 'Державний архів в Автономній республіці Крим',
+      wikidataId: 'Q12100416',
+    });
+  });
 });

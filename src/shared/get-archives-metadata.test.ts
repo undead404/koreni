@@ -43,4 +43,20 @@ describe('getArchivesMetadata', () => {
 
     await expect(getArchivesMetadata()).rejects.toThrow('filename mismatch');
   });
+
+  it('loads archive metadata with a blank website', async () => {
+    vi.mocked(getYamlFilepaths).mockResolvedValue(['/data/ДААРК.yaml']);
+    mocks.readFile.mockResolvedValue(
+      'shortTitle: ДААРК\ntitle: Державний архів в Автономній республіці Крим\nwebsite:\nwikidataId: Q12100416',
+    );
+
+    const archives = await getArchivesMetadata();
+
+    expect(archives.get('ДААРК')).toStrictEqual({
+      shortTitle: 'ДААРК',
+      title: 'Державний архів в Автономній республіці Крим',
+      website: null,
+      wikidataId: 'Q12100416',
+    });
+  });
 });
