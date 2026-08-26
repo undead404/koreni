@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАТО-486-1-91(119)
+authorName: Олена Т
+authorEmail: yurtselt@gmail.com
+date: 2026-08-26
+id: dato-486-1-91119dzvyniachabirth
+location:
+  - 49.925866
+  - 25.6579351
+size: 1185
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9K-JQZM-N?view=index&lang=uk
+tableFilePath: data/csv/dato-486-1-91119dzvyniachabirth.csv
+tableLocale: ru
+title: DATO-486-1-91(119)_Dzvyniacha_birth
+yearsRange:
+  - 1871
+  - 1899
