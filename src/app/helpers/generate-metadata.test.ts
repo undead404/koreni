@@ -32,6 +32,18 @@ const mockTable: IndexationTable = {
   location: [50.45, 30.52],
 };
 
+const mockArchives = new Map([
+  [
+    'DAKO',
+    {
+      shortTitle: 'DAKO',
+      title: 'Державний архів Київської області',
+      website: 'https://example.com/archive',
+      wikidataId: 'Q1',
+    },
+  ],
+]);
+
 interface JsonLdGraphNode {
   '@type': string;
   identifier?: string | string[];
@@ -106,7 +118,7 @@ describe('generate-metadata', () => {
 
   describe('generateJsonLd', () => {
     it('generates valid JSON-LD string', () => {
-      const jsonLdString = generateJsonLd(mockTable);
+      const jsonLdString = generateJsonLd(mockTable, 1, mockArchives);
       const jsonLd = JSON.parse(jsonLdString) as JsonLdDocument;
 
       expect(jsonLd['@context']).toBe('https://schema.org');
@@ -129,13 +141,17 @@ describe('generate-metadata', () => {
       expect(dataset?.isAccessibleForFree).toBe(true);
       expect(dataset?.isBasedOn).toStrictEqual([
         {
-          '@type': 'CreativeWork',
-          identifier: {
-            '@type': 'PropertyValue',
-            propertyID: 'Archive-Fonds-Opus-File',
-            value: 'DAKO-384-10-81',
+          '@type': 'ArchiveComponent',
+          identifier: 'DAKO-384-10-81',
+          name: 'Фонд 384, опис 10, справа 81',
+          holdingArchive: {
+            '@type': 'ArchiveOrganization',
+            name: 'Державний архів Київської області',
+            sameAs: [
+              'https://example.com/archive',
+              'https://www.wikidata.org/wiki/Q1',
+            ],
           },
-          name: 'DAKO, фонд 384, опис 10, справа 81',
         },
       ]);
       expect(dataset?.distribution?.[0]?.name).toBe('test.csv');
@@ -152,7 +168,7 @@ describe('generate-metadata', () => {
         tableFilePath: 'data/minimal.csv',
       } as IndexationTable;
 
-      const jsonLdString = generateJsonLd(minimalTable);
+      const jsonLdString = generateJsonLd(minimalTable, 1, new Map());
       const jsonLd = JSON.parse(jsonLdString) as JsonLdDocument;
 
       const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
@@ -170,11 +186,33 @@ describe('generate-metadata', () => {
         yearsRange: [1897],
       };
 
-      const jsonLd = JSON.parse(generateJsonLd(table)) as JsonLdDocument;
+      const jsonLd = JSON.parse(
+        generateJsonLd(table, 1, new Map()),
+      ) as JsonLdDocument;
       const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
 
       expect(dataset?.temporalCoverage).toBe('1897');
       expect(dataset?.isBasedOn).toBeUndefined();
+    });
+
+    it('uses blank archive values when archive metadata is unavailable', () => {
+      const table = {
+        ...mockTable,
+        archiveItems: ['UNKNOWN-384-10-81'],
+      };
+
+      const jsonLd = JSON.parse(
+        generateJsonLd(table, 1, new Map()),
+      ) as JsonLdDocument;
+      const dataset = jsonLd['@graph'].find((g) => g['@type'] === 'Dataset');
+
+      expect(dataset?.isBasedOn).toStrictEqual([
+        {
+          '@type': 'ArchiveComponent',
+          identifier: 'UNKNOWN-384-10-81',
+          name: 'Фонд 384, опис 10, справа 81',
+        },
+      ]);
     });
   });
 });

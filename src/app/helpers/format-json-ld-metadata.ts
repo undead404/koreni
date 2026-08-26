@@ -1,4 +1,6 @@
-import type { CreativeWork } from 'schema-dts';
+import type { ArchiveOrganization, CreativeWork } from 'schema-dts';
+
+import type { Archive } from '@koreni/shared/schemas/archive';
 
 export function formatTemporalCoverage(
   yearsRange: readonly number[] | undefined,
@@ -16,6 +18,7 @@ export function formatTemporalCoverage(
 
 export function createArchivalProvenance(
   archiveItem: string,
+  archives?: ReadonlyMap<string, Archive>,
 ): CreativeWork | undefined {
   const parts = archiveItem.split('-');
 
@@ -25,23 +28,48 @@ export function createArchivalProvenance(
 
   const [archive, fonds, opus, file] = parts;
 
+  if (!archives) {
+    return {
+      '@type': 'CreativeWork',
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'Archive-Fonds-Opus-File',
+        value: archiveItem,
+      },
+      name: `${archive}, фонд ${fonds}, опис ${opus}, справа ${file}`,
+    };
+  }
+
+  const archiveMetadata = archives.get(archive);
+
+  const holdingArchive: ArchiveOrganization | undefined = archiveMetadata
+    ? {
+        '@type': 'ArchiveOrganization',
+        name: archiveMetadata.title,
+        sameAs: [
+          archiveMetadata.website,
+          `https://www.wikidata.org/wiki/${archiveMetadata.wikidataId}`,
+        ],
+      }
+    : undefined;
+
   return {
-    '@type': 'CreativeWork',
-    identifier: {
-      '@type': 'PropertyValue',
-      propertyID: 'Archive-Fonds-Opus-File',
-      value: archiveItem,
-    },
-    name: `${archive}, фонд ${fonds}, опис ${opus}, справа ${file}`,
+    '@type': 'ArchiveComponent',
+    identifier: archiveItem,
+    name: `Фонд ${fonds}, опис ${opus}, справа ${file}`,
+    ...(holdingArchive ? { holdingArchive } : {}),
   };
 }
 
 export function createArchivalProvenanceList(
   archiveItems: readonly string[] | undefined,
+  archives?: ReadonlyMap<string, Archive>,
 ): CreativeWork[] | undefined {
+  if (!archiveItems) return undefined;
+
   const provenance = archiveItems
-    ?.map(createArchivalProvenance)
+    .map((archiveItem) => createArchivalProvenance(archiveItem, archives))
     .filter((item): item is CreativeWork => item !== undefined);
 
-  return provenance && provenance.length > 0 ? provenance : undefined;
+  return provenance.length > 0 ? provenance : undefined;
 }

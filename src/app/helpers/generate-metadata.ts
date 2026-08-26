@@ -7,6 +7,7 @@ import type {
   Place,
 } from 'schema-dts';
 
+import type { Archive } from '@koreni/shared/schemas/archive';
 import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import { PER_PAGE } from '../constants';
@@ -16,6 +17,7 @@ import {
   createArchivalProvenanceList,
   formatTemporalCoverage,
 } from './format-json-ld-metadata';
+import serializeJsonLd from './serialize-json-ld';
 
 const METADATA_OPTIONS = {
   siteUrl: environment.NEXT_PUBLIC_SITE,
@@ -148,10 +150,18 @@ export function generateIndexationMetadata(
   return metadata;
 }
 
-export function generateJsonLd(item: IndexationTable): string {
+export function generateJsonLd(
+  item: IndexationTable,
+  page: number,
+  archives: ReadonlyMap<string, Archive>,
+): string {
   const siteUrl = METADATA_OPTIONS.siteUrl;
-  const relativePath = `/${encodeURIComponent(item.id)}/1/`;
+  const relativePath = `/${encodeURIComponent(item.id)}/${page}/`;
   const canonical = buildCanonical(siteUrl, relativePath);
+  const datasetId = buildCanonical(
+    siteUrl,
+    `/${encodeURIComponent(item.id)}/#dataset`,
+  );
 
   const description = buildDescription(item);
 
@@ -167,8 +177,7 @@ export function generateJsonLd(item: IndexationTable): string {
     }
   })();
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const archiveItems = item.archiveItems ?? [];
+  const archiveItems = item.archiveItems;
 
   const keywords =
     archiveItems.length > 0
@@ -185,18 +194,18 @@ export function generateJsonLd(item: IndexationTable): string {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@id': `${canonical}/#webpage`,
+        '@id': `${canonical}#webpage`,
         '@type': 'WebPage',
         datePublished: publishedISO,
         description,
-        inLanguage: item.tableLocale,
+        inLanguage: 'uk',
         isPartOf: { '@id': `${siteUrl}/#website` },
-        mainEntity: { '@id': canonical },
+        mainEntity: { '@id': datasetId },
         name: item.title,
         url: canonical,
       },
       {
-        '@id': canonical,
+        '@id': datasetId,
         '@type': 'Dataset',
         creator: authorName
           ? ({
@@ -225,7 +234,7 @@ export function generateJsonLd(item: IndexationTable): string {
         license: `${siteUrl}/license/`,
         name: item.title,
         isAccessibleForFree: true,
-        isBasedOn: createArchivalProvenanceList(item.archiveItems),
+        isBasedOn: createArchivalProvenanceList(item.archiveItems, archives),
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         spatialCoverage: item.location
           ? ({
@@ -238,12 +247,12 @@ export function generateJsonLd(item: IndexationTable): string {
             } satisfies Place)
           : undefined,
         temporalCoverage: formatTemporalCoverage(item.yearsRange),
-        variableMeasured: `${item.size} records`,
       },
     ],
   };
 
-  return environment.NODE_ENV === 'development'
-    ? JSON.stringify(jsonLd, null, 2)
-    : JSON.stringify(jsonLd);
+  return serializeJsonLd(
+    jsonLd,
+    environment.NODE_ENV === 'development' ? 2 : undefined,
+  );
 }

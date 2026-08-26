@@ -5,10 +5,12 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./get-archives-metadata": "./get-archives-metadata.ts",
     "./get-table-data": "./get-table-data.ts",
     "./get-tables-metadata": "./get-tables-metadata.ts",
     "./get-yaml-filepaths": "./get-yaml-filepaths.ts",
     "./read-csv-data": "./read-csv-data.ts",
+    "./schemas/archive": "./schemas/archive.ts",
     "./schemas/import": "./schemas/import.ts",
     "./schemas/indexation-table": "./schemas/indexation-table.ts",
     "./schemas/non-empty-string": "./schemas/non-empty-string.ts",
