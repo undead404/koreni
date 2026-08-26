@@ -36,6 +36,16 @@ export default async function LicensePage() {
           </a>
           .
         </p>
+        <p>
+          Авторські статті в{' '}
+          <a href="https://github.com/undead404/koreni/tree/main/data/blog">
+            директорії <code>data/blog</code>
+          </a>{' '}
+          поширюються за ліцензією{' '}
+          <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+          Код Коренів поширюється за{' '}
+          <a href="https://opensource.org/license/mit">ліцензією MIT</a>.
+        </p>
         <div dangerouslySetInnerHTML={{ __html: licenseHTML }} />
       </article>
     </>

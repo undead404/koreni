@@ -208,6 +208,28 @@ export default function Header() {
               <ul className={clsx(styles.submenuList, 'no-disc')}>
                 <li>
                   <Link
+                    href="/blog"
+                    className={clsx(
+                      styles.menuLink,
+                      (normalizedPathname === '/blog' ||
+                        normalizedPathname.startsWith('/blog/')) &&
+                        styles.activeMenuLink,
+                    )}
+                    aria-current={
+                      normalizedPathname === '/blog' ||
+                      normalizedPathname.startsWith('/blog/')
+                        ? 'page'
+                        : undefined
+                    }
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Блог
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/about"
                     className={clsx(
                       styles.menuLink,

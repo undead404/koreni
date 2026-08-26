@@ -85,6 +85,10 @@ describe('Header component', () => {
       'href',
       '/about',
     );
+    expect(screen.getByRole('link', { name: 'Блог' })).toHaveAttribute(
+      'href',
+      '/blog',
+    );
     expect(screen.getByRole('link', { name: 'Ліцензія' })).toHaveAttribute(
       'href',
       '/license',
@@ -145,6 +149,17 @@ describe('Header component', () => {
     expect(screen.getByText('Що таке Корені?')).not.toHaveClass(
       'activeMenuLink',
     );
+  });
+
+  it('marks the blog link active on blog articles', () => {
+    vi.mocked(usePathname).mockReturnValue('/blog/how-koreni-search-works');
+    render(<Header />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+
+    const blogLink = screen.getByRole('link', { name: 'Блог' });
+    expect(blogLink).toHaveClass('activeMenuLink');
+    expect(blogLink).toHaveAttribute('aria-current', 'page');
   });
 
   it('does not render the public header in the account area', () => {
