@@ -474,3 +474,5 @@ jobs:
               echo "WARNING: No backup file found to rollback to."
             fi
           EOF
+
+# Trigger deploy
