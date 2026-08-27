@@ -53,6 +53,7 @@ describe('BlogArticlePage', () => {
     expect(screen.getByText('Rendered content')).toBeInTheDocument();
     expect(screen.getByText('const value = 1;')).toBeInTheDocument();
     expect(screen.getByText('search')).toBeInTheDocument();
+    expect(screen.getByRole('list', { name: 'Теги' })).toHaveClass('no-disc');
     expect(screen.getByTestId('comments')).toBeInTheDocument();
   });
 
