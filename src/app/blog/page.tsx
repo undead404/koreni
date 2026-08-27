@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -49,7 +50,7 @@ export default async function BlogPage() {
               </h2>
               <p>{article.description}</p>
               {article.tags && (
-                <ul className={styles.tags} aria-label="Теги">
+                <ul className={clsx(styles.tags, 'no-disc')} aria-label="Теги">
                   {article.tags.map((tag) => (
                     <li key={tag}>{tag}</li>
                   ))}
