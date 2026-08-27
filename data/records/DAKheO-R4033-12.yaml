@@ -11,7 +11,7 @@ size: 36
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-r-4033-upravlinnya-sluzhby-bezpeky-ukrayiny-v-hersonskij-oblasti/
   - https://drive.google.com/file/d/1eajOFaS00j0R2qfSUywAoUdTva3f8uoP/view?usp=sharing
-tableFilePath: public/csv/khersonska-obl-spravy-represovanykh-dakheo-r-4033-12.csv
+tableFilePath: data/csv/khersonska-obl-spravy-represovanykh-dakheo-r-4033-12.csv
 tableLocale: uk
 title: Херсонська обл. | Справи репресованих, ДАХеО ф.Р-4033 оп.12
 yearsRange:

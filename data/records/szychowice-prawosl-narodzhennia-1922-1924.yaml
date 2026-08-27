@@ -15,7 +15,7 @@ sources:
   - https://fotolubgens.lubgens.eu/index.php?/category/3563
   - https://fotolubgens.lubgens.eu/index.php?/category/3469
   - https://fotolubgens.lubgens.eu/index.php?/category/3486
-tableFilePath: public/csv/szychowice-prawosl-narodzhennia-1922-1924.csv
+tableFilePath: data/csv/szychowice-prawosl-narodzhennia-1922-1924.csv
 tableLocale: uk
 title: Шиховичі (Szychowice prawosł.) гміна Крилів Грубешівський пов. |
   народження (1922-1924)

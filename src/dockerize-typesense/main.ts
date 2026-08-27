@@ -1,6 +1,5 @@
 import axios from 'axios';
 import * as dotenv from 'dotenv';
-import _ from 'lodash';
 
 import { TYPESENSE_PORT } from './config';
 import createCollections from './create-collections';
@@ -10,8 +9,6 @@ import getTypesenseSearchKey from './get-typesense-search-key';
 import prepareDotenvBlank from './prepare-dotenv-blank';
 import startTypesense from './start-typesense';
 import stopTypesense from './stop-typesense';
-
-const { toString } = _;
 
 export default async function main() {
   try {
@@ -39,7 +36,7 @@ export default async function main() {
     await getTypesenseSearchKey(client, adminKey, isBootstrap);
   } catch (error) {
     console.error(error);
-    console.log(toString(error));
+    console.log(String(error));
     stopTypesense();
   }
 }

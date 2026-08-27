@@ -12,6 +12,7 @@ import getTypesenseClient from '../services/typesense';
 const apiKey = environment.NEXT_PUBLIC_TYPESENSE_SEARCH_KEY;
 const host = environment.NEXT_PUBLIC_TYPESENSE_HOST;
 const client = getTypesenseClient(apiKey, host);
+const PER_PAGE = 24;
 
 export function useSearch() {
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -21,6 +22,8 @@ export function useSearch() {
 
   // Tracks the active fetch sequence to prevent race conditions
   const currentRequestId = useRef(0);
+  const activeSearchKeyReference = useRef<string>('');
+  const effectiveCeilingReference = useRef<number | null>(null);
   const posthog = usePostHog();
 
   const handleSearch = useCallback(
@@ -33,6 +36,12 @@ export function useSearch() {
       // Increment ID for every new search call
       const requestId = ++currentRequestId.current;
       const normalizedQuery = value.trim();
+      const searchKey = `${normalizedQuery}|${yearFrom.trim()}|${yearTo.trim()}`;
+
+      if (searchKey !== activeSearchKeyReference.current) {
+        activeSearchKeyReference.current = searchKey;
+        effectiveCeilingReference.current = null;
+      }
 
       if (!normalizedQuery) {
         setResults([]);
@@ -56,7 +65,8 @@ export function useSearch() {
         const [hits, hitsNumber] = await search({
           client,
           page, // Pass page to API
-          perPage: 24, // Matches typical 2-col or 3-col grid layouts
+          perPage: PER_PAGE, // Matches typical 2-col or 3-col grid layouts
+          posthog,
           query: normalizedQuery,
           yearFrom,
           yearTo,
@@ -66,7 +76,26 @@ export function useSearch() {
         if (requestId !== currentRequestId.current) return;
 
         setResults(hits);
-        setResultsNumber(hitsNumber);
+
+        // Correct the pagination ceiling when a page > 1 returns empty hits
+        // but Typesense reported results exist (found > 0).
+        // Retain the smallest upper bound discovered during the active search identity.
+        if (page > 1 && hits.length === 0 && hitsNumber > 0) {
+          const upperBound = (page - 1) * PER_PAGE;
+          if (
+            effectiveCeilingReference.current === null ||
+            upperBound < effectiveCeilingReference.current
+          ) {
+            effectiveCeilingReference.current = upperBound;
+          }
+          setResultsNumber(effectiveCeilingReference.current);
+        } else {
+          const effectiveCount =
+            effectiveCeilingReference.current === null
+              ? hitsNumber
+              : Math.min(hitsNumber, effectiveCeilingReference.current);
+          setResultsNumber(effectiveCount);
+        }
 
         posthog.capture('search_results_returned', {
           query: normalizedQuery,
@@ -80,7 +109,7 @@ export function useSearch() {
         setError('Під час пошуку сталася помилка. Будь ласка, спробуйте ще.');
 
         initBugsnag().notify(error_ as NotifiableError);
-        posthog.captureException(error_ as Error);
+        posthog.captureException(error_);
       } finally {
         if (requestId === currentRequestId.current) {
           setIsLoading(false);

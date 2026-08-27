@@ -16,4 +16,4 @@ yearsRange:
   - 1830
 authorName: Наталія Сабат
 authorEmail: natalja.sab@gmail.com
-tableFilePath: public/csv/TsDIAL-201-4a-1626-Putiatychi-marriage.csv
+tableFilePath: data/csv/TsDIAL-201-4a-1626-Putiatychi-marriage.csv

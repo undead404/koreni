@@ -1,0 +1,166 @@
+/* ===== Step 1: Bottom banner ===== */
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 350;
+  background-color: var(--note-bg-color);
+  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 10%);
+  padding: 1rem;
+}
+
+@media (width >= 768px) {
+  .banner {
+    padding: 1.5rem;
+  }
+}
+
+.bannerContent {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (width >= 768px) {
+  .bannerContent {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+.bannerQuestion {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.bannerButtons {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+/* ===== Step 2: Dialog ===== */
+
+.dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 10%),
+    0 2px 4px -2px rgb(0 0 0 / 10%);
+  max-width: 90vw;
+  width: 500px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(2px);
+}
+
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 0;
+}
+
+.dialogTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: var(--description-color);
+  flex-shrink: 0;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: var(--note-bg-color);
+  color: var(--text-color);
+}
+
+.dialogBody {
+  padding: 1.25rem;
+}
+
+.dialogBody p {
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.dialogBody p:last-of-type {
+  margin-bottom: 1.25rem;
+}
+
+.dialogLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+@media (width >= 400px) {
+  .dialogLinks {
+    flex-direction: row;
+  }
+}
+
+.dialogLinks a {
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+/* Primary button link - force white text */
+.dialogLinks a[class*='btn-primary'],
+.dialogLinks a[class*='btn-primary']:visited {
+  color: #fff !important;
+}
+
+/* Outlined button link */
+.dialogLinks a[class*='btn-outlined'],
+.dialogLinks a[class*='btn-outlined']:visited {
+  color: var(--text-color) !important;
+}
+
+.dialogLinks a:hover,
+.dialogLinks a:focus {
+  text-decoration: none;
+}

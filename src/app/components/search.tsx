@@ -36,6 +36,27 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
     void handleSearch(activeQuery, activeYearFrom, activeYearTo, currentPage);
   }, [activeQuery, activeYearFrom, activeYearTo, currentPage, handleSearch]);
 
+  // Auto-retreat from empty pages caused by Typesense found-count over-approximation.
+  // When a page > 1 returns empty hits but the corrected ceiling is lower,
+  // silently redirect to the last valid page (page - 1).
+  useEffect(() => {
+    if (rest.resultsNumber > 0 && currentPage > totalPages && !rest.isLoading) {
+      const newParameters = new URLSearchParams(searchParameters.toString());
+      newParameters.set('page', totalPages.toString());
+      router.replace(`${pathname}?${newParameters.toString()}`, {
+        scroll: false,
+      });
+    }
+  }, [
+    rest.resultsNumber,
+    currentPage,
+    totalPages,
+    rest.isLoading,
+    pathname,
+    router,
+    searchParameters,
+  ]);
+
   // Debounce the URL update. This prevents spamming Next.js router history.
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -82,7 +103,9 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
       }
     }, 400); // 400ms is the standard optimal threshold for text input debouncing
 
-    return () => { clearTimeout(timeoutId); };
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [
     filters,
     activeQuery,

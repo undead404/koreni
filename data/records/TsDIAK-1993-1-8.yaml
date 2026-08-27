@@ -10,7 +10,7 @@ location:
 size: 66
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-JQY1-TSSV-R?view=explore&groupId=TH-7787-133196-56363-5&grid=on&lang=en
-tableFilePath: public/csv/mk-sl-petrovskaia-1733.csv
+tableFilePath: data/csv/mk-sl-petrovskaia-1733.csv
 tableLocale: ru
 title: МК сл. Петровська 1733
 yearsRange:

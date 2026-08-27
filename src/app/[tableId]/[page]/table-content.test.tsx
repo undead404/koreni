@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { IndexationTable } from '@/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import TableContent from './table-content';
 
@@ -36,7 +36,7 @@ vi.mock('@/app/components/details', () => ({
     </div>
   ),
 }));
-vi.mock('@/app/components/index-table', () => ({
+vi.mock('@/app/components/index-table-with-parameters', () => ({
   default: () => <div data-testid="index-table" />,
 }));
 vi.mock('@/app/components/map-wrapper', () => ({
@@ -64,7 +64,7 @@ const mockTableMetadata: IndexationTable = {
   yearsRange: [1900, 1910],
   archiveItems: ['Item 1', 'Item 2'],
   location: [50, 30] as [number, number],
-  tableFilePath: 'public/csv/table1.csv',
+  tableFilePath: 'data/csv/table1.csv',
   tableLocale: 'uk' as const,
   size: 100,
 };

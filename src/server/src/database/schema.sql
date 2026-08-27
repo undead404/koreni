@@ -3,8 +3,10 @@ CREATE TABLE `users` (
 	`id` text PRIMARY KEY NOT NULL,
 	`google_id` text UNIQUE,
 	`email` text NOT NULL UNIQUE,
+	`contribution_email` text,
 	`is_admin` numeric DEFAULT FALSE NOT NULL,
-	`token_version` integer DEFAULT 1 NOT NULL
+	`token_version` integer DEFAULT 1 NOT NULL,
+	`karma_linked_at` text
 );
 CREATE TABLE `projects` (
 	`id` text PRIMARY KEY NOT NULL,
@@ -31,5 +33,23 @@ CREATE TABLE `project_images` (
 	`width` integer NOT NULL,
 	`created_at` integer DEFAULT unixepoch() NOT NULL,
 	`blurhash` text NOT NULL,
-	CONSTRAINT `belongs_to_project` FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE
+	`transcription` text,
+	`updated_at` integer DEFAULT unixepoch() NOT NULL,
+	`source_id` text,
+	`crop_x` real,
+	`side` text,
+	`is_active` integer DEFAULT 1 NOT NULL,
+	CONSTRAINT `belongs_to_project` FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `belongs_to_source` FOREIGN KEY (`source_id`) REFERENCES `project_image_sources`(`id`)
+);
+CREATE TABLE `project_image_sources` (
+	`project_id` text NOT NULL,
+	`storage_key` text NOT NULL,
+	`height` integer NOT NULL,
+	`blurhash` text NOT NULL,
+	`page_count` integer DEFAULT 1 NOT NULL,
+	`width` integer NOT NULL,
+	`id` text PRIMARY KEY,
+	`created_at` integer DEFAULT 0 NOT NULL,
+	CONSTRAINT `source_belongs_to_project` FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE
 );

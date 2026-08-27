@@ -18,17 +18,20 @@ export function useReverseGeocode(locationValue?: string | null) {
       return;
     }
 
+    const abortController = new AbortController();
     setStatus('loading');
     const timeoutId = setTimeout(() => {
       try {
         const coords = coordinatesStringAsTupleSchema.parse(locationValue);
-        reverseGeocode(coords)
+        reverseGeocode(coords, abortController)
           .then((result) => {
+            if (abortController.signal.aborted) return;
             setLocation(result || locationValue);
             setStatus('idle');
             return;
           })
           .catch((error: unknown) => {
+            if (abortController.signal.aborted) return;
             initBugsnag().notify(error as Error);
             posthog.capture('locationiq_reverse_geocode_error', {
               error: error instanceof Error ? error.message : String(error),
@@ -43,6 +46,7 @@ export function useReverseGeocode(locationValue?: string | null) {
     }, 500);
 
     return () => {
+      abortController.abort();
       clearTimeout(timeoutId);
     };
   }, [locationValue, posthog]);

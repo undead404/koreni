@@ -4,13 +4,14 @@
     "esModuleInterop": true,
     "incremental": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@koreni/shared": ["./src/shared/index.ts"]
     },
     "plugins": [
       {
@@ -23,7 +24,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2017",
+    "target": "ES2022",
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "exclude": ["node_modules", "src/server"],
@@ -33,6 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next-env.d.ts",
-    "build/types/**/*.ts"
+    "build/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ]
 }

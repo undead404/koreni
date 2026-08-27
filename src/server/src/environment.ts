@@ -7,13 +7,22 @@ dotenv.config();
 
 const environmentSchema = z.object({
   BUGSNAG_API_API_KEY: nonEmptyString.optional(),
+  BUILD_REVISION: nonEmptyString.optional().default('development'),
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
+  KARMA_DATA_ROOT: nonEmptyString.optional(),
+  KARMA_STATS_PATH: nonEmptyString.optional(),
   JWT_SECRET: z.string().check(
     z.minLength(32, {
       error: 'JWT_SECRET must be at least 32 bytes of cryptographic entropy',
     }),
   ),
+  KARMA_APP_TOKEN: nonEmptyString.optional(),
+  KARMA_APP_SLUG: nonEmptyString.optional(),
+  KARMA_INTERNAL_TOKEN: nonEmptyString.optional(),
+  NAVIGATOR_BASE_URL: nonEmptyString
+    .optional()
+    .default('https://www.uagenealogy.com'),
   NEXT_PUBLIC_SITE: nonEmptyString,
   NODE_ENV: z
     .enum(['development', 'production', 'test'])
@@ -47,9 +56,16 @@ const environmentSchema = z.object({
 
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
+  BUILD_REVISION: process.env.BUILD_REVISION,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
+  KARMA_DATA_ROOT: process.env.KARMA_DATA_ROOT,
+  KARMA_STATS_PATH: process.env.KARMA_STATS_PATH,
   JWT_SECRET: process.env.JWT_SECRET,
+  KARMA_APP_TOKEN: process.env.KARMA_APP_TOKEN,
+  KARMA_APP_SLUG: process.env.KARMA_APP_SLUG,
+  KARMA_INTERNAL_TOKEN: process.env.KARMA_INTERNAL_TOKEN,
+  NAVIGATOR_BASE_URL: process.env.NAVIGATOR_BASE_URL,
   NEXT_PUBLIC_SITE: process.env.NEXT_PUBLIC_SITE,
   NODE_ENV: process.env.NODE_ENV,
   OAUTH_CLIENT_ID: process.env.OAUTH_CLIENT_ID,

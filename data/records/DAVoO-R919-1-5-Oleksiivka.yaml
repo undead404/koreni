@@ -9,7 +9,7 @@ location:
   - 24.9704566
 size: 27
 sources: []
-tableFilePath: public/csv/oleksiivka-deportovani-z-polshchi-1946.csv
+tableFilePath: data/csv/oleksiivka-deportovani-z-polshchi-1946.csv
 tableLocale: uk
 title: Олексіївка, Камінь-Каширський р-н, Волинська обл. | Депортовані з Польщі (1946)
 yearsRange:

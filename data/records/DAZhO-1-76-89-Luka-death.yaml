@@ -9,7 +9,7 @@ location:
   - 28.8175764
 size: 31
 sources: []
-tableFilePath: public/csv/dazho-1-76-89-lukadeath.csv
+tableFilePath: data/csv/dazho-1-76-89-lukadeath.csv
 tableLocale: ru
 title: Лука (Житомирська) – смерть, 1846
 yearsRange:

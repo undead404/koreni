@@ -49,14 +49,11 @@ export const projectCreatePayloadSchema = z.object({
   sources: z.array(z.string()),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
-  type: z.enum(['table', 'text', 'confession-list', 'parish-register']),
-  yearsRange: z.union(
-    [z.tuple([yearSchema]), z.tuple([yearSchema, yearSchema])],
-    {
-      message:
-        'Years range must be a valid pair of numbers, or a single number',
-    },
-  ),
+  type: z.string().optional(),
+  yearsRange: z.union([
+    z.tuple([z.number(), z.number()]),
+    z.tuple([z.number()]),
+  ]),
 });
 
 export type ProjectCreatePayload = z.infer<typeof projectCreatePayloadSchema>;
@@ -90,3 +87,115 @@ export type Jwt = z.infer<typeof jwtSchema>;
 export const r2UploadSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
 });
+export const karmaLinkedUserSchema = z.object({
+  email: z.email(),
+  karma_linked_at: z.string(),
+});
+
+export const karmaLinkedUsersResponseSchema = z.object({
+  users: z.array(karmaLinkedUserSchema),
+});
+
+export type KarmaLinkedUser = z.infer<typeof karmaLinkedUserSchema>;
+export type KarmaLinkedUsersResponse = z.infer<
+  typeof karmaLinkedUsersResponseSchema
+>;
+
+export const navigatorLinkRedeemPayloadSchema = z.object({
+  code: z.string().min(1),
+  login: z.email(),
+  total: z.number().int().nonnegative().optional(),
+});
+
+export type NavigatorLinkRedeemPayload = z.infer<
+  typeof navigatorLinkRedeemPayloadSchema
+>;
+
+export const navigatorLinkRedeemResponseSchema = z.object({
+  ok: z.literal(true),
+  awarded: z.number().int().nonnegative(),
+});
+
+export type NavigatorLinkRedeemResponse = z.infer<
+  typeof navigatorLinkRedeemResponseSchema
+>;
+
+export const navigatorIngestPayloadSchema = z.object({
+  accounts: z.array(
+    z.object({
+      login: z.email(),
+      total: z.number().int().nonnegative(),
+    }),
+  ),
+});
+
+export type NavigatorIngestPayload = z.infer<
+  typeof navigatorIngestPayloadSchema
+>;
+
+export const navigatorIngestResponseSchema = z.object({
+  synced: z.number().int().nonnegative(),
+  awarded: z.number().int().nonnegative(),
+  unknown: z.array(z.string()),
+});
+
+export type NavigatorIngestResponse = z.infer<
+  typeof navigatorIngestResponseSchema
+>;
+
+export const navigatorErrorResponseSchema = z.object({
+  error: z.string(),
+});
+
+export type NavigatorErrorResponse = z.infer<
+  typeof navigatorErrorResponseSchema
+>;
+
+export const navigatorLookupPayloadSchema = z.object({
+  service: nonEmptyString,
+  users: z.array(z.string()),
+});
+
+export type NavigatorLookupPayload = z.infer<
+  typeof navigatorLookupPayloadSchema
+>;
+
+export const navigatorLookupResultItemSchema = z.object({
+  user: z.string(),
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type NavigatorLookupResultItem = z.infer<
+  typeof navigatorLookupResultItemSchema
+>;
+
+export const navigatorLookupResponseSchema = z.object({
+  service: z.string(),
+  name: z.string(),
+  results: z.array(navigatorLookupResultItemSchema),
+});
+
+export type NavigatorLookupResponse = z.infer<
+  typeof navigatorLookupResponseSchema
+>;
+
+export const karmaStatusResponseSchema = z.object({
+  tables: z.number().int().nonnegative(),
+  rows: z.number().int().nonnegative(),
+  user: z.object({
+    email: z.email(),
+    karma_linked_at: z.string().nullable(),
+  }),
+});
+
+export type KarmaStatusResponse = z.infer<typeof karmaStatusResponseSchema>;
+
+export const karmaLookupResponseSchema = z.object({
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type KarmaLookupResponse = z.infer<typeof karmaLookupResponseSchema>;

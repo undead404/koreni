@@ -1,6 +1,6 @@
 import z, { type ZodArray, type ZodNumber } from 'zod';
 
-import { nonEmptyString } from '@/shared/schemas/non-empty-string';
+import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
 
 export const contributeFormSchema = z.object({
   archiveItems: z

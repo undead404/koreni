@@ -9,7 +9,7 @@ location:
   - 28.832007
 size: 97
 sources: []
-tableFilePath: public/csv/dazho-1-76-89-levkivdeath.csv
+tableFilePath: data/csv/dazho-1-76-89-levkivdeath.csv
 tableLocale: ru
 title: Левків (Глибочицький) – смерть, 1846
 yearsRange:

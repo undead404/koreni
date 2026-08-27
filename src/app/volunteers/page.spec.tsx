@@ -110,7 +110,7 @@ describe('VolunteersPage', () => {
   });
 
   it('should render empty state when no volunteers', async () => {
-    vi.mocked(getVolunteers).mockResolvedValue([] as any);
+    vi.mocked(getVolunteers).mockResolvedValue([]);
 
     const jsx = await VolunteersPage();
     render(jsx);

@@ -3,6 +3,7 @@ import { createMiddleware } from 'hono/factory';
 
 import environment from '../environment.js';
 import verifyToken from '../helpers/verify-token.js';
+import { logger } from '../logger.js';
 import type { ContextVariables } from '../types.js';
 
 export const transcribeAuthMiddleware = createMiddleware<{
@@ -14,6 +15,7 @@ export const transcribeAuthMiddleware = createMiddleware<{
   const token = getCookie(c, 'auth_session');
 
   if (!token) {
+    logger.warn('security.session.missing', { path: c.req.path });
     return c.json({ user: null }, 401);
   }
 
@@ -23,6 +25,7 @@ export const transcribeAuthMiddleware = createMiddleware<{
     c.set('isAdmin', payload.isAdmin);
     await next();
   } catch {
+    logger.warn('security.session.invalid', { path: c.req.path });
     deleteCookie(c, 'auth_session', {
       path: '/',
       secure: environment.NODE_ENV === 'production',

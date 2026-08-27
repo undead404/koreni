@@ -35,7 +35,7 @@ Fields:
 
 ### Processing
 
-Use `src/server/node_modules/kysely-codegen/dist/db.d.ts` to learn database types.
+Use `src/server/src/database/generated.ts` to learn database types.
 
 1. Create a database file `src/server/src/database/create-project.ts`, saving the project data to the database.
 2. Create a request schema in `src/server/src/schemata.ts` – `projectCreatePayloadSchema`.

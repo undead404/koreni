@@ -5,8 +5,25 @@ permissions:
 on:
   pull_request:
     paths:
-      - './**'
-      - 'src/**'
+      - '.github/workflows/check-pr.yml'
+      - '.prettierrc.json'
+      - '.stylelintrc.json'
+      - 'eslint.config.mjs'
+      - 'next.config.ts'
+      - 'package.json'
+      - 'yarn.lock'
+      - 'src/server/package.json'
+      - 'src/server/tsconfig.json'
+      - 'src/server/vitest.config.mts'
+      - 'tsconfig.json'
+      - 'vitest.config.mts'
+      - 'vitest.setup.ts'
+      - 'src/app/**'
+      - 'src/server/**'
+      - 'src/shared/**'
+      - 'src/types/**'
+      - 'src/populate-typesense/**'
+      - 'src/dockerize-typesense/**'
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -20,21 +37,47 @@ jobs:
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-
-      - name: Install server dependencies
-        run: yarn --frozen-lockfile --prefer-offline
-        working-directory: src/server
-
-      - name: Generate Kysely types
-        run: yarn exec kysely-codegen --dialect libsql
-        working-directory: src/server
-        env:
-          DATABASE_URL: '${{ vars.TURSO_DATABASE_URL }}?authToken=${{ secrets.TURSO_DATABASE_TOKEN }}'
+        run: yarn install --immutable
 
       - name: Lint
         run: yarn lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up tools via Mise
+        uses: jdx/mise-action@v4
+
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Type check
+        run: yarn typecheck
 
   test:
     runs-on: ubuntu-latest
@@ -46,11 +89,21 @@ jobs:
       - name: Set up tools via Mise
         uses: jdx/mise-action@v4
 
-      - name: Install dependencies
-        run: yarn --frozen-lockfile --prefer-offline
+      - name: Cache yarn dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
-      - name: Run tests
-        run: yarn test
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run frontend tests
+        run: yarn test --run
         env:
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
@@ -59,3 +112,23 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          NEXT_PUBLIC_OAUTH_CLIENT_ID: oauth-client-id
+
+      - name: Run server tests
+        run: yarn exec vitest run --root src/server
+        env:
+          KARMA_APP_SLUG: koreni
+          KARMA_APP_TOKEN: test-karma-app-token
+          NAVIGATOR_BASE_URL: https://www.uagenealogy.com
+          GITHUB_REPO: owner/repo
+          GITHUB_TOKEN: github-token
+          JWT_SECRET: supersecretjwtsecretthatisatleast32byteslong
+          NEXT_PUBLIC_GITHUB_OWNER: owner
+          NEXT_PUBLIC_GITHUB_REPO: repo
+          NEXT_PUBLIC_SITE: site
+          NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
+          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
+          OAUTH_CLIENT_ID: oauth-client-id
+          POSTHOG_HOST: posthog-host
+          POSTHOG_KEY: posthog-key
+          TURNSTILE_SECRET_KEY: turnstile-secret-key

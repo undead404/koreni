@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: min(520px, 60svh);
+  padding: 48px var(--side-gap);
+}
+
+.card {
+  width: min(100%, 440px);
+  padding: 32px;
+  border: var(--default-border);
+  border-radius: 8px;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.card h1 {
+  margin-bottom: 16px;
+}
+
+.description {
+  margin-bottom: 24px;
+  color: var(--description-color);
+}
+
+.googleControl {
+  display: flex;
+  justify-content: center;
+}
+
+@media (width <= 480px) {
+  .card {
+    padding: 24px 16px;
+  }
+}

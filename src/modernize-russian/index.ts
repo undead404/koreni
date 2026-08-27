@@ -27,33 +27,39 @@ const changedFiles = execSync('git diff --name-only origin/main...HEAD')
   .filter(Boolean);
 const yamlFiles = changedFiles.filter((f) => f.endsWith('.yaml'));
 if (yamlFiles.length === 0) {
-  console.log(changedFiles);
-  console.error('No YAML file changed');
+  console.error(
+    `Expected exactly 1 YAML file in data/records/, found 0. Changed files: ${changedFiles.join(', ')}`,
+  );
   process.exit(1);
 }
 if (yamlFiles.length !== 1) {
-  console.log(yamlFiles);
-  console.error('More than one YAML file changed');
+  console.error(
+    `Expected exactly 1 YAML file, found ${yamlFiles.length}: ${yamlFiles.join(', ')}. Each PR must contain exactly one data contribution.`,
+  );
   process.exit(1);
 }
 const yamlFile = yamlFiles[0];
 
 const csvFiles = changedFiles.filter((f) => f.endsWith('.csv'));
 if (csvFiles.length === 0) {
-  console.log(changedFiles);
-  console.error('No CSV file changed');
+  console.error(
+    `Expected exactly 1 CSV file in data/csv/, found 0. Changed files: ${changedFiles.join(', ')}`,
+  );
   process.exit(1);
 }
 if (csvFiles.length !== 1) {
-  console.log(csvFiles);
-  console.error('More than one CSV file changed');
+  console.error(
+    `Expected exactly 1 CSV file, found ${csvFiles.length}: ${csvFiles.join(', ')}.`,
+  );
   process.exit(1);
 }
 
 const tableMetadata = yaml.parse(await readFile(yamlFile, 'utf8')) as unknown;
 const table = indexationTableSchema.parse(tableMetadata);
 if (table.tableLocale !== 'ru') {
-  console.error('Table is not in Russian');
+  console.log(
+    `Table '${table.id}' has locale '${table.tableLocale}', not 'ru'. Skipping orthography normalization.`,
+  );
   process.exit(0);
 }
 
@@ -64,6 +70,7 @@ const csvContent = await readFile(csvFile, 'utf8');
 const firstLineEnd = csvContent.indexOf('\n');
 const firstLine = csvContent.slice(0, firstLineEnd);
 let csvContentWithoutFirstLine = csvContent.slice(firstLineEnd + 1);
+const originalContent = csvContentWithoutFirstLine;
 for (const [old, new_] of REPLACEMENTS) {
   csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(old, new_);
 }
@@ -73,3 +80,11 @@ csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(
   '$1',
 );
 await writeFile(csvFile, `${firstLine}\n${csvContentWithoutFirstLine}`);
+
+if (csvContentWithoutFirstLine === originalContent) {
+  console.log(
+    `No obsolete Russian characters found in '${csvFile}'. Normalization complete.`,
+  );
+} else {
+  console.log(`Normalized pre-reform Russian orthography in '${csvFile}'.`);
+}

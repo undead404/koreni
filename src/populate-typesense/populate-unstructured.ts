@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { chunk } from 'es-toolkit';
 
 import convertRow from './convert-row.js';
 import importBatch from './import-batch.js';
@@ -14,7 +14,7 @@ export default async function populateTypesense(
   const dataWithExtraFields: RowForImport[] = data.map((row, index) =>
     convertRow(row, index, table, location),
   );
-  const chunks = _.chunk(dataWithExtraFields, CHUNK_SIZE);
+  const chunks = chunk(dataWithExtraFields, CHUNK_SIZE);
   let processedSize = 0;
   for (const [index, chunk] of chunks.entries()) {
     console.log(`Chunk # ${index + 1}`);

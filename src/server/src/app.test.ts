@@ -1,6 +1,20 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createApp } from './app.js';
+
+const environment = vi.hoisted(
+  (): {
+    BUILD_REVISION: string | undefined;
+    NEXT_PUBLIC_SITE: string;
+    PORT: number;
+  } => ({
+    BUILD_REVISION: 'test-revision',
+    NEXT_PUBLIC_SITE: 'https://example.com',
+    PORT: 3000,
+  }),
+);
+const getKarmaStatsMetadata = vi.hoisted(() => vi.fn());
+const reportError = vi.hoisted(() => vi.fn());
 
 vi.mock('@hono/node-server/conninfo', () => ({
   getConnInfo: vi.fn().mockReturnValue({
@@ -26,25 +40,81 @@ vi.mock('./middlewares/rate-limiter', () => ({
 
 vi.mock('./services/posthog');
 
+vi.mock('./services/karma-source.js', () => ({
+  getKarmaStatsMetadata,
+}));
+
+vi.mock('./services/bugsnag.js', () => ({
+  bugsnagMiddleware: undefined,
+  reportError,
+}));
+
 vi.mock('./database/client', () => ({
   default: {},
 }));
 
-vi.mock('./environment', () => ({
-  default: {
-    NEXT_PUBLIC_SITE: 'https://example.com',
-    PORT: 3000,
-    TURSO_DATABASE_URL: 'http://127.0.0.1:8080',
-    TURSO_DATABASE_TOKEN: 'dummy-token',
-  },
+vi.mock('./environment.js', () => ({
+  default: environment,
 }));
 
 describe('App Factory', () => {
+  beforeEach(() => {
+    environment.BUILD_REVISION = 'test-revision';
+    getKarmaStatsMetadata.mockReset();
+    getKarmaStatsMetadata.mockResolvedValue({
+      generatedAt: '2026-08-24T18:00:00.000Z',
+      revision: 'test-index-revision',
+      version: 1,
+    });
+    reportError.mockReset();
+  });
+
   it('should create an app that handles health check', async () => {
     const app = createApp();
     const response = await app.request('/api/health');
     expect(response.status).toBe(200);
-    expect(await response.json()).toEqual({ status: 'ok' });
+    expect(await response.json()).toEqual({
+      build_revision: 'test-revision',
+      generated_at: '2026-08-24T18:00:00.000Z',
+      index_revision: 'test-index-revision',
+      index_version: 1,
+      status: 'ok',
+    });
+    expect(getKarmaStatsMetadata).toHaveBeenCalledOnce();
+  });
+
+  it('should return blank statistics when the index is unavailable', async () => {
+    getKarmaStatsMetadata.mockRejectedValue(new Error('index unavailable'));
+    const app = createApp();
+
+    const response = await app.request('/api/health');
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      build_revision: 'test-revision',
+      generated_at: null,
+      index_revision: null,
+      index_version: null,
+      status: 'ok',
+    });
+    expect(reportError).toHaveBeenCalledOnce();
+  });
+
+  it('should return blank health metadata without a build revision', async () => {
+    environment.BUILD_REVISION = undefined;
+    const app = createApp();
+
+    const response = await app.request('/api/health');
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      build_revision: null,
+      generated_at: null,
+      index_revision: null,
+      index_version: null,
+      status: 'ok',
+    });
+    expect(getKarmaStatsMetadata).not.toHaveBeenCalled();
   });
 
   it('should handle 404 for undefined routes', async () => {

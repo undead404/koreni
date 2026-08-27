@@ -10,7 +10,7 @@ location:
 size: 117
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QS7-8937-9CF5?view=explore&groupId=TH-1961-29851-6071-30&lang=uk
-tableFilePath: public/csv/oleshky-shliuby-1792.csv
+tableFilePath: data/csv/oleshky-shliuby-1792.csv
 tableLocale: uk
 title: Олешки, Дніпровський пов. Таврійська обл. | шлюби (1792)
 yearsRange:

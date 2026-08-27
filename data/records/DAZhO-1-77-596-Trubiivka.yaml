@@ -10,7 +10,7 @@ location:
 size: 327
 sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHK-V7H6-MCB7-F?view=explore&groupId=TH-7746-142548-18980-27&lang=uk
-tableFilePath: public/csv/trubiivka-1888-rik-dazho-1-77-596.csv
+tableFilePath: data/csv/trubiivka-1888-rik-dazho-1-77-596.csv
 tableLocale: uk
 title: Трубіївка 1888 рік ДАЖО 1-77-596
 yearsRange:

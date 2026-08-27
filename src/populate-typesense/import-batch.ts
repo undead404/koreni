@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { chunk } from 'es-toolkit';
 
 import calculatePayloadSizeInBytes from './calculate-payload-size-in-bytes';
 import type { RowForImport } from './types';
@@ -22,7 +22,7 @@ export default async function importBatch(
       );
     }
     console.log(`Batch too big: ${batch.length}. Splitting it in halves.`);
-    const chunks = _.chunk(batch, Math.trunc(batch.length / 2));
+    const chunks = chunk(batch, Math.trunc(batch.length / 2));
     for (const chunk of chunks) {
       processedSize += await importBatch(collectionName, chunk);
     }

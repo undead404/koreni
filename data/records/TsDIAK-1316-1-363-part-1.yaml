@@ -15,4 +15,4 @@ yearsRange:
   - 1863
 authorName: Вячеслав Хаврусь і Володимир Разін
 authorEmail: vhavrus@gmail.com
-tableFilePath: public/csv/NovaPraha1863.csv
+tableFilePath: data/csv/NovaPraha1863.csv

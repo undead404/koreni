@@ -15,4 +15,4 @@ yearsRange:
   - 1863
 authorName: Віталій Перегончук
 authorEmail: brute18@gmail.com
-tableFilePath: public/csv/NovaPraha1863-митрофанівка.csv
+tableFilePath: data/csv/NovaPraha1863-митрофанівка.csv

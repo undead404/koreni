@@ -1,5 +1,5 @@
+import { ImportPayload } from '@koreni/shared/schemas/import';
 import type { TableData } from '@/app/helpers/parse-csv-file';
-import { ImportPayload } from '@/shared/schemas/import';
 
 import type { ContributeFormValues } from './types';
 

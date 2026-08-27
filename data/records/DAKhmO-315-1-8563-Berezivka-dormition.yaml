@@ -10,7 +10,7 @@ location:
 size: 1639
 sources:
   - https://docs.google.com/spreadsheets/d/1ERSqebE2ngFkZ4KscBWxszK1-kchTuoaSRqR-ZCqv6U/edit?gid=1347487070#gid=1347487070
-tableFilePath: public/csv/DAKhmO-315-1-8563-Berezivka-dormition.csv
+tableFilePath: data/csv/DAKhmO-315-1-8563-Berezivka-dormition.csv
 tableLocale: ru
 title: Березівка (Чернівецька) 1861 – сповідний розпис (повний), Успенська
   церква, ДАХмО 315-1-8563

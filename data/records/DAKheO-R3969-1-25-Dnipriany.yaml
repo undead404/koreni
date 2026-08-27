@@ -10,7 +10,7 @@ location:
 size: 1173
 sources:
   - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96r-3969-vynorobne-radyanske-gospodarstvo-vynradgosp-im-nachdyva-soloduhina-hersonskogo-trestu-vynorobnyh-radgospiv/
-tableFilePath: public/csv/dnipriany-brytany-kakhovskyi-r-n-khersonska-obl-spysok-pratsivnykiv-vynradhospu-im-nachdyva-solodukhina-1965.csv
+tableFilePath: data/csv/dnipriany-brytany-kakhovskyi-r-n-khersonska-obl-spysok-pratsivnykiv-vynradhospu-im-nachdyva-solodukhina-1965.csv
 tableLocale: uk
 title: Дніпряни (Британи), Каховський р-н, Херсонська обл. | Список працівників
   винрадгоспу ім. начдива Солодухіна (1965)

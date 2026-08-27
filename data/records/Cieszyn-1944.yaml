@@ -15,4 +15,4 @@ yearsRange:
   - 1944
 authorName: Sergi Adamchuk
 authorEmail: adamchuk@gmail.com
-tableFilePath: public/csv/Депортація, Закерзоння - Чешин.csv
+tableFilePath: data/csv/Депортація, Закерзоння - Чешин.csv

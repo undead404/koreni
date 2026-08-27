@@ -15,5 +15,5 @@ yearsRange:
   - 1897
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
-tableFilePath: public/csv/Бердичів перепис 1897 ДАКО, ф. 384, оп.15, спр.46.xlsm
+tableFilePath: data/csv/Бердичів перепис 1897 ДАКО, ф. 384, оп.15, спр.46.xlsm
   - 384 15 46.csv

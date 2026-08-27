@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
+import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 import ArchiveItem from '@/app/components/archive-item';
 import Comments from '@/app/components/comments/comments';
 import Details from '@/app/components/details';
-import IndexTable from '@/app/components/index-table';
+import IndexTableWithParameters from '@/app/components/index-table-with-parameters';
 import MapWrapper from '@/app/components/map-wrapper';
 import Pagination from '@/app/components/pagination';
 import SourceLink from '@/app/components/source-link';
 import { PER_PAGE } from '@/app/constants';
 import slugifyUkrainian from '@/app/helpers/slugify-ukrainian';
 import combinedPoints from '@/app/services/map-points';
-import { IndexationTable } from '@/shared/schemas/indexation-table';
 
 import styles from './table-content.module.css';
 
@@ -90,7 +90,7 @@ export default function TableContent({
             urlBuilder={(p: number) => `/${tableId}/${p}`}
           />
           <div role="region" className={styles.tableContainer}>
-            <IndexTable
+            <IndexTableWithParameters
               data={tableData}
               locale={tableLocale}
               page={page}

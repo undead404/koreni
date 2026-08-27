@@ -1,0 +1,86 @@
+.root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  padding: 48px var(--side-gap);
+}
+
+.card {
+  width: min(100%, 560px);
+  padding: 32px;
+  border: var(--default-border);
+  border-radius: 8px;
+  background: var(--bg-color);
+}
+
+.card h1 {
+  margin-bottom: 12px;
+}
+
+.intro {
+  margin-bottom: 24px;
+  color: var(--description-color);
+}
+
+.email,
+.score {
+  margin-bottom: 16px;
+}
+
+.form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.form input {
+  padding: 10px;
+  border: var(--default-border);
+  border-radius: 4px;
+  font: inherit;
+  letter-spacing: 0.12em;
+}
+
+.success {
+  padding: 12px;
+  color: var(--success-color);
+  background: color-mix(in srgb, var(--success-color) 12%, transparent);
+}
+
+.karmaSummary {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+}
+
+.karmaSummary div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
+  border: var(--default-border);
+  border-radius: 4px;
+}
+
+.karmaSummary dt {
+  font-weight: 600;
+}
+
+.karmaSummary dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.error {
+  color: var(--error-color);
+}
+
+@media (width <= 480px) {
+  .card {
+    padding: 24px 16px;
+  }
+}

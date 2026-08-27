@@ -1,4 +1,4 @@
-import getTablesMetadata from '@/shared/get-tables-metadata';
+import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import combinePoints from '../helpers/combine-points';
 

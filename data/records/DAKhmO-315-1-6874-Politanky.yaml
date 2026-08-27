@@ -15,4 +15,4 @@ yearsRange:
   - 1807
 authorName: Віталій Перегончук
 authorEmail: brute18@gmail.com
-tableFilePath: public/csv/Політанки 1807 - master.csv
+tableFilePath: data/csv/Політанки 1807 - master.csv

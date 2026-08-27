@@ -20,7 +20,7 @@ location:
 size: 414
 sources:
   - https://docs.google.com/spreadsheets/d/1k78ylXv_D1gHPC2OO-mI9K-iY16zrm76S-9g8uT90hw/edit?usp=sharing
-tableFilePath: public/csv/Chornianka-1877-1916-marriage.csv
+tableFilePath: data/csv/Chornianka-1877-1916-marriage.csv
 tableLocale: uk
 title: Чорнянка (Чорненька) Дніровський пов. Таврійська губ. – шлюби (1877-1916)
 yearsRange:

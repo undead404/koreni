@@ -1,3 +1,4 @@
+import type { PostHog } from 'posthog-js';
 import type { Client } from 'typesense';
 import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents.js';
 import type {
@@ -13,6 +14,7 @@ export interface SearchParameters {
   client: Client;
   page?: number;
   perPage?: number;
+  posthog?: PostHog;
   query: string;
   yearFrom?: string;
   yearTo?: string;
@@ -26,6 +28,7 @@ export default async function search({
   query,
   page = 1,
   perPage = 24,
+  posthog,
   yearFrom,
   yearTo,
 }: SearchParameters): Promise<SearchResults> {
@@ -70,5 +73,16 @@ export default async function search({
   const hits = response.hits || [];
   const totalFound = response.found || 0;
 
-  return [hits as SearchResult[], totalFound];
+  if (page > 1 && hits.length === 0 && totalFound > 0) {
+    posthog?.capture('search_empty_page', {
+      page,
+      per_page: perPage,
+      total_found: totalFound,
+      query,
+      year_from: yearFrom,
+      year_to: yearTo,
+    });
+  }
+
+  return [hits, totalFound];
 }

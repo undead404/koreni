@@ -10,7 +10,7 @@ location:
 size: 488
 sources:
   - https://docs.google.com/spreadsheets/d/1QM5YsdB2D7YvdURngWHMoIPNf9Jo_6R23fWSYB-U07g/edit?gid=0#gid=0
-tableFilePath: public/csv/DAOO-37-3-1095-Tymofiivka.csv
+tableFilePath: data/csv/DAOO-37-3-1095-Tymofiivka.csv
 tableLocale: ru
 title: Метричні книги православних церков Єлисаветградського повіту, село
   Тимофіївка, 1853, ДАОО-37-3-1095
