@@ -1,5 +1,7 @@
 import { sql } from 'kysely';
 
+import { logger } from '../logger.js';
+
 import database from './client.js';
 
 export default async function revokeUserSessions(userId: string) {
@@ -11,4 +13,5 @@ export default async function revokeUserSessions(userId: string) {
     })
     .where('id', '=', userId)
     .executeTakeFirstOrThrow();
+  logger.info('domain.sessions.revoked', { userId });
 }

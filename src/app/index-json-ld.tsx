@@ -2,6 +2,7 @@ import type { Graph } from 'schema-dts';
 
 import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
+import serializeJsonLd from './helpers/serialize-json-ld';
 import environment from './environment';
 
 export default function JsonLdHome({
@@ -81,7 +82,7 @@ export default function JsonLdHome({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(json) }}
     />
   );
 }

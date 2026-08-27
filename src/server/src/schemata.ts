@@ -1,6 +1,16 @@
 import { z } from 'zod';
 
 export const nonEmptyString = z.string().min(1);
+const yearSchema = z
+  .number({
+    message: 'Year must be a valid number',
+  })
+  .min(1500, {
+    message: 'Year must be at least 1500',
+  })
+  .max(2100, {
+    message: 'No future dates',
+  });
 export const importPayloadSchema = z.object({
   archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),
@@ -30,10 +40,12 @@ export type ImportPayload = z.infer<typeof importPayloadSchema>;
 export const projectCreatePayloadSchema = z.object({
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   isHandwritten: z.boolean(),
-  location: z.tuple([
-    z.number().min(-90).max(90),
-    z.number().min(-180).max(180),
-  ]),
+  location: z.tuple(
+    [z.number().min(-90).max(90), z.number().min(-180).max(180)],
+    {
+      message: 'Location must be a valid pair of coordinates',
+    },
+  ),
   sources: z.array(z.string()),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
@@ -71,3 +83,119 @@ export const jwtSchema = z.object({
 });
 
 export type Jwt = z.infer<typeof jwtSchema>;
+
+export const r2UploadSchema = z.object({
+  projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+});
+export const karmaLinkedUserSchema = z.object({
+  email: z.email(),
+  karma_linked_at: z.string(),
+});
+
+export const karmaLinkedUsersResponseSchema = z.object({
+  users: z.array(karmaLinkedUserSchema),
+});
+
+export type KarmaLinkedUser = z.infer<typeof karmaLinkedUserSchema>;
+export type KarmaLinkedUsersResponse = z.infer<
+  typeof karmaLinkedUsersResponseSchema
+>;
+
+export const navigatorLinkRedeemPayloadSchema = z.object({
+  code: z.string().min(1),
+  login: z.email(),
+  total: z.number().int().nonnegative().optional(),
+});
+
+export type NavigatorLinkRedeemPayload = z.infer<
+  typeof navigatorLinkRedeemPayloadSchema
+>;
+
+export const navigatorLinkRedeemResponseSchema = z.object({
+  ok: z.literal(true),
+  awarded: z.number().int().nonnegative(),
+});
+
+export type NavigatorLinkRedeemResponse = z.infer<
+  typeof navigatorLinkRedeemResponseSchema
+>;
+
+export const navigatorIngestPayloadSchema = z.object({
+  accounts: z.array(
+    z.object({
+      login: z.email(),
+      total: z.number().int().nonnegative(),
+    }),
+  ),
+});
+
+export type NavigatorIngestPayload = z.infer<
+  typeof navigatorIngestPayloadSchema
+>;
+
+export const navigatorIngestResponseSchema = z.object({
+  synced: z.number().int().nonnegative(),
+  awarded: z.number().int().nonnegative(),
+  unknown: z.array(z.string()),
+});
+
+export type NavigatorIngestResponse = z.infer<
+  typeof navigatorIngestResponseSchema
+>;
+
+export const navigatorErrorResponseSchema = z.object({
+  error: z.string(),
+});
+
+export type NavigatorErrorResponse = z.infer<
+  typeof navigatorErrorResponseSchema
+>;
+
+export const navigatorLookupPayloadSchema = z.object({
+  service: nonEmptyString,
+  users: z.array(z.string()),
+});
+
+export type NavigatorLookupPayload = z.infer<
+  typeof navigatorLookupPayloadSchema
+>;
+
+export const navigatorLookupResultItemSchema = z.object({
+  user: z.string(),
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type NavigatorLookupResultItem = z.infer<
+  typeof navigatorLookupResultItemSchema
+>;
+
+export const navigatorLookupResponseSchema = z.object({
+  service: z.string(),
+  name: z.string(),
+  results: z.array(navigatorLookupResultItemSchema),
+});
+
+export type NavigatorLookupResponse = z.infer<
+  typeof navigatorLookupResponseSchema
+>;
+
+export const karmaStatusResponseSchema = z.object({
+  tables: z.number().int().nonnegative(),
+  rows: z.number().int().nonnegative(),
+  user: z.object({
+    email: z.email(),
+    karma_linked_at: z.string().nullable(),
+  }),
+});
+
+export type KarmaStatusResponse = z.infer<typeof karmaStatusResponseSchema>;
+
+export const karmaLookupResponseSchema = z.object({
+  found: z.boolean(),
+  serviceKarma: z.number().int().nonnegative(),
+  totalKarma: z.number().int().nonnegative(),
+});
+
+export type KarmaLookupResponse = z.infer<typeof karmaLookupResponseSchema>;

@@ -1,12 +1,45 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  getLoginRedirectPath,
+  getSafeReturnPath,
   isLoginRoute,
   normalizePathname,
   RequestGenerationTracker,
 } from './account-auth-state';
 
 describe('account-auth-state utilities', () => {
+  describe('getSafeReturnPath', () => {
+    it('keeps internal return paths and their query strings', () => {
+      expect(getSafeReturnPath('/account/karma')).toBe('/account/karma');
+      expect(getSafeReturnPath('/account/karma?tab=summary')).toBe(
+        '/account/karma?tab=summary',
+      );
+    });
+
+    it('falls back for missing or unsafe paths', () => {
+      expect(getSafeReturnPath(null)).toBe('/account');
+      expect(getSafeReturnPath('')).toBe('/account');
+      expect(getSafeReturnPath('https://example.com')).toBe('/account');
+      expect(getSafeReturnPath('//example.com')).toBe('/account');
+      expect(getSafeReturnPath('/account/login')).toBe('/account');
+      expect(getSafeReturnPath('/account/login/?next=/account/karma')).toBe(
+        '/account',
+      );
+    });
+  });
+
+  describe('getLoginRedirectPath', () => {
+    it('encodes the current path and query string', () => {
+      expect(
+        getLoginRedirectPath(
+          '/account/karma',
+          new URLSearchParams({ tab: 'summary' }),
+        ),
+      ).toBe('/account/login?returnTo=%2Faccount%2Fkarma%3Ftab%3Dsummary');
+    });
+  });
+
   describe('normalizePathname', () => {
     it('returns empty string for null/empty pathname', () => {
       expect(normalizePathname(null)).toBe('');

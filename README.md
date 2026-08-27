@@ -6,7 +6,10 @@ For data integration see [API docs](./src/server/README.md).
 
 ## License
 
-Koreni's [data folder](./data) is licensed under [ODbL license](./LICENSE.md).
+Koreni's genealogical [data folder](./data) is licensed under [ODbL license](./LICENSE.md).
+
+Original technical blog posts in [data/blog](./data/blog) are licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 All other contents (the code and everything else) in this repository is licensed under the [MIT license](./LICENSE-CODE.txt).
 

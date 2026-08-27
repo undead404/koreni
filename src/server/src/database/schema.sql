@@ -3,8 +3,10 @@ CREATE TABLE `users` (
 	`id` text PRIMARY KEY NOT NULL,
 	`google_id` text UNIQUE,
 	`email` text NOT NULL UNIQUE,
+	`contribution_email` text,
 	`is_admin` numeric DEFAULT FALSE NOT NULL,
-	`token_version` integer DEFAULT 1 NOT NULL
+	`token_version` integer DEFAULT 1 NOT NULL,
+	`karma_linked_at` text
 );
 CREATE TABLE `projects` (
 	`id` text PRIMARY KEY NOT NULL,

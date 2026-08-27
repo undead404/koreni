@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -8,6 +9,7 @@ import { useSharhorootsPrompt } from '../hooks/use-sharhoroots-prompt';
 import styles from './sharhoroots-prompt.module.css';
 
 export default function SharhorootsPrompt() {
+  const pathname = usePathname();
   const { isVisible, dismiss } = useSharhorootsPrompt();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dialogReference = useRef<HTMLDialogElement>(null);
@@ -43,7 +45,7 @@ export default function SharhorootsPrompt() {
   // Dialog should only close on explicit user action (button/link click)
   // Not on backdrop click or Escape key — user might accidentally trigger these
 
-  if (!isVisible) {
+  if (pathname === '/not-welcome' || !isVisible) {
     return null;
   }
 

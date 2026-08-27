@@ -107,15 +107,26 @@ jobs:
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          NEXT_PUBLIC_OAUTH_CLIENT_ID: oauth-client-id
 
       - name: Run server tests
         run: yarn exec vitest run --root src/server
         env:
+          GITHUB_REPO: owner/repo
+          GITHUB_TOKEN: test-github-token
+          JWT_SECRET: test-jwt-secret-with-at-least-32-characters
+          KARMA_APP_SLUG: koreni
+          KARMA_APP_TOKEN: test-karma-app-token
+          NAVIGATOR_BASE_URL: https://www.uagenealogy.com
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
           NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          OAUTH_CLIENT_ID: oauth-client-id
+          POSTHOG_HOST: https://app.posthog.com
+          POSTHOG_KEY: test-posthog-key
+          TURNSTILE_SECRET_KEY: test-turnstile-secret-key
 
   build:
     runs-on: ubuntu-latest
@@ -208,7 +219,10 @@ jobs:
       - name: Build API project
         run: |
           yarn exec tsc --project src/server/tsconfig.json
+          yarn exec tsx src/server/src/scripts/generate-karma-stats.ts data src/server/dist/src/generated/karma-stats.json "${BUILD_REVISION}"
           cp src/server/package.json src/server/dist/
+        env:
+          BUILD_REVISION: ${{ github.sha }}
 
       - name: Install production dependencies
         run: yarn workspaces focus koreni-server --production
@@ -319,8 +333,16 @@ jobs:
             echo "NODE_ENV=production" >> .env
             echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
             echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-            echo "OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}"
-            echo "NEXT_PUBLIC_API_SITE=${{ vars.SITE }}"
+            echo "OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
+            echo "NEXT_PUBLIC_API_SITE=${{ vars.SITE }}" >> .env
+            echo "BUILD_REVISION=${{ github.sha }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+            echo "TURSO_DATABASE_URL=${{ vars.TURSO_DATABASE_URL }}" >> .env
+            echo "TURSO_DATABASE_TOKEN=${{ secrets.TURSO_DATABASE_TOKEN }}" >> .env
+            echo "KARMA_APP_TOKEN=${{ secrets.KARMA_APP_TOKEN }}" >> .env
+            echo "KARMA_INTERNAL_TOKEN=${{ secrets.KARMA_INTERNAL_TOKEN }}" >> .env
+            echo "KARMA_APP_SLUG=koreni" >> .env
+            echo "NAVIGATOR_BASE_URL=https://www.uagenealogy.com" >> .env
              
             # Restart Service
             sudo systemctl restart koreni-api
@@ -452,3 +474,5 @@ jobs:
               echo "WARNING: No backup file found to rollback to."
             fi
           EOF
+
+# Trigger deploy

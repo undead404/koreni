@@ -36,7 +36,7 @@ describe('generateJsonLd', () => {
 
   it('should generate correct JSON-LD for a single table', () => {
     const table: IndexationTable = {
-      archiveItems: ['item-1', 'item-2'],
+      archiveItems: ['DAKO-384-10-81', 'DAZhO-178-3-147'],
       authorName: 'Author Name',
       date: new Date('2023-01-01'),
       id: 'table-1',
@@ -61,6 +61,38 @@ describe('generateJsonLd', () => {
     expect(dataset.identifier).toBe('table-1');
     expect(dataset.datePublished).toBe(new Date('2023-01-01').toISOString());
     expect(dataset.creator).toEqual({ name: 'Author Name', '@type': 'Person' });
+    expect(JSON.stringify(dataset)).not.toContain('author@example.com');
+    expect(JSON.stringify(dataset)).not.toContain('mailto:');
+    expect(dataset.temporalCoverage).toBe('1900/1910');
+    expect(dataset.spatialCoverage).toStrictEqual({
+      '@type': 'Place',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 50,
+        longitude: 30,
+      },
+    });
+    expect(dataset.isAccessibleForFree).toBe(true);
+    expect(dataset.isBasedOn).toStrictEqual([
+      {
+        '@type': 'CreativeWork',
+        identifier: {
+          '@type': 'PropertyValue',
+          propertyID: 'Archive-Fonds-Opus-File',
+          value: 'DAKO-384-10-81',
+        },
+        name: 'DAKO, фонд 384, опис 10, справа 81',
+      },
+      {
+        '@type': 'CreativeWork',
+        identifier: {
+          '@type': 'PropertyValue',
+          propertyID: 'Archive-Fonds-Opus-File',
+          value: 'DAZhO-178-3-147',
+        },
+        name: 'DAZhO, фонд 178, опис 3, справа 147',
+      },
+    ]);
     expect(item.position).toBe(1);
     expect(item.url).toBe('https://koreni.test/table-1/1/');
   });
@@ -69,6 +101,7 @@ describe('generateJsonLd', () => {
     const table: IndexationTable = {
       id: 'table-2',
       date: 'invalid-date',
+      location: [0, 0],
     } as unknown as IndexationTable;
 
     const result = generateJsonLd([table]);

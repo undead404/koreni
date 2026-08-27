@@ -117,8 +117,18 @@ jobs:
       - name: Run server tests
         run: yarn exec vitest run --root src/server
         env:
+          KARMA_APP_SLUG: koreni
+          KARMA_APP_TOKEN: test-karma-app-token
+          NAVIGATOR_BASE_URL: https://www.uagenealogy.com
+          GITHUB_REPO: owner/repo
+          GITHUB_TOKEN: github-token
+          JWT_SECRET: supersecretjwtsecretthatisatleast32byteslong
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
-          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
-          NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
           NEXT_PUBLIC_SITE: site
+          NEXT_PUBLIC_TYPESENSE_HOST: typesense-host
+          NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
+          OAUTH_CLIENT_ID: oauth-client-id
+          POSTHOG_HOST: posthog-host
+          POSTHOG_KEY: posthog-key
+          TURNSTILE_SECRET_KEY: turnstile-secret-key

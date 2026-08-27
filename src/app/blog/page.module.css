@@ -1,0 +1,51 @@
+.container {
+  --component-max-width: 768px;
+}
+
+.header {
+  margin-block-end: 2rem;
+}
+
+.header p {
+  max-width: 60ch;
+}
+
+.list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  border-block-start: 1px solid var(--default-border-color);
+  padding-block-start: 1rem;
+}
+
+.card h2 {
+  margin-block: 0.25rem 0.5rem;
+}
+
+.card h2 a {
+  color: var(--text-color);
+}
+
+.date {
+  color: var(--description-color);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.tags li {
+  border: 1px solid var(--default-border-color);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.85rem;
+}

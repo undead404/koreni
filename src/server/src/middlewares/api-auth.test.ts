@@ -45,7 +45,7 @@ vi.mock('../services/validate-turnstile.js', () => ({
   default: vi.fn(),
 }));
 
-describe('authMiddleware', () => {
+describe('apiAuthMiddleware', () => {
   let app: Hono;
 
   beforeEach(() => {
@@ -122,7 +122,7 @@ describe('authMiddleware', () => {
         distinctId: 'mock-client-id',
         event: 'turnstile_token_missing',
         properties: expect.objectContaining({
-          ip: '127.0.0.1',
+          ipHash: expect.any(String),
         }),
       }),
     );
@@ -154,7 +154,7 @@ describe('authMiddleware', () => {
         distinctId: 'mock-client-id',
         event: 'turnstile_validation_failed',
         properties: expect.objectContaining({
-          ip: '127.0.0.1',
+          ipHash: expect.any(String),
           reason: ['timeout-or-duplicate'],
         }),
       }),

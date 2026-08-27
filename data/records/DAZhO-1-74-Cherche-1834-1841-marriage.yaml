@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАЖО-1-74-8
+  - ДАЖО-1-74-17
+  - ДАЖО-1-74-19
+  - ДАЖО-1-74-20
+  - ДАЖО-1-74-29
+authorName: Ірина Будь
+authorEmail: bud.iryna@gmail.com
+date: 2026-08-21
+id: DAZhO-1-74-Cherche-1834-1841-marriage
+location:
+  - 51.738106
+  - 24.875582
+size: 50
+sources: []
+tableFilePath: data/csv/zbirna-metryka-pro-shliub-czorcze-1834-1841.csv
+tableLocale: uk
+title: Черче – шлюб, 1834-1841
+yearsRange:
+  - 1834
+  - 1841

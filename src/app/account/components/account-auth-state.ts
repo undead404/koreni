@@ -11,6 +11,37 @@ export function isLoginRoute(pathname: string | null): boolean {
   return normalized === '/account/login';
 }
 
+const defaultReturnPath = '/account';
+
+export function getSafeReturnPath(value: string | null): string {
+  if (
+    !value ||
+    !value.startsWith('/') ||
+    value.startsWith('//') ||
+    value.includes('\\')
+  ) {
+    return defaultReturnPath;
+  }
+
+  const pathname = value.split(/[?#]/, 1)[0] ?? null;
+  if (isLoginRoute(pathname)) {
+    return defaultReturnPath;
+  }
+
+  return value;
+}
+
+export function getLoginRedirectPath(
+  pathname: string | null,
+  searchParameters: URLSearchParams,
+): string {
+  const normalizedPathname = pathname || '/';
+  const query = searchParameters.toString();
+  const returnTo = `${normalizedPathname}${query ? `?${query}` : ''}`;
+
+  return `/account/login?returnTo=${encodeURIComponent(returnTo)}`;
+}
+
 export class RequestGenerationTracker {
   private currentGeneration = 0;
 

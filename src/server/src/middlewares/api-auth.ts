@@ -5,6 +5,8 @@ import { createMiddleware } from 'hono/factory';
 import environment from '../environment.js';
 import getClientIdentifier from '../helpers/get-client-identifier.js';
 import isValidApiKey from '../helpers/is-valid-api-key.js';
+import { hashForLogging } from '../logger.js';
+import { logger } from '../logger.js';
 import { turnstilePayloadSchema } from '../schemata.js';
 import posthog from '../services/posthog.js';
 import validateTurnstile from '../services/validate-turnstile.js';
@@ -25,17 +27,19 @@ export const apiAuthMiddleware = createMiddleware(
       .catch(() => ({}));
     const parseResult = turnstilePayloadSchema.safeParse(body);
     if (!parseResult.success) {
+      logger.warn('security.api_auth.invalid_payload', { path: c.req.path });
       return c.json({ error: 'Invalid payload structure' }, 400);
     }
     if (!isApiKeyAuth && environment.NODE_ENV === 'production') {
       const token = parseResult.data.turnstileToken;
 
       if (!token) {
+        logger.warn('security.turnstile.token_missing', { clientId });
         posthog.capture({
           distinctId: clientId,
           event: 'turnstile_token_missing',
           properties: {
-            ip,
+            ipHash: hashForLogging(ip || 'unknown'),
           },
         });
         return c.json({ error: 'Captcha token is required' }, 400);
@@ -46,11 +50,15 @@ export const apiAuthMiddleware = createMiddleware(
         token,
       );
       if (!turnstileValidationResult.success) {
+        logger.warn('security.turnstile.validation_failed', {
+          clientId,
+          reasonCount: turnstileValidationResult['error-codes']?.length ?? 0,
+        });
         posthog.capture({
           distinctId: clientId,
           event: 'turnstile_validation_failed',
           properties: {
-            ip,
+            ipHash: hashForLogging(ip || 'unknown'),
             reason: turnstileValidationResult['error-codes'] || [],
           },
         });

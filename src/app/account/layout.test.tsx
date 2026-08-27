@@ -26,7 +26,7 @@ describe('AccountLayout', () => {
   });
 
   it('has noindex metadata', () => {
-    expect(metadata.title).toBe('Authentication');
+    expect(metadata.title).toBe('Кабінет');
     expect(metadata.robots).toEqual({
       index: false,
       follow: false,

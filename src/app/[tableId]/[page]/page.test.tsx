@@ -73,7 +73,7 @@ describe('Table Page', () => {
       );
     });
 
-    it('renders TableContent without jsonLd for page 2', async () => {
+    it('renders TableContent with jsonLd for page 2', async () => {
       vi.mocked(getTableMetadata).mockResolvedValue(mockTableMetadata as any);
       vi.mocked(getTableData).mockResolvedValue(mockTableData);
 
@@ -84,7 +84,7 @@ describe('Table Page', () => {
       expect(result.props).toEqual(
         expect.objectContaining({
           page: 2,
-          jsonLd: null,
+          jsonLd: { '@context': 'https://schema.org' },
           tableData: mockTableData.slice(20, 40),
         }),
       );

@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-08-24
+id: DAKhmO-315-1-8330-Holiaky
+location:
+  - 49.511261
+  - 28.42712
+size: 503
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO--315-1-8330-Holiaky.csv
+tableLocale: ru
+title: Голяки (Грушківці Іванівські) 1855 – сповідний розпис (повний), ДАХмО-315-1-8330
+yearsRange:
+  - 1855

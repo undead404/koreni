@@ -1,6 +1,33 @@
 .root {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 50vh;
+  padding: 48px var(--side-gap);
+}
+
+.card {
+  width: min(100%, 560px);
+  padding: 32px;
+  border: var(--default-border);
+  border-radius: 8px;
+  background: var(--bg-color);
+}
+
+.card h1 {
+  margin-bottom: 12px;
+}
+
+.identity,
+.description {
+  margin-bottom: 16px;
+}
+
+.identity {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (width <= 480px) {
+  .card {
+    padding: 24px 16px;
+  }
 }

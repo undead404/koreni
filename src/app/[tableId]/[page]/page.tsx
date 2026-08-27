@@ -2,6 +2,7 @@ import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { object, string } from 'zod';
 
+import getArchivesMetadata from '@koreni/shared/get-archives-metadata';
 import getTableData from '@koreni/shared/get-table-data';
 import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
@@ -45,6 +46,7 @@ export default async function Table({ params }: TablePageProperties) {
   const tableMetadata = await getTableMetadata(tableId);
 
   const tableData = await getTableData(tableMetadata);
+  const archives = await getArchivesMetadata();
 
   if (tableData.length === 0) {
     notFound();
@@ -55,7 +57,7 @@ export default async function Table({ params }: TablePageProperties) {
     page * PER_PAGE,
   );
 
-  const jsonLd = page === 1 ? generateJsonLd(tableMetadata) : null;
+  const jsonLd = generateJsonLd(tableMetadata, page, archives);
 
   return (
     <TableContent

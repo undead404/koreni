@@ -2,14 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  padding: calc(var(--side-gap) / 2) 0;
+  padding: calc(var(--side-gap) / 2) var(--side-gap);
   background-color: var(--bg-color);
-
-  /* TODO add box-shadow ? */
 }
 
 .topBar {
@@ -17,46 +11,125 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 var(--side-gap);
+  gap: var(--side-gap);
 }
 
-.header nav {
-  text-align: right;
-  width: 100%;
-}
-
-.navList {
-  list-style-type: none;
-  padding: 0 var(--side-gap);
-  margin: 0;
+.primaryLinks {
   display: flex;
-  flex-flow: row nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   align-items: center;
-  gap: 16px;
-  mask-image: linear-gradient(to right, black 90%, transparent 100%);
-}
-
-.navList li {
-  flex-shrink: 0;
-}
-
-.link {
-  padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) var(--side-gap);
+  justify-content: flex-end;
+  gap: var(--side-gap);
+  min-width: 0;
 }
 
 .link,
-.ctaButton {
+.menuLink,
+.ctaButton,
+.accountLink,
+.menuButton {
   color: var(--text-color);
-  font-size: 1.2rem;
-  display: inline-block;
+  font-size: 1.1rem;
   text-decoration: none;
+  white-space: nowrap;
+}
+
+.link,
+.menuLink,
+.ctaButton,
+.accountLink {
+  display: inline-block;
+}
+
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: inherit;
+}
+
+.menuLink {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.menuIndicator {
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-left: 0.25rem;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: rotate(45deg);
+  transform-origin: center;
+  transition: transform 150ms ease-in-out;
+}
+
+.menuIndicatorOpen {
+  transform: rotate(225deg);
 }
 
 .link:visited,
-.ctaButton:visited {
+.menuLink:visited,
+.ctaButton:visited,
+.accountLink:visited,
+.menuButton:visited {
   color: var(--text-color);
+}
+
+.menuList,
+.submenuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuPanel {
+  position: absolute;
+  top: 100%;
+  right: var(--side-gap);
+  z-index: 2;
+  max-width: calc(100vw - 2 * var(--side-gap));
+  max-height: calc(100svh - 4rem);
+  overflow-y: auto;
+  background-color: var(--bg-color);
+  border: var(--default-border);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+}
+
+.menuList {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: var(--side-gap) calc(var(--side-gap) * 1.5);
+  padding: var(--side-gap);
+}
+
+.menuPanel .menuList {
+  padding: var(--side-gap);
+}
+
+.menuLabel {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.submenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.menuPanel .submenuList {
+  padding-left: 0;
+}
+
+.menuPanel li {
+  margin: 0;
 }
 
 .active {
@@ -64,33 +137,32 @@
   font-weight: bold;
 }
 
-@media (width >= 768px) {
-  .header {
-    flex-direction: row;
+.activeMenuLink {
+  text-decoration: underline;
+}
+
+@media (width <= 767px) {
+  .topBar {
     align-items: center;
   }
 
-  .topBar {
-    width: auto;
-    flex-grow: 1;
+  .primaryLinks {
+    flex-wrap: wrap;
+    gap: 0.5rem var(--side-gap);
   }
 
-  .topBar a {
-    flex-shrink: 0;
+  .menuList {
+    grid-template-columns: 1fr;
+    gap: var(--side-gap);
   }
 
-  .ctaButton {
-    /* margin-left: auto; */
-    text-wrap-mode: nowrap;
+  .menuList > li {
+    flex: 0 0 auto;
   }
+}
 
-  .navList {
-    mask-image: none;
-    overflow-x: visible;
-    justify-content: flex-end;
-  }
-
-  .link {
-    padding: calc(var(--side-gap) / 2) calc(var(--side-gap) / 2) 0;
+@media (orientation: landscape) and (width <= 767px) {
+  .menuList {
+    grid-template-columns: repeat(3, max-content);
   }
 }

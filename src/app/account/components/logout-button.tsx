@@ -10,7 +10,6 @@ import styles from './logout-button.module.css';
 
 export default function LogoutButton() {
   const router = useRouter();
-
   const handleLogout = () => {
     // 1. Sever the local Google Identity SDK state
     googleLogout();

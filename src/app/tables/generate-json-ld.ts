@@ -3,6 +3,10 @@ import type { Dataset, Graph, ListItem } from 'schema-dts';
 import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 
 import environment from '../environment';
+import {
+  createArchivalProvenanceList,
+  formatTemporalCoverage,
+} from '../helpers/format-json-ld-metadata';
 import generateTableDescription from '../helpers/generate-table-description';
 import getAuthor from '../helpers/get-author';
 
@@ -13,12 +17,15 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
   const items = tablesMetadata.map<ListItem>((t) => {
     const tDate = new Date(t.date);
     const description = generateTableDescription(t);
+    const temporalCoverage = formatTemporalCoverage(t.yearsRange);
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     const dataset = {
       '@type': 'Dataset',
       creator: getAuthor(t) || undefined,
       description,
       identifier: t.id,
+      isAccessibleForFree: true,
+      isBasedOn: createArchivalProvenanceList(t.archiveItems),
       license: `${site}/license/`,
       name: t.title || t.id,
       url: `${site}/${t.id}/1/`,
@@ -26,6 +33,15 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
       ...(Number.isNaN(tDate.getTime())
         ? {}
         : { datePublished: tDate.toISOString() }),
+      ...(temporalCoverage ? { temporalCoverage } : {}),
+      spatialCoverage: {
+        '@type': 'Place',
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: t.location[0],
+          longitude: t.location[1],
+        },
+      },
     } as Dataset;
     const item: ListItem = {
       '@type': 'ListItem',

@@ -1,9 +1,14 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { usePathname } from 'next/navigation';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as useHook from '../hooks/use-sharhoroots-prompt';
 
 import SharhorootsPrompt from './sharhoroots-prompt';
+
+vi.mock('next/navigation', () => ({
+  usePathname: vi.fn(),
+}));
 
 // jsdom does not implement HTMLDialogElement.showModal / close
 beforeEach(() => {
@@ -24,6 +29,7 @@ describe('SharhorootsPrompt', () => {
   beforeEach(() => {
     cleanup();
     vi.clearAllMocks();
+    vi.mocked(usePathname).mockReturnValue('/');
   });
 
   it('renders nothing when isVisible is false', () => {
@@ -38,6 +44,20 @@ describe('SharhorootsPrompt', () => {
       screen.queryByText('А чи не з Шаргородщини ти випадково?'),
     ).not.toBeInTheDocument();
     expect(container.firstChild).toBeNull();
+  });
+
+  it('renders nothing on /not-welcome even when isVisible is true', () => {
+    vi.mocked(usePathname).mockReturnValue('/not-welcome');
+    const dismissMock = vi.fn();
+    vi.spyOn(useHook, 'useSharhorootsPrompt').mockReturnValue({
+      isVisible: true,
+      dismiss: dismissMock,
+    });
+
+    const { container } = render(<SharhorootsPrompt />);
+
+    expect(container.firstChild).toBeNull();
+    expect(dismissMock).not.toHaveBeenCalled();
   });
 
   describe('Step 1: Banner', () => {
