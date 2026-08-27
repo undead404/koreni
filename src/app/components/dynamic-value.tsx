@@ -11,7 +11,7 @@ export default function DynamicValue({
   value,
   tokens,
 }: DynamicValueProperties) {
-  if (value === null || value === undefined || value === '') {
+  if (([null, undefined, ''] as unknown[]).includes(value)) {
     return <span className={styles.emptyValue}>—</span>;
   }
 

@@ -1,5 +1,9 @@
 import { renderHook, waitFor } from '@testing-library/react';
+import { AbortError } from 'es-toolkit/error';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import type { Location } from './types';
+import { useLocationSearch } from './use-location-search';
 
 vi.mock('@/app/environment', () => ({
   default: {
@@ -22,9 +26,6 @@ vi.mock('posthog-js', () => ({
     captureException: vi.fn(),
   },
 }));
-
-import type { Location } from './types';
-import { useLocationSearch } from './use-location-search';
 
 describe('useLocationSearch', () => {
   const knownLocations: Location[] = [
@@ -55,8 +56,7 @@ describe('useLocationSearch', () => {
       () =>
         new Promise((_resolve, reject) => {
           setTimeout(() => {
-            const error = new Error('Aborted');
-            error.name = 'AbortError';
+            const error = new AbortError('Aborted');
             reject(error);
           }, 100);
         }),

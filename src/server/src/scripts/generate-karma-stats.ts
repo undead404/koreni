@@ -31,6 +31,12 @@ function stringifyCell(value: unknown): string {
   return '';
 }
 
+function addCellValue(values: Set<string>, cell: unknown): void {
+  if (!cell) return;
+  const value = stringifyCell(cell).trim();
+  if (value) values.add(value);
+}
+
 function rowStats(rows: Array<unknown[]>): {
   contribution: number;
   rowCount: number;
@@ -38,9 +44,7 @@ function rowStats(rows: Array<unknown[]>): {
   const values = new Set<string>();
   for (const row of rows) {
     for (const cell of row) {
-      if (!cell) continue;
-      const value = stringifyCell(cell).trim();
-      if (value) values.add(value);
+      addCellValue(values, cell);
     }
   }
   return {
@@ -64,7 +68,7 @@ export async function generateKarmaStats(
   const recordEntries = await readdir(recordsPath);
   const recordNames = recordEntries
     .filter((name) => name.endsWith('.yaml') || name.endsWith('.yml'))
-    .sort((a, b) => a.localeCompare(b));
+    .toSorted((a, b) => a.localeCompare(b));
 
   for (const recordName of recordNames) {
     const metadataContent = await readFile(
@@ -122,11 +126,11 @@ const invokedPath = process.argv[1];
 if (invokedPath && import.meta.url === pathToFileURL(invokedPath).href) {
   const dataRoot = process.argv[2];
   const outputPath = process.argv[3];
-  const revision = process.argv[4] || process.env.GITHUB_SHA || 'development';
   if (!dataRoot || !outputPath) {
     throw new Error(
       'Usage: generate-karma-stats <data-root> <output-path> [revision]',
     );
   }
+  const revision = process.argv[4] || process.env.GITHUB_SHA || 'development';
   await generateKarmaStats(dataRoot, outputPath, revision);
 }

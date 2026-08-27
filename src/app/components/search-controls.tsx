@@ -48,7 +48,7 @@ const SearchControls: FC<ControlsProperties> = ({
       setLocalYearFrom(value);
 
       // Auto-commit if exactly 4 digits or if cleared
-      if (value.length === 4 || value === '') {
+      if (value === '' || value.length === 4) {
         onYearCommit(value, localYearTo);
       }
     },
@@ -61,7 +61,7 @@ const SearchControls: FC<ControlsProperties> = ({
       setLocalYearTo(value);
 
       // Auto-commit if exactly 4 digits or if cleared
-      if (value.length === 4 || value === '') {
+      if (value === '' || value.length === 4) {
         onYearCommit(localYearFrom, value);
       }
     },
@@ -74,10 +74,12 @@ const SearchControls: FC<ControlsProperties> = ({
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        handleYearCommit();
+      if (event.key !== 'Enter') {
+        return;
       }
+
+      event.preventDefault();
+      handleYearCommit();
     },
     [handleYearCommit],
   );

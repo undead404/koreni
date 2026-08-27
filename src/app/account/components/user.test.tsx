@@ -134,10 +134,8 @@ describe('UserView', () => {
   });
 
   it('prevents post-request state mutation if unmounted', async () => {
-    let resolvePromise!: (value: Response) => void;
-    const pendingPromise = new Promise<Response>((resolve) => {
-      resolvePromise = resolve;
-    });
+    const { promise: pendingPromise, resolve: resolvePromise } =
+      Promise.withResolvers<Response>();
     vi.mocked(requestApi).mockReturnValue(pendingPromise);
 
     const { unmount } = render(<UserView />);

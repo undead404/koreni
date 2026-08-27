@@ -23,8 +23,8 @@ describe('AccountPage', () => {
 
   it('renders account information when authenticated', async () => {
     vi.mocked(requestApi).mockResolvedValue(
-      new Response(
-        JSON.stringify({ user: { email: 'user@example.com', id: '1' } }),
+      Response.json(
+        { user: { email: 'user@example.com', id: '1' } },
         { status: 200 },
       ),
     );
@@ -40,8 +40,8 @@ describe('AccountPage', () => {
 
   it('does not present contribution history on the account overview', async () => {
     vi.mocked(requestApi).mockResolvedValue(
-      new Response(
-        JSON.stringify({ user: { email: 'user@example.com', id: '1' } }),
+      Response.json(
+        { user: { email: 'user@example.com', id: '1' } },
         { status: 200 },
       ),
     );

@@ -2,7 +2,8 @@ import { builtinModules } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { includeIgnoreFile } from '@eslint/compat';
+import { fixupPluginRules } from '@eslint/compat';
+import { includeIgnoreFile } from '@eslint/config-helpers';
 import pluginJs from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
 import vitest from '@vitest/eslint-plugin';
@@ -23,8 +24,11 @@ import tsEslint from 'typescript-eslint';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const gitignorePath = path.resolve(__dirname, '.gitignore');
+const fixedPluginReact = fixupPluginRules(pluginReact);
 
-/** @type {import('eslint').Linter.Config[]} */
+/**
+@type {import('eslint').Linter.Config[]}
+*/
 export default [
   {
     languageOptions: {
@@ -68,7 +72,7 @@ export default [
               String.raw`^(?!@koreni)(\w|.)[^./]`,
             ],
             // Internal libs: Root-alias imports (@/) and workspace packages (@koreni).
-            [String.raw`^@koreni`, String.raw`^@\/(\w|.)[^./]`],
+            ['^@koreni', String.raw`^@\/(\w|.)[^./]`],
             // Same scope imports
             [
               String.raw`^\.\.(?!/?$)`, // Parent imports. Put `..` last.
@@ -88,8 +92,8 @@ export default [
         },
       ],
       'no-console': 'warn',
-      'unicorn/no-null': 'off',
-      'unicorn/prevent-abbreviations': [
+
+      'unicorn/name-replacements': [
         'error',
         {
           allowList: {
@@ -97,6 +101,8 @@ export default [
           },
         },
       ],
+      'unicorn/max-nested-calls': ['error', { max: 5 }],
+      'unicorn/no-null': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/consistent-type-assertions': [
         'error',
@@ -110,6 +116,9 @@ export default [
           skipComments: true,
         },
       ],
+      'unicorn/no-top-level-assignment-in-function': 'off',
+      'unicorn/filename-case': ['error', { checkDirectories: false }],
+      'unicorn/prefer-dom-node-html-methods': 'off',
     },
   },
   {
@@ -168,6 +177,7 @@ export default [
       ...pluginReact.configs.flat.recommended.plugins,
       ...pluginReact.configs.flat['jsx-runtime'].plugins,
       ...jsxA11y.flatConfigs.recommended.plugins,
+      react: fixedPluginReact,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -181,7 +191,7 @@ export default [
         { allowConstantExport: true },
       ],
       'react/prop-types': 'off',
-      'unicorn/prevent-abbreviations': [
+      'unicorn/name-replacements': [
         'error',
         {
           allowList: {
@@ -214,7 +224,7 @@ export default [
     },
   },
   {
-    files: ['**/*.{test,spec}.{ts,tsx}'],
+    files: ['**/*.{test,spec}.{ts,tsx}', '**/__mocks__/**'],
     languageOptions: {
       parserOptions: {
         // There is a major issue with TS + ESLint + Monorepo
@@ -230,18 +240,23 @@ export default [
     },
     rules: {
       ...vitest.configs.recommended.rules,
-      '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
       '@next/next/no-img-element': 'off',
-      'jsx-a11y/heading-has-content': 'off',
-      '@typescript-eslint/unbound-method': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'off',
-      '@typescript-eslint/no-unsafe-return': 'off',
-      'unicorn/no-useless-undefined': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/consistent-type-assertions': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/unbound-method': 'off',
+      'jsx-a11y/heading-has-content': 'off',
+      'unicorn/no-global-object-property-assignment': 'off',
+      'unicorn/no-useless-undefined': 'off',
+      'unicorn/filename-case': [
+        'error',
+        { checkDirectories: false, ignore: ['__mocks__'] },
+      ],
     },
   },
   {

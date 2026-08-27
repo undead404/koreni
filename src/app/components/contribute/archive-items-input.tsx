@@ -42,7 +42,7 @@ export default function ArchiveItemsInput({
     if (event.key === 'Enter' || event.key === ',') {
       event.preventDefault();
       handleAdd(tagInput);
-    } else if (event.key === 'Backspace' && tagInput === '') {
+    } else if (tagInput === '' && event.key === 'Backspace') {
       const lastItem = value.at(-1);
       if (lastItem) handleRemove(lastItem.item);
     }

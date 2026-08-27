@@ -10,7 +10,7 @@ export default function parseCsvToTuples(file: File): Promise<string[][]> {
 
         // Superior heuristic: detect the Unicode replacement character
         const hasEncodingError = data.some((row) =>
-          row.some((cell) => cell.includes('\uFFFD')),
+          row.some((cell) => cell.includes('\u{FFFD}')),
         );
 
         if (hasEncodingError) {

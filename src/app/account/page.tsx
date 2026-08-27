@@ -15,16 +15,17 @@ export default function AccountPage() {
   const router = useRouter();
 
   useEffect(() => {
-    requestApi('/api/auth/me')
-      .then((response) => response.json())
-      .then((data) => {
+    const loadUser = async () => {
+      try {
+        const response = await requestApi('/api/auth/me');
+        const data: unknown = await response.json();
         const userData = userResponseSchema.parse(data);
         setUser(userData.user);
-        return;
-      })
-      .catch(() => {
+      } catch {
         router.replace('/account/login');
-      });
+      }
+    };
+    void loadUser();
   }, [router]);
 
   if (!user) {

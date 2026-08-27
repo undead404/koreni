@@ -25,7 +25,9 @@ export default function CsvDropzone() {
     tableInputAttributes,
   } = useCsvDropzone();
 
-  /* ── Style selection ── */
+  /*
+  ── Style selection ──
+  */
   const zoneClass = clsx(styles.dropzone, {
     [styles.dropzoneDragOver]: state === 'drag-over',
     [styles.dropzoneUploading]: state === 'uploading',

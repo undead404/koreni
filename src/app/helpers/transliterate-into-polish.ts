@@ -81,11 +81,9 @@ export default function transliterateIntoPolish(text: string): string {
     return '';
   }
 
-  return (
-    text
-      // eslint-disable-next-line unicorn/prefer-spread
-      .split('')
-      .map((char) => monographs[char] ?? char)
-      .join('')
-  );
+  return text
+
+    .split('')
+    .map((char) => monographs[char] ?? char)
+    .join('');
 }

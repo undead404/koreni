@@ -72,6 +72,7 @@ const firstLine = csvContent.slice(0, firstLineEnd);
 let csvContentWithoutFirstLine = csvContent.slice(firstLineEnd + 1);
 const originalContent = csvContentWithoutFirstLine;
 for (const [old, new_] of REPLACEMENTS) {
+  // eslint-disable-next-line unicorn/no-unsafe-string-replacement
   csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(old, new_);
 }
 csvContentWithoutFirstLine = csvContentWithoutFirstLine.replaceAll(

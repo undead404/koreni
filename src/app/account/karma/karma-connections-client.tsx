@@ -39,7 +39,7 @@ export default function KarmaConnectionsPage() {
 
   useEffect(() => {
     const generation = ++requestGeneration.current;
-    let mounted = true;
+    let isMounted = true;
     const controller = new AbortController();
 
     const loadStatus = async () => {
@@ -48,12 +48,12 @@ export default function KarmaConnectionsPage() {
           signal: controller.signal,
         });
         const data = karmaStatusResponseSchema.parse(await response.json());
-        if (!mounted || generation !== requestGeneration.current) return;
+        if (!isMounted || generation !== requestGeneration.current) return;
         setStatus(data);
         setViewState('ready');
       } catch (error) {
         if (controller.signal.aborted) return;
-        if (!mounted || generation !== requestGeneration.current) return;
+        if (!isMounted || generation !== requestGeneration.current) return;
         if (error instanceof ApiRequestError && error.status === 401) {
           setViewState('error');
           router.replace(getLoginRedirectPath(pathname, searchParameters));
@@ -67,7 +67,7 @@ export default function KarmaConnectionsPage() {
     void loadStatus();
 
     return () => {
-      mounted = false;
+      isMounted = false;
       controller.abort();
       requestGeneration.current += 1;
     };
@@ -79,7 +79,7 @@ export default function KarmaConnectionsPage() {
     }
 
     const generation = ++lookupGeneration.current;
-    let mounted = true;
+    let isMounted = true;
     const controller = new AbortController();
 
     const loadLookup = async () => {
@@ -88,12 +88,12 @@ export default function KarmaConnectionsPage() {
           signal: controller.signal,
         });
         const data = karmaLookupResponseSchema.parse(await response.json());
-        if (!mounted || generation !== lookupGeneration.current) return;
+        if (!isMounted || generation !== lookupGeneration.current) return;
         setLookup(data);
         setLookupState('ready');
       } catch {
         if (controller.signal.aborted) return;
-        if (!mounted || generation !== lookupGeneration.current) return;
+        if (!isMounted || generation !== lookupGeneration.current) return;
         setLookupState('error');
       }
     };
@@ -101,49 +101,11 @@ export default function KarmaConnectionsPage() {
     void loadLookup();
 
     return () => {
-      mounted = false;
+      isMounted = false;
       controller.abort();
       lookupGeneration.current += 1;
     };
   }, [lookupRetryNonce, status?.user.karma_linked_at]);
-
-  const submit = async (event: SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (viewState === 'submitting' || code.length !== 10) return;
-
-    const generation = ++requestGeneration.current;
-    setViewState('submitting');
-    setMessage(null);
-
-    try {
-      const response = await requestApi('/api/karma/link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      });
-      const data = karmaLinkResponseSchema.parse(await response.json());
-      if (generation !== requestGeneration.current) return;
-      if (!status) return;
-      setStatus({
-        ...status,
-        user: { ...status.user, karma_linked_at: new Date().toISOString() },
-      });
-      setLinkAwarded(data.awarded);
-      setMessage("Акаунт успішно прив'язано.");
-      setCode('');
-      setViewState('ready');
-    } catch (error) {
-      if (generation !== requestGeneration.current) return;
-      if (error instanceof ApiRequestError && error.status === 404) {
-        setMessage('Код недійсний або вже прострочений.');
-      } else if (error instanceof ApiRequestError && error.status === 409) {
-        setMessage('Цей акаунт уже прив’язано.');
-      } else {
-        setMessage('Не вдалося прив’язати акаунт. Спробуйте ще раз.');
-      }
-      setViewState('ready');
-    }
-  };
 
   if (viewState === 'loading') {
     return (
@@ -172,6 +134,44 @@ export default function KarmaConnectionsPage() {
     );
   }
   if (!status) return null;
+  const submit = async (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (viewState === 'submitting' || code.length !== 10) return;
+
+    const generation = ++requestGeneration.current;
+    setViewState('submitting');
+    setMessage(null);
+
+    try {
+      const response = await requestApi('/api/karma/link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
+      const data = karmaLinkResponseSchema.parse(await response.json());
+      if (generation !== requestGeneration.current) return;
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (!status) return;
+      setStatus({
+        ...status,
+        user: { ...status.user, karma_linked_at: new Date().toISOString() },
+      });
+      setLinkAwarded(data.awarded);
+      setMessage("Акаунт успішно прив'язано.");
+      setCode('');
+      setViewState('ready');
+    } catch (error) {
+      if (generation !== requestGeneration.current) return;
+      if (error instanceof ApiRequestError && error.status === 404) {
+        setMessage('Код недійсний або вже прострочений.');
+      } else if (error instanceof ApiRequestError && error.status === 409) {
+        setMessage('Цей акаунт уже прив’язано.');
+      } else {
+        setMessage('Не вдалося прив’язати акаунт. Спробуйте ще раз.');
+      }
+      setViewState('ready');
+    }
+  };
 
   return (
     <main className={styles.root}>

@@ -42,7 +42,7 @@ export function IndexTable({
 
     // Extract the numeric suffix from targetRowId: "tableId-1546" → 1546
     const rowNumberString = targetRowId.split('-').at(-1);
-    const rowNumber = Number.parseInt(rowNumberString ?? '', 10);
+    const rowNumber = Math.trunc(Number(rowNumberString ?? ''));
 
     const isOnThisPage =
       !Number.isNaN(rowNumber) &&

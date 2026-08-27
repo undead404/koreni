@@ -16,7 +16,9 @@ import ReviewSummary from './review-summary';
 import { TableStateStore } from './table-state';
 import type { StepDefinition } from './types';
 
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
 const STEPS: StepDefinition[] = [
   {
     fields: ['table'],

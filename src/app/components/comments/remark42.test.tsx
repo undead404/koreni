@@ -38,7 +38,7 @@ describe('Remark42', () => {
     delete globalThis.remark_config;
 
     // Clean up scripts
-    document.head.innerHTML = '';
+    document.head.replaceChildren();
   });
 
   afterEach(() => {
@@ -134,7 +134,7 @@ describe('Remark42', () => {
 
     let changeHandler: (event: { matches: boolean }) => void = noop;
 
-    vi.mocked(globalThis.matchMedia).mockImplementation((query: string) => ({
+    vi.mocked(matchMedia).mockImplementation((query: string) => ({
       addEventListener: vi.fn().mockImplementation((_, handler) => {
         changeHandler = handler;
       }),

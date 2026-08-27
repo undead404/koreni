@@ -9,10 +9,10 @@ import { generateKarmaStats } from './generate-karma-stats.js';
 const temporaryDirectories: string[] = [];
 
 afterEach(async () => {
+  const directories = [...temporaryDirectories];
+  temporaryDirectories.length = 0;
   await Promise.all(
-    temporaryDirectories
-      .splice(0)
-      .map((directory) => rm(directory, { recursive: true })),
+    directories.map((directory) => rm(directory, { recursive: true })),
   );
 });
 

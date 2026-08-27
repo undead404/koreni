@@ -99,29 +99,29 @@ export default function transliterateIntoUkrainian(input: string): string {
   }
 
   // Check if input is in Cyrillic script
-  if (/[\u0400-\u04FF]/.test(input)) {
+  if (/[\u{400}-\u{4FF}]/u.test(input)) {
     return input;
   }
 
   let result = input;
 
   // Handle special cases at the beginning of the word
-  for (const [latin, cyrillic] of specialCasesBeginning.entries()) {
-    const regex = new RegExp(`\\b${latin}`, 'g');
+  for (const [latin, cyrillic] of specialCasesBeginning) {
+    const regex = new RegExp(String.raw`\b${latin}`, 'g');
+    // eslint-disable-next-line unicorn/no-unsafe-string-replacement
     result = result.replace(regex, cyrillic);
   }
 
   // Handle digraphs
-  for (const [latin, cyrillic] of digraphsMap.entries()) {
+  for (const [latin, cyrillic] of digraphsMap) {
+    // eslint-disable-next-line unicorn/no-unsafe-string-replacement
     result = result.replaceAll(latin, cyrillic);
   }
 
   // Transliterate remaining Latin script to Ukrainian Cyrillic script
-  return (
-    result
-      // eslint-disable-next-line unicorn/prefer-spread
-      .split('')
-      .map((char) => monographsMap.get(char) ?? char)
-      .join('')
-  );
+  return result
+
+    .split('')
+    .map((char) => monographsMap.get(char) ?? char)
+    .join('');
 }

@@ -8,8 +8,8 @@ const handleKarmaLinkedUsers = async (c: Context) => {
   const authHeader = c.req.header('authorization');
 
   if (
-    !environment.KARMA_INTERNAL_TOKEN ||
     !authHeader ||
+    !environment.KARMA_INTERNAL_TOKEN ||
     authHeader !== `Bearer ${environment.KARMA_INTERNAL_TOKEN}`
   ) {
     return c.json({ error: 'Unauthorized' }, 401);

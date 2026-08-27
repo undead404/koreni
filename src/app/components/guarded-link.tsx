@@ -17,7 +17,7 @@ export const GuardedLink = ({
     (event: MouseEvent<HTMLAnchorElement>) => {
       if (
         isDirty &&
-        !globalThis.confirm('Незбережені дані будуть втрачені. Продовжити?')
+        !confirm('Незбережені дані будуть втрачені. Продовжити?')
       ) {
         event.preventDefault();
       }

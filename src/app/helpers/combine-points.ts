@@ -21,5 +21,5 @@ export default function combinePoints(points: MapPoint[]): MapPoint[] {
       map.set(key, { ...point, linkedRecords: [...point.linkedRecords] });
     }
   }
-  return [...map.values()];
+  return map.values().toArray();
 }

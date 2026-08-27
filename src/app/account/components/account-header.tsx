@@ -79,7 +79,7 @@ export default function AccountHeader() {
 
             return (
               <li className={styles.item} key={item.label}>
-                {item.href && !isCurrent ? (
+                {!isCurrent && item.href ? (
                   <Link className={styles.link} href={item.href}>
                     {item.label}
                   </Link>

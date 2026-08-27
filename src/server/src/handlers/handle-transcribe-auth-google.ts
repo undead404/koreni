@@ -12,7 +12,12 @@ const client = new OAuth2Client(environment.OAUTH_CLIENT_ID);
 
 const handleTranscribeGoogleAuth = async (c: Context) => {
   // 1. Safe boundary for schema validation
-  const body: unknown = await c.req.json().catch(() => null);
+  let body: unknown = null;
+  try {
+    body = await c.req.json();
+  } catch {
+    // Invalid JSON is handled by the schema validation below.
+  }
   const parseResult = authSchema.safeParse(body);
 
   if (!parseResult.success) {

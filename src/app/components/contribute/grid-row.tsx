@@ -55,19 +55,22 @@ export const GridRow = memo(function GridRow({
           <Trash2 size={14} strokeWidth={2} />
         </button>
       </td>
-      {columns.map((column, ci) => (
-        <td
-          key={column}
-          className={
-            skippedColumns.has(ci) && !isRowFlagged
-              ? styles.tdFlagged
-              : undefined
-          }
-          title={row[column] ? (row[column] as string) : ''}
-        >
-          <UnknownValue value={row[column]} />
-        </td>
-      ))}
+      {columns.map((column, ci) => {
+        const cellValue = row[column];
+        return (
+          <td
+            key={column}
+            className={
+              !isRowFlagged && skippedColumns.has(ci)
+                ? styles.tdFlagged
+                : undefined
+            }
+            title={typeof cellValue === 'string' ? cellValue : ''}
+          >
+            <UnknownValue value={cellValue} />
+          </td>
+        );
+      })}
     </tr>
   );
 });

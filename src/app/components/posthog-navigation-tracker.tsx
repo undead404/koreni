@@ -8,13 +8,15 @@ export default function PostHogNavigationTracker() {
   const searchParameters = useSearchParams();
   const posthog = usePostHog();
   useEffect(() => {
-    if (pathname && posthog.has_opted_in_capturing()) {
-      let url = globalThis.origin + pathname;
-      if (searchParameters.toString()) {
-        url = url + `?${searchParameters.toString()}`;
-      }
-      posthog.capture('$pageview', { $current_url: url });
+    if (!pathname || posthog.has_opted_in_capturing()) {
+      return;
     }
+
+    let url = origin + pathname;
+    if (searchParameters.toString()) {
+      url += `?${searchParameters.toString()}`;
+    }
+    posthog.capture('$pageview', { $current_url: url });
   }, [pathname, posthog, searchParameters]);
   return null;
 }

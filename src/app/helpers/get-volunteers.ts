@@ -9,15 +9,14 @@ export default async function getVolunteers() {
 
   for (const table of tables) {
     const authorName = table.authorName || 'undefined';
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!tablesByVolunteer[authorName]) {
+
+    if (!Object.hasOwn(tablesByVolunteer, authorName)) {
       tablesByVolunteer[authorName] = [];
     }
     tablesByVolunteer[authorName].push(table);
     const authorEmail = table.authorEmail;
     if (authorEmail) {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (emailsByAuthor[authorName]) {
+      if (Object.hasOwn(emailsByAuthor, authorName)) {
         emailsByAuthor[authorName].add(authorEmail);
       } else {
         emailsByAuthor[authorName] = new Set([authorEmail]);
@@ -32,7 +31,7 @@ export default async function getVolunteers() {
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {
-        slug = `${slug}-${index}`;
+        slug += `-${index}`;
         index++;
       }
       knownSlugs.add(slug);
@@ -47,5 +46,5 @@ export default async function getVolunteers() {
         tables,
       };
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 }

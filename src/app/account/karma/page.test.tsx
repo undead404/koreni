@@ -72,13 +72,11 @@ describe('KarmaConnectionsPage', () => {
 
   it('shows contribution statistics and linking form for an unlinked account', async () => {
     vi.mocked(requestApi).mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          tables: 2,
-          rows: 123,
-          user: { email: 'user@example.com', karma_linked_at: null },
-        }),
-      ),
+      Response.json({
+        tables: 2,
+        rows: 123,
+        user: { email: 'user@example.com', karma_linked_at: null },
+      }),
     );
 
     render(<KarmaConnectionsPage />);
@@ -107,29 +105,23 @@ describe('KarmaConnectionsPage', () => {
   it('submits the code and displays the linked state', async () => {
     vi.mocked(requestApi).mockImplementation((path) => {
       if (path === '/api/karma/link') {
-        return Promise.resolve(
-          new Response(JSON.stringify({ awarded: 12, ok: true })),
-        );
+        return Promise.resolve(Response.json({ awarded: 12, ok: true }));
       }
       if (path === '/api/karma/lookup') {
         return Promise.resolve(
-          new Response(
-            JSON.stringify({
-              found: true,
-              serviceKarma: 12,
-              totalKarma: 42,
-            }),
-          ),
+          Response.json({
+            found: true,
+            serviceKarma: 12,
+            totalKarma: 42,
+          }),
         );
       }
       return Promise.resolve(
-        new Response(
-          JSON.stringify({
-            tables: 2,
-            rows: 123,
-            user: { email: 'user@example.com', karma_linked_at: null },
-          }),
-        ),
+        Response.json({
+          tables: 2,
+          rows: 123,
+          user: { email: 'user@example.com', karma_linked_at: null },
+        }),
       );
     });
 
@@ -167,26 +159,22 @@ describe('KarmaConnectionsPage', () => {
     vi.mocked(requestApi).mockImplementation((path) => {
       if (path === '/api/karma/lookup') {
         return Promise.resolve(
-          new Response(
-            JSON.stringify({
-              found: true,
-              serviceKarma: 381,
-              totalKarma: 2487,
-            }),
-          ),
+          Response.json({
+            found: true,
+            serviceKarma: 381,
+            totalKarma: 2487,
+          }),
         );
       }
       return Promise.resolve(
-        new Response(
-          JSON.stringify({
-            tables: 2,
-            rows: 123,
-            user: {
-              email: 'user@example.com',
-              karma_linked_at: '2026-08-23T12:00:00.000Z',
-            },
-          }),
-        ),
+        Response.json({
+          tables: 2,
+          rows: 123,
+          user: {
+            email: 'user@example.com',
+            karma_linked_at: '2026-08-23T12:00:00.000Z',
+          },
+        }),
       );
     });
 
@@ -199,13 +187,11 @@ describe('KarmaConnectionsPage', () => {
 
   it('shows contact instructions when no contribution is found', async () => {
     vi.mocked(requestApi).mockResolvedValueOnce(
-      new Response(
-        JSON.stringify({
-          tables: 0,
-          rows: 0,
-          user: { email: 'user@example.com', karma_linked_at: null },
-        }),
-      ),
+      Response.json({
+        tables: 0,
+        rows: 0,
+        user: { email: 'user@example.com', karma_linked_at: null },
+      }),
     );
 
     render(<KarmaConnectionsPage />);

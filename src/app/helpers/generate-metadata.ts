@@ -49,7 +49,7 @@ function buildDescription(item: IndexationTable) {
  */
 function buildCanonical(base: string, relativePath: string) {
   try {
-    return new URL(relativePath, base).toString();
+    return new URL(relativePath, base).href;
   } catch {
     return `${base.replace(/\/$/, '')}${relativePath.startsWith('/') ? relativePath : '/' + relativePath}`;
   }
@@ -183,7 +183,7 @@ export function generateJsonLd(
     archiveItems.length > 0
       ? [
           ...new Set(
-            archiveItems.map((archiveItem) => archiveItem.split('-')[0]),
+            archiveItems.map((archiveItem) => archiveItem.split('-', 1)[0]),
           ),
         ]
       : undefined;

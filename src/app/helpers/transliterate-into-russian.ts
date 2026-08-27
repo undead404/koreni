@@ -88,16 +88,15 @@ export default function transliterateIntoRussian(input: string): string {
 
   // Handle digraphs
   let result = input;
-  for (const [latin, cyrillic] of digraphsMap.entries()) {
+  for (const [latin, cyrillic] of digraphsMap) {
+    // eslint-disable-next-line unicorn/no-unsafe-string-replacement
     result = result.replaceAll(latin, cyrillic);
   }
 
   // Transliterate remaining Latin script to Russian Cyrillic script
-  return (
-    result
-      // eslint-disable-next-line unicorn/prefer-spread
-      .split('')
-      .map((char) => monographsMap.get(char) ?? char)
-      .join('')
-  );
+  return result
+
+    .split('')
+    .map((char) => monographsMap.get(char) ?? char)
+    .join('');
 }

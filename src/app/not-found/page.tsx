@@ -15,7 +15,7 @@ class NotFoundError extends Error {
 
 export default function NotFound() {
   useEffect(() => {
-    initBugsnag().notify(new NotFoundError(globalThis.location.pathname));
+    initBugsnag().notify(new NotFoundError(location.pathname));
   }, []);
   return (
     <div className={styles.container}>

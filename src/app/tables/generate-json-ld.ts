@@ -30,10 +30,10 @@ export default function generateJsonLd(tablesMetadata: IndexationTable[]) {
       name: t.title || t.id,
       url: `${site}/${t.id}/1/`,
       numberOfItems: t.size || 0,
-      ...(Number.isNaN(tDate.getTime())
-        ? {}
-        : { datePublished: tDate.toISOString() }),
-      ...(temporalCoverage ? { temporalCoverage } : {}),
+      ...(!Number.isNaN(tDate.getTime()) && {
+        datePublished: tDate.toISOString(),
+      }),
+      ...(temporalCoverage && { temporalCoverage }),
       spatialCoverage: {
         '@type': 'Place',
         geo: {

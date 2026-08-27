@@ -8,14 +8,14 @@ import {
 } from '../server/src/schemata.js';
 import { calculateKarmaContributions } from '../services/karma-calculator.js';
 
-export interface KarmaPushConfiguration {
+export interface KarmaPushConfig {
   appToken: string;
   internalToken: string;
   koreniServerUrl: string;
   navigatorBaseUrl: string;
 }
 
-function getConfiguration(): KarmaPushConfiguration {
+function getConfig(): KarmaPushConfig {
   const appToken = process.env.KARMA_APP_TOKEN;
   const internalToken = process.env.KARMA_INTERNAL_TOKEN;
   const koreniServerUrl = process.env.SITE;
@@ -44,12 +44,12 @@ async function readJson(response: Response): Promise<unknown> {
 }
 
 export async function fetchConsentedEmails(
-  configuration: KarmaPushConfiguration,
+  config: KarmaPushConfig,
 ): Promise<Set<string>> {
   const response = await fetch(
-    `${configuration.koreniServerUrl}/api/karma/linked-users`,
+    `${config.koreniServerUrl}/api/karma/linked-users`,
     {
-      headers: { Authorization: `Bearer ${configuration.internalToken}` },
+      headers: { Authorization: `Bearer ${config.internalToken}` },
     },
   );
   const data = karmaLinkedUsersResponseSchema.parse(await readJson(response));
@@ -57,32 +57,29 @@ export async function fetchConsentedEmails(
 }
 
 export async function pushKarmaSync(
-  configuration: KarmaPushConfiguration,
+  config: KarmaPushConfig,
 ): Promise<NavigatorIngestResponse> {
-  const consentedEmails = await fetchConsentedEmails(configuration);
+  const consentedEmails = await fetchConsentedEmails(config);
   const contributions = await calculateKarmaContributions();
   const payload = navigatorIngestPayloadSchema.parse({
-    accounts: [...contributions.entries()]
+    accounts: [...contributions]
       .filter(([login]) => consentedEmails.has(login))
       .map(([login, total]) => ({ login, total })),
   });
 
-  const response = await fetch(
-    `${configuration.navigatorBaseUrl}/api/karma/ingest`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${configuration.appToken}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
+  const response = await fetch(`${config.navigatorBaseUrl}/api/karma/ingest`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${config.appToken}`,
+      'Content-Type': 'application/json',
     },
-  );
+    body: JSON.stringify(payload),
+  });
   return navigatorIngestResponseSchema.parse(await readJson(response));
 }
 
 export async function runKarmaPush(): Promise<void> {
-  const result = await pushKarmaSync(getConfiguration());
+  const result = await pushKarmaSync(getConfig());
   process.stdout.write(
     `Karma sync complete: synced=${result.synced}, awarded=${result.awarded}, unknown=${result.unknown.length}\n`,
   );

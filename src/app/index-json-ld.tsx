@@ -39,6 +39,7 @@ export default function JsonLdHome({
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         potentialAction: {
           '@type': 'SearchAction',
+          // eslint-disable-next-line unicorn/no-incorrect-template-string-interpolation
           target: `${site}/?query={search_term_string}`,
           'query-input': 'required name=search_term_string',
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -74,7 +75,7 @@ export default function JsonLdHome({
           url: `${site}/tables/`,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any,
-        ...(latestDate ? { datePublished: latestDate.toISOString() } : {}),
+        ...(latestDate && { datePublished: latestDate.toISOString() }),
       },
     ],
   };

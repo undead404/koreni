@@ -81,12 +81,14 @@ export function validateTableFilePathConsistency(
   declaredPath: string,
   contributedCsvPath: string,
 ): void {
-  if (declaredPath !== contributedCsvPath) {
-    console.error(
-      `tableFilePath mismatch: YAML declares tableFilePath='${declaredPath}' but the contributed CSV is '${contributedCsvPath}'. These must match.`,
-    );
-    process.exit(1);
+  if (declaredPath === contributedCsvPath) {
+    return;
   }
+
+  console.error(
+    `tableFilePath mismatch: YAML declares tableFilePath='${declaredPath}' but the contributed CSV is '${contributedCsvPath}'. These must match.`,
+  );
+  process.exit(1);
 }
 
 /**

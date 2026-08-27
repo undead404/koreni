@@ -25,9 +25,11 @@ export interface TableState {
 }
 
 interface TableStateActions {
-  getAllColumns: (includeSkipped?: boolean) => string[];
-  getTableAsObjects: (includeSkipped?: boolean) => Record<string, unknown>[];
-  getTableDimensions: (includeSkipped?: boolean) => {
+  getAllColumns: (shouldIncludeSkipped?: boolean) => string[];
+  getTableAsObjects: (
+    shouldIncludeSkipped?: boolean,
+  ) => Record<string, unknown>[];
+  getTableDimensions: (shouldIncludeSkipped?: boolean) => {
     rows: number;
     columns: number;
   };
@@ -42,14 +44,14 @@ interface TableStateActions {
 export type TableStateStore = TableState & TableStateActions;
 
 export const useTableStateStore = create<TableStateStore>((set, get) => ({
-  getAllColumns: (includeSkipped: boolean = false) => {
+  getAllColumns: (shouldIncludeSkipped: boolean = false) => {
     const { tableData, skippedColumns, skippedRowsAbove } = get();
     const table = tableData.slice(skippedRowsAbove);
     if (table.length === 0) return [];
-    if (includeSkipped) return table[0];
+    if (shouldIncludeSkipped) return table[0];
     return table[0].filter((_, index) => !skippedColumns.has(index));
   },
-  getTableAsObjects: (includeSkipped: boolean = false) => {
+  getTableAsObjects: (shouldIncludeSkipped: boolean = false) => {
     const {
       getAllColumns,
       tableData,
@@ -59,9 +61,9 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
     } = get();
     const table = tableData.slice(skippedRowsAbove);
     let [, ...data] = table;
-    const headers = getAllColumns(includeSkipped);
+    const headers = getAllColumns(shouldIncludeSkipped);
 
-    if (!includeSkipped) {
+    if (!shouldIncludeSkipped) {
       data = skipFromTable(tableData, {
         skippedRowsAbove,
         skippedRowsElsewhere,
@@ -72,7 +74,7 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
       Object.fromEntries(headers.map((h, index) => [h, row[index]])),
     );
   },
-  getTableDimensions: (includeSkipped: boolean = false) => {
+  getTableDimensions: (shouldIncludeSkipped: boolean = false) => {
     const {
       tableData,
       skippedRowsAbove,
@@ -80,7 +82,7 @@ export const useTableStateStore = create<TableStateStore>((set, get) => ({
       skippedColumns,
     } = get();
     if (tableData.length === 0) return { rows: 0, columns: 0 };
-    if (includeSkipped) {
+    if (shouldIncludeSkipped) {
       return {
         rows: tableData.length,
         columns: tableData[0].length,

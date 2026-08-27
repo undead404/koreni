@@ -15,12 +15,12 @@ export default async function importBatch(
     `importBatch for a batch of ${batch.length} weighing ${batchSizeInBytes}`,
   );
   if (batchSizeInBytes > BATCH_SIZE_LIMIT) {
-    let processedSize = 0;
     if (batch.length === 1) {
       throw new Error(
         `Single-record batch is too big: ${batchSizeInBytes} > ${BATCH_SIZE_LIMIT}`,
       );
     }
+    let processedSize = 0;
     console.log(`Batch too big: ${batch.length}. Splitting it in halves.`);
     const chunks = chunk(batch, Math.trunc(batch.length / 2));
     for (const chunk of chunks) {
@@ -39,11 +39,13 @@ export default async function importBatch(
     .import(batch, { action: 'upsert' });
   let failsNumber = 0;
   for (const result of results) {
-    if (!result.success) {
-      console.log(result);
-      console.error(`Failed to import batch: ${result.error}`);
-      failsNumber += 1;
+    if (result.success) {
+      continue;
     }
+
+    console.log(result);
+    console.error(`Failed to import batch: ${result.error}`);
+    failsNumber += 1;
   }
   if (results.length !== batch.length) {
     console.error(

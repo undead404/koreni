@@ -19,10 +19,10 @@ function parseYearRange(input: string): [number] | [number, number] | null {
     return null;
   }
 
-  const start = Number.parseInt(match[1], 10);
+  const start = Math.trunc(Number(match[1]));
 
   if (match[2]) {
-    const end = Number.parseInt(match[2], 10);
+    const end = Math.trunc(Number(match[2]));
     if (start <= end) {
       return [start, end];
     }

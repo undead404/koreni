@@ -83,8 +83,7 @@ export const contributeFormSchema = z.object({
     message: 'Введіть назву таблиці',
   }),
   yearsRange: z.preprocess<unknown, ZodArray<ZodNumber>, number[]>(
-    (value: unknown): unknown =>
-      value === null || value === undefined ? [] : value,
+    (value: unknown): unknown => value ?? [],
     z
       .array(
         z.number().min(1500, {
@@ -112,10 +111,7 @@ export const coordinatesStringAsTupleSchema = z
   .regex(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)
   .transform((value) => {
     const [latString, longString] = value.split(',').map((s) => s.trim());
-    const result = [
-      Number.parseFloat(latString),
-      Number.parseFloat(longString),
-    ] as [number, number];
+    const result = [Number(latString), Number(longString)] as [number, number];
     if (Number.isNaN(result[0]) || Number.isNaN(result[1])) {
       throw new TypeError('Invalid coordinates');
     }

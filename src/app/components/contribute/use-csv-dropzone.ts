@@ -27,7 +27,7 @@ import type { DropzoneState, ParsedFile } from './types';
 
 export interface UseCsvDropzoneResult {
   errors: FieldErrors;
-  getTableDimensions: (useFullData?: boolean) => {
+  getTableDimensions: (shouldUseFullData?: boolean) => {
     columns: number;
     rows: number;
   };
@@ -72,7 +72,9 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
   const { setState: setContributionState } = useContributionStateStore();
   const posthog = usePostHog();
 
-  /* ── Process file ── */
+  /*
+  ── Process file ──
+  */
   const processFile = useCallback(
     async (file: File) => {
       if (!isCsvFile(file)) {
@@ -143,7 +145,9 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     [posthog, setContributionState, setTableData, setTableFileName, setValue],
   );
 
-  /* ── Remove file ── */
+  /*
+  ── Remove file ──
+  */
   const handleRemove = useCallback(() => {
     setState('idle');
     setParsedFile(null);
@@ -153,7 +157,9 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     posthog.capture('csv_file_removed');
   }, [posthog, setValue]);
 
-  /* ── Drag handlers ── */
+  /*
+  ── Drag handlers ──
+  */
   const handleDragOver = useCallback((event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -180,7 +186,9 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     [posthog, processFile, setValue, state],
   );
 
-  /* ── Click / input handler ── */
+  /*
+  ── Click / input handler ──
+  */
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
@@ -200,15 +208,19 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        handleClick();
+      if (!(event.key === 'Enter' || event.key === ' ')) {
+        return;
       }
+
+      event.preventDefault();
+      handleClick();
     },
     [handleClick],
   );
 
-  /* ── Cancel handler ── */
+  /*
+  ── Cancel handler ──
+  */
   useEffect(() => {
     const input = inputReference.current;
     if (!input) return;

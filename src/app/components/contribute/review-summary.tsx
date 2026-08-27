@@ -8,9 +8,15 @@ import { useReverseGeocode } from './use-reverse-geocode';
 
 import styles from './review-summary.module.css';
 
-/* ────────────────────────────────────────── */
-/*  Types & Constants                          */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Types & Constants
+*/
+/*
+──────────────────────────────────────────
+*/
 
 interface SummaryField {
   key: string;
@@ -25,9 +31,15 @@ const ALPHABET_TITLES = {
   uk: 'Український',
 } as const;
 
-/* ────────────────────────────────────────── */
-/*  Value Renderer                             */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Value Renderer
+*/
+/*
+──────────────────────────────────────────
+*/
 
 function ValueRenderer({
   field,
@@ -73,9 +85,15 @@ function ValueRenderer({
   return <>{value}</>;
 }
 
-/* ────────────────────────────────────────── */
-/*  Summary card                               */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Summary card
+*/
+/*
+──────────────────────────────────────────
+*/
 
 function SummaryCard({
   icon,
@@ -122,9 +140,15 @@ function SummaryCard({
   );
 }
 
-/* ────────────────────────────────────────── */
-/*  Review summary                             */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Review summary
+*/
+/*
+──────────────────────────────────────────
+*/
 
 export default function ReviewSummary({
   onEditSection,
@@ -163,12 +187,16 @@ export default function ReviewSummary({
     useReverseGeocode(locationValue);
 
   // Select primitive values and stable function references individually to prevent infinite re-renders
-  const getTableDimensions = useTableStateStore((state) => state.getTableDimensions);
+  const getTableDimensions = useTableStateStore(
+    (state) => state.getTableDimensions,
+  );
   const tableFileName = useTableStateStore((state) => state.tableFileName);
   const skippedRowsCount = useTableStateStore(
-    (state) => state.skippedRowsAbove + state.skippedRowsElsewhere.size
+    (state) => state.skippedRowsAbove + state.skippedRowsElsewhere.size,
   );
-  const skippedColumnsCount = useTableStateStore((state) => state.skippedColumns.size);
+  const skippedColumnsCount = useTableStateStore(
+    (state) => state.skippedColumns.size,
+  );
 
   const tableDimensions = getTableDimensions();
 

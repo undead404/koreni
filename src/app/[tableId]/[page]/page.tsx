@@ -77,7 +77,7 @@ export async function generateStaticParams() {
     Array.from(
       { length: Math.ceil(tableMetadata.size / PER_PAGE) },
       (_, index) => ({
-        page: `${index + 1}`,
+        page: String(index + 1),
         tableId: tableMetadata.id,
       }),
     ),

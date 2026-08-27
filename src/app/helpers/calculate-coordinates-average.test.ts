@@ -42,6 +42,6 @@ describe('calculateCoordinatesAverage', () => {
       [50, -60],
     ];
     const result = calculateCoordinatesAverage(points);
-    expect(result).toEqual([10, -13.333_333_333_333_334]);
+    expect(result).toEqual([10, -13.333333333333334]);
   });
 });

@@ -34,8 +34,8 @@ describe('calculatePayloadSizeInBytes', () => {
   });
 
   it('should return the correct size for a boolean', () => {
-    const payload = true;
-    const size = calculatePayloadSizeInBytes(payload);
+    const isPayload = true;
+    const size = calculatePayloadSizeInBytes(isPayload);
     expect(size).toBe(4); // 'true' is 4 bytes
   });
 

@@ -19,6 +19,12 @@ function stringifyCellValue(value: unknown): string {
   return '';
 }
 
+function addCellValue(values: Set<string>, cell: unknown): void {
+  if (!cell) return;
+  const trimmedValue = stringifyCellValue(cell).trim();
+  if (trimmedValue.length > 0) values.add(trimmedValue);
+}
+
 export async function calculateKarmaContributions(): Promise<
   Map<string, number>
 > {
@@ -35,6 +41,7 @@ export async function calculateKarmaContributions(): Promise<
       continue;
     }
 
+    // eslint-disable-next-line no-useless-assignment
     let rows: Record<string, unknown>[] = [];
     try {
       const fullCsvPath = path.join(process.cwd(), table.tableFilePath);
@@ -46,15 +53,7 @@ export async function calculateKarmaContributions(): Promise<
     const cellValues = new Set<string>();
     for (const row of rows) {
       for (const value of Object.values(row)) {
-        if (!value) {
-          continue;
-        }
-
-        const stringValue = stringifyCellValue(value);
-        const trimmedValue = stringValue.trim();
-        if (trimmedValue.length > 0) {
-          cellValues.add(trimmedValue);
-        }
+        addCellValue(cellValues, value);
       }
     }
 

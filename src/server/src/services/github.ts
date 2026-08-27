@@ -16,7 +16,7 @@ async function submitToGithubImpl(data: ImportPayload) {
   logger.info('dependency.github.submission_started', {
     submissionId: data.id,
   });
-  const [owner, repo] = environment.GITHUB_REPO.split('/');
+  const [owner, repo] = environment.GITHUB_REPO.split('/', 2);
   const branchName = `submission/${data.id}`;
   const yamlPath = `data/records/${data.id}.yaml`;
   const csvPath = `data/csv/${data.id}.csv`;

@@ -2,9 +2,9 @@
 const validateEnvironment = (
   key: string,
   value: string | undefined,
-  required: boolean,
+  isRequired: boolean,
 ): string => {
-  if (required && (!value || value.trim() === '')) {
+  if (isRequired && (!value || value.trim() === '')) {
     throw new Error(`Environment variable ${key} is missing or empty`);
   }
   return value || '';

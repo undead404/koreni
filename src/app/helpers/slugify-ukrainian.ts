@@ -34,7 +34,7 @@ export default function slugifyUkrainian(text: string): string {
     // Regex explanation:
     // (^|\s) captures start of string OR a whitespace character
     // We utilize the capture group $1 to preserve the space if it existed.
-    const regex = new RegExp(`(^|\\s)${char}`, 'g');
+    const regex = new RegExp(String.raw`(^|\s)${char}`, 'g');
 
     result = result.replace(regex, (match, separator: string) => {
       // If the original char was uppercase, ideally we'd match case, but for slugs
@@ -43,6 +43,7 @@ export default function slugifyUkrainian(text: string): string {
     });
 
     // Replace all remaining instances (not at start) with the 'other' variant
+    // eslint-disable-next-line unicorn/no-unsafe-string-replacement
     result = result.replaceAll(char, other);
   }
 

@@ -41,7 +41,7 @@ export async function createProject(
             error.code === 'SQLITE_CONSTRAINT')))
     ) {
       logger.warn('domain.project.duplicate', { projectId: projectData.id });
-      throw new Error('Project ID already exists');
+      throw new Error('Project ID already exists', { cause: error });
     }
     throw error;
   }

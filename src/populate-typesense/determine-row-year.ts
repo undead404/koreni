@@ -56,10 +56,9 @@ export default function determineRowYear(
           .split('.')
           .filter((item) => item !== 'хх');
         const firstPart = parts[0];
-        result =
-          firstPart && firstPart.length === 4
-            ? Number(firstPart)
-            : Number(parts.at(-1));
+        result = Number(
+          firstPart && firstPart.length === 4 ? firstPart : parts.at(-1),
+        );
       } else if (dateInRowAsString.includes('/')) {
         const parts = dateInRowAsString.split('/');
         result = Number(parts.at(-1));
@@ -90,7 +89,7 @@ export default function determineRowYear(
     return 0;
     // throw new Error('Failed to determine the year.');
   }
-  if (!Number.isInteger(result)) {
+  if (!Number.isSafeInteger(result)) {
     console.warn(`Year is not an integer: ${result} (${typeof result})`);
     return 0;
   }
@@ -102,7 +101,7 @@ export default function determineRowYear(
     console.warn(`Year is too large: ${result}`);
     return 0;
   }
-  if (result < 1500 && result !== 0) {
+  if (result !== 0 && result < 1500) {
     console.warn(
       `Year is too small: ${result}. It should be greater than 1500.`,
     );

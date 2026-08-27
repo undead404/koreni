@@ -130,6 +130,7 @@ export const navigatorClient = {
           attempt,
           status: response.status,
         });
+        // eslint-disable-next-line unicorn/prefer-simple-condition-first
         if (response.status < 500 || attempt === INGESTION_MAX_ATTEMPTS) {
           break;
         }
@@ -137,6 +138,7 @@ export const navigatorClient = {
         if (
           !(error instanceof NavigatorClientError) ||
           error.errorCode !== 'transport_error' ||
+          // eslint-disable-next-line unicorn/prefer-simple-condition-first
           attempt === INGESTION_MAX_ATTEMPTS
         ) {
           throw error;

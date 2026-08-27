@@ -45,7 +45,7 @@ const handleSubmit = async (c: Context) => {
     } catch (error) {
       console.error('Error submitting to GitHub:', error);
       posthog.captureException(error);
-      return c.json({ error: `${error as Error}` }, 502);
+      return c.json({ error: String(error as Error) }, 502);
     }
   } catch (error) {
     console.error(error);

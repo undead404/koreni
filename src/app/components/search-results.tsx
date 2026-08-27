@@ -63,28 +63,24 @@ const SearchResults: FC<ResultsProperties> = ({
     const parsed = resultSchema.safeParse(result);
     if (parsed.success) {
       return parsed.data;
-    } else {
-      initBugsnag().notify(
-        new Error('Invalid search result schema'),
-        (event) => {
-          event.addMetadata('searchResult', {
-            search_value: searchValue,
-            result_id: result.document.id,
-            result_title: result.document.title,
-            result_year: result.document.year,
-            validation_errors: parsed.error.issues,
-          });
-        },
-      );
-      posthog.capture('invalid_search_result', {
+    }
+    initBugsnag().notify(new Error('Invalid search result schema'), (event) => {
+      event.addMetadata('searchResult', {
         search_value: searchValue,
         result_id: result.document.id,
         result_title: result.document.title,
         result_year: result.document.year,
+        validation_errors: parsed.error.issues,
       });
+    });
+    posthog.capture('invalid_search_result', {
+      search_value: searchValue,
+      result_id: result.document.id,
+      result_title: result.document.title,
+      result_year: result.document.year,
+    });
 
-      return null;
-    }
+    return null;
   }); // Replace 'any' with inferred schema type if exported
 
   // Separate search results into "strict" and "fuzzy" categories

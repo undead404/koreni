@@ -38,7 +38,7 @@ export default async function VolunteersPage() {
   const volunteers = await getVolunteers();
 
   // Сортуємо: лідери зверху
-  const sortedVolunteers = [...volunteers].sort((a, b) => b.power - a.power);
+  const sortedVolunteers = volunteers.toSorted((a, b) => b.power - a.power);
 
   return (
     <main className={styles.container}>

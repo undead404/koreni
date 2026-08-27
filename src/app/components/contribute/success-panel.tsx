@@ -75,7 +75,7 @@ export default function SuccessPanel({
         {'Дякуємо, '}
         {name}
         {'! Ваша таблиця '}
-        <span className={styles.title}>{`\u201C${title}\u201D`}</span>
+        <span className={styles.title}>{`\u{201C}${title}\u{201D}`}</span>
         {' була успішно надіслана.'}
       </p>
 

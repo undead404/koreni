@@ -10,16 +10,17 @@ import { type Project, projectResponseSchema } from '../../schemata';
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
-    requestApi('/api/transcribe/projects')
-      .then((response) => response.json())
-      .then((data: unknown) => {
+    const loadProjects = async () => {
+      try {
+        const response = await requestApi('/api/transcribe/projects');
+        const data: unknown = await response.json();
         const projectsData = projectResponseSchema.parse(data);
         setProjects(projectsData.projects);
-        return;
-      })
-      .catch(() => {
+      } catch {
         toast.error('Error loading projects');
-      });
+      }
+    };
+    void loadProjects();
   }, []);
   return (
     <section>

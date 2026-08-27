@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 import { nonEmptyString } from './schema/non-empty-string.js';
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 dotenv.config();
 
 const environmentSchema = z.object({

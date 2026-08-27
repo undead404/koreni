@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
 
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 dotenv.config();
 
 const nonEmptyString = z.string().min(1);
