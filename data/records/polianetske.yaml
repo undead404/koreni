@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-384-12-82
+  - ДАКО-384-12-83
+  - ДАКО-384-12-84
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-08-27
+id: polianetske
+location:
+  - 48.70137315853753
+  - 30.21105337816281
+size: 278
+sources:
+  - https://drive.google.com/drive/u/0/folders/1Xw7Te4-NnIPngUkjl6JohpWKTUlLpiN2
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/82
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/83
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/84
+tableFilePath: data/csv/polianetske.csv
+tableLocale: uk
+title: Полянецьке
+yearsRange:
+  - 1897
