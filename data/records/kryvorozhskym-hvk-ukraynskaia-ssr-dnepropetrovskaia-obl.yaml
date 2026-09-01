@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАДнО-Р-3651
+authorName: Whitney Oksana Golyak
+authorEmail: whitney.wiseman21@gmail.com
+date: 2026-07-11
+id: kryvorozhskym-hvk-ukraynskaia-ssr-dnepropetrovskaia-obl
+location:
+  - 47.9102734
+  - 33.3917703
+size: 5665
+sources:
+  - https://obd-memorial.ru
+tableFilePath: public/csv/kryvorozhskym-hvk-ukraynskaia-ssr-dnepropetrovskaia-obl.csv
+tableLocale: ru
+title: Криворожским ГВК, Украинская ССР, Днепропетровская обл
+yearsRange:
+  - 1939
+  - 1945
