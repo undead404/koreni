@@ -71,6 +71,7 @@ describe('handleKarmaLinkedUsers', () => {
 
     const mockUsers = [
       {
+        contribution_email: null,
         email: 'user1@example.com',
         karma_linked_at: '2026-08-22T10:00:00.000Z',
       },

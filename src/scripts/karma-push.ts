@@ -17,6 +17,11 @@ export interface KarmaPushConfig {
   navigatorBaseUrl: string;
 }
 
+interface ConsentedUser {
+  contributionEmail: string;
+  email: string;
+}
+
 async function readJson(response: Response): Promise<unknown> {
   if (!response.ok) {
     throw new Error(`Request failed with HTTP ${response.status}`);
@@ -26,7 +31,7 @@ async function readJson(response: Response): Promise<unknown> {
 
 export async function fetchConsentedEmails(
   config: KarmaPushConfig,
-): Promise<Set<string>> {
+): Promise<ConsentedUser[]> {
   const response = await fetch(
     `${config.koreniServerUrl}/api/karma/linked-users`,
     {
@@ -34,18 +39,22 @@ export async function fetchConsentedEmails(
     },
   );
   const data = karmaLinkedUsersResponseSchema.parse(await readJson(response));
-  return new Set(data.users.map(({ email }) => email.toLowerCase().trim()));
+  return data.users.map(({ contribution_email, email }) => ({
+    contributionEmail: (contribution_email ?? email).toLowerCase().trim(),
+    email: email.toLowerCase().trim(),
+  }));
 }
 
 export async function pushKarmaSync(
   config: KarmaPushConfig,
 ): Promise<NavigatorIngestResponse> {
-  const consentedEmails = await fetchConsentedEmails(config);
+  const consentedUsers = await fetchConsentedEmails(config);
   const contributions = await calculateKarmaContributions();
   const payload = navigatorIngestPayloadSchema.parse({
-    accounts: [...contributions]
-      .filter(([login]) => consentedEmails.has(login))
-      .map(([login, total]) => ({ login, total })),
+    accounts: consentedUsers.map(({ contributionEmail, email }) => ({
+      login: email,
+      total: contributions.get(contributionEmail) ?? 0,
+    })),
   });
 
   const response = await fetch(`${config.navigatorBaseUrl}/api/karma/ingest`, {
@@ -61,7 +70,6 @@ export async function pushKarmaSync(
 
 export async function runKarmaPush(): Promise<void> {
   const result = await pushKarmaSync(environment);
-  console.log(result);
   process.stdout.write(
     `Karma sync complete: synced=${result.synced}, awarded=${result.awarded}, unknown=${result.unknown.length}\n`,
   );

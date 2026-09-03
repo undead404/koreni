@@ -20,12 +20,11 @@ export default async function handleKarmaLookup(c: TranscribeContext) {
   try {
     const response = await navigatorClient.lookupKarma({
       service: environment.KARMA_APP_SLUG,
-      users: [(user.contribution_email ?? user.email).toLowerCase().trim()],
+      users: [user.email.toLowerCase().trim()],
     });
     const result = response.results.find(
       (item) =>
-        item.user.toLowerCase().trim() ===
-        (user.contribution_email ?? user.email).toLowerCase().trim(),
+        item.user.toLowerCase().trim() === user.email.toLowerCase().trim(),
     );
 
     return c.json(

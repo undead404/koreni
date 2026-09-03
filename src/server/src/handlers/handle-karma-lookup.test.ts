@@ -21,7 +21,7 @@ describe('handleKarmaLookup', () => {
   it('returns the authenticated user’s Navigator karma', async () => {
     vi.mocked(findUserById).mockResolvedValueOnce({
       email: 'User@example.com',
-      contribution_email: null,
+      contribution_email: 'contributor@example.com',
       id: 'user-123',
       karma_linked_at: '2026-08-23T12:00:00.000Z',
     } as never);
