@@ -6,7 +6,7 @@ archiveItems:
 authorName: Володимир Цибульський
 authorEmail: unclelado@ukr.net
 date: 2026-08-27
-id: rodnykivka
+id: DAKO-384-12-Rodnykivka
 location:
   - 48.798040544225074
   - 30.229087947557634
@@ -19,6 +19,6 @@ sources:
   - https://drive.google.com/drive/u/0/folders/1Xw7Te4-NnIPngUkjl6JohpWKTUlLpiN2
 tableFilePath: data/csv/rodnykivka.csv
 tableLocale: uk
-title: Родниківка
+title: Родниківка (Уманська) – перепис (1897)
 yearsRange:
   - 1897
