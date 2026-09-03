@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАКО-384-12-74
+  - ДАКО-384-12-75
+  - ДАКО-384-12-76
+  - ДАКО-384-12-77
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-08-27
+id: DAKO-384-12-Rodnykivka
+location:
+  - 48.798040544225074
+  - 30.229087947557634
+size: 286
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/74
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/75
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/76
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/77
+  - https://drive.google.com/drive/u/0/folders/1Xw7Te4-NnIPngUkjl6JohpWKTUlLpiN2
+tableFilePath: data/csv/rodnykivka.csv
+tableLocale: uk
+title: Родниківка (Уманська) – перепис (1897)
+yearsRange:
+  - 1897
