@@ -8,32 +8,13 @@ import {
 } from '../server/src/schemata.js';
 import { calculateKarmaContributions } from '../services/karma-calculator.js';
 
+import environment from './environment.js';
+
 export interface KarmaPushConfig {
   appToken: string;
   internalToken: string;
   koreniServerUrl: string;
   navigatorBaseUrl: string;
-}
-
-function getConfig(): KarmaPushConfig {
-  const appToken = process.env.KARMA_APP_TOKEN;
-  const internalToken = process.env.KARMA_INTERNAL_TOKEN;
-  const koreniServerUrl = process.env.SITE;
-
-  if (!appToken || !internalToken || !koreniServerUrl) {
-    throw new Error(
-      'KARMA_APP_TOKEN, KARMA_INTERNAL_TOKEN, and SITE are required',
-    );
-  }
-
-  return {
-    appToken,
-    internalToken,
-    koreniServerUrl: koreniServerUrl.replace(/\/+$/, ''),
-    navigatorBaseUrl: (
-      process.env.NAVIGATOR_BASE_URL || 'https://www.uagenealogy.com'
-    ).replace(/\/+$/, ''),
-  };
 }
 
 async function readJson(response: Response): Promise<unknown> {
@@ -79,7 +60,8 @@ export async function pushKarmaSync(
 }
 
 export async function runKarmaPush(): Promise<void> {
-  const result = await pushKarmaSync(getConfig());
+  const result = await pushKarmaSync(environment);
+  console.log(result);
   process.stdout.write(
     `Karma sync complete: synced=${result.synced}, awarded=${result.awarded}, unknown=${result.unknown.length}\n`,
   );
