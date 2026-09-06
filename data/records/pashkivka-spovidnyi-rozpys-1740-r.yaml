@@ -1,0 +1,16 @@
+archiveItems:
+  - ЦДІАК-127-1015-5
+authorName: Радана Кузьменко
+authorEmail: radana.genealogy@gmail.com
+date: 2026-09-06
+id: pashkivka-spovidnyi-rozpys-1740-r
+location:
+  - 50.968654394361074
+  - 32.02174986168593
+size: 275
+sources: []
+tableFilePath: data/csv/pashkivka-spovidnyi-rozpys-1740-r.csv
+tableLocale: uk
+title: Пашківка Сповідний розпис 1740 р.
+yearsRange:
+  - 1740
