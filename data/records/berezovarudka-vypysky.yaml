@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАПО-Р6129-3-33
+  - ДАПО-Р6129-3-133
+  - ДАПО-1011-5-25
+  - ДАПО-1011-5-26
+  - ДАПО-1011-5-22
+  - ДАПО-Р6129-3-10
+  - ДАПО-1011-5-24
+  - ДАПО-Р2591-1-1
+authorName: Сергій Фазульянов
+authorEmail: fazulianov@gmail.com
+date: 2026-09-08
+id: berezovarudka-vypysky
+location:
+  - 50.315489870402224
+  - 32.24633216857911
+size: 118
+sources: []
+tableFilePath: data/csv/berezovarudka-vypysky.csv
+tableLocale: uk
+title: Березова Рудка (окремі виписки)
+yearsRange:
+  - 1885
+  - 1942
