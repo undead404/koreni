@@ -4462,10 +4462,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csv-parse@npm:~5.5.0":
-  version: 5.5.6
-  resolution: "csv-parse@npm:5.5.6"
-  checksum: b4f6e9b885e4488829356455157bd009f3fed4119c5fbaadab1a879e85f0a9a1b62cd01e6de68ff77a50f820a6261722bce1b799da1ace2e2126e0b7c8d86760
+"csv-parse@npm:~7.0.2":
+  version: 7.0.2
+  resolution: "csv-parse@npm:7.0.2"
+  checksum: 52ffaafbf7be37201ad782ec3eda37bc24ee0ec6e8967b5a68d5ad2973f10b4154fd11a5b90a002615ef98395c4cd699a13d13509b10067297795b9d3c9320e9
   languageName: node
   linkType: hard
 
@@ -7185,7 +7185,7 @@ __metadata:
     "@octokit/request-error": "npm:^7.1.1"
     "@types/better-sqlite3": "npm:^7.6.13"
     better-sqlite3: "npm:^12.10.0"
-    csv-parse: "npm:~5.5.0"
+    csv-parse: "npm:~7.0.2"
     csv-stringify: "npm:^6.6.0"
     dotenv: "npm:~16.4.7"
     google-auth-library: "npm:^10.6.2"

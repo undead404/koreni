@@ -7,7 +7,7 @@
     "@libsql/client": "0.17.3",
     "@libsql/kysely-libsql": "0.4.1",
     "@octokit/request-error": "^7.1.1",
-    "csv-parse": "~5.5.0",
+    "csv-parse": "~7.0.2",
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
     "google-auth-library": "^10.6.2",
