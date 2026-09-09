@@ -3,7 +3,7 @@ archiveItems:
 authorName: Радана Кузьменко
 authorEmail: radana.genealogy@gmail.com
 date: 2026-09-06
-id: pashkivka-spovidnyi-rozpys-1740-r
+id: TsDIAK-127-1015-5-Pashkivka
 location:
   - 50.968654394361074
   - 32.02174986168593
@@ -11,6 +11,6 @@ size: 275
 sources: []
 tableFilePath: data/csv/pashkivka-spovidnyi-rozpys-1740-r.csv
 tableLocale: uk
-title: Пашківка Сповідний розпис 1740 р.
+title: Пашківка (Талалаївська) – сповідний розпис, 1740
 yearsRange:
   - 1740
