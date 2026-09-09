@@ -3674,7 +3674,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.11.12, baseline-browser-mapping@npm:^2.9.19":
+"baseline-browser-mapping@npm:^2.11.12, baseline-browser-mapping@npm:^2.11.19, baseline-browser-mapping@npm:^2.9.19":
   version: 2.11.21
   resolution: "baseline-browser-mapping@npm:2.11.21"
   bin:
@@ -6854,6 +6854,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:^4.1.11"
     "@vitest/eslint-plugin": "npm:^1.6.27"
     axios: "npm:~1.18.0"
+    baseline-browser-mapping: "npm:^2.11.19"
     clsx: "npm:^2.1.1"
     concurrently: "npm:^10.0.5"
     dotenv: "npm:~16.4.7"
