@@ -6,7 +6,7 @@
   "devDependencies": {
     "tsx": "~4.21.0",
     "typescript": "~5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": "^22.12"
