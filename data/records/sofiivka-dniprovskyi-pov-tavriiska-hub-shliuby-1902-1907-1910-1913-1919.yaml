@@ -1,0 +1,21 @@
+archiveItems:
+  - ДАХеО-259-64-10
+  - ДАХеО-259-64-11
+  - ДАХеО-259-64-12
+  - ДАХеО-259-64-13
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-12
+id: sofiivka-dniprovskyi-pov-tavriiska-hub-shliuby-1902-1907-1910-1913-1919
+location:
+  - 46.8338939
+  - 33.6371472
+size: 1344
+sources: []
+tableFilePath: data/csv/sofiivka-dniprovskyi-pov-tavriiska-hub-shliuby-1902-1907-1910-1913-1919.csv
+tableLocale: uk
+title: Софіївка, Дніпровський пов. Таврійська губ. | шлюби (1902-1907, 1910,
+  1913-1919)
+yearsRange:
+  - 1902
+  - 1919
