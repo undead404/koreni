@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАХеО-259-10-40
+  - ДАХеО-259-10-41
+  - ДАХеО-259-10-42
+  - ДАХеО-259-10-43
+  - ДАХеО-259-10-44
+  - ДАХеО-259-10-45
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-12
+id: DAKheO-259-10-Hola-Prystan-marriage-Nicholas-1894-1915
+location:
+  - 46.5320381
+  - 32.5345028
+size: 1136
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-10-fond-%e2%84%96-259/
+tableFilePath: data/csv/hola-prystan-dniprovskyi-pov-tavriiska-hub-shliuby-1894-1896-1899-1901-1904-1911-1913-1915-tserkva-sviatoho-mykolaia.csv
+tableLocale: uk
+title: Гола Пристань, Дніпровський пов. Таврійська губ. | шлюби (1894-1915),
+  церква Святого Миколая
+yearsRange:
+  - 1894
+  - 1915
