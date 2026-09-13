@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАДнО-Р-3348-1
+authorName: Whitney Oksana Golyak
+authorEmail: whitney.wiseman21@gmail.com
+date: 2026-07-11
+id: Dadno-R-3348-1
+location:
+  - 48.12847002309873
+  - 35.34923951256083
+size: 179
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%94%D0%BD%D0%9E/%D0%A0-3348/1
+tableFilePath: public/csv/Dadno-R-3348-1.csv
+tableLocale: uk
+title: " Ямбургський дитячий будинок (немовлят), с. Ямбург Ямбургської сільської
+  ради Дніпропетровського району та області"
+yearsRange:
+  - 1933
+  - 1934
