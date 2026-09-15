@@ -1,0 +1,17 @@
+archiveItems:
+  - ЛННБУ-141-1-853
+authorName: Христина Копачук
+authorEmail: kristinakopachuk1@gmail.com
+date: 2026-09-15
+id: LNNBU-141-1-853-Vysochanka-list-1834
+location:
+  - 49.02009161123196
+  - 24.58411924916313
+size: 37
+sources:
+  - https://dbs.ossolineum.pl/kzc/wyniki_pl.php?RL-003064
+tableFilePath: data/csv/spysok-piddanykh-s-vysochanka-1834.csv
+tableLocale: uk
+title: Список підданих с. Височанка, 1834
+yearsRange:
+  - 1834
