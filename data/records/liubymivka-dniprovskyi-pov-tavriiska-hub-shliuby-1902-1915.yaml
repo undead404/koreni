@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАХеО-259-31-12
+  - ДАХеО-259-31-13
+  - ДАХеО-259-31-14
+  - ДАХеО-259-31-15
+  - ДАХеО-259-31-17
+  - ДАХеО-259-31-18
+  - ДАХеО-259-31-19
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-18
+id: liubymivka-dniprovskyi-pov-tavriiska-hub-shliuby-1902-1915
+location:
+  - 46.8115514
+  - 33.5646046
+size: 1834
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/259/31
+tableFilePath: data/csv/liubymivka-dniprovskyi-pov-tavriiska-hub-shliuby-1902-1915.csv
+tableLocale: uk
+title: Любимівка, Дніпровський пов. Таврійська губ. | шлюби (1902-1915)
+yearsRange:
+  - 1902
+  - 1915
