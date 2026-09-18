@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАХеО-Р2545-1-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-18
+id: nova-maiachka-novomaiachkivskyi-r-n-khersonska-obl-spysok-uchniv-zahalnoosvitnoi-shkoly-1-1946-1947
+location:
+  - 46.5966167
+  - 33.2214167
+size: 338
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/%D0%A0-2545/1/4
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-G735-HQDS-8?view=explore&groupId=TH-7722-138320-283-83&lang=uk
+tableFilePath: data/csv/nova-maiachka-novomaiachkivskyi-r-n-khersonska-obl-spysok-uchniv-zahalnoosvitnoi-shkoly-1-1946-1947.csv
+tableLocale: uk
+title: Нова Маячка, Новомаячківський р-н Херсонська обл. | Список учнів
+  загальноосвітньої школи № 1 (1946-1947)
+yearsRange:
+  - 1946
+  - 1947
