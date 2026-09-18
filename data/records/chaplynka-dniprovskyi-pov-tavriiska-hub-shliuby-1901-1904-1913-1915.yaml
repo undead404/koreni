@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАХеО-259-70-2
+  - ДАХеО-259-70-3
+  - ДАХеО-259-70-5
+  - ДААРК-142-5-118
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-18
+id: chaplynka-dniprovskyi-pov-tavriiska-hub-shliuby-1901-1904-1913-1915
+location:
+  - 46.3617756
+  - 33.5380219
+size: 1368
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/259/70
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-FQSB-L?view=explore&groupId=M9MV-KPQ&lang=uk
+tableFilePath: data/csv/chaplynka-dniprovskyi-pov-tavriiska-hub-shliuby-1901-1904-1913-1915.csv
+tableLocale: uk
+title: Чаплинка, Дніпровський пов. Таврійська губ. | шлюби (1901, 1904, 1913, 1915)
+yearsRange:
+  - 1901
+  - 1915
