@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-09-19
+id: DAKhmO-315-1-8330-Hulivtsi
+location:
+  - 49.541821
+  - 28.486521
+size: 1443
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Hulivtsi.csv
+tableLocale: ru
+title: Гулівці (Бережани) та Писарівка (Калинівська) – сповідний розпис
+  (повний), ДАХмО 315-1-8330
+yearsRange:
+  - 1855
