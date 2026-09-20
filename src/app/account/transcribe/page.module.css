@@ -1,0 +1,16 @@
+.root {
+  width: min(100%, 800px);
+  margin: 0 auto;
+  padding: 48px var(--side-gap);
+  display: grid;
+  gap: 40px;
+}
+
+.introduction {
+  display: grid;
+  gap: 16px;
+}
+
+.introduction h1 {
+  margin: 0;
+}

@@ -8,6 +8,8 @@ import requestApi from '@/app/services/api';
 
 import { type Project, projectResponseSchema } from '../../schemata';
 
+import styles from './projects-list.module.css';
+
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
   useEffect(() => {
@@ -24,17 +26,24 @@ export default function ProjectsList() {
     void loadProjects();
   }, []);
   return (
-    <section>
+    <section className={styles.section}>
       <h2>Projects</h2>
-      {projects.map((project) => (
-        <Link
-          href={`/account/transcribe/transcribe?projectId=${project.id}`}
-          key={project.id}
-        >
-          {project.title}
-        </Link>
-      ))}
-      {projects.length === 0 && <p>No projects</p>}
+      {projects.length > 0 ? (
+        <ul className={styles.list}>
+          {projects.map((project) => (
+            <li key={project.id}>
+              <Link
+                className={styles.projectLink}
+                href={`/account/transcribe/transcribe?projectId=${project.id}`}
+              >
+                {project.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No projects</p>
+      )}
     </section>
   );
 }
