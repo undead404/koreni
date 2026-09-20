@@ -200,6 +200,26 @@ describe('ProjectDetailsPage', () => {
     ).toBe(true);
   });
 
+  it('does not render editable project data when loading the project fails', async () => {
+    (useSearchParams as Mock).mockReturnValue({
+      get: vi.fn().mockReturnValue('project-123'),
+    });
+    (getProject as Mock).mockRejectedValue(new Error('Request failed'));
+    (getProjectImages as Mock).mockResolvedValue([]);
+
+    render(<ProjectDetailsPage />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Failed to load project details.'),
+      ).toBeInTheDocument();
+    });
+
+    expect(screen.queryByLabelText('Title')).not.toBeInTheDocument();
+    expect(screen.queryByText('Save Changes')).not.toBeInTheDocument();
+    expect(updateProject).not.toHaveBeenCalled();
+  });
+
   it('switches tabs cleanly on tab button clicks', async () => {
     (useSearchParams as Mock).mockReturnValue({
       get: vi.fn().mockReturnValue('project-123'),

@@ -72,6 +72,7 @@ function ProjectDetailsPageContent() {
     null,
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [loadError, setLoadError] = useState<boolean>(false);
   const [metadataIsSaved, setMetadataIsSaved] = useState<boolean>(false);
   const [projectImages, setProjectImages] = useState<ProjectImage[]>([]);
   const [existingImagesCount, setExistingImagesCount] = useState<number>(0);
@@ -143,6 +144,8 @@ function ProjectDetailsPageContent() {
 
     const loadData = async () => {
       setIsLoading(true);
+      setLoadError(false);
+      setProjectData(null);
       setMetadataIsSaved(false);
       setProjectImages([]);
       setExistingImagesCount(0);
@@ -154,16 +157,20 @@ function ProjectDetailsPageContent() {
         ]);
 
         if (isActive) {
-          if (projResponse.success) {
-            setProjectData(projResponse.project);
-            reset(projResponse.project);
-            setMetadataIsSaved(true);
+          if (!projResponse.success) {
+            throw new Error('Project data failed to load');
           }
+          setProjectData(projResponse.project);
+          reset(projResponse.project);
+          setMetadataIsSaved(true);
           setProjectImages(imgs);
           setExistingImagesCount(imgs.length);
         }
       } catch {
-        toast.error('Error loading project details or images');
+        if (isActive) {
+          setProjectData(null);
+          setLoadError(true);
+        }
         toast.error('Failed to load project details');
       } finally {
         if (isActive) {
@@ -285,6 +292,17 @@ function ProjectDetailsPageContent() {
     return <div className={styles.loading}>Loading project details...</div>;
   }
 
+  if (loadError || !projectData) {
+    return (
+      <main className={styles.root}>
+        <p className={styles.error}>Failed to load project details.</p>
+        <Link href="/account/transcribe" className={styles.ctaButton}>
+          Back to projects
+        </Link>
+      </main>
+    );
+  }
+
   const activeImagesCount = selectedImages.filter((img) => !img.removed).length;
   const isUploading = uploadState === 'uploading';
   const isSuccess = uploadState === 'success';
@@ -335,22 +353,18 @@ function ProjectDetailsPageContent() {
       <div className={styles.header}>
         <div className={styles.projectInfo}>
           <h1 className={styles.title}>
-            {projectData?.title || 'Project Details'}
+            {projectData.title || 'Project Details'}
           </h1>
           <div className={styles.metaSummary}>
-            <span className={styles.badge}>{projectData?.type}</span>
-            {projectData?.tableLocale && (
-              <span>Locale: {projectData.tableLocale}</span>
-            )}
-            {projectData?.yearsRange && (
-              <span>
-                Years:{' '}
-                {projectData.yearsRange[0] === projectData.yearsRange[1] ||
-                projectData.yearsRange.length === 1
-                  ? projectData.yearsRange[0]
-                  : `${projectData.yearsRange[0]} - ${projectData.yearsRange[1]}`}
-              </span>
-            )}
+            <span className={styles.badge}>{projectData.type}</span>
+            <span>Locale: {projectData.tableLocale}</span>
+            <span>
+              Years:{' '}
+              {projectData.yearsRange[0] === projectData.yearsRange[1] ||
+              projectData.yearsRange.length === 1
+                ? projectData.yearsRange[0]
+                : `${projectData.yearsRange[0]} - ${projectData.yearsRange[1]}`}
+            </span>
           </div>
         </div>
         <div className={styles.ctaContainer}>
