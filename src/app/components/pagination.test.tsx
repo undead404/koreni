@@ -29,7 +29,7 @@ describe('Pagination component', () => {
 
   it('should render the current page as a span element', () => {
     const { getByText } = render(<Pagination {...defaultProps} />);
-    const currentPage = getByText(`${defaultProps.currentPage}`);
+    const currentPage = getByText(String(defaultProps.currentPage));
     expect(currentPage.tagName).toBe('SPAN');
     expect(currentPage).toHaveClass('currentPage');
   });
@@ -47,7 +47,7 @@ describe('Pagination component', () => {
     const { container, getByText } = render(<Pagination {...defaultProps} />);
     const nav = container.querySelector('nav');
     const ul = container.querySelector('ul');
-    const currentPage = getByText(`${defaultProps.currentPage}`);
+    const currentPage = getByText(String(defaultProps.currentPage));
     const link = container.querySelector('a');
 
     expect(nav).toHaveClass('nav');

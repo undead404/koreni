@@ -9,8 +9,8 @@ import { initBugsnag } from './bugsnag';
 const locationiqAutocompleteResponseSchema = z.array(
   z.object({
     display_name: z.string(),
-    lat: z.string().transform((value) => Number.parseFloat(value)),
-    lon: z.string().transform((value) => Number.parseFloat(value)),
+    lat: z.string().transform(Number),
+    lon: z.string().transform(Number),
     place_id: z.string(),
   }),
 );

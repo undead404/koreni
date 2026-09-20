@@ -1,6 +1,7 @@
 import sleep from './sleep';
 
 export default async function waitUntil(
+  // eslint-disable-next-line unicorn/consistent-boolean-name
   predicate: () => Promise<boolean>,
   timeout?: number,
 ): Promise<void> {
@@ -8,8 +9,8 @@ export default async function waitUntil(
 
   async function wait() {
     while (!isSettled) {
-      const result = await predicate();
-      if (result) {
+      const isResult = await predicate();
+      if (isResult) {
         isSettled = true;
       } else {
         await sleep(1000);

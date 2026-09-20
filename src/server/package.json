@@ -8,11 +8,11 @@
     "@libsql/client": "0.17.3",
     "@libsql/kysely-libsql": "0.4.1",
     "@octokit/request-error": "^7.1.1",
-    "csv-parse": "~5.5.0",
+    "csv-parse": "~7.0.2",
     "csv-stringify": "^6.6.0",
     "dotenv": "~16.4.7",
     "google-auth-library": "^10.6.2",
-    "hono": "^4.12.34",
+    "hono": "^4.13.5",
     "kysely": "^0.29.2",
     "octokit": "~5.0.5",
     "posthog-node": "~5.49.1",
@@ -27,7 +27,7 @@
     "kysely-codegen": "^0.20.0",
     "tsx": "~4.23.0",
     "typescript": "~5.9.3",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": "^22.12"

@@ -17,7 +17,8 @@ try {
     .split('\n')
     // Remove comments
     .filter(
-      (line) => !line.trim().startsWith('#') && !line.trim().startsWith('--'),
+      (line) =>
+        !line.trimStart().startsWith('#') && !line.trimStart().startsWith('--'),
     )
     .join('\n')
     // SQLite requires function calls in DEFAULT to be enclosed in parentheses

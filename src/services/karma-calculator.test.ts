@@ -187,7 +187,7 @@ describe('karma-calculator', () => {
       ]);
 
       vi.mocked(readCsv).mockResolvedValueOnce([
-        { col1: '', col2: '   ', col3: null, col4: undefined },
+        { col1: '', col2: ' '.repeat(3), col3: null, col4: undefined },
         { col1: 'valid', col2: 12_345, col3: true },
       ]);
 
@@ -217,7 +217,7 @@ describe('karma-calculator', () => {
         {
           archiveItems: ['Archive-2'],
           authorName: 'Space Email',
-          authorEmail: '   ',
+          authorEmail: ' '.repeat(3),
           date: new Date(),
           id: 'table-space-email',
           tableFilePath: 'data/csv/space-email.csv',
@@ -309,7 +309,7 @@ describe('karma-calculator', () => {
 
       expect(await getUserKarmaContribution('unknown@example.com')).toBe(0);
       expect(await getUserKarmaContribution('')).toBe(0);
-      expect(await getUserKarmaContribution('   ')).toBe(0);
+      expect(await getUserKarmaContribution(' '.repeat(3))).toBe(0);
     });
   });
 });

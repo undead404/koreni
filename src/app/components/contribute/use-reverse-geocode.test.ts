@@ -1,5 +1,8 @@
 import { renderHook } from '@testing-library/react';
+import { AbortError } from 'es-toolkit';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useReverseGeocode } from './use-reverse-geocode';
 
 vi.mock('@/app/environment', () => ({
   default: {
@@ -23,8 +26,6 @@ vi.mock('posthog-js/react', () => ({
   }),
 }));
 
-import { useReverseGeocode } from './use-reverse-geocode';
-
 describe('useReverseGeocode', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -39,8 +40,7 @@ describe('useReverseGeocode', () => {
       () =>
         new Promise((_resolve, reject) => {
           setTimeout(() => {
-            const error = new Error('Aborted');
-            error.name = 'AbortError';
+            const error = new AbortError('Aborted');
             reject(error);
           }, 100);
         }),
@@ -73,8 +73,8 @@ describe('useReverseGeocode', () => {
         new Promise((resolve) => {
           setTimeout(() => {
             resolve(
-              new Response(
-                JSON.stringify({ display_name: 'Полтава, Україна' }),
+              Response.json(
+                { display_name: 'Полтава, Україна' },
                 { status: 200 },
               ),
             );

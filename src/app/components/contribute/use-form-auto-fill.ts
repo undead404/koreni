@@ -17,8 +17,8 @@ export function useFormAutoFill() {
   const titleValue = useWatch({ control, name: 'title' });
 
   useEffect(() => {
-    if (!touchedFields.title && !dirtyFields.title && tableFileName) {
-      setValue('title', tableFileName.split('.')[0]);
+    if (tableFileName && !touchedFields.title && !dirtyFields.title) {
+      setValue('title', tableFileName.split('.', 1)[0]);
     }
   }, [setValue, tableFileName, touchedFields.title, dirtyFields.title]);
 

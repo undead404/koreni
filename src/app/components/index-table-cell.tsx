@@ -52,7 +52,7 @@ export default function IndexTableCell({
       );
     }
 
-    if (matchedTokens.length === 0 || !stringValue) return stringValue;
+    if (!stringValue || matchedTokens.length === 0) return stringValue;
 
     const regex = new RegExp(`(${matchedTokens.join('|')})`, 'gi');
     const parts = stringValue.split(regex);

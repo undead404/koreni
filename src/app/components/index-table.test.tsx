@@ -40,13 +40,13 @@ describe('IndexTable component', () => {
 
   it('should render the correct number of header columns', () => {
     const { container } = render(<IndexTable {...defaultProps} />);
-    const headers = container.querySelectorAll('thead th');
+    const headers = container.querySelectorAll(':scope thead th');
     expect(headers.length).toBe(Object.keys(mockData[0]).length);
   });
 
   it('should render the correct number of rows', () => {
     const { container } = render(<IndexTable {...defaultProps} />);
-    const rows = container.querySelectorAll('tbody tr');
+    const rows = container.querySelectorAll(':scope tbody tr');
     expect(rows.length).toBe(mockData.length);
   });
 

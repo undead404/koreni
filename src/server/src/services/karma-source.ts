@@ -68,6 +68,12 @@ function stringifyCellValue(value: unknown): string {
   return '';
 }
 
+function addCellValue(values: Set<string>, cell: unknown): void {
+  if (!cell) return;
+  const stringValue = stringifyCellValue(cell).trim();
+  if (stringValue) values.add(stringValue);
+}
+
 function calculateRows(rows: Array<unknown[]>): {
   contribution: number;
   rowCount: number;
@@ -75,9 +81,7 @@ function calculateRows(rows: Array<unknown[]>): {
   const values = new Set<string>();
   for (const row of rows) {
     for (const value of row) {
-      if (!value) continue;
-      const stringValue = stringifyCellValue(value).trim();
-      if (stringValue) values.add(stringValue);
+      addCellValue(values, value);
     }
   }
   return {
@@ -103,7 +107,7 @@ async function getRecordPaths(recordsPath: string): Promise<string[]> {
         (entry.name.endsWith('.yaml') || entry.name.endsWith('.yml')),
     )
     .map((entry) => path.join(recordsPath, entry.name))
-    .sort((a, b) => a.localeCompare(b));
+    .toSorted((a, b) => a.localeCompare(b));
 }
 
 export async function calculateLocalKarmaStats(
@@ -194,9 +198,13 @@ export async function resolveDevelopmentDataRoot(): Promise<string> {
 
 async function getSource(): Promise<KarmaStatsIndex> {
   if (!sourceRefresh) {
-    sourceRefresh = loadSource().finally(() => {
-      sourceRefresh = null;
-    });
+    sourceRefresh = (async () => {
+      try {
+        return await loadSource();
+      } finally {
+        sourceRefresh = null;
+      }
+    })();
   }
   return sourceRefresh;
 }

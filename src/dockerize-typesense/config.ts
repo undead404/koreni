@@ -1,4 +1,6 @@
 import * as dotenv from 'dotenv';
+
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 dotenv.config();
 
 export const DATA_DIR = './typesense';

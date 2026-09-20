@@ -93,7 +93,7 @@ describe('AccountLoginPage', () => {
 
   it('handles successful credentials, POSTs payload, and navigates to /account', async () => {
     vi.mocked(requestApi).mockResolvedValue(
-      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+      Response.json({ ok: true }, { status: 200 }),
     );
 
     render(<AccountLoginPage />);
@@ -127,7 +127,7 @@ describe('AccountLoginPage', () => {
   it('navigates to the originally requested route after login', async () => {
     mockSearchParameters.set('returnTo', '/account/karma');
     vi.mocked(requestApi).mockResolvedValue(
-      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+      Response.json({ ok: true }, { status: 200 }),
     );
 
     render(<AccountLoginPage />);
@@ -141,7 +141,7 @@ describe('AccountLoginPage', () => {
   it('falls back to the account page for an unsafe requested route', async () => {
     mockSearchParameters.set('returnTo', 'https://example.com');
     vi.mocked(requestApi).mockResolvedValue(
-      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+      Response.json({ ok: true }, { status: 200 }),
     );
 
     render(<AccountLoginPage />);

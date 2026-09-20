@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАЧгО-679-10-1789
+authorName: Сергій Фазульянов
+authorEmail: fazulianov@gmail.com
+date: 2026-09-02
+id: DAChhO-679-10-1789-Prokhory-Tolochko
+location:
+  - 51.19744008371523
+  - 32.103595733642585
+size: 11
+sources: []
+tableFilePath: data/csv/kozaky-tolochko-z-prokhoriv-u-yevlashivtsi.csv
+tableLocale: uk
+title: Козаки Толочко з Прохорів у Євлашівці
+yearsRange:
+  - 1895

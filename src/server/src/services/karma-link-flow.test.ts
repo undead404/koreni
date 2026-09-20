@@ -59,7 +59,7 @@ describe('executeUserAccountLink', () => {
     );
     expect(navigatorClient.redeemLinkCode).toHaveBeenCalledWith({
       code: 'AB12CD34EF',
-      login: 'contribution.user@example.com',
+      login: 'test.user@example.com',
       total: 150,
     });
     expect(linkUserKarma).toHaveBeenCalledWith('user-123', expect.any(String));

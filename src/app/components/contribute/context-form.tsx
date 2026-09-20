@@ -17,9 +17,15 @@ const LocationController = Controller as typeof Controller<
   'location'
 >;
 
-/* ────────────────────────────────────────── */
-/*  Component                                  */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Component
+*/
+/*
+──────────────────────────────────────────
+*/
 export default function ContextForm() {
   const {
     control,

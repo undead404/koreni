@@ -11,9 +11,15 @@ import type { ContributeFormValues, StepDefinition, StepStatus } from './types';
 
 import styles from './step.module.css';
 
-/* ────────────────────────────────────────── */
-/*  Class Maps                                 */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Class Maps
+*/
+/*
+──────────────────────────────────────────
+*/
 const indicatorStatusMap: Record<StepStatus, string> = {
   completed: styles.indicatorCompleted,
   active: styles.indicatorActive,
@@ -36,9 +42,15 @@ const titleStatusMap: Record<StepStatus, string> = {
   pending: styles.titlePending,
 };
 
-/* ────────────────────────────────────────── */
-/*  Single step                                */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Single step
+*/
+/*
+──────────────────────────────────────────
+*/
 export default function ContributeFormStep({
   def,
   index,
@@ -69,7 +81,9 @@ export default function ContributeFormStep({
   const [isValidating, setIsValidating] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  /* Classes */
+  /*
+  Classes
+  */
   const indicatorClass = clsx(
     indicatorStatusMap[status],
     isValidating && styles.indicatorValidating,

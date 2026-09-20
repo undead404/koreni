@@ -43,11 +43,11 @@ describe('typesense collection configuration', () => {
     ['Ukrainian', UK_COLLECTION_CONFIGURATION],
   ] as const)(
     'keeps the %s collection compatible with imported row documents',
-    (_label, configuration) => {
+    (_label, config) => {
       vi.mocked(determineRowYear).mockReturnValue(1905);
 
       const document = convertRow(row, 0, table, table.location);
-      const schemaFieldNames = configuration.fields.map((field) => field.name);
+      const schemaFieldNames = config.fields.map((field) => field.name);
       const importedFieldNames = Object.keys(document).filter(
         (fieldName) => fieldName !== 'id',
       );

@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       let slug = slugifyUkrainian(name);
       let index = 2;
       while (knownSlugs.has(slug)) {
-        slug = `${slug}-${index}`;
+        slug += `-${index}`;
         index++;
       }
       knownSlugs.add(slug);
@@ -41,44 +41,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           (accumulator, table) => accumulator + table.size,
           0,
         ),
-        url: new URL(
-          `/volunteers/${slug}/`,
-          environment.NEXT_PUBLIC_SITE,
-        ).toString(),
+        url: new URL(`/volunteers/${slug}/`, environment.NEXT_PUBLIC_SITE).href,
       };
     })
     .filter((v) => v !== null)
-    .sort((a, b) => b.power - a.power);
+    .toSorted((a, b) => b.power - a.power);
   return [
     {
       changeFrequency: 'yearly',
       lastModified: new Date(),
-      url: new URL(environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL(environment.NEXT_PUBLIC_SITE).href,
     },
     {
       changeFrequency: 'weekly',
       lastModified: new Date(),
-      url: new URL('/map/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/map/', environment.NEXT_PUBLIC_SITE).href,
     },
     {
       changeFrequency: 'daily',
       lastModified: new Date(),
-      url: new URL('/tables/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/tables/', environment.NEXT_PUBLIC_SITE).href,
     },
     {
       changeFrequency: 'monthly',
       lastModified: new Date(),
-      url: new URL('/about/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/about/', environment.NEXT_PUBLIC_SITE).href,
     },
     {
       changeFrequency: 'yearly',
       lastModified: new Date(),
-      url: new URL('/license/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/license/', environment.NEXT_PUBLIC_SITE).href,
     },
     {
       changeFrequency: 'yearly',
       lastModified: new Date(2026, 1, 11),
-      url: new URL('/privacy/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/privacy/', environment.NEXT_PUBLIC_SITE).href,
     },
     ...tablesMetadata.flatMap((tableMetadata) => {
       const numberOfPages = Math.ceil(tableMetadata.size / PER_PAGE);
@@ -90,7 +87,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return {
           changeFrequency: 'monthly' as const,
           lastModified: tableMetadata.date,
-          url: url.toString(),
+          url: url.href,
         };
       });
     }),
@@ -103,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly' as const,
       lastModified: new Date(2026, 2, 28),
       priority: 0.5,
-      url: new URL('/contribute/', environment.NEXT_PUBLIC_SITE).toString(),
+      url: new URL('/contribute/', environment.NEXT_PUBLIC_SITE).href,
     },
   ];
 }

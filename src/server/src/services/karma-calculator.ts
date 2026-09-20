@@ -70,24 +70,27 @@ async function calculateUserKarmaSummary(
   };
 }
 
-export function getUserKarmaContribution(
+export async function getUserKarmaContribution(
   email: string,
   context?: KarmaCalculationLogContext,
 ): Promise<number> {
   const logContext = context ?? { requestId: 'internal' };
   const normalizedEmail = email.toLowerCase().trim();
   if (!normalizedEmail) {
-    return Promise.resolve(0);
+    return 0;
   }
 
   const existingRefresh = userContributionRefreshes.get(normalizedEmail);
   if (existingRefresh) {
     logKarmaEvent('calculation-shared', logContext, { shared_in_flight: true });
-    return existingRefresh.then(({ contribution }) => contribution);
+    const summary = await existingRefresh;
+    return summary.contribution;
   }
 
-  const refresh = calculateUserKarmaSummary(normalizedEmail, logContext)
-    .catch((error: unknown) => {
+  const refresh = (async () => {
+    try {
+      return await calculateUserKarmaSummary(normalizedEmail, logContext);
+    } catch (error: unknown) {
       logKarmaEvent('calculation-failed', logContext, {
         error_category:
           error instanceof karmaSource.KarmaSourceUnavailableError
@@ -98,34 +101,38 @@ export function getUserKarmaContribution(
         outcome: 'failure',
       });
       throw error;
-    })
-    .finally(() => {
+    } finally {
       userContributionRefreshes.delete(normalizedEmail);
-    });
+    }
+  })();
   userContributionRefreshes.set(normalizedEmail, refresh);
-  return refresh.then(({ contribution }) => contribution);
+  const summary = await refresh;
+  return summary.contribution;
 }
 
-export function getUserKarmaContributionStats(
+export async function getUserKarmaContributionStats(
   email: string,
   context?: KarmaCalculationLogContext,
 ): Promise<KarmaContributionStats> {
   const logContext = context ?? { requestId: 'internal' };
   const normalizedEmail = email.toLowerCase().trim();
   if (!normalizedEmail) {
-    return Promise.resolve({ rowCount: 0, tableCount: 0 });
+    return { rowCount: 0, tableCount: 0 };
   }
 
   const existingRefresh = userContributionRefreshes.get(normalizedEmail);
   if (existingRefresh) {
-    return existingRefresh.then(({ rowCount, tableCount }) => ({
+    const { rowCount, tableCount } = await existingRefresh;
+    return {
       rowCount,
       tableCount,
-    }));
+    };
   }
 
-  const refresh = calculateUserKarmaSummary(normalizedEmail, logContext)
-    .catch((error: unknown) => {
+  const refresh = (async () => {
+    try {
+      return await calculateUserKarmaSummary(normalizedEmail, logContext);
+    } catch (error: unknown) {
       logKarmaEvent('calculation-failed', logContext, {
         error_category:
           error instanceof karmaSource.KarmaSourceUnavailableError
@@ -136,12 +143,13 @@ export function getUserKarmaContributionStats(
         outcome: 'failure',
       });
       throw error;
-    })
-    .finally(() => {
+    } finally {
       userContributionRefreshes.delete(normalizedEmail);
-    });
+    }
+  })();
   userContributionRefreshes.set(normalizedEmail, refresh);
-  return refresh.then(({ rowCount, tableCount }) => ({ rowCount, tableCount }));
+  const { rowCount, tableCount } = await refresh;
+  return { rowCount, tableCount };
 }
 
 export async function calculateKarmaContributions(): Promise<

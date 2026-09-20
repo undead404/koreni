@@ -13,9 +13,15 @@ import type { ContributeFormValues, StepStatus } from './types';
 
 import styles from './stepper.module.css';
 
-/* ────────────────────────────────────────── */
-/*  Helpers                                    */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Helpers
+*/
+/*
+──────────────────────────────────────────
+*/
 const getConnectorStatus = (
   index: number,
   active: number,
@@ -28,9 +34,15 @@ const getConnectorStatus = (
   return 'pending';
 };
 
-/* ────────────────────────────────────────── */
-/*  Main ContributeFormStepper                 */
-/* ────────────────────────────────────────── */
+/*
+──────────────────────────────────────────
+*/
+/*
+Main ContributeFormStepper
+*/
+/*
+──────────────────────────────────────────
+*/
 export default function ContributeFormStepper() {
   const { tableFileName } = useTableStateStore();
   const {
@@ -44,10 +56,12 @@ export default function ContributeFormStepper() {
 
   // Reset to step 0 if no table file is selected
   useEffect(() => {
-    if (!tableFileName) {
-      posthog.capture('step_reset');
-      setActiveIndex(0);
+    if (tableFileName) {
+      return;
     }
+
+    posthog.capture('step_reset');
+    setActiveIndex(0);
   }, [tableFileName, setActiveIndex, posthog]);
 
   const statusOf = useCallback(
@@ -69,8 +83,10 @@ export default function ContributeFormStepper() {
     setActiveIndex((previous) => Math.max(previous - 1, 0));
   }, [posthog, setActiveIndex]);
 
-  /* allDone is strictly defined by submission success */
-  const allDone = useMemo(() => !!prUrl, [prUrl]);
+  /*
+  allDone is strictly defined by submission success
+  */
+  const isAllDone = useMemo(() => !!prUrl, [prUrl]);
   const nameValue = useWatch({ control, name: 'authorName' });
 
   // Stable validation effect: only move backward if a previous step becomes invalid
@@ -99,11 +115,11 @@ export default function ContributeFormStepper() {
       aria-live="polite"
     >
       {STEPS.map((step, index) => {
-        const status: StepStatus = allDone ? 'completed' : statusOf(index);
+        const status: StepStatus = isAllDone ? 'completed' : statusOf(index);
         const nextConnectorStatus = getConnectorStatus(
           index,
           activeIndex,
-          allDone,
+          isAllDone,
           STEPS.length,
         );
 
@@ -113,7 +129,7 @@ export default function ContributeFormStepper() {
             def={step}
             index={index}
             status={status}
-            isLast={index === STEPS.length - 1 && !allDone}
+            isLast={index === STEPS.length - 1 && !isAllDone}
             onActivate={() => {
               setActiveIndex(index);
             }}

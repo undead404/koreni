@@ -29,8 +29,8 @@ describe('getKarmaLinkedUsers', () => {
 
     const mockLinkedUsers = [
       {
-        email: 'opted_in@example.com',
         contribution_email: null,
+        email: 'opted_in@example.com',
         karma_linked_at: '2026-08-22T10:00:00Z',
       },
     ];
@@ -42,13 +42,14 @@ describe('getKarmaLinkedUsers', () => {
     expect(mockWhere).toHaveBeenCalledWith('karma_linked_at', 'is not', null);
     expect(result).toStrictEqual([
       {
+        contribution_email: null,
         email: 'opted_in@example.com',
         karma_linked_at: '2026-08-22T10:00:00Z',
       },
     ]);
   });
 
-  it('uses the contribution email for linked users when available', async () => {
+  it('preserves the primary email separately from the contribution email', async () => {
     const { mockExecute } = (await import('./client.js')) as unknown as {
       mockExecute: ReturnType<typeof vi.fn>;
     };
@@ -62,7 +63,8 @@ describe('getKarmaLinkedUsers', () => {
 
     await expect(getKarmaLinkedUsers()).resolves.toStrictEqual([
       {
-        email: 'contributor@example.com',
+        contribution_email: 'contributor@example.com',
+        email: 'google@example.com',
         karma_linked_at: '2026-08-22T10:00:00Z',
       },
     ]);

@@ -268,10 +268,8 @@ describe('useSearch', () => {
   });
 
   it('ignores stale responses from older search requests', async () => {
-    let resolveFirst!: (value: [SearchResult[], number]) => void;
-    const firstPromise = new Promise<[SearchResult[], number]>((resolve) => {
-      resolveFirst = resolve;
-    });
+    const { promise: firstPromise, resolve: resolveFirst } =
+      Promise.withResolvers<[SearchResult[], number]>();
 
     mockSearch
       .mockReturnValueOnce(firstPromise)

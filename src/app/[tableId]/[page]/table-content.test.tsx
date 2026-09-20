@@ -60,7 +60,7 @@ const mockTableMetadata: IndexationTable = {
   id: 'table1',
   title: 'Test Table',
   authorName: 'Test Author',
-  sources: ['http://example.com'],
+  sources: ['https://example.com'],
   yearsRange: [1900, 1910],
   archiveItems: ['Item 1', 'Item 2'],
   location: [50, 30] as [number, number],
@@ -86,7 +86,7 @@ describe('TableContent', () => {
 
     expect(screen.getByText('Test Table')).toBeInTheDocument();
     expect(screen.getByText(/Test Author/)).toBeInTheDocument();
-    expect(screen.getByText('http://example.com')).toBeInTheDocument();
+    expect(screen.getByText('https://example.com')).toBeInTheDocument();
     expect(screen.getByText(/1900-1910/)).toBeInTheDocument();
     expect(screen.getAllByTestId('archive-item')).toHaveLength(2);
     expect(screen.getByTestId('map-wrapper')).toBeInTheDocument();

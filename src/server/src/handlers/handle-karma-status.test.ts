@@ -70,4 +70,36 @@ describe('handleKarmaStatus', () => {
       502,
     );
   });
+
+  it('uses the contribution email for local statistics and the primary email in the response', async () => {
+    vi.mocked(findUserById).mockResolvedValueOnce({
+      email: 'google@example.com',
+      contribution_email: 'contributor@example.com',
+      id: 'user-123',
+      karma_linked_at: '2026-08-22T10:00:00.000Z',
+    } as never);
+    vi.mocked(getUserKarmaContributionStats).mockResolvedValueOnce({
+      tableCount: 2,
+      rowCount: 4,
+    });
+    const json = vi.fn();
+
+    await handleKarmaStatus({
+      json,
+      var: { userId: 'user-123', requestId: 'request-123' },
+    } as never);
+
+    expect(getUserKarmaContributionStats).toHaveBeenCalledWith(
+      'contributor@example.com',
+      { requestId: 'request-123' },
+    );
+    expect(json).toHaveBeenCalledWith({
+      tables: 2,
+      rows: 4,
+      user: {
+        email: 'google@example.com',
+        karma_linked_at: '2026-08-22T10:00:00.000Z',
+      },
+    });
+  });
 });

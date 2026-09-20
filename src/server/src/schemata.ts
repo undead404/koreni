@@ -88,6 +88,7 @@ export const r2UploadSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
 });
 export const karmaLinkedUserSchema = z.object({
+  contribution_email: z.email().nullable().optional(),
   email: z.email(),
   karma_linked_at: z.string(),
 });

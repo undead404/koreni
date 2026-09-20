@@ -9,12 +9,10 @@ interface Remark42Properties {
 }
 
 const getPreferredTheme = (): 'light' | 'dark' => {
-  if (typeof globalThis.matchMedia !== 'function') {
+  if (typeof matchMedia !== 'function') {
     return 'light';
   }
-  return globalThis.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 };
 
 export default function Remark42({
@@ -29,11 +27,11 @@ export default function Remark42({
   }, []);
 
   useEffect(() => {
-    if (typeof globalThis.matchMedia !== 'function') {
+    if (typeof matchMedia !== 'function') {
       return;
     }
 
-    const mediaQuery = globalThis.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = matchMedia('(prefers-color-scheme: dark)');
     const handleMediaQueryChange = (event: { matches: boolean }) => {
       handleThemeChange(event.matches ? 'dark' : 'light');
     };
@@ -51,10 +49,11 @@ export default function Remark42({
       locale: 'ua',
       site_id: siteId,
       theme: getPreferredTheme(),
-      url: `${globalThis.location.origin}${pathname}`,
+      url: `${location.origin}${pathname}`,
       components: ['embed'],
     };
 
+    // eslint-disable-next-line unicorn/no-global-object-property-assignment
     globalThis.remark_config = config;
 
     if (globalThis.REMARK42) {

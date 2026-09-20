@@ -82,7 +82,7 @@ describe('populateTypesense', () => {
 
   it('should chunk data if it exceeds CHUNK_SIZE', async () => {
     // Create 1500 rows to test chunking (CHUNK_SIZE is 1000)
-    const mockData = Array.from({ length: 1500 }).map((_, index) => ({
+    const mockData = Array.from({ length: 1500 }, (_, index) => ({
       val: index,
     }));
     const mockTable: IndexationTableWithData = {

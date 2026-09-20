@@ -4,11 +4,12 @@ on:
     - cron: '0 18 * * *' # Запуск о 18:00 UTC (20:00/21:00 за Києвом)
   workflow_dispatch: # Дозволяє запустити Action вручну з інтерфейсу GitHub
 
+permissions:
+  contents: read
+  actions: read
 jobs:
   notify:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -17,11 +18,13 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Find new records in the last 24 hours
+      - name: Find new records since the last successful report
         id: find-files
         run: |
-          # Шукаємо додані файли за останні 24 години
-          START_COMMIT=$(git rev-list -1 --before="24 hours ago" HEAD)
+          # Compare with the last successful report instead of using a moving time window.
+          START_COMMIT=$(gh api \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/daily-report.yml/runs?branch=main&status=success&per_page=1" \
+            --jq '.workflow_runs[0].head_sha // empty')
           if [ -z "$START_COMMIT" ]; then
             START_COMMIT=$(git rev-list --max-parents=0 HEAD | tail -n 1)
           fi
@@ -36,6 +39,8 @@ jobs:
             echo "has_files=false" >> $GITHUB_OUTPUT
             echo "Нових файлів за добу не знайдено."
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Set up tools via Mise
         if: steps.find-files.outputs.has_files == 'true'

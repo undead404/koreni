@@ -24,7 +24,7 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   });
 
   // Extract current page from URL, defaulting to 1
-  const currentPage = Number.parseInt(searchParameters.get('page') || '1', 10);
+  const currentPage = Math.trunc(Number(searchParameters.get('page') || '1'));
   const totalPages = Math.ceil(rest.resultsNumber / PER_PAGE);
 
   const activeQuery = searchParameters.get('query') || '';
@@ -40,13 +40,19 @@ export function SearchPage({ recordsNumber }: { recordsNumber: number }) {
   // When a page > 1 returns empty hits but the corrected ceiling is lower,
   // silently redirect to the last valid page (page - 1).
   useEffect(() => {
-    if (rest.resultsNumber > 0 && currentPage > totalPages && !rest.isLoading) {
-      const newParameters = new URLSearchParams(searchParameters.toString());
-      newParameters.set('page', totalPages.toString());
-      router.replace(`${pathname}?${newParameters.toString()}`, {
-        scroll: false,
-      });
+    if (
+      rest.resultsNumber <= 0 ||
+      currentPage <= totalPages ||
+      rest.isLoading
+    ) {
+      return;
     }
+
+    const newParameters = new URLSearchParams(searchParameters.toString());
+    newParameters.set('page', totalPages.toString());
+    router.replace(`${pathname}?${newParameters.toString()}`, {
+      scroll: false,
+    });
   }, [
     rest.resultsNumber,
     currentPage,

@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 
 export default function CookieSettingsTrigger() {
   const openSettings = useCallback(() => {
-    globalThis.dispatchEvent(new CustomEvent('open-cookie-settings'));
+    dispatchEvent(new CustomEvent('open-cookie-settings'));
   }, []);
 
   return (

@@ -39,7 +39,7 @@ describe('Table Page', () => {
   };
 
   const mockTableData = Array.from({ length: 50 }, (_, index) => ({
-    id: `${index}`,
+    id: String(index),
     name: `Row ${index}`,
   }));
 

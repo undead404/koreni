@@ -10,21 +10,21 @@ import styles from './logout-button.module.css';
 
 export default function LogoutButton() {
   const router = useRouter();
-  const handleLogout = () => {
+
+  const logout = async () => {
     // 1. Sever the local Google Identity SDK state
     googleLogout();
 
     // 2. Execute backend cookie destruction
-    requestApi('/api/auth/session/current', {
-      method: 'DELETE',
-    })
-      .then(() => {
-        router.replace('/account/login');
-        return;
-      })
-      .catch(() => {
-        toast.error('Failed to log out');
-      });
+    try {
+      await requestApi('/api/auth/session/current', { method: 'DELETE' });
+      router.replace('/account/login');
+    } catch {
+      toast.error('Failed to log out');
+    }
+  };
+  const handleLogout = () => {
+    void logout();
   };
 
   return (

@@ -1,3 +1,4 @@
+import { AbortError } from 'es-toolkit';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/app/environment', () => ({
@@ -42,8 +43,7 @@ describe('locationiq service', () => {
         () =>
           new Promise((_resolve, reject) => {
             setTimeout(() => {
-              const error = new Error('Aborted');
-              error.name = 'AbortError';
+              const error = new AbortError('Aborted');
               reject(error);
             }, 10);
           }),
@@ -66,9 +66,12 @@ describe('locationiq service', () => {
       const abortController = new AbortController();
 
       const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-        new Response(JSON.stringify({ error: 'server error' }), {
-          status: 500,
-        }),
+        Response.json(
+          { error: 'server error' },
+          {
+            status: 500,
+          },
+        ),
       );
 
       void autocomplete('test', abortController);
@@ -100,9 +103,7 @@ describe('locationiq service', () => {
 
       const fetchSpy = vi
         .spyOn(globalThis, 'fetch')
-        .mockResolvedValueOnce(
-          new Response(JSON.stringify(mockResults), { status: 200 }),
-        );
+        .mockResolvedValueOnce(Response.json(mockResults, { status: 200 }));
 
       void autocomplete('Київ', abortController);
       await new Promise((resolve) => setTimeout(resolve, 600));
@@ -122,8 +123,7 @@ describe('locationiq service', () => {
         () =>
           new Promise((_resolve, reject) => {
             setTimeout(() => {
-              const error = new Error('Aborted');
-              error.name = 'AbortError';
+              const error = new AbortError('Aborted');
               reject(error);
             }, 10);
           }),
@@ -145,9 +145,12 @@ describe('locationiq service', () => {
 
     it('reports non-abort network errors to Bugsnag and PostHog', async () => {
       const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-        new Response(JSON.stringify({ error: 'server error' }), {
-          status: 500,
-        }),
+        Response.json(
+          { error: 'server error' },
+          {
+            status: 500,
+          },
+        ),
       );
 
       await reverseGeocode([48.5, 31.2]);
@@ -160,9 +163,12 @@ describe('locationiq service', () => {
 
     it('returns display_name on success', async () => {
       const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-        new Response(JSON.stringify({ display_name: 'Київ, Україна' }), {
-          status: 200,
-        }),
+        Response.json(
+          { display_name: 'Київ, Україна' },
+          {
+            status: 200,
+          },
+        ),
       );
 
       const result = await reverseGeocode([50.45, 30.52]);
@@ -174,9 +180,12 @@ describe('locationiq service', () => {
 
     it('works without AbortController (backward compatibility)', async () => {
       const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValueOnce(
-        new Response(JSON.stringify({ display_name: 'Полтава, Україна' }), {
-          status: 200,
-        }),
+        Response.json(
+          { display_name: 'Полтава, Україна' },
+          {
+            status: 200,
+          },
+        ),
       );
 
       const result = await reverseGeocode([49.59, 34.55]);

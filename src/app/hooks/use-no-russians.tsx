@@ -41,15 +41,16 @@ const useNoRussians = () => {
     const htmlElement = document.documentElement;
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
-        if (
-          mutation.type === 'attributes' &&
-          mutation.attributeName === 'lang'
-        ) {
-          const newLang = htmlElement.getAttribute('lang');
-          langReference.current = newLang;
-          if (newLang && newLang.includes('ru')) {
-            router.push('/not-welcome');
-          }
+        if (!(
+          mutation.type === 'attributes' && mutation.attributeName === 'lang'
+        )) {
+          continue;
+        }
+
+        const newLang = htmlElement.getAttribute('lang');
+        langReference.current = newLang;
+        if (newLang && newLang.includes('ru')) {
+          router.push('/not-welcome');
         }
       }
     });

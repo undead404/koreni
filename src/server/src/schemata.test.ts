@@ -98,6 +98,7 @@ describe('schemata', () => {
   describe('karmaLinkedUserSchema & karmaLinkedUsersResponseSchema', () => {
     it('should accept valid linked user object and list response', () => {
       const validUser = {
+        contribution_email: null,
         email: 'user@example.com',
         karma_linked_at: '2026-08-22T10:00:00.000Z',
       };
@@ -106,6 +107,15 @@ describe('schemata', () => {
         karmaLinkedUsersResponseSchema.safeParse({ users: [validUser] })
           .success,
       ).toBe(true);
+    });
+
+    it('should accept linked users from servers that do not expose contribution email yet', () => {
+      const legacyUser = {
+        email: 'user@example.com',
+        karma_linked_at: '2026-08-22T10:00:00.000Z',
+      };
+
+      expect(karmaLinkedUserSchema.safeParse(legacyUser).success).toBe(true);
     });
 
     it('should reject invalid email in linked user', () => {

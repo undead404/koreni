@@ -8,13 +8,13 @@ const ActiveBugsnag = Bugsnag;
 let isConsentGiven = false;
 
 // Функція для оновлення статусу згоди
-export const setBugsnagConsent = (allowed: boolean) => {
-  isConsentGiven = allowed;
+export const setBugsnagConsent = (isAllowed: boolean) => {
+  isConsentGiven = isAllowed;
 
   // Якщо згоду дали, і BugSnag вже запущено — можна оновити дані юзера (опціонально)
-  if (allowed && Bugsnag.isStarted()) {
+  if (isAllowed && Bugsnag.isStarted()) {
     ActiveBugsnag.resumeSession();
-  } else if (!allowed && Bugsnag.isStarted()) {
+  } else if (!isAllowed && Bugsnag.isStarted()) {
     ActiveBugsnag.pauseSession();
   }
 };
@@ -32,10 +32,7 @@ export const initBugsnag = () => {
     collectUserIp: false,
     generateAnonymousId: false,
     onError: () => {
-      if (!isConsentGiven) {
-        return false; // Блокує відправку помилки
-      }
-      return true;
+      return isConsentGiven; // Блокує відправку помилки
     },
     plugins: [new BugsnagPluginReact()],
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

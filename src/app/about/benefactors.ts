@@ -1,15 +1,27 @@
 export interface BenefactorEntry {
-  /** Full name in Ukrainian nominative case */
+  /**
+  Full name in Ukrainian nominative case
+  */
   name: string;
-  /** Short descriptor phrase, e.g. "генеалог" */
+  /**
+  Short descriptor phrase, e.g. "генеалог"
+  */
   descriptor: string;
-  /** Primary link: personally-authored public profile (Facebook) */
+  /**
+  Primary link: personally-authored public profile (Facebook)
+  */
   primaryUrl: string;
-  /** Secondary link: SMM-managed public portfolio, optional */
+  /**
+  Secondary link: SMM-managed public portfolio, optional
+  */
   secondaryUrl?: string;
-  /** Display label for the secondary link, e.g. "Instagram" */
+  /**
+  Display label for the secondary link, e.g. "Instagram"
+  */
   secondaryLabel?: string;
-  /** Whether this person is the inaugural patron — renders "перший меценат Коренів" */
+  /**
+  Whether this person is the inaugural patron — renders "перший меценат Коренів"
+  */
   isFirst: boolean;
 }
 

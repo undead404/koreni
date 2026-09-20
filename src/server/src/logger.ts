@@ -18,7 +18,7 @@ function sanitizeValue(
   ancestors: WeakSet<object> = new WeakSet(),
 ): unknown {
   if (PRIVATE_FIELD.test(key)) return '[REDACTED]';
-  if (IDENTIFIER_FIELD.test(key) && typeof value === 'string') {
+  if (typeof value === 'string' && IDENTIFIER_FIELD.test(key)) {
     return hashForLogging(value);
   }
   if (value instanceof Error) {

@@ -73,7 +73,7 @@ export default function AuthorForm() {
         const descriptionId = field.description
           ? `${field.name}-description`
           : undefined;
-        const hasError = !!errors[field.name];
+        const hasError = Object.hasOwn(errors, field.name);
 
         const ariaDescribedBy =
           [hasError ? errorId : undefined, descriptionId]

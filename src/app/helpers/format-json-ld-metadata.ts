@@ -8,7 +8,7 @@ export function formatTemporalCoverage(
   if (
     !yearsRange ||
     (yearsRange.length !== 1 && yearsRange.length !== 2) ||
-    yearsRange.some((year) => !Number.isInteger(year))
+    yearsRange.some((year) => !Number.isSafeInteger(year))
   ) {
     return undefined;
   }
@@ -57,7 +57,7 @@ export function createArchivalProvenance(
     '@type': 'ArchiveComponent',
     identifier: archiveItem,
     name: `Фонд ${fonds}, опис ${opus}, справа ${file}`,
-    ...(holdingArchive ? { holdingArchive } : {}),
+    ...(holdingArchive && { holdingArchive }),
   };
 }
 

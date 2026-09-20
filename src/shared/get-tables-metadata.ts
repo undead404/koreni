@@ -30,5 +30,5 @@ export default async function getTablesMetadata(): Promise<IndexationTable[]> {
     tablesMetadata.push(tableMetadata);
   }
   validateMetadata(tablesMetadata);
-  return [...tablesMetadata].sort((a, b) => a.id.localeCompare(b.id));
+  return tablesMetadata.toSorted((a, b) => a.id.localeCompare(b.id));
 }

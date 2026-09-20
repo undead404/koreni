@@ -26,9 +26,9 @@ export const useSharhorootsPrompt = (): UseSharhorootsPromptReturn => {
     // Check if cookie consent has been recorded
     // If not, defer showing the prompt until after cookie banner is dismissed
     try {
-      const cookieConsentExists =
+      const isCookieConsentExists =
         localStorage.getItem(COOKIE_CONSENT_KEY) !== null;
-      if (!cookieConsentExists) {
+      if (!isCookieConsentExists) {
         setIsVisible(false);
         return;
       }

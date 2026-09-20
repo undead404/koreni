@@ -8,6 +8,10 @@ const mockIsStarted = vi.fn();
 const mockGetPlugin = vi.fn();
 const mockCreateErrorBoundary = vi.fn();
 
+const MockBugsnagBoundary = ({ children }: { children: ReactNode }) => (
+  <div data-testid="bugsnag-boundary">{children}</div>
+);
+
 vi.mock('../services/bugsnag', () => ({
   initBugsnag: () => ({
     isStarted: mockIsStarted,
@@ -57,9 +61,6 @@ describe('ErrorBoundary', () => {
   it('should use Bugsnag ErrorBoundary when initialized correctly', async () => {
     mockIsStarted.mockReturnValue(true);
 
-    const MockBugsnagBoundary = ({ children }: { children: ReactNode }) => (
-      <div data-testid="bugsnag-boundary">{children}</div>
-    );
     mockCreateErrorBoundary.mockReturnValue(MockBugsnagBoundary);
 
     mockGetPlugin.mockReturnValue({

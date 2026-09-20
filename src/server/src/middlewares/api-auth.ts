@@ -21,10 +21,12 @@ export const apiAuthMiddleware = createMiddleware(
     const clientId = getClientIdentifier(c, apiKey);
     const isApiKeyAuth = isValidApiKey(apiKey);
 
-    const body = await c.req.raw
-      .clone()
-      .json()
-      .catch(() => ({}));
+    let body: unknown = {};
+    try {
+      body = await c.req.raw.clone().json();
+    } catch {
+      // Invalid JSON is handled by the schema validation below.
+    }
     const parseResult = turnstilePayloadSchema.safeParse(body);
     if (!parseResult.success) {
       logger.warn('security.api_auth.invalid_payload', { path: c.req.path });

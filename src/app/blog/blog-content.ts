@@ -28,7 +28,7 @@ function getSlug(fileName: string): string {
   const slug = path.basename(fileName, extension);
   const result = slugSchema.safeParse(slug);
 
-  if (!result.success || extension !== '.md') {
+  if (extension !== '.md' || !result.success) {
     throw new Error(
       `Invalid blog filename '${fileName}'. Expected a lowercase slug ending in .md.`,
     );
@@ -55,7 +55,9 @@ export function parseBlogArticle(
     frontMatter = parseYaml(match[1]);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    throw new Error(`Invalid front matter in '${fileName}': ${message}`);
+    throw new Error(`Invalid front matter in '${fileName}': ${message}`, {
+      cause: error,
+    });
   }
 
   const parsed = blogFrontMatterSchema.safeParse(frontMatter);
@@ -91,7 +93,7 @@ export async function getBlogArticles(): Promise<BlogArticle[]> {
     ),
   );
 
-  return articles.filter((article) => !article.draft).sort(sortArticles);
+  return articles.filter((article) => !article.draft).toSorted(sortArticles);
 }
 
 export async function getBlogArticle(

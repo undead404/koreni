@@ -22,9 +22,14 @@ export async function executeUserAccountLink({
   email,
   userId,
 }: ExecuteUserAccountLinkParameters): Promise<ExecuteUserAccountLinkResult> {
-  const normalizedEmail = (contributionEmail ?? email).toLowerCase().trim();
+  const normalizedContributionEmail = (contributionEmail ?? email)
+    .toLowerCase()
+    .trim();
+  const normalizedEmail = email.toLowerCase().trim();
 
-  const calculatedTotal = await getUserKarmaContribution(normalizedEmail);
+  const calculatedTotal = await getUserKarmaContribution(
+    normalizedContributionEmail,
+  );
 
   const redeemResult = await navigatorClient.redeemLinkCode({
     code,

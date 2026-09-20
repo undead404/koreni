@@ -1,0 +1,28 @@
+archiveItems:
+  - ДАЧгО-679-10-539
+  - ДАЧгО-679-10-546
+  - ДАЧгО-679-10-551
+  - ДАЧгО-679-10-556
+  - ДАЧгО-679-10-558
+  - ДАЧгО-679-10-568
+  - ДАЧгО-679-10-586
+  - ДАЧгО-679-10-610
+  - ДАЧгО-679-10-620
+  - ДАЧгО-679-10-1345
+  - ДАЧгО-679-10-1503
+  - ДАЧгО-679-10-1761
+authorName: Сергій Фазульянов
+authorEmail: fazulianov@gmail.com
+date: 2026-09-02
+id: DAChhO-679-10-Prokhory-Tolochko
+location:
+  - 51.157923237343454
+  - 32.18685150146485
+size: 386
+sources: []
+tableFilePath: data/csv/tolochkoprokhoryekstrakty.csv
+tableLocale: uk
+title: Козаки Толочко з села Прохори Борзенського повіту
+yearsRange:
+  - 1871
+  - 1913

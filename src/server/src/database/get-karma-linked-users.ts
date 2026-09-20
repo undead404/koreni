@@ -8,7 +8,8 @@ export default async function getKarmaLinkedUsers() {
     .execute();
 
   return users.map(({ contribution_email, email, karma_linked_at }) => ({
-    email: (contribution_email ?? email).trim().toLowerCase(),
+    contribution_email: contribution_email?.trim().toLowerCase() ?? null,
+    email: email.trim().toLowerCase(),
     karma_linked_at,
   }));
 }

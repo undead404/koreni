@@ -1,4 +1,4 @@
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import getCurrentDate from './get-current-date.js';
 
@@ -10,7 +10,7 @@ describe('getCurrentDate', () => {
   });
 
   it('should return the current date', () => {
-    const expected = new Date().toISOString().split('T')[0];
+    const expected = new Date().toISOString().split('T', 1)[0];
     const date = getCurrentDate();
     expect(date).toBe(expected);
   });

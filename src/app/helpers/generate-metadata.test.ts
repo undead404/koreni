@@ -24,7 +24,7 @@ const mockTable: IndexationTable = {
   date: new Date('2023-01-01'),
   authorName: 'John Doe',
   authorEmail: 'john@example.com',
-  sources: ['http://source1.com', 'http://source2.com'],
+  sources: ['https://source1.com', 'https://source2.com'],
   tableLocale: 'uk',
   tableFilePath: 'data/test.csv',
   archiveItems: ['DAKO-384-10-81'],

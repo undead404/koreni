@@ -63,6 +63,7 @@ describe('handleKarmaLinkedUsers', () => {
   });
 
   it('returns 200 with linked users list when valid Bearer token is provided', async () => {
+    // eslint-disable-next-line unicorn/no-non-function-verb-prefix
     const getKarmaLinkedUsersModule =
       await import('../database/get-karma-linked-users.js');
     const getKarmaLinkedUsersMock =
@@ -70,6 +71,7 @@ describe('handleKarmaLinkedUsers', () => {
 
     const mockUsers = [
       {
+        contribution_email: null,
         email: 'user1@example.com',
         karma_linked_at: '2026-08-22T10:00:00.000Z',
       },
