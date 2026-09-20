@@ -12,7 +12,9 @@ import requestApi from '@/app/services/api';
 import AccountHeader from './account-header';
 
 const mockUsePathname = vi.fn().mockReturnValue('/account');
+const mockUseSearchParameters = vi.fn().mockReturnValue(new URLSearchParams());
 const mockReplace = vi.fn();
+const mockGetProject = vi.hoisted(() => vi.fn());
 const mockEnvironment = vi.hoisted(() => ({
   NEXT_PUBLIC_ENABLE_TRANSCRIBE: true,
 }));
@@ -21,10 +23,14 @@ vi.mock('@/app/environment', () => ({ default: mockEnvironment }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => mockUsePathname(),
+  useSearchParams: () => mockUseSearchParameters(),
   useRouter: () => ({
     replace: mockReplace,
   }),
-  useSearchParams: () => new URLSearchParams(),
+}));
+
+vi.mock('../transcribe/api/get-project', () => ({
+  default: mockGetProject,
 }));
 
 vi.mock('@/app/services/api', () => ({
@@ -56,12 +62,17 @@ describe('AccountHeader', () => {
     },
     {
       pathname: '/account/transcribe',
-      labels: ['Головна', 'Кабінет', 'Транскрипція'],
+      labels: ['Головна', 'Кабінет', 'Транскрибування'],
+      hrefs: ['/', '/account'],
+    },
+    {
+      pathname: '/account/transcribe/project',
+      labels: ['Головна', 'Кабінет', 'Транскрибування'],
       hrefs: ['/', '/account'],
     },
     {
       pathname: '/account/transcribe/create',
-      labels: ['Головна', 'Кабінет', 'Транскрипція', 'Створення проєкту'],
+      labels: ['Головна', 'Кабінет', 'Транскрибування', 'Створення проєкту'],
       hrefs: ['/', '/account', '/account/transcribe'],
     },
   ];
@@ -69,6 +80,7 @@ describe('AccountHeader', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = true;
+    mockUseSearchParameters.mockReturnValue(new URLSearchParams());
   });
 
   afterEach(() => {
@@ -187,16 +199,31 @@ describe('AccountHeader', () => {
     ).toStrictEqual(['Головна', 'Кабінет']);
   });
 
+  it('renders the project title in the project breadcrumb', async () => {
+    mockUsePathname.mockReturnValue('/account/transcribe/project/');
+    mockUseSearchParameters.mockReturnValue(
+      new URLSearchParams('projectId=test-1'),
+    );
+    mockGetProject.mockResolvedValue({ project: { title: 'Tst' } });
+
+    render(<AccountHeader />);
+
+    expect(await screen.findByText('Транскрибування Tst')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Кабінет' })).toHaveAttribute(
+      'href',
+      '/account',
+    );
+  });
+
   it('treats trailing slashes as equivalent route paths', () => {
     mockUsePathname.mockReturnValue('/account/transcribe/create/');
 
     render(<AccountHeader />);
 
     expect(screen.getByText('Створення проєкту')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Транскрипція' })).toHaveAttribute(
-      'href',
-      '/account/transcribe',
-    );
+    expect(
+      screen.getByRole('link', { name: 'Транскрибування' }),
+    ).toHaveAttribute('href', '/account/transcribe');
   });
 
   it('hides transcription breadcrumbs when the feature is disabled', () => {
@@ -205,7 +232,7 @@ describe('AccountHeader', () => {
 
     render(<AccountHeader />);
 
-    expect(screen.queryByText('Транскрипція')).not.toBeInTheDocument();
+    expect(screen.queryByText('Транскрибування')).not.toBeInTheDocument();
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
   });
 });
