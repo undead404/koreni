@@ -21,6 +21,24 @@
   margin-bottom: 16px;
 }
 
+.actions {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.action {
+  display: grid;
+  gap: 8px;
+  padding-top: 24px;
+  border-top: var(--default-border);
+}
+
+.action h2 {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
 .identity {
   font-weight: 600;
   overflow-wrap: anywhere;
