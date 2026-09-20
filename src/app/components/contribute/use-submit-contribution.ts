@@ -77,7 +77,7 @@ export default function useSubmitContribution({
         },
       );
 
-      const responseData = (await response.json()) as unknown;
+      const responseData: unknown = await response.json();
 
       if (!response.ok) {
         const errorResponse = submitErrorSchema.safeParse(responseData);

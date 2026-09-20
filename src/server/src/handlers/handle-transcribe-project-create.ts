@@ -9,7 +9,7 @@ export default async function handleTranscribeProjectCreate(
   c: TranscribeContext,
 ) {
   try {
-    const body = (await c.req.json()) as unknown;
+    const body: unknown = await c.req.json();
     const parsed = projectCreatePayloadSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -31,6 +31,7 @@ export default async function handleTranscribeProjectCreate(
         created_at: project.created_at,
         id: project.id,
         title: project.title,
+        type: project.type,
       },
     });
   } catch (error: unknown) {

@@ -6,6 +6,9 @@ import requestApi from '@/app/services/api';
 import AccountPage from './page';
 
 const mockReplace = vi.fn();
+const mockEnvironment = vi.hoisted(() => ({
+  NEXT_PUBLIC_ENABLE_TRANSCRIBE: true,
+}));
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
@@ -15,10 +18,15 @@ vi.mock('next/navigation', () => ({
 
 vi.mock('@/app/services/api');
 
+vi.mock('@/app/environment', () => ({
+  default: mockEnvironment,
+}));
+
 describe('AccountPage', () => {
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = true;
   });
 
   it('renders account information when authenticated', async () => {
@@ -54,6 +62,42 @@ describe('AccountPage', () => {
       ).toBeInTheDocument();
     });
     expect(screen.queryByText(/Мої внески/i)).not.toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /Переглянути карму/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('renders the transcription link when transcription is enabled', async () => {
+    vi.mocked(requestApi).mockResolvedValue(
+      Response.json(
+        { user: { email: 'user@example.com', id: '1' } },
+        { status: 200 },
+      ),
+    );
+
+    render(<AccountPage />);
+
+    const transcriptionLink = await screen.findByRole('link', {
+      name: 'Проєкти',
+    });
+    expect(transcriptionLink).toHaveAttribute('href', '/account/transcribe');
+  });
+
+  it('hides the transcription link when transcription is disabled', async () => {
+    mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = false;
+    vi.mocked(requestApi).mockResolvedValue(
+      Response.json(
+        { user: { email: 'user@example.com', id: '1' } },
+        { status: 200 },
+      ),
+    );
+
+    render(<AccountPage />);
+
+    await screen.findByRole('heading', { name: 'Ваш кабінет' });
+    expect(
+      screen.queryByRole('link', { name: 'Проєкти' }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /Переглянути карму/i }),
     ).toBeInTheDocument();

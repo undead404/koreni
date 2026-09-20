@@ -15,6 +15,12 @@
 - **Centralized Definition**: Import all validation schemas strictly from `src/schemata.ts`. Do not define inline Zod schemas within route handlers.
 - **Strict Parsing**: All incoming webhooks, payloads, and query parameters MUST be parsed using `.parse()` or `.safeParse()`. Never bypass validation using type assertions (`as`).
 
+## 4. Database Integrations & Error Handling
+
+- **Database Client**: Use `src/database/client.ts` to access the database client.
+- **Database Transactions**: Wrap all database operations within a single request handling in a database transaction.
+- **Database Isolation**: Isolate database operations in `src/database/`.
+
 ## 4. Service Integrations & Error Handling
 
 - **Environment State**: Access secrets and configuration strictly via the centralized `environment` object, imported from `"src/environment.js"`. Never use `process.env` directly.

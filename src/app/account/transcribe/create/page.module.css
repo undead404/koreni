@@ -36,3 +36,19 @@
 .submitButton:disabled {
   cursor: not-allowed;
 }
+
+.disabledLink {
+  color: #888;
+  text-decoration: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.note {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.schemaLinkContainer {
+  margin-top: 0.5rem;
+}

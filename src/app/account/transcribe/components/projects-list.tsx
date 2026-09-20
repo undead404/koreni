@@ -1,11 +1,14 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import requestApi from '@/app/services/api';
 
 import { type Project, projectResponseSchema } from '../../schemata';
+
+import styles from './projects-list.module.css';
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -23,12 +26,24 @@ export default function ProjectsList() {
     void loadProjects();
   }, []);
   return (
-    <section>
-      <h1>Projects</h1>
-      {projects.map((project) => (
-        <p key={project.id}>{project.title}</p>
-      ))}
-      {projects.length === 0 && <p>No projects</p>}
+    <section className={styles.section}>
+      <h2>Projects</h2>
+      {projects.length > 0 ? (
+        <ul className={styles.list}>
+          {projects.map((project) => (
+            <li key={project.id}>
+              <Link
+                className={styles.projectLink}
+                href={`/account/transcribe/project/?projectId=${project.id}`}
+              >
+                {project.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No projects</p>
+      )}
     </section>
   );
 }

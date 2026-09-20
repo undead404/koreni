@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import environment from '@/app/environment';
 import requestApi from '@/app/services/api';
 
 import { type User, userResponseSchema } from './schemata';
@@ -45,9 +46,26 @@ export default function AccountPage() {
           Тут можна переглянути стан карми та прив&apos;язати акаунт до
           Генеалогічного навігатора.
         </p>
-        <Link href="/account/karma">
-          Переглянути карму та прив&apos;язати акаунт
-        </Link>
+        <div className={styles.actions}>
+          <section
+            className={styles.action}
+            aria-labelledby="karma-action-title"
+          >
+            <h2 id="karma-action-title">Карма</h2>
+            <Link href="/account/karma">
+              Переглянути карму та прив&apos;язати акаунт
+            </Link>
+          </section>
+          {environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE && (
+            <section
+              className={styles.action}
+              aria-labelledby="transcribe-action-title"
+            >
+              <h2 id="transcribe-action-title">Транскрибування</h2>
+              <Link href="/account/transcribe">Проєкти</Link>
+            </section>
+          )}
+        </div>
       </section>
     </main>
   );

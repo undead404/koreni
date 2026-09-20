@@ -81,13 +81,13 @@ export const navigatorClient = {
     });
 
     if (response.ok) {
-      const data = await response.json();
+      const data: unknown = await response.json();
       return navigatorLinkRedeemResponseSchema.parse(data);
     }
 
     let errorData: { error?: string } = {};
     try {
-      const data = await response.json();
+      const data: unknown = await response.json();
       errorData = navigatorErrorResponseSchema.parse(data);
     } catch {
       // Ignore JSON parse error
@@ -158,13 +158,13 @@ export const navigatorClient = {
     }
 
     if (response.ok) {
-      const data = await response.json();
+      const data: unknown = await response.json();
       return navigatorIngestResponseSchema.parse(data);
     }
 
     let errorData: { error?: string } = {};
     try {
-      const data = await response.json();
+      const data: unknown = await response.json();
       errorData = navigatorErrorResponseSchema.parse(data);
     } catch {
       // Ignore JSON parse error
@@ -194,13 +194,13 @@ export const navigatorClient = {
     });
 
     if (response.ok) {
-      const data = await response.json();
+      const data: unknown = await response.json();
       return navigatorLookupResponseSchema.parse(data);
     }
 
     let errorData: { error?: string } = {};
     try {
-      const data = await response.json();
+      const data: unknown = await response.json();
       errorData = navigatorErrorResponseSchema.parse(data);
     } catch {
       // Ignore JSON parse error

@@ -2,10 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Suspense } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 import environment from '@/app/environment';
+
+import getProject from '../transcribe/api/get-project';
 
 import { isLoginRoute, normalizePathname } from './account-auth-state';
 import UserView from './user';
@@ -19,7 +21,10 @@ interface BreadcrumbItem {
   label: string;
 }
 
-function getBreadcrumbItems(pathname: string | null): BreadcrumbItem[] {
+function getBreadcrumbItems(
+  pathname: string | null,
+  projectTitle: string | null,
+): BreadcrumbItem[] {
   const normalizedPathname = normalizePathname(pathname);
   const accountItems: BreadcrumbItem[] = [
     { href: '/', label: 'Головна' },
@@ -35,13 +40,20 @@ function getBreadcrumbItems(pathname: string | null): BreadcrumbItem[] {
     }
     case '/account/transcribe': {
       if (!environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE) return accountItems;
-      return [...accountItems, { label: 'Транскрипція' }];
+      return [...accountItems, { label: 'Транскрибування' }];
+    }
+    case '/account/transcribe/project': {
+      if (!environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE) return accountItems;
+      return [
+        ...accountItems,
+        { label: `Транскрибування${projectTitle ? ` ${projectTitle}` : ''}` },
+      ];
     }
     case '/account/transcribe/create': {
       if (!environment.NEXT_PUBLIC_ENABLE_TRANSCRIBE) return accountItems;
       return [
         ...accountItems,
-        { href: '/account/transcribe', label: 'Транскрипція' },
+        { href: '/account/transcribe', label: 'Транскрибування' },
         { label: 'Створення проєкту' },
       ];
     }
@@ -53,8 +65,42 @@ function getBreadcrumbItems(pathname: string | null): BreadcrumbItem[] {
 
 export default function AccountHeader() {
   const pathname = usePathname();
+  const searchParameters = useSearchParams();
+  const [project, setProject] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
   const isLoginPage = isLoginRoute(pathname);
-  const breadcrumbItems = getBreadcrumbItems(pathname);
+  const normalizedPathname = normalizePathname(pathname);
+  const projectId =
+    normalizedPathname === '/account/transcribe/project'
+      ? searchParameters.get('projectId')
+      : null;
+
+  useEffect(() => {
+    if (!projectId) return;
+
+    const abortController = new AbortController();
+    const loadProject = async () => {
+      try {
+        const data = await getProject(projectId, abortController.signal);
+        if (!abortController.signal.aborted) {
+          setProject({ id: projectId, title: data.project.title });
+        }
+      } catch {
+        // The project page handles request errors separately.
+      }
+    };
+
+    void loadProject();
+
+    return () => {
+      abortController.abort();
+    };
+  }, [projectId]);
+
+  const projectTitle = project?.id === projectId ? project.title : null;
+  const breadcrumbItems = getBreadcrumbItems(pathname, projectTitle);
 
   return (
     <header className={styles.root}>

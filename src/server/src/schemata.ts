@@ -30,10 +30,12 @@ export type ImportPayload = z.infer<typeof importPayloadSchema>;
 export const projectCreatePayloadSchema = z.object({
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   isHandwritten: z.boolean(),
-  location: z.tuple([
-    z.number().min(-90).max(90),
-    z.number().min(-180).max(180),
-  ]),
+  location: z.tuple(
+    [z.number().min(-90).max(90), z.number().min(-180).max(180)],
+    {
+      message: 'Location must be a valid pair of coordinates',
+    },
+  ),
   sources: z.array(z.string()),
   tableLocale: z.enum(['pl', 'ru', 'uk']),
   title: nonEmptyString,
@@ -72,6 +74,9 @@ export const jwtSchema = z.object({
 
 export type Jwt = z.infer<typeof jwtSchema>;
 
+export const r2UploadSchema = z.object({
+  projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+});
 export const karmaLinkedUserSchema = z.object({
   contribution_email: z.email().nullable().optional(),
   email: z.email(),

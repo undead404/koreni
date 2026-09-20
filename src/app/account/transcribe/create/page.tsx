@@ -24,16 +24,15 @@ export default function ProjectCreatePage() {
   }
 
   const router = useRouter();
-
   const methods = useForm<ProjectCreatePayload>({
     resolver: zodResolver(projectCreatePayloadSchema),
     defaultValues: {
       id: '',
+      title: '',
       isHandwritten: true,
       location: [],
       sources: [],
       tableLocale: undefined,
-      title: '',
       type: 'metric-books',
       yearsRange: [],
     },
@@ -50,9 +49,7 @@ export default function ProjectCreatePage() {
     try {
       await requestApi('/api/transcribe/projects', {
         body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         method: 'POST',
       });
 
