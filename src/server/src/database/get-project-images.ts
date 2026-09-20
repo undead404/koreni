@@ -13,6 +13,7 @@ export function getProjectImages(projectId: string) {
       'width',
       'created_at as createdAt',
       'blurhash',
+      'transcription',
     ])
     .where('project_id', '=', projectId)
     .orderBy('page_sequence', 'asc')

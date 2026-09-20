@@ -37,6 +37,7 @@ import getProjectImages from '../api/get-project-images';
 import getProjectSchemas from '../api/get-project-schemas';
 import saveProjectImage from '../api/save-project-image';
 import updateProject from '../api/update-project';
+import type { ProjectImage } from '../schemata';
 
 import styles from './page.module.css';
 
@@ -71,13 +72,15 @@ function ProjectDetailsPageContent() {
     null,
   );
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [metadataIsSaved, setMetadataIsSaved] = useState<boolean>(false);
+  const [projectImages, setProjectImages] = useState<ProjectImage[]>([]);
   const [existingImagesCount, setExistingImagesCount] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<
     'metadata' | 'assets' | 'operations'
   >('metadata');
 
   // Asset Manager state
-  const [images, setImages] = useState<ImageFile[]>([]);
+  const [selectedImages, setSelectedImages] = useState<ImageFile[]>([]);
   const [uploadState, setUploadState] = useState<UploadState>('idle');
   const [schemas, setSchemas] = useState<
     { enabled: boolean; label: string; value: string }[]
@@ -140,6 +143,10 @@ function ProjectDetailsPageContent() {
 
     const loadData = async () => {
       setIsLoading(true);
+      setMetadataIsSaved(false);
+      setProjectImages([]);
+      setExistingImagesCount(0);
+      setActiveTab('metadata');
       try {
         const [projResponse, imgs] = await Promise.all([
           getProject(projectId),
@@ -150,7 +157,9 @@ function ProjectDetailsPageContent() {
           if (projResponse.success) {
             setProjectData(projResponse.project);
             reset(projResponse.project);
+            setMetadataIsSaved(true);
           }
+          setProjectImages(imgs);
           setExistingImagesCount(imgs.length);
         }
       } catch {
@@ -173,9 +182,9 @@ function ProjectDetailsPageContent() {
   // Cleanup object URLs for selected files
   useEffect(() => {
     return () => {
-      for (const img of images) URL.revokeObjectURL(img.previewUrl);
+      for (const img of selectedImages) URL.revokeObjectURL(img.previewUrl);
     };
-  }, [images]);
+  }, [selectedImages]);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
@@ -190,14 +199,14 @@ function ProjectDetailsPageContent() {
         status: 'pending' as const,
       }));
 
-    setImages((previous) => [...previous, ...newFiles]);
+    setSelectedImages((previous) => [...previous, ...newFiles]);
     if (fileInputReference.current) {
       fileInputReference.current.value = '';
     }
   };
 
   const toggleRemove = (id: string) => {
-    setImages((previous) =>
+    setSelectedImages((previous) =>
       previous.map((img) =>
         img.id === id ? { ...img, removed: !img.removed } : img,
       ),
@@ -209,12 +218,12 @@ function ProjectDetailsPageContent() {
     abortControllerReference.current = new AbortController();
     const signal = abortControllerReference.current.signal;
 
-    const filesToUpload = images.filter((img) => !img.removed);
+    const filesToUpload = selectedImages.filter((img) => !img.removed);
 
     for (const [index, image] of filesToUpload.entries()) {
       if (signal.aborted) break;
 
-      setImages((previous) =>
+      setSelectedImages((previous) =>
         previous.map((img) =>
           img.id === image.id ? { ...img, status: 'uploading' } : img,
         ),
@@ -229,7 +238,7 @@ function ProjectDetailsPageContent() {
           signal,
         );
 
-        setImages((previous) =>
+        setSelectedImages((previous) =>
           previous.map((img) =>
             img.id === image.id ? { ...img, status: 'success' } : img,
           ),
@@ -238,7 +247,7 @@ function ProjectDetailsPageContent() {
         if (error instanceof Error && error.name === 'AbortError') {
           break;
         }
-        setImages((previous) =>
+        setSelectedImages((previous) =>
           previous.map((img) =>
             img.id === image.id ? { ...img, status: 'error' } : img,
           ),
@@ -250,6 +259,7 @@ function ProjectDetailsPageContent() {
       setUploadState('success');
       try {
         const imgs = await getProjectImages(projectId);
+        setProjectImages(imgs);
         setExistingImagesCount(imgs.length);
       } catch {
         toast.error('Failed to refresh project images');
@@ -264,7 +274,7 @@ function ProjectDetailsPageContent() {
 
     abortControllerReference.current?.abort();
     setUploadState('idle');
-    setImages((previous) =>
+    setSelectedImages((previous) =>
       previous.map((img) =>
         img.status === 'uploading' ? { ...img, status: 'pending' } : img,
       ),
@@ -275,9 +285,15 @@ function ProjectDetailsPageContent() {
     return <div className={styles.loading}>Loading project details...</div>;
   }
 
-  const activeImagesCount = images.filter((img) => !img.removed).length;
+  const activeImagesCount = selectedImages.filter((img) => !img.removed).length;
   const isUploading = uploadState === 'uploading';
   const isSuccess = uploadState === 'success';
+  const hasTranscriptionResult = projectImages.some(
+    (image) => (image.transcription ?? '').trim().length > 0,
+  );
+  const canEnterWorkspace = metadataIsSaved && existingImagesCount > 0;
+  const canOpenOperations =
+    metadataIsSaved && existingImagesCount > 0 && hasTranscriptionResult;
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
       const updateData: Partial<ProjectCreatePayload> = { ...data };
@@ -287,6 +303,7 @@ function ProjectDetailsPageContent() {
         updateData as Omit<ProjectCreatePayload, 'id'>,
       );
       setProjectData(data);
+      setMetadataIsSaved(true);
       toast.success('Project details updated successfully');
     } catch {
       toast.error('Failed to update project details');
@@ -295,6 +312,22 @@ function ProjectDetailsPageContent() {
   const handleFormSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     void handleSubmit(onSubmit)(event);
+  };
+  const handleAssetsTabClick = () => {
+    if (!metadataIsSaved) {
+      toast.error('Спочатку збережіть метадані проекту');
+      return;
+    }
+    setActiveTab('assets');
+  };
+  const handleOperationsTabClick = () => {
+    if (!canOpenOperations) {
+      toast.error(
+        'Операції доступні після збереження результату транскрибування',
+      );
+      return;
+    }
+    setActiveTab('operations');
   };
 
   return (
@@ -321,15 +354,7 @@ function ProjectDetailsPageContent() {
           </div>
         </div>
         <div className={styles.ctaContainer}>
-          {existingImagesCount === 0 ? (
-            <button
-              disabled
-              className={styles.ctaButton}
-              data-testid="enter-workspace-btn"
-            >
-              Enter Workspace
-            </button>
-          ) : (
+          {canEnterWorkspace ? (
             <Link
               href={`/account/transcribe/workspace/?projectId=${projectId}`}
               className={styles.ctaButton}
@@ -337,6 +362,14 @@ function ProjectDetailsPageContent() {
             >
               Enter Workspace
             </Link>
+          ) : (
+            <button
+              disabled
+              className={styles.ctaButton}
+              data-testid="enter-workspace-btn"
+            >
+              Enter Workspace
+            </button>
           )}
         </div>
       </div>
@@ -352,17 +385,23 @@ function ProjectDetailsPageContent() {
         </button>
         <button
           className={`${styles.tabButton} ${activeTab === 'assets' ? styles.activeTabButton : ''}`}
-          onClick={() => {
-            setActiveTab('assets');
-          }}
+          onClick={handleAssetsTabClick}
+          aria-disabled={!metadataIsSaved}
+          title={
+            metadataIsSaved ? undefined : 'Збережіть метадані проекту спочатку'
+          }
         >
           Asset Manager
         </button>
         <button
           className={`${styles.tabButton} ${activeTab === 'operations' ? styles.activeTabButton : ''}`}
-          onClick={() => {
-            setActiveTab('operations');
-          }}
+          onClick={handleOperationsTabClick}
+          aria-disabled={!canOpenOperations}
+          title={
+            canOpenOperations
+              ? undefined
+              : 'Збережіть результат транскрибування спочатку'
+          }
         >
           Operations
         </button>
@@ -533,7 +572,7 @@ function ProjectDetailsPageContent() {
                     className={styles.ctaButton}
                     onClick={() => fileInputReference.current?.click()}
                   >
-                    {images.length === 0
+                    {selectedImages.length === 0
                       ? 'Select Images'
                       : 'Select More Images'}
                   </button>
@@ -548,9 +587,9 @@ function ProjectDetailsPageContent() {
               </div>
             )}
 
-            {images.length > 0 && (
+            {selectedImages.length > 0 && (
               <div className={styles.grid}>
-                {images.map((image) => (
+                {selectedImages.map((image) => (
                   <div
                     key={image.id}
                     className={`${styles.tile} ${image.removed ? styles.tileDimmed : ''}`}
@@ -590,7 +629,7 @@ function ProjectDetailsPageContent() {
               </div>
             )}
 
-            {images.length > 0 && (
+            {selectedImages.length > 0 && (
               <div className={styles.assetActions}>
                 {isSuccess ? (
                   <span className={styles.warning}>

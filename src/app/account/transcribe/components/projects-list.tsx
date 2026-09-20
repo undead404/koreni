@@ -34,7 +34,7 @@ export default function ProjectsList() {
             <li key={project.id}>
               <Link
                 className={styles.projectLink}
-                href={`/account/transcribe/transcribe?projectId=${project.id}`}
+                href={`/account/transcribe/project/?projectId=${project.id}`}
               >
                 {project.title}
               </Link>

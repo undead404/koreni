@@ -52,6 +52,7 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_789,
         blurhash: 'U1234567890',
+        transcription: null,
       },
       {
         id: 'img-2',
@@ -63,6 +64,7 @@ describe('handleProjectImagesList', () => {
         width: 800,
         createdAt: 123_456_790,
         blurhash: 'U1234567891',
+        transcription: 'Прізвище',
       },
     ];
 

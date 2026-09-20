@@ -217,7 +217,9 @@ describe('ProjectDetailsPage', () => {
         sources: [],
       },
     });
-    (getProjectImages as Mock).mockResolvedValue([]);
+    (getProjectImages as Mock).mockResolvedValue([
+      { id: 'img-1', transcription: 'Прізвище' },
+    ]);
 
     render(<ProjectDetailsPage />);
 
@@ -309,4 +311,42 @@ describe('ProjectDetailsPage', () => {
       );
     });
   });
+
+  it.each([null, '', ' '.repeat(3)])(
+    'keeps Operations gated for transcription value %j',
+    async (transcription) => {
+      (useSearchParams as Mock).mockReturnValue({
+        get: vi.fn().mockReturnValue('project-123'),
+      });
+      (getProject as Mock).mockResolvedValue({
+        success: true,
+        project: {
+          id: 'project-123',
+          title: 'Mock Project',
+          type: 'table',
+          isHandwritten: true,
+          location: [48.9, 24.5],
+          tableLocale: 'uk',
+          yearsRange: [1850, 1900],
+          sources: [],
+        },
+      });
+      (getProjectImages as Mock).mockResolvedValue([
+        { id: 'img-1', transcription },
+      ]);
+
+      render(<ProjectDetailsPage />);
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Title')).toBeInTheDocument();
+      });
+
+      fireEvent.click(screen.getByText('Operations'));
+
+      expect(screen.getByLabelText('Title')).toBeInTheDocument();
+      expect(toast.error).toHaveBeenCalledWith(
+        'Операції доступні після збереження результату транскрибування',
+      );
+    },
+  );
 });
