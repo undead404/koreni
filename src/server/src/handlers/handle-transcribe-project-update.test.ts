@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import updateProject from '../database/update-project.js';
-import type { TranscribeContext } from '../types.js';
 
 import handleTranscribeProjectUpdate from './handle-transcribe-project-update.js';
 
@@ -36,9 +35,7 @@ describe('handleTranscribeProjectUpdate', () => {
       return undefined;
     });
 
-    const response = (await handleTranscribeProjectUpdate(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectUpdate(mockContext)) as any;
 
     expect(response.status).toBe(400);
     expect(response._data).toEqual({ error: 'Missing projectId' });
@@ -60,11 +57,9 @@ describe('handleTranscribeProjectUpdate', () => {
       id: 'proj-123',
       title: 'Updated Project Title',
       type: 'table',
-    } as any);
+    });
 
-    const response = (await handleTranscribeProjectUpdate(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectUpdate(mockContext)) as any;
 
     expect(response.status).toBeUndefined();
     expect(response._data).toEqual({ success: true });
@@ -88,9 +83,7 @@ describe('handleTranscribeProjectUpdate', () => {
 
     mockContext.req.json.mockResolvedValue(mockInvalidPayload);
 
-    const response = (await handleTranscribeProjectUpdate(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectUpdate(mockContext)) as any;
 
     expect(response.status).toBe(400);
     expect(response._data.error).toBe('Validation failed');
@@ -112,9 +105,7 @@ describe('handleTranscribeProjectUpdate', () => {
     mockContext.req.json.mockResolvedValue(mockPayload);
     vi.mocked(updateProject).mockResolvedValue(undefined);
 
-    const response = (await handleTranscribeProjectUpdate(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectUpdate(mockContext)) as any;
 
     expect(response.status).toBe(404);
     expect(response._data).toEqual({
@@ -136,9 +127,7 @@ describe('handleTranscribeProjectUpdate', () => {
     mockContext.req.json.mockResolvedValue(mockPayload);
     vi.mocked(updateProject).mockRejectedValue(new Error('DB failure'));
 
-    const response = (await handleTranscribeProjectUpdate(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectUpdate(mockContext)) as any;
 
     expect(response.status).toBe(500);
     expect(response._data).toEqual({ error: 'Internal Server Error' });

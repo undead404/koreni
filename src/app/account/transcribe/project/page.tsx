@@ -4,7 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -13,10 +20,10 @@ import SourcesInput from '@/app/components/contribute/sources-input';
 import YearsInput from '@/app/components/contribute/years-input';
 
 const SpatialInput = dynamic(
-  () =>
-    import('@/app/components/contribute/spatial-input').then(
-      (module_) => module_.SpatialInput,
-    ),
+  async () => {
+    const module_ = await import('@/app/components/contribute/spatial-input');
+    return module_.SpatialInput;
+  },
   { ssr: false },
 );
 import {
@@ -48,7 +55,18 @@ const projectSearchParametersSchema = z.object({
 });
 
 function ProjectDetailsPageContent() {
-  const [projectId, setProjectId] = useState<string>('');
+  const searchParameters = useSearchParams();
+  const router = useRouter();
+
+  const projectId = useMemo(() => {
+    try {
+      return projectSearchParametersSchema.parse({
+        projectId: searchParameters.get('projectId'),
+      }).projectId;
+    } catch {
+      return '';
+    }
+  }, [searchParameters]);
   const [projectData, setProjectData] = useState<ProjectCreatePayload | null>(
     null,
   );
@@ -67,9 +85,6 @@ function ProjectDetailsPageContent() {
 
   const fileInputReference = useRef<HTMLInputElement>(null);
   const abortControllerReference = useRef<AbortController | null>(null);
-
-  const searchParameters = useSearchParams();
-  const router = useRouter();
 
   const methods = useForm<ProjectCreatePayload>({
     resolver: zodResolver(projectCreatePayloadSchema),
@@ -93,64 +108,56 @@ function ProjectDetailsPageContent() {
     formState: { errors, isSubmitting },
   } = methods;
 
-  // Search parameters validation
   useEffect(() => {
-    try {
-      const { projectId: projectIdFromSearch } =
-        projectSearchParametersSchema.parse({
-          projectId: searchParameters.get('projectId'),
-        });
-      setProjectId(projectIdFromSearch);
-    } catch (error) {
-      console.error('Error parsing search parameters:', error);
+    if (!projectId) {
       router.push('/account/transcribe');
     }
-  }, [router, searchParameters]);
+  }, [projectId, router]);
 
   // Load project schemas
   useEffect(() => {
-    let active = true;
+    let isActive = true;
     const loadSchemas = async () => {
       try {
         const data = await getProjectSchemas();
-        if (active) {
+        if (isActive) {
           setSchemas(data);
         }
-      } catch (error) {
-        console.error(error);
+      } catch {
+        toast.error('Failed to load project schemas');
       }
     };
     void loadSchemas();
     return () => {
-      active = false;
+      isActive = false;
     };
   }, []);
 
   // Load project data and images count
   useEffect(() => {
     if (!projectId) return;
-    let active = true;
-    setIsLoading(true);
+    let isActive = true;
 
     const loadData = async () => {
+      setIsLoading(true);
       try {
         const [projResponse, imgs] = await Promise.all([
           getProject(projectId),
           getProjectImages(projectId),
         ]);
 
-        if (active) {
+        if (isActive) {
           if (projResponse.success) {
             setProjectData(projResponse.project);
             reset(projResponse.project);
           }
           setExistingImagesCount(imgs.length);
         }
-      } catch (error) {
-        console.error('Error loading project details or images:', error);
+      } catch {
+        toast.error('Error loading project details or images');
         toast.error('Failed to load project details');
       } finally {
-        if (active) {
+        if (isActive) {
           setIsLoading(false);
         }
       }
@@ -159,7 +166,7 @@ function ProjectDetailsPageContent() {
     void loadData();
 
     return () => {
-      active = false;
+      isActive = false;
     };
   }, [projectId, reset]);
 
@@ -244,24 +251,33 @@ function ProjectDetailsPageContent() {
       try {
         const imgs = await getProjectImages(projectId);
         setExistingImagesCount(imgs.length);
-      } catch (error) {
-        console.error(error);
+      } catch {
+        toast.error('Failed to refresh project images');
       }
     }
   };
 
   const cancelUpload = useCallback(() => {
-    if (globalThis.confirm('Are you sure you want to cancel the upload?')) {
-      abortControllerReference.current?.abort();
-      setUploadState('idle');
-      setImages((previous) =>
-        previous.map((img) =>
-          img.status === 'uploading' ? { ...img, status: 'pending' } : img,
-        ),
-      );
+    if (!confirm('Are you sure you want to cancel the upload?')) {
+      return;
     }
+
+    abortControllerReference.current?.abort();
+    setUploadState('idle');
+    setImages((previous) =>
+      previous.map((img) =>
+        img.status === 'uploading' ? { ...img, status: 'pending' } : img,
+      ),
+    );
   }, []);
 
+  if (!projectId || isLoading) {
+    return <div className={styles.loading}>Loading project details...</div>;
+  }
+
+  const activeImagesCount = images.filter((img) => !img.removed).length;
+  const isUploading = uploadState === 'uploading';
+  const isSuccess = uploadState === 'success';
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
       const updateData: Partial<ProjectCreatePayload> = { ...data };
@@ -272,24 +288,14 @@ function ProjectDetailsPageContent() {
       );
       setProjectData(data);
       toast.success('Project details updated successfully');
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Failed to update project details');
     }
   };
-
   const handleFormSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     void handleSubmit(onSubmit)(event);
   };
-
-  const activeImagesCount = images.filter((img) => !img.removed).length;
-  const isUploading = uploadState === 'uploading';
-  const isSuccess = uploadState === 'success';
-
-  if (!projectId || isLoading) {
-    return <div className={styles.loading}>Loading project details...</div>;
-  }
 
   return (
     <main className={styles.root}>

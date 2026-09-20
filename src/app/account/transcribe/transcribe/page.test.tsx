@@ -124,10 +124,8 @@ describe('TranscribeProjectPage', () => {
   });
 
   it('prevents race conditions if projectId changes while a request is in flight', async () => {
-    let resolveFirst!: (value: unknown) => void;
-    const firstPromise = new Promise((resolve) => {
-      resolveFirst = resolve;
-    });
+    const { promise: firstPromise, resolve: resolveFirst } =
+      Promise.withResolvers<never[]>();
 
     (getProjectImages as Mock).mockImplementation((projId) => {
       if (projId === 'project-old') {

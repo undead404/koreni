@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import z from 'zod';
 
@@ -20,37 +20,37 @@ function TranscribeProjectPageContent() {
   const router = useRouter();
   const searchParameters = useSearchParams();
 
-  const [projectId, setProjectId] = useState<string | null>(null);
+  const projectId = useMemo(() => {
+    try {
+      const rawProjectId = searchParameters.get('projectId');
+      return projectSearchParametersSchema.parse({
+        projectId: rawProjectId,
+      }).projectId;
+    } catch {
+      return null;
+    }
+  }, [searchParameters]);
   const [images, setImages] = useState<ProjectImage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Validate projectId search param
   useEffect(() => {
-    try {
-      const rawProjectId = searchParameters.get('projectId');
-      const parsed = projectSearchParametersSchema.parse({
-        projectId: rawProjectId,
-      });
-      setProjectId(parsed.projectId);
-    } catch (error_) {
-      // eslint-disable-next-line no-console
-      console.error('Invalid or missing projectId search param:', error_);
+    if (!projectId) {
       router.push('/account/transcribe');
     }
-  }, [router, searchParameters]);
+  }, [projectId, router]);
 
   // Fetch images once projectId is valid
   useEffect(() => {
     if (!projectId) return;
 
     const activeProjectId = projectId;
-    setIsLoading(true);
-    setError(null);
 
     const abortController = new AbortController();
 
     async function fetchImages() {
+      setIsLoading(true);
+      setError(null);
       try {
         const data = await getProjectImages(
           activeProjectId,
@@ -112,7 +112,7 @@ function TranscribeProjectPageContent() {
       <button
         className={styles.button}
         onClick={() => {
-      router.push(`/account/transcribe/project/?projectId=${projectId}`);
+          router.push(`/account/transcribe/project/?projectId=${projectId}`);
         }}
       >
         Завантажити ще зображення

@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import findProject from '../database/find-project.js';
-import type { TranscribeContext } from '../types.js';
 
 import handleTranscribeProjectGet from './handle-transcribe-project-get.js';
 
@@ -35,9 +34,7 @@ describe('handleTranscribeProjectGet', () => {
       return undefined;
     });
 
-    const response = (await handleTranscribeProjectGet(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectGet(mockContext)) as any;
 
     expect(response.status).toBe(400);
     expect(response._data).toEqual({ error: 'Missing projectId' });
@@ -60,9 +57,7 @@ describe('handleTranscribeProjectGet', () => {
 
     vi.mocked(findProject).mockResolvedValue(mockDatabaseProject as any);
 
-    const response = (await handleTranscribeProjectGet(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectGet(mockContext)) as any;
 
     expect(response.status).toBeUndefined();
     expect(response._data).toEqual({
@@ -99,9 +94,7 @@ describe('handleTranscribeProjectGet', () => {
 
     vi.mocked(findProject).mockResolvedValue(mockDatabaseProject as any);
 
-    const response = (await handleTranscribeProjectGet(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectGet(mockContext)) as any;
 
     expect(response.status).toBeUndefined();
     expect(response._data.project.yearsRange).toEqual([1850]);
@@ -111,9 +104,7 @@ describe('handleTranscribeProjectGet', () => {
   it('should return 404 if project is not found or belongs to another user', async () => {
     vi.mocked(findProject).mockResolvedValue(undefined);
 
-    const response = (await handleTranscribeProjectGet(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectGet(mockContext)) as any;
 
     expect(response.status).toBe(404);
     expect(response._data).toEqual({ error: 'Project not found' });
@@ -122,9 +113,7 @@ describe('handleTranscribeProjectGet', () => {
   it('should return 500 if database lookup fails', async () => {
     vi.mocked(findProject).mockRejectedValue(new Error('DB failure'));
 
-    const response = (await handleTranscribeProjectGet(
-      mockContext as unknown as TranscribeContext,
-    )) as any;
+    const response = (await handleTranscribeProjectGet(mockContext)) as any;
 
     expect(response.status).toBe(500);
     expect(response._data).toEqual({ error: 'Internal Server Error' });

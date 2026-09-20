@@ -29,7 +29,7 @@ export default async function validateTurnstile(
     });
     logger.info('dependency.turnstile.response', { status: result.status });
 
-    const outcome = await result.json();
+    const outcome: unknown = await result.json();
 
     const parseResult = turnstileResponseSchema.safeParse(outcome);
     if (!parseResult.success) {

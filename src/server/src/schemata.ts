@@ -1,16 +1,6 @@
 import { z } from 'zod';
 
 export const nonEmptyString = z.string().min(1);
-const yearSchema = z
-  .number({
-    message: 'Year must be a valid number',
-  })
-  .min(1500, {
-    message: 'Year must be at least 1500',
-  })
-  .max(2100, {
-    message: 'No future dates',
-  });
 export const importPayloadSchema = z.object({
   archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),

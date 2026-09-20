@@ -1,11 +1,12 @@
 export {
-  projectResponseSchema,
-  projectSchema,
   type Project,
+  projectDetailsResponseSchema,
+  type ProjectImage,
   projectImageSchema,
   projectImagesResponseSchema,
-  type ProjectImage,
+  projectResponseSchema,
+  projectSchema,
+  type User,
   userResponseSchema,
   userSchema,
-  type User,
 } from '../schemata';

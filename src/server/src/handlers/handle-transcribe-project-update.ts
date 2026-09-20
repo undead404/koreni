@@ -13,7 +13,7 @@ export default async function handleTranscribeProjectUpdate(
       return c.json({ error: 'Missing projectId' }, 400);
     }
 
-    const body = (await c.req.json()) as unknown;
+    const body: unknown = await c.req.json();
     const updateSchema = projectCreatePayloadSchema.omit({ id: true });
     const parsed = updateSchema.safeParse(body);
 

@@ -1,5 +1,7 @@
 import z from 'zod';
 
+import { projectCreatePayloadSchema } from '@/server/src/schemata';
+
 export const userSchema = z.object({
   email: z.string(),
   id: z.string(),
@@ -21,6 +23,11 @@ export type Project = z.infer<typeof projectSchema>;
 
 export const projectResponseSchema = z.object({
   projects: z.array(projectSchema),
+});
+
+export const projectDetailsResponseSchema = z.object({
+  success: z.boolean(),
+  project: projectCreatePayloadSchema,
 });
 
 export const projectImageSchema = z.object({

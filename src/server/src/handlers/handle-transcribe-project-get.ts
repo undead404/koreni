@@ -1,4 +1,5 @@
 import findProject from '../database/find-project.js';
+import { projectCreatePayloadSchema } from '../schemata.js';
 import type { TranscribeContext } from '../types.js';
 
 export default async function handleTranscribeProjectGet(c: TranscribeContext) {
@@ -24,9 +25,12 @@ export default async function handleTranscribeProjectGet(c: TranscribeContext) {
 
     let sources: string[] = [];
     try {
-      sources = JSON.parse(
-        (project.sources as string | null) || '[]',
-      ) as string[];
+      const parsedSources = projectCreatePayloadSchema.shape.sources.safeParse(
+        JSON.parse(project.sources || '[]'),
+      );
+      if (parsedSources.success) {
+        sources = parsedSources.data;
+      }
     } catch {
       sources = [];
     }

@@ -6,10 +6,11 @@ export default async function getProjectImages(
   projectId: string,
   signal?: AbortSignal,
 ) {
-  return requestApi(`/api/transcribe/project/${projectId}/images`, { signal })
-    .then((response) => response.json())
-    .then((data: unknown) => {
-      const parsed = projectImagesResponseSchema.parse(data);
-      return parsed.images;
-    });
+  const response = await requestApi(
+    `/api/transcribe/project/${projectId}/images`,
+    { signal },
+  );
+  const data: unknown = await response.json();
+  const parsed = projectImagesResponseSchema.parse(data);
+  return parsed.images;
 }

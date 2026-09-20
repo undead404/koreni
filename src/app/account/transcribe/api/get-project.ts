@@ -1,17 +1,14 @@
-import { type ProjectCreatePayload } from '@/server/src/schemata';
+import { projectDetailsResponseSchema } from '../schemata';
 
 import requestApi from './request';
-
-export interface GetProjectResponse {
-  success: boolean;
-  project: ProjectCreatePayload;
-}
 
 export default async function getProject(
   projectId: string,
   signal?: AbortSignal,
-): Promise<GetProjectResponse> {
-  return requestApi(`/api/transcribe/projects/${projectId}`, { signal })
-    .then((response) => response.json())
-    .then((data: unknown) => data as GetProjectResponse);
+): Promise<ReturnType<typeof projectDetailsResponseSchema.parse>> {
+  const response = await requestApi(`/api/transcribe/projects/${projectId}`, {
+    signal,
+  });
+  const data: unknown = await response.json();
+  return projectDetailsResponseSchema.parse(data);
 }

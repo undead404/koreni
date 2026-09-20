@@ -1,4 +1,4 @@
-const getProjectSchemas = async () => {
+export default async function getProjectSchemas() {
   await Promise.resolve();
   return [
     {
@@ -12,5 +12,4 @@ const getProjectSchemas = async () => {
       value: 'parish-register',
     },
   ];
-};
-export default getProjectSchemas;
+}

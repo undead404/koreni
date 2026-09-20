@@ -1,11 +1,14 @@
-export function getJpegDimensions(buffer: Buffer): { width: number; height: number } {
-  if (buffer[0] !== 0xFF || buffer[1] !== 0xD8) {
+export function getJpegDimensions(buffer: Buffer): {
+  width: number;
+  height: number;
+} {
+  if (buffer[0] !== 0xff || buffer[1] !== 0xd8) {
     throw new Error('Not a valid JPEG file');
   }
 
   let offset = 2;
   while (offset < buffer.length) {
-    while (offset < buffer.length && buffer[offset] !== 0xFF) {
+    while (offset < buffer.length && buffer[offset] !== 0xff) {
       offset++;
     }
 
@@ -13,7 +16,7 @@ export function getJpegDimensions(buffer: Buffer): { width: number; height: numb
       break;
     }
 
-    while (offset < buffer.length && buffer[offset] === 0xFF) {
+    while (offset < buffer.length && buffer[offset] === 0xff) {
       offset++;
     }
 
@@ -28,14 +31,15 @@ export function getJpegDimensions(buffer: Buffer): { width: number; height: numb
       continue;
     }
 
-    const isSOF = (marker >= 0xC0 && marker <= 0xCF) &&
-                  marker !== 0xC4 &&
-                  marker !== 0xC8 &&
-                  marker !== 0xCC;
-
     if (offset + 2 > buffer.length) {
       break;
     }
+    const isSOF =
+      marker >= 0xc0 &&
+      marker <= 0xcf &&
+      marker !== 0xc4 &&
+      marker !== 0xc8 &&
+      marker !== 0xcc;
     const length = buffer.readUInt16BE(offset);
 
     if (isSOF) {

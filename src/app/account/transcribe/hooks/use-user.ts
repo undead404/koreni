@@ -19,20 +19,20 @@ export function useUser() {
       cachedUserPromise = getMe();
     }
 
-    cachedUserPromise
-      .then((u) => {
+    const loadUser = async () => {
+      try {
+        const u = await cachedUserPromise;
         setUser(u);
         if (!u) {
           setError(new Error('Not authenticated'));
         }
         setLoading(false);
-        return null;
-      })
-      .catch((error_: unknown) => {
+      } catch (error_: unknown) {
         setError(error_ instanceof Error ? error_ : new Error(String(error_)));
         setLoading(false);
-        return null;
-      });
+      }
+    };
+    void loadUser();
   }, []);
 
   return { user, loading, error };
