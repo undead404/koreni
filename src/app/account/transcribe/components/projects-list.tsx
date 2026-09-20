@@ -25,7 +25,7 @@ export default function ProjectsList() {
   }, []);
   return (
     <section>
-      <h1>Projects</h1>
+      <h2>Projects</h2>
       {projects.map((project) => (
         <Link
           href={`/account/transcribe/transcribe?projectId=${project.id}`}
