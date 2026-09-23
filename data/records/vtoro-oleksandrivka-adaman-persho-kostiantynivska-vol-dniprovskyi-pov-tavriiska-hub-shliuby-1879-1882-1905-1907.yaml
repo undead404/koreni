@@ -1,0 +1,25 @@
+archiveItems:
+  - ДААРК-142-1-76
+  - ДААРК-142-1-125
+  - ДААРК-142-1-616
+  - ДААРК-142-1-683
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-23
+id: vtoro-oleksandrivka-adaman-persho-kostiantynivska-vol-dniprovskyi-pov-tavriiska-hub-shliuby-1879-1882-1905-1907
+location:
+  - 46.11751
+  - 33.47706
+size: 359
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-29HR-R?view=explore&groupId=M9MV-FWD&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-P78Y-Q?view=index&lang=en&groupId=M9MV-VWY
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-RSGS-C?view=explore&groupId=M9MV-N9Y&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-R3Z3-N?view=explore&lang=uk&cat=true&groupId=M9KB-BWY
+tableFilePath: data/csv/vtoro-oleksandrivka-adaman-persho-kostiantynivska-vol-dniprovskyi-pov-tavriiska-hub-shliuby-1879-1882-1905-1907.csv
+tableLocale: uk
+title: Второ-Олександрівка (Адамань), Першо-Костянтинівська вол. Дніпровський
+  пов. Таврійська губ. | шлюби (1879, 1882, 1905, 1907)
+yearsRange:
+  - 1879
+  - 1907
