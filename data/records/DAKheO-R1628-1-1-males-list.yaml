@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-Р1628-1-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-18
+id: DAKheO-R1628-1-1-males-list
+location:
+  - 46.5966167
+  - 33.2214167
+size: 153
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-4WM7-KJ39-M?view=explore&groupId=TH-7760-162114-115265-50&lang=uk
+tableFilePath: data/csv/nova-maiachka-kakhovskyi-r-n-mykolaivska-obl-spysok-cholovichoho-naselennia-obshchynnoho-hospodarstva-41-periodu-natsystskoi-okupatsii-1941.csv
+tableLocale: uk
+title: Нова Маячка, Каховський р-н Миколаївська обл. | Список чоловічого
+  населення общинного господарства № 41 періоду нацистської окупації (1941)
+yearsRange:
+  - 1941
