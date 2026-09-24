@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1078-291
+authorName: Олександр Мулик
+authorEmail: alexander11mulyk@gmail.com
+date: 2026-09-19
+id: TsDIAK-127-1078-291-1900
+location:
+  - 50.579990761120136
+  - 28.96883330976424
+size: 437
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHK-2QT3-K7BL?view=explore&groupId=TH-7786-131505-30670-86&lang=uk
+tableFilePath: data/csv/metrychna-knyha-sela-modeliv-radomyshlskoho-povitu-pro-narodzhennia-shliuby-ta-smert-1900-tsdiak-127-1078-291.csv
+tableLocale: uk
+title: Моделів Радомишльського повіту – метрична книга, 1900, ЦДІАК 127-1078-291
+yearsRange:
+  - 1900
