@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАДнО-Р3100-1-2
+authorName: Ігор Віннік
+authorEmail: igorvinnik45689@gmail.com
+date: 2026-09-15
+id: DADnO-R3100-1-2
+location:
+  - 48.336411
+  - 34.92416
+size: 283
+sources: []
+tableFilePath: data/csv/p-3100-1-2-akt-provedenoi-revizii-stanom-na-17-veresnia-1931-roku-artili-im-voroshylova-s-sursko-lytovskoho.csv
+tableLocale: ru
+title: Акт проведеної ревізії станом на 17 вересня 1931 року, артілі
+  ім. Ворошилова, с. Сурсько-Литовського, P-3100-1-2
+yearsRange:
+  - 1931
