@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-259-8-2
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-23
+id: DAKheO-259-8-2-birth
+location:
+  - 46.11751
+  - 33.47706
+size: 499
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-8-fond-%e2%84%96-259/
+tableFilePath: data/csv/vtoro-oleksandrivka-adaman-persho-kostiantynivska-vol-dniprovskyi-pov-tavriiska-hub-narodzhennia-1904.csv
+tableLocale: uk
+title: Второ-Олександрівка (Адамань), Першо-Костянтинівська вол. Дніпровський
+  пов. Таврійська губ. | народження (1904)
+yearsRange:
+  - 1904
