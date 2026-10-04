@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАЖО-1-77-106
+  - ДАЖО-1-77-111
+  - ДАЖО-1-77-116
+authorName: Катерина К
+authorEmail: kolomytska@gmail.com
+date: 2026-10-04
+id: babushky-narodzhennia-1879-1880-1881
+location:
+  - 50.0021714
+  - 28.1832775
+size: 835
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-777B-K71M-P?view=explore&groupId=TH-7759-140200-98895-45&grid=on&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QHN-L7W7-X55P?view=explore&groupId=TH-7707-140454-46033-99&grid=on&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-277J-P7P1?view=explore&groupId=TH-7766-140039-2009-49&grid=on&lang=en
+tableFilePath: data/csv/babushky-narodzhennia-1879-1880-1881.csv
+tableLocale: ru
+title: Бабушки - народження, 1879, 1880, 1881
+yearsRange:
+  - 1879
+  - 1881
