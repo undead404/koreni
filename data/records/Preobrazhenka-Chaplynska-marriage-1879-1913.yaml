@@ -1,0 +1,27 @@
+archiveItems:
+  - ДААРК-142-2-1
+  - ДААРК-142-1-145
+  - ДААРК-142-1-169
+  - ДАХеО-259-58-2
+  - ДАХеО-259-58-3
+  - ДАХеО-259-58-4
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-23
+id: Preobrazhenka-Chaplynska-marriage-1879-1913
+location:
+  - 46.399731
+  - 33.464699
+size: 522
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-RS96-Q?view=explore&groupId=M9MV-FCT&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9F-63QQ-X?view=explore&groupId=M9MV-FWK&lang=uk
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-N3FF-8?view=explore&groupId=M9MV-NJD&lang=uk
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/259/58
+tableFilePath: data/csv/preobrazenka-chaplynska-vol-dniprovskyi-pov-tavriiska-gub-shliuby-1879-1913.csv
+tableLocale: uk
+title: Преображенка, Чаплинська вол. Дніпровський пов. Таврійська губ. |  шлюби
+  (1879, 1883-1884, 1899, 1904, 1913)
+yearsRange:
+  - 1879
+  - 1913
