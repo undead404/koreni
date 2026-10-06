@@ -5,41 +5,64 @@ import {
   waitFor,
   within,
 } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
-import requestApi from '@/app/services/api';
+import { delay, http, HttpResponse } from 'msw';
+import { setupServer } from 'msw/node';
+import { SWRConfig } from 'swr';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
 import AccountHeader from './account-header';
 
 const mockUsePathname = vi.fn().mockReturnValue('/account');
 const mockUseSearchParameters = vi.fn().mockReturnValue(new URLSearchParams());
 const mockReplace = vi.fn();
-const mockGetProject = vi.hoisted(() => vi.fn());
+const mockRouter = { replace: mockReplace };
 const mockEnvironment = vi.hoisted(() => ({
+  NEXT_PUBLIC_API_SITE: 'http://localhost:3000',
   NEXT_PUBLIC_ENABLE_TRANSCRIBE: true,
 }));
+
+const project = (id: string, title: string) => ({
+  id,
+  isHandwritten: true,
+  location: [48.9, 24.5],
+  sources: [],
+  tableLocale: 'uk',
+  title,
+  type: 'table',
+  yearsRange: [1850, 1900],
+});
+
+const server = setupServer(
+  http.get('*/api/auth/me', () => new HttpResponse(null, { status: 401 })),
+);
 
 vi.mock('@/app/environment', () => ({ default: mockEnvironment }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => mockUsePathname(),
   useSearchParams: () => mockUseSearchParameters(),
-  useRouter: () => ({
-    replace: mockReplace,
-  }),
-}));
-
-vi.mock('../transcribe/api/get-project', () => ({
-  default: mockGetProject,
-}));
-
-vi.mock('@/app/services/api', () => ({
-  default: vi.fn(),
+  useRouter: () => mockRouter,
 }));
 
 vi.mock('./logout-button', () => ({
   default: () => <button>Log Out</button>,
 }));
+
+const renderHeader = () =>
+  render(
+    <SWRConfig value={{ provider: () => new Map() }}>
+      <AccountHeader />
+    </SWRConfig>,
+  );
 
 describe('AccountHeader', () => {
   interface BreadcrumbTestCase {
@@ -77,6 +100,10 @@ describe('AccountHeader', () => {
     },
   ];
 
+  beforeAll(() => {
+    server.listen({ onUnhandledRequest: 'error' });
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = true;
@@ -85,13 +112,16 @@ describe('AccountHeader', () => {
 
   afterEach(() => {
     cleanup();
+    server.resetHandlers();
+  });
+
+  afterAll(() => {
+    server.close();
   });
 
   it('hides logout button on /account while in loading state', () => {
     mockUsePathname.mockReturnValue('/account');
-    vi.mocked(requestApi).mockReturnValue(new Promise(() => {}));
-
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
     expect(screen.getByText('Loading...')).toBeInTheDocument();
@@ -102,9 +132,7 @@ describe('AccountHeader', () => {
 
   it('hides identity and logout button on /account when unauthenticated', async () => {
     mockUsePathname.mockReturnValue('/account');
-    vi.mocked(requestApi).mockRejectedValue(new Error('Request failed'));
-
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
 
@@ -122,13 +150,13 @@ describe('AccountHeader', () => {
 
   it('renders identity and logout button on /account when authenticated', async () => {
     mockUsePathname.mockReturnValue('/account');
-    vi.mocked(requestApi).mockResolvedValue({
-      ok: true,
-      json: () =>
-        Promise.resolve({ user: { email: 'user@example.com', id: 'usr_1' } }),
-    } as Response);
+    server.use(
+      http.get('*/api/auth/me', () =>
+        HttpResponse.json({ user: { email: 'user@example.com', id: 'usr_1' } }),
+      ),
+    );
 
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(screen.getByText('Кабінет')).toBeInTheDocument();
     const userIdentity = await screen.findByText('user@example.com');
@@ -141,15 +169,13 @@ describe('AccountHeader', () => {
     for (const pathname of ['/account/login', '/account/login/']) {
       mockUsePathname.mockReturnValue(pathname);
 
-      const { unmount } = render(<AccountHeader />);
+      const { unmount } = renderHeader();
 
       expect(screen.getByText('Вхід')).toBeInTheDocument();
       expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
       expect(
         screen.queryByRole('button', { name: 'Log Out' }),
       ).not.toBeInTheDocument();
-      expect(requestApi).not.toHaveBeenCalled();
-
       unmount();
     }
   });
@@ -159,7 +185,7 @@ describe('AccountHeader', () => {
     ({ pathname, labels, hrefs }) => {
       mockUsePathname.mockReturnValue(pathname);
 
-      render(<AccountHeader />);
+      renderHeader();
 
       const navigation = screen.getByRole('navigation', {
         name: 'Навігація кабінету',
@@ -187,7 +213,7 @@ describe('AccountHeader', () => {
   it('uses a safe fallback for unsupported account routes', () => {
     mockUsePathname.mockReturnValue('/account/unknown');
 
-    render(<AccountHeader />);
+    renderHeader();
 
     const navigation = screen.getByRole('navigation', {
       name: 'Навігація кабінету',
@@ -204,21 +230,96 @@ describe('AccountHeader', () => {
     mockUseSearchParameters.mockReturnValue(
       new URLSearchParams('projectId=test-1'),
     );
-    mockGetProject.mockResolvedValue({ project: { title: 'Tst' } });
+    const projectRequest = vi.fn();
+    server.use(
+      http.get('*/api/transcribe/projects/:projectId', ({ params }) => {
+        projectRequest(params.projectId);
+        return HttpResponse.json({
+          success: true,
+          project: project(String(params.projectId), 'Tst'),
+        });
+      }),
+    );
 
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(await screen.findByText('Транскрибування Tst')).toBeInTheDocument();
+    expect(projectRequest).toHaveBeenCalledTimes(1);
+    expect(projectRequest).toHaveBeenCalledWith('test-1');
     expect(screen.getByRole('link', { name: 'Кабінет' })).toHaveAttribute(
       'href',
       '/account',
     );
   });
 
+  it('does not request project data for missing or invalid project IDs', () => {
+    const projectRequest = vi.fn();
+    server.use(
+      http.get('*/api/transcribe/projects/:projectId', ({ params }) => {
+        projectRequest(params.projectId);
+        return HttpResponse.json({
+          success: true,
+          project: project(String(params.projectId), 'Unexpected'),
+        });
+      }),
+    );
+    mockUsePathname.mockReturnValue('/account/transcribe/project');
+
+    const missingId = renderHeader();
+    expect(projectRequest).not.toHaveBeenCalled();
+    missingId.unmount();
+
+    mockUseSearchParameters.mockReturnValue(
+      new URLSearchParams('projectId=bad_id'),
+    );
+    renderHeader();
+    expect(projectRequest).not.toHaveBeenCalled();
+  });
+
+  it('does not retain the previous title while changing project IDs', async () => {
+    mockUsePathname.mockReturnValue('/account/transcribe/project');
+    mockUseSearchParameters.mockReturnValue(
+      new URLSearchParams('projectId=first-project'),
+    );
+    const projectRequests = vi.fn();
+    server.use(
+      http.get('*/api/transcribe/projects/:projectId', async ({ params }) => {
+        const id = String(params.projectId);
+        projectRequests(id);
+        if (id === 'first-project') await delay(40);
+        return HttpResponse.json({
+          success: true,
+          project: project(id, id === 'first-project' ? 'First' : 'Second'),
+        });
+      }),
+    );
+
+    const view = renderHeader();
+    await waitFor(() => {
+      expect(projectRequests).toHaveBeenCalledWith('first-project');
+    });
+
+    mockUseSearchParameters.mockReturnValue(
+      new URLSearchParams('projectId=second-project'),
+    );
+    view.rerender(
+      <SWRConfig value={{ provider: () => new Map() }}>
+        <AccountHeader />
+      </SWRConfig>,
+    );
+
+    expect(
+      await screen.findByText('Транскрибування Second'),
+    ).toBeInTheDocument();
+    await delay(60);
+    expect(screen.queryByText('Транскрибування First')).not.toBeInTheDocument();
+    expect(screen.getByText('Транскрибування Second')).toBeInTheDocument();
+  });
+
   it('treats trailing slashes as equivalent route paths', () => {
     mockUsePathname.mockReturnValue('/account/transcribe/create/');
 
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(screen.getByText('Створення проєкту')).toBeInTheDocument();
     expect(
@@ -230,7 +331,7 @@ describe('AccountHeader', () => {
     mockEnvironment.NEXT_PUBLIC_ENABLE_TRANSCRIBE = false;
     mockUsePathname.mockReturnValue('/account/transcribe');
 
-    render(<AccountHeader />);
+    renderHeader();
 
     expect(screen.queryByText('Транскрибування')).not.toBeInTheDocument();
     expect(screen.getByText('Кабінет')).toBeInTheDocument();

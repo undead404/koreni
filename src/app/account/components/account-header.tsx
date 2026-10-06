@@ -3,9 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
+import useSWR from 'swr';
+import { z } from 'zod';
 
 import environment from '@/app/environment';
+import { nonEmptyString } from '@/shared/schemas/non-empty-string';
 
 import getProject from '../transcribe/api/get-project';
 
@@ -15,6 +18,10 @@ import UserView from './user';
 import styles from './account-header.module.css';
 
 import logo from '../../assets/logo.png';
+
+const projectSearchParametersSchema = z.object({
+  projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
+});
 
 interface BreadcrumbItem {
   href?: string;
@@ -66,40 +73,25 @@ function getBreadcrumbItems(
 export default function AccountHeader() {
   const pathname = usePathname();
   const searchParameters = useSearchParams();
-  const [project, setProject] = useState<{
-    id: string;
-    title: string;
-  } | null>(null);
   const isLoginPage = isLoginRoute(pathname);
   const normalizedPathname = normalizePathname(pathname);
   const projectId =
     normalizedPathname === '/account/transcribe/project'
-      ? searchParameters.get('projectId')
+      ? (projectSearchParametersSchema.safeParse({
+          projectId: searchParameters.get('projectId'),
+        }).data?.projectId ?? null)
       : null;
 
-  useEffect(() => {
-    if (!projectId) return;
+  const projectKey = projectId ? `/api/transcribe/projects/${projectId}` : null;
+  const { data: projectResponse } = useSWR(
+    projectKey,
+    projectId ? () => getProject(projectId) : null,
+  );
 
-    const abortController = new AbortController();
-    const loadProject = async () => {
-      try {
-        const data = await getProject(projectId, abortController.signal);
-        if (!abortController.signal.aborted) {
-          setProject({ id: projectId, title: data.project.title });
-        }
-      } catch {
-        // The project page handles request errors separately.
-      }
-    };
-
-    void loadProject();
-
-    return () => {
-      abortController.abort();
-    };
-  }, [projectId]);
-
-  const projectTitle = project?.id === projectId ? project.title : null;
+  const projectTitle =
+    projectResponse?.project.id === projectId
+      ? projectResponse.project.title
+      : null;
   const breadcrumbItems = getBreadcrumbItems(pathname, projectTitle);
 
   return (

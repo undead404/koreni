@@ -14,6 +14,7 @@ import {
 } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import useSWR, { useSWRConfig } from 'swr';
 import { z } from 'zod';
 
 import SourcesInput from '@/app/components/contribute/sources-input';
@@ -37,7 +38,6 @@ import getProjectImages from '../api/get-project-images';
 import getProjectSchemas from '../api/get-project-schemas';
 import saveProjectImage from '../api/save-project-image';
 import updateProject from '../api/update-project';
-import type { ProjectImage } from '../schemata';
 
 import styles from './page.module.css';
 
@@ -50,6 +50,9 @@ interface ImageFile {
 }
 
 type UploadState = 'idle' | 'uploading' | 'success';
+
+type ProjectResponse = Awaited<ReturnType<typeof getProject>>;
+type ProjectImagesResponse = Awaited<ReturnType<typeof getProjectImages>>;
 
 const projectSearchParametersSchema = z.object({
   projectId: nonEmptyString.regex(/^[a-z0-9-]+$/i),
@@ -68,14 +71,6 @@ function ProjectDetailsPageContent() {
       return '';
     }
   }, [searchParameters]);
-  const [projectData, setProjectData] = useState<ProjectCreatePayload | null>(
-    null,
-  );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [loadError, setLoadError] = useState<boolean>(false);
-  const [metadataIsSaved, setMetadataIsSaved] = useState<boolean>(false);
-  const [projectImages, setProjectImages] = useState<ProjectImage[]>([]);
-  const [existingImagesCount, setExistingImagesCount] = useState<number>(0);
   const [activeTab, setActiveTab] = useState<
     'metadata' | 'assets' | 'operations'
   >('metadata');
@@ -111,6 +106,7 @@ function ProjectDetailsPageContent() {
     reset,
     formState: { errors, isSubmitting },
   } = methods;
+  const { mutate } = useSWRConfig();
 
   useEffect(() => {
     if (!projectId) {
@@ -137,54 +133,51 @@ function ProjectDetailsPageContent() {
     };
   }, []);
 
-  // Load project data and images count
+  const projectKey = projectId ? `/api/transcribe/projects/${projectId}` : null;
+  const imagesKey = projectId
+    ? `/api/transcribe/project/${projectId}/images`
+    : null;
+  const {
+    data: projectResponse,
+    error: projectError,
+    isLoading: projectIsLoading,
+  } = useSWR<ProjectResponse, Error>(
+    projectKey,
+    projectId ? () => getProject(projectId) : null,
+  );
+  const {
+    data: imagesResponse,
+    error: imagesError,
+    isLoading: imagesAreLoading,
+  } = useSWR<ProjectImagesResponse, Error>(
+    imagesKey,
+    projectId ? () => getProjectImages(projectId) : null,
+  );
+  const projectData =
+    projectResponse?.project.id === projectId ? projectResponse.project : null;
+  const projectImages = imagesResponse ?? [];
+  const existingImagesCount = projectImages.length;
+  const isLoading =
+    Boolean(projectId) && (projectIsLoading || imagesAreLoading);
+  const hasLoadError = Boolean(
+    (projectError && !projectResponse) || (imagesError && !imagesResponse),
+  );
+  const isMetadataIsSaved = projectData !== null;
+
   useEffect(() => {
-    if (!projectId) return;
-    let isActive = true;
+    if (projectData) {
+      reset(projectData);
+    }
+  }, [projectData, reset]);
 
-    const loadData = async () => {
-      setIsLoading(true);
-      setLoadError(false);
-      setProjectData(null);
-      setMetadataIsSaved(false);
-      setProjectImages([]);
-      setExistingImagesCount(0);
-      setActiveTab('metadata');
-      try {
-        const [projResponse, imgs] = await Promise.all([
-          getProject(projectId),
-          getProjectImages(projectId),
-        ]);
-
-        if (isActive) {
-          if (!projResponse.success) {
-            throw new Error('Project data failed to load');
-          }
-          setProjectData(projResponse.project);
-          reset(projResponse.project);
-          setMetadataIsSaved(true);
-          setProjectImages(imgs);
-          setExistingImagesCount(imgs.length);
-        }
-      } catch {
-        if (isActive) {
-          setProjectData(null);
-          setLoadError(true);
-        }
-        toast.error('Failed to load project details');
-      } finally {
-        if (isActive) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    void loadData();
-
-    return () => {
-      isActive = false;
-    };
-  }, [projectId, reset]);
+  useEffect(() => {
+    if (
+      (projectError && !projectResponse) ||
+      (imagesError && !imagesResponse)
+    ) {
+      toast.error('Failed to load project details');
+    }
+  }, [imagesError, imagesResponse, projectError, projectResponse]);
 
   // Cleanup object URLs for selected files
   useEffect(() => {
@@ -265,9 +258,7 @@ function ProjectDetailsPageContent() {
     if (!signal.aborted) {
       setUploadState('success');
       try {
-        const imgs = await getProjectImages(projectId);
-        setProjectImages(imgs);
-        setExistingImagesCount(imgs.length);
+        await mutate(imagesKey);
       } catch {
         toast.error('Failed to refresh project images');
       }
@@ -292,7 +283,7 @@ function ProjectDetailsPageContent() {
     return <div className={styles.loading}>Loading project details...</div>;
   }
 
-  if (loadError || !projectData) {
+  if (hasLoadError || !projectData) {
     return (
       <main className={styles.root}>
         <p className={styles.error}>Failed to load project details.</p>
@@ -309,9 +300,9 @@ function ProjectDetailsPageContent() {
   const hasTranscriptionResult = projectImages.some(
     (image) => (image.transcription ?? '').trim().length > 0,
   );
-  const canEnterWorkspace = metadataIsSaved && existingImagesCount > 0;
+  const canEnterWorkspace = isMetadataIsSaved && existingImagesCount > 0;
   const canOpenOperations =
-    metadataIsSaved && existingImagesCount > 0 && hasTranscriptionResult;
+    isMetadataIsSaved && existingImagesCount > 0 && hasTranscriptionResult;
   const onSubmit = async (data: ProjectCreatePayload) => {
     try {
       const updateData: Partial<ProjectCreatePayload> = { ...data };
@@ -320,8 +311,7 @@ function ProjectDetailsPageContent() {
         projectId,
         updateData as Omit<ProjectCreatePayload, 'id'>,
       );
-      setProjectData(data);
-      setMetadataIsSaved(true);
+      await mutate(projectKey);
       toast.success('Project details updated successfully');
     } catch {
       toast.error('Failed to update project details');
@@ -332,7 +322,7 @@ function ProjectDetailsPageContent() {
     void handleSubmit(onSubmit)(event);
   };
   const handleAssetsTabClick = () => {
-    if (!metadataIsSaved) {
+    if (!isMetadataIsSaved) {
       toast.error('Спочатку збережіть метадані проекту');
       return;
     }
@@ -400,9 +390,11 @@ function ProjectDetailsPageContent() {
         <button
           className={`${styles.tabButton} ${activeTab === 'assets' ? styles.activeTabButton : ''}`}
           onClick={handleAssetsTabClick}
-          aria-disabled={!metadataIsSaved}
+          aria-disabled={!isMetadataIsSaved}
           title={
-            metadataIsSaved ? undefined : 'Збережіть метадані проекту спочатку'
+            isMetadataIsSaved
+              ? undefined
+              : 'Збережіть метадані проекту спочатку'
           }
         >
           Asset Manager
@@ -578,6 +570,7 @@ function ProjectDetailsPageContent() {
                     type="file"
                     multiple
                     accept="image/jpeg, image/jpg"
+                    data-testid="project-image-input"
                     onChange={handleFileSelect}
                     ref={fileInputReference}
                     style={{ display: 'none' }}

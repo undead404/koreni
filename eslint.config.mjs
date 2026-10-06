@@ -250,6 +250,7 @@ export default [
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
       '@typescript-eslint/unbound-method': 'off',
+      '@typescript-eslint/require-await': 'off',
       'jsx-a11y/heading-has-content': 'off',
       'unicorn/no-global-object-property-assignment': 'off',
       'unicorn/no-useless-undefined': 'off',

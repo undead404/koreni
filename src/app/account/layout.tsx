@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import environment from '@/app/environment';
 
 import AccountHeader from './components/account-header';
+import AccountSWRProvider from './components/account-swr-provider';
 
 export const metadata: Metadata = {
   title: 'Кабінет',
@@ -20,8 +21,10 @@ export default function AccountLayout({
 }) {
   return (
     <GoogleOAuthProvider clientId={environment.NEXT_PUBLIC_OAUTH_CLIENT_ID}>
-      <AccountHeader />
-      {children}
+      <AccountSWRProvider>
+        <AccountHeader />
+        {children}
+      </AccountSWRProvider>
     </GoogleOAuthProvider>
   );
 }
