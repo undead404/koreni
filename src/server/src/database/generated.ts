@@ -61,6 +61,7 @@ export interface Users {
   id: string;
   is_admin: Generated<number>;
   karma_linked_at: string | null;
+  show_email: Generated<number>;
   token_version: Generated<number>;
 }
 

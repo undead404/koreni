@@ -3,6 +3,11 @@ import { bodyLimit } from 'hono/body-limit';
 import { cors } from 'hono/cors';
 import { secureHeaders } from 'hono/secure-headers';
 
+import {
+  handleGetAuthEmailVisibility,
+  handlePutAuthEmailVisibility,
+} from './handlers/handle-auth-email-visibility.js';
+import handleEmailVisibilityPolicy from './handlers/handle-email-visibility-policy.js';
 import handleKarmaLink from './handlers/handle-karma-link.js';
 import handleKarmaLinkedUsers from './handlers/handle-karma-linked-users.js';
 import handleKarmaLookup from './handlers/handle-karma-lookup.js';
@@ -99,6 +104,17 @@ export function createApp() {
 
   app.post('/api/auth/google', handleTranscribeGoogleAuth);
   app.get('/api/auth/me', transcribeAuthMiddleware, handleTranscribeAuthMe);
+  app.get(
+    '/api/auth/email-visibility',
+    transcribeAuthMiddleware,
+    handleGetAuthEmailVisibility,
+  );
+  app.put(
+    '/api/auth/email-visibility',
+    transcribeAuthMiddleware,
+    handlePutAuthEmailVisibility,
+  );
+  app.get('/api/internal/email-visibility-policy', handleEmailVisibilityPolicy);
   app.delete(
     '/api/auth/session/current',
     transcribeAuthMiddleware,

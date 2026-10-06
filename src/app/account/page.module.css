@@ -26,6 +26,61 @@
   overflow-wrap: anywhere;
 }
 
+.visibility {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: var(--default-border);
+}
+
+.visibility h2 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.visibility p {
+  margin-bottom: 16px;
+}
+
+.visibility form {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+
+.preference {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.preference input {
+  margin-top: 4px;
+}
+
+.notice {
+  margin-top: 16px;
+  color: var(--success-color, #176b36);
+}
+
+.error {
+  margin-top: 16px;
+  color: var(--error-color, #a12622);
+}
+
+.error button {
+  margin-top: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .notice {
+    color: #8bd5a5;
+  }
+
+  .error {
+    color: #ffaaa5;
+  }
+}
+
 @media (width <= 480px) {
   .card {
     padding: 24px 16px;

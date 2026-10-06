@@ -10,6 +10,7 @@ export default async function findUserById(id: string) {
       'google_id',
       'is_admin',
       'karma_linked_at',
+      'show_email',
     ])
     .where('id', '=', id)
     .executeTakeFirst();

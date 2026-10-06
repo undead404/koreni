@@ -9,6 +9,7 @@ dotenv.config();
 const environmentSchema = z.object({
   BUGSNAG_API_API_KEY: nonEmptyString.optional(),
   BUILD_REVISION: nonEmptyString.optional().default('development'),
+  EMAIL_VISIBILITY_SYNC_TOKEN: nonEmptyString.optional(),
   GITHUB_REPO: nonEmptyString,
   GITHUB_TOKEN: nonEmptyString,
   KARMA_DATA_ROOT: nonEmptyString.optional(),
@@ -53,6 +54,7 @@ const environmentSchema = z.object({
 const environment = environmentSchema.parse({
   BUGSNAG_API_API_KEY: process.env.BUGSNAG_API_API_KEY,
   BUILD_REVISION: process.env.BUILD_REVISION,
+  EMAIL_VISIBILITY_SYNC_TOKEN: process.env.EMAIL_VISIBILITY_SYNC_TOKEN,
   GITHUB_REPO: process.env.GITHUB_REPO,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
   KARMA_DATA_ROOT: process.env.KARMA_DATA_ROOT,

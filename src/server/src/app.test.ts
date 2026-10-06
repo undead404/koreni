@@ -5,10 +5,12 @@ import { createApp } from './app.js';
 const environment = vi.hoisted(
   (): {
     BUILD_REVISION: string | undefined;
+    EMAIL_VISIBILITY_SYNC_TOKEN: string | undefined;
     NEXT_PUBLIC_SITE: string;
     PORT: number;
   } => ({
     BUILD_REVISION: 'test-revision',
+    EMAIL_VISIBILITY_SYNC_TOKEN: 'policy-token',
     NEXT_PUBLIC_SITE: 'https://example.com',
     PORT: 3000,
   }),
@@ -49,6 +51,10 @@ vi.mock('./services/bugsnag.js', () => ({
   reportError,
 }));
 
+vi.mock('./database/get-email-visibility-suppressions.js', () => ({
+  default: vi.fn().mockResolvedValue(['suppressed@example.com']),
+}));
+
 vi.mock('./database/client', () => ({
   default: {},
 }));
@@ -60,6 +66,7 @@ vi.mock('./environment.js', () => ({
 describe('App Factory', () => {
   beforeEach(() => {
     environment.BUILD_REVISION = 'test-revision';
+    environment.EMAIL_VISIBILITY_SYNC_TOKEN = 'policy-token';
     getKarmaStatsMetadata.mockReset();
     getKarmaStatsMetadata.mockResolvedValue({
       generatedAt: '2026-08-24T18:00:00.000Z',
@@ -157,5 +164,35 @@ describe('App Factory', () => {
     });
     expect(response.status).toBe(200);
     expect(await response.text()).toBe('Submit Handler');
+  });
+
+  it('registers authenticated email visibility routes and rejects anonymous access', async () => {
+    const app = createApp();
+
+    const visibilityGetResponse = await app.request(
+      '/api/auth/email-visibility',
+    );
+    const putResponse = await app.request('/api/auth/email-visibility', {
+      body: JSON.stringify({ show_email: false }),
+      headers: { 'Content-Type': 'application/json' },
+      method: 'PUT',
+    });
+
+    expect(visibilityGetResponse.status).toBe(401);
+    expect(putResponse.status).toBe(401);
+  });
+
+  it('registers the private email visibility policy endpoint', async () => {
+    const app = createApp();
+    const denied = await app.request('/api/internal/email-visibility-policy');
+    const allowed = await app.request('/api/internal/email-visibility-policy', {
+      headers: { Authorization: 'Bearer policy-token' },
+    });
+
+    expect(denied.status).toBe(401);
+    expect(allowed.status).toBe(200);
+    expect(await allowed.json()).toStrictEqual({
+      suppressed_emails: ['suppressed@example.com'],
+    });
   });
 });

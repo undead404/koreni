@@ -4,6 +4,7 @@ CREATE TABLE `users` (
 	`google_id` text UNIQUE,
 	`email` text NOT NULL UNIQUE,
 	`contribution_email` text,
+	`show_email` INTEGER DEFAULT TRUE NOT NULL,
 	`is_admin` numeric DEFAULT FALSE NOT NULL,
 	`token_version` integer DEFAULT 1 NOT NULL,
 	`karma_linked_at` text

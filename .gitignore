@@ -15,6 +15,7 @@
 # next.js
 /.next/
 /out/
+/.email-visibility-policy.json
 
 # production
 /build

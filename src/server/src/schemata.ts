@@ -185,3 +185,24 @@ export const karmaLookupResponseSchema = z.object({
 });
 
 export type KarmaLookupResponse = z.infer<typeof karmaLookupResponseSchema>;
+
+export const emailVisibilitySchema = z.strictObject({
+  show_email: z.boolean(),
+});
+
+export const emailVisibilityUpdateResponseSchema = z.strictObject({
+  rebuild_status: z.enum(['queued', 'dispatch_failed']),
+  show_email: z.boolean(),
+});
+
+export const emailVisibilityPolicyResponseSchema = z.strictObject({
+  suppressed_emails: z.array(z.email()),
+});
+
+export type EmailVisibility = z.infer<typeof emailVisibilitySchema>;
+export type EmailVisibilityUpdateResponse = z.infer<
+  typeof emailVisibilityUpdateResponseSchema
+>;
+export type EmailVisibilityPolicyResponse = z.infer<
+  typeof emailVisibilityPolicyResponseSchema
+>;
