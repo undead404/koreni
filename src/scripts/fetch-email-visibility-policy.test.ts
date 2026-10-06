@@ -29,7 +29,7 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 
 describe('fetchEmailVisibilityPolicy', () => {
   beforeAll(() => {
-    server.listen({ onUnhandledRequest: 'error' });
+    server.listen({ onUnhandledFrame: 'error' });
   });
   afterAll(() => {
     server.close();

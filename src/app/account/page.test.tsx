@@ -39,7 +39,7 @@ vi.mock('next/navigation', () => ({
 
 describe('AccountPage', () => {
   beforeAll(() => {
-    server.listen({ onUnhandledRequest: 'error' });
+    server.listen({ onUnhandledFrame: 'error' });
   });
   afterAll(() => {
     server.close();
