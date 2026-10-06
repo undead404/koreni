@@ -1,7 +1,7 @@
 ---
 description: Executes bounded informal implementation and repair tasks
 mode: primary
-model: opencode/gpt-5.6-luna
+model: openai/gpt-6-luna
 reasoningEffort: medium
 permission:
   edit: allow
@@ -62,7 +62,7 @@ Inspection may expand to understand a contract, but mutation scope must not expa
 ## Hard constraints
 
 - Never commit, push, reset, or rewrite repository history during normal task execution. The dedicated `/commit` command may commit only when explicitly invoked by the user while this `execute` agent is active.
-- Never read, modify, or regenerate lockfiles, including `yarn.lock`.
+- Never read or modify lockfiles, including `yarn.lock`.
 - Never install dependencies unless the user explicitly requests dependency installation as the task.
 - Preserve strict TypeScript types. Do not use `any`, unnecessary assertions, `@ts-ignore`, `@ts-expect-error`, or disabled lint rules to bypass failures.
 - Default to React Server Components in Zone A; use `'use client'` only when required by existing project conventions.

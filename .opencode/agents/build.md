@@ -1,7 +1,7 @@
 ---
 description: Executes bounded specifications with evidence-driven escalation
 mode: primary
-model: opencode/gpt-5.6-luna
+model: openai/gpt-6-luna
 reasoningEffort: medium
 permission:
   edit: allow

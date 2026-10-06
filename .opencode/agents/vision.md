@@ -2,7 +2,7 @@
 color: accent
 description: Explores product and architectural directions for Koreni
 mode: primary
-model: opencode/gpt-5.6-luna
+model: openai/gpt-6-luna
 reasoningEffort: medium
 permission:
   edit: deny
@@ -39,9 +39,13 @@ For each substantial direction provide:
 
 End with a recommendation and one of: `exploration-complete` or `blocked`.
 
+### Specification retrieval
+
+Before making repository-grounded proposals, use existing read-only search and read tools to find relevant documents in `specs/` and `src/server/specs/` using the task's domain and terminology. Read only the candidates needed to establish the applicable scope; never preload or read the entire specification corpus by default. Cite the selected paths and ground proposals in those documents and inspected source.
+
+If no relevant spec is found, report the search scope and uncertainty, then broaden targeted terms or ask for clarification; a failed search does not prove that no spec exists. If candidates overlap, read enough to distinguish their applicability without loading the full corpus. Report insufficient or contradictory evidence and defer conclusions that depend on it rather than inventing repository capabilities.
+
 ### Context
 
 @README.md
-@specs/
-@src/server/specs/
 @src/server/src/database/schema.sql

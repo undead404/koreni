@@ -1,7 +1,7 @@
 ---
 description: Independently reviews bounded changes and verifies acceptance criteria
 mode: subagent
-model: opencode/gpt-5.6-luna
+model: openai/gpt-6-luna
 reasoningEffort: medium
 permission:
   edit: deny

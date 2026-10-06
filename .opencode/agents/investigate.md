@@ -1,7 +1,7 @@
 ---
 description: Diagnoses defects, reproduces issues, and performs root-cause analysis without modifying code
 mode: primary
-model: opencode/gpt-5.6-luna
+model: openai/gpt-6-luna
 reasoningEffort: medium
 permission:
   edit: deny
@@ -49,6 +49,12 @@ Format every investigation output strictly using the following hierarchy:
 
 End with explicit handoff instructions for the `architect` agent. Use `reproduced`, `not-reproduced`, or `blocked` and distinguish confirmed evidence from hypotheses.
 
+### Specification retrieval
+
+Before diagnosing the reported defect, use existing read-only search and read tools to find relevant documents in `specs/` and `src/server/specs/` using the task's domain and terminology. Read only the candidates needed to establish the applicable contract; never preload or read the entire specification corpus by default. Cite the selected paths and ground conclusions in those documents and inspected source.
+
+If no relevant spec is found, report the search scope and uncertainty, then broaden targeted terms or ask for clarification; a failed search does not prove that no spec exists. If candidates overlap, read enough to distinguish their applicability without loading the full corpus. Report insufficient or contradictory evidence and defer conclusions that depend on it rather than inventing repository capabilities.
+
 ### Context
 
 @package.json
@@ -57,5 +63,3 @@ End with explicit handoff instructions for the `architect` agent. Use `reproduce
 @TESTING_CONVENTIONS.md
 @src/server/CONVENTIONS.md
 @src/server/TESTING_CONVENTIONS.md
-@specs/
-@src/server/specs/

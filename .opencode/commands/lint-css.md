@@ -1,6 +1,6 @@
 ---
 description: 'Run Stylelint auto-fix and resolve remaining manual violations.'
-model: 'opencode/gpt-5.6-luna'
+model: 'openai/gpt-6-luna'
 temperature: 0.0
 top_p: 0.10
 max_tokens: 4096

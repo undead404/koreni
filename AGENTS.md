@@ -24,7 +24,7 @@ You operate in two mutually exclusive zones. Before writing any code, determine 
 
 ## Agent Execution Rules
 
-- Never read or modify lockfiles (`yarn.lock`).
+- Never read or modify lockfiles (`yarn.lock`) as plain text; you can add & install dependencies
 - Frontend Markdown specs are strictly located in `specs/`.
 - Backend Markdown specs are strictly located in `src/server/specs/`.
 - Do not commit code autonomously. Plan the architecture, execute, and await user approval before running `git commit`. The only exception is an explicit user invocation of `/commit` while operating under the `execute` or `build` agent.

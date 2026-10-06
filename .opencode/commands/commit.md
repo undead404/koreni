@@ -1,6 +1,6 @@
 ---
 description: 'Generate a conventional commit message and execute an explicitly requested commit.'
-model: 'opencode/gpt-5.6-luna'
+model: 'openai/gpt-6-luna'
 temperature: 0.1
 top_p: 1.0
 max_tokens: 512

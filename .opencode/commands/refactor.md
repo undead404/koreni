@@ -1,6 +1,6 @@
 ---
 description: 'Refactor a specific file for performance, architectural alignment, and readability.'
-model: 'opencode/gpt-5.6-luna'
+model: 'openai/gpt-6-luna'
 temperature: 0.1
 top_p: 0.90
 max_tokens: 8192
