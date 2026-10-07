@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  githubWorkflowDispatchExceptionSchema,
+  githubWorkflowDispatchHttpStatusSchema,
+  githubWorkflowDispatchRequestIdSchema,
+  githubWorkflowDispatchResponseMessageSchema,
+  githubWorkflowDispatchResponseSchema,
   importPayloadSchema,
   karmaLinkedUserSchema,
   karmaLinkedUsersResponseSchema,
@@ -17,6 +22,99 @@ import {
 } from './schemata.js';
 
 describe('schemata', () => {
+  describe('GitHub workflow dispatch diagnostics', () => {
+    it('accepts an error envelope with validated status, reason, and request ID', () => {
+      const envelope = githubWorkflowDispatchExceptionSchema.parse({
+        message: 'Request failed',
+        response: {
+          data: {
+            message: 'Resource not accessible',
+            secret_payload: 'omit',
+          },
+          headers: { 'x-github-request-id': 'ABC123' },
+          status: 403,
+        },
+        status: 500,
+      });
+      const response = githubWorkflowDispatchResponseSchema.parse(
+        envelope.response,
+      );
+
+      expect(
+        githubWorkflowDispatchHttpStatusSchema.parse(response.status),
+      ).toBe(403);
+      expect(
+        githubWorkflowDispatchResponseMessageSchema.parse(response.data),
+      ).toStrictEqual({ message: 'Resource not accessible' });
+      expect(githubWorkflowDispatchRequestIdSchema.parse('ABC123')).toBe(
+        'ABC123',
+      );
+    });
+
+    it('validates optional diagnostics independently and omits malformed values', () => {
+      const envelope = githubWorkflowDispatchExceptionSchema.parse({
+        message: '  Exception reason  ',
+        response: {
+          data: { message: '  Provider reason  ', extra: 'not diagnostic' },
+          headers: { 'x-github-request-id': 'x'.repeat(129) },
+          status: 99,
+        },
+        status: 429,
+        unrelated: 'stripped',
+      });
+      const response = githubWorkflowDispatchResponseSchema.parse(
+        envelope.response,
+      );
+
+      expect(
+        githubWorkflowDispatchHttpStatusSchema.safeParse(response.status)
+          .success,
+      ).toBe(false);
+      expect(
+        githubWorkflowDispatchHttpStatusSchema.safeParse(envelope.status).data,
+      ).toBe(429);
+      expect(
+        githubWorkflowDispatchResponseMessageSchema.parse(response.data),
+      ).toStrictEqual({ message: 'Provider reason' });
+      expect(
+        githubWorkflowDispatchRequestIdSchema.safeParse('x'.repeat(129))
+          .success,
+      ).toBe(false);
+      expect(envelope).not.toHaveProperty('unrelated');
+    });
+
+    it('rejects missing or malformed status, message, and request ID independently', () => {
+      expect(
+        githubWorkflowDispatchHttpStatusSchema.safeParse(undefined).success,
+      ).toBe(false);
+      expect(
+        githubWorkflowDispatchHttpStatusSchema.safeParse(600).success,
+      ).toBe(false);
+      expect(
+        githubWorkflowDispatchResponseMessageSchema.safeParse({ message: 42 })
+          .success,
+      ).toBe(false);
+      expect(
+        githubWorkflowDispatchResponseMessageSchema.safeParse({
+          message: '  ',
+        }).success,
+      ).toBe(false);
+      expect(githubWorkflowDispatchRequestIdSchema.safeParse(42).success).toBe(
+        false,
+      );
+      expect(githubWorkflowDispatchRequestIdSchema.safeParse('').success).toBe(
+        false,
+      );
+      expect(
+        githubWorkflowDispatchRequestIdSchema.safeParse('x'.repeat(129))
+          .success,
+      ).toBe(false);
+      expect(
+        githubWorkflowDispatchResponseMessageSchema.safeParse({}).success,
+      ).toBe(false);
+    });
+  });
+
   describe('nonEmptyString', () => {
     it('should accept a non-empty string', () => {
       expect(nonEmptyString.safeParse('hello').success).toBe(true);

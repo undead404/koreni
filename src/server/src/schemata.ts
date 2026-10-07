@@ -27,6 +27,59 @@ export const importPayloadSchema = z.object({
 
 export type ImportPayload = z.infer<typeof importPayloadSchema>;
 
+export const githubWorkflowDispatchExceptionSchema = z.object({
+  message: z.unknown().optional(),
+  response: z.unknown().optional(),
+  status: z.unknown().optional(),
+});
+
+export type GithubWorkflowDispatchException = z.infer<
+  typeof githubWorkflowDispatchExceptionSchema
+>;
+
+export const githubWorkflowDispatchResponseSchema = z.object({
+  data: z.unknown().optional(),
+  headers: z.unknown().optional(),
+  status: z.unknown().optional(),
+});
+
+export type GithubWorkflowDispatchResponse = z.infer<
+  typeof githubWorkflowDispatchResponseSchema
+>;
+
+export const githubWorkflowDispatchResponseHeadersSchema = z.record(
+  z.string(),
+  z.unknown(),
+);
+
+export type GithubWorkflowDispatchResponseHeaders = z.infer<
+  typeof githubWorkflowDispatchResponseHeadersSchema
+>;
+
+export const githubWorkflowDispatchHttpStatusSchema = z
+  .number()
+  .int()
+  .min(100)
+  .max(599);
+
+export type GithubWorkflowDispatchHttpStatus = z.infer<
+  typeof githubWorkflowDispatchHttpStatusSchema
+>;
+
+export const githubWorkflowDispatchResponseMessageSchema = z.object({
+  message: z.string().trim().min(1),
+});
+
+export type GithubWorkflowDispatchResponseMessage = z.infer<
+  typeof githubWorkflowDispatchResponseMessageSchema
+>;
+
+export const githubWorkflowDispatchRequestIdSchema = z.string().min(1).max(128);
+
+export type GithubWorkflowDispatchRequestId = z.infer<
+  typeof githubWorkflowDispatchRequestIdSchema
+>;
+
 export const projectCreatePayloadSchema = z.object({
   id: nonEmptyString.regex(/^[a-z0-9-]+$/i),
   isHandwritten: z.boolean(),
