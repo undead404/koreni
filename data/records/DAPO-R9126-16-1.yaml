@@ -3,7 +3,7 @@ archiveItems:
 authorName: Юлія Немірова
 authorEmail: nemirova.yuliia@gmail.com
 date: 2026-10-07
-id: reiestratsii-aktovykh-zapysiv-pro-narodzhennia
+id: DAPO-R9126-16-1
 location:
   - 49.048457354903675
   - 33.72553825378419
@@ -14,7 +14,7 @@ sources:
   - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
 tableFilePath: data/csv/reiestratsii-aktovykh-zapysiv-pro-narodzhennia.csv
 tableLocale: uk
-title: Реєстрація актових записів про народження Кобелячок, Пришиб, Рокитне. 1923-1924
+title: Кобелячок, Пришиб, Рокитне – народження, 1923-1924
 yearsRange:
   - 1923
   - 1924
