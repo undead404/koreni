@@ -5,49 +5,38 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { http, HttpResponse } from 'msw';
-import { setupServer } from 'msw/node';
-import {
-  afterAll,
-  afterEach,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import requestApi from '@/app/services/api';
 
 import AccountPage from './page';
 
 const mockReplace = vi.fn();
 const mockRouter = { replace: mockReplace };
-const server = setupServer(
-  http.get('*/api/auth/me', () =>
-    HttpResponse.json({ user: { email: 'user@example.com', id: '1' } }),
-  ),
-  http.get('*/api/auth/email-visibility', () =>
-    HttpResponse.json({ show_email: true }),
-  ),
-  http.put('*/api/auth/email-visibility', () =>
-    HttpResponse.json({ show_email: true, rebuild_status: 'queued' }),
-  ),
-);
 
 vi.mock('next/navigation', () => ({
   useRouter: () => mockRouter,
 }));
 
+vi.mock('@/app/services/api', () => ({ default: vi.fn() }));
+
 describe('AccountPage', () => {
-  beforeAll(() => {
-    server.listen({ onUnhandledFrame: 'error' });
-  });
-  afterAll(() => {
-    server.close();
+  beforeEach(() => {
+    vi.mocked(requestApi).mockImplementation((path) => {
+      if (path === '/api/auth/me') {
+        return Promise.resolve(
+          Response.json({ user: { email: 'user@example.com', id: '1' } }),
+        );
+      }
+      if (path === '/api/auth/email-visibility') {
+        return Promise.resolve(Response.json({ show_email: true }));
+      }
+      return Promise.reject(new Error(`Unexpected API request: ${path}`));
+    });
   });
 
   afterEach(() => {
     cleanup();
-    server.resetHandlers();
     vi.clearAllMocks();
   });
 
@@ -72,11 +61,12 @@ describe('AccountPage', () => {
   });
 
   it('redirects to /account/login when unauthenticated', async () => {
-    server.use(
-      http.get('*/api/auth/me', () =>
-        HttpResponse.json({ user: null }, { status: 401 }),
-      ),
-    );
+    vi.mocked(requestApi).mockImplementation((path) => {
+      if (path === '/api/auth/me') {
+        return Promise.reject(new Error('Unauthenticated'));
+      }
+      return Promise.resolve(Response.json({ show_email: true }));
+    });
 
     render(<AccountPage />);
 
@@ -86,16 +76,24 @@ describe('AccountPage', () => {
   });
 
   it('initializes and saves the preference with the exact payload and notice', async () => {
-    let sentBody: unknown;
-    server.use(
-      http.put('*/api/auth/email-visibility', async ({ request }) => {
-        sentBody = await request.json();
-        return HttpResponse.json({
-          show_email: false,
-          rebuild_status: 'queued',
-        });
-      }),
-    );
+    let sentBody: BodyInit | null | undefined;
+    vi.mocked(requestApi).mockImplementation((path, parameters) => {
+      if (path === '/api/auth/me') {
+        return Promise.resolve(
+          Response.json({ user: { email: 'user@example.com', id: '1' } }),
+        );
+      }
+      if (
+        path === '/api/auth/email-visibility' &&
+        parameters?.method === 'PUT'
+      ) {
+        sentBody = parameters.body;
+        return Promise.resolve(
+          Response.json({ show_email: false, rebuild_status: 'queued' }),
+        );
+      }
+      return Promise.resolve(Response.json({ show_email: true }));
+    });
 
     render(<AccountPage />);
     const checkbox = await screen.findByRole('checkbox', {
@@ -112,7 +110,7 @@ describe('AccountPage', () => {
         'Зміни з’являться на сайті після його перебудови.',
       ),
     ).toBeInTheDocument();
-    expect(sentBody).toStrictEqual({ show_email: false });
+    expect(sentBody).toBe(JSON.stringify({ show_email: false }));
     await waitFor(() =>
       expect(
         screen.getByRole('checkbox', {
@@ -123,16 +121,27 @@ describe('AccountPage', () => {
   });
 
   it('reports dispatch failure and allows retrying the same preference', async () => {
-    const sentBodies: unknown[] = [];
-    server.use(
-      http.put('*/api/auth/email-visibility', async ({ request }) => {
-        sentBodies.push(await request.json());
-        return HttpResponse.json({
-          show_email: true,
-          rebuild_status: 'dispatch_failed',
-        });
-      }),
-    );
+    const sentBodies: (BodyInit | null | undefined)[] = [];
+    vi.mocked(requestApi).mockImplementation((path, parameters) => {
+      if (path === '/api/auth/me') {
+        return Promise.resolve(
+          Response.json({ user: { email: 'user@example.com', id: '1' } }),
+        );
+      }
+      if (
+        path === '/api/auth/email-visibility' &&
+        parameters?.method === 'PUT'
+      ) {
+        sentBodies.push(parameters.body);
+        return Promise.resolve(
+          Response.json({
+            show_email: true,
+            rebuild_status: 'dispatch_failed',
+          }),
+        );
+      }
+      return Promise.resolve(Response.json({ show_email: true }));
+    });
 
     render(<AccountPage />);
     await screen.findByRole('checkbox');
@@ -149,17 +158,20 @@ describe('AccountPage', () => {
       expect(sentBodies).toHaveLength(2);
     });
     expect(sentBodies).toStrictEqual([
-      { show_email: true },
-      { show_email: true },
+      JSON.stringify({ show_email: true }),
+      JSON.stringify({ show_email: true }),
     ]);
   });
 
   it('shows a recoverable error when visibility preference cannot load', async () => {
-    server.use(
-      http.get('*/api/auth/email-visibility', () =>
-        HttpResponse.json({ error: 'Unavailable' }, { status: 500 }),
-      ),
-    );
+    vi.mocked(requestApi).mockImplementation((path) => {
+      if (path === '/api/auth/me') {
+        return Promise.resolve(
+          Response.json({ user: { email: 'user@example.com', id: '1' } }),
+        );
+      }
+      return Promise.reject(new Error('Unavailable'));
+    });
 
     render(<AccountPage />);
 
