@@ -57,6 +57,10 @@
   margin-top: 4px;
 }
 
+.saveButton {
+  padding: 0.5rem 1rem;
+}
+
 .notice {
   margin-top: 16px;
   color: var(--success-color, #176b36);
