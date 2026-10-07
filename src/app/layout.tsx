@@ -10,6 +10,7 @@ import SharhorootsPrompt from './components/sharhoroots-prompt';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
 import { PostHogProvider } from './providers/posthog';
+import UnsavedChangesProvider from './providers/unsaved-changes-provider';
 import environment from './environment';
 
 import './globals.css';
@@ -49,17 +50,19 @@ export default function RootLayout({
     <html lang="uk">
       <body suppressHydrationWarning>
         <ErrorBoundary>
-          <PostHogProvider>
-            <NoRussians />
-            <div className={styles.page}>
-              <Header />
-              <main className={styles.main}>{children}</main>
-              <Footer />
-              <CookieBanner />
-              <SharhorootsPrompt />
-            </div>
-            <NotificationProvider />
-          </PostHogProvider>
+          <UnsavedChangesProvider>
+            <PostHogProvider>
+              <NoRussians />
+              <div className={styles.page}>
+                <Header />
+                <main className={styles.main}>{children}</main>
+                <Footer />
+                <CookieBanner />
+                <SharhorootsPrompt />
+              </div>
+              <NotificationProvider />
+            </PostHogProvider>
+          </UnsavedChangesProvider>
         </ErrorBoundary>
         <Script
           src="https://uptime.betterstack.com/widgets/announcement.js"

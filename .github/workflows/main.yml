@@ -104,6 +104,7 @@ jobs:
       - name: Run frontend tests
         run: yarn test --run
         env:
+          NEXT_PUBLIC_API_SITE: https://api.example.test
           NEXT_PUBLIC_GITHUB_OWNER: owner
           NEXT_PUBLIC_GITHUB_REPO: repo
           NEXT_PUBLIC_TYPESENSE_SEARCH_KEY: typesense-search-key
