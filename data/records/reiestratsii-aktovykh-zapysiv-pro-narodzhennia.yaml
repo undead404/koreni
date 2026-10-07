@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАПО-Р9126-16-1
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-07
+id: reiestratsii-aktovykh-zapysiv-pro-narodzhennia
+location:
+  - 49.048457354903675
+  - 33.72553825378419
+size: 247
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=109526143
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9F%D0%9E/%D0%A0-9126/16/1
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/reiestratsii-aktovykh-zapysiv-pro-narodzhennia.csv
+tableLocale: uk
+title: Реєстрація актових записів про народження Кобелячок, Пришиб, Рокитне. 1923-1924
+yearsRange:
+  - 1923
+  - 1924
