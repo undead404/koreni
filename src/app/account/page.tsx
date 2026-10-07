@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { type SyntheticEvent, useEffect, useState } from 'react';
 
+import { useUnsavedChanges } from '@/app/hooks/use-unsaved-changes';
 import requestApi from '@/app/services/api';
 
 import {
@@ -17,6 +18,7 @@ import styles from './page.module.css';
 
 export default function AccountPage() {
   const [user, setUser] = useState<User | null>(null);
+  const [savedShowEmail, setSavedShowEmail] = useState<boolean | null>(null);
   const [showEmail, setShowEmail] = useState<boolean | null>(null);
   const [isSavingVisibility, setIsSavingVisibility] = useState(false);
   const [isLoadingVisibility, setIsLoadingVisibility] = useState(true);
@@ -24,6 +26,10 @@ export default function AccountPage() {
   const [rebuildNotice, setRebuildNotice] = useState<string | null>(null);
   const [dispatchWarning, setDispatchWarning] = useState<string | null>(null);
   const router = useRouter();
+  useUnsavedChanges(
+    (savedShowEmail !== null && showEmail !== savedShowEmail) ||
+      isSavingVisibility,
+  );
 
   useEffect(() => {
     let isCurrent = true;
@@ -52,7 +58,10 @@ export default function AccountPage() {
       if (visibilityResult.status === 'fulfilled') {
         try {
           const visibilityData: unknown = await visibilityResult.value.json();
-          setShowEmail(emailVisibilitySchema.parse(visibilityData).show_email);
+          const shouldShowEmail =
+            emailVisibilitySchema.parse(visibilityData).show_email;
+          setSavedShowEmail(shouldShowEmail);
+          setShowEmail(shouldShowEmail);
           setVisibilityError(null);
         } catch {
           setVisibilityError(
@@ -87,7 +96,9 @@ export default function AccountPage() {
     try {
       const response = await requestApi('/api/auth/email-visibility');
       const data: unknown = await response.json();
-      setShowEmail(emailVisibilitySchema.parse(data).show_email);
+      const shouldShowEmail = emailVisibilitySchema.parse(data).show_email;
+      setSavedShowEmail(shouldShowEmail);
+      setShowEmail(shouldShowEmail);
     } catch {
       setVisibilityError(
         'Не вдалося завантажити налаштування видимості електронної пошти. Спробуйте ще раз.',
@@ -115,6 +126,7 @@ export default function AccountPage() {
       });
       const data: unknown = await response.json();
       const result = emailVisibilityUpdateResponseSchema.parse(data);
+      setSavedShowEmail(result.show_email);
       setShowEmail(result.show_email);
       setRebuildNotice('Зміни з’являться на сайті після його перебудови.');
       if (result.rebuild_status === 'dispatch_failed') {
@@ -148,10 +160,6 @@ export default function AccountPage() {
           aria-labelledby="visibility-title"
         >
           <h2 id="visibility-title">Видимість контактної електронної пошти</h2>
-          <p>
-            Налаштуйте, чи показувати адреси, зіставлені з вашим акаунтом, у
-            профілі волонтера.
-          </p>
           {isLoadingVisibility && (
             <p role="status">Завантаження налаштування...</p>
           )}
@@ -183,9 +191,14 @@ export default function AccountPage() {
                   }}
                   type="checkbox"
                 />
-                Показувати мою контактну електронну пошту у профілі волонтера
+                Зробити мою контактну електронну пошту загальнодоступною в
+                профілі волонтера
               </label>
-              <button disabled={isSavingVisibility} type="submit">
+              <button
+                className={styles.saveButton}
+                disabled={isSavingVisibility}
+                type="submit"
+              >
                 {isSavingVisibility ? 'Збереження...' : 'Зберегти налаштування'}
               </button>
             </form>

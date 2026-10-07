@@ -211,13 +211,12 @@ hr {
   margin: 0;
   border: 0;
   overflow: hidden;
-  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
 }
 
 .break-word {
-  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .text-nowrap {
