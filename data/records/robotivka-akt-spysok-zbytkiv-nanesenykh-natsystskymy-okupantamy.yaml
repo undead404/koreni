@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-724
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: robotivka-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy
+location:
+  - 49.031352835039904
+  - 33.76639366149903
+size: 104
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076581
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3204
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/robotivka-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Роботівка, акт – список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
