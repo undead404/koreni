@@ -49,7 +49,9 @@ vi.mock('@/app/components/source-link', () => ({
   default: ({ href }: { href: string }) => <a href={href}>{href}</a>,
 }));
 vi.mock('@/app/components/comments/comments', () => ({
-  default: () => <div data-testid="comments" />,
+  default: ({ context }: { context?: 'indexation' }) => (
+    <div data-testid="comments" data-context={context} />
+  ),
 }));
 vi.mock('@/app/helpers/slugify-ukrainian', () => ({
   default: (text: string) => text,
@@ -93,6 +95,35 @@ describe('TableContent', () => {
     expect(screen.getByTestId('pagination')).toBeInTheDocument();
     expect(screen.getByTestId('index-table')).toBeInTheDocument();
     expect(screen.getByTestId('comments')).toBeInTheDocument();
+    expect(screen.getByTestId('comments')).toHaveAttribute(
+      'data-context',
+      'indexation',
+    );
+    expect(
+      screen.getByText(/перш ніж звертатися по допомогу/i),
+    ).toBeInTheDocument();
+    const dataSection = screen
+      .getByRole('heading', { name: 'Дані' })
+      .closest('section');
+    const researchReminder = screen
+      .getByText(/перш ніж звертатися по допомогу/i)
+      .closest('aside');
+    if (!dataSection || !researchReminder) {
+      throw new Error('Expected data section and research reminder elements');
+    }
+    expect(
+      dataSection.compareDocumentPosition(researchReminder) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      screen
+        .getByText(/перш ніж звертатися по допомогу/i)
+        .compareDocumentPosition(screen.getByTestId('comments')) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(
+      screen.getByText(/перш ніж звертатися по допомогу/i).closest('article'),
+    ).toContainElement(screen.getByTestId('index-table'));
   });
 
   it('renders jsonLd script when provided', () => {

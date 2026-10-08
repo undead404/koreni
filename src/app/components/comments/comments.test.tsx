@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import environment from '../../environment';
 
@@ -16,19 +16,45 @@ vi.mock('./remark42', () => ({
 }));
 
 describe('Comments', () => {
-  it('renders the comments section when Remark42 host is configured', () => {
-    render(<Comments />);
-
-    expect(screen.getByRole('region', { name: /обговорення та запитання/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Обговорення та запитання');
-    expect(screen.getByTestId('remark42')).toBeInTheDocument();
+  beforeEach(() => {
+    vi.mocked(environment).NEXT_PUBLIC_REMARK42_HOST =
+      'https://comments.example.com';
   });
 
-  it('renders nothing when Remark42 host is not configured', () => {
+  afterEach(cleanup);
+
+  it('shows the disclosure with configured indexation comments', () => {
+    render(<Comments context="indexation" />);
+
+    expect(
+      screen.getByRole('region', { name: /обговорення та запитання/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+      'Обговорення та запитання',
+    );
+    expect(screen.getByTestId('remark42')).toBeInTheDocument();
+    expect(
+      screen.getByText(/автор може їх не побачити й не відповісти/i),
+    ).toBeInTheDocument();
+  });
+
+  it('omits the disclosure in the default context', () => {
+    render(<Comments />);
+
+    expect(screen.getByTestId('remark42')).toBeInTheDocument();
+    expect(
+      screen.queryByText(/автор може їх не побачити/i),
+    ).not.toBeInTheDocument();
+  });
+
+  it('renders nothing, including the disclosure, when Remark42 is not configured', () => {
     vi.mocked(environment).NEXT_PUBLIC_REMARK42_HOST = '';
 
-    const { container } = render(<Comments />);
+    const { container } = render(<Comments context="indexation" />);
 
     expect(container).toBeEmptyDOMElement();
+    expect(
+      screen.queryByText(/автор може їх не побачити/i),
+    ).not.toBeInTheDocument();
   });
 });

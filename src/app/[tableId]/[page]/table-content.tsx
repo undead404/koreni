@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { IndexationTable } from '@koreni/shared/schemas/indexation-table';
+import type { IndexationTable } from '@koreni/shared/schemas/indexation-table';
 import ArchiveItem from '@/app/components/archive-item';
 import Comments from '@/app/components/comments/comments';
 import Details from '@/app/components/details';
@@ -14,7 +14,7 @@ import combinedPoints from '@/app/services/map-points';
 
 import styles from './table-content.module.css';
 
-interface TableContentProperties {
+export interface TableContentProperties {
   tableMetadata: IndexationTable;
   tableData: Record<string, unknown>[];
   page: number;
@@ -98,8 +98,15 @@ export default function TableContent({
             />
           </div>
         </section>
+        <aside className={styles.researchReminder}>
+          <p>
+            Перш ніж звертатися по допомогу, вивчіть уважно цю індексацію,
+            доступні посилання на джерела й архівні посилання. За можливості
+            пошукайте наведені архівні шифри в Качиному інспекторі.
+          </p>
+        </aside>
       </article>
-      <Comments />
+      <Comments context="indexation" />
       {jsonLd && (
         <script
           type="application/ld+json"
