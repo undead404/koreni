@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-713
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: keleberda-aktspysok-zbytkiv-nanesenykh-natsystskymy-okupantamy
+location:
+  - 48.964453755015775
+  - 33.70596885681153
+size: 483
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076645
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3193
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/keleberda-aktspysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Келеберда, акт–список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
