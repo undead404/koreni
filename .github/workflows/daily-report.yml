@@ -22,15 +22,37 @@ jobs:
         id: find-files
         run: |
           # Compare with the last successful report instead of using a moving time window.
-          START_COMMIT=$(gh api \
+          PREVIOUS_RUN=$(gh api \
             "repos/${GITHUB_REPOSITORY}/actions/workflows/daily-report.yml/runs?branch=main&status=success&per_page=1" \
-            --jq '.workflow_runs[0].head_sha // empty')
+            --jq '.workflow_runs[0] // {} | {id: (.id // ""), head_branch: (.head_branch // ""), status: (.status // ""), conclusion: (.conclusion // ""), created_at: (.created_at // ""), head_sha: (.head_sha // "")}')
+          PREVIOUS_RUN_ID=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.id')
+          PREVIOUS_RUN_BRANCH=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.head_branch')
+          PREVIOUS_RUN_STATUS=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.status')
+          PREVIOUS_RUN_CONCLUSION=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.conclusion')
+          PREVIOUS_RUN_CREATED_AT=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.created_at')
+          PREVIOUS_RUN_HEAD_SHA=$(printf '%s' "$PREVIOUS_RUN" | jq -r '.head_sha')
+          START_COMMIT=$PREVIOUS_RUN_HEAD_SHA
+          START_COMMIT_SOURCE=api
           if [ -z "$START_COMMIT" ]; then
             START_COMMIT=$(git rev-list --max-parents=0 HEAD | tail -n 1)
+            START_COMMIT_SOURCE=root-fallback
           fi
+
+          printf 'PREVIOUS_RUN_ID=%s\n' "$PREVIOUS_RUN_ID"
+          printf 'PREVIOUS_RUN_HEAD_BRANCH=%s\n' "$PREVIOUS_RUN_BRANCH"
+          printf 'PREVIOUS_RUN_STATUS=%s\n' "$PREVIOUS_RUN_STATUS"
+          printf 'PREVIOUS_RUN_CONCLUSION=%s\n' "$PREVIOUS_RUN_CONCLUSION"
+          printf 'PREVIOUS_RUN_CREATED_AT=%s\n' "$PREVIOUS_RUN_CREATED_AT"
+          printf 'PREVIOUS_RUN_HEAD_SHA=%s\n' "$PREVIOUS_RUN_HEAD_SHA"
+          printf 'START_COMMIT=%s\n' "$START_COMMIT"
+          printf 'START_COMMIT_SOURCE=%s\n' "$START_COMMIT_SOURCE"
+          CHECKOUT_HEAD_SHA=$(git rev-parse HEAD)
+          printf 'CHECKOUT_HEAD_SHA=%s\n' "$CHECKOUT_HEAD_SHA"
           git diff --name-only --diff-filter=A "$START_COMMIT" HEAD | grep -E '^data/records/.*\.(yaml|yml)$' > added_files.txt || true
 
           # Вивести знайдені файли також в консоль
+            CANDIDATE_COUNT=$(wc -l < added_files.txt | tr -d '[:space:]')
+            printf 'CANDIDATE_COUNT=%s\n' "$CANDIDATE_COUNT"
             echo "added_files.txt:"
             cat added_files.txt
           if [ -s added_files.txt ]; then
