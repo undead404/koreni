@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-718
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: nyzy-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy
+location:
+  - 49.04451933543688
+  - 33.59541893005372
+size: 409
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076588
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3198
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/nyzy-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Низи, акт – список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
