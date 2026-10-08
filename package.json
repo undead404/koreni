@@ -32,7 +32,8 @@
   "resolutions": {
     "baseline-browser-mapping": "^2.11.20",
     "esbuild": "^0.28.1",
-    "postcss": "^8.5.23"
+    "postcss": "^8.5.23",
+    "shell-quote": "^1.11.0"
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
