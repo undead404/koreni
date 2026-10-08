@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-721
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: pidluzhzhia-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy
+location:
+  - 48.96266284385846
+  - 33.782787322998054
+size: 835
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076557
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3201
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/pidluzhzhia-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Підлужжя, акт – список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
