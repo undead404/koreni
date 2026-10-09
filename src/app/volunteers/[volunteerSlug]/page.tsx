@@ -117,12 +117,12 @@ export default async function VolunteerPage({
           <ul className={clsx(styles.list, 'no-disc')}>
             {volunteer.tables.map((tableMetadata) => (
               <li key={tableMetadata.id} className={styles.listItem}>
-                <a
+                <Link
                   href={`/${tableMetadata.id}/1/`}
                   className={styles.tableLink}
                 >
                   {tableMetadata.title}
-                </a>
+                </Link>
                 <span className={styles.tableMeta}>
                   {tableMetadata.size} записів
                 </span>

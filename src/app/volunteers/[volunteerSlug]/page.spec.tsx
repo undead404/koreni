@@ -100,6 +100,9 @@ describe('VolunteerPage', () => {
     expect(screen.getByText('1 500')).toBeDefined(); // Power
     expect(screen.getByText('1')).toBeDefined(); // Tables count
     expect(screen.getByText('Table 1')).toBeDefined();
+    expect(
+      screen.getByRole('link', { name: 'Table 1' }).getAttribute('href'),
+    ).toBe('/table-1/1/');
     expect(screen.getByText('test@example.com')).toBeDefined();
   });
 
