@@ -93,7 +93,7 @@ describe('VolunteerPage', () => {
   it('should render volunteer profile correctly', async () => {
     const parameters = Promise.resolve({ volunteerSlug: 'test-volunteer' });
     const jsx = await VolunteerPage({ params: parameters });
-    render(jsx);
+    const { container } = render(jsx);
 
     expect(screen.getByText('Test Volunteer')).toBeDefined();
     expect(screen.getByText('Архіваріус')).toBeDefined(); // Power 1500
@@ -104,6 +104,7 @@ describe('VolunteerPage', () => {
       screen.getByRole('link', { name: 'Table 1' }).getAttribute('href'),
     ).toBe('/table-1/1/');
     expect(screen.getByText('test@example.com')).toBeDefined();
+    expect(container.querySelector('.contact')?.tagName).toBe('DIV');
   });
 
   it('should call notFound if volunteer does not exist', async () => {

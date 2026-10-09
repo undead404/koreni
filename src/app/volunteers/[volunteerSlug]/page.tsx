@@ -88,9 +88,9 @@ export default async function VolunteerPage({
 
           <h1 className={styles.name}>{volunteer.name}</h1>
           {volunteer.emails.length > 0 && (
-            <p className={styles.contact}>
+            <div className={styles.contact}>
               Електронна пошта: <ContactGate contact={volunteer.emails} />
-            </p>
+            </div>
           )}
 
           <div className={styles.stats}>
