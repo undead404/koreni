@@ -1,0 +1,18 @@
+archiveItems:
+  - ДААРК-142-5-118
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-09-23
+id: armianskyi-bazar-armiansk-voinska-vol-perekopskyi-pov-tavriiska-hub-shliuby-1915
+location:
+  - 46.1039146
+  - 33.69078698
+size: 78
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9N-F3TK-F?view=explore&groupId=M9MV-KPQ&lang=uk
+tableFilePath: data/csv/armianskyi-bazar-armiansk-voinska-vol-perekopskyi-pov-tavriiska-hub-shliuby-1915.csv
+tableLocale: uk
+title: Армянський Базар (Армянськ), Воїнська вол. Перекопський пов. Таврійська
+  губ. | шлюби (1915)
+yearsRange:
+  - 1915
