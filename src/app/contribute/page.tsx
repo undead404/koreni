@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 import Comments from '../components/comments/comments';
 import ContributeForm from '../components/contribute/contribute-form';
@@ -30,6 +31,19 @@ export const metadata: Metadata = {
 export default function ContributePage() {
   return (
     <>
+      <aside className="note">
+        <p>
+          <strong>Рекомендуємо:</strong> перед поданням таблиці ознайомтеся з{' '}
+          <Link
+            href="/blog/2026-10-10-yaki-tablytsi-pryimaiutsia-na-koreni/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            критеріями прийняття таблиць до Коренів
+          </Link>
+          .
+        </p>
+      </aside>
       <ContributeForm knownLocations={knownLocations} />
       <Comments />
     </>
