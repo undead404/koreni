@@ -1,0 +1,16 @@
+archiveItems:
+  - ДАВіО-229-2-13
+authorName: ntcn
+authorEmail: test@example.com
+date: 2026-10-10
+id: ukhvaly-silskykh-zboriv-davio-229-2-13-arkush1
+location:
+  - 49.87460947772727
+  - 29.347058976473914
+size: 1781
+sources: []
+tableFilePath: data/csv/ukhvaly-silskykh-zboriv-davio-229-2-13-arkush1.csv
+tableLocale: ru
+title: Ухвали сільських зборів (ДАВіО-229-2-13) - Аркуш1
+yearsRange:
+  - 1911
