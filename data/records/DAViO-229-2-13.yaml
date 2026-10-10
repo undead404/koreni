@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-229-2-13
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-10-10
+id: DAViO-229-2-13
+location:
+  - 49.53766499719777
+  - 28.600870576067802
+size: 1781
+sources:
+  - https://photos.app.goo.gl/djhDXp2aqQDs1ybn8
+  - https://docs.google.com/spreadsheets/d/1BudJPWSyEc-6DNtGZMAYO2zvEyIa_yfdRXBnpXzo_3Q/edit?usp=sharing
+tableFilePath: data/csv/DAViO-229-2-13.csv
+tableLocale: ru
+title: Черепашинці – ухвали сільських зборів (1911)
+yearsRange:
+  - 1911

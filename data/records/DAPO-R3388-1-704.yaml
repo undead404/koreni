@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-704
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: DAPO-R3388-1-704
+location:
+  - 49.03607967208135
+  - 33.62837791442872
+size: 208
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076523
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3184
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/horishni-plavni-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Горішні Плавні, акт – список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
