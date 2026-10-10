@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАПО-Р3388-1-707
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-10-08
+id: DAPO-R3388-1-707
+location:
+  - 49.11136261686127
+  - 33.60958095471337
+size: 1030
+sources:
+  - https://www.familysearch.org/en/records/images/search-results?imageGroupNumbers=113076520
+  - https://e-resource.poltava.archives.gov.ua/file-viewer/3187
+  - https://docs.google.com/spreadsheets/d/1J1x8MxEcVV2zsReQgyjwLJkOsHbTfVBHIBbDK9DR7MU/edit?usp=sharing
+tableFilePath: data/csv/dmytrivka-akt-spysok-zbytkiv-nanesenykh-natsystskymy-okupantamy.csv
+tableLocale: uk
+title: Дмитрівка, акт – список збитків, нанесених нацистськими окупантами
+yearsRange:
+  - 1944
