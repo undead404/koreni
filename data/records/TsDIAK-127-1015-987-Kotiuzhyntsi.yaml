@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1015-987
+authorName: Катерина Устинова
+authorEmail: buselkate2@gmail.com
+date: 2026-10-10
+id: TsDIAK-127-1015-987-Kotiuzhyntsi
+location:
+  - 49.482079
+  - 28.62969
+size: 1416
+sources:
+  - https://docs.google.com/spreadsheets/d/19nDxpfxEYke8efPC30BElJg6S0m5ii6x/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: data/csv/TsDIAK-127-1015-987-Kotiuzhyntsi.csv
+tableLocale: ru
+title: Котюжинці 1861 – сповідний розпис, ЦДІАК-127-1015-987
+yearsRange:
+  - 1861
