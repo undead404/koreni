@@ -1,0 +1,16 @@
+archiveItems:
+  - ЦДІАК-127-1015-987
+authorName: ntcn
+authorEmail: test@example.com
+date: 2026-10-10
+id: test222
+location:
+  - 48.97397442720295
+  - 30.707667444290063
+size: 1416
+sources: []
+tableFilePath: data/csv/test222.csv
+tableLocale: ru
+title: Котюжинці 1861 – сповідний розпис, ЦДІАК-127-1015-987
+yearsRange:
+  - 1761
