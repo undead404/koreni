@@ -1,8 +1,53 @@
 /* ── Buttons inside active step ── */
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.25rem;
+}
+
+.submissionGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1.25rem;
+}
+
+.submissionGroup .actions {
+  margin-top: 0;
+}
+
+.submissionInstruction,
+.submissionStatus {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.submissionInstruction {
+  color: #475569;
+}
+
+.submissionStatus {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.turnstileWidget {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .submissionInstruction {
+    color: #cbd5e1;
+  }
+
+  .submissionStatus {
+    color: #f8fafc;
+  }
 }
 
 /* ── Right side: content panel ── */
@@ -83,6 +128,12 @@
     background-color: #1e293b;
     border-color: #64748b;
   }
+}
+
+.btnPrimary:disabled,
+.btnSecondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* ── Checkmark icon inside completed indicator ── */
@@ -359,7 +410,7 @@ button.title {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border-width: 0;
 }

@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useRef } from 'react';
+import { type ReactNode, useRef } from 'react';
 import { FormProvider } from 'react-hook-form';
 import Turnstile, { useTurnstile } from 'react-turnstile';
 
@@ -10,10 +10,7 @@ import { useDataLossGuard } from '@/app/hooks/use-data-loss-guard';
 import { GuardedLink } from '../guarded-link';
 import Loader from '../loader';
 
-import {
-  type SubmissionStage,
-  useContributionStateStore,
-} from './contribution-state';
+import { useContributionStateStore } from './contribution-state';
 import { KnownLocationsContext } from './known-locations-context';
 import { useTableStateStore } from './table-state';
 import type { ContributeFormProperties } from './types';
@@ -27,20 +24,16 @@ const ContributeFormStepper = dynamic(() => import('./stepper'), {
   loading: () => <Loader />,
 });
 
-const STAGE_LABELS: Record<SubmissionStage, string> = {
-  conversion: 'Обробка даних',
-  idle: 'Просторові дані',
-  transmission: 'Передача даних',
-  verification: 'Перевірка на людяність',
-};
-
 export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
   const form = useContributeForm();
   const { tableFileName, getAllColumns, getTableAsObjects } =
     useTableStateStore();
-  const turnstile = useTurnstile() as { reset: () => void; execute: () => void };
+  const turnstile = useTurnstile() as {
+    reset: () => void;
+    execute: () => void;
+  };
 
   const turnstileResolver = useRef<((token: string) => void) | null>(null);
 
@@ -53,7 +46,7 @@ export default function ContributeForm({
 
   const { state: contributionState } = useContributionStateStore();
 
-  const { handleFormSubmit, isSubmitting, stage } = useSubmitContribution({
+  const { handleFormSubmit, stage } = useSubmitContribution({
     form,
     executeTurnstile,
     getAllColumns,
@@ -65,6 +58,16 @@ export default function ContributeForm({
     !contributionState.prUrl;
 
   useDataLossGuard(isDirty);
+
+  const turnstileWidget: ReactNode = contributionState.prUrl ? null : (
+    <Turnstile
+      onVerify={(token) => {
+        if (turnstileResolver.current) turnstileResolver.current(token);
+      }}
+      execution="execute"
+      sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+    />
+  );
 
   return (
     <form className={styles.container} onSubmit={handleFormSubmit}>
@@ -101,26 +104,15 @@ export default function ContributeForm({
           ласка, впишіть якусь адресу електронної пошти, аби з Вами можна було
           зв&apos;язатися.
         </p>
-        {isSubmitting && (
-          <p className={styles.stageMessage} role="status">
-            {STAGE_LABELS[stage]}
-          </p>
-        )}
       </div>
       <FormProvider {...form}>
         <KnownLocationsContext.Provider value={knownLocations}>
-          <ContributeFormStepper />
+          <ContributeFormStepper
+            turnstileWidget={turnstileWidget}
+            stage={stage}
+          />
         </KnownLocationsContext.Provider>
       </FormProvider>{' '}
-      {!contributionState.prUrl && (
-        <Turnstile
-          onVerify={(token) => {
-            if (turnstileResolver.current) turnstileResolver.current(token);
-          }}
-          execution="execute"
-          sitekey={environment.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-        />
-      )}
     </form>
   );
 }

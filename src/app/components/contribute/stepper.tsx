@@ -1,10 +1,13 @@
 'use client';
 
 import { usePostHog } from 'posthog-js/react';
-import { useCallback, useEffect, useMemo } from 'react';
+import { type ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { useContributionStateStore } from './contribution-state';
+import {
+  type SubmissionStage,
+  useContributionStateStore,
+} from './contribution-state';
 import ContributeFormStep from './step';
 import STEPS from './steps';
 import SuccessPanel from './success-panel';
@@ -34,6 +37,11 @@ const getConnectorStatus = (
   return 'pending';
 };
 
+export interface ContributeFormStepperProperties {
+  stage: SubmissionStage;
+  turnstileWidget: ReactNode;
+}
+
 /*
 ──────────────────────────────────────────
 */
@@ -43,7 +51,10 @@ Main ContributeFormStepper
 /*
 ──────────────────────────────────────────
 */
-export default function ContributeFormStepper() {
+export default function ContributeFormStepper({
+  stage,
+  turnstileWidget,
+}: ContributeFormStepperProperties) {
   const { tableFileName } = useTableStateStore();
   const {
     formState: { errors },
@@ -123,19 +134,35 @@ export default function ContributeFormStepper() {
           STEPS.length,
         );
 
+        const stepProperties = {
+          def: step,
+          index,
+          status,
+          onActivate: () => {
+            setActiveIndex(index);
+          },
+          onContinue: handleContinue,
+          onBack: handleBack,
+          nextConnectorStatus,
+        };
+
+        if (!isAllDone && index === STEPS.length - 1) {
+          return (
+            <ContributeFormStep
+              key={step.label}
+              {...stepProperties}
+              isLast
+              turnstileWidget={turnstileWidget}
+              stage={stage}
+            />
+          );
+        }
+
         return (
           <ContributeFormStep
             key={step.label}
-            def={step}
-            index={index}
-            status={status}
-            isLast={index === STEPS.length - 1 && !isAllDone}
-            onActivate={() => {
-              setActiveIndex(index);
-            }}
-            onContinue={handleContinue}
-            onBack={handleBack}
-            nextConnectorStatus={nextConnectorStatus}
+            {...stepProperties}
+            isLast={false}
           />
         );
       })}

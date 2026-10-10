@@ -1,11 +1,12 @@
 'use client';
 import { clsx } from 'clsx';
 import { usePostHog } from 'posthog-js/react';
-import { useCallback, useState } from 'react';
+import { type ReactNode, useCallback, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import CheckIcon from '@/app/icons/check';
 
+import type { SubmissionStage } from './contribution-state';
 import { useTableStateStore } from './table-state';
 import type { ContributeFormValues, StepDefinition, StepStatus } from './types';
 
@@ -42,6 +43,48 @@ const titleStatusMap: Record<StepStatus, string> = {
   pending: styles.titlePending,
 };
 
+const submissionStatusMessages: Record<
+  Exclude<SubmissionStage, 'idle'>,
+  string
+> = {
+  conversion: 'Перевірку пройдено — готуємо дані…',
+  transmission: 'Перевірку пройдено — надсилаємо дані…',
+  verification: 'Перевірка на людяність…',
+};
+
+const submissionButtonLabels: Record<
+  Exclude<SubmissionStage, 'idle'>,
+  string
+> = {
+  conversion: 'Готуємо дані…',
+  transmission: 'Надсилаємо…',
+  verification: 'Перевіряємо…',
+};
+
+interface ContributeFormStepBaseProperties {
+  def: StepDefinition;
+  index: number;
+  status: StepStatus;
+  onActivate: () => void;
+  onContinue: () => void;
+  onBack: () => void;
+  nextConnectorStatus: 'completed' | 'active' | 'pending' | 'hidden';
+}
+
+export type ContributeFormStepProperties = ContributeFormStepBaseProperties &
+  (
+    | {
+        isLast: true;
+        turnstileWidget: ReactNode;
+        stage: SubmissionStage;
+      }
+    | {
+        isLast: false;
+        turnstileWidget?: never;
+        stage?: never;
+      }
+  );
+
 /*
 ──────────────────────────────────────────
 */
@@ -51,25 +94,19 @@ Single step
 /*
 ──────────────────────────────────────────
 */
-export default function ContributeFormStep({
-  def,
-  index,
-  status,
-  isLast,
-  onActivate,
-  onContinue,
-  onBack,
-  nextConnectorStatus,
-}: {
-  def: StepDefinition;
-  index: number;
-  status: StepStatus;
-  isLast: boolean;
-  onActivate: () => void;
-  onContinue: () => void;
-  onBack: () => void;
-  nextConnectorStatus: 'completed' | 'active' | 'pending' | 'hidden';
-}) {
+export default function ContributeFormStep(
+  properties: ContributeFormStepProperties,
+) {
+  const {
+    def,
+    index,
+    status,
+    onActivate,
+    onContinue,
+    onBack,
+    nextConnectorStatus,
+  } = properties;
+  const isLast = properties.isLast;
   const tableStore = useTableStateStore();
   const {
     control,
@@ -126,7 +163,7 @@ export default function ContributeFormStep({
     });
   }, [def.fields, def.label, isLast, onContinue, posthog, trigger]);
 
-  const renderActions = () => (
+  const renderActions = (submitLabel: string) => (
     <div className={styles.actions}>
       {index > 0 && (
         <button
@@ -144,9 +181,7 @@ export default function ContributeFormStep({
         className={styles.btnPrimary}
         onClick={isLast ? undefined : handleContinue}
       >
-        {isSubmitting ? 'Подається...' : null}
-        {isLast && !isSubmitting ? 'Подати' : null}
-        {!isLast && !isSubmitting ? 'Далі' : null}
+        {submitLabel}
         {!isLast && (
           <svg
             width="14"
@@ -229,7 +264,38 @@ export default function ContributeFormStep({
               </>
             )}
 
-            {renderActions()}
+            {properties.isLast ? (
+              <div
+                className={styles.submissionGroup}
+                data-testid="submission-group"
+              >
+                <p
+                  className={styles.submissionInstruction}
+                  data-testid="submission-instruction"
+                >
+                  Натисніть «Подати», щоб запустити перевірку та надіслати дані.
+                  Відправлення підтвердимо окремо.
+                </p>
+                {isSubmitting && properties.stage !== 'idle' && (
+                  <p className={styles.submissionStatus} role="status">
+                    {submissionStatusMessages[properties.stage]}
+                  </p>
+                )}
+                <div
+                  className={styles.turnstileWidget}
+                  data-testid="turnstile-widget"
+                >
+                  {properties.turnstileWidget}
+                </div>
+                {renderActions(
+                  isSubmitting && properties.stage !== 'idle'
+                    ? submissionButtonLabels[properties.stage]
+                    : 'Подати',
+                )}
+              </div>
+            ) : (
+              renderActions(isSubmitting ? 'Подається…' : 'Далі')
+            )}
           </div>
         )}
       </div>

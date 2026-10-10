@@ -21,14 +21,6 @@
   color: var(--muted-foreground); /* text-muted-foreground */
 }
 
-.stageMessage {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--primary);
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
 .inputError {
   border-color: #ef4444 !important; /* red-500 */
   background-color: #fef2f2 !important; /* red-50 */
@@ -51,15 +43,4 @@
 .container select:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
 }
