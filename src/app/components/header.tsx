@@ -4,19 +4,163 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { usePostHog } from 'posthog-js/react';
 import { useEffect, useRef, useState } from 'react';
 
 import styles from './header.module.css';
 
 import logo from '../assets/logo.png';
 
+type NavigationDestination =
+  | 'search'
+  | 'map'
+  | 'tables'
+  | 'contribute'
+  | 'account'
+  | 'volunteers'
+  | 'blog'
+  | 'about'
+  | 'license';
+
+type NavigationPlacement = 'primary' | 'top_bar' | 'menu';
+type NavigationViewport = 'mobile' | 'desktop';
+
+interface HeaderNavigationLinkProperties {
+  destination: NavigationDestination;
+  href: string;
+  isActive: boolean;
+  label: string;
+  onNavigate: (
+    destination: NavigationDestination,
+    placement: NavigationPlacement,
+  ) => void;
+  placement: NavigationPlacement;
+}
+
+const primaryNavigationItems = [
+  { destination: 'search', href: '/', label: 'Пошук' },
+  { destination: 'map', href: '/map', label: 'Мапа' },
+  { destination: 'tables', href: '/tables', label: 'Таблиці' },
+] satisfies {
+  destination: NavigationDestination;
+  href: string;
+  label: string;
+}[];
+
+interface MenuNavigationItem {
+  destination: NavigationDestination;
+  href: string;
+  label: string;
+  listItemClassName?: string;
+}
+
+interface MenuNavigationGroup {
+  label: string;
+  items: MenuNavigationItem[];
+  listItemClassName?: string;
+}
+
+const menuNavigationGroups: MenuNavigationGroup[] = [
+  {
+    label: 'Дані',
+    listItemClassName: styles.dataLinks,
+    items: [
+      { destination: 'map', href: '/map', label: 'Мапа' },
+      { destination: 'tables', href: '/tables', label: 'Таблиці' },
+    ],
+  },
+  {
+    label: 'Як допомогти?',
+    items: [
+      {
+        destination: 'contribute',
+        href: '/contribute',
+        label: 'Поділитися даними',
+        listItemClassName: styles.contributeMenuItem,
+      },
+      { destination: 'volunteers', href: '/volunteers', label: 'Волонтери' },
+    ],
+  },
+  {
+    label: 'Що таке Корені?',
+    items: [
+      { destination: 'blog', href: '/blog', label: 'Блог' },
+      { destination: 'about', href: '/about', label: 'Про проєкт' },
+      { destination: 'license', href: '/license', label: 'Ліцензія' },
+    ],
+  },
+];
+
+function getNavigationViewport(): NavigationViewport {
+  return typeof window !== 'undefined' && window.innerWidth < 768
+    ? 'mobile'
+    : 'desktop';
+}
+
+function HeaderNavigationLink({
+  destination,
+  href,
+  isActive,
+  label,
+  onNavigate,
+  placement,
+}: HeaderNavigationLinkProperties) {
+  const isMenuLink = placement === 'menu';
+
+  return (
+    <Link
+      href={href}
+      className={clsx(
+        isMenuLink ? styles.menuLink : styles.link,
+        isActive && (isMenuLink ? styles.activeMenuLink : styles.active),
+      )}
+      aria-current={isActive ? 'page' : undefined}
+      onClick={() => {
+        onNavigate(destination, placement);
+      }}
+    >
+      {label}
+    </Link>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
+  const posthog = usePostHog();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonReference = useRef<HTMLButtonElement>(null);
   const menuPanelReference = useRef<HTMLElement>(null);
 
   const normalizedPathname = pathname.replace(/\/$/, '') || '/';
+
+  const captureEvent = (
+    eventName: 'header_menu_opened' | 'header_navigation_clicked',
+    properties:
+      | { viewport: NavigationViewport }
+      | {
+          destination: NavigationDestination;
+          placement: NavigationPlacement;
+          viewport: NavigationViewport;
+        },
+  ) => {
+    try {
+      posthog.capture(eventName, properties);
+    } catch {
+      // Analytics must never interfere with navigation.
+    }
+  };
+
+  const trackNavigation = (
+    destination: NavigationDestination,
+    placement: NavigationPlacement,
+  ) => {
+    captureEvent('header_navigation_clicked', {
+      destination,
+      placement,
+      viewport: getNavigationViewport(),
+    });
+    if (placement === 'menu') setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -54,6 +198,11 @@ export default function Header() {
   }
 
   const isHomePage = normalizedPathname === '/';
+  const isMenuItemActive = (item: MenuNavigationItem) =>
+    item.destination === 'blog'
+      ? normalizedPathname === '/blog' ||
+        normalizedPathname.startsWith('/blog/')
+      : normalizedPathname === item.href;
 
   return (
     <header className={styles.header}>
@@ -67,9 +216,29 @@ export default function Header() {
             height={44}
           />
         </Link>
+        <nav
+          className={styles.desktopNavigation}
+          aria-label="Основна навігація"
+        >
+          {primaryNavigationItems.map((item) => (
+            <HeaderNavigationLink
+              key={item.destination}
+              {...item}
+              isActive={normalizedPathname === item.href}
+              onNavigate={trackNavigation}
+              placement="primary"
+            />
+          ))}
+        </nav>
         <div className={styles.primaryLinks}>
           {!isHomePage && (
-            <Link href="/" className={styles.link}>
+            <Link
+              href="/"
+              className={clsx(styles.link, styles.mobileSearchLink)}
+              onClick={() => {
+                trackNavigation('search', 'top_bar');
+              }}
+            >
               Пошук
             </Link>
           )}
@@ -82,6 +251,9 @@ export default function Header() {
             aria-current={
               normalizedPathname === '/contribute' ? 'page' : undefined
             }
+            onClick={() => {
+              trackNavigation('contribute', 'top_bar');
+            }}
           >
             Поділитися даними
           </Link>
@@ -91,6 +263,9 @@ export default function Header() {
             aria-current={
               normalizedPathname === '/account' ? 'page' : undefined
             }
+            onClick={() => {
+              trackNavigation('account', 'top_bar');
+            }}
           >
             Кабінет
           </Link>
@@ -101,6 +276,11 @@ export default function Header() {
             aria-expanded={isMenuOpen}
             aria-controls="main-menu"
             onClick={() => {
+              if (!isMenuOpen) {
+                captureEvent('header_menu_opened', {
+                  viewport: getNavigationViewport(),
+                });
+              }
               setIsMenuOpen((isOpen) => !isOpen);
             }}
           >
@@ -115,159 +295,33 @@ export default function Header() {
           </button>
         </div>
       </div>
-      {isMenuOpen && (
-        <nav
-          id="main-menu"
-          className={styles.menuPanel}
-          ref={menuPanelReference}
-          aria-label="Додаткова навігація"
-        >
-          <ul className={clsx(styles.menuList, 'no-disc')}>
-            <li>
-              <span className={styles.menuLabel}>Дані</span>
+      <nav
+        id="main-menu"
+        className={styles.menuPanel}
+        ref={menuPanelReference}
+        aria-label="Додаткова навігація"
+        hidden={!isMenuOpen}
+      >
+        <ul className={clsx(styles.menuList, 'no-disc')}>
+          {menuNavigationGroups.map((group) => (
+            <li key={group.label} className={group.listItemClassName}>
+              <span className={styles.menuLabel}>{group.label}</span>
               <ul className={clsx(styles.submenuList, 'no-disc')}>
-                <li>
-                  <Link
-                    href="/map"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/map' && styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/map' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Мапа
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tables"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/tables' && styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/tables' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Таблиці
-                  </Link>
-                </li>
+                {group.items.map((item) => (
+                  <li key={item.destination} className={item.listItemClassName}>
+                    <HeaderNavigationLink
+                      {...item}
+                      isActive={isMenuItemActive(item)}
+                      onNavigate={trackNavigation}
+                      placement="menu"
+                    />
+                  </li>
+                ))}
               </ul>
             </li>
-            <li>
-              <span className={styles.menuLabel}>Як допомогти?</span>
-              <ul className={clsx(styles.submenuList, 'no-disc')}>
-                <li>
-                  <Link
-                    href="/contribute"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/contribute' &&
-                        styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/contribute' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Поділитися даними
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/volunteers"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/volunteers' &&
-                        styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/volunteers' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Волонтери
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <span className={styles.menuLabel}>Що таке Корені?</span>
-              <ul className={clsx(styles.submenuList, 'no-disc')}>
-                <li>
-                  <Link
-                    href="/blog"
-                    className={clsx(
-                      styles.menuLink,
-                      (normalizedPathname === '/blog' ||
-                        normalizedPathname.startsWith('/blog/')) &&
-                        styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/blog' ||
-                      normalizedPathname.startsWith('/blog/')
-                        ? 'page'
-                        : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Блог
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/about' && styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/about' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Про проєкт
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/license"
-                    className={clsx(
-                      styles.menuLink,
-                      normalizedPathname === '/license' &&
-                        styles.activeMenuLink,
-                    )}
-                    aria-current={
-                      normalizedPathname === '/license' ? 'page' : undefined
-                    }
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Ліцензія
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      )}
+          ))}
+        </ul>
+      </nav>
     </header>
   );
 }

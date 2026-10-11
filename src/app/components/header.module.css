@@ -14,6 +14,13 @@
   gap: var(--side-gap);
 }
 
+.desktopNavigation {
+  display: flex;
+  align-items: center;
+  gap: var(--side-gap);
+  min-width: 0;
+}
+
 .primaryLinks {
   display: flex;
   align-items: center;
@@ -142,6 +149,10 @@
 }
 
 @media (width <= 767px) {
+  .desktopNavigation {
+    display: none;
+  }
+
   .topBar {
     align-items: center;
   }
@@ -158,6 +169,14 @@
 
   .menuList > li {
     flex: 0 0 auto;
+  }
+}
+
+@media (width >= 768px) {
+  .mobileSearchLink,
+  .dataLinks,
+  .contributeMenuItem {
+    display: none;
   }
 }
 
