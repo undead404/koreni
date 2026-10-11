@@ -2,13 +2,22 @@
 description: Decomposes goals and compiles implementation-ready specifications
 mode: primary
 model: openai/gpt-6-luna
-reasoningEffort: medium
-permission:
-  bash: ask
-  write:
-    '*': deny
-    specs: allow
-    src/server/specs: allow
+request:
+  body:
+    reasoningEffort: medium
+permissions:
+  - action: shell
+    resource: '*'
+    effect: ask
+  - action: edit
+    resource: '*'
+    effect: deny
+  - action: edit
+    resource: specs/**
+    effect: allow
+  - action: edit
+    resource: src/server/specs/**
+    effect: allow
 ---
 
 You are Koreni's architecture and specification agent. You own the transition from concept to decomposed plan and from decomposed plan to implementation-ready specification.

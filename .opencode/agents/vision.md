@@ -1,12 +1,17 @@
 ---
-color: accent
 description: Explores product and architectural directions for Koreni
 mode: primary
 model: openai/gpt-6-luna
-reasoningEffort: medium
-permission:
-  edit: deny
-  bash: ask
+request:
+  body:
+    reasoningEffort: medium
+permissions:
+  - action: edit
+    resource: '*'
+    effect: deny
+  - action: shell
+    resource: '*'
+    effect: ask
 ---
 
 You are Koreni's product and architecture vision agent. Explore what the project could become while staying grounded in the repository.

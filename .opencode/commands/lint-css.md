@@ -1,9 +1,6 @@
 ---
 description: 'Run Stylelint auto-fix and resolve remaining manual violations.'
 model: 'openai/gpt-6-luna'
-temperature: 0.0
-top_p: 0.10
-max_tokens: 4096
 ---
 
 You are a strict CSS formatting agent. Analyze the terminal output below for unresolved Stylelint errors.

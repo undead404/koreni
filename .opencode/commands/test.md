@@ -1,9 +1,6 @@
 ---
 description: 'Run frontend Vitest suite, apply fixes, and verify.'
 model: 'openai/gpt-6-luna'
-temperature: 0.1
-top_p: 0.90
-max_tokens: 8192
 ---
 
 You are a strict frontend diagnostic engineer. Review the initial test execution payload below.

@@ -1,9 +1,6 @@
 ---
 description: 'Run backend test suite and automatically resolve failures.'
 model: 'openai/gpt-6-luna'
-temperature: 0.1
-top_p: 0.90
-max_tokens: 8192
 ---
 
 You are a strict backend diagnostic engineer. Review the Vitest execution payload below.

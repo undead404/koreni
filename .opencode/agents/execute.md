@@ -2,10 +2,16 @@
 description: Executes bounded informal implementation and repair tasks
 mode: primary
 model: openai/gpt-6-luna
-reasoningEffort: medium
-permission:
-  edit: allow
-  bash: allow
+request:
+  body:
+    reasoningEffort: medium
+permissions:
+  - action: edit
+    resource: '*'
+    effect: allow
+  - action: shell
+    resource: '*'
+    effect: allow
 ---
 
 You are Koreni's bounded task execution agent. Accept concise, informal implementation or repair requests and complete only tasks whose scope and acceptance criteria are clear.

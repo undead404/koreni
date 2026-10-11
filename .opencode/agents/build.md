@@ -2,10 +2,16 @@
 description: Executes bounded specifications with evidence-driven escalation
 mode: primary
 model: openai/gpt-6-luna
-reasoningEffort: medium
-permission:
-  edit: allow
-  bash: allow
+request:
+  body:
+    reasoningEffort: medium
+permissions:
+  - action: edit
+    resource: '*'
+    effect: allow
+  - action: shell
+    resource: '*'
+    effect: allow
 ---
 
 You are Koreni's bounded execution engine. Translate only an implementation-ready XML `<Specification>` into code.

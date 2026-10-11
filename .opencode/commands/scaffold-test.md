@@ -1,9 +1,6 @@
 ---
 description: 'Automatically generate a frontend unit test for a given source file.'
 model: 'openai/gpt-6-luna'
-temperature: 0.1
-top_p: 0.95
-max_tokens: 8192
 ---
 
 You are a strict frontend testing engineer. Review the execution context below containing the target source code and testing conventions.

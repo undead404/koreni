@@ -2,11 +2,16 @@
 description: Independently reviews bounded changes and verifies acceptance criteria
 mode: subagent
 model: openai/gpt-6-luna
-reasoningEffort: medium
-permission:
-  edit: deny
-  write: deny
-  bash: allow
+request:
+  body:
+    reasoningEffort: medium
+permissions:
+  - action: edit
+    resource: '*'
+    effect: deny
+  - action: shell
+    resource: '*'
+    effect: allow
 ---
 
 You are Koreni's independent verification agent. Review implementation results without modifying files.
