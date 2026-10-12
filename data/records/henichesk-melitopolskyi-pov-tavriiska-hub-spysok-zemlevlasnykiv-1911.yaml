@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАХеО-222-1-1
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-10-12
+id: henichesk-melitopolskyi-pov-tavriiska-hub-spysok-zemlevlasnykiv-1911
+location:
+  - 46.1661695
+  - 34.8088828
+size: 544
+sources:
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%B5%D0%9E/222/1/1
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%E2%84%96-222-genicheske-silske-pravlinnya/
+tableFilePath: data/csv/henichesk-melitopolskyi-pov-tavriiska-hub-spysok-zemlevlasnykiv-1911.csv
+tableLocale: uk
+title: Генічеськ, Мелітопольський пов. Таврійська губ. | Список землевласників (1911)
+yearsRange:
+  - 1911
