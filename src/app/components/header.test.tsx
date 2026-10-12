@@ -37,51 +37,90 @@ describe('Header component', () => {
     vi.clearAllMocks();
   });
 
-  it('renders desktop primary destinations on every public route', () => {
+  it('places Search, Map, and Tables in the menu on desktop', () => {
     render(<Header />);
 
-    const primaryNavigation = screen.getByRole('navigation', {
-      name: 'Основна навігація',
-    });
-    const searchLink = within(primaryNavigation).getByRole('link', {
-      name: 'Пошук',
-    });
+    expect(
+      screen.queryByRole('navigation', { name: 'Основна навігація' }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('link', { name: 'Пошук' }),
+    ).not.toBeInTheDocument();
 
-    expect(searchLink).toHaveAttribute('href', '/');
-    expect(searchLink).toHaveAttribute('aria-current', 'page');
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+    const panel = screen.getByRole('navigation', {
+      name: 'Додаткова навігація',
+    });
+    const dataGroup = within(panel).getByText('Дані').parentElement;
+
+    if (!dataGroup) throw new Error('Expected the Data menu group');
     expect(
-      within(primaryNavigation).getByRole('link', { name: 'Мапа' }),
-    ).toHaveAttribute('href', '/map');
-    expect(
-      within(primaryNavigation).getByRole('link', { name: 'Таблиці' }),
-    ).toHaveAttribute('href', '/tables');
+      within(dataGroup)
+        .getAllByRole('link')
+        .map((link) => link.textContent),
+    ).toStrictEqual(['Пошук', 'Мапа', 'Таблиці']);
     expect(screen.getAllByRole('link', { name: 'Пошук' })).toHaveLength(1);
   });
 
-  it.each([
-    ['/map', 'Мапа'],
-    ['/tables/', 'Таблиці'],
-  ])('marks %s active in the primary navigation', (pathname, label) => {
-    vi.mocked(usePathname).mockReturnValue(pathname);
-    render(<Header />);
-
-    const primaryNavigation = screen.getByRole('navigation', {
-      name: 'Основна навігація',
+  it('keeps Search, Map, and Tables first in the mobile menu', () => {
+    Object.defineProperty(globalThis, 'innerWidth', {
+      configurable: true,
+      value: 767,
     });
-    const activeLink = within(primaryNavigation).getByRole('link', {
-      name: label,
-    });
-
-    expect(activeLink).toHaveAttribute('aria-current', 'page');
-    expect(activeLink).toHaveClass('active');
-  });
-
-  it('keeps contribution and account available in the top bar', () => {
+    vi.mocked(usePathname).mockReturnValue('/tables');
     render(<Header />);
 
     expect(
-      screen.getByRole('link', { name: 'Поділитися даними' }),
-    ).toHaveAttribute('href', '/contribute');
+      screen.queryByRole('link', { name: 'Пошук' }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+
+    const panel = screen.getByRole('navigation', {
+      name: 'Додаткова навігація',
+    });
+    const links = within(panel).getAllByRole('link');
+    expect(links.map((link) => link.textContent)).toStrictEqual([
+      'Пошук',
+      'Мапа',
+      'Таблиці',
+      'Поділитися даними',
+      'Волонтери',
+      'Блог',
+      'Про проєкт',
+      'Ліцензія',
+    ]);
+    expect(mocks.capture).toHaveBeenCalledExactlyOnceWith(
+      'header_menu_opened',
+      { viewport: 'mobile' },
+    );
+  });
+
+  it.each([
+    ['/', 'Пошук'],
+    ['/map', 'Мапа'],
+    ['/tables/', 'Таблиці'],
+  ])('marks %s active in the menu', (pathname, label) => {
+    vi.mocked(usePathname).mockReturnValue(pathname);
+    render(<Header />);
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+
+    const panel = screen.getByRole('navigation', {
+      name: 'Додаткова навігація',
+    });
+    const activeLink = within(panel).getByRole('link', { name: label });
+    expect(activeLink).toHaveAttribute('aria-current', 'page');
+    expect(activeLink).toHaveClass('activeMenuLink');
+  });
+
+  it('keeps contribution and account in the top bar and marks contribution active', () => {
+    vi.mocked(usePathname).mockReturnValue('/contribute/');
+    render(<Header />);
+
+    const contributeLink = screen.getByRole('link', {
+      name: 'Поділитися даними',
+    });
+    expect(contributeLink).toHaveAttribute('href', '/contribute');
+    expect(contributeLink).toHaveAttribute('aria-current', 'page');
     expect(screen.getByRole('link', { name: 'Кабінет' })).toHaveAttribute(
       'href',
       '/account',
@@ -100,51 +139,16 @@ describe('Header component', () => {
     expect(panel).toHaveAttribute('hidden');
 
     fireEvent.click(menuButton);
-
-    expect(menuButton).toHaveAttribute('aria-expanded', 'true');
-    expect(panel).not.toHaveAttribute('hidden');
+    fireEvent.click(menuButton);
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
+    expect(panel).toHaveAttribute('hidden');
     expect(mocks.capture).toHaveBeenCalledExactlyOnceWith(
       'header_menu_opened',
       { viewport: 'desktop' },
     );
-  });
 
-  it('keeps the original mobile menu links and their order', () => {
-    Object.defineProperty(globalThis, 'innerWidth', {
-      configurable: true,
-      value: 767,
-    });
-    vi.mocked(usePathname).mockReturnValue('/tables');
-    render(<Header />);
-
-    const primaryNavigation = screen.getByRole('navigation', {
-      name: 'Основна навігація',
-    });
-    expect(primaryNavigation.className).toContain('desktopNavigation');
-    expect(document.querySelector('a.mobileSearchLink')).toHaveAttribute(
-      'href',
-      '/',
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
-
-    const panel = screen.getByRole('navigation', {
-      name: 'Додаткова навігація',
-    });
-    const links = within(panel).getAllByRole('link');
-    expect(links.map((link) => link.textContent)).toStrictEqual([
-      'Мапа',
-      'Таблиці',
-      'Поділитися даними',
-      'Волонтери',
-      'Блог',
-      'Про проєкт',
-      'Ліцензія',
-    ]);
-    expect(mocks.capture).toHaveBeenCalledExactlyOnceWith(
-      'header_menu_opened',
-      { viewport: 'mobile' },
-    );
+    fireEvent.click(menuButton);
+    expect(mocks.capture).toHaveBeenCalledTimes(2);
   });
 
   it('closes with Escape and restores focus to the trigger', () => {
@@ -187,38 +191,56 @@ describe('Header component', () => {
     expect(menuButton).toHaveAttribute('aria-expanded', 'true');
   });
 
-  it('tracks primary and menu navigation with fixed values and closes the menu', () => {
+  it('tracks fixed menu and top-bar destinations and closes after menu navigation', () => {
     render(<Header />);
-    const primaryNavigation = screen.getByRole('navigation', {
-      name: 'Основна навігація',
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
+    const panel = screen.getByRole('navigation', {
+      name: 'Додаткова навігація',
     });
-    fireEvent.click(
-      within(primaryNavigation).getByRole('link', { name: 'Мапа' }),
-    );
+    const mapLink = within(panel).getByRole('link', { name: 'Мапа' });
+    fireEvent.click(mapLink);
 
-    expect(mocks.capture).toHaveBeenCalledExactlyOnceWith(
+    expect(mocks.capture).toHaveBeenLastCalledWith(
       'header_navigation_clicked',
-      { destination: 'map', placement: 'primary', viewport: 'desktop' },
+      { destination: 'map', placement: 'menu', viewport: 'desktop' },
+    );
+    expect(screen.getByRole('button', { name: 'Меню' })).toHaveAttribute(
+      'aria-expanded',
+      'false',
+    );
+    expect(panel).toHaveAttribute('hidden');
+
+    fireEvent.click(screen.getByRole('link', { name: 'Кабінет' }));
+    expect(mocks.capture).toHaveBeenLastCalledWith(
+      'header_navigation_clicked',
+      { destination: 'account', placement: 'top_bar', viewport: 'desktop' },
     );
 
-    mocks.capture.mockClear();
-    const menuButton = screen.getByRole('button', { name: 'Меню' });
-    fireEvent.click(menuButton);
+    fireEvent.click(screen.getByRole('link', { name: 'Поділитися даними' }));
+    expect(mocks.capture).toHaveBeenLastCalledWith(
+      'header_navigation_clicked',
+      { destination: 'contribute', placement: 'top_bar', viewport: 'desktop' },
+    );
+  });
+
+  it.each([
+    ['Пошук', 'search'],
+    ['Мапа', 'map'],
+    ['Таблиці', 'tables'],
+  ])('tracks %s as a menu destination', (label, destination) => {
+    render(<Header />);
+    fireEvent.click(screen.getByRole('button', { name: 'Меню' }));
     mocks.capture.mockClear();
 
     const panel = screen.getByRole('navigation', {
       name: 'Додаткова навігація',
     });
-    const tablesLink = within(panel).getByRole('link', { name: 'Таблиці' });
-    fireEvent.click(tablesLink);
+    fireEvent.click(within(panel).getByRole('link', { name: label }));
 
-    expect(tablesLink).toHaveAttribute('href', '/tables');
     expect(mocks.capture).toHaveBeenCalledExactlyOnceWith(
       'header_navigation_clicked',
-      { destination: 'tables', placement: 'menu', viewport: 'desktop' },
+      { destination, placement: 'menu', viewport: 'desktop' },
     );
-    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
-    expect(panel).toHaveAttribute('hidden');
   });
 
   it('marks nested Blog routes active and normalizes trailing slashes', () => {

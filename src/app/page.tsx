@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import Comments from './components/comments/comments';
+import HomeDiscover from './components/home-discover';
 import Loader from './components/loader';
 import SearchPage from './components/search';
 import environment from './environment';
@@ -77,6 +78,7 @@ export default async function Home() {
       <Suspense fallback={<Loader />}>
         <SearchPage recordsNumber={recordsNumber} />
       </Suspense>
+      <HomeDiscover />
       <Comments />
       <JsonLdHome tablesMetadata={tablesMetadata} />
     </>

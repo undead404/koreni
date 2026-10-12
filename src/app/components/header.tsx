@@ -37,16 +37,6 @@ interface HeaderNavigationLinkProperties {
   placement: NavigationPlacement;
 }
 
-const primaryNavigationItems = [
-  { destination: 'search', href: '/', label: 'Пошук' },
-  { destination: 'map', href: '/map', label: 'Мапа' },
-  { destination: 'tables', href: '/tables', label: 'Таблиці' },
-] satisfies {
-  destination: NavigationDestination;
-  href: string;
-  label: string;
-}[];
-
 interface MenuNavigationItem {
   destination: NavigationDestination;
   href: string;
@@ -63,8 +53,8 @@ interface MenuNavigationGroup {
 const menuNavigationGroups: MenuNavigationGroup[] = [
   {
     label: 'Дані',
-    listItemClassName: styles.dataLinks,
     items: [
+      { destination: 'search', href: '/', label: 'Пошук' },
       { destination: 'map', href: '/map', label: 'Мапа' },
       { destination: 'tables', href: '/tables', label: 'Таблиці' },
     ],
@@ -76,7 +66,6 @@ const menuNavigationGroups: MenuNavigationGroup[] = [
         destination: 'contribute',
         href: '/contribute',
         label: 'Поділитися даними',
-        listItemClassName: styles.contributeMenuItem,
       },
       { destination: 'volunteers', href: '/volunteers', label: 'Волонтери' },
     ],
@@ -197,7 +186,6 @@ export default function Header() {
     return null;
   }
 
-  const isHomePage = normalizedPathname === '/';
   const isMenuItemActive = (item: MenuNavigationItem) =>
     item.destination === 'blog'
       ? normalizedPathname === '/blog' ||
@@ -216,32 +204,7 @@ export default function Header() {
             height={44}
           />
         </Link>
-        <nav
-          className={styles.desktopNavigation}
-          aria-label="Основна навігація"
-        >
-          {primaryNavigationItems.map((item) => (
-            <HeaderNavigationLink
-              key={item.destination}
-              {...item}
-              isActive={normalizedPathname === item.href}
-              onNavigate={trackNavigation}
-              placement="primary"
-            />
-          ))}
-        </nav>
         <div className={styles.primaryLinks}>
-          {!isHomePage && (
-            <Link
-              href="/"
-              className={clsx(styles.link, styles.mobileSearchLink)}
-              onClick={() => {
-                trackNavigation('search', 'top_bar');
-              }}
-            >
-              Пошук
-            </Link>
-          )}
           <Link
             href="/contribute"
             className={clsx(

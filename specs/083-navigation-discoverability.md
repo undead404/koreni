@@ -1,163 +1,147 @@
 ---
-description: Improve desktop discovery of Koreni's archival-data destinations while preserving mobile navigation.
-status: draft
+description: Keep search primary, move its destinations into the expandable menu, and add a homepage discovery section.
+status: implementation-ready
 targets:
   - src/app/components/header.tsx
   - src/app/components/header.module.css
   - src/app/components/header.test.tsx
+  - src/app/components/home-discover.tsx
+  - src/app/components/home-discover.module.css
+  - src/app/components/home-discover.test.tsx
+  - src/app/page.tsx
+  - src/app/home-page.test.tsx
 context:
   - src/app/layout.tsx
+  - src/app/providers/posthog.tsx
   - src/app/components/posthog-navigation-tracker.tsx
-  - src/app/components/search-result.tsx
-  - src/app/services/search.ts
-  - src/app/components/source-link.tsx
+  - src/app/components/search.tsx
+  - src/app/components/search-results.tsx
   - src/app/globals.css
+  - src/app/tables/page.tsx
+  - src/app/map/page.tsx
+  - src/app/blog/page.tsx
+  - src/app/volunteers/page.tsx
   - specs/020-add-contribute-link-to-nav.md
-  - specs/021-improve-header-responsive.md
   - specs/022-improve-header-desktop.md
 ---
 
-# Improve Navigation Discoverability
+# Search-first Discovery Destinations
 
-## Problem Statement and Evidence
+## Goal and Evidence
 
-Koreni primarily helps people discover archival information: search indexed records, see what data exists, and reach relevant records. Navigation should foreground these journeys, not genealogy-tree management.
+Koreni's primary task is searching indexed records. Give visitors a secondary way to explore the service without putting another persistent navigation row in the header: put a compact discovery section on the homepage after search and before comments.
 
-The user supplied PostHog observations: pageviews declined 66%, unique visitors declined 18%, average session duration increased 28%, and pageviews per session declined from about 4.60 to 1.93, while core search activity remained relatively stable. These figures have not been independently verified. The pageviews-per-session decline is consistent with less exploration but does not establish that navigation caused it. Traffic composition, instrumentation, seasonality, and visitor intent could also explain the changes. Longer sessions might represent deeper research.
+The existing `specs/083` draft recommended a persistent desktop Search/Map/Tables row. That design is superseded. The new direction puts Search, Map, and Tables in the existing expandable menu on every viewport and adds the homepage section **“Що ще тут є?”**. This intentionally supersedes the earlier requirement to preserve mobile navigation composition exactly.
 
-### Confirmed findings
+The user-provided PostHog figures in the previous draft (declining pageviews and pageviews per session, with core search activity relatively stable) are not independently verified and do not establish that navigation caused the change. Treat all follow-up analytics as observational, not causal evidence.
 
-- `src/app/components/header.tsx` displays the logo, contribution link, account link, and menu button. Search appears only off the home page. Map, Tables, Volunteers, Blog, About, and License are inside the expandable menu.
-- The menu is collapsed on desktop and mobile; CSS changes its layout by viewport, not which destinations are initially visible. The current mobile breakpoint is 767/768px.
-- The menu duplicates the contribution destination. `aria-controls="main-menu"` points to a panel that is conditionally rendered and absent while closed.
-- Git history dates the redesign to commit `d3976301` on 2026-08-24. Before it, Search, contribution, About, Volunteers, Map, and Tables were directly listed; mobile used a horizontally scrollable list. Commit `c4484f67` on 2026-08-26 added Blog to the menu. These dates establish timing, not causation.
-- The home page links to the Tables directory; Tables lists indexed tables; search results link to record pages; Map is a separate available-data route. (`src/app/page.tsx`, `src/app/tables/page.tsx`, `src/app/map/page.tsx`, `src/app/components/search-result.tsx`)
-- Existing analytics include `$pageview`, `search_performed`, `search_result_clicked`, and `source_link_clicked`. No header/menu events were found. (`src/app/components/posthog-navigation-tracker.tsx`, `src/app/services/search.ts`, `src/app/components/search-result.tsx`, `src/app/components/source-link.tsx`)
+Confirmed repository facts:
 
-### Plausible explanation and unresolved evidence
-
-Hiding Map and Tables could make those record-discovery routes less apparent. The reported decline in pageviews per session is compatible with this explanation, but the repository cannot establish causation or destination popularity. Comparison windows, route-level engagement, traffic mix, and instrumentation history remain to be verified during evaluation.
+- `src/app/page.tsx` renders the search experience, then comments. `SearchPage` includes results and pagination; placing discovery after it ensures results come first.
+- `/map`, `/tables`, `/blog`, and `/volunteers` are existing destinations. The volunteers page lists indexers, ranked by indexing activity.
+- The homepage already links its indexed-table count to `/tables`; retain that text and link.
+- Analytics opt-out is configured in the existing PostHog provider. Existing `$pageview`, search, and source-link events are out of scope and remain unchanged.
 
 ## User Journeys and Requirements
 
-1. **Search to record:** arrive at `/`, search, select a result, and view its record page.
-2. **Browse indexed material:** reach `/tables`, choose an indexed table, and open a record.
-3. **Explore geographically:** reach `/map` to explore available data by place.
-4. **Participate or learn:** reach contribution, volunteer, project, blog, or license information.
-5. **Account access:** reach `/account`; public-header behavior within `/account` routes remains unchanged.
+1. Search records from the homepage and see matching results before secondary destinations.
+2. From the expandable menu, reach Search (`/`), Map (`/map`), and Tables (`/tables`) on desktop and mobile.
+3. From the homepage discovery section, reach Map, all tables, Blog articles, or the indexer list.
+4. Continue to reach contribution, account, volunteers, Blog, About, and License through their existing header controls/menu.
+5. Account routes continue to omit the public header.
 
-At desktop widths, make Search, Map, and Tables visible without opening the menu. Preserve the existing mobile navigation exactly as a visual and interaction design: same top-bar controls, menu contents/order, responsive layout, and menu behavior. Do not add a persistent mobile navigation row. At desktop widths, retain the visible contribution and account links and use the menu for secondary destinations. Avoid duplicate contribution links in the desktop menu. Keep all destinations reachable and active-route indications correct. Add navigation events but do not run a concurrent experiment or set numeric success thresholds. Treat analytics as observational evidence, not proof of causation.
+## Design and Alternatives
 
-## Alternatives and Trade-offs
+- **Persistent desktop Search/Map/Tables links:** rejected; duplicates search-first entry points and creates a second navigation system.
+- **Show homepage discovery only when there are no results:** rejected for this implementation. Keep it below the entire SearchPage output (including results and pagination); when results exist, the section may be below the fold. When no results exist, it appears immediately after the search summary.
+- **Recommended:** put Search, Map, and Tables in the expandable menu on all viewports; render one compact homepage discovery section under SearchPage and above Comments.
 
-| Direction                                                                                  | Benefits                                            | Costs and risks                                          | Decision     |
-| ------------------------------------------------------------------------------------------ | --------------------------------------------------- | -------------------------------------------------------- | ------------ |
-| Restore every destination as a persistent desktop link                                     | Maximum visibility                                  | Crowded flat hierarchy, especially with Blog and License | Not selected |
-| Keep all destinations collapsed and improve menu affordance                                | Smallest structural change                          | Map and Tables remain hidden until menu opens            | Not selected |
-| Keep Search, Map, and Tables visible on desktop; disclose secondary links; preserve mobile | Prioritizes record discovery without mobile clutter | Requires desktop-only responsive presentation and tests  | Recommended  |
+The discovery section uses this exact heading and destinations:
 
-Use the existing 768px desktop/mobile boundary. Verify the layout fits at 768px; if not, move the desktop breakpoint to the smallest width where it fits, leaving the mobile presentation unchanged. Add no dependencies.
+- **Що ще тут є?**
+- **Мапа України з позначками наявних даних** → `/map`
+- **Список наявних таблиць** → `/tables`
+- **Блог коренів – про рушій та індексування** → `/blog`
+- **Перелік тих, хто приніс дорогоцінні таблиці** → `/volunteers`
 
-## Recommended Design
+Use native links in a semantic section with a heading and list. Use existing theme variables; add no dependencies, counts, data fetching, or claims about individual indexers in the discovery section.
 
-Add a desktop-only primary navigation for **Пошук**, **Мапа**, and **Таблиці**. Keep the existing top-bar contribution and account links. Keep the menu button and use the menu for Volunteers, Blog, About, and License. Hide the menu’s Map/Tables group and duplicate contribution item only at desktop widths. Preserve those entries on mobile.
+## Header Behavior
 
-This is progressive disclosure: core archival-data destinations are visible where space permits; secondary destinations remain grouped. Do not change routes or optimize for increased pageviews. Keep the current visible menu label; relabeling is out of scope.
+- Remove the desktop-only primary navigation and its styles.
+- Add **Пошук** (`/`) as the first link in the existing **Дані** menu group, followed by **Мапа** and **Таблиці**. Keep this order on mobile and desktop.
+- Remove the separate conditional top-bar Search link to prevent duplicate Search links. The page's search controls remain unchanged.
+- Keep contribution and account links in the top bar. Keep secondary menu destinations and their existing organization. Keep the contribution entry in the expandable menu on both mobile and desktop, alongside its top-bar link.
+- Preserve the existing 767/768px menu layout boundary, route normalization, Blog prefix matching, active styling, and `aria-current="page"` behavior.
+- Keep the disclosure panel mounted while closed with `hidden`; `aria-controls="main-menu"` always resolves. Keep `aria-expanded` synchronized. Escape closes and restores trigger focus; outside-pointer closes without moving focus; menu destination activation closes the panel.
 
-## Desktop and Mobile Behavior
+The literal move of Search into the expandable menu applies on mobile too. Do not retain the old mobile top-bar Search link or add a persistent mobile row.
 
-### Desktop (`>= 768px`)
+## Analytics and Measurement
 
-1. Show a named primary navigation landmark with links to `/`, `/map`, and `/tables` on every public route, including `/`.
-2. Hide the existing conditional Search link in the top bar at desktop widths to avoid duplicate Search links.
-3. Keep contribution, account, and the menu trigger in the top bar.
-4. The menu starts closed. When open, show secondary destinations without duplicate Map, Tables, or contribution links.
-5. Preserve active styles and `aria-current="page"`, including nested Blog routes.
-
-### Mobile (`<= 767px`)
-
-1. Preserve the existing visible content, link order, menu organization, CSS layout, and interactions exactly.
-2. Do not show the new desktop primary navigation.
-3. Navigation events may be captured, but must not alter appearance or consent behavior.
-
-### Disclosure state
-
-- Keep the panel in the DOM while closed and use its hidden state to control visibility. `aria-controls="main-menu"` must always reference an element.
-- Keep `aria-expanded` synchronized with open/closed state.
-- Escape closes the panel and restores focus to the trigger. Outside-pointer interaction closes it without moving focus. Activating a menu destination closes it.
-- Preserve normal link and browser Back/Forward behavior.
-
-## Accessibility
-
-- Place desktop Search/Map/Tables links in a semantic `<nav>` with a descriptive Ukrainian accessible name.
-- Use a native button for the disclosure and native links for routes.
-- Keep `aria-controls` valid in both disclosure states and update `aria-expanded` on every transition.
-- Preserve Enter/Space activation, logical Tab order, Escape dismissal, and focus restoration. Do not trap focus in the non-modal panel.
-- Preserve visible focus indicators and prevent the desktop row from clipping them.
-- Use `aria-current="page"` on active links; do not rely on color alone.
-- Ensure both layouts work at 200% zoom without page-level horizontal overflow.
-
-## <Architecture>
-
-Zone A only. Modify `src/app/components/header.tsx`, `src/app/components/header.module.css`, and `src/app/components/header.test.tsx`. Use the existing React client component, CSS module, Next.js links, route state, PostHog provider, and 767/768px responsive boundary. Add desktop primary navigation for Search, Map, and Tables. Keep secondary routes in the existing disclosure. Preserve the mobile presentation and account-route suppression. Do not modify `src/app/layout.tsx`, server files, APIs, schemas, routes, or dependencies.
-
-### Proposed file operations
-
-- `src/app/components/header.tsx`: add desktop primary links; preserve mobile links/composition; hide the old top-bar Search at desktop; retain the disclosure for secondary routes; keep Map/Tables and contribution in its mobile menu; keep `main-menu` mounted with a hidden state; add the approved PostHog events.
-- `src/app/components/header.module.css`: add desktop-only primary-nav styling at 768px; hide promoted destinations and duplicate contribution only in the desktop menu; preserve mobile styles and panel layout. Verify fit at the breakpoint and both themes using existing variables.
-- `src/app/components/header.test.tsx`: test desktop links, unchanged mobile content, menu behavior, active routes, and analytics events. Verify media-query appearance manually in a browser.
-- Zone B: no targets and no server/API/data/authentication/persistence changes.
-
-## <DataFlow>
-
-1. Initial menu state is closed. The panel is present but hidden; `aria-expanded="false"` and `aria-controls="main-menu"` agree.
-2. A closed-to-open trigger activation updates menu state and emits `header_menu_opened` once with `{ viewport: 'mobile' | 'desktop' }`.
-3. Closing through trigger, Escape, outside pointer, or menu-link activation returns state to closed. Emit no menu-close event.
-4. A destination-link activation emits `header_navigation_clicked` with fixed `{ destination, placement, viewport }` values before normal navigation:
-   - `destination`: `search`, `map`, `tables`, `contribute`, `account`, `volunteers`, `blog`, `about`, or `license`
-   - `placement`: `primary`, `top_bar`, or `menu`
-   - `viewport`: `mobile` or `desktop`, using the layout breakpoint
-5. Do not capture query parameters, search text, raw URLs, or personal data. Preserve existing PostHog opt-out/consent behavior. Analytics must not block or alter navigation.
-6. Leave `$pageview`, `search_performed`, `search_result_clicked`, and `source_link_clicked` unchanged. Do not run a concurrent experiment or add numeric success thresholds.
+- Preserve `header_menu_opened` with `{ viewport: 'mobile' | 'desktop' }` on closed-to-open only.
+- Preserve `header_navigation_clicked` and its fixed destination allowlist. Search/Map/Tables now emit `placement: 'menu'`; contribution/account top-bar links emit `top_bar`; menu destinations emit `menu`. Keep the old `primary` placement as an allowed historical value but do not emit it from the new header.
+- Add `home_discover_clicked` from the client discovery component with exactly `{ destination: 'map' | 'tables' | 'blog' | 'volunteers', viewport: 'mobile' | 'desktop' }`.
+- Determine viewport using `window.innerWidth < 768`; otherwise desktop. Emit before normal link navigation. Capture only the fixed values; never include query parameters, search text, URL, or personal data.
+- Respect existing PostHog opt-out/consent behavior. Capture exceptions must be caught and must not block links. Add no retry, persistence, server request, experiment, or numeric success threshold.
+- Do not change `$pageview`, `search_performed`, `search_result_clicked`, or `source_link_clicked`. After deployment, compare opted-in discovery/menu rates and destination clicks with denominators and note traffic/viewport mix. Treat results as observational.
 
 ## Acceptance Criteria
 
-1. At desktop widths, Search, Map, and Tables are visible without opening the disclosure; Search is visible on `/`.
-2. Desktop has no redundant top-bar Search or duplicate Map/Tables/contribution links in the open menu.
-3. At mobile widths, header appearance, link order, menu content, layout, and interactions remain unchanged.
-4. All destinations remain reachable; active states work for root, Map, Tables, contribution, and nested Blog routes.
-5. Account routes continue to omit the public header.
-6. The panel exists while closed; ARIA state, Escape, outside-pointer, and menu-link behavior are correct.
-7. The two approved events use only the stated names and allowlisted values, respect consent, and do not interfere with navigation.
-8. Header tests pass. Manual checks confirm breakpoint fit, unchanged mobile appearance, keyboard use, both themes, and no clipping at 200% zoom.
-9. No backend files, schemas, APIs, dependencies, routes, or data contracts change.
+1. No persistent desktop Search/Map/Tables row exists; all three destinations are in the expandable menu on both viewport classes.
+2. The top-bar Search link is absent. Search remains available from the menu and the homepage search controls remain unchanged.
+3. The homepage section has the exact heading and four links above, follows all search results/pagination, and precedes comments.
+4. Existing account-route suppression, active links, menu organization (including the contribution link in both the menu and top bar), keyboard behavior, and disclosure ARIA remain correct, except for the intentional Search relocation.
+5. The two header events and new discovery event use only specified fixed values, respect opt-out, and cannot block navigation.
+6. Tests, typecheck, and lint pass. Browser checks confirm both themes, keyboard use, no clipping, and no horizontal overflow at narrow widths and 200% zoom.
+7. No backend files, APIs, routes, schemas, authentication, persistence, dependencies, or existing search/pageview event contracts change.
 
-## Measurement and Validation Plan
+## <Architecture>
 
-- Add the two approved events; do not run an A/B or concurrent experiment.
-- After deployment, examine menu-open rate, menu-to-link conversion, and Map/Tables clicks by viewport and landing route. Use opted-in sessions as denominators.
-- Compare secondary-section discovery with existing `search_result_clicked` and `source_link_clicked` activity as meaningful archival-research outcomes.
-- Do not treat more pageviews, longer sessions, or numeric uplift thresholds as success criteria. Report rates with denominators and note consent coverage, traffic source, and viewport mix.
-- Verify historical comparison windows and instrumentation before comparing them. Treat pre/post differences as observational, not causal.
+Zone A only. Use the existing header client component and CSS module, plus an isolated client component for discover-link analytics. Keep `src/app/page.tsx` as a Server Component and place the new section after the SearchPage Suspense boundary and before `<Comments />`.
+
+### Exact file operations
+
+- `src/app/components/header.tsx`: remove desktop primary navigation and the conditional top-bar Search link; add Search first in the Data menu; preserve contribution/account controls, other menu links, active routes, disclosure behavior, and the existing header event contracts.
+- `src/app/components/header.module.css`: remove desktop-row/top-bar-search rules; show the Data menu group at desktop. Preserve the contribution menu item on both viewport classes, the existing mobile menu layout, and themes.
+- `src/app/components/header.test.tsx`: replace desktop-primary assertions with menu placement/order assertions and cover active routes, dismissal, ARIA, and tracking.
+- `src/app/components/home-discover.tsx`: new `'use client'` component. Render the heading and four native `next/link` destinations; capture `home_discover_clicked` with the fixed properties above. No fetching or state beyond click handling.
+- `src/app/components/home-discover.module.css`: new responsive card/list styles using existing theme variables. No clipping or page-level horizontal overflow; visible focus remains unobstructed.
+- `src/app/components/home-discover.test.tsx`: unit-test link targets, event properties, viewport classification, and navigation continuity when capture throws.
+- `src/app/page.tsx`: render `HomeDiscover` after the existing SearchPage `<Suspense>` and before comments; preserve metadata, table-count description/link, record count, JSON-LD, and comments.
+- `src/app/home-page.test.tsx`: retain the existing metadata/data mocks, add a `HomeDiscover` sentinel, and verify server-rendered search → discover → comments order. Do not mount the Server Component with React Testing Library.
+- Zone B: no targets or changes.
+
+## <DataFlow>
+
+1. The Home Server Component loads table metadata and computes `recordsNumber` as it does today. It renders the existing search Suspense boundary, then `HomeDiscover`, then comments. It adds no server data read or mutation.
+2. `HomeDiscover` renders the fixed route list regardless of query/results state. SearchPage results and pagination remain before it. No query/result text is passed into the client component.
+3. Activating a discovery link emits one `home_discover_clicked` event with the destination slug and viewport, then normal Next navigation proceeds. Event failure has no effect on navigation.
+4. Header starts with a closed menu and a mounted hidden panel. Trigger activation opens it and emits one `header_menu_opened`; closing through trigger, Escape, outside pointer, or link emits no close event. Menu-link navigation captures the allowlisted destination/placement/viewport before normal navigation.
+5. No client persistence or cross-page application state is added. Existing PostHog opt-out and consent behavior governs captures.
 
 ## <FailureModes>
 
-- **Panel absent while closed:** keep the controlled element mounted and hidden so `aria-controls` never points to a missing ID.
-- **Wrong responsive boundary:** test at 767px and 768px. Do not alter mobile composition at `<= 767px`.
-- **Desktop crowding:** validate actual layout fit at the breakpoint; adjust the desktop threshold if needed without changing mobile presentation.
-- **Duplicate links:** hide top-bar Search at desktop and suppress the Map/Tables group plus duplicate contribution item only in the desktop menu.
-- **Nested/trailing-slash route mismatch:** preserve current normalization and Blog-prefix matching.
-- **Incorrect dismissal/focus:** Escape restores trigger focus; outside pointer closes without moving focus; pointer events inside the panel do not close it.
-- **Analytics opted out, missing, or uninitialized:** do not bypass consent or add persistence. Navigation continues normally.
-- **Analytics event failure or malformed properties:** emit only fixed allowlisted values. Add no retry or server call; event capture must not prevent the native/Next link action.
+- **Search still duplicated:** remove the old top-bar Search link on every viewport; assert Search appears once in the menu.
+- **Search results displaced:** keep discovery after the whole SearchPage output, including pagination; do not place it between search controls and results.
+- **Loading/zero results:** render the section independently of result counts; do not flash it based on transient `resultsNumber` or hide it when matches exist.
+- **Invalid route or empty indexer list:** use only the existing `/map`, `/tables`, `/blog`, and `/volunteers` routes; destination pages own their empty states.
+- **Closed menu target missing:** retain the panel DOM with `hidden`, preserving its `main-menu` ID.
+- **Responsive mismatch:** use the same 767/768px boundary for viewport event values; validate at 767px and 768px and at 200% zoom.
+- **Nested/trailing slash routes:** retain path normalization and Blog-prefix matching; root, map, and tables use exact normalized path matches.
+- **Escape/outside pointer behavior:** Escape closes and restores trigger focus; outside pointer closes without moving focus; inside pointer does not close.
+- **PostHog unavailable, opted out, or throwing:** do not bypass consent; catch capture failure and preserve native/Next link navigation. No retry or server call.
+- **Telemetry data leakage:** emit only fixed destination, placement, and viewport values; do not include query, raw URL, or personal data.
 
 ## <TestPlan>
 
-- **Exact test file:** `src/app/components/header.test.tsx`.
-- **Mock boundaries:** keep the current `usePathname` mock. Mock `posthog-js/react` `usePostHog` with a typed `capture` spy. Do not use live PostHog or network access.
-- Assert desktop-primary Search, Map, and Tables links are represented; Search is active on `/`; Map/Tables are active on their routes.
-- Assert nested `/blog/...` activates Blog, trailing-slash normalization works, and `/account/...` still renders no public header.
-- Assert the panel exists but is hidden when closed; `aria-expanded` is false and `aria-controls` matches. Opening reveals the panel and emits exactly one `header_menu_opened` with the expected viewport.
-- Assert link activations emit exactly one `header_navigation_clicked` with expected destination, placement, and viewport. Assert normal link behavior and menu dismissal remain intact. Closing emits neither an open event nor a close event.
-- Assert mobile-visible link order/content and menu content match current behavior. Manually verify media-query appearance at 767px and 768px, narrow phone, landscape, and desktop.
-- Run the targeted Vitest test, then standard type/lint checks. No backend or network tests are in scope.
+- **Exact test files:** `src/app/components/header.test.tsx`, `src/app/components/home-discover.test.tsx`, and `src/app/home-page.test.tsx`.
+- **Header mock boundaries:** retain the current `usePathname` mock; mock `posthog-js/react` `usePostHog` with a typed `capture` spy. No live PostHog/network.
+- Assert Search/Map/Tables appear in the expandable panel in order; no standalone top-bar Search or desktop primary navigation remains. Assert menu destinations, links, and contribution/account placements.
+- Assert root, Map, Tables, contribution, and nested Blog active states and `aria-current`; `/account/...` still omits the header.
+- Assert mounted-but-hidden panel, `aria-controls`/`aria-expanded`, open event exactly once, Escape focus restoration, outside-pointer behavior, menu-link dismissal, and no close event.
+- Assert `header_navigation_clicked` properties for menu and top-bar links, including the changed Search/Map/Tables placement.
+- **Discovery component mock boundaries:** typed `usePostHog` capture spy only; no network or router service. Assert exact heading, four visible labels/hrefs, fixed destination/viewport properties, and that thrown capture does not cancel normal link activation.
+- **Home page test boundaries:** retain existing mocks for table metadata, SearchPage, Comments, and JSON-LD; add a `HomeDiscover` sentinel and a typed `next/link`-to-anchor mock. Call `Home()`, serialize its result with `renderToStaticMarkup`, and assert search → discover → comments order plus existing route assertions. Do not mount the Server Component with React Testing Library.
+- Run `yarn vitest run src/app/components/header.test.tsx src/app/components/home-discover.test.tsx src/app/home-page.test.tsx`, `yarn typecheck`, ESLint for changed TS/TSX files, and Stylelint for both CSS modules.
+- Manually verify menu keyboard/focus behavior, both themes, narrow phone/landscape, 767px and 768px, and 200% zoom without horizontal overflow. No Zone B/network tests.

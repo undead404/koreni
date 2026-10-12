@@ -1,0 +1,45 @@
+.section {
+  width: min(100%, 48rem);
+  margin: 2rem auto;
+  padding: 1rem;
+  border: var(--default-border);
+  border-radius: 0.5rem;
+  background-color: var(--note-bg-color);
+}
+
+.heading {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  min-width: 0;
+  margin: 0;
+}
+
+.link {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.25rem 0;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--clickable-color);
+  outline-offset: 3px;
+}
+
+@media (width <= 480px) {
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

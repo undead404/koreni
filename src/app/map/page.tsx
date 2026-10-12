@@ -7,7 +7,7 @@ import environment from '../environment';
 import combinedPoints from '../services/map-points';
 
 export const metadata: Metadata = {
-  title: 'Мапа доступних даних',
+  title: 'Мапа України з позначками наявних даних',
   alternates: {
     canonical: '/map/',
   },
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
       url: 'https://www.linkedin.com/in/vitalii-perehonchuk-10570693/',
     },
   ],
-  openGraph: { title: 'Мапа доступних даних', url: '/map/' },
+  openGraph: { title: 'Мапа України з позначками наявних даних', url: '/map/' },
   twitter: {
-    title: 'Мапа доступних даних',
+    title: 'Мапа України з позначками наявних даних',
   },
 };
 
@@ -33,7 +33,9 @@ export default function MapPage() {
           key="canonical"
         />
       </Head>
-      <h1 className="visually-hidden">Мапа доступних даних</h1>
+      <h1 className="visually-hidden">
+        Мапа України з позначками наявних даних
+      </h1>
       <MapWrapper points={combinedPoints} zoom={6} isFullScreen />
       <Comments />
     </>
