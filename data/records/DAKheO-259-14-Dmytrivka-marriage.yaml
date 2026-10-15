@@ -1,0 +1,28 @@
+archiveItems:
+  - ДАХеО-259-14-1
+  - ДАХеО-259-14-2
+  - ДАХеО-259-14-3
+  - ДАХеО-259-14-5
+  - ДАХеО-259-14-6
+  - ДАХеО-259-14-7
+  - ДАХеО-259-14-8
+  - ДАХеО-259-14-9
+  - ДАХеО-259-14-10
+  - ДАХеО-259-14-11
+authorName: Олена Савків
+authorEmail: el.dombrovan@gmail.com
+date: 2026-10-12
+id: DAKheO-259-14-Dmytrivka-marriage
+location:
+  - 46.71043
+  - 33.821751
+size: 2548
+sources:
+  - https://kherson.archives.gov.ua/fondy-ta-dovidkovyj-aparat/oczyfrovani-dokumenty/fond-%e2%84%96-259-czerkvy-dniprovskogo-povitu-hersonskoyi-guberniyi-oaf/opys-14-fond-%e2%84%96-259/
+tableFilePath: data/csv/dmytrivka-kakhovska-vol-dniprovskyi-pov-tavriiska-hub-shliuby-1861-1872-1874-1877-1891-1898-1900.csv
+tableLocale: uk
+title: Дмитрівка, Каховська вол. Дніпровський пов. Таврійська губ | шлюби
+  (1861-1872, 1874, 1877, 1891-1898, 1900)
+yearsRange:
+  - 1861
+  - 1900
