@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАЖО-1-74-213
+authorName: Sa Kan
+authorEmail: sasha.testsso@gmail.com
+date: 2026-10-16
+id: DAZhO-1-74-213-Sarny-Mary-icon
+location:
+  - 51.33696625889512
+  - 26.60749197006226
+size: 1143
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-L7Q2-D7CV-W
+tableFilePath: data/csv/m-sarny-spovidni-vidomosti-pravoslavna-parafiia-khram-ikony-pochaivskoi-bozhoi-materi-1912.csv
+tableLocale: ru
+title: Сарни (місто) – сповідні відомості, православна парафія, храм ікони
+  Почаївської Божої матері, 1912
+yearsRange:
+  - 1912
