@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-10-17
+id: DAKhmO-315-1-8330-Havryshivka
+location:
+  - 49.243023
+  - 28.639126
+size: 811
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Havryshivka.csv
+tableLocale: ru
+title: Гавришівка (Вінницька) і Телепеньки 1855 – сповідний розпис, ДАХмО-315-1-8330
+yearsRange:
+  - 1855
