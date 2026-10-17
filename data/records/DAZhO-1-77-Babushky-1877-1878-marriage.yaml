@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАЖО-1-77-98
+  - ДАЖО-1-77-102
+authorName: Катерина К
+authorEmail: kolomytska@gmail.com
+date: 2026-10-15
+id: DAZhO-1-77-Babushky-1877-1878-marriage
+location:
+  - 50.0021714
+  - 28.1832775
+size: 14
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3QHJ-4WM7-KXQJ-D?view=explore&groupId=TH-7712-162066-729446-41&grid=on&lang=en
+  - https://www.familysearch.org/ark:/61903/3:1:3QHV-J77J-2QW2?view=explore&groupId=TH-7716-139989-90924-98&grid=on&lang=en
+tableFilePath: data/csv/babushky-shliub-1877-1878.csv
+tableLocale: ru
+title: Бабушки - шлюб, 1877-1878
+yearsRange:
+  - 1877
+  - 1878
