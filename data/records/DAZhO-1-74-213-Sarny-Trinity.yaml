@@ -3,7 +3,7 @@ archiveItems:
 authorName: Sa Kan
 authorEmail: sasha.testsso@gmail.com
 date: 2026-10-16
-id: m-sarny-spovidni-vidomosti-pravoslavna-parafiia-tserkva-sviatoi-triitsi-1912-rik
+id: DAZhO-1-74-213-Sarny-Trinity
 location:
   - 51.32534896931858
   - 26.635097265243534
@@ -12,7 +12,7 @@ sources:
   - https://www.familysearch.org/ark:/61903/3:1:3QHV-H7Q2-19M9-C
 tableFilePath: data/csv/m-sarny-spovidni-vidomosti-pravoslavna-parafiia-tserkva-sviatoi-triitsi-1912-rik.csv
 tableLocale: ru
-title: м. Сарни, сповідні відомості, православна парафія, церква Святої Трійці,
+title: Сарни (місто) – сповідні відомості, православна парафія, церква Святої Трійці,
   1912 рік
 yearsRange:
   - 1912
