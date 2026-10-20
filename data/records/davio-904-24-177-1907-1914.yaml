@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-904-24-177
+authorName: Кулігіна Юлія
+authorEmail: Petrochukulia@gmail.com
+date: 2026-10-20
+id: davio-904-24-177-1907-1914
+location:
+  - 48.3463494
+  - 28.876485
+size: 435
+sources: []
+tableFilePath: data/csv/davio-904-24-177-1907-1914.csv
+tableLocale: ru
+title: ДАВІО 904-24-177 (1907-1914)
+yearsRange:
+  - 1907
+  - 1914
