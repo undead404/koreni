@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-904-24-177
+authorName: Кулігіна Юлія
+authorEmail: Petrochukulia@gmail.com
+date: 2026-10-20
+id: idavio-904-24-177-smert-1907-1914
+location:
+  - 48.3463494
+  - 28.876485
+size: 285
+sources: []
+tableFilePath: data/csv/idavio-904-24-177-smert-1907-1914.csv
+tableLocale: ru
+title: іДАВІО 904-24-177 смерть (1907-1914)
+yearsRange:
+  - 1907
+  - 1914
