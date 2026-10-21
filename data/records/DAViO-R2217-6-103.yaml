@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-Р2217-6-103
+authorName: Віталій Перегончук
+authorEmail: brute18@gmail.com
+date: 2026-10-17
+id: DAViO-R2217-6-103
+location:
+  - 48.681271
+  - 28.292053
+size: 495
+sources:
+  - https://photos.app.goo.gl/mvc47MnAQ2sb59gG7
+  - https://docs.google.com/spreadsheets/d/1orJ21dheQVJoIJGjlu6LPwVhX12EgsDLN5r8VUX6Ks4/edit?usp=sharing
+tableFilePath: data/csv/dovilne-davio-r2217-6-103-arkush1.csv
+tableLocale: uk
+title: "Джуринський район – картки членів і голів РВК, сільрад, ревізкомісій, делегатів райз'їзду (1927)"
+yearsRange:
+  - 1927
