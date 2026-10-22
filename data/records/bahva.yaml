@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАКО-364-12-467
+  - ДАКО-364-12-468
+  - ДАКО-364-12-469
+authorName: Володимир Цибульський
+authorEmail: unclelado@ukr.net
+date: 2026-10-22
+id: bahva
+location:
+  - 49.13017285037741
+  - 30.522596851860374
+size: 329
+sources:
+  - https://drive.google.com/drive/u/0/folders/1Xw7Te4-NnIPngUkjl6JohpWKTUlLpiN2
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/467
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/468
+  - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%9A%D0%9E/384/12/469
+tableFilePath: data/csv/bahva.csv
+tableLocale: uk
+title: Багва
+yearsRange:
+  - 1897
