@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАК-127-1012-2347
+authorName: Юлія Хоменко
+authorEmail: yuliia.khomenko2999@gmail.com
+date: 2026-10-23
+id: indeks-metrychnoi-knyhy-sela-mankivka-umanskoho-povitu-kyivskoi-hubernii-1846-rik
+location:
+  - 48.963485226977355
+  - 30.33333778381348
+size: 310
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:33S7-9PQ7-4H97?cat=1399998&i=0&lang=uk&groupId=1503045
+tableFilePath: data/csv/indeks-metrychnoi-knyhy-sela-mankivka-umanskoho-povitu-kyivskoi-hubernii-1846-rik.csv
+tableLocale: ru
+title: Індекс метричної книги села Маньківка, Уманського повіту, Київської
+  губернії 1846 рік
+yearsRange:
+  - 1846
