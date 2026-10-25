@@ -1,0 +1,17 @@
+archiveItems:
+  - ЦДІАК-127-1015-576
+authorName: Юлія Хоменко
+authorEmail: yuliia.khomenko2999@gmail.com
+date: 2026-10-25
+id: spovidnyi-rozpys-1839-roku
+location:
+  - 48.96235818885383
+  - 30.3343677520752
+size: 1055
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS9X-P95Q-6?view=explore&groupId=TH-909-55343-42443-20&lang=uk
+tableFilePath: data/csv/spovidnyi-rozpys-1839-roku.csv
+tableLocale: ru
+title: Сповідний розпис 1839 року
+yearsRange:
+  - 1839
