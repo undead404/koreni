@@ -52,6 +52,10 @@ If you want to work with data contribution and-or transcription, run in another 
 yarn dev:server
 ```
 
+## AI-assisted development
+
+Both OpenCode and OpenAI Codex use the shared repository workflows. See [agent setup and usage](docs/agent-setup.md) for role selection, commands, and permission boundaries.
+
 ## Production setup
 
 Use scripts from `./scripts/prepare-server` folder.
