@@ -3,7 +3,7 @@ archiveItems:
 authorName: Андрій Х.
 authorEmail: zooey2526@gmail.com
 date: 2026-08-04
-id: "1931202608041111"
+id: '1931202608041111'
 location:
   - 51.32534896931858
   - 26.635097265243534
@@ -17,3 +17,4 @@ tableLocale: uk
 title: с. Сарни, с. Доротичі (Сарненський повіт) | Свято-Троїцька церква | народження
 yearsRange:
   - 1931
+tableStructure: columns-beb5e79351e767fd
