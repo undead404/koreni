@@ -306,6 +306,15 @@ jobs:
           test -s "$HOME/.ssh/known_hosts"
           ssh hetzner-deploy 'whoami && hostname'
 
+      - name: Diagnose deployment key
+        run: |
+          echo "GitHub Actions key:"
+          ssh-keygen -y -f ~/.ssh/id_ed25519 | ssh-keygen -lf -
+
+          echo "SSH configuration:"
+          ssh -G hetzner-deploy |
+            grep -E '^(user|hostname|identityfile|identitiesonly) '~
+
       - name: Download frontend artifact
         uses: actions/download-artifact@v8
         with:
