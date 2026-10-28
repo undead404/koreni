@@ -76,9 +76,6 @@ jobs:
         run: yarn typecheck
 
   test:
-    needs:
-      - lint
-      - typecheck
     runs-on: ubuntu-latest
 
     steps:
@@ -194,6 +191,7 @@ jobs:
         with:
           name: dist
           path: out
+          if-no-files-found: error
 
   build-api:
     runs-on: ubuntu-latest
@@ -238,248 +236,230 @@ jobs:
         with:
           name: api-dist
           path: src/server/dist
+          if-no-files-found: error
 
       - name: Upload backend node_modules artifact
         uses: actions/upload-artifact@v7
         with:
           name: api-node-modules
           path: node_modules
+          if-no-files-found: error
 
   deploy:
+    name: Deploy frontend, API and Nginx
     runs-on: ubuntu-latest
-    needs:
-      - build
+    needs: [build, build-api]
+    timeout-minutes: 30
+    env:
+      SITE_URL: ${{ vars.SITE }}
     steps:
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
+      - name: Checkout repository for Nginx configuration
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
-      # --- Frontend Deploy ---
+      - name: Determine whether Nginx configuration changed
+        id: nginx
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          CURRENT_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            changed=true
+          elif [[ -n "$BEFORE_SHA" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]] && git cat-file -e "${BEFORE_SHA}^{commit}"; then
+            if git diff --quiet "$BEFORE_SHA" "$CURRENT_SHA" -- scripts/server/nginx.conf; then
+              changed=false
+            else
+              changed=true
+            fi
+          else
+            # Missing push base: redeploy and validate Nginx rather than silently skip.
+            changed=true
+          fi
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+
+      - name: Set up SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SERVER_IP: ${{ vars.SERVER_IP }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+          ssh-keygen -y -f "$HOME/.ssh/deploy_key" > /dev/null
+          test -n "$SSH_USERNAME" && test -n "$SERVER_IP"
+          cat > "$HOME/.ssh/config" <<EOF
+          Host hetzner-deploy
+              HostName $SERVER_IP
+              User $SSH_USERNAME
+              IdentityFile ~/.ssh/deploy_key
+              IdentitiesOnly yes
+              BatchMode yes
+              StrictHostKeyChecking yes
+          EOF
+          chmod 600 "$HOME/.ssh/config"
+          # Bootstrap trust: replace with a pinned SSH_KNOWN_HOSTS secret for stronger protection.
+          ssh-keyscan -T 10 -H "$SERVER_IP" > "$HOME/.ssh/known_hosts"
+          test -s "$HOME/.ssh/known_hosts"
+          ssh hetzner-deploy 'whoami && hostname'
+
       - name: Download frontend artifact
         uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
 
-      - name: Deploy Frontend Files
-        run: |
-          rsync -avz --no-o --no-g -e "ssh" --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/html
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'sudo chown -R ${{ secrets.SSH_USERNAME }}:www-data /var/www/html && sudo chmod -R 755 /var/www/html'
-
-      - name: Reload Nginx
-        run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
-            # Restart Service
-            sudo systemctl reload nginx
-          EOF
-
-  deploy-api:
-    runs-on: ubuntu-latest
-    needs:
-      - build-api
-    steps:
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
-
-      # --- Backend Deploy ---
-      - name: Download backend source
+      - name: Download API artifact
         uses: actions/download-artifact@v8
         with:
           name: api-dist
           path: api-dist
 
-      - name: Download backend node_modules
+      - name: Download API dependencies
         uses: actions/download-artifact@v8
         with:
           name: api-node-modules
           path: api-node-modules
 
-      # 1. Verify manifest files exist before deploying (Safety Check)
-      - name: Check for package.json
+      - name: Validate artifacts
         run: |
-          if [ ! -f ./api-dist/package.json ]; then
-            echo "Error: package.json missing in artifact. Ensure build script copies it to dist."
-            exit 1
-          fi
+          set -euo pipefail
+          test -d dist && test -n "$(find dist -mindepth 1 -print -quit)"
+          test -f api-dist/package.json
+          test -d api-node-modules && test -n "$(find api-node-modules -mindepth 1 -print -quit)"
 
-      - name: Deploy Backend Source
+      - name: Write API environment file safely
+        env:
+          BUGSNAG_API_API_KEY: ${{ secrets.BUGSNAG_API_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.IMPORT_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          TURNSTILE_SECRET_KEY: ${{ secrets.TURNSTILE_SECRET_KEY }}
+          POSTHOG_KEY: ${{ secrets.POSTHOG_KEY }}
+          POSTHOG_HOST: ${{ vars.POSTHOG_HOST }}
+          NEXT_PUBLIC_SITE: ${{ vars.SITE }}
+          VALID_API_KEYS: ${{ vars.VALID_API_KEYS }}
+          FALLBACK_EMAIL: ${{ secrets.FALLBACK_EMAIL }}
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          NEXT_PUBLIC_API_SITE: ${{ vars.SITE }}
+          BUILD_REVISION: ${{ github.sha }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          TURSO_DATABASE_URL: ${{ vars.TURSO_DATABASE_URL }}
+          TURSO_DATABASE_TOKEN: ${{ secrets.TURSO_DATABASE_TOKEN }}
+          KARMA_APP_TOKEN: ${{ secrets.KARMA_APP_TOKEN }}
+          KARMA_INTERNAL_TOKEN: ${{ secrets.KARMA_INTERNAL_TOKEN }}
+          EMAIL_VISIBILITY_SYNC_TOKEN: ${{ secrets.EMAIL_VISIBILITY_SYNC_TOKEN }}
         run: |
-          # Ensure target directory exists
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} 'mkdir -p /var/www/koreni-api'
+          set -euo pipefail
+          umask 077
+          python3 - <<'PYCODE'
+          import json, os
+          keys = (
+              'BUGSNAG_API_API_KEY', 'GITHUB_TOKEN', 'GITHUB_REPO',
+              'TURNSTILE_SECRET_KEY', 'POSTHOG_KEY', 'POSTHOG_HOST',
+              'NEXT_PUBLIC_SITE', 'VALID_API_KEYS', 'FALLBACK_EMAIL',
+              'OAUTH_CLIENT_ID', 'NEXT_PUBLIC_API_SITE', 'BUILD_REVISION',
+              'JWT_SECRET', 'TURSO_DATABASE_URL', 'TURSO_DATABASE_TOKEN',
+              'KARMA_APP_TOKEN', 'KARMA_INTERNAL_TOKEN', 'EMAIL_VISIBILITY_SYNC_TOKEN'
+          )
+          values = {'PORT': '4000', 'NODE_ENV': 'production',
+                    'KARMA_APP_SLUG': 'koreni',
+                    'NAVIGATOR_BASE_URL': 'https://www.uagenealogy.com'}
+          values.update({k: os.environ[k] for k in keys})
+          # dotenv understands double-quoted strings; JSON escaping protects
+          # quotes, newlines and literal $ from shell expansion.
+          with open('api.env', 'w', encoding='utf-8') as f:
+              for k, v in values.items():
+                  f.write(f'{k}={json.dumps(v, ensure_ascii=False)}\n')
+          PYCODE
+          chmod 600 api.env
 
-          # Sync compiled dist files
-          rsync -avz --no-o --no-g -e "ssh" --delete ./api-dist/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api
-
-      - name: Deploy node_modules to server
+      - name: Transfer API files
         run: |
-          rsync -avz --no-o --no-g -e "ssh" --delete ./api-node-modules/ ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/var/www/koreni-api/node_modules
+          set -euo pipefail
+          ssh hetzner-deploy 'mkdir -p /var/www/koreni-api/node_modules'
+          # Preserve the live .env and node_modules while syncing compiled code.
+          rsync -az --no-o --no-g --delete \
+            --exclude='/.env' --exclude='/node_modules/' \
+            ./api-dist/ hetzner-deploy:/var/www/koreni-api/
+          rsync -az --no-o --no-g --delete \
+            ./api-node-modules/ hetzner-deploy:/var/www/koreni-api/node_modules/
+          scp -q api.env hetzner-deploy:/var/www/koreni-api/.env.next
+          ssh hetzner-deploy \
+            'chmod 600 /var/www/koreni-api/.env.next && mv -f /var/www/koreni-api/.env.next /var/www/koreni-api/.env'
+          rm -f api.env
 
-      - name: Configure Environment and Restart Service
+      - name: Restart and verify API
         run: |
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
-            set -e
-            cd /var/www/koreni-api
-            
-            # Write .env to the correct directory
-            echo "PORT=4000" > .env
-            echo "BUGSNAG_API_API_KEY=${{ secrets.BUGSNAG_API_API_KEY }}" >> .env
-            echo "GITHUB_TOKEN=${{ secrets.IMPORT_TOKEN }}" >> .env
-            echo "GITHUB_REPO=${{ github.repository }}" >> .env
-            echo "TURNSTILE_SECRET_KEY=${{ secrets.TURNSTILE_SECRET_KEY }}" >> .env
-            echo "POSTHOG_KEY=${{ secrets.POSTHOG_KEY }}" >> .env
-            echo "POSTHOG_HOST=${{ vars.POSTHOG_HOST }}" >> .env
-            echo "NEXT_PUBLIC_SITE=${{ vars.SITE }}" >> .env
-            echo "NODE_ENV=production" >> .env
-            echo "VALID_API_KEYS=${{ vars.VALID_API_KEYS }}" >> .env
-            echo "FALLBACK_EMAIL=${{ secrets.FALLBACK_EMAIL }}" >> .env
-            echo "OAUTH_CLIENT_ID=${{ secrets.OAUTH_CLIENT_ID }}" >> .env
-            echo "NEXT_PUBLIC_API_SITE=${{ vars.SITE }}" >> .env
-            echo "BUILD_REVISION=${{ github.sha }}" >> .env
-            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-            echo "TURSO_DATABASE_URL=${{ vars.TURSO_DATABASE_URL }}" >> .env
-            echo "TURSO_DATABASE_TOKEN=${{ secrets.TURSO_DATABASE_TOKEN }}" >> .env
-            echo "KARMA_APP_TOKEN=${{ secrets.KARMA_APP_TOKEN }}" >> .env
-            echo "KARMA_INTERNAL_TOKEN=${{ secrets.KARMA_INTERNAL_TOKEN }}" >> .env
-            echo "EMAIL_VISIBILITY_SYNC_TOKEN=${{ secrets.EMAIL_VISIBILITY_SYNC_TOKEN }}" >> .env
-            echo "KARMA_APP_SLUG=koreni" >> .env
-            echo "NAVIGATOR_BASE_URL=https://www.uagenealogy.com" >> .env
-             
-            # Restart Service
-            sudo systemctl restart koreni-api
+          set -euo pipefail
+          ssh hetzner-deploy 'sudo -n systemctl restart koreni-api'
+          ssh hetzner-deploy 'sudo -n systemctl is-active --quiet koreni-api'
+          # Public health route exists in the original workflow.
+          site="${SITE_URL:-https://koreni.org.ua}"
+          curl --fail --silent --show-error \
+            --retry 10 --retry-delay 3 --retry-connrefused \
+            --max-time 10 "${site%/}/api/health" > /dev/null
 
-            # Verify the service started successfully
-            MAX_ATTEMPTS=12
-            SLEEP_INTERVAL=5
-            attempt=0
-            while [ $attempt -lt $MAX_ATTEMPTS ]; do
-              if sudo systemctl is-active --quiet koreni-api; then
-                echo "koreni-api is active."
-                break
-              fi
-              attempt=$((attempt + 1))
-              echo "Waiting for koreni-api to become active... (attempt $attempt/$MAX_ATTEMPTS)"
-              sleep $SLEEP_INTERVAL
-            done
-
-            if ! sudo systemctl is-active --quiet koreni-api; then
-              echo "ERROR: koreni-api failed to start after $((MAX_ATTEMPTS * SLEEP_INTERVAL))s."
-              echo "--- journalctl output ---"
-              sudo journalctl -u koreni-api -n 50 --no-pager
-              exit 1
-            fi
-          EOF
-
-  deploy-nginx:
-    runs-on: ubuntu-latest
-    needs:
-      - build
-      - build-api
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 2
-
-      - name: Check for Nginx changes
-        id: check_nginx
+      - name: Deploy frontend
         run: |
-          if git diff-tree --no-commit-id --name-only -r ${{ github.sha }} | grep -qE '^scripts/server/nginx'; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
+          set -euo pipefail
+          rsync -az --no-o --no-g --delete \
+            --chmod=D755,F644 \
+            ./dist/ hetzner-deploy:/var/www/html/
 
-      - name: Set up SSH
-        if: steps.check_nginx.outputs.changed == 'true'
+      - name: Check frontend
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ vars.SERVER_IP }} >> ~/.ssh/known_hosts
+          set -euo pipefail
+          site="${SITE_URL:-https://koreni.org.ua}"
+          curl --fail --silent --show-error \
+            --retry 5 --retry-delay 2 --max-time 10 "${site%/}/" > /dev/null
 
-      - name: Deploy and Validate Nginx Configuration
-        if: steps.check_nginx.outputs.changed == 'true'
+      - name: Upload and activate Nginx configuration
+        id: nginx_deploy
+        if: steps.nginx.outputs.changed == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
         run: |
-          scp scripts/server/nginx.conf ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }}:/tmp/nginx.conf.candidate
+          set -euo pipefail
+          scp -q scripts/server/nginx.conf hetzner-deploy:/tmp/koreni-nginx.candidate
+          # Record state before modifying the live configuration, so a failed
+          # syntax test can be restored by the rollback step.
+          ssh hetzner-deploy 'sudo -n test -f /etc/nginx/sites-available/koreni.org.ua'
+          ssh hetzner-deploy \
+            "sudo -n cp /etc/nginx/sites-available/koreni.org.ua /tmp/koreni-nginx.backup.$RUN_ID"
+          echo 'backup_created=true' >> "$GITHUB_OUTPUT"
+          ssh hetzner-deploy \
+            'sudo -n cp /tmp/koreni-nginx.candidate /etc/nginx/sites-available/koreni.org.ua && sudo -n nginx -t && sudo -n systemctl reload nginx'
 
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
-            set -e
-            TARGET="/etc/nginx/sites-available/koreni.org.ua"
-            BACKUP="/etc/nginx/sites-available/koreni.org.ua.bak"
-            CANDIDATE="/tmp/nginx.conf.candidate"
-
-            if [ -f "$TARGET" ]; then
-              sudo cp "$TARGET" "$BACKUP"
-            fi
-
-            sudo cp "$CANDIDATE" "$TARGET"
-            rm -f "$CANDIDATE"
-
-            if ! sudo nginx -t; then
-              echo "ERROR: Nginx syntax validation failed. Rolling back configuration."
-              if [ -f "$BACKUP" ]; then
-                sudo cp "$BACKUP" "$TARGET"
-                sudo systemctl reload nginx
-              fi
-              exit 1
-            fi
-
-            sudo systemctl reload nginx
-            echo "Nginx successfully reloaded with new configuration."
-          EOF
-
-      - name: Verify Routes and Health
-        if: steps.check_nginx.outputs.changed == 'true'
+      - name: Verify public routes
+        if: steps.nginx.outputs.changed == 'true'
         run: |
-          SITE_URL="${{ vars.SITE }}"
-          if [ -z "$SITE_URL" ]; then
-            SITE_URL="https://koreni.org.ua"
-          fi
-
-          echo "Performing post-deployment health checks on $SITE_URL..."
-
-          verify_endpoint() {
-            local url="$1"
-            local expected_code="$2"
-            echo "Checking $url (expecting HTTP $expected_code)..."
-            local http_code
-            http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$url" || echo "000")
-            if [ "$http_code" != "$expected_code" ]; then
-              echo "ERROR: $url returned HTTP $http_code (expected $expected_code)"
-              return 1
-            fi
-            echo "SUCCESS: $url returned HTTP $http_code"
-            return 0
+          set -euo pipefail
+          site="${SITE_URL:-https://koreni.org.ua}"
+          check() {
+            local url="$1" expected="$2" actual
+            actual=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$url")
+            [[ "$actual" == "$expected" ]] || { echo "$url returned $actual, expected $expected"; return 1; }
           }
+          check "${site%/}/" 200
+          check "${site%/}/api/health" 200 || check "${site%/}/api/submit" 405 || check "${site%/}/api/" 404
+          check "${site%/}/t/health" 200 || check "${site%/}/t/keys" 401 || check "${site%/}/t/" 404
+          check "${site%/}/comments/" 200 || check "${site%/}/comments/" 404
 
-          verify_endpoint "$SITE_URL/" "200" || exit 1
-          verify_endpoint "$SITE_URL/api/health" "200" || verify_endpoint "$SITE_URL/api/submit" "405" || verify_endpoint "$SITE_URL/api/" "404" || exit 1
-          verify_endpoint "$SITE_URL/t/health" "200" || verify_endpoint "$SITE_URL/t/keys" "401" || verify_endpoint "$SITE_URL/t/" "404" || exit 1
-          verify_endpoint "$SITE_URL/comments/" "200" || verify_endpoint "$SITE_URL/comments/" "404" || exit 1
-
-      - name: Rollback on Verification Failure
-        if: failure() && steps.check_nginx.outputs.changed == 'true'
+      - name: Roll back Nginx on failure
+        if: failure() && steps.nginx_deploy.outputs.backup_created == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
         run: |
-          echo "Health check failed. Rolling back Nginx configuration..."
-          ssh ${{ secrets.SSH_USERNAME }}@${{ vars.SERVER_IP }} << 'EOF'
-            TARGET="/etc/nginx/sites-available/koreni.org.ua"
-            BACKUP="/etc/nginx/sites-available/koreni.org.ua.bak"
+          set -euo pipefail
+          ssh hetzner-deploy \
+            "sudo -n cp /tmp/koreni-nginx.backup.$RUN_ID /etc/nginx/sites-available/koreni.org.ua && sudo -n nginx -t && sudo -n systemctl reload nginx"
 
-            if [ -f "$BACKUP" ]; then
-              echo "Restoring backup Nginx configuration..."
-              sudo cp "$BACKUP" "$TARGET"
-              sudo systemctl reload nginx
-              echo "Rollback completed."
-            else
-              echo "WARNING: No backup file found to rollback to."
-            fi
-          EOF
-
-# Trigger deploy
+      - name: Remove Nginx temporary files
+        if: always() && steps.nginx_deploy.outputs.backup_created == 'true'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          ssh hetzner-deploy "sudo -n rm -f /tmp/koreni-nginx.backup.$RUN_ID /tmp/koreni-nginx.candidate" || true
