@@ -307,13 +307,18 @@ jobs:
           ssh hetzner-deploy 'whoami && hostname'
 
       - name: Diagnose deployment key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         run: |
-          echo "GitHub Actions key:"
-          ssh-keygen -y -f ~/.ssh/id_ed25519 | ssh-keygen -lf -
+          set -euo pipefail
 
-          echo "SSH configuration:"
-          ssh -G hetzner-deploy |
-            grep -E '^(user|hostname|identityfile|identitiesonly) '~
+          echo "Configured SSH username: $SSH_USERNAME"
+
+          echo "Private key fingerprint:"
+          printf '%s\n' "$SSH_PRIVATE_KEY" |
+            ssh-keygen -y -f /dev/stdin |
+            ssh-keygen -lf -
 
       - name: Download frontend artifact
         uses: actions/download-artifact@v8
