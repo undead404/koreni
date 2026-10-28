@@ -145,8 +145,10 @@ describe('KarmaConnectionsPage', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code: 'AB12CD34EF' }),
     });
-    expect(requestApi).toHaveBeenCalledWith('/api/karma/lookup', {
-      signal: expect.any(AbortSignal),
+    await waitFor(() => {
+      expect(requestApi).toHaveBeenCalledWith('/api/karma/lookup', {
+        signal: expect.any(AbortSignal),
+      });
     });
     expect(await screen.findByText('Карма від Koreni')).toBeInTheDocument();
     expect(screen.getByText('12', { selector: 'dd' })).toBeInTheDocument();
