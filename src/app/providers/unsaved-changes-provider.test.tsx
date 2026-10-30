@@ -59,6 +59,32 @@ afterEach(() => {
 });
 
 describe('UnsavedChangesProvider', () => {
+  it('tracks dirty registrations without iterator helpers', () => {
+    const iterator = new Map([['dirty', true]]).values();
+    Object.defineProperty(iterator, 'some', { value: undefined });
+    vi.spyOn(Map.prototype, 'values').mockReturnValueOnce(iterator);
+    const confirm = vi.spyOn(globalThis, 'confirm').mockReturnValue(false);
+    render(
+      <UnsavedChangesProvider>
+        <GuardConsumer initiallyDirty label="dirty" />
+        <GuardConsumer label="clean" />
+      </UnsavedChangesProvider>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm clean' }));
+    expect(confirm).toHaveBeenCalledTimes(1);
+    expect(dispatchEvent(new Event('beforeunload', { cancelable: true }))).toBe(
+      false,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Toggle dirty' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm clean' }));
+    expect(confirm).toHaveBeenCalledTimes(1);
+    expect(dispatchEvent(new Event('beforeunload', { cancelable: true }))).toBe(
+      true,
+    );
+  });
+
   it('allows clean links without confirmation or unload prevention', () => {
     const confirm = vi.spyOn(globalThis, 'confirm');
     render(

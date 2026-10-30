@@ -63,7 +63,13 @@ export default function UnsavedChangesProvider({
   const [hasDirtyRegistration, setHasDirtyRegistration] = useState(false);
 
   const updateAggregateState = useCallback(() => {
-    const isDirty = registrationsReference.current.values().some(Boolean);
+    let isDirty = false;
+    for (const isRegistrationDirty of registrationsReference.current.values()) {
+      if (isRegistrationDirty) {
+        isDirty = true;
+        break;
+      }
+    }
     isDirtyReference.current = isDirty;
     setHasDirtyRegistration(isDirty);
   }, []);
