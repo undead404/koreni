@@ -3,7 +3,7 @@ archiveItems:
 authorName: Тетяна Михайленко
 authorEmail: tatiana.mykhailenko@yahoo.com
 date: 2026-10-30
-id: sl-pushkarna-reviziia-1811
+id: DAKhO-31-141-123-Sloboda-Pushkarna
 location:
   - 50.7092098
   - 35.4660955
@@ -12,6 +12,6 @@ sources:
   - https://uk.wikisource.org/wiki/%D0%90%D1%80%D1%85%D1%96%D0%B2:%D0%94%D0%90%D0%A5%D0%9E/31/141/123
 tableFilePath: data/csv/sl-pushkarna-reviziia-1811.csv
 tableLocale: ru
-title: сл. Пушкарна (ревізія 1811)
+title: Слобода Пушкарна (Грабовське) – ревізія (1811)
 yearsRange:
   - 1811
