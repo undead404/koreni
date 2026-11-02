@@ -999,12 +999,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hono/node-server@npm:^2.0.10":
-  version: 2.1.1
-  resolution: "@hono/node-server@npm:2.1.1"
+"@hono/node-server@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@hono/node-server@npm:2.1.3"
   peerDependencies:
     hono: ^4
-  checksum: 7ef810ca647c56d8d9386fd81609e18443b3a5634aa5ecabdf357e7ca724613c535e863c15ded9b7ae89b935a073040fb11e6d59041f3b1c3e153d8ecb699880
+  checksum: 1b9996f41be620c301f73529928ccb056574fadf822a0979e4925c17cce209583e7f27376ae2308b4e87ab6c1c7501d6f282333c364ed79f21b99b45b47f7ffb
   languageName: node
   linkType: hard
 
@@ -7052,7 +7052,7 @@ __metadata:
   dependencies:
     "@bugsnag/js": "npm:~8.8.1"
     "@bugsnag/plugin-hono": "npm:^8.8.0"
-    "@hono/node-server": "npm:^2.0.10"
+    "@hono/node-server": "npm:^2.1.3"
     "@libsql/client": "npm:0.17.3"
     "@libsql/kysely-libsql": "npm:0.4.1"
     "@octokit/request-error": "npm:^7.1.1"
