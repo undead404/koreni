@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-904-13-104
+authorName: Serhii Baniuk
+authorEmail: serhii.baniuk@gmail.com
+date: 2026-11-03
+id: metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-narodzhennia-1897-1901
+location:
+  - 48.834047839646374
+  - 29.541978836059574
+size: 566
+sources: []
+tableFilePath: data/csv/metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-narodzhennia-1897-1901.csv
+tableLocale: ru
+title: Метрична книга. Свято-Покровська церква, с. Михайлівка Гайсинського пов.
+  Подільської губ. Народження. 1897-1901
+yearsRange:
+  - 1897
+  - 1901
