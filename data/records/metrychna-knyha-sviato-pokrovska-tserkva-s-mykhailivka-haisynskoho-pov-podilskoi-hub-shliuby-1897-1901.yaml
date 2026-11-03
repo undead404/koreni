@@ -1,0 +1,19 @@
+archiveItems:
+  - ДАВіО-904-13-104
+authorName: Serhii Baniuk
+authorEmail: serhii.baniuk@gmail.com
+date: 2026-11-03
+id: metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-shliuby-1897-1901
+location:
+  - 48.834047839646374
+  - 29.54129219055176
+size: 94
+sources:
+  - https://drive.google.com/drive/folders/19_4U2ckFHlkUrFfYfx0ifRwUAn4cpD5z
+tableFilePath: data/csv/metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-shliuby-1897-1901.csv
+tableLocale: ru
+title: Метрична книга. Свято-Покровська церква, с. Михайлівка Гайсинського пов.
+  Подільської губ. Шлюби. 1897-1901
+yearsRange:
+  - 1897
+  - 1901
