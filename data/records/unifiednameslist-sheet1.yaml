@@ -1,0 +1,18 @@
+archiveItems:
+  - АРХІВ - ДАДО (ДАДнО) Р-6508-005-0059
+authorName: Whitney Oksana Golyak
+authorEmail: whitney.wiseman21@gmail.com
+date: 2026-07-13
+id: unifiednameslist-sheet1
+location:
+  - 47.9102734
+  - 33.3917703
+size: 5246
+sources:
+  - https://www.flickr.com/photos/alexander_volok/with/55388128548/
+tableFilePath: public/csv/unifiednameslist-sheet1.csv
+tableLocale: uk
+title: unified_names_list - Sheet1
+yearsRange:
+  - 1939
+  - 1941
