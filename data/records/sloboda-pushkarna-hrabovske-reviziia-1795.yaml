@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХО-31-141-57
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-11-09
+id: sloboda-pushkarna-hrabovske-reviziia-1795
+location:
+  - 50.7092098
+  - 35.4660955
+size: 2213
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CSKW-R3QC-H?i=262&cat=3007351&lang=en
+tableFilePath: data/csv/sloboda-pushkarna-hrabovske-reviziia-1795.csv
+tableLocale: ru
+title: Слобода Пушкарна (Грабовське) – ревізія (1795)
+yearsRange:
+  - 1795
