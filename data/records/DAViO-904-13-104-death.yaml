@@ -1,0 +1,18 @@
+archiveItems:
+  - ДАВіО-904-13-104
+authorName: Serhii Baniuk
+authorEmail: serhii.baniuk@gmail.com
+date: 2026-11-03
+id: DAViO-904-13-104-death
+location:
+  - 48.83445611985376
+  - 29.541485309600834
+size: 279
+sources:
+  - https://drive.google.com/drive/folders/19_4U2ckFHlkUrFfYfx0ifRwUAn4cpD5z
+tableFilePath: data/csv/metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-smerty-1897-1901.csv
+tableLocale: ru
+title: Михайлівка (Бершадська), Свято-Покровська церква – смерть, 1897-1901
+yearsRange:
+  - 1897
+  - 1901

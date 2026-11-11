@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-11-08
+id: DAKhmO-315-1-8330-Demydivka
+location:
+  - 49.114719
+  - 28.253401
+size: 1064
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Demydivka.csv
+tableLocale: ru
+title: Демидівка (Гніванська) 1855 – сповідний розпис, ДАХмО-315-1-8330
+yearsRange:
+  - 1855

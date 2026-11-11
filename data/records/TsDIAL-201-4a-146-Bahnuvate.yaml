@@ -1,0 +1,18 @@
+archiveItems:
+  - ЦДІАЛ-201-4а-146
+authorName: Олег Батько
+authorEmail: findancestorsinukraine@gmail.com
+date: 2026-11-02
+id: TsDIAL-201-4a-146-Bahnuvate
+location:
+  - 49.061199
+  - 23.15052
+size: 84
+sources:
+  - https://docs.google.com/spreadsheets/d/13ncdwHExrJ8nC8T_InBWCWcPKMGZ0pQL/edit?usp=sharing&ouid=114907398647553971216&rtpof=true&sd=true
+tableFilePath: data/csv/TsDIAL-201-4a-146-Bahnuvate.csv
+tableLocale: uk
+title: Багнувате 1785-1797 (метрика)
+yearsRange:
+  - 1785
+  - 1797

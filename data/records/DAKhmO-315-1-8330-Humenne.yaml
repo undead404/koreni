@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХмО-315-1-8330
+authorName: Василь Дідик
+authorEmail: didyk39@gmail.com
+date: 2026-11-07
+id: DAKhmO-315-1-8330-Humenne
+location:
+  - 49.193054
+  - 28.699568
+size: 347
+sources:
+  - https://docs.google.com/spreadsheets/d/1vB1VItfXXCNrx1OIiLbu8zOt9c9fGuVWtT0EdmA2im8/edit?usp=sharing
+tableFilePath: data/csv/DAKhmO-315-1-8330-Humenne.csv
+tableLocale: ru
+title: Гуменне 1855 – сповідний розпис (повний), ДАХмО-315-1-8330
+yearsRange:
+  - 1855

@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАВіО-904-13-104
+authorName: Serhii Baniuk
+authorEmail: serhii.baniuk@gmail.com
+date: 2026-11-03
+id: DAViO-904-13-104-birth
+location:
+  - 48.834047839646374
+  - 29.541978836059574
+size: 566
+sources: []
+tableFilePath: data/csv/metrychna-knyha-sviato-pokrovska-tserkva-s-mykhailivka-haisynskoho-pov-podilskoi-hub-narodzhennia-1897-1901.csv
+tableLocale: ru
+title: Михайлівка (Бершадська), Свято-Покровська церква – народження, 1897-1901
+yearsRange:
+  - 1897
+  - 1901
