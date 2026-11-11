@@ -49,15 +49,13 @@ export default function AboutPage() {
 
         <h2>Хто автор Коренів?</h2>
         <p>
-          Привіт. Я – Віталій Перегончук, розробник ПЗ,{' '}
-          <a
-            href="https://www.linkedin.com/in/vitalii-perehonchuk-10570693/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ось мій профіль на LinkedIn
+          Привіт. Я – Віталій Перегончук, розробник програмного забезпечення та
+          дослідник (переважно власної) генеалогії. Більше про мене та мої
+          проєкти — на{' '}
+          <a href="https://undead404.github.io/" target="_blank">
+            особистому сайті
           </a>
-          , наприклад.
+          .
         </p>
         <p>
           Крім промислової розробки постійно займаюсь різноманітними
@@ -88,9 +86,8 @@ export default function AboutPage() {
 
           <li>
             <a
-              href="https://pisnia-tumaniv.pages.dev"
+              href="https://undead404.github.io/pisnia-tumaniv/"
               target="_blank"
-              rel="noopener noreferrer"
             >
               Пісня туманів
             </a>{' '}
