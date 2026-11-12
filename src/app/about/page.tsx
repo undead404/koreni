@@ -52,7 +52,7 @@ export default function AboutPage() {
           Привіт. Я – Віталій Перегончук, розробник програмного забезпечення та
           дослідник (переважно власної) генеалогії. Більше про мене та мої
           проєкти — на{' '}
-          <a href="https://undead404.github.io/" target="_blank">
+          <a href="https://undead404.github.io/" target="_blank" rel="noreferrer">
             особистому сайті
           </a>
           .
@@ -88,6 +88,7 @@ export default function AboutPage() {
             <a
               href="https://undead404.github.io/pisnia-tumaniv/"
               target="_blank"
+              rel="noreferrer"
             >
               Пісня туманів
             </a>{' '}

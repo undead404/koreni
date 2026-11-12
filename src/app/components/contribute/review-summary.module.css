@@ -131,7 +131,7 @@
 .rowValue {
   font-size: 0.8125rem;
   color: #0f172a;
-  word-break: break-word;
+  overflow-wrap: anywhere;
   margin: 0;
 }
 
