@@ -1,7 +1,10 @@
 import '@testing-library/jest-dom/vitest';
 import dotenv from 'dotenv';
+import { vi } from 'vitest';
 
 dotenv.config({ path: '.env' });
+
+vi.stubEnv('NEXT_PUBLIC_OAUTH_CLIENT_ID', 'test-oauth-client-id');
 
 if (!process.env.NEXT_PUBLIC_GITHUB_REPO) {
   process.env.NEXT_PUBLIC_GITHUB_REPO = 'undead404/koreni';
