@@ -2,6 +2,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { clsx } from 'clsx';
 import { CheckCircle2, FileSpreadsheet, Upload } from 'lucide-react';
+import { useId } from 'react';
 
 import formatBytes from '@/app/helpers/format-bytes';
 
@@ -10,13 +11,13 @@ import { useCsvDropzone } from './use-csv-dropzone';
 import styles from './csv-dropzone.module.css';
 
 export default function CsvDropzone() {
+  const inputId = useId();
   const {
     errors,
     getTableDimensions,
     handleDragLeave,
     handleDragOver,
     handleDrop,
-    handleKeyDown,
     handleRemove,
     parseError,
     parsedFile,
@@ -46,23 +47,20 @@ export default function CsvDropzone() {
     <div aria-live="polite">
       <div
         className={zoneClass}
-        role="button"
-        tabIndex={state === 'success' ? -1 : 0}
-        aria-label="Оберіть файл CSV"
-        aria-expanded={state === 'success'}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onKeyDown={handleKeyDown}
       >
+        <label htmlFor={inputId} className={styles.inputLabel}>
+          Оберіть файл CSV
+        </label>
         <input
+          id={inputId}
           type="file"
           accept=".csv,text/csv"
           {...tableInputAttributes}
           ref={setReference}
           className={styles.hiddenInput}
-          tabIndex={-1}
-          aria-hidden="true"
         />
 
         <div className={iconClass} aria-hidden="true">

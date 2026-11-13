@@ -29,7 +29,7 @@
   background-color: var(--dz-bg-hover);
 }
 
-.dropzone:focus-visible {
+.dropzone:has(input:focus-visible) {
   outline: 2px solid var(--dz-outline);
   outline-offset: 2px;
 }
@@ -101,6 +101,18 @@
 }
 
 /* ── Hidden file input ── */
+.inputLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hiddenInput {
   position: absolute;
   inset: 0;

@@ -4,7 +4,6 @@ import { usePostHog } from 'posthog-js/react';
 import {
   type ChangeEvent,
   type DragEvent,
-  type KeyboardEvent,
   useCallback,
   useEffect,
   useRef,
@@ -34,7 +33,6 @@ export interface UseCsvDropzoneResult {
   handleDragLeave: (event: DragEvent<HTMLDivElement>) => void;
   handleDragOver: (event: DragEvent<HTMLDivElement>) => void;
   handleDrop: (event: DragEvent<HTMLDivElement>) => void;
-  handleKeyDown: (event: KeyboardEvent<HTMLDivElement>) => void;
   handleRemove: () => void;
   parseError: string | null;
   parsedFile: ParsedFile | null;
@@ -200,24 +198,6 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     [posthog, processFile, handleRemove],
   );
 
-  const handleClick = useCallback(() => {
-    if (state === 'uploading') return;
-    if (state === 'success') return;
-    inputReference.current?.click();
-  }, [state]);
-
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>) => {
-      if (!(event.key === 'Enter' || event.key === ' ')) {
-        return;
-      }
-
-      event.preventDefault();
-      handleClick();
-    },
-    [handleClick],
-  );
-
   /*
   ── Cancel handler ──
   */
@@ -249,7 +229,6 @@ export function useCsvDropzone(): UseCsvDropzoneResult {
     handleDragLeave,
     handleDragOver,
     handleDrop,
-    handleKeyDown,
     handleRemove,
     parseError,
     parsedFile,

@@ -1,8 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import CsvDropzone from './csv-dropzone';
+
+afterEach(cleanup);
 
 // Mock dependencies
 vi.mock('posthog-js/react', () => ({
@@ -32,6 +34,40 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 }
 
 describe('CsvDropzone', () => {
+  it('keeps the focused file input available to assistive technology', () => {
+    render(
+      <Wrapper>
+        <CsvDropzone />
+      </Wrapper>,
+    );
+
+    const input = screen.getByLabelText('Оберіть файл CSV', {
+      selector: 'input',
+    });
+    input.focus();
+
+    expect(input).toHaveFocus();
+    expect(input.closest('[aria-hidden="true"]')).toBeNull();
+
+    fireEvent(input, new Event('cancel'));
+    expect(input).toHaveFocus();
+    expect(input.closest('[aria-hidden="true"]')).toBeNull();
+  });
+
+  it('uses one labeled native file control without a wrapping button', () => {
+    render(
+      <Wrapper>
+        <CsvDropzone />
+      </Wrapper>,
+    );
+
+    const input = screen.getByLabelText('Оберіть файл CSV');
+    expect(input).toHaveAttribute('type', 'file');
+    expect(input).not.toHaveAttribute('tabindex', '-1');
+    expect(input.closest('[role="button"]')).toBeNull();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
   it('resets to idle state when file selection is cancelled via change event', () => {
     render(
       <Wrapper>
