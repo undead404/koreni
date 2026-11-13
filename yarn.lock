@@ -6133,10 +6133,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^4.13.11":
-  version: 4.13.11
-  resolution: "hono@npm:4.13.11"
-  checksum: 1052fbe5f45d0041828222597247fadb8283147cbf2c1ec930d525393f3bf4e2600f7190c4890c1a9cc97b6e1abd2287fc28ab37ac1988eda079f2b4deac71bb
+"hono@npm:^4.13.16":
+  version: 4.13.16
+  resolution: "hono@npm:4.13.16"
+  checksum: 8a06f1d49bb98fd38a2bc4d5c1f5410b4c5a9fbe2dff85fbad2191a1b55fde93b64b63b2deba97d3e241630aedd800c57d1f4dc539e5f93ece81809fa63cbed9
   languageName: node
   linkType: hard
 
@@ -7062,7 +7062,7 @@ __metadata:
     csv-stringify: "npm:^6.6.0"
     dotenv: "npm:~16.4.7"
     google-auth-library: "npm:^10.6.2"
-    hono: "npm:^4.13.11"
+    hono: "npm:^4.13.16"
     kysely: "npm:^0.29.2"
     kysely-codegen: "npm:^0.20.0"
     octokit: "npm:~5.0.5"
