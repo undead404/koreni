@@ -7,6 +7,9 @@ import { navigatorClient } from '../services/navigator-client.js';
 import handleKarmaLookup from './handle-karma-lookup.js';
 
 vi.mock('../database/find-user-by-id.js', () => ({ default: vi.fn() }));
+vi.mock('../environment.js', () => ({
+  default: { KARMA_APP_SLUG: 'koreni' },
+}));
 vi.mock('../services/navigator-client.js', () => ({
   NavigatorClientError: class NavigatorClientError extends Error {},
   navigatorClient: { lookupKarma: vi.fn() },
