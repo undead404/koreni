@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАХО-31-141-145
+authorName: Тетяна Михайленко
+authorEmail: tatiana.mykhailenko@yahoo.com
+date: 2026-11-09
+id: DAKhO-31-141-145-Sloboda-Pushkarna
+location:
+  - 50.7092098
+  - 35.4660955
+size: 1966
+sources:
+  - https://www.familysearch.org/ark:/61903/3:1:3Q9M-CS2Z-2Z3Y-X?i=1&cat=3007351&lang=en
+tableFilePath: data/csv/sloboda-pushkarna-hrabovske-reviziia-1816.csv
+tableLocale: ru
+title: Слобода Пушкарна (Грабовське) – ревізія (1816)
+yearsRange:
+  - 1816
