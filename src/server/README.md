@@ -21,6 +21,20 @@ This is a read-only dependency check, not a write dry run: success does not
 guarantee permission to create commits, branches, or pull requests, nor validate
 a particular CSV. `/api/health` retains its existing behavior.
 
+### Submission ID availability
+
+`GET /api/submissions/id-availability?id=example-id` checks both the
+`submission/{id}` GitHub branch (including branches left after merged or closed
+PRs) and `data/records/{id}.yaml` on `main`. No API key or Turnstile is required;
+normal API rate limits apply (429 retains the standard rate-limit response).
+IDs must contain 5–128 ASCII letters, digits, or hyphens; case is preserved.
+Missing, repeated, or invalid IDs return 400 `{"error":"invalid_id"}`.
+
+Success returns 200 `{"id":"example-id","available":true}` (or false when
+either resource exists). Indeterminate dependency failures return 503
+`{"error":"availability_unavailable"}`. Responses are not cached. This read-only
+check is advisory and does not reserve an ID; submission checks remain authoritative.
+
 ### Submitting data
 
 First, you must acquire an API key. Drop us a line at [admin@koreni.org.ua](mailto:admin@koreni.org.ua).

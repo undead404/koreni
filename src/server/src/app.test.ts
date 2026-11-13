@@ -18,6 +18,10 @@ const environment = vi.hoisted(
 const getKarmaStatsMetadata = vi.hoisted(() => vi.fn());
 const reportError = vi.hoisted(() => vi.fn());
 const checkGithubReadiness = vi.hoisted(() => vi.fn());
+const checkSubmissionIdAvailability = vi.hoisted(() => vi.fn());
+vi.mock('./services/submission-id-availability.js', () => ({
+  checkSubmissionIdAvailability,
+}));
 
 vi.mock('./services/github-readiness.js', () => ({ checkGithubReadiness }));
 
@@ -67,6 +71,23 @@ vi.mock('./environment.js', () => ({
 }));
 
 describe('App Factory', () => {
+  it('exposes public ID availability with CORS', async () => {
+    checkSubmissionIdAvailability.mockResolvedValue(false);
+    const response = await createApp().request(
+      '/api/submissions/id-availability?id=example',
+      { headers: { Origin: 'https://example.com' } },
+    );
+    expect(response.status).toBe(200);
+    expect(await response.json()).toStrictEqual({
+      id: 'example',
+      available: false,
+    });
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe(
+      'https://example.com',
+    );
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
+  });
+
   beforeEach(() => {
     environment.BUILD_REVISION = 'test-revision';
     environment.EMAIL_VISIBILITY_SYNC_TOKEN = 'policy-token';

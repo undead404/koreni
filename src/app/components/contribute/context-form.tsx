@@ -4,10 +4,12 @@ import { ErrorMessage } from '@hookform/error-message';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 import ArchiveItemsInput from './archive-items-input';
+import { takenIdMessage } from './check-id-availability';
 import SourcesInput from './sources-input';
 import { SpatialInput } from './spatial-input';
 import type { ContributeFormValues } from './types';
 import { useFormAutoFill } from './use-form-auto-fill';
+import { useIdAvailability } from './use-id-availability';
 import YearsInput from './years-input';
 
 import styles from './context-form.module.css';
@@ -37,6 +39,16 @@ export default function ContextForm() {
   const yearsRange = useWatch({ control, name: 'yearsRange' });
 
   useFormAutoFill();
+  const { state: availability, retry } = useIdAvailability();
+  const availabilityMessages = {
+    idle: '',
+    cancelled: '',
+    checking: 'Перевіряємо ідентифікатор…',
+    available: 'Ідентифікатор вільний',
+    taken: takenIdMessage,
+    unavailable:
+      'Не вдалося перевірити ідентифікатор. Спробуйте ще раз або продовжте — його буде перевірено під час надсилання.',
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -79,7 +91,10 @@ export default function ContextForm() {
               id="id-input"
               type="text"
               className={styles.input}
-              aria-describedby="id-error"
+              aria-describedby={[errors.id ? 'id-error' : '', 'id-availability']
+                .filter(Boolean)
+                .join(' ')}
+              aria-invalid={!!errors.id || availability.status === 'taken'}
               {...register('id', {
                 required: true,
                 pattern: {
@@ -90,6 +105,21 @@ export default function ContextForm() {
                 maxLength: 128,
               })}
             />
+            <p
+              id="id-availability"
+              role="status"
+              aria-live="polite"
+              className={
+                availability.status === 'taken' ? styles.error : styles.label
+              }
+            >
+              {availabilityMessages[availability.status]}
+            </p>
+            {availability.status === 'unavailable' && (
+              <button type="button" onClick={retry}>
+                Перевірити ще раз
+              </button>
+            )}
             <ErrorMessage
               className={styles.error}
               errors={errors}

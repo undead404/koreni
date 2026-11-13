@@ -1,6 +1,31 @@
 import { z } from 'zod';
 
 export const nonEmptyString = z.string().min(1);
+export const submissionIdAvailabilityQuerySchema = z.object({
+  id: z
+    .string()
+    .min(5)
+    .max(128)
+    .regex(/^[a-z0-9-]+$/i),
+});
+export type SubmissionIdAvailabilityQuery = z.infer<
+  typeof submissionIdAvailabilityQuerySchema
+>;
+export const submissionIdAvailabilityResponseSchema =
+  submissionIdAvailabilityQuerySchema.extend({
+    available: z.boolean(),
+  });
+export type SubmissionIdAvailabilityResponse = z.infer<
+  typeof submissionIdAvailabilityResponseSchema
+>;
+export const submissionReferenceSchema = z.object({
+  ref: nonEmptyString,
+  object: z.object({ sha: nonEmptyString }),
+});
+export const submissionRecordSchema = z.object({
+  type: z.literal('file'),
+  path: nonEmptyString,
+});
 export const githubReadinessReferenceSchema = z.object({
   ref: z.literal('refs/heads/main'),
   object: z.object({ type: z.literal('commit'), sha: nonEmptyString }),

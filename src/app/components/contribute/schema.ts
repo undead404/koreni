@@ -2,6 +2,15 @@ import z, { type ZodArray, type ZodNumber } from 'zod';
 
 import { nonEmptyString } from '@koreni/shared/schemas/non-empty-string';
 
+export const submissionIdSchema = z
+  .string()
+  .min(5, { message: 'Ідентифікатор має містити щонайменше 5 символів' })
+  .max(128, { message: 'Ідентифікатор має містити не більше 128 символів' })
+  .regex(/^[a-z0-9-]+$/i, {
+    message: 'Лише латинські літери, цифри та дефіси',
+  });
+export type SubmissionId = z.infer<typeof submissionIdSchema>;
+
 export const contributeFormSchema = z.object({
   archiveItems: z
     .array(
@@ -26,15 +35,7 @@ export const contributeFormSchema = z.object({
   authorName: z.string().min(1, {
     message: "Будь ласка, введіть своє ім'я, або хоча б псевдонім",
   }),
-  id: z
-    .string()
-    .min(1, {
-      message:
-        'Введіть ідентифікатор таблиці, що містить лише латинські літери, цифри та дефіси',
-    })
-    .regex(/^[a-z0-9-]+$/i, {
-      message: 'Лише латинські літери, цифри та дефіси',
-    }),
+  id: submissionIdSchema,
   location: z
     .string()
     .min(1, {
