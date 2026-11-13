@@ -23,6 +23,10 @@ import UnsavedChangesProvider from '../providers/unsaved-changes-provider';
 import AccountPage from './page';
 
 const mockReplace = vi.fn();
+const { notify } = vi.hoisted(() => ({ notify: vi.fn() }));
+vi.mock('@/app/services/bugsnag', () => ({
+  initBugsnag: vi.fn(() => ({ notify })),
+}));
 const mockRouter = { replace: mockReplace };
 const apiOrigin = new URL(environment.NEXT_PUBLIC_API_SITE).origin;
 const accountEndpoint = `${apiOrigin}/api/auth/me`;
@@ -103,6 +107,7 @@ describe('AccountPage', () => {
       );
     };
     vi.restoreAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders authenticated account information and the exact preference wording', async () => {
@@ -125,8 +130,10 @@ describe('AccountPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('redirects to /account/login when unauthenticated', async () => {
+  it('redirects to /account/login without reporting unauthenticated requests', async () => {
     respondToAccountGet = () =>
+      HttpResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    respondToVisibilityGet = () =>
       HttpResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     renderAccountPage();
@@ -134,6 +141,7 @@ describe('AccountPage', () => {
     await waitFor(() => {
       expect(mockReplace).toHaveBeenCalledWith('/account/login');
     });
+    expect(notify).not.toHaveBeenCalled();
   });
 
   it('tracks changes from the saved baseline and clears dirty state when restored', async () => {

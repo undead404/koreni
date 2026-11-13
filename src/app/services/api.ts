@@ -28,7 +28,10 @@ export default async function requestApi(
     }
     return response;
   } catch (error) {
-    initBugsnag().notify(error as Error);
+    // Unauthenticated or expired sessions are handled by the caller.
+    if (!(error instanceof ApiRequestError && error.status === 401)) {
+      initBugsnag().notify(error instanceof Error ? error : String(error));
+    }
     throw error;
   }
 }
