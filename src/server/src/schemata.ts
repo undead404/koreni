@@ -1,6 +1,10 @@
 import { z } from 'zod';
 
 export const nonEmptyString = z.string().min(1);
+export const githubReadinessReferenceSchema = z.object({
+  ref: z.literal('refs/heads/main'),
+  object: z.object({ type: z.literal('commit'), sha: nonEmptyString }),
+});
 export const importPayloadSchema = z.object({
   archiveItems: z.array(nonEmptyString).min(1),
   authorGithubUsername: z.string().optional(),

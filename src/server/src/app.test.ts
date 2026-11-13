@@ -17,6 +17,9 @@ const environment = vi.hoisted(
 );
 const getKarmaStatsMetadata = vi.hoisted(() => vi.fn());
 const reportError = vi.hoisted(() => vi.fn());
+const checkGithubReadiness = vi.hoisted(() => vi.fn());
+
+vi.mock('./services/github-readiness.js', () => ({ checkGithubReadiness }));
 
 vi.mock('@hono/node-server/conninfo', () => ({
   getConnInfo: vi.fn().mockReturnValue({
@@ -74,6 +77,19 @@ describe('App Factory', () => {
       version: 1,
     });
     reportError.mockReset();
+    checkGithubReadiness.mockReset();
+  });
+
+  it.each([true, false])('reports GitHub readiness=%s', async (ready) => {
+    checkGithubReadiness.mockResolvedValue(ready);
+    const response = await createApp().request('/api/ready');
+    expect(response.status).toBe(ready ? 200 : 503);
+    expect(response.headers.get('Cache-Control')).toBe('no-store');
+    expect(await response.json()).toStrictEqual({
+      status: ready ? 'ok' : 'unavailable',
+      checks: { github: ready ? 'ok' : 'unavailable' },
+    });
+    expect(checkGithubReadiness).toHaveBeenCalledOnce();
   });
 
   it('should create an app that handles health check', async () => {

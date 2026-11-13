@@ -4,6 +4,25 @@ This directory contains the server-side code for handling data import API reques
 
 ## How to use the API
 
+### Import dependency readiness
+
+`GET /api/ready` checks GitHub connectivity and read access using the configured
+`GITHUB_TOKEN` to read `heads/main` in `GITHUB_REPO`, the base branch used by CSV
+submissions. It makes no writes and requires no API key (normal API rate limits apply).
+
+It returns HTTP `200` with `{"status":"ok","checks":{"github":"ok"}}`, or HTTP
+`503` with `{"status":"unavailable","checks":{"github":"unavailable"}}` when
+GitHub rejects the credential, the repository/branch is inaccessible, GitHub is
+rate limited, the response is invalid, or the request fails or exceeds five seconds.
+Results (including failures) are cached in each server process for 30 seconds;
+concurrent probes share one request. Responses use `Cache-Control: no-store`.
+
+This is a read-only dependency check, not a write dry run: success does not
+guarantee permission to create commits, branches, or pull requests, nor validate
+a particular CSV. `/api/health` retains its existing behavior.
+
+### Submitting data
+
 First, you must acquire an API key. Drop us a line at [admin@koreni.org.ua](mailto:admin@koreni.org.ua).
 
 Then, you can submit your indexation data to the API like this (see comments):

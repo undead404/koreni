@@ -23,6 +23,7 @@ import { rateLimitMiddleware } from './middlewares/rate-limiter.js';
 import { requestLoggingMiddleware } from './middlewares/request-logging.js';
 import { transcribeAuthMiddleware } from './middlewares/transcribe-auth.js';
 import { bugsnagMiddleware, reportError } from './services/bugsnag.js';
+import { checkGithubReadiness } from './services/github-readiness.js';
 import { getKarmaStatsMetadata } from './services/karma-source.js';
 import environment from './environment.js';
 import { logger } from './logger.js';
@@ -60,6 +61,18 @@ export function createApp() {
 
   // Routes
   app.post('/api/submit', apiAuthMiddleware, handleSubmit);
+
+  app.get('/api/ready', async (c) => {
+    const isReady = await checkGithubReadiness();
+    c.header('Cache-Control', 'no-store');
+    return c.json(
+      {
+        status: isReady ? 'ok' : 'unavailable',
+        checks: { github: isReady ? 'ok' : 'unavailable' },
+      },
+      isReady ? 200 : 503,
+    );
+  });
 
   app.get('/api/health', async (c) => {
     if (!environment.BUILD_REVISION) {
