@@ -2,6 +2,22 @@
   width: 100%;
 }
 
+.fields {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fields:disabled {
+  opacity: 0.5;
+}
+
+.availability {
+  margin-bottom: 1rem;
+  color: var(--foreground);
+}
+
 .header {
   margin-bottom: 2.5rem; /* mb-10 */
 }

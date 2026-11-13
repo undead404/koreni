@@ -1,5 +1,10 @@
 import { z } from 'zod';
 
+export const readinessResponseSchema = z.object({
+  status: z.literal('ok'),
+  checks: z.object({ github: z.literal('ok') }),
+});
+
 export const submitErrorSchema = z.object({
   error: z.string(),
 });

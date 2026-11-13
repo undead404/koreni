@@ -14,6 +14,7 @@ import { useContributionStateStore } from './contribution-state';
 import { KnownLocationsContext } from './known-locations-context';
 import { useTableStateStore } from './table-state';
 import type { ContributeFormProperties } from './types';
+import useApiReadiness from './use-api-readiness';
 import useContributeForm from './use-contribute-form';
 import useSubmitContribution from './use-submit-contribution';
 
@@ -28,6 +29,8 @@ export default function ContributeForm({
   knownLocations,
 }: ContributeFormProperties) {
   const form = useContributeForm();
+  const { status, retrySeconds, checkAgain } = useApiReadiness();
+  const isReady = status === 'ready';
   const { tableFileName, getAllColumns, getTableAsObjects } =
     useTableStateStore();
   const turnstile = useTurnstile() as {
@@ -70,7 +73,16 @@ export default function ContributeForm({
   );
 
   return (
-    <form className={styles.container} onSubmit={handleFormSubmit}>
+    <form
+      className={styles.container}
+      onSubmit={(event) => {
+        if (!isReady) {
+          event.preventDefault();
+          return;
+        }
+        handleFormSubmit(event);
+      }}
+    >
       <div className={styles.header}>
         <h1 className={styles.title}>Додавання таблиці</h1>
         <p className={styles.description}>
@@ -105,14 +117,38 @@ export default function ContributeForm({
           зв&apos;язатися.
         </p>
       </div>
-      <FormProvider {...form}>
-        <KnownLocationsContext.Provider value={knownLocations}>
-          <ContributeFormStepper
-            turnstileWidget={turnstileWidget}
-            stage={stage}
-          />
-        </KnownLocationsContext.Provider>
-      </FormProvider>{' '}
+      {status === 'checking' && (
+        <p role="status">Перевіряємо доступність сервісу…</p>
+      )}
+      {status === 'unavailable' && (
+        <div role="alert" className={styles.availability}>
+          <p>
+            Сервіс додавання таблиць тимчасово недоступний. Форму буде
+            активовано після успішної перевірки.
+          </p>
+          <button
+            type="button"
+            disabled={retrySeconds > 0}
+            onClick={() => void checkAgain()}
+          >
+            {retrySeconds > 0
+              ? `Перевірити знову через ${retrySeconds} с`
+              : 'Перевірити знову'}
+          </button>
+        </div>
+      )}
+      <fieldset disabled={!isReady} className={styles.fields}>
+        <div inert={!isReady}>
+          <FormProvider {...form}>
+            <KnownLocationsContext.Provider value={knownLocations}>
+              <ContributeFormStepper
+                turnstileWidget={turnstileWidget}
+                stage={stage}
+              />
+            </KnownLocationsContext.Provider>
+          </FormProvider>
+        </div>
+      </fieldset>
     </form>
   );
 }
