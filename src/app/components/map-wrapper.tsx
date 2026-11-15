@@ -1,10 +1,24 @@
 'use client';
+import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
-import Loader from './loader';
+import type { MapProperties } from './map';
 
-const MapWrapper = dynamic(() => import('./map'), {
+import styles from './map.module.css';
+
+const LazyMap = dynamic(() => import('./map'), {
   ssr: false,
-  loading: () => <Loader />,
+  loading: () => null,
 });
-export default MapWrapper;
+
+export default function MapWrapper(properties: MapProperties) {
+  return (
+    <div
+      className={clsx(styles.mapContainer, styles.placeholder, {
+        [styles.isFullScreen]: properties.isFullScreen,
+      })}
+    >
+      <LazyMap {...properties} />
+    </div>
+  );
+}

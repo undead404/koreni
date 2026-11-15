@@ -9,3 +9,17 @@
 .isFullScreen {
   height: var(--content-full-height);
 }
+
+.placeholder {
+  background-color: var(--hover-background-color, #e5e7eb);
+  background-image:
+    linear-gradient(#8882 1px, transparent 1px),
+    linear-gradient(90deg, #8882 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .placeholder {
+    background-color: #374151;
+  }
+}

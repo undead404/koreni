@@ -6,8 +6,8 @@ import getTablesMetadata from '@koreni/shared/get-tables-metadata';
 
 import Comments from './components/comments/comments';
 import HomeDiscover from './components/home-discover';
-import Loader from './components/loader';
 import SearchPage from './components/search';
+import SearchSkeleton from './components/search-skeleton';
 import environment from './environment';
 import JsonLdHome from './index-json-ld';
 
@@ -75,7 +75,7 @@ export default async function Home() {
         </Link>{' '}
         у пошуковому рушії. Можливо, десь тут є і твої корені?
       </p>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<SearchSkeleton recordsNumber={recordsNumber} />}>
         <SearchPage recordsNumber={recordsNumber} />
       </Suspense>
       <HomeDiscover />
