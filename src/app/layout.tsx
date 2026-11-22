@@ -7,6 +7,7 @@ import CookieBanner from './components/cookie-banner';
 import Footer from './components/footer';
 import Header from './components/header';
 import SharhorootsPrompt from './components/sharhoroots-prompt';
+import SiteControls from './components/site-controls';
 import ErrorBoundary from './providers/error-boundary';
 import NoRussians from './providers/no-russians';
 import { PostHogProvider } from './providers/posthog';
@@ -54,22 +55,30 @@ export default function RootLayout({
             <PostHogProvider>
               <NoRussians />
               <div className={styles.page}>
-                <Header />
+                <SiteControls>
+                  <Header />
+                </SiteControls>
                 <main className={styles.main}>{children}</main>
-                <Footer />
-                <CookieBanner />
-                <SharhorootsPrompt />
+                <SiteControls>
+                  <Footer />
+                  <CookieBanner />
+                  <SharhorootsPrompt />
+                </SiteControls>
               </div>
-              <NotificationProvider />
+              <SiteControls>
+                <NotificationProvider />
+              </SiteControls>
             </PostHogProvider>
           </UnsavedChangesProvider>
         </ErrorBoundary>
-        <Script
-          src="https://uptime.betterstack.com/widgets/announcement.js"
-          data-id="237385"
-          async
-          type="text/javascript"
-        ></Script>
+        <SiteControls>
+          <Script
+            src="https://uptime.betterstack.com/widgets/announcement.js"
+            data-id="237385"
+            async
+            type="text/javascript"
+          ></Script>
+        </SiteControls>
       </body>
     </html>
   );
