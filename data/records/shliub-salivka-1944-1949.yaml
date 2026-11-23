@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАПО-Р9126-16-29
+  - ДАПО-Р9126-16-30
+  - ДАПО-Р9126-16-40
+  - ДАПО-Р9126-16-51
+  - ДАПО-Р9126-16-69
+  - ДАПО-Р9126-16-58
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: shliub-salivka-1944-1949
+location:
+  - 48.99005305317166
+  - 33.78046989440919
+size: 60
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/shliub-salivka-1944-1949.csv
+tableLocale: uk
+title: Шлюб Салівка 1944-1949
+yearsRange:
+  - 1944
+  - 1949
