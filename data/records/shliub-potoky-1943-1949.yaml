@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАПО-Р9126-16-29
+  - ДАПО-Р9126-16-30
+  - ДАПО-Р9126-16-40
+  - ДАПО-Р9126-16-51
+  - ДАПО-Р9126-16-58
+  - ДАПО-Р9126-16-68
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: shliub-potoky-1943-1949
+location:
+  - 49.104064372451695
+  - 33.57919692993165
+size: 72
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/shliub-potoky-1943-1949.csv
+tableLocale: uk
+title: Шлюб Потоки 1943-1949
+yearsRange:
+  - 1943
+  - 1949
