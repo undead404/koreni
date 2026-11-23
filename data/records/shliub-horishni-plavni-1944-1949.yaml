@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАПО-Р9126-16-29
+  - ДАПО-Р9126-16-30
+  - ДАПО-Р9126-16-39
+  - ДАПО-Р9126-16-50
+  - ДАПО-Р9126-16-57
+  - ДАПО-Р9126-16-67
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: shliub-horishni-plavni-1944-1949
+location:
+  - 49.03644014531313
+  - 33.63009452819825
+size: 78
+sources: []
+tableFilePath: data/csv/shliub-horishni-plavni-1944-1949.csv
+tableLocale: uk
+title: Шлюб Горішні Плавні 1944-1949
+yearsRange:
+  - 1944
+  - 1949
