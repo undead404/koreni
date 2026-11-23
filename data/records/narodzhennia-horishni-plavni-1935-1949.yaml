@@ -1,0 +1,25 @@
+archiveItems:
+  - ДАПО-Р9126-16-10
+  - ДАПО-Р9126-16-14
+  - ДАПО-Р9126-16-18
+  - ДАПО-Р9126-16-31
+  - ДАПО-Р9126-16-20
+  - ДАПО-Р9126-16-41
+  - ДАПО-Р9126-16-59
+  - ДАПО-Р9126-16-60
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: narodzhennia-horishni-plavni-1935-1949
+location:
+  - 49.037037997597
+  - 33.6313819885254
+size: 152
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/narodzhennia-horishni-plavni-1935-1949.csv
+tableLocale: uk
+title: Народження Горішні Плавні 1935-1949
+yearsRange:
+  - 1935
+  - 1949
