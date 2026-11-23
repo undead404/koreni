@@ -1,0 +1,24 @@
+archiveItems:
+  - ДАПО-Р9126-16-11
+  - ДАПО-Р9126-16-25
+  - ДАПО-Р9126-16-27
+  - ДАПО-Р9126-16-36
+  - ДАПО-Р9126-16-44
+  - ДАПО-Р9126-16-55
+  - ДАПО-Р9126-16-65
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: smert-horishni-plavni-1936-1949
+location:
+  - 49.036137699656045
+  - 33.63275527954102
+size: 98
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/smert-horishni-plavni-1936-1949.csv
+tableLocale: uk
+title: Смерть Горішні Плавні 1936-1949
+yearsRange:
+  - 1936
+  - 1949
