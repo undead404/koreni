@@ -3,7 +3,7 @@ archiveItems:
 authorName: Юлія Немірова
 authorEmail: nemirova.yuliia@gmail.com
 date: 2026-11-23
-id: narodzhennia-pidluzhzhia-1935
+id: DAPO-R9126-16-10-Pidluzhzhia-birth
 location:
   - 49.13078624838198
   - 33.64335536956788
@@ -12,6 +12,6 @@ sources:
   - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
 tableFilePath: data/csv/narodzhennia-pidluzhzhia-1935.csv
 tableLocale: uk
-title: Народження Підлужжя 1935
+title: Підлужжя (Горішньоплавнівське) – народження, 1935
 yearsRange:
   - 1935
