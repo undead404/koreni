@@ -10,7 +10,7 @@ archiveItems:
 authorName: Юлія Немірова
 authorEmail: nemirova.yuliia@gmail.com
 date: 2026-11-23
-id: narodzhennia-horishni-plavni-1935-1949
+id: DAPO-R9126-16-Horishni-Plavni-1935-1949-birth
 location:
   - 49.037037997597
   - 33.6313819885254
@@ -19,7 +19,7 @@ sources:
   - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
 tableFilePath: data/csv/narodzhennia-horishni-plavni-1935-1949.csv
 tableLocale: uk
-title: Народження Горішні Плавні 1935-1949
+title: Горішні Плавні – народження, 1935-1949
 yearsRange:
   - 1935
   - 1949
