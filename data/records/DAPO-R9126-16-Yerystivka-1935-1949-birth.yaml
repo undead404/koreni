@@ -10,7 +10,7 @@ archiveItems:
 authorName: Юлія Немірова
 authorEmail: nemirova.yuliia@gmail.com
 date: 2026-11-23
-id: narodzhennia-yerystivka-1935-1949
+id: DAPO-R9126-16-Yerystivka-1935-1949-birth
 location:
   - 49.08765352194361
   - 33.704853057861335
@@ -19,7 +19,7 @@ sources:
   - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
 tableFilePath: data/csv/narodzhennia-yerystivka-1935-1949.csv
 tableLocale: uk
-title: Народження Єристівка 1935-1949
+title: Єристівка – народження, 1935-1949
 yearsRange:
   - 1935
   - 1949
