@@ -10,7 +10,7 @@ archiveItems:
 authorName: Юлія Немірова
 authorEmail: nemirova.yuliia@gmail.com
 date: 2026-11-23
-id: narodzhennia-keleberda-1935-1949
+id: DAPO-R9126-16-Keleberda-1935-1949-birth
 location:
   - 48.96447664726911
   - 33.705625534057624
@@ -19,7 +19,7 @@ sources:
   - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
 tableFilePath: data/csv/narodzhennia-keleberda-1935-1949.csv
 tableLocale: uk
-title: Народження Келеберда 1935-1949
+title: Келеберда (Горішньоплавнівська) – народження 1935-1949
 yearsRange:
   - 1935
   - 1949
