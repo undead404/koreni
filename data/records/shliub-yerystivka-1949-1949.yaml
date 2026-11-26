@@ -1,0 +1,22 @@
+archiveItems:
+  - ДАПО-Р9126-16-30
+  - ДАПО-Р9126-16-39
+  - ДАПО-Р9126-16-50
+  - ДАПО-Р9126-16-57
+  - ДАПО-Р9126-16-67
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: shliub-yerystivka-1949-1949
+location:
+  - 49.08667509248644
+  - 33.70631217956544
+size: 35
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/shliub-yerystivka-1949-1949.csv
+tableLocale: uk
+title: Шлюб Єристівка 1949-1949
+yearsRange:
+  - 1945
+  - 1949
