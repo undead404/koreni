@@ -1,0 +1,17 @@
+archiveItems:
+  - ДАПО-Р9126-16-11
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: smert-nyzy-1936
+location:
+  - 49.04055990504762
+  - 33.59541893005372
+size: 5
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/smert-nyzy-1936.csv
+tableLocale: uk
+title: Смерть Низи 1936
+yearsRange:
+  - 1936
