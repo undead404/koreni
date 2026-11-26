@@ -1,0 +1,31 @@
+archiveItems:
+  - ДАПО-Р9126-16-9
+  - ДАПО-Р9126-16-5
+  - ДАПО-Р9126-16-2
+  - ДАПО-Р9126-16-3
+  - ДАПО-Р9126-16-4
+  - ДАПО-Р9126-16-10
+  - ДАПО-Р9126-16-12
+  - ДАПО-Р9126-16-14
+  - ДАПО-Р9126-16-19
+  - ДАПО-Р9126-16-22
+  - ДАПО-Р9126-16-33
+  - ДАПО-Р9126-16-43
+  - ДАПО-Р9126-16-53
+  - ДАПО-Р9126-16-63
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: nrodzhennia-pryshyb-1925-1949
+location:
+  - 49.04799628698251
+  - 33.730482757167074
+size: 534
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/nrodzhennia-pryshyb-1925-1949.csv
+tableLocale: uk
+title: Нродження Пришиб 1925-1949
+yearsRange:
+  - 1925
+  - 1949
