@@ -1,0 +1,20 @@
+archiveItems:
+  - ДАПО-Р9126-16-2
+  - ДАПО-Р9126-16-3
+  - ДАПО-Р9126-16-4
+  - ДАПО-Р9126-16-5
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: narodzhennia-rokytne-1919-1929
+location:
+  - 49.14060046169624
+  - 33.53044509887696
+size: 492
+sources: []
+tableFilePath: data/csv/narodzhennia-rokytne-1919-1929.csv
+tableLocale: uk
+title: Народження Рокитне 1919-1929
+yearsRange:
+  - 1919
+  - 1929
