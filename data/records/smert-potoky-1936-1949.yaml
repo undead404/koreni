@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАПО-Р9126-16-11
+  - ДАПО-Р9126-16-23
+  - ДАПО-Р9126-16-28
+  - ДАПО-Р9126-16-48
+  - ДАПО-Р9126-16-56
+  - ДАПО-Р9126-16-66
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: smert-potoky-1936-1949
+location:
+  - 49.10279300645021
+  - 33.57859611511231
+size: 112
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/smert-potoky-1936-1949.csv
+tableLocale: uk
+title: Смерть Потоки 1936-1949
+yearsRange:
+  - 1936
+  - 1949
