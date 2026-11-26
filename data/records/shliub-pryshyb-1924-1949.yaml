@@ -1,0 +1,23 @@
+archiveItems:
+  - ДАПО-Р9126-16-40
+  - ДАПО-Р9126-16-51
+  - ДАПО-Р9126-16-58
+  - ДАПО-Р9126-16-69
+  - ДАПО-Р9126-16-7
+  - ДАПО-Р9126-16-9
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: shliub-pryshyb-1924-1949
+location:
+  - 49.047165226644026
+  - 33.73266220092774
+size: 266
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/shliub-pryshyb-1924-1949.csv
+tableLocale: uk
+title: Шлюб Пришиб 1924-1949
+yearsRange:
+  - 1924
+  - 1949
