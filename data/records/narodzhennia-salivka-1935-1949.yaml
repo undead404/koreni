@@ -1,0 +1,25 @@
+archiveItems:
+  - ДАПО-Р9126-16-10
+  - ДАПО-Р9126-16-14
+  - ДАПО-Р9126-16-17
+  - ДАПО-Р9126-16-22
+  - ДАПО-Р9126-16-35
+  - ДАПО-Р9126-16-43
+  - ДАПО-Р9126-16-54
+  - ДАПО-Р9126-16-64
+authorName: Юлія Немірова
+authorEmail: nemirova.yuliia@gmail.com
+date: 2026-11-23
+id: narodzhennia-salivka-1935-1949
+location:
+  - 48.990200896215356
+  - 33.77832412719727
+size: 154
+sources:
+  - https://docs.google.com/spreadsheets/d/1Oswd0vj8Seq2MSOS04p3AthmtHVTSwlIx77dROFG0Xw/edit?usp=sharing
+tableFilePath: data/csv/narodzhennia-salivka-1935-1949.csv
+tableLocale: uk
+title: Народження Салівка 19
+yearsRange:
+  - 1935
+  - 1949
